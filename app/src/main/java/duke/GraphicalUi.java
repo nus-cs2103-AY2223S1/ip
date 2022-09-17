@@ -2,11 +2,8 @@ package duke;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -22,7 +19,6 @@ public class GraphicalUi extends Ui {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image picture = new Image(this.getClass().getResourceAsStream("/catavatar1.png"));
 
     /**
      * Creates a new GUI handler.
@@ -93,9 +89,9 @@ public class GraphicalUi extends Ui {
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
+        String userText = userInput.getText();
         dialogContainer.getChildren().add(
-                MessageBox.getUserDialog(userText, new ImageView(picture)));
+                MessageBox.getUserDialog(userText));
         processInput(userInput.getText());
         userInput.clear();
     }
@@ -108,9 +104,7 @@ public class GraphicalUi extends Ui {
 
     @Override
     public void respond(String response) {
-        Label dukeText = new Label(response);
-        MessageBox.getDukeDialog(dukeText, new ImageView(picture));
         dialogContainer.getChildren().add(
-                MessageBox.getDukeDialog(dukeText, new ImageView(picture)));
+                MessageBox.getDukeDialog(response));
     }
 }

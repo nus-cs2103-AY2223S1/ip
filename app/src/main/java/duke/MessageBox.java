@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -14,15 +15,15 @@ import javafx.scene.layout.HBox;
 public class MessageBox extends HBox {
     private Label text;
     private ImageView displayPicture;
+    private final Image picture = new Image(this.getClass().getResourceAsStream("/catavatar1.png"));
 
     /**
      * Creates a new MessageBox.
-     * @param l The label to use on the MessageBox.
-     * @param iv The ImageView of the MessageBox.
+     * @param t The text to use in the MessageBox.
      */
-    public MessageBox(Label l, ImageView iv) {
-        text = l;
-        displayPicture = iv;
+    public MessageBox(String t) {
+        text = new Label(t);
+        displayPicture = new ImageView(picture);
 
         text.setWrapText(true);
         displayPicture.setFitWidth(100.0);
@@ -44,22 +45,20 @@ public class MessageBox extends HBox {
 
     /**
      * Get a MessageBox representing the user's messages.
-     * @param l The label to use on the MessageBox.
-     * @param iv The ImageView of the MessageBox.
+     * @param text The text to use in the MessageBox
      * @return The MessageBox representing the user's messages.
      */
-    public static MessageBox getUserDialog(Label l, ImageView iv) {
-        return new MessageBox(l, iv);
+    public static MessageBox getUserDialog(String text) {
+        return new MessageBox(text);
     }
 
     /**
      * Get a MessageBox representing Duke's messages.
-     * @param l The label to use on the MessageBox.
-     * @param iv The ImageView of the MessageBox.
+     * @param text The text to use in the MessageBox
      * @return The MessageBox representing Duke's messages.
      */
-    public static MessageBox getDukeDialog(Label l, ImageView iv) {
-        var db = new MessageBox(l, iv);
+    public static MessageBox getDukeDialog(String text) {
+        var db = new MessageBox(text);
         db.flip();
         return db;
     }
