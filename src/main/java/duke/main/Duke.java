@@ -43,9 +43,9 @@ public class Duke {
             this.isExit = c.isExit();
             return c.execute(tasks, storage);
         } catch (IllegalArgumentException e) {
-            return "My apologies Your Grace. Unknown command received...";
+            return "exception My apologies Your Grace. Unknown command received...";
         } catch (DukeException e) {
-            return e.getMessage();
+            return "exception " + e.getMessage();
         }
     }
 
