@@ -21,10 +21,10 @@ public class TaskList {
      * @throws DanException if the input format is not expected
      */
     public String addToDoTask(String input) throws DanException {
+        String description = input.replace("event", "").strip();
         if (input.isEmpty()) {
             throw DanException.missingDescriptionError("todo task");
         }
-        String description = input.strip();
         return this.addTask(new ToDo(description));
     }
 

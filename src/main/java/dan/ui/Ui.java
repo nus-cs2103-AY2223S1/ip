@@ -43,9 +43,9 @@ public class Ui {
                 + " |  '--'  /  |  | |  ||  | \\   |   \n"
                 + " `-------'   `--' `--'`--'  `--'   \n";
 
-        result.append(printIndent(logo + "Ouuuuuuuuuhhhhhh Spo0ky"));
-        result.append(printIndent("What can I do for you?"));
-        return result.toString();
+        result.append(logo + "Ouuuuuuuuuhhhhhh Spo0ky\n");
+        result.append("What can I do for you?");
+        return printIndent(result.toString());
     }
 
     /**
