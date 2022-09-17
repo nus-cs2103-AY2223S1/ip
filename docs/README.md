@@ -288,24 +288,24 @@ Given the current list:
 
 **Expected outcome:**
 1. All tasks containing "hello" are found.
-'''
+```
 Here is what I have found...
 1.[T][ ] hello world
 2.[T][ ] hello hello
 3.[T][ ] helloworld
-'''
+```
 2. Only the task containing "hello world" is found.
-'''
+```
 Here is what I have found...
 1.[T][ ] hello world
-'''
+```
 3. The task cannot be found due to non-match letter case.
-'''
+```
 Well, I can't find any task that matches your keyword :(
-'''
+```
 4. Both tasks containing "world" is found.
-'''
+```
 Here is what I have found...
 1.[T][ ] hello world
 3.[T][ ] helloworld
-'''
+```
