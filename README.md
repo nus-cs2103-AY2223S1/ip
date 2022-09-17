@@ -33,9 +33,11 @@ Key in the following commands and press enter to execute
 4. 'todo' <NAME>: creates a new Todo task
 5. 'deadline' <NAME> '/by' <DD-MM-YYYY>: creates a new Deadline
 6. 'event' <NAME> '/at' <NAME OF LOCATION>: creates a new Event
-7. 'showExpense': displays all expenses in a list
-8. 'delExpense' <TASK NUMBER>: deletes an expense
-9. 'totalSpent': shows the total amount spent of all time
-10. 'spentOn' + <DD-MM-YYYY>: shows the amount of money spent on this day
+7. 'mark' <TASK ID>: marks a task as "done"
+8. 'unmark' <TASK ID>: marks a task as "not done"
+9. 'showExpense': displays all expenses in a list
+10. 'delExpense' <TASK NUMBER>: deletes an expense
+11. 'totalSpent': shows the total amount spent of all time
+12. 'spentOn' + <DD-MM-YYYY>: shows the amount of money spent on this day
 
 Try it out yourself!
