@@ -80,7 +80,7 @@ public class Storage {
      */
     public void addTaskToStorage(Task task) {
         try {
-            FileWriter fw = new FileWriter(file);
+            FileWriter fw = new FileWriter(file, true);
             fw.write(task.toFileFormat() + System.lineSeparator());
             fw.close();
         } catch (IOException e) {
