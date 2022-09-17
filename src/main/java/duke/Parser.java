@@ -75,6 +75,7 @@ public class Parser {
      * runs command after receiving response from the user.
      *
      * @param response The string that consists of the user command.
+     * @return Duke's response.
      * @throws DukeException If the response is invalid.
      * @throws IOException If the relative path to the text document is invalid.
      */
@@ -87,29 +88,40 @@ public class Parser {
         } else if (stringComponents.length == 1) {
             throw new DukeException("Invalid command. Please check again.");
         } else {
-            String component1 = stringComponents[0];
-            String component2 = stringComponents[1];
-            switch (component1) {
-            case "mark":
-                return this.tasks.updateTask(TaskUpdater.MARK, component2);
-            case "unmark":
-                return this.tasks.updateTask(TaskUpdater.UNMARK, component2);
-            case "deadline":
-                return this.tasks.addTaskType(Type.DEADLINE, component2);
-            case "todo":
-                return this.tasks.addTaskType(Type.TODO, component2);
-            case "event":
-                return this.tasks.addTaskType(Type.EVENT, component2);
-            case "delete":
-                return this.tasks.updateTask(TaskUpdater.DELETE, component2);
-            case "find":
-                return this.tasks.findTask(component2);
-            case "tag":
-                return this.tasks.tagTask(component2);
-            default:
-                throw new DukeException("Invalid command. PLease check again.");
+            String action = stringComponents[0];
+            String description = stringComponents[1];
+            return editTask(action, description);
+        }
+    }
 
-            }
+    /**
+     * Edits the task.
+     *
+     * @param action the action of the task.
+     * @param description The description of the task.
+     * @return The String of the action applied on the task.
+     * @throws DukeException The action ot description is invalid.
+     */
+    public String editTask(String action, String description) throws DukeException {;
+        switch (action) {
+        case "mark":
+            return this.tasks.updateTask(TaskUpdater.MARK, description);
+        case "unmark":
+            return this.tasks.updateTask(TaskUpdater.UNMARK, description);
+        case "deadline":
+            return this.tasks.addTaskType(Type.DEADLINE, description);
+        case "todo":
+            return this.tasks.addTaskType(Type.TODO, description);
+        case "event":
+            return this.tasks.addTaskType(Type.EVENT, description);
+        case "delete":
+            return this.tasks.updateTask(TaskUpdater.DELETE, description);
+        case "find":
+            return this.tasks.findTask(description);
+        case "tag":
+            return this.tasks.tagTask(description);
+        default:
+            throw new DukeException("Invalid command. PLease check again.");
         }
     }
 }

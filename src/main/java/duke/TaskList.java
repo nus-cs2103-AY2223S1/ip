@@ -90,6 +90,7 @@ public class TaskList {
      *
      * @param updater The action to be done.
      * @param index The string response broken down into its keywords.
+     * @return Duke's response to an updated task.
      * @throws DukeException If the keywords are missing or invalid.
      */
     public String updateTask(Parser.TaskUpdater updater, String index) throws DukeException {
@@ -115,6 +116,7 @@ public class TaskList {
      * Deletes task from the list.
      *
      * @param number The index to be removed.
+     * @return Duke's response to a deleted task.
      */
     public String deleteTask(int number) {
         Task task = this.list.get(number - 1);
@@ -160,6 +162,7 @@ public class TaskList {
      * Marks task with an X.
      *
      * @param number Index in the list for marking.
+     * @return Duke's response to a marked task.
      */
     public String markString(int number) {
         Task currentTask = this.list.get(number - 1);
@@ -171,6 +174,7 @@ public class TaskList {
      * Unmarks task by removing the X.
      *
      * @param number Index in the list for unmarking.
+     * @return Duke's response to an unmarked task.
      */
     public String unMarkString(int number) {
         Task currentTask = this.list.get(number - 1);
@@ -183,28 +187,17 @@ public class TaskList {
      *
      * @param type     Type of task.
      * @param stringComponent    The string response broken down into its keywords.
+     * @return Duke's response to an added task.
      * @throws DukeException If the keywords are missing or invalid.
      */
     public String addTaskType(Parser.Type type, String stringComponent) throws DukeException {
         switch (type) {
         case DEADLINE:
-            String[] deadlineComponents = stringComponent.split(" /by ", 2);
-            assert verifyTask(deadlineComponents, " /by ", Parser.Type.DEADLINE)
-                    : "It should never be false.";
-            DeadlineTask deadline = new DeadlineTask(deadlineComponents[0], deadlineComponents[1]);
-            this.list.add(deadline);
-            return addTask(deadline);
+            return addDeadlineTask(stringComponent);
         case TODO:
-            TodoTask todo = new TodoTask(stringComponent);
-            this.list.add(todo);
-            return addTask(todo);
+            return addTodoTask(stringComponent);
         case EVENT:
-            String[] eventComponents = stringComponent.split(" /at ", 2);
-            assert verifyTask(eventComponents, " /at ", Parser.Type.EVENT)
-                    : "It should never be false.";
-            EventTask event = new EventTask(eventComponents[0], eventComponents[1]);
-            this.list.add(event);
-            return addTask(event);
+            return addEventTask(stringComponent);
         default:
             assert false : "There should not be any other type.";
             return "this should never happen in addTaskType."; // Placeholder return statement.
@@ -212,9 +205,78 @@ public class TaskList {
     }
 
     /**
+     * Add a Deadline task to the list.
+     *
+     * @param stringComponent The description and the date and time of the task.
+     * @return The response of adding a Deadline task.
+     * @throws DukeException If | is used.
+     */
+    public String addDeadlineTask(String stringComponent) throws DukeException {
+        String[] deadlineComponents = stringComponent.split(" /by ", 2);
+        assert verifyTask(deadlineComponents, " /by ", Parser.Type.DEADLINE)
+                : "It should never be false.";
+        if (isDescriptionValid(deadlineComponents[0])) {
+            throw new DukeException("We do not accept | in the description.");
+        } else {
+            DeadlineTask deadline = new DeadlineTask(deadlineComponents[0], deadlineComponents[1]);
+            this.list.add(deadline);
+            return addTask(deadline);
+        }
+    }
+
+    /**
+     * Add a Deadline task to the list.
+     *
+     * @param stringComponent The description and the date and time of the task.
+     * @return The response of adding a Todo task.
+     * @throws DukeException If | is used.
+     */
+    public String addTodoTask(String stringComponent) throws DukeException {
+        if (isDescriptionValid(stringComponent)) {
+            throw new DukeException("We do not accept | in the description.");
+        } else {
+            TodoTask todo = new TodoTask(stringComponent);
+            this.list.add(todo);
+            return addTask(todo);
+        }
+    }
+
+    /**
+     * Add a Event task to the list.
+     *
+     * @param stringComponent The description and the date and time of the task.
+     * @return The response of adding a Event task.
+     * @throws DukeException If | is used.
+     */
+    public String addEventTask(String stringComponent) throws DukeException {
+        String[] eventComponents = stringComponent.split(" /at ", 2);
+        assert verifyTask(eventComponents, " /at ", Parser.Type.EVENT)
+                : "It should never be false.";
+        if (isDescriptionValid(eventComponents[0])) {
+            throw new DukeException("We do not accept | in the description.");
+        } else {
+            EventTask event = new EventTask(eventComponents[0], eventComponents[1]);
+            this.list.add(event);
+            return addTask(event);
+        }
+    }
+
+    /**
+     * Checks if description is valid
+     *
+     * @param  description The description in the task.
+     * @return True if the description is valid. False if otherwise.
+     */
+    public Boolean isDescriptionValid(String description) {
+        Pattern symbol = Pattern.compile(".* " + "\\|" + ".*");
+        return description.matches(String.valueOf(symbol));
+    }
+
+    /**
      * Adds task into the arraylist.
      *
      * @param task The task added into the arraylist.
+     * @return Duke's response to an added task.
      */
     public String addTask(Task task) {
         return "Got it. I've added this task:\n" + task + "\n"

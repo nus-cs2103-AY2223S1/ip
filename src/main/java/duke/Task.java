@@ -73,7 +73,7 @@ public class Task {
     }
 
     /**
-     *  Prints the tag array.
+     * Prints the tag array.
      *
      * @return The String of the tag array
      */
@@ -86,7 +86,7 @@ public class Task {
     }
 
     /**
-     *  Formats the tags for file storing
+     * Formats the tags for file storing
      *
      * @return the formatted string for tag storing
      */
