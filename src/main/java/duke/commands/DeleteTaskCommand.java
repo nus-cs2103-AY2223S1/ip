@@ -61,8 +61,8 @@ public class DeleteTaskCommand extends Command {
     @Override
     public String undo() {
         if (!hasExecutedSuccessfully) {
-            return "Oops! Your previous delete task command did not complete successfully, " +
-                    "so there is nothing to undo.";
+            return "Oops! Your previous delete task command did not complete successfully, "
+                    + "so there is nothing to undo.";
         }
 
         tasks.getList().add(Integer.parseInt(index) - 1, deletedTask);

@@ -10,6 +10,11 @@ public class Event extends Task {
 
     private final LocalDate localDate;
 
+    /**
+     * Constructs an event with the specified description and date.
+     * @param name Description of event.
+     * @param date The day the event happens at.
+     */
     public Event(String name, LocalDate date) {
         super(name);
         localDate = date;

@@ -10,6 +10,11 @@ public class Deadline extends Task {
 
     private final LocalDate localDate;
 
+    /**
+     * Constructs a deadline with the specified description and date.
+     * @param name Description of the deadline.
+     * @param date The deadline.
+     */
     public Deadline(String name, LocalDate date) {
         super(name);
         localDate = date;

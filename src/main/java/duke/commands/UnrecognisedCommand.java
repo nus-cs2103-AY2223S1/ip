@@ -5,7 +5,7 @@ package duke.commands;
  */
 public class UnrecognisedCommand extends Command {
 
-    String cmdString;
+    private String cmdString;
 
     /**
      * Constructs a new unrecognised command.

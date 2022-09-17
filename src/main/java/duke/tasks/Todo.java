@@ -5,6 +5,10 @@ package duke.tasks;
  */
 public class Todo extends Task {
 
+    /**
+     * Constructs a new to-do with the specified description.
+     * @param name Description of the to-do.
+     */
     public Todo(String name) {
         super(name);
     }

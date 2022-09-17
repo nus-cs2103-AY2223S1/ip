@@ -28,7 +28,8 @@ public class DateParser {
         for (DateTimeFormatter formatter : formatterList) {
             try {
                 return LocalDate.parse(s, formatter);
-            } catch (DateTimeParseException e) {}
+            } catch (DateTimeParseException e) {
+            }
         }
         throw new UnrecognisedDateException();
     }
