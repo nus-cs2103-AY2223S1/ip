@@ -10,8 +10,7 @@ import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
- * A command that filters current tasks and display tasks that is smaller than
- * the input date
+ * A command that filters current tasks and display tasks that is smaller than the input date
  */
 public class ByCommand extends DataCommand {
 
@@ -25,8 +24,7 @@ public class ByCommand extends DataCommand {
     }
 
     /**
-     * {@inheritDoc} Prints all task (with datetime assigned) that is before the
-     * specified date.
+     * {@inheritDoc} Prints all task (with datetime assigned) that is before the specified date.
      *
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */

@@ -22,7 +22,7 @@ public class ListCommand implements Command {
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) {
-        io.printList(tasks.getTasks());
+        io.printNumberedList(tasks.getTasks());
     }
 
 }

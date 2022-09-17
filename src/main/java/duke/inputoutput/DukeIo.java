@@ -12,14 +12,30 @@ public interface DukeIo {
      *
      * @param list List to be printed
      */
-    <U> void printList(List<U> list);
+    <U> void printNumberedList(List<U> list);
 
     /**
      * Prints the content of an array to the screen as a list numbered.
      *
      * @param list Array to be printed
      */
+    <U> void printNumberedList(U[] list);
+
+    /**
+     * Prints the content of an array to the screen as a unordered numbered.
+     *
+     * @param list Array to be printed
+     */
     <U> void printList(U[] list);
+
+    /**
+     * Prints the content of an array to the screen as a unordered numbered.
+     *
+     * @param list Array to be printed
+     */
+    <U> void printList(List<U> list);
+
+
 
     /**
      * Prints the message of an exception
@@ -39,7 +55,7 @@ public interface DukeIo {
     /**
      * Prints Text with selected features
      *
-     * @param txt          Text to be printed
+     * @param txt Text to be printed
      * @param featuresEnum features to be applied
      */
     void printTask(String txt, DukeCliSettings featuresEnum);
