@@ -5,4 +5,8 @@ public class InvalidItemException extends Exception{
         super("Alas! You ask me to paint outside the canvas..." +
                 "choose an item number from 0 to your list length! ");
     }
+
+    public InvalidItemException(String msg) {
+        super(msg);
+    }
 }

@@ -48,20 +48,6 @@ public class Ui {
     }
 
     /**
-     * Prints Duke's self-introduction and helps to customise its personality.
-     */
-    public String introduceDuke() {
-        String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
-        String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself..." +
-                "\nBut you are young blood. What brings you to these ancient halls?"
-                + "\n***********************************************************************";
-
-        String reply = "Welcome, my friend!\n" + intro + quote1;
-        System.out.println(reply);
-        return reply;
-    }
-
-    /**
      * Prints a farewell message at the end of the conversation
      */
 

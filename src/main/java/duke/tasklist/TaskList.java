@@ -121,14 +121,18 @@ public class TaskList implements Serializable {
         return this.tasksList;
     }
 
-    public String findByKeyword(String target) {
+    public String findByKeyword(String target) throws InvalidItemException{
         Stream<ListObject> filteredOptions = tasksList.stream().filter(x -> x.hasWord(target));
         assert filteredOptions != null;
         List<ListObject> eligibleTasks = filteredOptions.collect(Collectors.toList());
-        ArrayList<ListObject> filteredTasks = new ArrayList<>(eligibleTasks);
-        TaskList tasksToDisplay = new TaskList();
-        tasksToDisplay.setTasks(filteredTasks);
-        return tasksToDisplay.toString();
+        if (eligibleTasks.size() > 0) {
+            ArrayList<ListObject> filteredTasks = new ArrayList<>(eligibleTasks);
+            TaskList tasksToDisplay = new TaskList();
+            tasksToDisplay.setTasks(filteredTasks);
+            return tasksToDisplay.toString();
+        } else {
+            throw new InvalidItemException("There is no such item in the list, my friend!");
+        }
     }
 
     /**

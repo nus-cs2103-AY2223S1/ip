@@ -148,7 +148,7 @@ public class ParserDuke {
         }
     }
 
-    public String parseUnmarkCmd(TaskList listOfItems) throws InvalidItemException{
+    public String parseUnmarkCmd(TaskList listOfItems) {
         try {
             String taskNo = command.replaceAll("\\D+", "");
             int taskNoAsInt = Integer.parseInt(taskNo) - 1;
@@ -160,6 +160,55 @@ public class ParserDuke {
             return e.getMessage();
         }
     }
+
+    public String parseSortCmd(TaskList listOfItems) {
+        listOfItems.sortList();
+        String comment = "Indeed I shall invoke the Eye of Agomotto to turn time ... \n";
+        return comment + listOfItems;
+    }
+
+    public String parseDeleteCmd(TaskList listOfItems) {
+        try {
+            String taskNo = command.replaceAll("\\D+", "");
+            int taskNoAsInt = Integer.parseInt(taskNo) - 1;
+            String comment = "And so it must be...\nWe leave behind what we can not hold on to.\n" +
+                    "I have removed this from your list:\n";
+            String item = listOfItems.handleItem("DELETE", taskNoAsInt);
+            Storage.makeListFile(FILE_PATH, listOfItems);
+            return "You have only " + listOfItems.knowTaskCount() + "remaining";
+        } catch (InvalidItemException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String parseFind(TaskList listOfItems) throws ArgumentNumberException{
+        try {
+            String target = command.replaceAll("find ", "");
+            if(!target.isEmpty()) {
+            String list = listOfItems.findByKeyword(target);
+            String comment = "Here is what you are looking for!";
+            return comment + list + "\n";
+            } else {
+                throw new ArgumentNumberException();
+            }
+        } catch (InvalidItemException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Prints Duke's self-introduction and helps to customise its personality.
+     */
+    public String introduceDuke() {
+        String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
+        String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself...\n" +
+                "But you are young blood. What brings you to these ancient halls?\n";
+
+        String reply = "Welcome, my friend!\n" + intro + quote1;
+        return reply;
+    }
+
+
 
 
 
@@ -174,36 +223,24 @@ public class ParserDuke {
             if (command.isEmpty()) {
                 parseEmptyString();
             } else {
+
                 TaskList listOfItems = Storage.readFromFile(FILE_PATH);
-                String comment = "Here is what I think...";
-                String taskNo = "-1";
-                int taskNoAsInt = -1;
-                String item = "Nothing here yet!";
                 String[] parts = command.split(" ");
                 String instruction = parts[0];
 
 
                 if (instruction.equals(LIST_CMD)) {
                     reply = parseListCmd(listOfItems);
+                } else if (instruction.equals(HELLO_CMD)){
+                    reply = introduceDuke();
                 } else if (instruction.equals(MARK_CMD)) {
                     reply = parseMarkCmd(listOfItems);
                 } else if (instruction.equals(UNMARK_CMD)) {
                     reply = parseUnmarkCmd(listOfItems);
                 } else if (instruction.equals(DELETE_CMD)) {
-                    taskNo = command.replaceAll("\\D+", "");
-                    taskNoAsInt = Integer.parseInt(taskNo) - 1;
-                    comment = "And so it must be. We leave behind what we can not hold on to." +
-                            "\nI have removed this from your list:";
-                    item = listOfItems.handleItem("DELETE", taskNoAsInt);
-                    reply = "You have only " + listOfItems.knowTaskCount() + "remaining";
-                    Storage.makeListFile(FILE_PATH, listOfItems);
-
+                    reply = parseDeleteCmd(listOfItems);
                 } else if (instruction.equals(FIND_CMD)) {
-                    String target = command.replaceAll("find ", "");
-                    String list = listOfItems.findByKeyword(target);
-                    comment = "Here is what you are looking for!";
-                    reply = comment + list + "\n";
-
+                    reply = parseFind(listOfItems);
                 } else if (instruction.equals(TODO_CMD)) {
                     reply = parseTask(listOfItems);
                 } else if (instruction.equals(DEADLINE_CMD)) {
@@ -211,12 +248,10 @@ public class ParserDuke {
                 } else if (instruction.equals(EVENT_CMD)) {
                     reply = parseEvent(listOfItems);
                 } else if (instruction.equals(SORT_CMD)) {
-                    listOfItems.sortList();
-                    comment = "Indeed I shall invoke the Eye of Agomotto to turn time ... \n";
-                    reply = comment + listOfItems;
-
+                    reply = parseSortCmd(listOfItems);
                 } else {
-                    comment = "Why trouble me with the unrefined language of the youth! Speak plainly, my friend!";
+                    String comment = "Why trouble me with the unrefined language of the youth! " +
+                            "Speak plainly, my friend!";
                     reply = comment + "\n";
                 }
 
@@ -230,8 +265,6 @@ public class ParserDuke {
             reply = e.getMessage();
         } catch (ArgumentNumberException e) {
             reply = e.getMessage();
-        } catch (InvalidItemException e) {
-        reply = e.getMessage();
         } catch (Exception e) {
             reply = "Aemon went back to his crypt for a nap.\n" +
                     "Please restart the program after deleteing the DukeList.txt file.";
