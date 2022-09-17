@@ -3,6 +3,7 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
+import javafx.application.Platform;
 
 /**
  * Represents the command for the exiting Duke.
@@ -17,6 +18,15 @@ public class ExitCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                Platform.exit();
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }).start();
+
         return "hehe bye";
     }
 }

@@ -33,12 +33,12 @@ public class TaskList {
      */
     public String list() {
         StringBuilder sb = new StringBuilder(tasks.size() + 1);
-        sb.append("Here are the tasks in your list: \n");
+        sb.append("Here are your tasks! \n");
         for (int i = 1; i < tasks.size() + 1; i++) {
             sb.append(tasks.get(i - 1).toStringWithIndex(i)).append("\n");
         }
         if (tasks.size() == 0) {
-            return "No tasks found in the list!";
+            return "No tasks found! Come catch me hehe >:)";
         }
         return sb.toString();
     }
@@ -52,7 +52,7 @@ public class TaskList {
     public String mark(int index) {
         Task task = this.tasks.get(index);
         task.mark();
-        return "Nice! I've marked this task as done:\n" +
+        return "Meow task done. Good job!\n" +
                 "  " + task;
     }
 
@@ -65,7 +65,7 @@ public class TaskList {
     public String unmark(int index) {
         Task task = this.tasks.get(index);
         task.unmark();
-        return "OK, I've marked this task as not done yet:\n" +
+        return "Boooo task is marked as not done.\n" +
                 "  " + task;
     }
 
@@ -79,7 +79,7 @@ public class TaskList {
         Task task = this.tasks.get(index);
         this.tasks.remove(index);
         assert !this.tasks.contains(task);
-        return "Noted. I've removed this task:\n" +
+        return "Squeak! I've removed this task:\n" +
                 "  " + task.toString() + "\n" +
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
@@ -93,7 +93,7 @@ public class TaskList {
     public String add(Task task) {
         this.tasks.add(task);
         assert this.tasks.contains(task);
-        return "Got it. I've added this task:\n" +
+        return "Hiss. I've added this task:\n" +
                 "   " + task.toString() + "\n" +
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
@@ -108,7 +108,7 @@ public class TaskList {
     public String addTag(int to_tag, Tag tag) {
         Task tagTask = tasks.get(to_tag);
         tagTask.addTag(tag);
-        return String.format("Roger that. I've add the tag (%s) to %s", tag, tagTask);
+        return String.format("Chirp. I've add the tag (%s) to %s", tag, tagTask);
     }
 
     /**
@@ -131,7 +131,7 @@ public class TaskList {
      * @return Print format of all the tasks found.
      */
     public String find(String toFind) {
-        StringBuilder sb = new StringBuilder().append("Here are the matching tasks in your list:\n");
+        StringBuilder sb = new StringBuilder().append("Found these cheese in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             assert curr != null;

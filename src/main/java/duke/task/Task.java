@@ -54,7 +54,7 @@ public abstract class Task {
      * @return String representation of this task based on its index in a list/array.
      */
     public String toStringWithIndex(int index) {
-        return index + "." + this.toString();
+        return index + ". " + this.toString();
     }
 
     public static Task createTask(String commandType, String[] inputs) {
@@ -75,7 +75,7 @@ public abstract class Task {
                         Parser.getTime(inputs, "/at"));
                 break;
             default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("RATATATAT I don't get what you are saying! :-(");
             }
         } catch (NumberFormatException e) {
             throw new DukeInvalidDateException();

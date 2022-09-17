@@ -1,4 +1,4 @@
-package duke.ui;
+package duke.controllers;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -7,12 +7,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 /**
  * An example of a custom control using FXML.
@@ -23,7 +29,11 @@ public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
-    private ImageView displayPicture;
+    private Circle displayPicture;
+    @FXML
+    private Rectangle container;
+    @FXML
+    private StackPane pane;
 
     private DialogBox(String text, Image img) {
         try {
@@ -36,7 +46,9 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayPicture.setImage(img);
+        dialog.setMinHeight(Region.USE_PREF_SIZE);
+        container.heightProperty().bind(dialog.heightProperty().add(60));
+        displayPicture.setFill(new ImagePattern(img));
     }
 
     /**
@@ -46,7 +58,8 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
+        setAlignment(Pos.CENTER_LEFT);
+        container.setFill(Color.color(0.76078, 0.49804, 0.18824));
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
