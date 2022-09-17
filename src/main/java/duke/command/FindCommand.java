@@ -58,7 +58,7 @@ public class FindCommand extends DataCommand {
             String sBefore = tasks.get(i).toString();
             String sAfter = sBefore.replaceAll(searchString, wrapper);
             if (sAfter.length() != sBefore.length()) {
-                sb.append(String.format("%d. %s", i + 1, sAfter));
+                sb.append(String.format("%d. %s\n", i + 1, sAfter));
             }
         }
     }

@@ -30,7 +30,7 @@ public class MarkCommand extends DataCommand {
      * {@inheritDoc} Marks the task with the given index as complete.
      *
      * @throws DukeException Thrown when invalid index is given or out range
-     * @throws IOException   Thrown when data failed to save
+     * @throws IOException Thrown when data failed to save
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
@@ -39,7 +39,7 @@ public class MarkCommand extends DataCommand {
         try {
             index = Integer.parseInt(data.description) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidValueException(data.command);
+            throw new InvalidValueException(data.command.toString());
         }
 
         Task task = tasks.get(index);

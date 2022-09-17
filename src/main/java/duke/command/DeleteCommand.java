@@ -15,9 +15,8 @@ import duke.util.TaskList;
  */
 public class DeleteCommand extends DataCommand {
 
-    private static final String DELETE_TASK = "Noted. I've removed this task:%n"
-            + "  %s%n"
-            + "Now you have %d tasks in the list.";
+    private static final String DELETE_TASK =
+            "Noted. I've removed this task:%n" + "  %s%n" + "Now you have %d tasks in the list.";
 
     /**
      * Create an instance of Delete command.
@@ -29,11 +28,10 @@ public class DeleteCommand extends DataCommand {
     }
 
     /**
-     * {@inheritDoc} Removes the task given by the index (description of parsed
-     * data).
+     * {@inheritDoc} Removes the task given by the index (description of parsed data).
      *
      * @throws DukeException Thrown when invalid index is given
-     * @throws IOException   Thrown when saving to file failed
+     * @throws IOException Thrown when saving to file failed
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
@@ -42,7 +40,7 @@ public class DeleteCommand extends DataCommand {
         try {
             index = Integer.parseInt(data.description) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidValueException(data.command);
+            throw new InvalidValueException(data.command.toString());
         }
 
         Task task = tasks.deleteEntry(index);

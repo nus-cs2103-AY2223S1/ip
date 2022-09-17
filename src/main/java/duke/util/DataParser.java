@@ -13,6 +13,7 @@ import duke.command.ByCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.CommandSelector;
+import duke.command.CommandsEnum;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteAliasCommand;
 import duke.command.DeleteCommand;
@@ -93,6 +94,7 @@ public final class DataParser {
             return new AliasCommand(data);
         case DELETECOMMAND:
             return new DeleteAliasCommand(data);
+        case INVALID:
         default:
             return new InvalidCommand();
         }
@@ -104,27 +106,28 @@ public final class DataParser {
      * @param txt Raw user input
      * @return ParsedData Parsed user input
      */
-    public static ParsedData parse(String txt) {
+    public static ParsedData parse(String txt, CommandSelector cs) {
         String[] parsedTmp = txt.split(SPACE, 2);
+        String command = parsedTmp[0];
 
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
             return new ParsedData(parsedTmp[0]);
         }
 
-        String command = parsedTmp[0];
 
-        switch (command) {
-        case "deadline":
+        switch (cs.getCommand(command)) {
+        case DEADLINE:
             parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
             break;
 
-        case "event":
+        case EVENT:
             parsedTmp = parsedTmp[1].split(EVENT_SEP, 2);
             break;
 
         default:
             return new ParsedData(command, parsedTmp[1]);
         }
+
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
             return new ParsedData(command, parsedTmp[0]);
         }
@@ -133,14 +136,14 @@ public final class DataParser {
     }
 
     /**
-     * Returns Command from raw user input. Done by combining {@code Parser.parse}
-     * and {@code Parser.dataToCommand}
+     * Returns Command from raw user input. Done by combining {@code Parser.parse} and
+     * {@code Parser.dataToCommand}
      *
      * @param txt Raw user input
      * @return Command
      */
     public static Command parseCommand(String txt, CommandSelector cs) {
-        return dataToCommand(parse(txt), cs);
+        return dataToCommand(parse(txt, cs), cs);
     }
 
     /**
