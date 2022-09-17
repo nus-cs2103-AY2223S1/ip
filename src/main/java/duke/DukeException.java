@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class DukeException extends Exception {
     /**
@@ -6,6 +6,6 @@ public class DukeException extends Exception {
      * @param message error to print.
      */
     public DukeException(String message) {
-        super("OOPS!!! " + message);
+        super("Pardon me my lord. " + message);
     }
 }

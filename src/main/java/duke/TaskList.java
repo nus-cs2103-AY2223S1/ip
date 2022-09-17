@@ -1,6 +1,8 @@
-package Duke;
+package duke;
 
 import java.util.ArrayList;
+
+import duke.tasks.Task;
 
 public class TaskList {
 
@@ -16,13 +18,18 @@ public class TaskList {
      * @return the result list.
      */
     public String findTask(String input) {
+        boolean isMatch = false;
         StringBuilder str = new StringBuilder();
-        str.append("Here are the matching tasks in your list: \n");
+        str.append("Here are the matching tasks in your list, my lord: \n");
         for (int i = 1; i <= lst.size(); i++) {
             Task task = lst.get(i - 1);
             if (task.getDescription().contains(input)) {
+                isMatch = true;
                 str.append(i).append(". ").append(task).append(" \n");
             }
+        }
+        if (!isMatch) {
+            return "There are no matching tasks in your list, my lord";
         }
         return str.toString();
     }
@@ -47,10 +54,10 @@ public class TaskList {
      * @return The output to user after the successful addition of task.
      */
     public String addTask(Task t) {
-        assert t != null:"Input task should not be null";
+        assert t != null : "Input task should not be null";
         this.lst.add(t);
-        return "Got it. I've added this task: \n  " + t
-                + " \n Now you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
+        return "Got it my lord. I've added this task: \n  " + t
+                + " \nNow you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
     }
 
     /**
@@ -60,9 +67,9 @@ public class TaskList {
      */
     public String deleteTask(int i) {
         Task removed = lst.get(i - 1);
-        assert removed != null:"Should not be null";
+        assert removed != null : "Should not be null";
         lst.remove(i - 1);
-        return "Noted. I've removed this task: \n  " + removed
+        return "Noted my lord. I've removed this task: \n  " + removed
                 + " \nNow you have " + lst.size() + " tasks in the list.\n";
     }
 
@@ -74,7 +81,7 @@ public class TaskList {
     public String markTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsDone();
-        return "Nice! I've marked this task as done:\n  " + t;
+        return "Well done, my lord, I've marked this task as done:\n  " + t;
     }
 
     /**
@@ -85,7 +92,7 @@ public class TaskList {
     public String unmarkTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsNotDone();
-        return "OK, I've marked this task as not done yet:\n  " + t;
+        return "OK, my lord, I've marked this task as not done yet:\n  " + t;
     }
 
     /**
@@ -94,11 +101,11 @@ public class TaskList {
      */
     public String displayList() {
         if (lst.size() == 0) {
-            return "You do not have any tasks currently";
+            return "My lord, you do not have any tasks currently";
         }
 
         StringBuilder str = new StringBuilder();
-        str.append("Here are the tasks in your list: \n");
+        str.append("Here are the tasks in your list, my lord: \n");
         for (int i = 1; i <= lst.size(); i++) {
             Task task = lst.get(i - 1);
             str.append(i).append(". ").append(task).append("\n");

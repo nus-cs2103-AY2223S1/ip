@@ -1,7 +1,10 @@
-package Duke;
+package duke.tasks;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 public class Deadline extends Task {
 
@@ -38,8 +41,9 @@ public class Deadline extends Task {
                     Integer.valueOf(dayMonYr[1]),
                     Integer.valueOf(dayMonYr[0]),
                     hr, minute);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Invalid deadline input");
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException
+                | StringIndexOutOfBoundsException | DateTimeException e) {
+            throw new DukeException("Invalid deadline input, format should be deadline <task> /by dd/mm/yyyy HHmm");
         }
     }
 }

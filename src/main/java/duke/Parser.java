@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Parser {
 
@@ -29,9 +29,13 @@ public class Parser {
                 throw new DukeException("Please add in timing information.");
             }
             String[] output = new String[3];
-            output[0] = words[0]; // type of task
-            output[1] = words[1]; // task detail
-            output[2] = phrases[1]; // task timing information
+            try {
+                output[0] = words[0]; // type of task
+                output[1] = words[1]; // task detail
+                output[2] = phrases[1]; // task timing information
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("Invalid Input");
+            }
             return output;
 
         } else if (words[0].equals("bye") || words[0].equals("list")) {
@@ -46,8 +50,13 @@ public class Parser {
             }
             return words;
 
+        } else if (words.length == 1) {
+            return words;
+
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
+
         }
     }
 }
+

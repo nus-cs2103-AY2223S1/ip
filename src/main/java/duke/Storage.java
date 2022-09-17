@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,6 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
 
 public class Storage {
 
@@ -82,17 +87,17 @@ public class Storage {
         String[] parse = line.split(" ~ ");
         Task tsk = null;
         switch (parse[0]) {
-            case "T":
-                tsk = new Todo(parse[2]);
-                break;
-            case "E":
-                tsk = new Event(parse[2], parse[3]);
-                break;
-            case "D":
-                tsk = new Deadline(parse[2], parse[3], formatter);
-                break;
-            default:
-                throw new DukeException("Invalid File");
+        case "T":
+            tsk = new Todo(parse[2]);
+            break;
+        case "E":
+            tsk = new Event(parse[2], parse[3]);
+            break;
+        case "D":
+            tsk = new Deadline(parse[2], parse[3], formatter);
+            break;
+        default:
+            throw new DukeException("Invalid File");
         }
         if (parse[1].equals("X")) {
             tsk.markAsDone();
