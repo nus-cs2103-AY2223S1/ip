@@ -73,17 +73,14 @@ public class TaskListReader {
             case "T":
                 taskList.add(new ToDo(data[2].strip()));
                 break;
-
             case "E":
                 taskList.add(new Event(data[2].strip(), data[3].strip()));
                 break;
-
             case "D":
                 taskList.add(new Deadline(data[2].strip(), data[3].strip()));
                 break;
-
             default:
-                throw new DanException("Your data is corrupted!");
+                throw DanException.readDataFileError();
             }
 
             Task addedTask = taskList.get(taskList.size() - 1);
