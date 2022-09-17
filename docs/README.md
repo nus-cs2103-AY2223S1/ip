@@ -11,11 +11,11 @@
   - [Mark a task as not done: `uncheck`](#uncheck)
   - [Delete a task: `delete`](#delete)
   - [Find tasks by keyword: `find`](#find)
-  - [Show help message: `help`](#help) 
+  - [Show help message: `help`](#help)
   - [Exit the program: `exit`](#exit)
 - [Advanced Features](#advanced_features)
   - [Data File](#data_file)
-  
+
 # Introduction <a name="introduction"></a>
 ![](Ui.png)
 
@@ -30,6 +30,7 @@ It is optimized for keyboard users, but has a GUI for the looks as well.
 - Run `java -jar duke.jar` in a terminal to start Duke. A data directory will be created in the location you execute the command from.
   - Do not use double click to start the application. Because your OS can decide to execute the command from a different place.
 - Enter `help` to get started!
+- Optional: Install the [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) font for best viewing experience.
 
 # Features <a name="features"></a>
 - [x] Add a todo task.
@@ -154,8 +155,8 @@ Exits the program with a goodbye message.
 
 # Advanced Features <a name="advanced_features"></a>
 ## Data File <a name="data_file"></a>
-All the data is saved in the file `./data/data.txt`, relative to the directory you execute the jar from. 
-You can modify task list by directly editing this file. Each line of the file describes one task. 
+All the data is saved in the file `./data/data.txt`, relative to the directory you execute the jar from.
+You can modify task list by directly editing this file. Each line of the file describes one task.
 The format is the following:
 ```
 TASK SYMBOL | IS DONE? | DESCRIPTION [| ARGS...]
