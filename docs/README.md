@@ -52,22 +52,22 @@ Example
    u 3
    mark 2
 ````
-### Delete a task###
+### Delete a task
 **delete/DELETE/Delete NUMBER**
 
 Example
 ````
    delete 3
 ````
-### Get task on a specific day###
-**get/Get/g/G/GET YYYY-MM-DD
+### Get task on a specific day
+**get/Get/g/G/GET YYYY-MM-DD**
 
 Example
 ````
    g 2002-02-02
 ````
-##Find tasks of certain type or contain certain string
-**find/FIND/Find/f/F STRING/TYPE
+### Find tasks of certain type or contain certain string
+**find/FIND/Find/f/F STRING/TYPE**
 
 Examples
 ````
