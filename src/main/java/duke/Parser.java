@@ -1,6 +1,7 @@
 package duke;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,10 +39,10 @@ public class Parser {
             boolean List_and_ToDo = (!(message.equals("list")) && !(message.equals("todo")));
             boolean Event_and_Deadline = (!(message.equals("event")) && !(message.equals("deadline")));
             boolean Delete_and_Bye = (!(message.equals("delete")) && !(message.equals("bye")));
-            boolean Mark =(!(message.equals("mark")));
+            boolean Mark_and_Find =(!(message.equals("mark")) && !(message.equals("find")));
 
             //Make sure message is valid
-            if(List_and_ToDo && Event_and_Deadline && Delete_and_Bye && Mark){
+            if(List_and_ToDo && Event_and_Deadline && Delete_and_Bye && Mark_and_Find){
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-();");
             }
 
@@ -182,6 +183,25 @@ public class Parser {
 
             }
 
+            String ToFind = "find";
+
+            if (message.equals(ToFind)) {
+                String ToFindItem = input.nextLine().trim();
+                List<Task> ListofFoundTask  = new ArrayList<>();
+
+                for(int i =0; i < ListofMessages.size();i++) {
+                    Task task = ListofMessages.get(i);
+                    if (task.getTask().toLowerCase().matches(("(.*)" + ToFindItem + "(.*)").toLowerCase())) {
+                        ListofFoundTask.add(task);
+                    }
+                }
+                if(ListofFoundTask.size() <= 0){
+                    System.out.println("No Task Found");
+                }else{
+                    Storage.DisplayListOfMessages(ListofFoundTask);
+                }
+
+            }
 
 
             //Command is Exit
