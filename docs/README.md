@@ -19,6 +19,13 @@ Duke is a desktop app for managing task optimized for both GUI and CLI usage! Pa
   - Searching for Tasks
     - By keywords
     - By time
+  - Deleting Tasks
+  - Changing icons
+  - Renaming Commands
+    - Adding Alias
+    - Removing Alias
+    - Reset Alias
+  - Exiting Duke
 
 ------
 
@@ -127,22 +134,76 @@ To mark task as incomplete:
 
 - `find [search pattern]`: prints out all the tasks that have the specified pattern.
 
-## <img src="./img/find.png" style="zoom:67%;" />   
+  <img src="./img/find.png" style="zoom:67%;" />
 
-## Usage
+##    
 
-### `Keyword` - Describe action
+### By Date
 
-Describe the action and its outcome.
+​	To see all the tasks that have an attached date before certain period, use:
 
-Example of usage: 
+- `by [datetime pattern]`: prints out all tasks that have an attached datetime before the given one.
 
-`keyword (optional arguments)`
+<img src="./img/by.png" style="zoom:67%;" />
 
-Expected outcome:
+## Deleting Tasks
 
-Description of the outcome.
+To delete a task from the list, you can use the `delete` keyword:
 
-```
-expected output
-```
+- `delete [task id]`: removes the task with the corresponding id from the task list.
+
+<img src="./img/delete.png" style="zoom:67%;" />
+
+## Changing Icons
+
+To spice up your experience you can randomise you and Duke's icons. These AI generated images are free to use while being unique!
+
+! note this feature required GUI and an internet connection
+
+- `replaceUs`: replaces you and Duke's icon. This is a non-blocking command so you can still do other tasks while Duke tries to download the images.
+
+  <img src="./img/replaceUs.png" style="zoom:67%;" />
+
+## Renaming Commands
+
+To define an alias for existing commands to make your life easier, use `alias`, `rmalias` and reset with `resetAlias`
+
+### Adding Alias
+
+- `alias [New Command]->[Current Command]`: allows the new commands to have the same functionality as the current command
+
+  <img src="./img/alias.png" style="zoom: 67%;" />
+
+- `rmalias [Command]`: removes the user added Command from Duke
+
+  <img src="./img/rmalias.png" style="zoom:67%;" />
+
+- `resetAlias`: resets all user added commands to the default controls
+
+  <img src="./img/resetAlias.png" style="zoom:67%;" />
+
+## Exiting Duke 
+
+- `bye`: To exit duke. (Note there will be a 2 second buffer for your to read the message before exiting on GUI)
+
+  <img src="D:\NUS\CS2103T\Solo\ip\docs\img\Bye.png" style="zoom: 67%;" />
+
+# Command Summary
+
+| Action/Command |                       Format, Examples                       |
+| :------------: | :----------------------------------------------------------: |
+|     `bye`      |                            `bye`                             |
+|     `list`     |                            `list`                            |
+|     `mark`     |          `mark [task index]`, `mark 1`,  ` mark 4`           |
+|    `unmark`    |       `unmark [task index]`, `unmark 1`,  ` unmark 4`        |
+|    `delete`    |       `delete [task index]`, `delete 1`,  ` delete 4`        |
+|     `find`     |      `find [search string], find CS2103T, find CS3230`       |
+|      `by`      |   `by [date time/date]`, `by Oct 20 2022`, `by 05/12/2023`   |
+|     `todo`     | `todo [task description]`, `todo cook dinner, todo revise for midterm` |
+|   `deadline`   | `deadline [task description] /by [datetime/string]`, <br />`deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` |
+|    `event`     | `event [task description] /at [datetime/string]`, <br />`event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` |
+|    `alias`     | `alias [new command] -> [old command]`, alias t->todo, alias d->delete` |
+|   `rmalias`    |               `rmalias [command]`, `rmalias d`               |
+|  `resetAlias`  |                         `resetAlias`                         |
+|  `replaceUs`   |                         `replaceUs`                          |
+
