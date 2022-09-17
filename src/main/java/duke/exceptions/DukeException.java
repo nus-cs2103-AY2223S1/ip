@@ -6,7 +6,7 @@ package duke.exceptions;
 public abstract class DukeException extends Exception {
 
     /**
-     * Parent of all Duke related component
+     * Creates a duke exception
      *
      * @param errorMsg Message about the error.
      */

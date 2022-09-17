@@ -19,7 +19,7 @@ public class DeleteCommand extends DataCommand {
             "Noted. I've removed this task:%n" + "  %s%n" + "Now you have %d tasks in the list.";
 
     /**
-     * Create an instance of Delete command.
+     * Creates an instance of Delete command.
      *
      * @param d ParsedData containing the index of the task to delete
      */
