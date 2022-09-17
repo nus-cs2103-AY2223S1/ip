@@ -1,4 +1,4 @@
-T | 1 | sleep | 
-T | 0 | read book | 
-T | 0 | adfkla | 
-E | 0 | adfjalj  |  | 2009-08-17
+E | 0 | orientation  |  | 2022-09-18
+D | 0 | essay  | important | 2022-09-19
+D | 0 | essay  |  | 2022-09-19
+T | 0 | orientation | 

@@ -61,7 +61,7 @@ public class TagCommand extends Command {
     }
 
     public String getMessage(Task task) {
-        String str = "Tag added successfully ";
+        String str = "Tag added successfully: \n ";
         str += task;
         return str;
     }

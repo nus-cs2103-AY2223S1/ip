@@ -42,7 +42,7 @@ public class EventTaskCommand extends TaskCommand {
     }
 
     /**
-     * Creates new EventTask and add to tasklist as well as print message to user
+     * Creates new EventTask and add to TaskList as well as print message to user
      *
      * @return @inheritDoc
      */

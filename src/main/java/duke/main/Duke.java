@@ -10,7 +10,7 @@ import duke.tasks.TaskList;
 public class Duke {
 
     protected final Storage storage;
-    /* The tasklist keeps track of all the tasks added */
+    /* The TaskList keeps track of all the tasks added */
     protected TaskList tasks;
     private boolean isExit = false;
 

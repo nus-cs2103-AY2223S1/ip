@@ -14,8 +14,8 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    // Edited from @hauchongtang
-
+    // @@author @hauchongtang
+    // GREETINGS and INSTRUCTIONS adapted
     private static final String GREETING = "Your highness. I am Knave of Hearts and I am here to serve you.";
     private static final String INSTRUCTIONS = "To see all tasks type list\n" + "To add a todo, type todo <task>\n"
             + "To add a deadline, type deadline <task> /by <yyyy-mm-dd>\n"
@@ -25,6 +25,8 @@ public class MainWindow extends AnchorPane {
             + "To search for task descriptions, type find <query>\n"
             + "To tag a task, type tag <task number> /t <tag> \n"
             + "To untag a task, type untag <task number> /t <tag> \n";
+    //@@author
+    
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/redqueen.jfif"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/knaveofhearts.jfif"));
     @FXML

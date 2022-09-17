@@ -30,7 +30,7 @@ public abstract class Task {
     }
 
     /**
-     * Overloaded constructor that intialiases isDone state of task
+     * Overloaded constructor that initialises isDone state of task
      *
      * @param txt    Task description
      * @param isDone Whether task has been completed
@@ -59,7 +59,7 @@ public abstract class Task {
     }
 
     /**
-     * Mark task as done
+     * Marks task as done
      */
     public void setDone() {
         this.isDone = true;

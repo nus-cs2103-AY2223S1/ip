@@ -52,11 +52,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        if (this == null) {
-            return "";
-        } else {
-            return tagName;
-        }
+        return tagName;
     }
 
 }

@@ -51,7 +51,7 @@ public class MarkCommand extends Command {
     }
 
     public String getMessage(Task task) {
-        String str = "Congrats your honor! I've marked this task as done:";
+        String str = "Congrats! I've marked this task as done: \n";
         str += task;
         return str;
     }

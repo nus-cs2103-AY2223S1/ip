@@ -46,7 +46,7 @@ public class Storage {
             FileWriter fw = new FileWriter(filePath, false);
             StringBuilder taskString = new StringBuilder();
             for (Task task : tasks.getTasks()) {
-                taskString.append(task.toSaveString() + "\n");
+                taskString.append(task.toSaveString()).append("\n");
             }
             fw.write(taskString.toString());
             fw.close();
@@ -164,7 +164,7 @@ public class Storage {
      *
      * @param line Input by user
      * @param t    Task to add tag
-     * @throws DukeException @inheritdoc
+     * @throws DukeException @inheritDoc
      */
     public void loadTag(String[] line, Task t) throws DukeException {
         if (!line[3].equals("")) {

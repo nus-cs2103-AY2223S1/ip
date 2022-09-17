@@ -10,7 +10,7 @@ import duke.tasks.TaskList;
 public class ListCommand extends Command {
 
     /**
-     * Lists all tasks in tasklist or print default message if no tasks found
+     * Lists all tasks in TaskList or print default message if no tasks found
      *
      * @return @inheritDoc
      */
@@ -25,7 +25,7 @@ public class ListCommand extends Command {
         } else {
             StringBuilder sb = new StringBuilder("Your excellency, here are the tasks in your list: \n");
             for (int i = 0; i < tasks.size(); i++) {
-                sb.append((i + 1) + ". " + tasks.get(i).toString() + '\n');
+                sb.append(i + 1).append(". ").append(tasks.get(i).toString()).append('\n');
             }
             return sb.toString();
         }

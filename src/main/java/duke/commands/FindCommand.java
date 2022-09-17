@@ -51,9 +51,9 @@ public class FindCommand extends Command {
         if (filtered.size() == 0) {
             return "Your excellency, no matching tasks found";
         } else {
-            StringBuilder sb = new StringBuilder("Your excellency, here are the matching tasks in your list: \n");
+            StringBuilder sb = new StringBuilder("Your excellency, here are the matching tasks: \n");
             for (int i = 0; i < filtered.size(); i++) {
-                sb.append(i + 1).append(".").append(filtered.get(i).toString());
+                sb.append(i + 1).append(". ").append(filtered.get(i).toString()).append("\n");
             }
             return sb.toString();
         }
