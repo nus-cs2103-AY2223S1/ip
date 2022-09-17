@@ -3,11 +3,11 @@ package duke.command;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import duke.DukeException;
 import duke.Storage;
-import duke.Task;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Represents Command to delete any kind of task.

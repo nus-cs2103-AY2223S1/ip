@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import duke.task.Event;
+
 public class EventTest {
     @Test
     public void testFileRepresentation() {

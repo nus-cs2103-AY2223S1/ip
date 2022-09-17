@@ -1,6 +1,11 @@
 package duke;
 
 import duke.command.Command;
+import duke.command.Parser;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+import duke.ui.Message;
+import duke.ui.Ui;
 
 /**
  * Main class of Duke.

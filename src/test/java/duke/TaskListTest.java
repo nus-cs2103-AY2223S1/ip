@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+
 public class TaskListTest {
     @Test
     public void testFilterDate() {

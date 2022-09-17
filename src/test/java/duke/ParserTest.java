@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import duke.command.Parser;
+import duke.exception.DukeException;
+
+
+
 public class ParserTest {
     @Test
     public void wrongCommandTest() {
