@@ -5,9 +5,8 @@ package duke.command;
  */
 public enum CommandsEnum {
 
-    BYE("bye"), LIST("list"), MARK("mark"), UNMARK("unmark"), DELETE("delete"), TODO("todo"), DEADLINE(
-            "deadline"), EVENT(
-                    "event"), BY("by"), FIND("FIND"), ADDCOMMAND("alias"), DELETECOMMAND("rmalias"), INVALID("");
+    BYE("bye"), LIST("list"), MARK("mark"), UNMARK("unmark"), DELETE("delete"), TODO("todo"), DEADLINE("deadline"),
+    EVENT("event"), BY("by"), FIND("find"), ADDCOMMAND("alias"), DELETECOMMAND("rmalias"), INVALID("");
 
     final String commandType;
 

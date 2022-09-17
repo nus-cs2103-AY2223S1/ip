@@ -13,7 +13,7 @@ public final class StringParser {
      * @return String
      */
     public static String addIndent(String txt) {
-        return "\t" + txt.replaceAll("\n", "\n\t");
+        return "    " + txt.replaceAll("\n", "\n    ");
     }
 
     /**
@@ -35,5 +35,16 @@ public final class StringParser {
     public static boolean containWhitespace(String txt) {
         String tested = txt.trim();
         return !tested.matches("[a-zA-Z][a-zA-Z0-9]*");
+    }
+
+    /**
+     * Adds right padding to a text
+     *
+     * @param txt to be padded
+     * @param padding padding size
+     * @return formatted string
+     */
+    public static String rightPad(String txt, int padding) {
+        return String.format("%-" + padding + "s", txt);
     }
 }
