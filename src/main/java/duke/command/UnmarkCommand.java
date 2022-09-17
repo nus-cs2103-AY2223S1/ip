@@ -15,8 +15,8 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND = "UNMARK";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Unmark a task, unmark <index>"
-            + "\n   Example: unmark 1";
+            + "\nUnmark a task, unmark <index>"
+            + "\nExample: unmark 1";
 
     private static final int OFFSET = -1;
     private final int indexOfTaskToUnmark;

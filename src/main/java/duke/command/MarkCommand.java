@@ -15,8 +15,8 @@ public class MarkCommand extends Command {
     public static final String COMMAND = "MARK";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Marks a task, mark <index>"
-            + "\n   Example: mark 1";
+            + "\nMarks a task, mark <index>"
+            + "\nExample: mark 1";
     private static final int OFFSET = -1;
     private final int indexOfTaskToMark;
 

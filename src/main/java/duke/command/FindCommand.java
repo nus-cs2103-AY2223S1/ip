@@ -15,8 +15,8 @@ public class FindCommand extends Command {
     public static final String COMMAND = "FIND";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Finds a task, find <keyword>"
-            + "\n   Example: find wash";
+            + "\nFinds a task, find <keyword>"
+            + "\nExample: find wash";
     private final String stringToFind;
 
     /**

@@ -15,8 +15,8 @@ public class DeleteCommand extends Command {
     public static final String COMMAND = "DELETE";
 
     public static final String MESSAGE_USAGE = COMMAND
-                + "\n   Delete a task with specific index, delete <index>"
-                + "\n   Example: delete 1";
+                + "\nDelete a task with specific index, delete <index>"
+                + "\nExample: delete 1";
     private static final int OFFSET = -1;
     private final int indexOfTaskToDelete;
 

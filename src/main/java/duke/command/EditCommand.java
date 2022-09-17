@@ -15,8 +15,8 @@ public class EditCommand extends Command {
     public static final String COMMAND = "EDIT";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Edit a task, edit <index> <new task>"
-            + "\n   Example: edit 1 todo wash clothes";
+            + "\nEdit a task, edit <index> <new task>"
+            + "\nExample: edit 1 todo wash clothes";
     private static final int OFFSET = -1;
     private int indexOfTaskToEdit;
 

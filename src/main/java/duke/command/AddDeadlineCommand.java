@@ -14,8 +14,8 @@ public class AddDeadlineCommand extends AddCommand {
     public static final String COMMAND = "DEADLINE";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Adds an Deadline task with date and time, deadline <description> /by <DateTime>"
-            + "\n   Example: deadline wash clothes /by Dec 21 2022 1030";
+            + "\nAdds an Deadline task with date and time, deadline <description> /by <DateTime>"
+            + "\nExample: deadline wash clothes /by Dec 21 2022 1030";
 
     /**
      * Constructs an AddDeadlineCommand instance.

@@ -36,7 +36,7 @@ public class Ui {
      */
     public void appendToResponse(String... strings) {
         for (String message : strings) {
-            response.append("   ").append(message).append("\n");
+            response.append(message).append("\n");
         }
     }
 

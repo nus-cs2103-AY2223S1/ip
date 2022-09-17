@@ -14,8 +14,8 @@ public class AddTodoCommand extends AddCommand {
     public static final String COMMAND = "TODO";
 
     public static final String MESSAGE_USAGE = COMMAND
-                + "\n   Adds a Todo task, todo <description>"
-                + "\n   Example: todo wash clothes ";
+                + "\nAdds a Todo task, todo <description>"
+                + "\nExample: todo wash clothes ";
 
     /**
      * Constructs an AddCommand instance.

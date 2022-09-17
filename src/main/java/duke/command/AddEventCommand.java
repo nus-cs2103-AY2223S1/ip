@@ -14,8 +14,8 @@ public class AddEventCommand extends AddCommand {
     public static final String COMMAND = "EVENT";
 
     public static final String MESSAGE_USAGE = COMMAND
-            + "\n   Adds an Event task with date and time, event <description> /at <DateTime>"
-            + "\n   Example: event wash clothes /at Dec 21 2022 1030";
+            + "\nAdds an Event task with date and time, event <description> /at <DateTime>"
+            + "\nExample: event wash clothes /at Dec 21 2022 1030";
 
     /**
      * Constructs an AddEventCommand instance.
