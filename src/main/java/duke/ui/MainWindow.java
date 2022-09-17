@@ -26,7 +26,7 @@ public class MainWindow extends AnchorPane {
             + "To tag a task, type tag <task number> /t <tag> \n"
             + "To untag a task, type untag <task number> /t <tag> \n";
     //@@author
-    
+
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/redqueen.jfif"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/knaveofhearts.jfif"));
     @FXML
@@ -49,7 +49,6 @@ public class MainWindow extends AnchorPane {
         dialogContainer.setStyle("-fx-background-color: transparent");
         dialogContainer.getChildren()
                 .addAll(DialogBox.getDukeDialog(GREETING, dukeImage), DialogBox.getDukeDialog(INSTRUCTIONS, dukeImage));
-
     }
 
     public void setDuke(Duke d) {
