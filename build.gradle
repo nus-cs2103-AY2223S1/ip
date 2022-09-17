@@ -60,3 +60,11 @@ run{
     standardInput = System.in
     enableAssertions = true
 }
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
