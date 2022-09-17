@@ -30,8 +30,8 @@ public class MainWindow {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/hoshiyomi.jpg"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/sui.jpg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/hoshiyomi.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/sui.png"));
 
     /**
      * Initializes the Main Window.

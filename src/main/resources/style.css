@@ -2,7 +2,7 @@
 Reused from https://github.com/xiongjya/ip
 with minor modifications */
 .scroll-pane .viewport {
-    -fx-background-image: url("/images/starry_sky.jpg");
+    -fx-background-image: url("/images/starry_sky.png");
     -fx-background-size: cover;
     -fx-background-position:center;
     -fx-background-repeat: no-repeat;
