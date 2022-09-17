@@ -1,9 +1,6 @@
 package duke.parser;
 
-import duke.exceptions.ArgumentNumberException;
-import duke.exceptions.EmptyCommandException;
-import duke.exceptions.EmptyDateTimeException;
-import duke.exceptions.EmptyTaskException;
+import duke.exceptions.*;
 import duke.listobjects.Deadline;
 import duke.listobjects.Event;
 import duke.listobjects.ListObject;
@@ -127,6 +124,43 @@ public class ParserDuke {
         }
     }
 
+    public String parseListCmd(TaskList listOfItems){
+
+        if(listOfItems.getListLength() != 0) {
+            String comment = "These are the tasks on your list!\n";
+            String list = listOfItems.toString();
+            return comment + list + "\n";
+        } else {
+            return "Your pages are yet blank. But the White Book was not written in a day...";
+        }
+    }
+
+    public String parseMarkCmd(TaskList listOfItems) throws InvalidItemException{
+        try {
+            String taskNo = command.replaceAll("\\D+", "");
+            int taskNoAsInt = Integer.parseInt(taskNo) - 1;
+            String comment = "Very well! One less burden to bear! I have marked this complete:\n";
+            String item = listOfItems.handleItem("MARK", taskNoAsInt);
+            Storage.makeListFile(FILE_PATH, listOfItems);
+            return comment + item;
+        } catch (InvalidItemException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String parseUnmarkCmd(TaskList listOfItems) throws InvalidItemException{
+        try {
+            String taskNo = command.replaceAll("\\D+", "");
+            int taskNoAsInt = Integer.parseInt(taskNo) - 1;
+            String comment = "Hmm....I have marked this incomplete:\n";
+            String item = listOfItems.handleItem("UNMARK", taskNoAsInt);
+            Storage.makeListFile(FILE_PATH, listOfItems);
+            return comment + item;
+        } catch (InvalidItemException e) {
+            return e.getMessage();
+        }
+    }
+
 
 
     /**
@@ -150,24 +184,11 @@ public class ParserDuke {
 
 
                 if (instruction.equals(LIST_CMD)) {
-                    comment = "These are the tasks on your list!";
-                    String list = listOfItems.toString();
-                    reply = comment + list + "\n";
-                    return reply;
+                    reply = parseListCmd(listOfItems);
                 } else if (instruction.equals(MARK_CMD)) {
-                    taskNo = command.replaceAll("\\D+", "");
-                    taskNoAsInt = Integer.parseInt(taskNo) - 1;
-                    Storage.makeListFile(FILE_PATH, listOfItems);
-                    comment = "Very well! One less burden to bear! I have marked this complete:";
-                    item = listOfItems.handleItem("MARK", taskNoAsInt);
-                    reply = comment + "\n" + item;
+                    reply = parseMarkCmd(listOfItems);
                 } else if (instruction.equals(UNMARK_CMD)) {
-                    taskNo = command.replaceAll("\\D+", "");
-                    taskNoAsInt = Integer.parseInt(taskNo) - 1;
-                    Storage.makeListFile(FILE_PATH, listOfItems);
-                    comment = "Hmm....I have marked this incomplete:";
-                    item = listOfItems.handleItem("UNMARK", taskNoAsInt);
-                    reply = comment + "\n" + item;
+                    reply = parseUnmarkCmd(listOfItems);
                 } else if (instruction.equals(DELETE_CMD)) {
                     taskNo = command.replaceAll("\\D+", "");
                     taskNoAsInt = Integer.parseInt(taskNo) - 1;
@@ -209,8 +230,11 @@ public class ParserDuke {
             reply = e.getMessage();
         } catch (ArgumentNumberException e) {
             reply = e.getMessage();
+        } catch (InvalidItemException e) {
+        reply = e.getMessage();
         } catch (Exception e) {
-            reply = "Aemon went back to his crypt for a nap. Please restart the program after deleteing the DukeList.txt file.";
+            reply = "Aemon went back to his crypt for a nap.\n" +
+                    "Please restart the program after deleteing the DukeList.txt file.";
         }
         finally {
             return reply;

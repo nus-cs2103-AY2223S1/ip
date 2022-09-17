@@ -1,5 +1,6 @@
 package duke.tasklist;
 
+import duke.exceptions.InvalidItemException;
 import duke.listobjects.ListObject;
 
 import java.io.Serializable;
@@ -14,17 +15,13 @@ import java.util.stream.Stream;
  * Represents TaskList which stores a list of tasks the user wants to store and implements the Serializable interface
  */
 public class TaskList implements Serializable {
-
-    private static int numberOfTodos;
-    private static int numberOfDeadlines;
-    private static int numberOfEvents;
     private ArrayList<ListObject> tasksList;
 
     /**
      * Constructs a TaskList with an empty ArrayList of ListObjects
      */
     public TaskList() {
-        this.tasksList = new ArrayList<ListObject>();
+        this.tasksList = new ArrayList<>();
     }
 
     /**
@@ -53,10 +50,9 @@ public class TaskList implements Serializable {
      * @param instruction String representing type of action to be performed
      * @param itemNum     int representing the item number to be modified
      */
-    public String handleItem(String instruction, int itemNum) {
+    public String handleItem(String instruction, int itemNum) throws InvalidItemException {
 
-        assert itemNum >= 0;
-
+        if (itemNum >=0 && itemNum < this.getListLength()) {
         if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
             ListObject currItem = tasksList.get(itemNum);
             assert currItem != null;
@@ -68,8 +64,13 @@ public class TaskList implements Serializable {
             tasksList.remove(itemNum);
             return currItem.toString();
         } else {
-            return "Oh dear! I have forgotten what it is you asked...";
+            return "Oh dear! I was thinking of my sweet Duchess Anne...\n" +
+                    "What was it that you asked me?";
         }
+    } else {
+            throw new InvalidItemException();
+        }
+
     }
 
     /**
