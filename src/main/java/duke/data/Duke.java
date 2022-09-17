@@ -40,7 +40,7 @@ public class Duke {
     }
 
     /**
-     * Checks if user command is a terminatingcommand.
+     * Checks if user command is a terminating command.
      *
      * @param input user input to process.
      * @return boolean indicating whether Duke terminates.

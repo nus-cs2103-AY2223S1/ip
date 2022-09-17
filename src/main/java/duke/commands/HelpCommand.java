@@ -34,7 +34,7 @@ public class HelpCommand extends Command {
 
         for (int i = 0; i < commands.length; ++i) {
             System.out.printf("\t%s", commands[i]);
-            ret.append(String.format("\t%s\n", commands[i]));
+            ret.append(String.format(">%s\n", commands[i]));
         }
 
         return ret.toString();

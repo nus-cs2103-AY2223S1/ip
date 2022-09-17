@@ -30,12 +30,12 @@ public class DialogBox extends HBox {
             + "-fx-text-fill: white;"
             + "-fx-min-width: 240px;"
             + "-fx-background-radius: 25.0;"
-            + "-fx-padding: 20.0";
+            + "-fx-padding: 10.0";
 
     private final String USERSTYLE =  "-fx-background-color: #FF88CC;"
             + "-fx-font: 12px Tahoma;"
             + "-fx-text-fill: white;"
-            + "-fx-min-width: 240px;"
+            + "-fx-min-width: 180px;"
             + "-fx-background-radius: 25.0;"
             + "-fx-padding: 20.0";
 
