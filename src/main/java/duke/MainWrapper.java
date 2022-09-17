@@ -1,5 +1,7 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
+/**
+ * A wrapper class for Main due to JavaFX issues.
+ */
 public class MainWrapper extends Application {
 
     private Duke duke = new Duke();
