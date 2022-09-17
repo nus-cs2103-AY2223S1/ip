@@ -66,7 +66,6 @@ public class Parser {
                 Integer indexInt = parseInt(indexString);
                 indexes.add(indexInt);
             }
-
             resultCommand = new DeleteCommand(indexes);
             break;
         case "on":

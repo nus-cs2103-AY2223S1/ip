@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 /**
  * Represents a task with no date information.
  */
@@ -34,7 +36,7 @@ public class Todo extends Task {
      * @param rep String representation of Todo.
      * @return new Todo.
      */
-    public static Todo fromFileRepresentation(String rep) {
+    public static Todo fromFileRepresentation(String rep) throws DukeException {
         String[] args = rep.split(" \\| ");
         boolean isDone = args[1].equals("1");
         String description = args[2];

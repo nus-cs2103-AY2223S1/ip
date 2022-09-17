@@ -2,10 +2,15 @@ package duke.task;
 
 import java.time.LocalDate;
 
+import duke.exception.DukeException;
+
 /**
  * Abstract class that all Tasks inherit from.
  */
 public abstract class Task {
+
+    public static final String ERROR_TASK_ALREADY_DONE = "Um... this task is already done!";
+    public static final String ERROR_TASK_NOT_DONE = "Uh... this task was never done.";
     private String description;
     private boolean isDone;
 
@@ -22,14 +27,20 @@ public abstract class Task {
     /**
      * Marks task as done.
      */
-    public void markDone() {
+    public void markDone() throws DukeException {
+        if (isDone) {
+            throw new DukeException(ERROR_TASK_ALREADY_DONE);
+        }
         this.isDone = true;
     }
 
     /**
      * Marks task as not done.
      */
-    public void unmarkDone() {
+    public void unmarkDone() throws DukeException {
+        if (!isDone) {
+            throw new DukeException(ERROR_TASK_NOT_DONE);
+        }
         this.isDone = false;
     }
 
@@ -57,7 +68,7 @@ public abstract class Task {
      * @param rep String of task representation.
      * @return Nothing.
      */
-    public static Task fromFileRepresentation(String rep) {
+    public static Task fromFileRepresentation(String rep) throws DukeException {
         return null;
     }
 

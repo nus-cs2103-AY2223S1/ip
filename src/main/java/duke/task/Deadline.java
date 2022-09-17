@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.exception.DukeException;
+
 /**
  * Represents a deadline - a task with a due date.
  */
@@ -46,7 +48,7 @@ public class Deadline extends Task {
      * @param rep String of file representation.
      * @return Deadline instance.
      */
-    public static Deadline fromFileRepresentation(String rep) {
+    public static Deadline fromFileRepresentation(String rep) throws DukeException {
         String[] args = rep.split(" \\| ");
         boolean isDone = args[1].equals("1");
         String description = args[2];

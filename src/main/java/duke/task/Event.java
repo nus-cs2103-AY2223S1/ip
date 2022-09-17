@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.exception.DukeException;
+
 /**
  * Represents an Event, a task at a specified time.
  */
@@ -46,7 +48,7 @@ public class Event extends Task {
      * @param rep String representation of Event.
      * @return New Event instance.
      */
-    public static Event fromFileRepresentation(String rep) {
+    public static Event fromFileRepresentation(String rep) throws DukeException {
         String[] args = rep.split(" \\| ");
         boolean isDone = args[1].equals("1");
         String description = args[2];
