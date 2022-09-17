@@ -2,6 +2,7 @@ package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Parent class for common attributes between tasks.
@@ -9,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     protected String taskName;
     protected boolean done;
-    public abstract String taskToFileString();
 
     /**
      * Constructor for a task object.
@@ -17,9 +17,12 @@ public abstract class Task {
      * @param isDone task marked done or not.
      */
     public Task(String taskName, boolean isDone) {
+        assert !Objects.equals(taskName, "");
         this.taskName = taskName;
         this.done = isDone;
     }
+
+    public abstract String taskToFileString();
 
     /**
      * Converts LocalDateTime into a string.
