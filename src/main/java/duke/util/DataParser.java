@@ -13,7 +13,6 @@ import duke.command.ByCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.CommandSelector;
-import duke.command.CommandsEnum;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteAliasCommand;
 import duke.command.DeleteCommand;
@@ -35,7 +34,6 @@ import duke.task.Todo;
  */
 public final class DataParser {
     private static final String SPACE = " +";
-    // private static final String SEP = " +(/by|/at) +";
     private static final String DEADLINE_SEP = " +/by +";
     private static final String EVENT_SEP = " +/at +";
 

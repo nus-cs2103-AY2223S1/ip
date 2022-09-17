@@ -60,7 +60,6 @@ public class DialogBox extends HBox {
     }
 
     private void setWarning() {
-        System.out.println("warnings");
         dialog.setStyle(WARNING_COLOR);
     }
 
