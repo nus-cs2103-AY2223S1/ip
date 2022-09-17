@@ -13,10 +13,9 @@ public class Storage {
     /**
      * Constructor for Storage
      *
-     * @param filePath when the path is located in disk
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
+        this.filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";;
     }
 
     /**

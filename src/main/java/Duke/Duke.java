@@ -22,7 +22,6 @@ public class Duke extends Application {
     private TaskList taskList;
     private static Ui ui;
     private Storage storage;
-    private String filePath;
     private static Scanner sc;
     private GuiUi guiUi;
 
@@ -44,8 +43,7 @@ public class Duke extends Application {
         guiUi= new GuiUi();
         this.sc = new Scanner(System.in);
         this.taskList = new TaskList();
-        filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";
-        storage = new Storage(filePath);
+        storage = new Storage();
         try {
             taskList = new TaskList(storage.loadTasks());
         } catch (DukeException e) {
