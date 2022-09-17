@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Exception;
 
 /**
  * Exception to handle special cases

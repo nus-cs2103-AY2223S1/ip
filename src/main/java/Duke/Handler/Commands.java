@@ -1,4 +1,9 @@
-package Duke;
+package Duke.Handler;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Event;
+import Duke.Tasks.Todo;
+import Duke.Tasks.Task;
 import java.util.ArrayList;
 
 /**
@@ -115,10 +120,11 @@ public class Commands {
      * @param input read date
      */
     public void searchDate(String input) {
+        String[] parts = input.split(" ", 2);
         ArrayList<Task> matched = new ArrayList<>();
         for(Task t: taskList.listTasks()) {
             String str = t.toString();
-            if(str.contains(input)) {
+            if(str.contains(parts[1])) {
                 matched.add(t);
             }
         }

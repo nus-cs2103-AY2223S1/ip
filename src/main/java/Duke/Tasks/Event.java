@@ -1,13 +1,13 @@
-package Duke;
+package Duke.Tasks;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Event with type Task
  */
-public class Event extends Task{
+public class Event extends Task {
 
     protected String at;
     protected String day;

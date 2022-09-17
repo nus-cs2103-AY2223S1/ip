@@ -1,4 +1,6 @@
-package Duke;
+package Duke.GUI;
+import Duke.Duke;
+import Duke.Exception.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

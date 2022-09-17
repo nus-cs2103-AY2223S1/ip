@@ -1,4 +1,10 @@
-package Duke;
+package Duke.Data;
+import Duke.Exception.DukeException;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Event;
+import Duke.Tasks.Todo;
+import Duke.Tasks.Task;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;

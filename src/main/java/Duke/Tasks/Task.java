@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Tasks;
 
 /**
  * Class task

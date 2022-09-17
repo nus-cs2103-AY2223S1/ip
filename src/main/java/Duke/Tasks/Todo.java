@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Tasks;
 
 /**
  * New task type that extends from task
