@@ -16,7 +16,7 @@ import duke.util.TaskList;
 public class DeleteCommand extends DataCommand {
 
     private static final String DELETE_TASK =
-            "Noted. I've removed this task:%n" + "  %s%n" + "Now you have %d tasks in the list.";
+            "I have erased this task from existance:%n" + "  %s%n" + "Now you have %d tasks in the list.";
 
     /**
      * Creates an instance of Delete command.
@@ -34,8 +34,7 @@ public class DeleteCommand extends DataCommand {
      * @throws IOException Thrown when saving to file failed
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;

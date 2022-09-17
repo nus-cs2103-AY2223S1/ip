@@ -12,21 +12,29 @@ import duke.exceptions.DukeException;
  * Command holder class to select a command enum based on txt
  */
 public class CommandSelector {
+    private static CommandSelector csSingleton;
     private Map<String, CommandsEnum> commands = new HashMap<>();
 
-    /**
-     * Initialises the selector class, adds base commands into the selector
-     */
-    public CommandSelector() {
+    private CommandSelector() {
         for (CommandsEnum c : CommandsEnum.values()) {
             commands.put(c.toString(), c);
         }
     }
 
     /**
+     * Initialises the selector class as a singleton, adds base commands into the selector
+     */
+    public static CommandSelector getCs() {
+        if (csSingleton == null) {
+            csSingleton = new CommandSelector();
+        }
+        return csSingleton;
+    }
+
+    /**
      * Adds an alias to replace a current command
      *
-     * @param alias  alias to be used
+     * @param alias alias to be used
      * @param target command to be simplified
      * @throws DukeException thrown when invalid
      */
@@ -45,8 +53,7 @@ public class CommandSelector {
      * Deletes a alias from the alias list
      *
      * @param alias to be deleted
-     * @throws DukeException thrown when alias doesn't exist or trying to delete
-     *                       base commands
+     * @throws DukeException thrown when alias doesn't exist or trying to delete base commands
      */
     public void deleteAlias(String alias) throws DukeException {
         if (!commands.containsKey(alias)) {

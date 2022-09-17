@@ -29,8 +29,7 @@ public class ByCommand extends DataCommand {
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws InvalidTimeFormatException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws InvalidTimeFormatException {
         LocalDateTime dt = DataParser.strToDateTime(data.description)
                 .orElseThrow(() -> new InvalidTimeFormatException(data.description));
 

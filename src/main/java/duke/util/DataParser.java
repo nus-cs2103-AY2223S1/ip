@@ -21,6 +21,7 @@ import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SwapFaceCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.exceptions.CorruptedLineException;
@@ -65,9 +66,9 @@ public final class DataParser {
      * @param data Parsed information of the user input
      * @return Command To be executed and do actions.
      */
-    public static Command dataToCommand(ParsedData data, CommandSelector cs) {
+    public static Command dataToCommand(ParsedData data) {
 
-        switch (cs.getCommand(data.command)) {
+        switch (CommandSelector.getCs().getCommand(data.command)) {
         case BYE:
             return new ByeCommand();
         case LIST:
@@ -92,6 +93,8 @@ public final class DataParser {
             return new AliasCommand(data);
         case DELETECOMMAND:
             return new DeleteAliasCommand(data);
+        case SWAP:
+            return new SwapFaceCommand();
         case INVALID:
         default:
             return new InvalidCommand();
@@ -104,7 +107,7 @@ public final class DataParser {
      * @param txt Raw user input
      * @return ParsedData Parsed user input
      */
-    public static ParsedData parse(String txt, CommandSelector cs) {
+    public static ParsedData parse(String txt) {
         String[] parsedTmp = txt.split(SPACE, 2);
         String command = parsedTmp[0];
 
@@ -113,7 +116,7 @@ public final class DataParser {
         }
 
 
-        switch (cs.getCommand(command)) {
+        switch (CommandSelector.getCs().getCommand(command)) {
         case DEADLINE:
             parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
             break;
@@ -140,8 +143,8 @@ public final class DataParser {
      * @param txt Raw user input
      * @return Command
      */
-    public static Command parseCommand(String txt, CommandSelector cs) {
-        return dataToCommand(parse(txt, cs), cs);
+    public static Command parseCommand(String txt) {
+        return dataToCommand(parse(txt));
     }
 
     /**

@@ -5,7 +5,7 @@ package duke.exceptions;
  */
 public class InvalidAliasFormatException extends DukeException {
     private static final String DESCRIPTION =
-            "Invalid format, please use <alias>-><target command>, alias be only alphanumeric";
+            "Huh?? please use <alias>-><target command>, alias must be alphanumeric and start with a letter";
 
     public InvalidAliasFormatException() {
         super(DESCRIPTION);

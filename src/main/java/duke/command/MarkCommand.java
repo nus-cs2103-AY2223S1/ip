@@ -15,7 +15,7 @@ import duke.util.TaskList;
  */
 public class MarkCommand extends DataCommand {
 
-    private static final String MARKED = "Nice! I've marked this task as done:%n  %s";
+    private static final String MARKED = "Ooo, you actually did something!%n  %s";
 
     /**
      * Passes in the index of which task to mark.
@@ -33,8 +33,7 @@ public class MarkCommand extends DataCommand {
      * @throws IOException Thrown when data failed to save
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;

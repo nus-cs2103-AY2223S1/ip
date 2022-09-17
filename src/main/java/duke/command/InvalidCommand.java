@@ -26,8 +26,7 @@ public class InvalidCommand implements Command {
      * @throws UnknownCommandException Throw invalid command
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws UnknownCommandException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws UnknownCommandException, IOException {
         throw new UnknownCommandException();
     }
 

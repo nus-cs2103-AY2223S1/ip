@@ -30,11 +30,10 @@ public class AliasCommand extends DataCommand {
      * {@inheritDoc} Adds a deadline task to the tasklist and prints it.
      *
      * @throws DukeException Thrown when invalid/missing data
-     * @throws IOException   Thrown when saving of data failed
+     * @throws IOException Thrown when saving of data failed
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException {
 
         String[] commandMapping = data.description.split("\\s*->\\s*", 2);
         if (commandMapping.length != 2) {
@@ -44,12 +43,12 @@ public class AliasCommand extends DataCommand {
         String alias = commandMapping[0];
         String target = commandMapping[1];
 
-        if (StringParser.containWhitespace(alias)) {
+        if (StringParser.isAlphanumericVariableName(alias)) {
             throw new InvalidAliasFormatException();
         }
 
-        cs.addAlias(alias, target);
-        io.printTask(String.format(ADD_TASK, alias, cs.getCommand(target)));
+        CommandSelector.getCs().addAlias(alias, target);
+        io.printTask(String.format(ADD_TASK, alias, CommandSelector.getCs().getCommand(target)));
     }
 
 }

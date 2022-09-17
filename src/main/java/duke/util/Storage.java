@@ -15,6 +15,7 @@ import duke.task.Task;
  * Class to handle writing and reading info from files.
  */
 public class Storage {
+
     private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
     private File file;
 

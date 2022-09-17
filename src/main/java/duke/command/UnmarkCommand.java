@@ -15,7 +15,7 @@ import duke.util.TaskList;
  */
 public class UnmarkCommand extends DataCommand {
 
-    private static final String UNMARKED = "OK, I've marked this task as not done yet:%n  %s";
+    private static final String UNMARKED = "Hey hey hey, this is as not done yet:%n  %s%ndon't be sneaky!";
 
     /**
      * Passes the index of the task
@@ -33,8 +33,7 @@ public class UnmarkCommand extends DataCommand {
      * @throws IOException Thrown when data failed to save
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException, IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;

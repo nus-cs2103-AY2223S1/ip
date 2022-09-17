@@ -1,5 +1,7 @@
 package duke.gui;
 
+import java.util.function.Supplier;
+
 import duke.inputoutput.DukeGuiIo;
 import duke.inputoutput.DukeIo;
 import duke.main.Duke;
@@ -28,8 +30,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Supplier<Image> userImageGetter = () -> GuiDataController.getSingleton().getUserImage();
+    private Supplier<Image> dukeImageGetter = () -> GuiDataController.getSingleton().getDukeImage();
 
     @FXML
     public void initialize() {
@@ -41,9 +43,9 @@ public class MainWindow extends AnchorPane {
      */
     public void makeDuke() {
         DukeIo io = new DukeGuiIo(txt -> {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImageGetter.get()));
         }, txt -> {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage, true));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImageGetter.get(), true));
         });
         duke = Duke.createApplication(io);
         if (duke == null) {
@@ -58,9 +60,9 @@ public class MainWindow extends AnchorPane {
      */
     public void makeDuke(String filepath) {
         DukeIo io = new DukeGuiIo(txt -> {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImageGetter.get()));
         }, txt -> {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImage, true));
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(txt, dukeImageGetter.get(), true));
         });
         duke = Duke.createApplication(io, filepath);
         if (duke == null) {
@@ -90,7 +92,7 @@ public class MainWindow extends AnchorPane {
             return "";
         }
 
-        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage));
+        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImageGetter.get()));
         userInput.clear();
         return input;
     }

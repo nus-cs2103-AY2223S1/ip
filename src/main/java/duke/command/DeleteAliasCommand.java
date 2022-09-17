@@ -13,7 +13,7 @@ import duke.util.TaskList;
  */
 public class DeleteAliasCommand extends DataCommand {
 
-    private static final String DELETE_TASK = "I have deleted the alias, %s!";
+    private static final String DELETE_TASK = "I have removed this shortcut, %s!";
 
     /**
      * Create a instance of the deadline command.
@@ -28,15 +28,14 @@ public class DeleteAliasCommand extends DataCommand {
      * {@inheritDoc} Adds a deadline task to the tasklist and prints it.
      *
      * @throws DukeException Thrown when invalid/missing data
-     * @throws IOException   Thrown when saving of data failed
+     * @throws IOException Thrown when saving of data failed
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException {
 
         String alias = data.description.trim();
 
-        cs.deleteAlias(alias);
+        CommandSelector.getCs().deleteAlias(alias);
         io.printTask(String.format(DELETE_TASK, alias));
     }
 

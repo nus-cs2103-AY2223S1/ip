@@ -20,16 +20,15 @@ public class FindCommand extends DataCommand {
 
     private static final String RED_TXT = "\u001B[31m$0\u001B[0m";
     private static final String MARK_TXT = "*$0*";
-    private static final String FIND_TXT = "The search results are below: \n";
-    private static final String NO_MATCH_TXT = "No matching result!! \n";
+    private static final String FIND_TXT = "I found these tasks: \n";
+    private static final String NO_MATCH_TXT = "Maybe you searched wrongly? \n";
 
     public FindCommand(ParsedData data) {
         super(data);
     }
 
     @Override
-    public void execute(TaskList taskList, DukeIo io, Storage storage, CommandSelector cs)
-            throws DukeException, IOException {
+    public void execute(TaskList taskList, DukeIo io, Storage storage) throws DukeException, IOException {
         String searchString = data.description.trim();
         if (searchString.length() == 0) {
             throw new EmptyDescriptionException("find");

@@ -11,7 +11,7 @@ import duke.util.TaskList;
  * Command class that exit the program. When bye is entered
  */
 public class ByeCommand implements Command {
-    private static final String OUTRO = "Bye. Hope to see you again soon!";
+    private static final String OUTRO = "Pff.. Not like I want to see you again";
 
     /**
      * Returns true when asked if program should exit.
@@ -29,7 +29,7 @@ public class ByeCommand implements Command {
      * @throws IOException raised if an error occured when saving
      */
     @Override
-    public void execute(TaskList tasks, DukeIo io, Storage storage, CommandSelector cs) throws IOException {
+    public void execute(TaskList tasks, DukeIo io, Storage storage) throws IOException {
         io.printTask(OUTRO, DukeCliSettings.WRAP_INDENT);
         storage.saveTasks(tasks);
     }
