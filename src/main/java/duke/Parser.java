@@ -22,6 +22,13 @@ public class Parser {
     static final String DEADLINE_COMMAND = "deadline";
     static final String CLEARALL_COMMAND = "clear";
     static final String FIND_COMMAND = "find";
+    static final int MIN_LENGTH = 6;
+    static final int TODO_MIN_LENGTH = 3;
+    static final int FIND_WORD_INDEX = 5;
+    static final int INDEX_LOCATION = 2;
+    static final int EVENT_SUBSTRING = 5;
+    static final int DEADLINE_SUBSTRING = 8;
+    static final int TODO_SUBSTRING = 4;
     private final Ui ui;
     private final TaskList tl;
 
@@ -82,7 +89,7 @@ public class Parser {
      */
     public static Event parseEventInput(String eventCommand) {
         int slashPos = eventCommand.indexOf("/at");
-        String taskName = eventCommand.substring(5, slashPos - 1) + " ";
+        String taskName = eventCommand.substring(EVENT_SUBSTRING, slashPos - 1) + " ";
         String deadline = eventCommand.substring(slashPos + 3);
         return new Event(taskName, deadline);
     }
@@ -94,7 +101,7 @@ public class Parser {
      */
     public static Deadline parseDeadlineInput(String deadlineCommand) {
         int slashPos = deadlineCommand.indexOf("/by");
-        String taskName = deadlineCommand.substring(8, slashPos - 1) + " ";
+        String taskName = deadlineCommand.substring(DEADLINE_SUBSTRING, slashPos - 1) + " ";
         String deadline = deadlineCommand.substring(slashPos + 3);
         return new Deadline(taskName, deadline);
     }
@@ -105,7 +112,7 @@ public class Parser {
      * @return a new Todo.
      */
     public static Todo parseTodoInput(String todoCommand) {
-        String item = todoCommand.substring(4);
+        String item = todoCommand.substring(TODO_SUBSTRING);
         return new Todo(item);
     }
 
@@ -124,40 +131,40 @@ public class Parser {
         case LIST_COMMAND:
             return (ui.printList(tl));
         case MARK_COMMAND:
-            index = Integer.parseInt(msgWords[2]) - 1;
-            if (index < 0 || index > tl.size()) {
+            index = Integer.parseInt(msgWords[INDEX_LOCATION]) - 1;
+            if (index < 1 || index > tl.size()) {
                 return (ui.printOutOfBoundsMsg());
             }
             tl.mark(index);
             return ui.printMarkedMsg(tl.get(index));
         case UNMARK_COMMAND:
-            index = Integer.parseInt(msgWords[2]) - 1;
+            index = Integer.parseInt(msgWords[INDEX_LOCATION]) - 1;
             if (index < 1 || index > tl.size()) {
                 return ui.printOutOfBoundsMsg();
             }
             tl.unMark(index);
             return ui.printUnmarkedMsg(tl.get(index));
         case DELETE_COMMAND:
-            index = Integer.parseInt(msgWords[2]) - 1;
+            index = Integer.parseInt(msgWords[INDEX_LOCATION]) - 1;
             Task removed = tl.get(index);
             tl.remove(index);
             return ui.printDeleteMsg(removed.toString(), tl.size());
         case TODO_COMMAND:
-            if (msgWords.length < 3) {
+            if (msgWords.length < TODO_MIN_LENGTH) {
                 return ui.printNoTaskInputMsg();
             }
             Todo newTodo = Parser.parseTodoInput(input);
             tl.add(newTodo);
             return ui.printTaskAddedMsg(newTodo, tl.size());
         case DEADLINE_COMMAND:
-            if (input.length() < 10 || !input.contains("/by")) {
+            if (msgWords.length < MIN_LENGTH || !input.contains("/by")) {
                 return ui.printIncompleteDeadline();
             }
             Deadline newDL = Parser.parseDeadlineInput(input);
             tl.add(newDL);
             return ui.printTaskAddedMsg(newDL, tl.size());
         case EVENT_COMMAND:
-            if (msgWords.length < 4 || !input.contains("/at")) {
+            if (msgWords.length < MIN_LENGTH || !input.contains("/at")) {
                 return ui.printIncompleteEvent();
             }
             Event newEvent = Parser.parseEventInput(input);
@@ -167,7 +174,7 @@ public class Parser {
             tl.clear();
             return ui.printClearMsg();
         case FIND_COMMAND:
-            String words = input.substring(5).trim();
+            String words = input.substring(FIND_WORD_INDEX).trim();
             TaskList filteredTaskList = new TaskList(tl.findMatching(words));
             return ui.printFilteredList(filteredTaskList);
         default:
