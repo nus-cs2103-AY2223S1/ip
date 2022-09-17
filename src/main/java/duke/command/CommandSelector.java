@@ -9,7 +9,7 @@ import duke.exceptions.CommandDoesNotExistException;
 import duke.exceptions.DukeException;
 
 /**
- * Command holder class to select a command enum based on txt
+ * Command holder singleton class to select a command enum based on txt
  */
 public class CommandSelector {
     private static CommandSelector csSingleton;
@@ -40,7 +40,7 @@ public class CommandSelector {
      */
     public void addAlias(String alias, String target) throws DukeException {
         if (!commands.containsKey(target)) {
-            throw new CommandDoesNotExistException(alias);
+            throw new CommandDoesNotExistException(target);
         }
         if (commands.containsKey(alias)) {
             throw new CommandAlreadyExistException(alias);
@@ -77,5 +77,12 @@ public class CommandSelector {
             return commands.get(command);
         }
         return CommandsEnum.INVALID;
+    }
+
+    /**
+     * Resets the singleton
+     */
+    public static void reset() {
+        CommandSelector.csSingleton = null;
     }
 }
