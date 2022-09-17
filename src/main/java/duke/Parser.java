@@ -102,7 +102,7 @@ public class Parser {
      * @return The String of the action applied on the task.
      * @throws DukeException The action ot description is invalid.
      */
-    public String editTask(String action, String description) throws DukeException {;
+    public String editTask(String action, String description) throws DukeException {
         switch (action) {
         case "mark":
             return this.tasks.updateTask(TaskUpdater.MARK, description);
