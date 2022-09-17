@@ -1,5 +1,9 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -11,10 +15,6 @@ import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 import duke.command.WelcomeCommand;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 /**
  * Class for parsing input string into commands to execute.
@@ -165,11 +165,9 @@ public class Parser {
 
     private static boolean isNumeric(String input) {
         assert input != null;
-        
         if (input.isEmpty()) {
             return false;
         }
-        
         for (char c : input.toCharArray()) {
             if (c < 48 || c > 57) {
                 return false;
