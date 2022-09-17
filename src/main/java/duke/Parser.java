@@ -13,13 +13,12 @@ public class Parser {
      * @throws DukeException
      */
     public static void Parser (List<Task> ListofMessages) throws IOException, DukeException {
+
         Scanner input = new Scanner(System.in);
-
-
         File log = new File("log.txt");
 
         if(log.exists()==false){
-//                System.out.println("We had to make a new file.");
+            //System.out.println("We had to make a new file.");
             log.createNewFile();
         }
 
@@ -36,9 +35,13 @@ public class Parser {
 
             String message = input.next(); //Task to be done by system
 
+            boolean List_and_ToDo = (!(message.equals("list")) && !(message.equals("todo")));
+            boolean Event_and_Deadline = (!(message.equals("event")) && !(message.equals("deadline")));
+            boolean Delete_and_Bye = (!(message.equals("delete")) && !(message.equals("bye")));
+            boolean Mark =(!(message.equals("mark")));
+
             //Make sure message is valid
-            if(!(message.equals("list")) &&!(message.equals("todo"))&& !(message.equals("event"))&&
-                    !(message.equals("deadline"))&&!(message.equals("delete"))&&!(message.equals("bye"))&&!(message.equals("mark"))){
+            if(List_and_ToDo && Event_and_Deadline && Delete_and_Bye && Mark){
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-();");
             }
 
