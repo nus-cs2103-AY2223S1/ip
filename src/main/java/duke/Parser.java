@@ -31,15 +31,13 @@ public class Parser {
      */
     public Command parseUserInput(String input, TaskList tasks) throws DukeException {
         String[] inputArr;
-        String commandWord;
+        String commandWord = input;
         String restInput = "";
         if (input.contains(" ")) {
             inputArr = input.split(" ", 2);
             assert inputArr.length == 2;
             commandWord = inputArr[0];
             restInput = inputArr[1];
-        } else {
-            commandWord = input;
         }
         Command command;
 
