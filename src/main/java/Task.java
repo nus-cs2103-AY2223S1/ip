@@ -1,59 +1,39 @@
-package main.java.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import main.java.exception.InvalidDateException;
 
 public class Task {
     protected DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     protected DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("E, d MMM yyyy");
     protected String type;
     protected String description;
-    protected LocalDate date;
+    protected LocalDate dateTime;
     protected boolean isDone;
-    protected boolean isEmpty;
-
-    private Task() {
-        this.isEmpty = true;
-    }
 
     Task (String type, String description) {
         this.type = type;
         this.description = description;
         this.isDone = false;
-        this.isEmpty = false;
     }
 
     Task (String type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
         this.isDone = isDone;
-        this.isEmpty = false;
     }
 
-    Task (String type, String description, String date) throws InvalidDateException {
+    Task (String type, String description, String dateTime) throws InvalidDateException {
         this.type = type;
         this.description = description;
-        this.date = convert(date);
+        this.dateTime = convert(dateTime);
         this.isDone = false;
-        this.isEmpty = false;
     }
 
-    Task (String type, String description, String date, boolean isDone) throws InvalidDateException{
+    Task (String type, String description, String dateTime, boolean isDone) throws InvalidDateException{
         this.type = type;
         this.description = description;
-        this.date = convert(date);
+        this.dateTime = convert(dateTime);
         this.isDone = isDone;
-        this.isEmpty = false;
-    }
-
-    public static Task empty() {
-        return new Task();
-    }
-
-    public boolean isEmpty() {
-        return this.isEmpty;
     }
 
     public String getDescription() {
@@ -69,19 +49,19 @@ public class Task {
     }
 
     public String log() {
-        int binIsDone;
+        int binaryIsDone;
         if (this.isDone) {
-            binIsDone = 1;
+            binaryIsDone = 1;
         } else {
-            binIsDone = 0;
+            binaryIsDone = 0;
         }
         switch(type) {
         case "todo":
-            return String.format("%d,todo %s\n", binIsDone, this.description);
+            return String.format("%d,todo %s\n", binaryIsDone, this.description);
         case "deadline":
-            return String.format("%d,deadline %s/by%s\n", binIsDone, this.description, this.date.format(inputDateFormatter));
+            return String.format("%d,deadline %s/by%s\n", binaryIsDone, this.description, this.dateTime.format(inputDateFormatter));
         case "event":
-            return String.format("%d,event %s/at%s\n", binIsDone, this.description, this.date.format(inputDateFormatter));
+            return String.format("%d,event %s/at%s\n", binaryIsDone, this.description, this.dateTime.format(inputDateFormatter));
         default:
             return "N";
         }

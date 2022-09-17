@@ -1,11 +1,11 @@
-package command;
+package main.java.command;
 
-import exception.DukeException;
-import exception.TaskListOutOfBoundsException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
-import task.Task;
+import main.java.exception.DukeException;
+import main.java.exception.TaskListOutOfBoundsException;
+import main.java.main.Storage;
+import main.java.main.TaskList;
+import main.java.main.Ui;
+import main.java.task.Task;
 
 public class UnmarkCommand extends Command{
 

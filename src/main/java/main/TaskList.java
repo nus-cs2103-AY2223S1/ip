@@ -1,9 +1,9 @@
-package main;
+package main.java.main;
 
 import java.util.ArrayList;
 
-import exception.TaskListOutOfBoundsException;
-import task.Task;
+import main.java.exception.TaskListOutOfBoundsException;
+import main.java.task.Task;
 
 public class TaskList {
 

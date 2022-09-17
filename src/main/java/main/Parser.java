@@ -1,16 +1,16 @@
-package main;
+package main.java.main;
 
-import command.ByeCommand;
-import command.Command;
-import command.DeadlineCommand;
-import command.DeleteCommand;
-import command.EventCommand;
-import command.ListCommand;
-import command.LoadCommand;
-import command.MarkCommand;
-import command.TodoCommand;
-import command.UnmarkCommand;
-import exception.InvalidCommandException;
+import main.java.command.ByeCommand;
+import main.java.command.Command;
+import main.java.command.DeadlineCommand;
+import main.java.command.DeleteCommand;
+import main.java.command.EventCommand;
+import main.java.command.ListCommand;
+import main.java.command.LoadCommand;
+import main.java.command.MarkCommand;
+import main.java.command.TodoCommand;
+import main.java.command.UnmarkCommand;
+import main.java.exception.InvalidCommandException;
 
 public class Parser {
 

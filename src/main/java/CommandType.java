@@ -1,5 +1,3 @@
-package main.java.main;
-
 enum CommandType {
     LOAD("load"),
     LIST("list"),
@@ -8,10 +6,9 @@ enum CommandType {
     TODO("todo"),
     DEADLINE("deadline"),
     EVENT("event"),
-    DELETE("delete"),
     BYE("bye");
 
-    private final String command;
+    private String command;
 
     CommandType(String command) {
         this.command = command;
@@ -20,4 +17,5 @@ enum CommandType {
     public String getCommand() {
         return this.command;
     }
+
 }

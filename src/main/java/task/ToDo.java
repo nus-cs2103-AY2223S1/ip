@@ -1,6 +1,6 @@
-package task;
+package main.java.task;
 
-import exception.MissingArgumentException;
+import main.java.exception.MissingArgumentException;
 
 public class ToDo extends Task{
     

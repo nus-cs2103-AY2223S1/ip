@@ -1,4 +1,4 @@
-package exception;
+package main.java.exception;
 
 public class TaskListOutOfBoundsException extends DukeException {
     
