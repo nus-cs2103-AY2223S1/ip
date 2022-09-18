@@ -1,4 +1,4 @@
-package main.java.main;
+package main;
 
 enum CommandType {
     LOAD("load"),

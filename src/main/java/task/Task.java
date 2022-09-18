@@ -1,9 +1,9 @@
-package main.java.task;
+package task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import main.java.exception.InvalidDateException;
+import exception.InvalidDateException;
 
 public class Task {
     protected DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");

@@ -1,13 +1,13 @@
-package main.java.command;
+package command;
 
-import main.java.exception.DukeException;
-import main.java.exception.InvalidDateException;
-import main.java.exception.MissingArgumentException;
-import main.java.main.Storage;
-import main.java.main.TaskList;
-import main.java.main.Ui;
-import main.java.task.Deadline;
-import main.java.task.Task;
+import exception.DukeException;
+import exception.InvalidDateException;
+import exception.MissingArgumentException;
+import main.Storage;
+import main.TaskList;
+import main.Ui;
+import task.Deadline;
+import task.Task;
 
 public class DeadlineCommand extends Command {
 
@@ -18,6 +18,10 @@ public class DeadlineCommand extends Command {
         super();
         this.description = description;
         this.date = date;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override

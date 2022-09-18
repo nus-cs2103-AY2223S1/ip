@@ -1,4 +1,4 @@
-package main.java.main;
+package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.java.command.Command;
-import main.java.exception.DukeException;
-import main.java.exception.DukeFileNotFoundException;
-import main.java.exception.DukeIOException;
-import main.java.exception.InvalidCommandException;
-import main.java.task.Task;
+import command.Command;
+import exception.DukeException;
+import exception.DukeFileNotFoundException;
+import exception.DukeIOException;
+import exception.InvalidCommandException;
+import task.Task;
 
 public class Storage {
 

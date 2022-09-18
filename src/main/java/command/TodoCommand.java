@@ -1,12 +1,12 @@
-package main.java.command;
+package command;
 
-import main.java.exception.DukeException;
-import main.java.exception.MissingArgumentException;
-import main.java.main.Storage;
-import main.java.main.TaskList;
-import main.java.main.Ui;
-import main.java.task.Task;
-import main.java.task.ToDo;
+import exception.DukeException;
+import exception.MissingArgumentException;
+import main.Storage;
+import main.TaskList;
+import main.Ui;
+import task.Task;
+import task.ToDo;
 
 public class TodoCommand extends Command{
 
@@ -15,6 +15,10 @@ public class TodoCommand extends Command{
     public TodoCommand(String description) {
         super();
         this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override

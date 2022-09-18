@@ -1,8 +1,8 @@
-package main.java.main;
+package main;
 
-import main.java.exception.DukeException;
-import main.java.exception.TaskListOutOfBoundsException;
-import main.java.task.Task;
+import exception.DukeException;
+import exception.TaskListOutOfBoundsException;
+import task.Task;
 
 public class Ui {
 

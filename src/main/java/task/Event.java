@@ -1,9 +1,9 @@
-package main.java.task;
+package task;
 
 import java.time.LocalDate;
 
-import main.java.exception.InvalidDateException;
-import main.java.exception.MissingArgumentException;
+import exception.InvalidDateException;
+import exception.MissingArgumentException;
 
 public class Event extends Task{
 

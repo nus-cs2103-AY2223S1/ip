@@ -1,9 +1,9 @@
-package main.java.main;
+package main;
 
 import java.util.Scanner;
 
-import main.java.command.Command;
-import main.java.exception.DukeException;
+import command.Command;
+import exception.DukeException;
 
 public class Duke {
 
