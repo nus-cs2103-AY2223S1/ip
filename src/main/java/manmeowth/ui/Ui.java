@@ -49,7 +49,7 @@ public class Ui {
     private static final String MESSAGE_GOODBYE = "Bye! See nya later!\n";
 
     /** Help messages printed to advise command usage **/
-    private static final String HELP_INTRO = "Nyat a valid instruction! Rub my belly instead!\n";
+    private static final String HELP_INTRO = "Here nya the valid instructions! Rub my belly!\n";
     private static final String HELP_TODO = "Input 'todo ABC' to add task ABC\n";
     private static final String HELP_EVENT = "Input 'event ABC /at DATE' to add event ABC on"
             + " DATE\n";
@@ -59,6 +59,7 @@ public class Ui {
     private static final String HELP_UNMARK = "Input 'unmark xxx' to mark task xxx as incomplete\n";
     private static final String HELP_DELETE = "Input 'delete xxx' to delete task xxx from the list\n";
     private static final String HELP_LIST = "Input 'list' for overview\n";
+    private static final String HELP_HELP = "Input 'help' for command overview\n";
     private static final String HELP_BYE = "Input 'bye' to exit.\n";
     private static final String HELP_OUTRO = "NYAAAAAA!\n";
     private static final String ARROW = "=> ";
@@ -72,6 +73,7 @@ public class Ui {
             + ARROW + HELP_UNMARK
             + ARROW + HELP_DELETE
             + ARROW + HELP_LIST
+            + ARROW + HELP_HELP
             + ARROW + HELP_BYE
             + "\n" + HELP_OUTRO;
 

@@ -70,7 +70,7 @@ public class Parser {
                 return new HelpCommand();
             }
         } catch (IllegalArgumentException e) {
-            return new HelpCommand();
+            throw new ManMeowthException("Nyaat a valid instruction! Try 'help'");
         }
     }
 
