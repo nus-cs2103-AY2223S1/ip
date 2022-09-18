@@ -24,16 +24,20 @@ public class Storage {
      * @param filename the filename of the data file
      */
     public Storage(String filename) {
-        this.path = filename;
+        String absolutePath = new File("").getAbsolutePath() + "/data/" + filename;
+        File file = new File( absolutePath );
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdir();
+        }
+        this.path = absolutePath;
 
     }
-    public String getFullPath() {
-        String home = System.getProperty("user.dir");
-        return String.valueOf(java.nio.file.Paths.get(home, "src", "data", this.path));
-    }
+
 
     public void changeFile(String filename) {
-        this.path = filename;
+
+        String absolutePath = new File("").getAbsolutePath() + "/data/" + filename;
+        this.path = absolutePath;
     }
     /**
      * Reads the file
@@ -41,16 +45,15 @@ public class Storage {
      */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
-        File file = new File(getFullPath());
-        checkFileExist();
+        File file = new File(this.path);
+
         try {
-            if (!checkFileExist()) {
+            if (!file.exists()) {
                 file.createNewFile();
             }
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
-                System.out.println(taskInfo[1]);
 
                 if (taskInfo[0].equals("T")) {
                     data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
@@ -75,9 +78,7 @@ public class Storage {
         return data;
     }
 
-    private boolean checkFileExist() {
-        return java.nio.file.Files.exists(Path.of(getFullPath()));
-    }
+
     /**
      * Updates the content of the file
      * @param updatedData the updated list of task
@@ -87,9 +88,8 @@ public class Storage {
         for (Task task : updatedData) {
             dataString += String.format("%s\n", task.formatTaskString());
         }
-        System.out.println(dataString);
         try {
-            FileWriter fileWriter = new FileWriter(getFullPath());
+            FileWriter fileWriter = new FileWriter(this.path);
             fileWriter.write(dataString);
             fileWriter.close();
         } catch (IOException e) {

@@ -62,7 +62,7 @@ Oh god you have another task
 you have 2 tasks now...
 ```
 
-### `event [description] /by [start time] - [end time]` - Creates a Event
+### `event [description] /at [start time] - [end time]` - Creates a Event
 
 Adds a new Event to your task list
 

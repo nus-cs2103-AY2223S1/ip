@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import bobby.exceptions.DukeException;
 import bobby.task.Deadline;
@@ -107,7 +108,10 @@ public class Parser {
 
     }
 
-    private String handleListComand(Ui ui, TaskList taskList) {
+    private String handleListComand(Ui ui, TaskList taskList) throws DukeException {
+        if (taskList.length() <= 0) {
+            throw new DukeException("There are no task!!");
+        }
         return ui.showAllTask(taskList);
     }
 
@@ -171,19 +175,24 @@ public class Parser {
             return ui.showAddTask(taskList, task);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Time cannot be empty");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Time must be in YYYY-MM-DD HH:mm format");
         }
     }
 
     private String handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
         try {
             Integer index = Integer.parseInt(input) - 1;
-            Task task = taskList.toggleTaskStatus(index);
+
+            Task task = taskList.markTask(index);
             storage.updateFile(taskList.list);
             return ui.showMarkTask(task);
         } catch (NumberFormatException e) {
             throw new DukeException("Param can only contain integers");
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("There is no such task");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Time must be in YYYY-MM-DD HH:mm format");
         }
 
 
@@ -192,7 +201,7 @@ public class Parser {
     private String handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
         try {
             Integer index = Integer.parseInt(input) - 1;
-            Task task = taskList.toggleTaskStatus(index);
+            Task task = taskList.unmarkTask(index);
             storage.updateFile(taskList.list);
 
             return ui.showUnmarkTask(task);
@@ -209,7 +218,6 @@ public class Parser {
             Integer index = Integer.parseInt(input) - 1;
             Task task = taskList.deleteTask(index);
             storage.updateFile(taskList.list);
-
             return ui.showRemoveTask(taskList, task);
         } catch (NumberFormatException e) {
             throw new DukeException("Param can only contain integers");

@@ -1,6 +1,7 @@
 package bobby;
 import java.util.ArrayList;
 
+import bobby.exceptions.DukeException;
 import bobby.task.Task;
 
 
@@ -28,9 +29,9 @@ public class TaskList {
      * @param index the index of the task to delete
      * @return the deleted task
      */
-    public Task deleteTask(Integer index) {
+    public Task deleteTask(int index) {
         Task task = this.list.get(index);
-        this.list.remove(index - 1);
+        this.list.remove(index);
         return task;
     }
 
@@ -54,12 +55,29 @@ public class TaskList {
     }
 
     /**
-     * Toggles the status of the task at a specific index
-     * @param index the index of the task to toggle
-     * @return the task that was specified
+     * Unmarks the task at a specific index
+     * @param index the index of the task to unmark
+     * @return the task that is unmarked
      */
-    public Task toggleTaskStatus(Integer index) {
+    public Task unmarkTask(Integer index) throws DukeException {
         Task task = this.list.get(index);
+        if (task.getStatusIcon().equals(" ")) {
+            throw new DukeException("Task has not yet been marked!");
+        }
+        task.toggleStatus();
+        return task;
+    }
+
+    /**
+     * Marks the task at a specific index
+     * @param index the index of the task to mark
+     * @return the task that is marked
+     */
+    public Task markTask(Integer index) throws DukeException {
+        Task task = this.list.get(index);
+        if (task.getStatusIcon().equals("X")) {
+            throw new DukeException("Task has already been completed");
+        }
         task.toggleStatus();
         return task;
     }
