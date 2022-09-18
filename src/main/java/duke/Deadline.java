@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Deadline, which is a Task with a deadline.
@@ -15,9 +16,13 @@ public class Deadline extends Task {
      * @param description Description of the Task.
      * @param deadline Deadline of the Task.
      */
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, String deadline) throws DukeException {
         super(description);
-        this.deadline = LocalDate.parse(deadline);
+        try {
+            this.deadline = LocalDate.parse(deadline);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Incorrect date format!");
+        }
         type = 'D';
     }
 
@@ -28,7 +33,7 @@ public class Deadline extends Task {
      * @param isDone Boolean to set the Task as done or not done.
      * @param deadline Deadline of the Task.
      */
-    public Deadline(String description, boolean isDone, String deadline) {
+    public Deadline(String description, boolean isDone, String deadline) throws DukeException {
         this(description, deadline);
         this.isDone = isDone;
     }
