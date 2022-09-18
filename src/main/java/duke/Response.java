@@ -19,7 +19,7 @@ public class Response {
     }
 
     /**
-     * Get the message of the response.
+     * Gets the message of the response.
      * @return Message string.
      */
     public String getMessage() {
@@ -27,7 +27,7 @@ public class Response {
     }
 
     /**
-     * Check if application should exit.
+     * Checks if application should exit.
      * @return Boolean if application should exit.
      */
     public boolean isExit() {

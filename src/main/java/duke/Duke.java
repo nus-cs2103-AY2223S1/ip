@@ -22,7 +22,7 @@ public class Duke {
     }
 
     /**
-     * Load tasks from storage.
+     * Loads tasks from storage.
      * @return True if loading/file creation is successful, False if there is an error loading/creating file.
      */
     public boolean loadFile() {
@@ -36,7 +36,7 @@ public class Duke {
     }
 
     /**
-     * Get the response of an input.
+     * Gets the response of an input.
      * @param input String input entered by user.
      * @return A Response from executing the input's command.
      */

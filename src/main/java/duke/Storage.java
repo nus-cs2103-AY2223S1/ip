@@ -67,7 +67,6 @@ public class Storage {
                 file.createNewFile();
                 return new ArrayList<>();
             } catch (IOException ioException) {
-                // System.out.println(ioException.getMessage());
                 throw new DukeException("Unable to create file. Changes made will not be saved.");
             }
         }
