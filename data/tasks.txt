@@ -1,4 +1,1 @@
-[D], unfinished, help, 2022-01-01, no time given
-[D], unfinished, help, 2022-01-01, 01:00
-[E], unfinished, help, 2022-01-01, no time given
-[T], unfinished, help
+[T], unfinished, learn how to play the guitae

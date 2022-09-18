@@ -252,6 +252,7 @@ public class TaskList {
     public void undoDeleteTask(Task deletedTask, int taskNumber) {
         taskArrayList.add(taskNumber - 1, deletedTask);
         updateStorage();
+        this.undoInformation.undoCommandType = CommandType.ADD;
     }
 
     /**
