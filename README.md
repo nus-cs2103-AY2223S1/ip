@@ -15,7 +15,6 @@ All you need to do is,
 1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.6/duke.jar).
 2. place it in the directory that you would like to place your task list at.
 3. open your terminal in the same directory, enter `java -jar duke.jar`.
-4. follow this [tutorial](#tutorial) to add your tasks. :blush:
 
 **Features**: 
 
@@ -25,18 +24,4 @@ All you need to do is,
 
 ----
 
-## Tutorial
-
-Here is a quick tutorial on the command syntax !!! :+1:
-
-Content inside the { } is to be decided by the user. 
-
-- `todo {Task}` To add a Todo task.
-- `deadline {Task} \by {'Date in' YYYY-MM-DD}` To add a deadline task.
-- `event {Task} \at {'Date in' YYYY-MM-DD}` To add an event task.
-- `mark {task index}` To mark the task at specific index in the list as done.
-- `unmark {task index}` To mark the task at specific index in the list as not done.
-- `delete {task index}` To delete the task at specific index.
-- `list` To check the current list of task.
-- `help` To check the list of commands.
-- `bye` To exit the programme.
+## User Guide
