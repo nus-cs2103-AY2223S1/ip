@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents an Event, which is a Task with time.
  */
 public class Event extends Task {
-    private final LocalDate time;
+    protected final LocalDate time;
 
     /**
      * Constructor of Event with description and time.

@@ -43,6 +43,8 @@ public class Parser {
             return new ExitCommand();
         case "list":
             return new ListCommand();
+        case "free":
+            return new FreeCommand();
         case "mark":
             return new MarkCommand(Integer.parseInt(inputParts[1]) - 1, true);
         case "unmark":

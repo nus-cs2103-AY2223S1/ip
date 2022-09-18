@@ -12,6 +12,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 /**
  * Represents Duke, a Personal Assistant Chatterbot that helps a person to keep track of various things.
  */
@@ -235,6 +238,31 @@ public class Duke extends Application {
         command.run(this);
         storage.save(tasks);
         return ui.collect();
+    }
+
+    /**
+     * Prints the nearest date without task to the UI.
+     */
+    public void findFreeTimes() {
+        LocalDate now = LocalDate.now();
+        ArrayList<Long> distances = new ArrayList<>();
+        tasks.forEach(task -> {
+            if (task.type == 'D') {
+                distances.add(((Deadline) task).deadline.toEpochDay() - now.toEpochDay());
+            } else if (task.type == 'E') {
+                distances.add(((Event) task).time.toEpochDay() - now.toEpochDay());
+            }
+        });
+        distances.sort((a, b) -> (int) (a - b));
+        int counter = 1;
+        for (Long distance : distances) {
+            if (distance > counter) {
+                break;
+            } else if (distance == counter) {
+                counter++;
+            }
+        }
+        ui.findFreeTimes(now.plusDays(counter));
     }
 
     /**
