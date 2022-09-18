@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Launcher"
+    mainClassName = "duke.GUI.Launcher"
 }
 
 shadowJar {
