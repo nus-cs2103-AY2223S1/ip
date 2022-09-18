@@ -158,7 +158,7 @@ Action | Format, Examples
 **Event** | `event {task details} /at {date and time in MMM d yyyy hh:mm a}` <br> e.g., `event JB trip /at Sep 15 2022 08:00 AM`
 **Deadline** | `deadline {task details} /by {date and time in MMM d yyyy hh:mm a}` <br> e.g., `deadline submit assignment /by 25 Sep`
 **Mark** | `mark {task number}`<br> e.g., `mark 2`
-**Unmark** | `unmark {task number`<br> e.g., `unmark 2`
+**Unmark** | `unmark {task number}`<br> e.g., `unmark 2`
 **Delete** | `delete {task number}`<br> e.g., `delete 3`
 **Find** | `find {keyword}`<br> e.g., `find cs2102`
 **List** | `list`
