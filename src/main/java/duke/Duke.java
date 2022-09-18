@@ -49,6 +49,8 @@ public class Duke extends Application {
      * @param task Task to add.
      */
     public void addTask(Task task) { // error if description is empty
+        assert tasks != null;
+        assert task != null;
         tasks.add(task);
         ui.addTask(task);
         ui.infoCount(tasks.size());
@@ -58,6 +60,7 @@ public class Duke extends Application {
      * Print all current tasks to the UI.
      */
     public void printTasks() {
+        assert tasks != null;
         ui.printTasks(tasks);
     }
 
@@ -68,10 +71,12 @@ public class Duke extends Application {
      * @param isDone Boolean to mark the Task as done or not done.
      */
     public void markTask(int index, boolean isDone) {
+        assert tasks != null;
         if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.get(index);
+        assert task != null;
         if (isDone) {
             task.markAsDone();
             ui.markAsDone(task);
@@ -87,10 +92,12 @@ public class Duke extends Application {
      * @param index Index of Task to delete.
      */
     public void deleteTask(int index) {
+        assert tasks != null;
         if (index < 0 || index >= tasks.size()) {
             return; // throw new duke.DukeException("Index out of bound!");
         }
         Task task = tasks.remove(index);
+        assert task != null;
         ui.deleteTask(task);
         ui.infoCount(tasks.size());
     }
@@ -101,7 +108,9 @@ public class Duke extends Application {
      * @param keyword Keyword to match.
      */
     public void findTasks(String keyword) {
+        assert keyword != null;
         TaskList matches = (TaskList) tasks.clone();
+        assert matches != null;
         matches.removeIf(task -> !task.toString().toLowerCase().contains(keyword.toLowerCase()));
         ui.findTasks(matches);
     }
@@ -110,6 +119,7 @@ public class Duke extends Application {
      * Exit the Duke Chatterbot.
      */
     public void exit() {
+        assert isActive;
         isActive = false;
     }
 
@@ -220,6 +230,7 @@ public class Duke extends Application {
      *
      */
     protected String getResponse(String input) {
+        assert input != null;
         Command command = Parser.parseInput(input);
         command.run(this);
         storage.save(tasks);

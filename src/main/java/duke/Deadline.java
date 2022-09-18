@@ -40,6 +40,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
+        assert deadline != null;
         return super.toString() + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 

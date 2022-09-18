@@ -4,7 +4,7 @@ package duke;
  * Represents a Command to delete a Task from Duke.
  */
 public class DeleteCommand extends Command {
-    int index;
+    private int index;
 
     /**
      * Constructor of DeleteCommand with index of Task to delete.
