@@ -39,9 +39,10 @@ public class Storage {
 
         try {
             File f = new File(filePath);
+            File parent = new File(f.getParent());
 
             if (!f.exists()) {
-                new File(f.getParent()).mkdir();
+                parent.mkdir();
                 f.createNewFile();
                 ui.storeMessage("No data file exists. New data file has been created.\n");
             }
