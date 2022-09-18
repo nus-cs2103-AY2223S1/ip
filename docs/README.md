@@ -13,8 +13,9 @@ CaffeineBot is a **desktop chatbot** that will help you **remember your tasks** 
 1. Ensure that you have Java `11` installed in your computer.
 2. Download the latest `CaffeineBot.jar` from here.
 3. Copy the jar file to a empty folder you want to use as the home folder for you CaffeineBot.
-4. Double-Click the jar file to start the app.
-5. The GUI will be similar to the image shown below which should appear within a few seconds.
+4. Open a command window in that folder.
+5. Run the command `java -jar CaffeineBot.jar`.
+6. The GUI will be similar to the image shown below which should appear within a few seconds.
 ![QuickStartImg](QuickStartImg.png)
 6. Type the command in the command box and press `Enter` or click on `Send` button to execute it. Eg, typing help then press Enter will open the help window where it will show all the commands you can use. 
 Here are some examples of command you can try:
