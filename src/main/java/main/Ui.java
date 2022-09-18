@@ -6,10 +6,11 @@ import task.Task;
 
 public class Ui {
 
-    TaskList tasks;
+    private TaskList tasks;
 
     private final String UI_LINE_SPACING = "----------------------------------------";
-    private final String greeting = "Hello! I'm Duke  \n" + "What can I do for you?";
+    private final String MESSAGE_GREETING = "Hello! I'm Duke  \n" + "What can I do for you?";
+    private final String MESSAGE_FIND = "Tasks found:\n";
     private final String markMessage = "Task has been marked done:";
     private final String unmarkMessage = "Task has been marked not done:";
     private final String addMessage = "Task added: \n";
@@ -20,11 +21,19 @@ public class Ui {
     }
 
     public void greeting() {
-        this.chat(this.greeting);
+        this.chat(this.MESSAGE_GREETING);
     }
 
-    public void list(TaskList tasks) {
-        this.chat(tasks.toString());
+    public void find() {
+
+    }
+
+    public void list(TaskList tasks, boolean isFind) {
+        if (isFind) {
+            this.chat(MESSAGE_FIND + tasks.toString());
+        } else {
+            this.chat(tasks.toString());
+        }
     }
 
     public void add(Task newTask) {

@@ -5,6 +5,7 @@ import command.Command;
 import command.DeadlineCommand;
 import command.DeleteCommand;
 import command.EventCommand;
+import command.FindCommand;
 import command.ListCommand;
 import command.LoadCommand;
 import command.MarkCommand;
@@ -14,6 +15,7 @@ import exception.InvalidCommandException;
 
 public class Parser {
 
+    private static final String COMMAND_FIND = "find"; 
     private static final String COMMAND_LOAD = "load"; 
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BYE = "bye";
@@ -37,6 +39,8 @@ public class Parser {
             commandArgs = splitUserStatement[1].strip();
         }
         switch(command) { //no breaks as all cases lead to return
+        case COMMAND_FIND:
+            return new FindCommand(commandArgs);
         case COMMAND_LOAD:
             if (!commandArgs.equals("")) {
                 throw new InvalidCommandException("Argument given for command not needing argument");

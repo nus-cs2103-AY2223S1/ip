@@ -10,6 +10,7 @@ public class TaskList {
     private final String ERRORMESSAGE = "Positional argument out of bounds for TaskList of size ";
 
     private ArrayList<Task> tasks;
+    private TaskList searchTasks;
     private int size;
 
     TaskList() {
@@ -71,6 +72,16 @@ public class TaskList {
 
     public int size() {
         return this.tasks.size();
+    }
+
+    public TaskList search(String keyword) {
+        this.searchTasks = new TaskList();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                this.searchTasks.add(task);
+            }
+        }
+        return this.searchTasks;
     }
 
     @Override

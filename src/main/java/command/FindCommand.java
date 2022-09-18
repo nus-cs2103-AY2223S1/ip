@@ -5,10 +5,13 @@ import main.TaskList;
 import main.Ui;
 import task.Task;
 
-public class ListCommand extends Command {
-
-    public ListCommand() {
+public class FindCommand extends Command{
+    
+    private String keyword;
+    
+    public FindCommand(String keyword) {
         super();
+        this.keyword = keyword;
     }
 
     @Override
@@ -17,8 +20,7 @@ public class ListCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.list(tasks, false);
-
+        ui.list(tasks.search(keyword), true);
     }
 
     @Override
