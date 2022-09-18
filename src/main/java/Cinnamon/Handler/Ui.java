@@ -142,7 +142,7 @@ public class Ui {
      * Prints message to tell user that the selected task is being deleted successfully
      */
     public void deleteTask() {
-        System.out.println("Noted. I've removed this task:");
+        System.out.println("Noted. I've deleted this task:");
     }
 
     public void tag() {

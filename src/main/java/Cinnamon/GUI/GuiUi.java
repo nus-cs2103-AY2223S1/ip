@@ -127,7 +127,7 @@ public class GuiUi {
      * @param input read task index
      */
     public String displayDelete(String input) {
-        String s = "Noted. I've removed this task:";
+        String s = "Noted. I've deleted this task:";
         int index = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(index);
         taskList.remove(index);

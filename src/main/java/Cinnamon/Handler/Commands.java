@@ -4,6 +4,8 @@ import Cinnamon.Tasks.TaskList;
 import Cinnamon.Tasks.Event;
 import Cinnamon.Tasks.Todo;
 import Cinnamon.Tasks.Task;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -124,7 +126,9 @@ public class Commands {
         ArrayList<Task> matched = new ArrayList<>();
         for (Task t : taskList.listTasks()) {
             String str = t.toString();
-            if (str.contains(parts[1])) {
+            LocalDate d1 = LocalDate.parse(parts[1], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String a = d1.format((DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            if (str.contains(a)) {
                 matched.add(t);
             }
         }
@@ -159,7 +163,7 @@ public class Commands {
     public void tagTask(String input) {
         int index = Integer.parseInt(input.substring(4, 5)) - 1;
         Task task = taskList.get(index);
-        System.out.println(task);
+        System.out.println("Your task: " + task + " is tagged as:");
         task.tagged();
         String[] parts = input.split(" ", 3);
         task.setTag(parts[2]);
@@ -171,7 +175,7 @@ public class Commands {
         int index = Integer.parseInt(input.substring(10)) - 1;
         Task task = taskList.get(index);
         if (task.isTagged()) {
-            System.out.print("Your task is tagged as %d \n" + task.getTag());
+            System.out.print("Your task is tagged as " + task.getTag() + "\n");
             System.out.println(task);
         } else {
             System.out.println("The task is not tagged");

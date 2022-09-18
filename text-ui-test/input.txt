@@ -1,15 +1,14 @@
+todo shopping
 event meeting /at school 2007-04-07 1400
 deadline essay /by 2007-07-07 1900
-todo shopping
 list
 mark 1
 unmark 1
-mark 2
-list
-delete 1
-list
-7/07/2007
-Jul 07 2007
-todo dinner
-find dinner
+delete 2
+dateFilter 2007-07-07
+find shopping
+tag 1 #fun
+print tag 1
+#fun
+remove tag 1
 bye

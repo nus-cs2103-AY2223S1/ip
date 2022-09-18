@@ -21,42 +21,43 @@ public class Parser {
      * @throws DukeException when input is invalid
      */
     public void parse(String input) throws DukeException {
-        String[] inputCmd = input.split(" ", 2);
-
-        switch (inputCmd[0]) {
-        case "list":
+        if (input.equals("list")) {
             commands.printList();
-        case "mark":
+        } else if (input.startsWith("mark")) {
             commands.markDone(input);
-        case "unmark":
+        } else if (input.startsWith("unmark")) {
             commands.unmark(input);
-        case "todo":
+        } else if (input.startsWith("todo")) {
             if (input.length() <= 5) {
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
             commands.todo(input);
-        case "deadline":
+        } else if (input.startsWith("deadline")) {
             if (input.length() <= 9) {
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
             commands.deadline(input);
-        case "event":
+        } else if (input.startsWith("event")) {
             if (input.length() <= 6) {
                 throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
             }
             commands.event(input);
-        case "delete":
+        } else if (input.startsWith("delete")) {
             commands.delete(input);
-        case "find":
+        } else if (input.startsWith("find")) {
             commands.searchName(input);
-        case "bye":
+        } else if (input.equals("bye")) {
             ui.bye();
-        case "dateFilter":
+        } else if (input.startsWith("dateFilter")){
             commands.searchDate(input);
-        case "tag":
+        } else if (input.startsWith("tag")) {
             commands.tagTask(input);
-        case "remove":
+        } else if (input.startsWith("print")) {
+            commands.printTaskTag(input);
+        } else if (input.startsWith("remove")) {
             commands.removeTag(input);
+        } else if (input.startsWith("#")) {
+            commands.searchTag(input);
         }
     }
 }
