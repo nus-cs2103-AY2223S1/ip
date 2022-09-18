@@ -82,7 +82,7 @@ public class Storage {
         return items;
     }
 
-    public TaskList addToTaskList(TaskList items, String line) throws DukeException {
+    private TaskList addToTaskList(TaskList items, String line) throws DukeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
         String[] parse = line.split(" ~ ");
         Task tsk = null;

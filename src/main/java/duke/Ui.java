@@ -245,14 +245,14 @@ public class Ui {
     private String handleBye() {
         Timer t = new Timer();
         t.schedule(
-                new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.exit();
-                        t.cancel();
-                    }
-                },
-                3000
+            new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.exit();
+                    t.cancel();
+                }
+            },
+            3000
         );
         return "Bye my lord, hope to see you again soon!";
     }
