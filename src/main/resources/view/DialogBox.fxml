@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Region?>
 
 <!--
 @@ ryanlml  JordanChua-reused
@@ -14,13 +15,14 @@ reused code to fix issue where the dialog box is cropped if the output is too lo
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" alignment="TOP_LEFT" minHeight="-Infinity" maxHeight="Infinity"
-               style="-fx-opacity: 0.85; -fx-padding: 5;"
-               text="Label" wrapText="true">
+               style="-fx-background-color: #fffacd; -fx-opacity: 0.85; -fx-background-radius: 15;
+               -fx-label-padding: 15;" text="Label" wrapText="true">
             <font>
                 <Font name="Verdana" size="13.0"/>
             </font>
         </Label>
-        <ImageView fx:id="displayPicture" fitHeight="70.0" fitWidth="70.0" opacity="0.85" pickOnBounds="true"
+        <Region prefWidth="12.0" />
+        <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" opacity="0.85" pickOnBounds="true"
                    preserveRatio="true"/>
     </children>
     <padding>
