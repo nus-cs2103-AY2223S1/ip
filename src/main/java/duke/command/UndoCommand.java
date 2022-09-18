@@ -1,10 +1,9 @@
 package duke.command;
 
-import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 
-import duke.CustomMessageException;
-import duke.Parser;
+import duke.Duke;
 import duke.Storage;
 import duke.tasklist.TaskList;
 
@@ -18,16 +17,12 @@ public class UndoCommand extends Command {
             return "Nothing to undo!";
         }
         taskList.removeAllTasks();
-        try {
-            Scanner fileScanner = storage.getScannerForPreviousTasksFile();
-            while (fileScanner.hasNextLine()) {
-                Command parsedCommand = Parser.parseUserCommand(fileScanner.nextLine());
-                parsedCommand.execute(storage, taskList);
-            }
-            fileScanner.close();
-        } catch (FileNotFoundException | CustomMessageException e) {
-            return "Unable to undo!";
+        Optional<Scanner> fileScanner = storage.getScannerForPreviousTasksFile();
+        if (fileScanner.isPresent()) {
+            fileScanner.ifPresent((scanner) -> Duke.handleScanner(scanner, storage, taskList));
+            return "Previous command successfully undone";
+        } else {
+            return "Nothing to undo!";
         }
-        return "Previous command successfully undone";
     }
 }

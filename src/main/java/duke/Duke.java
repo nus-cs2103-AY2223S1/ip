@@ -1,6 +1,6 @@
 package duke;
 
-import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import duke.command.Command;
@@ -23,22 +23,9 @@ public class Duke {
         taskList = new TaskList();
         parseTasksFromStorage();
     }
-
-    private void parseTasksFromStorage() {
-        try {
-            Scanner fileScanner = storage.getScannerForTasksFile();
-            while (fileScanner.hasNextLine()) {
-                Command parsedCommand = Parser.parseUserCommand(fileScanner.nextLine());
-                parsedCommand.execute(storage, taskList);
-            }
-            fileScanner.close();
-        } catch (FileNotFoundException | CustomMessageException e) {
-            System.out.println("No existing data was found");
-        }
-    }
-
     /**
      * Returns the single instance of {@code Duke}
+     *
      * @return The {@code Duke} instance
      */
     public static Duke getDukeInstance() {
@@ -46,7 +33,26 @@ public class Duke {
     }
 
     /**
+     * Parses the commands from the file pointed to by the Scanner
+     * @param fileScanner The Scanner to read from
+     * @param storage The {@code Storage} object to use
+     * @param taskList The task list to add to
+     */
+    public static void handleScanner(Scanner fileScanner, Storage storage, TaskList taskList) {
+        try {
+            while (fileScanner.hasNextLine()) {
+                Command parsedCommand = Parser.parseUserCommand(fileScanner.nextLine());
+                parsedCommand.execute(storage, taskList);
+            }
+            fileScanner.close();
+        } catch (CustomMessageException ignored) {
+            System.out.println("Unable to load existing data");
+        }
+    }
+
+    /**
      * Returns Duke's response to user input
+     *
      * @param input The input string
      * @return Duke's response
      */
@@ -58,5 +64,13 @@ public class Duke {
         } catch (CustomMessageException e) {
             return e.getMessage();
         }
+    }
+
+    private void parseTasksFromStorage() {
+        if (!storage.isCurrentTasksFilePresent()) {
+            return;
+        }
+        Optional<Scanner> fileScanner = storage.getScannerForTasksFile();
+        fileScanner.ifPresent((scanner) -> handleScanner(scanner, storage, taskList));
     }
 }

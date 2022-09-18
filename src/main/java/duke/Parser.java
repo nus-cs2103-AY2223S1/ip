@@ -27,15 +27,13 @@ public class Parser {
      * @return A {@code String} representing the input
      * @throws CustomMessageException if invalid input is given
      */
-    public static Command parseUserCommand(String command)
-            throws CustomMessageException {
+    public static Command parseUserCommand(String command) throws CustomMessageException {
         String[] arguments = command.split("\\s+");
         CommandType taskType;
         try {
             taskType = CommandType.valueOf(arguments[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CustomMessageException(("OOPS!!! I'm sorry, but I "
-                    + "don't know what that means :-("));
+            throw new CustomMessageException(("OOPS!!! I'm sorry, but I don't know what that means :-("));
         }
         arguments = Arrays.copyOfRange(arguments, 1, arguments.length);
         if (!taskType.isNumberOfArgsCorrect(arguments.length)) {
@@ -53,11 +51,11 @@ public class Parser {
         case DELETE:
             return new DeleteCommand(arguments);
         case TODO:
-            return new AddTaskCommand(arguments, command, arguments.length, CommandType.TODO, "");
+            return new AddTaskCommand(arguments, command, CommandType.TODO, "");
         case DEADLINE:
-            return new AddTaskCommand(arguments, command, arguments.length, CommandType.DEADLINE, " /by ");
+            return new AddTaskCommand(arguments, command, CommandType.DEADLINE, " /by ");
         case EVENT:
-            return new AddTaskCommand(arguments, command, arguments.length, CommandType.EVENT, " /at ");
+            return new AddTaskCommand(arguments, command, CommandType.EVENT, " /at ");
         case FIND:
             return new FindCommand(arguments);
         case UNDO:
