@@ -26,12 +26,13 @@ import javafx.scene.shape.Rectangle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final int IMAGE_BORDER_SIZE = 100;
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, boolean isUser) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -42,15 +43,26 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        String styleClass = isUser ? "user" : "bot";
+        dialog.getStyleClass().add(styleClass);
         displayPicture.setImage(img);
+        addRoundedBorder();
+    }
 
-        //
+    /**
+     * Adds rounded border to displayPicture
+     */
+    private void addRoundedBorder() {
+        //@@author huzaifa1712-reused
+        // Re-used from
+        // https://stackoverflow.com/questions/44404869/how-to-create-and-add-a-style-class-dynamically-in-javafx
+        // with minor modifications
         // set a clip to apply rounded border to the original image.
         Rectangle clip = new Rectangle(
                 displayPicture.getFitWidth(), displayPicture.getFitHeight()
         );
-        clip.setArcWidth(100);
-        clip.setArcHeight(100);
+        clip.setArcWidth(DialogBox.IMAGE_BORDER_SIZE);
+        clip.setArcHeight(DialogBox.IMAGE_BORDER_SIZE);
         displayPicture.setClip(clip);
 
         // snapshot the rounded image.
@@ -66,7 +78,8 @@ public class DialogBox extends HBox {
 
         // store the rounded image in the imageView.
         displayPicture.setImage(image);
-        //
+        //@@author
+
     }
 
     /**
@@ -80,11 +93,12 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox dialog = new DialogBox(text, img, true);
+        return dialog;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, img, false);
         db.flip();
         return db;
     }
