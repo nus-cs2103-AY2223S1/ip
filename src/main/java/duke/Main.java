@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import duke.controllers.MainWindow;
 import javafx.application.Application;
@@ -23,6 +24,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            String css = Main.class.getResource("/view/styles.css").toExternalForm();
+            System.out.println(scene.getStylesheets().add(css));
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {

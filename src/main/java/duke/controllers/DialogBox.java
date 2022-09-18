@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+
+    private static final int PICTURE_RADIUS = 50;
 
     private DialogBox(String text, Image img) {
         try {
@@ -32,18 +35,10 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
-    }
-
-    public DialogBox(Label l, ImageView iv) {
-        dialog = l;
-        displayPicture = iv;
-
-        dialog.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
-
+        getRoundedImage(displayPicture);
+        displayPicture.setFitWidth(PICTURE_RADIUS << 1);
+        displayPicture.setFitHeight(PICTURE_RADIUS << 1);
         this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(dialog, displayPicture);
     }
 
     private void flip() {
@@ -53,13 +48,18 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
-    public static DialogBox getUserDialog(Label l, ImageView iv) {
+    public static DialogBox getUserDialog(String l, Image iv) {
         return new DialogBox(l, iv);
     }
 
-    public static DialogBox getDukeDialog(Label l, ImageView iv) {
+    public static DialogBox getDukeDialog(String l, Image iv) {
         var db = new DialogBox(l, iv);
         db.flip();
         return db;
+    }
+
+    private static void getRoundedImage(ImageView image) {
+        Circle clip = new Circle(PICTURE_RADIUS, PICTURE_RADIUS, PICTURE_RADIUS);
+        image.setClip(clip);
     }
 }

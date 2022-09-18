@@ -1,0 +1,14 @@
+.root {
+  /*This applies styling for the root node*/
+  -fx-font-family: "Lucida Console";
+}
+
+.dialog-container {
+    -fx-background-color: #fcf8cc;
+}
+
+.dialog-box {
+    -fx-background-color: #ccfcd7;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+}

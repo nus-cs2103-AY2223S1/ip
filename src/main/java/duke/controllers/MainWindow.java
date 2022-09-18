@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -41,13 +40,11 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(duke.getResponse(userInput.getText()));
+        String userText = userInput.getText();
+        String dukeText = duke.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(userImage)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(dukeImage))
+                DialogBox.getUserDialog(userText, userImage),
+                DialogBox.getDukeDialog(dukeText, dukeImage)
         );
         userInput.clear();
     }
