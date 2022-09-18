@@ -65,13 +65,7 @@ Example of usage:
 
 Expected outcome:
 
-"commit ip (by: Sept 20 2022 23:59:00)" will be added to the tasklist.
-
-```
-Got it. I've added this deadline task:
- [D][ ] commit ip (by: Sep 20 2022 23:59:00)
-Now you have 2 tasks in the list.
-```
+![image](https://user-images.githubusercontent.com/97339748/190917832-7492ea68-2e54-461e-b5e8-90b58f383baa.png)
 
 ### `event` - The event feature will be activated.
 
@@ -83,13 +77,7 @@ Example of usage:
 
 Expected outcome:
 
-"done with ip celebration (at: Sep 21 2022 00:00:00)" will be added to the tasklist.
-
-```
-Got it. I've added this event task:
- [E][ ] done with ip celebration (at: Sep 21 2022 00:00:00)
-Now you have 3 tasks in the list.
-```
+![image](https://user-images.githubusercontent.com/97339748/190917846-f5df45c6-ef52-4ab0-acea-df2c9bfaab61.png)
 
 ### `notes` - The notes feature will be activated.
 
@@ -101,13 +89,7 @@ Example of usage:
 
 Expected outcome:
 
-"i'm bad at coding" will be added to the noteslist.
-
-```
-Got it. I've added this note:
- [N][ ] i'm bad at coding
-Now you have 1 notes in the list.
-```
+![image](https://user-images.githubusercontent.com/97339748/190917860-c0f3c0f2-1f40-41ff-8d9b-c6db562544f3.png)
 
 ### `list` - The list feature will be activated.
 
@@ -119,17 +101,7 @@ Example of usage:
 
 Expected outcome:
 
-The tasklist and noteslist will be displayed.
-
-```
-Here are the tasks in your list:
-1.[T][ ] finalise ip
-2.[D][ ] commit ip (by: Sep 20 2022 23:59:00)
-3.[E][ ] done with ip celebration (at: Sep 21 2022 00:00:00)
-
-Here are the notes in your list:
-1.[N][ ] i'm bad at coding
-```
+![image](https://user-images.githubusercontent.com/97339748/190917875-f2413279-36e8-4645-b7ff-87ea16c662a4.png)
 
 ### `mark` - The mark feature will be activated.
 
@@ -141,12 +113,7 @@ Example of usage:
 
 Expected outcome:
 
-"commit ip" will be marked as done.
-
-```
-Nice! I've marked this task as done:
- [D][X] commit ip (by: Sep 20 2022 23:59:00)
-```
+![image](https://user-images.githubusercontent.com/97339748/190917885-421d6875-f07a-4ec2-a1a3-c22038b38a8e.png)
 
 ### `unmark` - The mark feature will be activated.
 
@@ -158,12 +125,7 @@ Example of usage:
 
 Expected outcome:
 
-"commit ip" will be marked as not done.
-
-```
-OK, I've marked this task as not done yet:
- [D][ ] commit ip (by: Sep 20 2022 23:59:00)
-```
+![image](https://user-images.githubusercontent.com/97339748/190917896-b1405211-8bc3-4096-be1a-d9adeec50513.png)
 
 ### `find` - The find feature will be activated.
 
@@ -175,14 +137,7 @@ Example of usage:
 
 Expected outcome:
 
-Any task with ip will be returned.
-
-```
-Here are the matching tasks in your list:
-1.[T][ ] finalise ip
-2.[D][ ] commit ip (by: Sep 20 2022 23:59:00)
-3.[E][ ] done with ip celebration (at: Sep 21 2022 00:00:00)
-```
+![image](https://user-images.githubusercontent.com/97339748/190918104-f0d69d66-3b1d-4244-878b-da9f1110cc5d.png)
 
 ### `delete` - The delete feature will be activated.
 
@@ -194,13 +149,7 @@ Example of usage:
 
 Expected outcome:
 
-"commit ip" will be deleted.
-
-```
-Noted. I've removed this note:
- [D][ ] commit ip (by: Sep 20 2022 23:59:00)
-Now you have 2 notes in the list.
-```
+![image](https://user-images.githubusercontent.com/97339748/190918126-981a1876-3077-49fa-b6f5-017b89508660.png)
 
 ### `bye` - The bye feature will be activated.
 
