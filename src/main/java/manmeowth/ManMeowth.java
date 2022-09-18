@@ -23,6 +23,7 @@ public class ManMeowth {
     /** ui.manmeowth.Ui handling interactions of input and output with users */
     private final Ui ui;
     private String startUpMessage;
+    private String startUpError;
 
     private boolean isExit = false;
 
@@ -37,7 +38,8 @@ public class ManMeowth {
         try {
             storage.load();
         } catch (ManMeowthException e) {
-            startUpMessage += ui.showLoadingError();
+            startUpError = ui.showLoadingError();
+            startUpMessage += startUpError;
             tasks = new TaskList();
             storage = new ListLoader(tasks);
             storage.load();
@@ -110,12 +112,12 @@ public class ManMeowth {
     }
 
     /**
-     * Return ManMeowth's welcome message for the GUI interface.
+     * Returns ManMeowth's welcome message for the GUI interface.
      *
      * @return ManMeowth's welcome message.
      */
     public String getWelcome() {
-        return ui.guiShowWelcome();
+        return ui.guiShowWelcome() + startUpError;
     }
 
 }
