@@ -22,7 +22,11 @@ public class Storage {
      * @param filePath of stored file.
      */
     public Storage(String filePath) {
-        this.file = new File(filePath);
+        try {
+            this.file = new File(filePath).getCanonicalFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -96,7 +100,7 @@ public class Storage {
 
     /**
      * Creates a new file at file object's file path.
-     * @return Empty ArrayList for TaskList.
+     * @return ArrayList with sample tasks for TaskList.
      */
     public ArrayList<Task> createNewFile() {
         try {

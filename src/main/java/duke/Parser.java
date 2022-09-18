@@ -2,8 +2,11 @@ package duke;
 
 import java.time.LocalDateTime;
 
-import duke.task.*;
-
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * Class containing parsing methods, or conversions.
@@ -133,14 +136,14 @@ public class Parser {
             return (ui.printList(tl));
         case MARK_COMMAND:
             index = Integer.parseInt(msgWords[INDEX_LOCATION]) - 1;
-            if (index < 1 || index > tl.size()) {
+            if (index < 0 || index > tl.size()) {
                 return (ui.printOutOfBoundsMsg());
             }
             tl.mark(index);
             return ui.printMarkedMsg(tl.get(index));
         case UNMARK_COMMAND:
             index = Integer.parseInt(msgWords[INDEX_LOCATION]) - 1;
-            if (index < 1 || index > tl.size()) {
+            if (index < 0 || index > tl.size()) {
                 return ui.printOutOfBoundsMsg();
             }
             tl.unMark(index);

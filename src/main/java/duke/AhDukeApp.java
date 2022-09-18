@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import duke.task.TaskList;
 import javafx.application.Application;
@@ -19,7 +21,7 @@ import javafx.stage.Stage;
 /**
  * Class for running Duke application.
  */
-public class DukeApp extends Application {
+public class AhDukeApp extends Application {
     private TaskList tl;
     private Ui ui;
 
@@ -51,12 +53,12 @@ public class DukeApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setTitle("Duke");
+        stage.setTitle("Ah Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
 
-        mainLayout.setPrefSize(400.0, 600.0);
+        mainLayout.setPrefSize(500.0, 700.0);
 
         scrollPane.setPrefSize(385, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -137,7 +139,14 @@ public class DukeApp extends Application {
             dialogContainer.getChildren().addAll(
                     DialogBox.getDukeDialog(byeMessage, new ImageView(duke))
             );
-            System.exit(0);
+            Timer timer = new Timer();
+            TimerTask close = new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            };
+            timer.schedule(close, 2000);
             return;
         }
         Label dukeText = new Label(response);

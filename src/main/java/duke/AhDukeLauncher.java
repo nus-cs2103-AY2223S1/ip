@@ -5,8 +5,8 @@ import javafx.application.Application;
 /**
  * A launcher class to workaround classpath issues.
  */
-public class Launcher {
+public class AhDukeLauncher {
     public static void main(String[] args) {
-        Application.launch(DukeApp.class, args);
+        Application.launch(AhDukeApp.class, args);
     }
 }

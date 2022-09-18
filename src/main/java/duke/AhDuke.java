@@ -9,7 +9,7 @@ import duke.task.TaskList;
  * Class containing the main Duke application.
  * Initialises the application.
  */
-public class Duke {
+public class AhDuke {
     private final Scanner sc;
     private final TaskList tl;
     private final Ui ui;
@@ -17,7 +17,7 @@ public class Duke {
     /**
      * Constructor to initialise Duke.
      */
-    public Duke() {
+    public AhDuke() {
         this.sc = new Scanner(System.in);
         Storage st = new Storage("./data/dukedata.txt");
         this.tl = new TaskList(st.setFile());
@@ -29,8 +29,8 @@ public class Duke {
      * @param args arguments that is passed in main.
      */
     public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+        AhDuke ahDuke = new AhDuke();
+        ahDuke.run();
     }
 
     /**
