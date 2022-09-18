@@ -24,7 +24,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[%s]%s (by: %s)", Event.EVENT_SYMBOL,
-                super.toString(), DateParser.getParsedDate(date));
+                super.toString(), Parser.parseDate(date));
     }
 
     /**

@@ -36,10 +36,8 @@ public class TaskList {
      * @return the task associated with that index
      * @throws InvalidTaskException if user input is wrong
      */
-    public Task getTask(int index) throws InvalidTaskException {
-        if (index < 0 || index >= tasks.size()) {
-            throw new InvalidTaskException();
-        }
+    public Task getTask(int index) {
+        assert index >= 0 && index < tasks.size() : "Index out of bounds";
         return tasks.get(index);
     }
 

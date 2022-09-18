@@ -96,7 +96,7 @@ public class Storage {
      * @param tasks the list of tasks to store to hard drive
      * @throws StorageException when there is an error storing the list to the hard drive
      */
-    public void save(TaskList tasks) throws KKBotException {
+    public void save(TaskList tasks) throws StorageException {
         int numOfTasks = tasks.getNumberOfTasks();
         copyFile(Paths.get(FILE_PATH), Paths.get(PAST_FILE_PATH));
         try (BufferedWriter w = new BufferedWriter(new FileWriter(FILE_PATH))) {
