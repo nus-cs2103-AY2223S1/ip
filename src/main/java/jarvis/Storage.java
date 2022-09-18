@@ -31,22 +31,13 @@ public class Storage {
 
     }
 
-    public static void checkFileExists() throws IOException {
-        // System.out.println(dir.exists());
-        if (! dir.exists()) {
-            dir.mkdir();
-        }
-        if (! taskListFile.exists()) {
-            taskListFile.createNewFile();
-        }
-    }
-
     /**
      * Save the added task to database
      * @param task The task to store
      * @throws IOException If something went wrong when writing file
      */
     public void saveAddedTask(Task task) throws IOException {
+        assert this.dataFile.exists() : "Data file should exist before writing";
         FileWriter fw = new FileWriter(dataFile, true);
         fw.write(task.toDataForm());
         fw.close();
@@ -59,6 +50,7 @@ public class Storage {
      * @throws IOException If something went wrong when writing file
      */
     public void saveTaskList(TaskList taskList) throws IOException {
+        assert this.dataFile.exists() : "Data file should exist before saving";
         FileWriter fw = new FileWriter(dataFile);
         for (int i = 0; i < taskList.getTaskCount(); ++i) {
             fw.write(taskList.getTask(i).toDataForm());
@@ -72,6 +64,7 @@ public class Storage {
      * @throws JarvisException If something went wrong when loading
      */
     public TaskList loadTaskList() throws JarvisException {
+        assert this.dataFile.exists() : "Data file should exist before writing";
         TaskList taskList = new TaskList(this);
         try {
             //checkFileExists();
@@ -84,14 +77,18 @@ public class Storage {
                 }
                 String[] taskInfoArr = taskStr.split("\\|");
                 boolean isDone = taskInfoArr[1].equals("1");
-                if (taskInfoArr[0].equals("T")) {
-                    taskList.appendLoadedTask(new Todo(taskInfoArr[2], isDone));
-                } else if (taskInfoArr[0].equals("E")) {
-                    taskList.appendLoadedTask(new Event(taskInfoArr[2], taskInfoArr[3], isDone));
-                } else if (taskInfoArr[0].equals("D")) {
-                    taskList.appendLoadedTask(new Deadline(taskInfoArr[2], taskInfoArr[3], isDone));
-                } else {
-                    throw new RuntimeException("Something wrong with task types in data file");
+                switch (taskInfoArr[0]) {
+                    case "T":
+                        taskList.appendLoadedTask(new Todo(taskInfoArr[2], isDone));
+                        break;
+                    case "E":
+                        taskList.appendLoadedTask(new Event(taskInfoArr[2], taskInfoArr[3], isDone));
+                        break;
+                    case "D":
+                        taskList.appendLoadedTask(new Deadline(taskInfoArr[2], taskInfoArr[3], isDone));
+                        break;
+                    default:
+                        throw new RuntimeException("Something wrong with task types in data file");
                 }
             }
         } catch (Exception e) {

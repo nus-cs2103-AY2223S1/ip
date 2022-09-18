@@ -10,12 +10,11 @@ import java.io.IOException;
  */
 public class Parser {
     private TaskList taskList;
-    private Storage storage;
+
     private boolean isBye = false;
     
-    public Parser(TaskList taskList, Storage storage) {
+    public Parser(TaskList taskList) {
         this.taskList = taskList;
-        this.storage = storage;
     }
 
     /**
