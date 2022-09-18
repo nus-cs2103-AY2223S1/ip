@@ -41,6 +41,7 @@ public class Ui {
      * @param task Task added in Duke.
      */
     public void addTask(Task task) {
+        assert task != null;
         print("Got it. I've added this task:");
         print(task.toString());
     }
@@ -51,6 +52,7 @@ public class Ui {
      * @param tasks List of tasks to print.
      */
     public void printTasks(TaskList tasks) {
+        assert tasks != null;
         print("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             print((i + 1) + ". " + tasks.get(i));
@@ -63,6 +65,7 @@ public class Ui {
      * @param task Task marked as done in Duke.
      */
     public void markAsDone(Task task) {
+        assert task != null;
         print("Nice! I've marked this task as done:");
         print(task.toString());
     }
@@ -73,6 +76,7 @@ public class Ui {
      * @param task Task marked as not done in Duke.
      */
     public void markNotDone(Task task) {
+        assert task != null;
         print("OK, I've marked this task as not done yet:");
         print(task.toString());
     }
@@ -83,6 +87,7 @@ public class Ui {
      * @param count Number of tasks in Duke.
      */
     public void infoCount(int count) {
+        assert count >= 0;
         print("Now you have " + count + " tasks in the list.");
     }
 
@@ -92,6 +97,7 @@ public class Ui {
      * @param task Task deleted in Duke.
      */
     public void deleteTask(Task task) {
+        assert task != null;
         print("Noted. I've removed this task:");
         print(task.toString());
     }
@@ -102,6 +108,7 @@ public class Ui {
      * @param tasks List of matching tasks.
      */
     public void findTasks(TaskList tasks) {
+        assert tasks != null;
         print("Here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             print((i + 1) + ". " + tasks.get(i));

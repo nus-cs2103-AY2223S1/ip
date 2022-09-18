@@ -14,7 +14,7 @@ public class TaskList extends ArrayList<Task> {
     public String toData() {
         String acc = "";
         for (Task task : this) {
-            acc += task.toData() + "\n";
+            acc += task.toData() + '\n';
         }
         return acc;
     }

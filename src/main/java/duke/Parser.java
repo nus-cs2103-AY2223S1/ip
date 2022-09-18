@@ -34,8 +34,10 @@ public class Parser {
      * @return Command corresponding to the user input.
      */
     public static Command parseInput(String input) {
+        assert input != null;
         String[] inputParts;
         inputParts = splitFirst(input, " ");
+        assert inputParts.length <= 2;
         switch (inputParts[0]) {
         case "bye":
             return new ExitCommand();
@@ -64,11 +66,11 @@ public class Parser {
     }
 
     /**
-     * Returns a String array with 2 elements, which results from splitting the String once with the substring (regex).
+     * Returns a String array with at most 2 elements, which results from splitting the String once with the substring (regex).
      *
      * @param string Original String.
      * @param regex Substring used to split the String.
-     * @return String array with 2 elements, which results from splitting the String once with the substring.
+     * @return String array with at most 2 elements, which results from splitting the String once with the substring.
      */
     public static String[] splitFirst(String string, String regex) {
         return string.split(regex, 2);
