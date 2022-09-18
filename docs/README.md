@@ -22,7 +22,7 @@ Download the latest uncle-cheong.jar from [here](https://github.com/MuhdMusab/ip
 
 Copy the file to the folder you want to use as the home folder for your Uncle Cheong jar file.
 
-Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 
 ## Features 
 
