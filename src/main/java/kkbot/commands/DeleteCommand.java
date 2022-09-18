@@ -28,8 +28,8 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Returns a command for kkbot.kkbot when user inputs "delete".
-     * @param tasks the list of tasks stored by kkbot.kkbot
+     * Returns a command for KKBot when user inputs "delete".
+     * @param tasks the list of tasks stored by KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
      * @return the message shown when a task is deleted

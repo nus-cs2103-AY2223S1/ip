@@ -1,6 +1,9 @@
 package kkbot.tasklist;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import kkbot.tasklist.exceptions.InvalidTaskException;
 import kkbot.tasks.Task;
@@ -93,5 +96,17 @@ public class TaskList {
         Task task = tasks.get(index);
         task.changeStatus(status);
         return task;
+    }
+
+    /**
+     * Method to retrieve all tasks stored in taskList
+     * with the given user-input phrases.
+     * @param phrases the user-input phrases to check for
+     * @return the list of all tasks containing the phrases
+     */
+    public List<Task> getTasksWithPhrases(String[] phrases) {
+        return tasks.stream()
+                .filter(task -> Arrays.stream(phrases).anyMatch(task::hasPhrase))
+                .collect(Collectors.toList());
     }
 }

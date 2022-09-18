@@ -15,7 +15,7 @@ import kkbot.ui.Ui;
 public abstract class Command {
     /**
      * Method to execute an action after receiving a user input.
-     * @param tasks the list of tasks stored by kkbot.kkbot
+     * @param tasks the list of tasks stored by KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
      * @return kkbot.kkbot's response to the user input

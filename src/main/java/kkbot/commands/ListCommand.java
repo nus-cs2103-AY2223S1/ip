@@ -14,11 +14,11 @@ public class ListCommand extends Command {
     public static final String KEYWORD = "list";
 
     /**
-     * Returns a command for kkbot.kkbot when user inputs "list".
-     * @param tasks the list of tasks stored by kkbot.kkbot
+     * Returns a command for KKBot when user inputs "list".
+     * @param tasks the list of tasks stored by KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
-     * @return the message with the list of all tasks in kkbot.kkbot
+     * @return the message with the list of all tasks in KKBot
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

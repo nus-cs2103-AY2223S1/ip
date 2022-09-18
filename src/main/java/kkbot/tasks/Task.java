@@ -50,6 +50,20 @@ public abstract class Task {
     }
 
     /**
+     * Method to check if a task's description contains
+     * a user input phrase (for FindCommand).
+     * @param phrase user-input phrase to search for
+     * @return a boolean if the Task's description contains the phrase
+     */
+    public boolean hasPhrase(String phrase) {
+        if (phrase.isEmpty()) {
+            return false;
+        }
+
+        return description.contains(phrase);
+    }
+
+    /**
      * toString method for a task when kkbot.kkbot is listing out stored tasks
      * @return string representation of a task stored.
      */

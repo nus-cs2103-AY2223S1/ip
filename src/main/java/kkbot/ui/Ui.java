@@ -1,5 +1,6 @@
 package kkbot.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import kkbot.tasks.Task;
@@ -138,5 +139,25 @@ public class Ui {
             fullList.append(String.format("%d.%s\n", index, task));
         }
         return fullList.toString();
+    }
+
+    /**
+     * Method returning a message containing all tasks in the list
+     * of matches (from FindCommand).
+     * @param matches the list of all matches
+     * @return a message of all the matching tasks
+     */
+    public String showMatches(List<Task> matches) {
+        if (matches.size() == 0) {
+            return "No matches found!";
+        }
+
+        StringBuilder sb = new StringBuilder("The following tasks match your search!\n\nThey are:\n");
+        int serialNumber = 1;
+        for (Task task : matches) {
+            sb.append(String.format("%d.%s\n", serialNumber, task));
+            serialNumber++;
+        }
+        return sb.toString();
     }
 }

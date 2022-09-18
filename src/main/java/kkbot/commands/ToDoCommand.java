@@ -7,7 +7,7 @@ import kkbot.tasklist.TaskList;
 import kkbot.ui.Ui;
 
 /**
- * Class representing the command for kkbot.kkbot when user inputs a todo task
+ * Class representing the command for KKBot when user inputs a todo task
  *
  * @author AkkFiros
  */
@@ -26,11 +26,11 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Returns a set of actions done by kkbot.kkbot when user inputs "todo".
-     * @param tasks the list of tasks stored by kkbot.kkbot
+     * Returns a set of actions done by KKBot when user inputs "todo".
+     * @param tasks the list of tasks stored by KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
-     * @return the related messages after a todo task is added to kkbot.kkbot
+     * @return the related messages after a todo task is added to KKBot
      * @throws StorageException if there is an error reading from/writing to hard drive
      */
     @Override
