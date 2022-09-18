@@ -3,7 +3,6 @@ package duke;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import duke.command.Command;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -122,12 +121,12 @@ public class TaskList {
         String response = "Reminder! Tasks coming up:";
         LocalDateTime currDateTime = LocalDateTime.now();
         for (Task t : this.tasks) {
-            if (t instanceof Deadline) {
+            if (t instanceof Deadline && !t.isDone()) {
                 Deadline d = (Deadline) t;
                 if (d.isAfter(currDateTime)) {
                     response += "\n" + t;
                 }
-            } else if (t instanceof Event) {
+            } else if (t instanceof Event && !t.isDone()) {
                 Event e = (Event) t;
                 if (e.isAfter(currDateTime)) {
                     response += "\n" + t;

@@ -62,6 +62,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
     /**
      * Returns the string representation of the task to be saved.
      * @return string representation of the task to be saved

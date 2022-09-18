@@ -24,6 +24,6 @@ public class MarkCommand extends Command {
 
     @Override
     public String executeWithMessage(TaskList tasks) throws DukeException {
-        return tasks.markTask(index, true);
+        return tasks.markTask(this.index, this.isDone);
     }
 }
