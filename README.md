@@ -1,5 +1,6 @@
 # DukeManage
->"When CS becomes too tough, go to IS" - Y2 IS [Darryl Ee](/images/img.png)
+>"When CS becomes too tough, go to IS" - Y2 IS [Darryl Ee](img.png)
+
 Duke Manage helps you remember your daily tasks so you dont have to! It's,
 - Easy to use
 - Mouse not needed
