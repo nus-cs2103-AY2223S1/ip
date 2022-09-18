@@ -218,10 +218,12 @@ public class DateFormat {
                 }
             }
         } else {
-            if (afterBy.contains(":")) {
-                afterBy = afterBy.substring(1); // When read from text file, it has an extra ":".
-            }
+            afterBy = afterBy.substring(1); // When read from text file, it has an extra ":".
             if (this.afterBy.indexOf(" ") <= 2) {
+                if (this.afterBy.indexOf(" ") == 0) {
+                    afterBy = afterBy.substring(1);
+                }
+                System.out.println(afterBy);
                 int afterDaySpaceIndex = afterBy.indexOf(" ");
                 String afterDay;
                 if (afterDaySpaceIndex == 1) {
@@ -231,6 +233,7 @@ public class DateFormat {
                     day = afterBy.substring(0, 2);
                     afterDay = afterBy.substring(afterDaySpaceIndex + 1);
                 }
+                System.out.println(day);
                 int afterMonthSpaceIndex = afterDay.indexOf(" ");
                 String afterMonth;
                 if (afterMonthSpaceIndex == 1) {
@@ -243,7 +246,9 @@ public class DateFormat {
                     month = afterDay.substring(0, 3);
                     afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
                 }
+                System.out.println(month);
                 year = afterMonth.substring(0, 4);
+                System.out.println(afterMonth);
                 if (afterMonth.length() > 5) {
                     if (afterMonth.charAt(7) == ':') {
                         time = afterMonth.substring(5, 7) + afterMonth.substring(8, 10);
@@ -331,9 +336,6 @@ public class DateFormat {
             this.stringTime = hour + ":" + minutes + ":00";
             boolean hourRange = Integer.parseInt(hour) >= 0 && Integer.parseInt(hour) < 24;
             boolean minuteRange = Integer.parseInt(minutes) >= 0 && Integer.parseInt(minutes) < 60;
-            System.out.println(stringTime);
-            System.out.println(hourRange);
-            System.out.println(hourRange);
             if (hourRange && minuteRange) {
                 this.timeFormatted = LocalTime.parse(hour + ":" + minutes + ":" + "00");
             } else {
@@ -388,7 +390,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("12 jun 2022 2400");
+        DateFormat d4 = new DateFormat("12 jun 2022");
         System.out.println(d4.formatDate("MMM d yyyy"));
     }
 }
