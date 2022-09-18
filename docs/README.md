@@ -24,7 +24,11 @@ Expected outcome:
 Your list is displayed by UNC.
 
 ```
-expected output
+Here are your tasks:
+1. [D][X] Trade (by: 02 Aug 2022)
+2. [T][] Jog
+3. [D][] assignment (by: 09 Sep 2022)
+You have 3 tasks on the list.
 ```
 
 
@@ -41,7 +45,9 @@ Expected outcome:
 A `todo` task `read book` is added to the list.
 
 ```
-expected output
+Added:
+[T][] read book
+Now you have 4 tasks on the list.
 ```
 
 
@@ -59,7 +65,9 @@ A `deadline` task `return book` with deadline `16 Sept 2022` is added to the lis
 
 
 ```
-expected output
+Added:
+[D][] return book (by: 16 Sep 2022)
+Now you have 5 tasks on the list.
 ```
 
 ### Add `event`
@@ -68,14 +76,16 @@ Adds a task that happens at a specific date.
 
 Example of usage: 
 
-`event bookclub meeting /at 2022-10-11`
+`event bookclub meeting /at 2022-08-11`
 
 Expected outcome:
 
 An `event` task `bookclub meeting` with date `11 Oct 2022` is added to the list.
 
 ```
-expected output
+Added:
+[E][] bookclub meeting (at: 11 Aug 2022)
+Now you have 6 tasks on the list.
 ```
 
 
@@ -92,7 +102,8 @@ Expected outcome:
 The second item on the list is now marked as done with an "X".
 
 ```
-expected output
+Marked as done:
+[T][X] Jog
 ```
 
 
@@ -109,7 +120,8 @@ Expected outcome:
 The second item on the list is now marked as not done without an "X".
 
 ```
-expected output
+Marked as not done:
+[T][] Jog
 ```
 
 
@@ -126,12 +138,15 @@ Expected outcome:
 The second item on the list is now removed, and all tasks after it shifts up.
 
 ```
-expected output
+Deleted:
+[T][] Jog
+Now you have 5 tasks on the list.
 ```
 
 ### `find` tasks with a keyword
 
-Displays every task on the list with the keyword in its description
+Displays every task on the list with the keyword in its description.
+Only full words will be matched.
 
 Example of usage: 
 
@@ -142,7 +157,10 @@ Expected outcome:
 A list of tasks that contain "book" is displayed.
 
 ```
-expected output
+Here are your tasks:
+1. [T][] read book
+2. [D][] return book (by: 16 Sep 2022)
+You have 2 tasks on the list.
 ```
 
 ### `sort` the list
@@ -158,5 +176,22 @@ Expected outcome:
 Your sorted list is displayed.
 
 ```
-expected output
+Here are your tasks:
+1. [D][X] Trade (by: 02 Aug 2022)
+2. [E][] bookclub meeting (at: 11 Aug 2022)
+3. [D][] assignment (by: 09 Sep 2022)
+4. [D][] return book (by: 16 Sep 2022)
+5. [T][] read book
 ```
+
+### `bye` and close the app
+
+Stops the program and closes the application window.
+
+Example of usage:
+
+`bye`
+
+Expected outcome:
+
+The window is closed.
