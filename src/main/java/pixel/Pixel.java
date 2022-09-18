@@ -1,11 +1,8 @@
 package pixel;
 
-import java.io.IOException;
 import java.util.Scanner;
 
-import pixel.util.InvalidTextDataFormatException;
 import pixel.util.Parser;
-import pixel.util.Storage;
 
 /**
  * Main class of chatbot
@@ -49,15 +46,5 @@ public class Pixel {
             run();
         }
     }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-
 }
 

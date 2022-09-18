@@ -33,7 +33,6 @@ public class TaskList {
         String output = "Here are the tasks in your list: \n";
         for (int i = 0; i < Pixel.getTaskCount(); i++) {
             Task currentTask = Storage.INPUT_TASKS.get(i);
-            System.out.println("@2321eqwdasdadasddw");
             output += ((i + 1) + ". " + currentTask + "\n");
         }
         return output;
@@ -92,8 +91,6 @@ public class TaskList {
             throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
         }
 
-        // CHECK IF TASK ALREADY EXISTS
-        // If yes, throw exception
         if (findDuplicate(newTask)) {
             throw new DuplicateEntryException("Same task already exists in database!");
         }

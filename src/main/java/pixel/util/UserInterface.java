@@ -29,6 +29,9 @@ public class UserInterface {
 
     public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String AFTER_VALID_INPUT = "You may enter a new task or command";
-    public static final String AFTER_INVALID_INPUT = "Oops! Make sure the input is a valid task or command";
-
+    public static final String AFTER_INVALID_INPUT = "Oops! Make sure the input follows the following format:";
+    public static final String FILE_LOADED = "Loaded tasks from external file!";
+    public static final String FILE_DOES_NOT_EXIST = "File does not exist! Pixel has created a new file for you";
+    public static final String FILE_TASKS_INVALID = "Oops! Seems like some of the tasks in the file "
+        + "are not in the right format, do check the formatting!";
 }

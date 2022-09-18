@@ -132,9 +132,8 @@ public class Parser {
 
         } catch (IncorrectFormatException e) {
             return (
-//                e + "\n"
-//                + "Incorrect format exception! \n"
-                UserInterface.AFTER_INVALID_INPUT + "\n"
+                e + "\n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {
@@ -155,6 +154,7 @@ public class Parser {
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
         }
+
         throw new IncorrectFormatException("Oops! Make sure your code is in a valid format");
     }
 

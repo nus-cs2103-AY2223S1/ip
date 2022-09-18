@@ -5,6 +5,8 @@ package pixel.util;
  */
 public class DuplicateEntryException extends RuntimeException {
 
+    private final String errorMessage;
+
     /**
      * Constructor for a new DuplicateEntryException object
      *
@@ -12,5 +14,16 @@ public class DuplicateEntryException extends RuntimeException {
      */
     public DuplicateEntryException(String errorMessage) {
         super(errorMessage);
+        this.errorMessage = errorMessage;
+    }
+
+    /**
+     * toString method of the exception
+     *
+     * @return description of the exception without the package name
+     */
+    @Override
+    public String toString() {
+        return this.errorMessage;
     }
 }

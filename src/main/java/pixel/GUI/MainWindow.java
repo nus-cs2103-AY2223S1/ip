@@ -1,9 +1,10 @@
-package pixel;
+package pixel.GUI;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,12 +13,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import pixel.Pixel;
 import pixel.task.Deadline;
 import pixel.task.Event;
 import pixel.task.Task;
 import pixel.task.ToDo;
 import pixel.util.InvalidTextDataFormatException;
-import pixel.util.Parser;
 import pixel.util.Storage;
 import pixel.util.UserInterface;
 
@@ -84,25 +85,27 @@ public class MainWindow extends AnchorPane {
         try {
             reader = new BufferedReader(new FileReader(filePath));
             String line;
-            while ((line = reader.readLine()) != null) { // reader will continuously read the next line
+            line = reader.readLine();
+            while (line != null) { // reader will continuously read the next line
                 Task savedTask = lineToTask(line);
                 Storage.INPUT_TASKS.add(savedTask);
+                line = reader.readLine();
             }
             reader.close();
             Pixel.resetTaskCount(Storage.INPUT_TASKS.size());
             dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog("Loaded tasks from external file!", pixelImage)
+                DialogBox.getDukeDialog(UserInterface.FILE_LOADED, pixelImage)
             );
 
         } catch (IOException e) {
             File tempFile = new File("./data/pixel", "pixel.txt");
             dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog("File does not exist! Pixel has created a new file for you", pixelImage)
+                DialogBox.getDukeDialog(UserInterface.FILE_DOES_NOT_EXIST, pixelImage)
             );
         } catch (InvalidTextDataFormatException e) {
             dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(e + "\n" + "Oops! Seems like some of the tasks in the file "
-                    + "are not in the right format, do check the formatting!", pixelImage)
+                DialogBox.getDukeDialog(e + "\n"
+                    + UserInterface.FILE_TASKS_INVALID, pixelImage)
             );
         }
     }
@@ -117,19 +120,26 @@ public class MainWindow extends AnchorPane {
      * has data in invalid format
      */
     private Task lineToTask(String lineFromDocument) throws InvalidTextDataFormatException {
-        String[] componentsOfTask = lineFromDocument.strip().split(" ;; ");
+        String[] componentsOfTask = lineFromDocument.strip().split(" ;;; ");
         String type = "";
         String status = "";
         String description = "";
         String commandWord = "";
         String due = "";
+
         try {
             type = componentsOfTask[0];
             status = componentsOfTask[1];
             description = componentsOfTask[2];
+
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTextDataFormatException("Task in the text file doesn't have a type, "
                 + "status or description!");
+        }
+
+        if ((componentsOfTask.length == 4) && (!Objects.equals(componentsOfTask[3], " ;;;"))) {
+            throw new InvalidTextDataFormatException("It seems like the fourth or fifth section of "
+                + "one of the tasks in the text file is in bad format");
         }
 
         if (componentsOfTask.length == 5) {
@@ -138,16 +148,7 @@ public class MainWindow extends AnchorPane {
         }
 
         if ((componentsOfTask.length != 5) && (componentsOfTask.length != 4)) {
-            throw new InvalidTextDataFormatException("Seems like one of the tasks in the text file contains "
-                + "an incorrect number of sections \n"
-                + "Sections are separated by a \" ;; \"\n"
-                + "There are three compulsory sections: \n"
-                + "1. Type of task (T, D, E) \n"
-                + "2. Status of task (Done, Not Done) \n"
-                + "3. And description of task \n\n"
-                + "Also optional sections include: \n"
-                + "4. The command word (at, by) \n"
-                + "5. And the due/ location of the task/ activity \n");
+            throw new InvalidTextDataFormatException(InvalidTextDataFormatException.BAD_TASK_FORMATTING);
         }
 
         switch (type.strip()) {

@@ -1,4 +1,4 @@
-package pixel;
+package pixel.GUI;
 
 import javafx.application.Application;
 

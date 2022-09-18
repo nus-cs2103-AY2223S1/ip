@@ -5,6 +5,8 @@ package pixel.util;
  */
 public class IncorrectFormatException extends RuntimeException {
 
+    private final String errorMessage;
+
     /**
      * Constructor for a new IncorrectFormatException object
      *
@@ -12,5 +14,16 @@ public class IncorrectFormatException extends RuntimeException {
      */
     public IncorrectFormatException(String errorMessage) {
         super(errorMessage);
+        this.errorMessage = errorMessage;
+    }
+
+    /**
+     * toString method of the exception
+     *
+     * @return description of the exception without the package name
+     */
+    @Override
+    public String toString() {
+        return this.errorMessage;
     }
 }

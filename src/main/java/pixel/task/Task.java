@@ -133,8 +133,8 @@ public class Task {
             assert tag == "T" : "todo tag should be T";
         }
 
-        String taskToString = tag + " ;; " + isTaskDone + " ;; "
-            + this.description + " ;; " + this.commandWord + " ;; " + this.due;
+        String taskToString = tag + " ;;; " + isTaskDone + " ;;; "
+            + this.description + " ;;; " + this.commandWord + " ;;; " + this.due;
         return taskToString;
     }
 
