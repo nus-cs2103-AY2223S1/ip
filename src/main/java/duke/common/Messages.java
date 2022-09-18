@@ -23,4 +23,5 @@ public class Messages {
             + "Please start your command with list, mark, unmark, todo, deadline, event, find or bye. :')\n";
     public static final String INVALID_TASK_NUMBER = "Please enter a valid task number to %s! T^T";
     public static final String EMPTY_TASK_ERROR = "There's nothing in your list to %s! T^T";
+    public static final String CLEAR_COMMAND = "There! Nice and clean page for you! ^3^";
 }

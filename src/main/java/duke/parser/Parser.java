@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import duke.command.AddCommand;
+import duke.command.ClearCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
@@ -36,19 +37,18 @@ public class Parser {
         case "bye":
             return new ExitCommand();
         case "mark":
-            return new MarkCommand(words, firstWord);
         case "unmark":
             return new MarkCommand(words, firstWord);
         case "todo":
-            return new AddCommand(words, firstWord);
         case "deadline":
-            return new AddCommand(words, firstWord);
         case "event":
             return new AddCommand(words, firstWord);
         case "delete":
             return new DeleteCommand(words);
         case "find":
             return new FindCommand(words);
+        case "clear":
+            return new ClearCommand();
         default:
             return new InvalidCommand();
         }
