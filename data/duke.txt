@@ -1,0 +1,3 @@
+[T][ ] have a fruit
+[E][ ] breakfast (at: morning)
+[D][ ] homework (by: tomorrow night)

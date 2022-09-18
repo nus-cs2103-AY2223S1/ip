@@ -7,7 +7,16 @@ public class Duke extends Chatbot {
     private LinkedList<Task> tasks = new LinkedList<>();
 
     public static void main(String[] args) {
+        FrenIO.createDataFolder();
+        FrenIO.createDataFile();
         Duke duke = new Duke();
+
+        try {
+            duke.tasks = FrenIO.initializeData();
+        } catch (DukeException ex) {
+            System.out.println("Error in initializing data!");
+        }
+
         duke.sayHello();
 
         while(true) {
@@ -67,6 +76,8 @@ public class Duke extends Chatbot {
                             duke.tasks.add(new Event(action));
                             break;
                     }
+
+                    FrenIO.updateData(duke.tasks);
 
                     duke.echo("Added task:" +
                             duke.tasks.getLast().printTask());
