@@ -107,10 +107,6 @@ You have 3 task(s). Stop procrastinating bro.
 
 Listing out all the events currently in the task list: `list`
 
-Example of usage: 
-
-`list`
-
 Expected outcome:
 
 Lists out all the events currently in the task list.
