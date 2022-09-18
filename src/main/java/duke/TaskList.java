@@ -2,6 +2,7 @@ package duke;
 
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
+import duke.task.DatedTask;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -10,6 +11,7 @@ import duke.task.Todo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Represents the list of tasks that have been created in the Duke application.
@@ -96,6 +98,54 @@ public class TaskList {
             }
         }
         return foundTasks;
+    }
+
+    /**
+     * Returns TaskList containing all tasks in sorted order.
+     * @param taskType Type of tasks to be sorted - Deadline, event or both.
+     * @return TaskList containing matching tasks in sorted order.
+     */
+    public TaskList sort(String taskType) {
+        ArrayList<DatedTask> filteredTasks = filterByDatedTask(taskType);
+        filteredTasks.sort((x, y) -> x.compareTo(y));
+        TaskList sortedTasks = new TaskList();
+        for (Task sortedTask : filteredTasks) {
+            sortedTasks.addTask(sortedTask);
+        }
+        return sortedTasks;
+    }
+
+    private ArrayList<DatedTask> filterByDatedTask(String taskType) {
+        ArrayList<DatedTask> filteredList = new ArrayList<>();
+        switch (taskType) {
+        case "deadline":
+            for (Task task : tasks) {
+                if (task instanceof Deadline) {
+                    DatedTask datedTask = (DatedTask) task;
+                    filteredList.add(datedTask);
+                }
+            }
+            break;
+        case "event":
+            for (Task task : tasks) {
+                if (task instanceof Event) {
+                    DatedTask datedTask = (DatedTask) task;
+                    filteredList.add(datedTask);
+                }
+            }
+            break;
+        case "dated":
+            for (Task task : tasks) {
+                if (task instanceof DatedTask) {
+                    DatedTask datedTask = (DatedTask) task;
+                    filteredList.add(datedTask);
+                }
+            }
+            break;
+        default:
+            throw new DukeRuntimeException("TaskList::filter invalid task type entered.");
+        }
+        return filteredList;
     }
 
     /**

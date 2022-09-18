@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 /**
  * Represents a task that has a deadline.
  */
-public class Deadline extends Task {
+public class Deadline extends DatedTask {
 
     private LocalDateTime by;
 
@@ -20,10 +20,16 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    /**
-     * Gets String representation of this deadline.
-     * @return String representation of this deadline.
-     */
+    @Override
+    public LocalDateTime getDate() {
+        return by;
+    }
+
+    @Override
+    public int compareTo(DatedTask task) {
+        return this.by.isAfter(task.getDate()) ? 1 : -1;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");

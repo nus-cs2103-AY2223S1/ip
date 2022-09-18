@@ -2,11 +2,12 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Represents a task that occurs at a specific time.
  */
-public class Event extends Task {
+public class Event extends DatedTask {
 
     private LocalDateTime at;
 
@@ -20,10 +21,16 @@ public class Event extends Task {
         this.at = at;
     }
 
-    /**
-     * Gets String representation of this event.
-     * @return String representation of this event.
-     */
+    @Override
+    public LocalDateTime getDate() {
+        return at;
+    }
+
+    @Override
+    public int compareTo(DatedTask task) {
+        return this.at.isAfter(task.getDate()) ? 1 : -1;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
