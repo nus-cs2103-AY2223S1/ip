@@ -5,10 +5,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.shape.Circle?>
+<fx:root alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" maxHeight="-Infinity" minHeight="-Infinity" />
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="dialog" text="Label" wrapText="true" maxHeight="-Infinity" minHeight="-Infinity"
+               style="-fx-background-color: #57D9B5; -fx-background-radius: 6.0; -fx-font-family: Helvetica; -fx-padding: 5 5 5 5; -fx-font-size: 14">
+            <padding>
+                <Insets left="10.0" right="10.0"/>
+            </padding>
+        </Label>
+        <Circle fx:id="circleImage" radius="30.0" >
+            <HBox.margin>
+                <Insets left="5.0" right="5.0" />
+            </HBox.margin>
+        </Circle>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
