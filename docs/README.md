@@ -175,6 +175,66 @@ You have 2 task(s). Stop procrastinating bro.
 
 ### `find`
 
+Finds tasks in the task list that contain the keyword inputted: `find {keyword}`
+
+Example of usage: 
+
+`find birthday`
+
+Expected outcome:
+
+Finds any task that contains the word "birthday" in their name.
+
+```
+No problem fam. Here are the tasks that match the keyword:
+[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
+```
+
 ### `undo`
 
+Undoes any command that edited the task list: `undo`
+
+Example of usage:
+
+```
+todo learn how to play the guitae
+
+list
+
+undo
+
+list
+```
+
+Expected outcome:
+
+A todo task is added to the task list with task name being "learn how to play the guitae" which is a typo. After undo is inputted, the todo task is removed.
+
+```
+I gotchu fam. Your task has been added:
+[T][ ] learn how to play the guitae
+You have 3 task(s). Stop procrastinating bro.
+
+Here are your tasks. You better start now:
+1.[D][ ] math assignment (by: 23 Mar 2022 10:00)
+2.[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
+3.[T][ ] learn how to play the guitae
+
+Don't anyhow type commands if you want me to undo it.
+
+Here are your tasks. You better start now:
+1.[D][ ] math assignment (by: 23 Mar 2022 10:00)
+2.[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
+```
+
 ### `bye`
+
+Terminates the program: `bye`
+
+Expected outcome:
+
+Terminates the program and displays the exit message.
+
+```
+Bye bro. See you soon.
+```
