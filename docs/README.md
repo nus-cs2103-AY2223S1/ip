@@ -1,274 +1,253 @@
 # User Guide
+Henry is a **desktop application for keeping track of tasks, deadlines,
+events and supports keeping track of loans given/taken, optimized for
+use via a Command Line Interface (CLI)**,
+while still having the benefits of a Graphical User Interface (GUI). If you
+can type fast, Duke can help you get your goals achieved faster than
+traditional GUI applications.
 
-## Features 
+## Features
+- [Echo user input: echo](#echo)
+- [Showing all tasks: list](#list)
+- [Creating a ToDo: todo](#todo)
+- [Creating an Event: event](#event)
+- [Creating a Deadline: deadline](#deadline)
+- [Marking a Task: mark](#mark)
+- [Unmarking a Task: unmark](#unmark)
+- [Find a Task: find](#find)
+- [Deletes a Task: delete](#delete)
+- [Add Tentative Date: tentative](#tentative)
+- [Interact: interact with Henry](#interact)
 
-### Feature-Echo
-
-Copies the user's input and prints it.
-
-### Feature-Todo
-
-Adds a "To-do" type task to the task list. A "To-do" type task has no specific completion time.
-
-### Feature-Deadline
-
-Adds a "Deadline" type task to the task list. A "Deadline" type task has a specific deadline by which it must be completed.
-
-### Feature-Event
-
-Adds an "Event" type task to the task list. An "Event" type task has a specific date when it occurs. It may also be configured to have tentative dates, from which any can be chosen as the confirmed date.
-
-### Feature-Mark
-
-Marks a task as complete.
-
-### Feature-Unmark
-
-Marks a task as incomplete.
-
-### Feature-Delete
-
-Deletes the task at a given index from the task list.
-
-### Feature-Find
-
-Finds a task in the task list that matches the given keywords. Supports multiple keywords and partial matches.
-
-### Feature-List
-
-Displays the current task list.
-
-### Feature-Tentative
-
-Allows the user to either add tentative dates to an "Event" type task or confirms a date for an "Event" type task.
-
-### Feature-Interact
-
-Allows the user to have a "conversation" with Henry. Supports teaching Henry the meaning of words.
 
 ## Usage
 
-### `bye` - The command that will exit the program
+### <span style="color: orange;" id="echo">Repeating user input - `echo`</span>
+Copies the user’s input and prints it
 
-The task list will be saved to a text file on the user's desktop, named "henry.txt". The program will exit.
-
-Example of usage: 
-
-`bye`
-
-Expected outcome:
-
-The program will exit.
-
-```
-Goodbye! Your task list has been saved!
-```
-
-### `echo` - The command that activates Henry's "Echo" feature
-
-Echo will copy the user's input and display it back to the user through the GUI.
-
-Example of usage: 
+**Example of usage:**
 
 `echo hello`
 
-Expected outcome:
+**Expected outcome:**
 
-"hello" will be printed to the GUI.
+![echo expected outcome](https://user-images.githubusercontent.com/89738860/190916529-a5d70530-7b15-416a-a0c8-bf2affccb55c.png)
 
-```
-hello
-```
 
-### `todo` - The command that activates Henry's "To-do" feature
+### <span style="color: orange;" id="list">Showing all tasks - `list`</span>
+Lists all tasks that the user has
 
-Todo will create a new "To-do" type task in the task list.
-
-Example of usage: 
-
-`todo read book`
-
-Expected outcome:
-
-"read book" will be added to the task list as a new "To-do" task.
-
-```
-OK, I added this task to my list:
- [T][ ] read book
-```
-
-### `deadline` - The command that activates Henry's "Deadline" feature
-
-Deadline will create a new "Deadline" type task in the task list.
-
-Example of usage: 
-
-`deadline read book /by 14 Jul 2023 13:00`
-
-Expected outcome:
-
-"read book" will be added to the task list as a new "Deadline" task.
-
-```
-OK, I added this task to my list:
- [D][ ] read book (by: 14-07-2023 1:00PM)
-```
-
-### `event` - The command that activates Henry's "Event" feature
-
-Event will create a new "Event" type task in the task list.
-
-Example of usage: 
-
-`event read book /at 14 Jul 2023 13:00`
-
-Expected outcome:
-
-"read book" will be added to the task list as a new "Event" task.
-
-```
-OK, I added this task to my list:
- [E][ ] read book (at: 14-07-2023 1:00PM)
-```
-
-### `mark` - The command that activates Henry's "Mark" feature
-
-Mark will set the status of the task at the given index in the task list to complete.
-
-Example of usage: 
-
-`mark 0`
-
-Expected outcome:
-
-The task at index 0 in the task list will be marked as complete.
-
-```
-I've marked this task as done:
- [T][X] read book
-```
-
-### `unmark` - The command that activates Henry's "Unmark" feature
-
-Unmark will set the status of the task at the given index in the task list to incomplete.
-
-Example of usage: 
-
-`unmark 0`
-
-Expected outcome:
-
-The task at index 0 in the task list will be marked as incomplete.
-
-```
-I've marked this task as not done:
- [T][ ] read book
-```
-
-### `delete` - The command that activates Henry's "Delete" feature
-
-The task at the given index in the task list will be deleted.
-
-Example of usage: 
-
-`delete 0`
-
-Expected outcome:
-
-The task at index 0 in the task list will be marked as incomplete.
-
-```
-I've deleted this task:
- [T][ ] read book
-```
-
-### `find` - The command that activates Henry's "Find" feature
-
-All tasks that match the given keywords will be printed to the GUI. Keywords should be preceded by "--".
-
-Example of usage: 
-
-`find --read --book`
-
-Expected outcome:
-
-The task at index 0 in the task list will be marked as incomplete.
-
-```
-I've found these matching tasks:
- 1) [D][ ] read book (by: 14-07-2023 1:00PM)
- 2) [E][ ] read book (at: 14-07-2023 1:00PM)
-```
-
-### `list` - The command that activates Henry's "List" feature
-
-All tasks in the task list are printed to the GUI.
-
-Example of usage: 
+**Example of usage:**
 
 `list`
 
-Expected outcome:
+**Expected outcome:**
 
-The task list will be displayed.
+![list expected outcome](https://user-images.githubusercontent.com/89738860/190916554-25bda231-db9f-49a0-ac38-fc680c433fe3.png)
 
-```
-Here's your current list:
 
- 1) [D][ ] read book (by: 14-07-2023 1:00PM)
- 2) [E][ ] read book (at: 14-07-2023 1:00PM)
-```
+All results shown. In this case, user has 4 tasks (2 todo, 1 event, 1 deadline)
 
-### `tentative` - The command that activates Henry's "Tentative" feature
+### <span style="color: orange;" id="todo">Creating a ToDo - `todo`</span>
+Creates a Todo task 
 
-Additional dates can be added to "Event" type tasks. Any "Event" type tasks can also confirm their date with this command
+**Format:**
 
-Example of usage: 
-1) tentative (index) (dateTime)
-`tentative 0 14 Aug 2023 13:00`
-2) tentative (index) --confirm (chosenDateIndex)
-`tentative 0 --confirm 0`
+`todo taskname`
+- `taskname` can be of any length, and works for multiple words
 
-Expected outcome:
-Usage 1: A new tentative date will be added to the Event
-Usage 2: The chosen date will be set as the confirmed date for the Event
+**Example of usage:**
 
-Usage 1:
-```
-OK, I've added a tentative date for this event:
- [E][ ] read book (at: 14-07-2023 1:00PM, 14-08-2023 1:00PM)
-```
+`todo bake cake`
 
-Usage 2:
-```
-Date confirmed! This event has been modified:
- [E][ ] read book (at: 14-08-2023 1:00PM)
-```
+**Expected outcome:**
 
-### `interact` - The command that activates Henry's "Interact" feature
+![todo expected outcome](https://user-images.githubusercontent.com/89738860/190916663-19c2f0ff-659e-4b6f-a31b-756ea0699dfc.png)
 
-Currently only supports teaching Henry new words and definitions.
 
-Example of usage: 
+### <span style="color: orange;" id="event">Creating an Event - `event`</span>
+Creates an Event
+
+**Format:**
+
+`event description /at date time`
+- `description` can be of any length, and works for multiple words
+- `date` can be in the form 'dd-MM-yyyy', 'dd/MM/yyyy', 'dd-MM-yyyy' or 'dd MMM yyyy'. Note: For formats in the form '12 Jun 2023', the name of the month must be capitalized.
+- `time` must be in 24 hours format, with a colon (e.g. 23:59)
+- Henry will not accept dates that are in the past
+
+**Example of usage:**
+
+`event meet Henry /at 12-12-2022 18:00`
+
+**Expected outcome:**
+
+![event expected outcome](https://user-images.githubusercontent.com/89738860/190916732-eebdee0f-d410-47f2-9990-67fbd89fefd9.png)
+
+
+### <span style="color: orange;" id="deadline">Creating a Deadline  - `deadline`</span>
+Creates a Deadline
+
+**Format:**
+
+`deadline description /by date time`
+- `description` can be of any length, and works for multiple words
+- `date` can be in the form 'dd-MM-yyyy', 'dd/MM/yyyy', 'dd-MM-yyyy' or 'dd MMM yyyy'. Note: For formats in the form '12 Jun 2023', the name of the month must be capitalized.
+- `time` must be in 24 hours format, with a colon (e.g. 23:59)
+- Henry will not accept dates that are in the past
+
+**Example of usage:**
+
+`deadline Written Assignment /by 12-12-2022 18:00`
+
+**Expected outcome:**
+
+![deadline expected outcome](https://user-images.githubusercontent.com/89738860/190916746-e9d04765-3982-4b28-8938-a49169008abc.png)
+
+
+### <span style="color: orange;" id="mark">Marking a Task - `mark`</span>
+Marks a task as complete
+
+**Format:**
+
+`mark index`
+- `index` must be an integer, and is the index of the task in list
+- `index` starts from 0, so accessing the first task in list would be accessing index 0
+
+**Example of usage:**
+
+`mark 1`
+
+**Expected output:**
+
+![mark expected outcome](https://user-images.githubusercontent.com/89738860/190916764-56a6f678-be68-4607-bf36-b0892fb84813.png)
+
+
+### <span style="color: orange;" id="unmark">Unmarking a Task - `unmark`</span>
+
+Marks a task as incomplete
+
+**Format:**
+
+`unmark index`
+- `index` must be an integer, and is the index of the task in list
+- `index` starts from 0, so accessing the first task in list would be accessing index 0
+
+**Example of usage:**
+
+`unmark 1`
+
+**Expected output:**
+
+![unmark expected outcome](https://user-images.githubusercontent.com/89738860/190916791-1ff9931d-eb1c-424a-8a23-a9e9a33d209f.png)
+
+
+### <span style="color: orange" id="find">Find a Task - `find`</span>
+Finds all tasks that match the search input pattern
+
+**Format:**
+
+`find searchInput`
+- `searchInput` is the keyword that is matched to the list of tasks
+- `searchInput` can be of any length, and supports multiple words with the usage of `--`, e.g. `find --read --book`
+
+**Example of usage:**
+
+`find --book --read`
+
+**Expected output:**
+
+Only if a task with a description containing "book" and "read" exists as a task in your list!
+
+![find expected outcome](https://user-images.githubusercontent.com/89738860/190916813-aec6c580-5225-4856-8500-c3dfdd3a0ffc.png)
+
+
+### <span style="color: orange" id="delete">Deletes a Task - `delete`</span>
+Deletes a task from the list
+
+**Format:**
+
+`delete index`
+- `index` must be an integer, and is the index of the task in list
+- `index` starts from 0, so accessing the first task in list would be accessing index 0
+
+**Example of usage:**
+
+`delete 0`
+
+**Expected outcome:**
+
+![delete expected output](https://user-images.githubusercontent.com/89738860/190916827-4ef34106-699a-47ba-9177-dd3eb38ce368.png)
+
+
+### <span style="color: orange;" id="tentative">Adding Tentative Dates to an Event - `tentative`</span>
+Can either add a tentative date or confirm a tentative date for an Event type task
+
+**Format:**
+
+**Usage 1:**
+
+`tentative index date time`
+- `index` must be an integer, and is the index of the task in list
+- `index` starts from 0, so accessing the first task in list would be accessing index 0
+- `date` can be in the form 'dd-MM-yyyy', 'dd/MM/yyyy', 'dd-MM-yyyy' or 'dd MMM yyyy'. Note: For formats in the form '12 Jun 2023', the name of the month must be capitalized.
+- `time` must be in 24 hours format, with a colon (e.g. 23:59)
+- Henry will not accept dates that are in the past
+
+**Example of usage:**
+
+`tentative 1 12 Jun 2024 14:00`
+
+**Expected outcome:**
+
+![tentative expected outcome](https://user-images.githubusercontent.com/89738860/190916853-5fcce2c1-870f-446f-bfe9-aa66b6bb54bf.png)
+
+
+
+**Usage 2:**
+
+`tentative index --confirm index2`
+- `index` must be an integer, and is the index of the task in list
+- `index` starts from 0, so accessing the first task in list would be accessing index 0
+- `index2` must be an integer, and is the index of the tentative date to be chosen
+- `index2` starts from 0, so accessing the first date in the date list would be accessing index 0
+
+**Example of usage:**
+
+`tentative 1 --confirm 1`
+
+**Expected outcome:**
+
+![tentative expected outcome](https://user-images.githubusercontent.com/89738860/190916863-e25a47f1-5e42-4e1d-896c-37494e7952ea.png)
+
+
+### <span style="color: orange" id="interact">Interact with Henry - `interact`</span>
+
+Interact with Henry. Currently, this feature only supports teaching Henry new words.
+
+**Format:**
+
+`interact X is a Y`
+- `X` is the name of the word to teach Henry
+- `Y` is what you want Henry to remember X as
+
+**Example of usage:**
 
 `interact a potato is a plant`
 
-Expected outcome:
+**Expected outcome:**
 
-Henry will remember that a potato is a plant. This is persistent through restarting the application.
+![image](https://user-images.githubusercontent.com/89738860/190916883-ec6450d5-8fd0-478c-9cbd-87d6d1bd8432.png)
 
-```
-Ok, I will remember a potato is a plant.
-```
 
-Example of memory:
+### <span style="color: orange" id="bye">Exiting Program - `bye`</span>
 
-`interact what is a potato?`
+Saves and closes the program
 
-Expected outcome:
+**Example of usage:**
 
-Henry will reply that a potato is a plant.
+`bye`
 
-```
-A plant.
-```
+**Expected outcome:**
+
+![image](https://user-images.githubusercontent.com/89738860/190916898-f0db7989-e79c-4baa-b4e0-1da249d14bcf.png)
