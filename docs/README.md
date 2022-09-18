@@ -147,7 +147,7 @@ _________________________
 ```
 
 ###Terminate/stop the program: `bye`
-Terminate/stop the program. This only works on the CLI, For the GUI, simply click the `X` button at the top-right corner.
+Terminate/stop the program. 
 
 Format: `bye`
 

@@ -1,5 +1,7 @@
 package doke;
 
+import javafx.util.Pair;
+
 import java.util.Scanner;
 
 /**
@@ -39,8 +41,8 @@ public class Doke {
      *
      * @param input the input string
      */
-    protected String getResponse(String input) {
-        return parser.processString(taskList, storage, input, ui).getValue();
+    protected Pair<Boolean, String> getResponse(String input) {
+        return parser.processString(taskList, storage, input, ui);
     }
 
     /**
