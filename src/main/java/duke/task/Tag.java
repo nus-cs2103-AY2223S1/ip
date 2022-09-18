@@ -15,6 +15,10 @@ public class Tag {
         return label.trim().length() == 0;
     }
 
+    public boolean match(String keyword) {
+        return label.contains(keyword);
+    }
+
     @Override
     public String toString() {
         if (label.trim().length() == 0) {

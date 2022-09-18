@@ -46,7 +46,7 @@ public class Task {
      * @return boolean value
      */
     public boolean match(String keyword) {
-        return this.content.contains(keyword);
+        return this.content.contains(keyword) || tag.match(keyword);
     }
 
     public boolean isTagged() {
@@ -59,7 +59,7 @@ public class Task {
      * @return
      */
     public String isDoneString() {
-        return this.done == true ? "1" : "0";
+        return done == true ? "1" : "0";
     }
 
     public String tagsString() {
