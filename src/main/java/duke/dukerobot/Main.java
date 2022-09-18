@@ -2,11 +2,15 @@ package duke.dukerobot;
 
 import java.io.IOException;
 
+import duke.parser.Parser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+
+import static java.lang.System.exit;
 
 
 /**
@@ -24,6 +28,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Tighnari");
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {

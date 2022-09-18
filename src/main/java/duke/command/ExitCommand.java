@@ -3,6 +3,11 @@ package duke.command;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static java.lang.System.exit;
+
 /**
  * Represents a command to end the program.
  */
@@ -15,6 +20,12 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) {
         super.setIsExitTrue();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                exit(0);
+            }
+        }, 1200);
         String goodbyeMessage = "Goodbye, traveller.";
         return goodbyeMessage;
     }

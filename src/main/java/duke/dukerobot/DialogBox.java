@@ -21,10 +21,9 @@ import javafx.scene.shape.Circle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
     @FXML
-    private HBox dialog;
-    @FXML
-    private Label labelWithText;
+    private Label dialog;
     @FXML
     private Circle displayPicture;
 
@@ -37,18 +36,17 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        labelWithText.setText(text);
+        dialog.setText(text);
         displayPicture.setFill(new ImagePattern(img));
-        dialog.getChildren().addAll(labelWithText, displayPicture);
     }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.dialog.getChildren());
+        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
-        this.dialog.getChildren().setAll(tmp);
+        this.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
     /**
@@ -78,12 +76,9 @@ public class DialogBox extends HBox {
      * Adjusts user's dialogbox to a certain pattern.
      */
     public void userAdjust() {
-        this.labelWithText.setStyle("-fx-background-color: #c0c0c0;"
+        this.dialog.setStyle("-fx-background-color: #8fbc8f;"
                 + "-fx-text-fill: black;"
-                + "-fx-min-width: 200px;"
-                + "-fx-font-size: 18;"
-                + "-fx-alignment: baseline-right;"
-                + "-fx-border-width: 0;"
+                + "-fx-font-size: 12;"
                 + "-fx-background-radius: 15.0;"
                 + "-fx-padding: 15.0");
     }
@@ -91,12 +86,9 @@ public class DialogBox extends HBox {
      * Adjusts Duke's dialogbox to a certain pattern.
      */
     public void dukeAdjust() {
-        this.labelWithText.setStyle("-fx-background-color: #708090;"
+        this.dialog.setStyle("-fx-background-color: #5f9ea0;"
                 + "-fx-text-fill: white;"
-                + "-fx-min-width: 200px;"
-                + "-fx-font-size: 14;"
-                + "-fx-alignment: baseline-left;"
-                + "-fx-border-width: 0;"
+                + "-fx-font-size: 12;"
                 + "-fx-background-radius: 15.0;"
                 + "-fx-padding: 15.0");
     }
@@ -116,12 +108,9 @@ public class DialogBox extends HBox {
      * Wraps duke's response to a special pattern if exception is caught.
      */
     public void exceptionAdjust() {
-        this.labelWithText.setStyle("-fx-background-color: #CD5C5C;"
+        this.dialog.setStyle("-fx-background-color: #708090;"
                 + "-fx-text-fill: white;"
-                + "-fx-min-width: 200px;"
-                + "-fx-font-size: 18;"
-                + "-fx-alignment: baseline-left;"
-                + "-fx-border-width: 0;"
+                + "-fx-font-size: 12;"
                 + "-fx-background-radius: 15.0;"
                 + "-fx-padding: 15.0");
     }

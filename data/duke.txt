@@ -1,2 +1,9 @@
 Wait d return book by 2/2/2002
-Wait d return book by 2-2-2002
+Wait t d
+Wait t d
+Wait d return book by 2/2/2002 1800
+Wait event gotogym on sunday
+Wait todo cut hair
+Wait deadline return book by sunday
+Wait d return book by 12/12/2012 1800
+Wait d return book by 12/12/2012 1800
