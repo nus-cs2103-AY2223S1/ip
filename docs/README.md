@@ -1,6 +1,6 @@
 # User Guide: MyDuke
 
-DADUKE is a **desktop app that helps users keep track of their tasks, optimised for use via a Control Line Interface** (CLI).
+MyDuke is a **desktop app that helps users keep track of their tasks, optimised for use via a Control Line Interface** (CLI).
 
 ## Table of Content
 

@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     }
 
     public void showWelcome() {
-        String logo = "DADUKE";
+        String logo = "MyDuke";
         String welcome = "Hello from\n" + logo + "\n" + duke.getList();
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(welcome, dukeImage)
