@@ -37,7 +37,7 @@ public abstract class Command {
          *
          * @param commandType The type of the command inputted.
          */
-        public SingleWordCommand(CommandType commandType)    {
+        public SingleWordCommand(CommandType commandType) {
             super(commandType);
         }
 
