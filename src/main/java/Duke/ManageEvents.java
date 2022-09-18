@@ -6,8 +6,17 @@ package Duke;
  */
 public class ManageEvents {
 
+    public TaskList oldList;
+    public TaskList markList;
+    public TaskList unmarkList;
     public TaskList taskList;
     private Graphics graphics;
+    public boolean isTodo = false;
+    public boolean isDeadline = false;
+    public boolean isEvent = false;
+    public boolean isMarkTask = false;
+    public boolean isUnmarkTask = false;
+    public boolean isDelete = false;
 
     /**
      * Constructor for the class
@@ -32,6 +41,7 @@ public class ManageEvents {
         String description = input.substring(5);
         ToDo temp = new ToDo(description);
         this.taskList.add(temp);
+        isTodo = true;
         return graphics.addMessage(temp);
     }
 
@@ -51,6 +61,7 @@ public class ManageEvents {
 
         Deadline tempTask = new Deadline(description, by);
         this.taskList.add(tempTask);
+        isDeadline = true;
         return graphics.addMessage(tempTask);
     }
 
@@ -70,6 +81,7 @@ public class ManageEvents {
 
         Event tempTask = new Event(description, at);
         this.taskList.add(tempTask);
+        isEvent = true;
         return graphics.addMessage(tempTask);
     }
 
@@ -79,8 +91,10 @@ public class ManageEvents {
      */
     public String markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
+        markList = taskList;
         taskList.get(taskIndex).markAsDone();
         assert taskIndex >= 0: "task index should not be negative";
+        isMarkTask = true;
         return graphics.markMessage(taskIndex);
     }
 
@@ -90,8 +104,10 @@ public class ManageEvents {
      */
     public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
+        unmarkList = taskList;
         taskList.get(taskIndex).markAsUndone();
         assert taskIndex >= 0: "task index should not be negative";
+        isUnmarkTask = true;
         return graphics.unmarkMessage(taskIndex);
     }
 
@@ -101,16 +117,45 @@ public class ManageEvents {
      *                  user want to delete from the task list
      */
     public String deleteTask(int taskIndex) {
+
+        oldList = this.taskList;
         assert taskIndex >= 0: "task index should not be negative";
         String response = Graphics.deleteMessage(this.taskList, taskIndex);
         this.taskList.remove(taskIndex);
+        isDelete = true;
         return response;
     }
+
 
     public String find(String input) {
         String keyword = input.substring(5);
         TaskList results = taskList.findTasks(keyword);
         return graphics.printSearches(results);
+
+    }
+
+    public String undoTask() {
+        if (isTodo) {
+            taskList.remove(taskList.size() - 1);
+            return graphics.undo();
+        } else if (isEvent) {
+            taskList.remove(taskList.size() - 1);
+            return graphics.undo();
+        } else if (isDeadline) {
+            taskList.remove(taskList.size() - 1);
+            return graphics.undo();
+        } else if (isDelete) {
+            taskList = oldList;
+            return graphics.undo();
+        } else if (isMarkTask) {
+            taskList = markList;
+            return graphics.undo();
+        } else if (isUnmarkTask) {
+            taskList = unmarkList;
+            return graphics.undo();
+        } else {
+            return "There had not been any changes made!";
+        }
 
     }
 

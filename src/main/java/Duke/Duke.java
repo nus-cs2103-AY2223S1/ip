@@ -68,6 +68,9 @@ public class Duke {
         } else if (input.startsWith("find")) {
             database.save();
             return manage.find(input);
+        } else if (input.startsWith("undo")) {
+            database.save();
+            return manage.undoTask();
         } else {
             throw new IllegalCommandException();
         }

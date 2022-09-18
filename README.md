@@ -1,24 +1,30 @@
-# Duke project template
+# DukeManage
+>"When CS becomes too tough, go to IS" - Y2 IS [Darryl Ee](data:image/jpeg;base64,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) 
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Duke Manage helps you remember your daily tasks so you dont have to! It's,
+- Easy to use
+- Mouse not needed
+- ~~Fast~~ Fantastically Fast to use
 
-## Setting up in Intellij
+All you need to do is,
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+1. Download it from [here](https://github.com/dr-arrgghh/ip/releases)
+2. Add/Remove tasks
+3. View your tasks whenever you need!
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+AND it is not EXPENSIVE! It is actually FREE!
+
+Features:
+- [ ] Managing Tasks
+- [ ] Managing Deadlines
+- [ ] Reminders (coming soon)
+
+Love to code? Use DukeManage to practice your coding! Here's the main method: 
+```
+public class Main {
+    public static void main(String[] args) {
+        Application.launch(MainApp.class, args);
+    }
+}
+```
+
