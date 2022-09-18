@@ -20,17 +20,17 @@ import manmeowth.task.Todo;
  * @author WR3nd3
  */
 public class ListLoader {
-    /** File to read and write list.manmeowth.TaskList tasks to */
+    /** File to read and write TaskList tasks to */
     private File listText = new File("data/man_meowth.txt");
 
-    /** list.manmeowth.TaskList to update */
+    /** TaskList to update */
     private TaskList taskList;
 
 
     /**
-     * Constructor for storage.manmeowth.ListLoader.
+     * Constructor for ListLoader.
      *
-     * @param taskList The list.manmeowth.TaskList to be updated with the stored data.
+     * @param taskList The TaskList to be updated with the stored data.
      */
     public ListLoader(TaskList taskList) {
         this.taskList = taskList;

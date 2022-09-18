@@ -14,13 +14,13 @@ import manmeowth.ui.Ui;
  */
 public class ManMeowth {
 
-    /** storage.manmeowth.ListLoader used to load and save remaining tasks  */
+    /** ListLoader used to load and save remaining tasks  */
     private ListLoader storage;
 
-    /** list.manmeowth.TaskList storing current tasks */
+    /** TaskList storing current tasks */
     private TaskList tasks;
 
-    /** ui.manmeowth.Ui handling interactions of input and output with users */
+    /** Ui handling interactions of input and output with users */
     private final Ui ui;
     private String startUpMessage;
     private String startUpError = "";
@@ -28,7 +28,7 @@ public class ManMeowth {
     private boolean isExit = false;
 
     /**
-     * Constructs manmeowth.ManMeowth object and its components.
+     * Constructs ManMeowth object and its components.
      */
     public ManMeowth() {
         ui = new Ui();
@@ -47,7 +47,7 @@ public class ManMeowth {
     }
 
     /**
-     * Executes the running of the manmeowth.ManMeowth program.
+     * Executes the running of the ManMeowth program.
      */
     public void run() {
         ui.showLine();
@@ -72,7 +72,7 @@ public class ManMeowth {
     }
 
     /**
-     * Provides entry point into manmeowth.ManMeowth program when run through the CLI terminal.
+     * Provides entry point into ManMeowth program when run through the CLI terminal.
      *
      * @param args The command line arguments.
      **/

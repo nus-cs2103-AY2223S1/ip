@@ -16,7 +16,7 @@ public abstract class Task {
     /**
      * Constructor of the task.Task object to be called by its subclasses.
      *
-     * @param id task.manmeowth.TaskId detailing the type of the task.
+     * @param id TaskId detailing the type of the task.
      * @param description String representing the details of the task.
      * @param isCompleted Boolean representing whether the task is completed.
      */
@@ -41,7 +41,7 @@ public abstract class Task {
     }
 
     /**
-     * Returns summary of the task that can be deciphered by storage.manmeowth.ListLoader.
+     * Returns summary of the task that can be deciphered by ListLoader.
      *
      * @return String representing summary of task.
      */
@@ -50,7 +50,7 @@ public abstract class Task {
     /**
      * Returns the type of the task.
      *
-     * @return task.manmeowth.TaskId type of the task.
+     * @return TaskId type of the task.
      */
     public TaskId getType() {
         return id;

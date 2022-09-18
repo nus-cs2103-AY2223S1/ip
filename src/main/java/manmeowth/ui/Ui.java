@@ -42,10 +42,10 @@ public class Ui {
     private static final String MESSAGE_BORDER = "_______________________________________"
             + "______________\n";
 
-    /** Welcome message printed when running manmeowth.ManMeowth */
+    /** Welcome message printed when running ManMeowth */
     private static final String MESSAGE_SERVICE = "What can I do for mew?\n";
 
-    /** Goodbye message printed when exiting manmeowth.ManMeowth */
+    /** Goodbye message printed when exiting ManMeowth */
     private static final String MESSAGE_GOODBYE = "Bye! See nya later!\n";
 
     /** Help messages printed to advise command usage **/
@@ -95,7 +95,7 @@ public class Ui {
 
 
     /**
-     * Returns String of composed welcome message on running manmeowth.ManMeowth on CLI terminal.
+     * Returns String of composed welcome message on running ManMeowth on CLI terminal.
      *
      * @return String of welcome message.
      */
@@ -105,7 +105,7 @@ public class Ui {
     }
 
     /**
-     * Returns String of composed welcome message on running manmeowth.ManMeowth with GUI.
+     * Returns String of composed welcome message on running ManMeowth with GUI.
      *
      * @return String of welcome message.
      */
@@ -115,7 +115,7 @@ public class Ui {
     }
 
     /**
-     * Returns String of goodbye message on exiting manmeowth.ManMeowth.
+     * Returns String of goodbye message on exiting ManMeowth.
      *
      * @return String of goodbye message.
      */
@@ -127,7 +127,7 @@ public class Ui {
     /**
      * Returns confirmation message that a task has been added to the list.
      *
-     * @param task task.Task added to the list.
+     * @param task Task added to the list.
      * @param tasksLeft Number of tasks left in list.
      * @return String of confirmation message of adding a task.
      */
@@ -154,7 +154,7 @@ public class Ui {
     /**
      * Returns confirmation message that task has been marked as complete.
      *
-     * @param t task.Task to be marked.
+     * @param t Task to be marked.
      * @return String of confirmation message of completing a task.
      */
     public String showMark(Task t) {
@@ -165,7 +165,7 @@ public class Ui {
     /**
      * Returns confirmation message that task has been marked as incomplete.
      *
-     * @param t task.Task to be marked as incomplete.
+     * @param t Task to be marked as incomplete.
      * @return String of confirmation message of marking a task as incomplete.
      */
     public String showUnmark(Task t) {
@@ -176,7 +176,7 @@ public class Ui {
     /**
      * Returns confirmation message that task has been deleted from the list.
      *
-     * @param t task.Task to be deleted.
+     * @param t Task to be deleted.
      * @param tasksLeft Integer representing the number of tasks left in the list.
      * @return String of message confirming a delete operation had been carried out.
      */

@@ -19,16 +19,16 @@ import manmeowth.task.TaskId;
  */
 public class Parser {
 
-    /** Commands to interact with manmeowth.ManMeowth program */
+    /** Commands to interact with ManMeowth program */
     public enum ManMeowthCommand {
         FIND, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE, HELP
     }
 
     /**
-     * Returns valid command for manmeowth.ManMeowth to execute from recognised terms in input.
+     * Returns valid command for ManMeowth to execute from recognised terms in input.
      *
-     * @param input String input from user interacting with manmeowth.ManMeowth.
-     * @return command.Command to be executed.
+     * @param input String input from user interacting with ManMeowth.
+     * @return Command to be executed.
      * @throws ManMeowthException for invalid commands inputted.
      */
     public static Command parse(String input) throws ManMeowthException {

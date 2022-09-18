@@ -9,7 +9,7 @@ public class ManMeowthException extends RuntimeException {
 
 
     /**
-     * Constructs exception.manmeowth.ManMeowthException object with custom error message.
+     * Constructs ManMeowthException object with custom error message.
      *
      * @param message String representing error message to be displayed.
      */

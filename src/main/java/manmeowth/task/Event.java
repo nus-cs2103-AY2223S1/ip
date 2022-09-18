@@ -8,13 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a task.Event task.
+ * Represents an Event task.
  *
  * @author WR3nd3
  */
 public class Event extends Task {
 
-    /** 'at' is the String the Deadline was constructed with */
+    /** 'at' is the String the Event was constructed with */
     protected String at;
     /** 'formattedTime' is the formatted version of 'by' parsed for date and time */
     protected String formattedTime;
@@ -23,7 +23,7 @@ public class Event extends Task {
     protected LocalTime time = null;
 
     /**
-     * Constructor for the task.Event task.
+     * Constructor for the Event task.
      *
      * @param description String representing the description of the event.
      * @param at String representing the time of the event.

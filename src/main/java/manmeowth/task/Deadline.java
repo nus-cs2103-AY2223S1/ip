@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a task.Deadline task.
+ * Represents a Deadline task.
  *
  * @author WR3nd3
  */
