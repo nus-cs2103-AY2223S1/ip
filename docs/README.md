@@ -7,13 +7,13 @@ Add, delete, mark, unmark, find and list all current tasks.
 
 ## Usage
 
-### `todo` - add todo task
+### `todo` - Add todo task
 Add a new todo task into current task list.
 
-Example of usage: 
+Example of usage:\
 `todo TASK`
 
-Expected outcome:
+Expected outcome:\
 A todo task of description TASK should be added to task list.
 
 ```
@@ -22,13 +22,13 @@ Okay! Remember to complete the task:
       [T][ ] TASK
 ```
 
-### `event` - add event task
+### `event` - Add event task
 Add a new event task into current task list.
 
-Example of usage:
+Example of usage:\
 `event TASK /at TIME`
 
-Expected outcome:
+Expected outcome:\
 An event task of description TASK and event time TIME should be added to task list.
 
 ```
@@ -37,13 +37,13 @@ Okay! Remember to complete the task:
       [E][ ] TASK (at: TIME)
 ```
 
-### `deadline` - add deadline task
+### `deadline` - Add deadline task
 Add a new deadline task into current task list.
 
-Example of usage:
+Example of usage:\
 `deadline TASK /by TIME`
 
-Expected outcome:
+Expected outcome:\
 A deadline task of description TASK and deadline time TIME should be added to task list.
 
 ```
@@ -52,13 +52,13 @@ Okay! Remember to complete the task:
       [D][ ] TASK (by: TIME)
 ```
 
-### `delete` - delete task
+### `delete` - Delete task
 Delete a task from the current task list.
 
-Example of usage:
+Example of usage:\
 `delete TASK_NUM`
 
-Expected outcome:
+Expected outcome:\
 The task with task number TASK_NUM, description TASK and time TIME should be removed from the current task list, with TASK_LEFT_COUNT number of tasks left.
 
 ```
@@ -69,13 +69,13 @@ Neat, I've removed the task:
 Now there's TASK_LEFT_COUNT tasks left, good job! ^_^
 ```
 
-### `mark` - mark task as completed
+### `mark` - Mark task as completed
 Mark a task from current task list as completed.
 
-Example of usage: 
+Example of usage:\
 `mark TASK_NUM`
 
-Expected outcome:
+Expected outcome:\
 The task with task number TASK_NUM, description TASK, and task time TIME will be marked as completed.
 
 ```
@@ -84,13 +84,13 @@ Nice! I've marked this task as done:
       [E][X] TASK (at: TIME)
 ```
 
-### `unmark` - mark task as incomplete
+### `unmark` - Mark task as incomplete
 Mark a task from current task list as incomplete.
 
-Example of usage: 
+Example of usage:  
 `unmark TASK_NUM`
 
-Expected outcome:
+Expected outcome:  
 The task with task number TASK_NUM, description TASK, and task time TIME will be marked as incomplete.
 
 ```
@@ -99,13 +99,13 @@ Aw man, I've unmarked the following task:
       [T][ ] TASK
 ```
 
-### `find` - find task with keyword
+### `find` - Find task with keyword
 Find all tasks with description TASK that contains the keyword KEYWORD.
 
-Example of usage:
+Example of usage:  
 `find KEYWORD`
 
-Expected outcome:
+Expected outcome:  
 All tasks that contain KEYWORD will be shown with its relevant task description, time, and completion, but not number.
 
 ```
@@ -115,13 +115,13 @@ Sure! These are the tasks left:
       2. [E][ ] TASK_TWO (at: TIME_TWO)
 ```
 
-### `list` - list current tasks
+### `list` - List current tasks
 List out all the current tasks both completed and incomplete in the task list.
 
-Example of usage:
+Example of usage:  
 `list`
 
-Expected outcome:
+Expected outcome:  
 All tasks in the current task list will be shown with the correct task description, time, number, and completion.
 
 ```
@@ -133,13 +133,13 @@ Sure! These are the tasks left:
       4. [E][X] TASK_FOUR (by: TIME_FOUR)
 ```
 
-### `help` - get all commands available
+### `help` - Get all commands available
 Get the list of all commands available for user input.
 
-Example of usage:
+Example of usage:  
 `help`
 
-Expected outcome:
+Expected outcome:  
 All commands that are currently available will be shown to user.
 
 ```
@@ -157,13 +157,13 @@ These are the commands you can use, try them!
       10. bye : save all current tasks and leave app
 ```
 
-### `bye` - save current task list
+### `bye` - Save current task list
 Save all current tasks and information.
 
-Example of usage:
+Example of usage:  
 `bye`
 
-Expected outcome:
+Expected outcome:  
 All current tasks will be saved, and a goodbye message will appear.
 
 ```
