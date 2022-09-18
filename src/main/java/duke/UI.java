@@ -7,6 +7,13 @@ public class UI {
     private final String lineBreak = "-".repeat(20);
 
     /**
+     * Get the welcome message to the user.
+     */
+    public String getWelcomeMessage() {
+        return "Hello! I'm Naruto and one day I will be Hokage! \nWhat can i do for you today Dattebayo?";
+    }
+
+    /**
      * Prints the welcome message to the user.
      */
     public void printWelcomeMessage() {
