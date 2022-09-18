@@ -4,8 +4,6 @@ import duke.utils.Interval;
 
 public class Event extends Task {
     protected FormattedDate formattedDate;
-    protected boolean isRecurring;
-    protected Interval interval = Interval.None;
 
     public Event(String description, String at) {
         super(description);

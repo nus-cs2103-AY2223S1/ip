@@ -65,7 +65,7 @@ Expected Output :
     list
 
 1. [T][ ][X] buy pen
-2. [D][ ][ ] art submission (by: Nov 19 2012)
+2. [D][ ][ ] art submission (by: 2022-05-12)
 ````
 
 #### Understanding the Checkboxes
@@ -107,13 +107,13 @@ Example of usage:
 Expected Output : 
 
 Before 
-1. [T][W][ ] Piano Lesson (at: Sep 18 2022)
+1. [T][W][ ] Piano Lesson (at: 2022-05-20)
     
     mark 1
     
 After
-1. [T][W][X] Piano Lesson (at: Sep 18 2022)
-2. [T][W][ ] Piano Lesson (at: Sep 24 2022)
+1. [T][W][X] Piano Lesson (at: 2022-05-20)
+2. [T][W][ ] Piano Lesson (at: 2022-05-27)
 ````
 
 ### `unmark` - revert status of a completed Task
@@ -149,12 +149,12 @@ Expected Output :
 
 Before 
 1. [T][ ][X] buy pen
-2. [D][ ][ ] art submission (by: Nov 19 2012)
+2. [D][ ][ ] art submission (by: 2022-05-12)
     
     delete 1
     
 After
-1. [D][ ][ ] art submission (by: Nov 19 2012)
+1. [D][ ][ ] art submission (by: 2022-05-12)
 ````
 
 ### `find` - search for task with corresponding key letters
@@ -170,10 +170,10 @@ Expected Output :
 
 Before 
 1. [T][ ][X] buy pen
-2. [D][ ][ ] art submission (by: Nov 19 2012)
+2. [D][ ][ ] art submission (by: 2022-05-12)
     
     find art
     
 After
-1. [D][ ][ ] art submission (by: Nov 19 2012)
+1. [D][ ][ ] art submission (by: 2022-05-12)
 ````
