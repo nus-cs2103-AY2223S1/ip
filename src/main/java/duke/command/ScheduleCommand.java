@@ -14,6 +14,7 @@ public class ScheduleCommand extends Command {
     }
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
+        assert(ui != null);
         return ui.showSchedule(this.date, taskList.getTaskList());
     };
 

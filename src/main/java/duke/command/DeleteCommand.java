@@ -16,6 +16,7 @@ public class DeleteCommand extends Command {
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
         Task deletedTask = taskList.deleteTask(this.taskNumber);
+        assert(ui != null);
         return ui.showDeleteMessage(deletedTask, taskList.getTaskListSize());
     };
 

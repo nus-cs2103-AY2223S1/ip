@@ -17,6 +17,7 @@ public class FindCommand extends Command {
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
         ArrayList<Task> foundTasks = taskList.find(this.taskName);
+        assert(ui != null);
         return ui.showFoundTasks(foundTasks, this.taskName);
     };
 

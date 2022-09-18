@@ -14,6 +14,7 @@ public class MarkCommand extends Command {
     }
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
+        assert(taskList != null);
         boolean isSuccess = taskList.markDone(this.taskName);
         return ui.showMarkMessage(isSuccess, this.taskName);
     };

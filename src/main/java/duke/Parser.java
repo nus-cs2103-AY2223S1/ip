@@ -56,6 +56,7 @@ public class Parser {
      * @return The extracted task name.
      */
     public static String getTaskName(String userInput) {
+        assert(userInput.length() != 0);
         if (userInput.contains("/")) {
             return userInput.substring(userInput.indexOf(" ") + 1, userInput.indexOf("/") - 1).trim();
         }
@@ -69,6 +70,7 @@ public class Parser {
      * @return The extracted date.
      */
     public static String getDate(String userInput) {
+        assert(userInput.length() != 0);
         if (userInput.contains("/")) {
             return userInput.substring(userInput.indexOf("/") + 4);
         }
