@@ -1,5 +1,8 @@
 package Duke.commands;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import Duke.*;
 
 import java.io.IOException;
@@ -21,12 +24,13 @@ public class DeleteCommands extends TaskCommands {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            System.out.println("I've removed this task: ");
-            ui.printLine(tasks.getTaskToString(taskNumber));
+            ArrayList<String> text = new ArrayList<>();
+            text.add("I've removed this task: ");
+            text.add(tasks.getTaskToString(taskNumber));
             tasks.removeTask(taskNumber);
-            storage.updateTask(taskNumber, Constants.DELETE);
+            return text;
         } else {
             throw new DukeException("This task does not exists");
         }

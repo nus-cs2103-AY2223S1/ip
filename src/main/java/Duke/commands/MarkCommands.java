@@ -2,6 +2,8 @@ package Duke.commands;
 
 import Duke.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarkCommands extends TaskCommands {
 
@@ -27,12 +29,14 @@ public class MarkCommands extends TaskCommands {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            System.out.println("I've marked this task as done!");
+            ArrayList<String> text = new ArrayList<>();
+            text.add("I've marked this task as done!");
             tasks.markAsDone(taskNumber);
             storage.updateTask(taskNumber, Constants.MARK);
-            ui.printLine(tasks.getTaskToString(taskNumber));
+            text.add(tasks.getTaskToString(taskNumber));
+            return text;
         } else {
             throw new DukeException("This task does not exist.");
         }

@@ -8,9 +8,25 @@ public class TaskList {
 
     private final List<Task> list;
 
+
+    /**
+     * Class Constructor to load tasklist from list input.
+     */
+
     public TaskList(List<Task> list) {
         this.list = list;
+
     }
+
+    /**
+     * Class Constructor to initialises the task list with an empty list.
+     */
+
+    public TaskList() {
+        list = new ArrayList<>();
+    }
+
+
 
 
     public boolean isValidTaskNumber(int taskNumber) {

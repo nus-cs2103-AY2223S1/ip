@@ -1,5 +1,6 @@
 package Duke.commands;
 
+import java.util.List;
 import Duke.DukeException;
 import Duke.Storage;
 import Duke.TaskList;
@@ -24,7 +25,7 @@ public abstract class Command {
      * @throws DukeException when there is inappropriate input or save file issues.
      */
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException;
+    public abstract List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException;
 
 
     /**

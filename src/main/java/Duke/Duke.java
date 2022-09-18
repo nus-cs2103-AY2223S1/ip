@@ -2,6 +2,8 @@ package Duke;
 
 import Duke.commands.Command;
 
+import java.util.List;
+
 import java.io.IOException;
 
 
@@ -19,14 +21,17 @@ public class Duke {
     }
 
     public void run() {
-        ui.showWelcome();
+        ui.showLogo();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullInput = ui.readInput();
                 ui.printDash();
                 Command c = Parser.parse(fullInput);
-                c.execute(tasks, ui, storage);
+                List<String> reply = c.execute(tasks, ui, storage);
+                for (String line : reply) {
+                    ui.printLine(line);
+                }
                 isExit = c.isExit();
             } catch (IOException | DukeException e) {
                 ui.printError(e.getMessage());

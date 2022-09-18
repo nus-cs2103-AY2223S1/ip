@@ -1,6 +1,15 @@
 package Duke;
 
-import Duke.commands.*;
+import Duke.commands.ByeCommands;
+import Duke.commands.Command;
+import Duke.commands.DeadlineCommands;
+import Duke.commands.DeleteCommands;
+import Duke.commands.EventCommands;
+import Duke.commands.FindCommands;
+import Duke.commands.ListCommands;
+import Duke.commands.MarkCommands;
+import Duke.commands.TodoCommands;
+import Duke.commands.UnmarkCommands;
 
 public class Parser {
 

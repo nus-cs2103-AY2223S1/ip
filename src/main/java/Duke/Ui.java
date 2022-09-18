@@ -1,5 +1,8 @@
 package Duke;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -12,16 +15,30 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    public void showWelcome() {
-        String logo = " ____        _        \n"
+    public List<String> showLogo() {
+        ArrayList<String> text = new ArrayList<>();
+        String logo = (" ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("___________________________________");
-        System.out.println("Hello! I'm Duke.Duke\n What can I do for you?");
-        System.out.println("____________________________________");
+                + "|____/ \\__,_|_|\\_\\___|\n");
+        text.add("Hello from\n" + logo);
+        text.add("___________________________________");
+        text.add("Hello! I'm Duke.Duke\n What can I do for you?");
+        text.add("____________________________________");
+        return text;
+    }
+
+    public List<String> chatBox(String text) {
+        return chatBox(List.of(text));
+    }
+
+    public List<String> chatBox(List<String> lines) {
+        ArrayList<String> result = new ArrayList<>();
+        for (String line : lines) {
+            result.add("   " + line);
+        }
+        return result;
     }
 
     public String readInput() {
@@ -32,8 +49,8 @@ public class Ui {
         System.out.println(line);
     }
 
-    public void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String printBye() {
+       return ("Bye. Hope to see you again soon!");
     }
 
     public void printDash() {

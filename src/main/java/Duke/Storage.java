@@ -15,10 +15,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
-    List<List<String>> tasks;
+    private final List<List<String>> tasks;
     private static final String TASK_FILE_PATH = "database/duke.txt";
     private FileWriter fileWriter;
     private final File taskFile;
+
+    /**
+     * Class constructor.
+     *
+     */
 
     public Storage() throws IOException {
         taskFile = new File(TASK_FILE_PATH);

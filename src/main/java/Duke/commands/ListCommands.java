@@ -5,6 +5,8 @@ import Duke.DukeException;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 
 public class ListCommands extends Command {
@@ -21,10 +23,12 @@ public class ListCommands extends Command {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        ui.printLine("Here are the tasks in your list:");
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        ArrayList<String> text = new ArrayList<>();
+        text.add("Here are the tasks in your list:");
         for (int i = 1; tasks.isValidTaskNumber(i); i++) {
-            ui.printLine(i + ". " + tasks.getTaskToString(i));
+            text.add(i + ". " + tasks.getTaskToString(i));
         }
+        return text;
     }
 }

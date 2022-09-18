@@ -1,5 +1,7 @@
 package Duke.commands;
 
+import java.util.ArrayList;
+import java.util.List;
 import Duke.*;
 import java.io.IOException;
 
@@ -30,12 +32,14 @@ public class UnmarkCommands extends TaskCommands {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            System.out.println("I've marked this task as not done (yet ;))");
+            ArrayList<String> text = new ArrayList<>();
+            text.add("I've marked this task as not done (yet ;))");
             tasks.markAsNotDone(taskNumber);
             storage.updateTask(taskNumber, Constants.UNMARK);
-            ui.printLine(tasks.getTaskToString(taskNumber));
+            text.add(tasks.getTaskToString(taskNumber));
+            return text;
         } else {
             throw new DukeException("tasks.Task does not exist.");
         }

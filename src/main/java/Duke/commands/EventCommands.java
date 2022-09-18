@@ -4,6 +4,8 @@ import Duke.*;
 import Duke.tasks.Event;
 import Duke.tasks.Task;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,15 +37,17 @@ public class EventCommands extends Executor {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        ArrayList<String> text = new ArrayList<>();
         Matcher match = eventPattern.matcher(description);
         if (!match.matches()) {
             throw new DukeException("No event time was given, try again");
         }
-        ui.printLine("I've added this task:");
+        text.add("I've added this task:");
         Task addedTask = tasks.addTask(new Event(match.group("taskName"), match.group("at")));
-        ui.printLine(addedTask);
+        text.add(addedTask.toString());
         storage.addTask(addedTask);
-        super.execute(tasks, ui, storage);
+        text.addAll(super.execute(tasks, ui, storage));
+       return text;
     }
 }

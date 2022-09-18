@@ -4,6 +4,7 @@ import Duke.DukeException;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public abstract class Executor extends Command {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        ui.printLine(tasks.getSizeToString());
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        return List.of(tasks.getSizeToString());
     }
 }

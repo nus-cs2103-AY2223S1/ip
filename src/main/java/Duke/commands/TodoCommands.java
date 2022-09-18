@@ -1,6 +1,7 @@
 package Duke.commands;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import Duke.DukeException;
 import Duke.Storage;
 import Duke.TaskList;
@@ -36,11 +37,13 @@ public class TodoCommands extends Executor {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
-        ui.printLine("I've added this task:");
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        ArrayList<String> text = new ArrayList<>();
+        text.add("I've added this task:");
         Task addedTask = tasks.addTask(new Todo(description));
-        ui.printLine(addedTask);
+        text.add(addedTask.toString());
         storage.addTask(addedTask);
-        super.execute(tasks, ui, storage);
+        text.addAll(super.execute(tasks, ui, storage));
+        return text;
     }
 }

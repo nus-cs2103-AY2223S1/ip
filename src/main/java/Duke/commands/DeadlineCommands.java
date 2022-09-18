@@ -1,5 +1,8 @@
 package Duke.commands;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import Duke.*;
 import Duke.tasks.Deadline;
 import Duke.tasks.Task;
@@ -34,15 +37,16 @@ public class DeadlineCommands extends Executor {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        ArrayList<String> text = new ArrayList<>();
         Matcher match = deadlinePattern.matcher(description);
         if (!match.matches()) {
             throw new DukeException("No deadline was given, try again");
         }
-        ui.printLine("I've added this task:");
+        text.add("I've added this task:");
         Task addedTask = tasks.addTask(new Deadline(match.group("taskName"), match.group("by")));
-        ui.printLine(addedTask);
-        storage.addTask(addedTask);
-        super.execute(tasks, ui, storage);
+        text.add(addedTask.toString());
+        text.addAll(super.execute(tasks, ui, storage));
+        return text;
     }
 }
