@@ -20,7 +20,7 @@ public class ExitCommand implements Command {
     public String execute(TaskList tasks, Storage storage) {
         new Thread(() -> {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 Platform.exit();
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
