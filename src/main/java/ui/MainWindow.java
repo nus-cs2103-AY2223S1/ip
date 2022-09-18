@@ -32,8 +32,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user_pfp.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke_pfp.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user_pfp.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke_pfp.png"));
 
     @FXML
     public void initialize() {
@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws IOException, InterruptedException {
+    private void handleUserInput() throws IOException {
         String input = userInput.getText();
         userInput.clear();
         Pair<String, Boolean> response = duke.getResponse(input);

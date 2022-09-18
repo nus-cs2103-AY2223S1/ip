@@ -26,7 +26,7 @@ public class SaveFile {
      * @throws IOException if the file failed to be created.
      */
     private static void guaranteeSaveFile() throws IOException {
-        saveFile.createNewFile();
+        assert saveFile.exists() || saveFile.createNewFile();
     }
 
     /**
@@ -84,16 +84,16 @@ public class SaveFile {
      */
     public static void saveFile() throws IOException {
         guaranteeSaveFile();
-        temporaryFile.delete();
-        temporaryFile.createNewFile();
+        assert !temporaryFile.exists() || temporaryFile.delete();
+        assert(temporaryFile.createNewFile());
         FileWriter temporaryFileWriter = new FileWriter(temporaryFile);
         for (SaveLine i : fileData) {
             temporaryFileWriter.append(i.toString());
             temporaryFileWriter.append('\n');
         }
         temporaryFileWriter.close();
-        saveFile.delete();
-        temporaryFile.renameTo(saveFile);
+        assert(saveFile.delete());
+        assert(temporaryFile.renameTo(saveFile));
     }
 
     // TODO: Prevent fileData from being edited outside this class.
