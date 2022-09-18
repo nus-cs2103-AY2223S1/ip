@@ -71,4 +71,12 @@ public class Event extends Task {
                 super.toString(),
                 this.at.format(DateTimeFormatter.ofPattern("E, d MMM yyyy")));
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object otherObject) {
+        return otherObject instanceof Event && super.equals(otherObject) && at.equals(((Event) otherObject).at);
+    }
 }
