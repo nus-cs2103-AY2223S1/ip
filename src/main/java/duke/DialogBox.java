@@ -55,15 +55,15 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.displayPicture.setClip(new Circle(50, 50, 43));
-        db.setBackground(new Background(new BackgroundFill(Color.AZURE, CornerRadii.EMPTY, Insets.EMPTY)));
+        db.displayPicture.setClip(new Circle(50, 50, 44));
+        //db.setBackground(new Background(new BackgroundFill(Color.AZURE, CornerRadii.EMPTY, Insets.EMPTY)));
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.displayPicture.setClip(new Circle(48, 43, 42.75));
-        db.setBackground(new Background(new BackgroundFill(Color.LIGHTSALMON, CornerRadii.EMPTY, Insets.EMPTY)));
+        db.displayPicture.setClip(new Circle(50, 50, 44));
+        //db.setBackground(new Background(new BackgroundFill(Color.LIGHTSALMON, CornerRadii.EMPTY, Insets.EMPTY)));
         db.flip();
         return db;
     }
