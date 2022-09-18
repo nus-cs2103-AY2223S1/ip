@@ -32,10 +32,31 @@ Example of usage:
 Expected outcome:
 
 Adds a todo task with the task name being "learn how to play the guitar".
+
 Also displays how many tasks are currently inside the task list.
 
 ```java
 I gotchu fam. Your task has been added:
 [T][ ] learn how to play the guitar
-You have 4 task(s). Stop procrastinating bro.
+You have 1 task(s). Stop procrastinating bro.
+```
+
+### `deadline`
+
+Adding tasks that have a deadline:`deadline {name of the task} /by {deadline}`
+
+Example of usage: 
+
+`deadline math assignment /by 23/3/2022`
+
+Expected outcome:
+
+Adds a deadline task with the task name being "math assignment" and deadline being 23/3/2022.
+
+Also displays how many tasks are currently inside the task list.
+
+```java
+I gotchu fam. Your task has been added:
+[D][ ] math assignment (by: 23 Mar 2022)
+You have 2 task(s). Stop procrastinating bro.
 ```
