@@ -1,9 +1,9 @@
-package Duke.Handler;
-import Duke.Tasks.Deadline;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.Event;
-import Duke.Tasks.Todo;
-import Duke.Tasks.Task;
+package Cinnamon.Handler;
+import Cinnamon.Tasks.Deadline;
+import Cinnamon.Tasks.TaskList;
+import Cinnamon.Tasks.Event;
+import Cinnamon.Tasks.Todo;
+import Cinnamon.Tasks.Task;
 import java.util.ArrayList;
 
 /**

@@ -1,17 +1,17 @@
-package Duke.Handler;
-import Duke.Duke;
-import Duke.Exception.DukeException;
+package Cinnamon.Handler;
+import Cinnamon.Cinnamon;
+import Cinnamon.Exception.DukeException;
 
 /**
  * Parser that parses input into the program
  */
 public class Parser {
-    private final Duke duke;
+    private final Cinnamon cinnamon;
     private final Ui ui;
     private final Commands commands;
 
-    public Parser(Duke duke, Ui ui) {
-        this.duke = duke;
+    public Parser(Cinnamon cinnamon, Ui ui) {
+        this.cinnamon = cinnamon;
         this.ui = ui;
         this.commands = new Commands();
     }

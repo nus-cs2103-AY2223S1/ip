@@ -1,4 +1,4 @@
-package Duke.Tasks;
+package Cinnamon.Tasks;
 
 /**
  * Class task

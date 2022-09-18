@@ -1,4 +1,4 @@
-package Duke.Tasks;
+package Cinnamon.Tasks;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package Duke.Storage;
-import Duke.Exception.DukeException;
-import Duke.Tasks.Deadline;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.Event;
-import Duke.Tasks.Todo;
-import Duke.Tasks.Task;
+package Cinnamon.Storage;
+import Cinnamon.Exception.DukeException;
+import Cinnamon.Tasks.Deadline;
+import Cinnamon.Tasks.Event;
+import Cinnamon.Tasks.TaskList;
+import Cinnamon.Tasks.Todo;
+import Cinnamon.Tasks.Task;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;

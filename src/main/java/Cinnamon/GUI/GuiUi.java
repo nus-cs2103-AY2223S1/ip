@@ -1,10 +1,11 @@
-package Duke.GUI;
-import Duke.Tasks.Deadline;
-import Duke.Tasks.TaskList;
-import Duke.Tasks.Event;
-import Duke.Tasks.Todo;
-import Duke.Tasks.Task;
-import Duke.Handler.Ui;
+package Cinnamon.GUI;
+import Cinnamon.Handler.Ui;
+import Cinnamon.Tasks.Deadline;
+import Cinnamon.Tasks.TaskList;
+import Cinnamon.Tasks.Event;
+import Cinnamon.Tasks.Todo;
+import Cinnamon.Tasks.Task;
+
 import java.util.ArrayList;
 
 /**

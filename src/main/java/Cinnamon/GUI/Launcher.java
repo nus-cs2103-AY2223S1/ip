@@ -1,4 +1,4 @@
-package Duke.GUI;
+package Cinnamon.GUI;
 
 import javafx.application.Application;
 

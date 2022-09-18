@@ -1,4 +1,4 @@
-package Duke.Tasks;
+package Cinnamon.Tasks;
 
 /**
  * New task type that extends from task

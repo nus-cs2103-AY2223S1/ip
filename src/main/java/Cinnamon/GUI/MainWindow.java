@@ -1,6 +1,6 @@
-package Duke.GUI;
-import Duke.Duke;
-import Duke.Exception.DukeException;
+package Cinnamon.GUI;
+import Cinnamon.Cinnamon;
+import Cinnamon.Exception.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,19 +22,19 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private Cinnamon cinnamon;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+    private Image cinnamonImage = new Image(this.getClass().getResourceAsStream("/images/cinnamon.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.displayGreet(), dukeImage));
+    public void setCinnamon(Cinnamon d) {
+        cinnamon = d;
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(cinnamon.displayGreet(), cinnamonImage));
     }
 
     /**
@@ -44,16 +44,16 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() throws DukeException {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = cinnamon.getResponse(input);
         if (input.equals("bye")) {
             dialogContainer.getChildren().addAll(
-                    DialogBox.getDukeDialog(duke.displayBye(), dukeImage)
+                    DialogBox.getDukeDialog(cinnamon.displayBye(), cinnamonImage)
             );
            Platform.exit();
         }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, cinnamonImage)
         );
         userInput.clear();
     }

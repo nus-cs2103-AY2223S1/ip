@@ -1,32 +1,30 @@
-package Duke;
+package Cinnamon;
 import java.util.Scanner;
-import Duke.Storage.Storage;
-import Duke.Exception.DukeException;
-import Duke.GUI.GuiUi;
-import Duke.Handler.Parser;
-import Duke.Handler.Ui;
-import Duke.Tasks.TaskList;
-import javafx.scene.image.Image;
+
+import Cinnamon.Exception.DukeException;
+import Cinnamon.Handler.Parser;
+import Cinnamon.Handler.Ui;
+import Cinnamon.Storage.Storage;
+import Cinnamon.Tasks.TaskList;
+import Cinnamon.GUI.GuiUi;
 
 /**
  * Duke is the main class that will save and run the program
  *
  * @author Fang Yiye
  */
-public class Duke {
+public class Cinnamon {
     private TaskList taskList;
     private static Ui ui;
     private final Storage storage;
     private static Scanner sc;
     private final GuiUi guiUi;
-    private final Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
 
     /**
      * Constructor of Duke to initialise ui, storage and scanner
      */
-    public Duke() {
+    public Cinnamon() {
         ui = new Ui();
         guiUi= new GuiUi();
         this.sc = new Scanner(System.in);
@@ -48,9 +46,9 @@ public class Duke {
      * @throws DukeException by the parser if the parser parses an invalid output
      */
     public static void main(String[] args) throws DukeException {
-        Duke duke = new Duke();
-        Parser parser = new Parser(duke, ui);
-        duke.run(parser);
+        Cinnamon cinnamon = new Cinnamon();
+        Parser parser = new Parser(cinnamon, ui);
+        cinnamon.run(parser);
     }
 
 

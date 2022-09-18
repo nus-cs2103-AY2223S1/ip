@@ -1,7 +1,7 @@
 package Duke.TaskTest;
-import Duke.Tasks.Deadline;
-import Duke.Tasks.Event;
-import Duke.Tasks.Todo;
+import Cinnamon.Tasks.Deadline;
+import Cinnamon.Tasks.Event;
+import Cinnamon.Tasks.Todo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

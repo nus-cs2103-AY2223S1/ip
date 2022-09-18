@@ -1,4 +1,4 @@
-package Duke.Exception;
+package Cinnamon.Exception;
 
 /**
  * Exception to handle special cases
