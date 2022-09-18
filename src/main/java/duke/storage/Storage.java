@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -68,7 +67,7 @@ public class Storage {
                         break; //edge case
                 }
             }
-            //myReader.close();
+            tasks.remove(0);
             return new TaskList(tasks, curr, "");
         } catch (Exception e) {
             return new TaskList(tasks, curr, "Hello, I cannot real your files.");
