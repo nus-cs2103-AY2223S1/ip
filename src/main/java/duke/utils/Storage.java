@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+import duke.exceptions.CorruptedFileException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -49,38 +50,49 @@ public class Storage {
             Scanner sc = new Scanner(f);
             while (sc.hasNextLine()) {
                 String taskStr = sc.nextLine();
-                String[] taskStrTokens = taskStr.split("\\|");
-
-                String taskType = taskStrTokens[0];
-                String taskDescription = taskStrTokens[1];
-                boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
-
-                switch (taskType) {
-                case Todo.TASK_WORD:
-                    Todo currTodo = new Todo(taskDescription, isTaskDone);
-                    taskList.addTask(currTodo);
-                    break;
-                case Deadline.TASK_WORD:
-                    LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
-                    Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
-                    taskList.addTask(currDeadline);
-                    break;
-                case Event.TASK_WORD:
-                    LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
-                    Event currEvent = new Event(taskDescription, isTaskDone, at);
-                    taskList.addTask(currEvent);
-                    break;
-                default:
-                    duplicateCorruptFile();
-                    break;
-                }
+                taskList.addTask(parseTask(taskStr));
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (CorruptedFileException e) {
             duplicateCorruptFile();
         } catch (FileNotFoundException e) {
-            return taskList;
+            // Allow KarenBot to continue operation on a clean slate
+            return new TaskList();
         }
         return taskList;
+    }
+
+    /**
+     * Parses and returns a Task based on its string representation.
+     *
+     * @param taskStr String representation of a Task
+     * @return Task based on its string representation
+     * @throws CorruptedFileException if the data file is corrupted
+     */
+    private Task parseTask(String taskStr) throws CorruptedFileException {
+        String[] tokens = taskStr.split("\\|");
+        try {
+            String taskType = tokens[0];
+            String taskDescription = tokens[1];
+            boolean isTaskDone = tokens[2].equals("0") ? false : true;
+
+            switch (taskType) {
+            case Todo.TASK_WORD:
+                return new Todo(taskDescription, isTaskDone);
+            case Deadline.TASK_WORD:
+                LocalDateTime by = LocalDateTime.parse(tokens[3]);
+                return new Deadline(taskDescription, isTaskDone, by);
+            case Event.TASK_WORD:
+                LocalDateTime at = LocalDateTime.parse(tokens[3]);
+                return new Event(taskDescription, isTaskDone, at);
+            default:
+                break;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Missing separator usually, causing array index out of bounds
+            throw new CorruptedFileException("Corrupted data in storage file!");
+        }
+        // Other unrelated errors
+        throw new CorruptedFileException("Corrupted data in storage file!");
     }
 
     /**
