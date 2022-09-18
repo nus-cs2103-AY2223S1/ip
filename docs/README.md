@@ -16,7 +16,7 @@ Duke is a desktop app for managing task **optimized for both GUI and CLI usage**
 
 1. Ensure you have Java `11` or above installed on your Computer.
 
-2. Download the latest `duke.jar` from here.
+2. Download the latest `duke.jar` from [here](https://github.com/Eclipse-Dominator/ip/releases).
 
 3. You can now choose to keep the jar file in a specified folder you wish to use for your Task tracker OR specify a location for your save data
 
