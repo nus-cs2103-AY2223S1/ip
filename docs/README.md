@@ -1,10 +1,13 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
-Duke is a desktop app for managing task optimized for both GUI and CLI usage! Packaged like a chat bot, Duke will provide you with a personalised service to help you track and manage your tasks.
-
+Duke is a desktop app for managing task **optimized for both GUI and CLI usage**! Packaged like a chat bot, Duke will provide you with a personalised service to help you track and manage your tasks.
 * Table of Contents
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 
 ---
 
@@ -169,8 +172,8 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
 # Command Summary
 
- Action/Command | Format, Examples |
- :------------: | :----------------------------------------------------------: |
+ Action/Command | Format, Examples 
+ ------------ | ----------------------------------------------------------
  `bye` | `bye` 
  `list` | `list` 
  `mark` | `mark [task index]`, `mark 1`, ` mark 4` 
@@ -181,4 +184,7 @@ To define an alias for existing commands to make your life easier, use `alias`, 
  `todo` | `todo [task description]`, `todo cook dinner, todo revise for midterm` 
  `deadline` | `deadline [task description] /by [datetime/string]`, <br />`deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` 
  `event` | `event [task description] /at [datetime/string]`, <br />`event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` 
- `alias` | `alias [new command] -> [old command]`, alias t->todo, alias d->delete`| | `rmalias`|`rmalias [command]`, `rmalias d`| |`resetAlias`|`resetAlias`| |`replaceUs`|`replaceUs` 
+ `alias` | `alias [new command] -> [old command]`, <br /> `alias t->todo, alias d->delete`
+ `rmalias`|`rmalias [command]`, `rmalias d`
+ `resetAlias`|`resetAlias`
+ `replaceUs`|`replaceUs` 
