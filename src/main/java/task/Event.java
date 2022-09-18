@@ -31,6 +31,10 @@ public class Event extends Task{
         this.duration = super.date;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), this.duration.format(super.outputDateFormatter));
