@@ -270,7 +270,6 @@ public class TaskList {
         Task task = tasks.get(number);
         String[] aStr = tag.split("#", 2);
         String desc = aStr[1];
-        System.out.println("hi");
         task.tagWith(desc);
         String line1 = "Got it. I've tagged this task:";
         String line2 = "  " + task.toString();
