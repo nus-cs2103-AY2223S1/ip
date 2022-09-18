@@ -115,7 +115,6 @@ public class Duke extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
-
         userInput.setOnAction((event) -> {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
@@ -147,7 +146,6 @@ public class Duke extends Application {
     private Label getDialogLabel(String text) {
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
-
         return textToAdd;
     }
 
