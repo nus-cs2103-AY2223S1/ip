@@ -27,7 +27,7 @@ public class Duke  {
      */
     public Duke() {
         ui = new Ui();
-        storage = new Storage("/SavedTask.txt");
+        storage = new Storage("SavedTask.txt");
         tasks = new TaskList(storage.load());
     }
 

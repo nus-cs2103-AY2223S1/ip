@@ -1,6 +1,5 @@
 package duke.utility;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -83,6 +82,9 @@ public class Storage {
         try {
             List<Task> tasksList = new ArrayList<>(100);
             File myObj = new File(filePath);
+            if (!myObj.exists()) {
+                myObj.createNewFile();
+            }
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String input = myReader.nextLine();
@@ -103,9 +105,8 @@ public class Storage {
             }
             myReader.close();
             return tasksList;
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         } 
         return new ArrayList<>(100);
     }
