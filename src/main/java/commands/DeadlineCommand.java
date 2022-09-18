@@ -46,12 +46,6 @@ public class DeadlineCommand extends Command {
         TaskResponse res = taskModel.addDeadline(description.getParameter(), by.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(description, by);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(description, by);

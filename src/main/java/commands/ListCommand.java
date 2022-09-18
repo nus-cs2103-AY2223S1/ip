@@ -36,12 +36,6 @@ public class ListCommand extends Command {
         List<String> stringList = allTasks.stream().map(Task::toString).collect(Collectors.toList());
         return new CommandResponse(OutputLogger.numberedOutput(stringList));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription();
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage();

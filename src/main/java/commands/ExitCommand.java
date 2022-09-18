@@ -25,12 +25,6 @@ public class ExitCommand extends Command {
         taskModel.save();
         return new CommandResponse("Bye. See you again soon!", true);
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription();
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage();

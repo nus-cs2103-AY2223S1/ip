@@ -43,12 +43,6 @@ public class HelpCommand extends Command {
         }
         return new CommandResponse(commandMap.get(cmdName).getUsageDescription());
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription();
-    }
-
     @Override
     public String getUsageDescription() {
         StringJoiner joiner = new StringJoiner("\n");

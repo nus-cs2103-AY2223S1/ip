@@ -32,12 +32,6 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
         super(ARG_NAME, String.format("This command needs a datetime argument! e.g /%s 26-08-2022 0900",
                 ARG_NAME));
     }
-
-    @Override
-    public String getShortDescription() {
-        return formatHelp("date", true);
-    }
-
     @Override
     public String getUsage() {
         return formatHelp("26-08-2022 0900", false);

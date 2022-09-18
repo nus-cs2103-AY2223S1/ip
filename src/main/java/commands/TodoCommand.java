@@ -43,12 +43,6 @@ public class TodoCommand extends Command {
         TaskResponse res = taskModel.addTodo(description.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(description);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(description);

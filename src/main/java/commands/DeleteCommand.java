@@ -39,12 +39,6 @@ public class DeleteCommand extends Command {
         TaskResponse res = taskModel.deleteTask(taskIdArgument.getParameter());
         return new CommandResponse(TaskResponseFormatter.deletedTask(res));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(taskIdArgument);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(taskIdArgument);

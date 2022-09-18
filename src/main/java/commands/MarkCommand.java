@@ -50,12 +50,6 @@ public class MarkCommand extends Command {
             return new CommandResponse(ex.getMessage());
         }
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(taskId);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(taskId);

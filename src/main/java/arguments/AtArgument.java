@@ -22,12 +22,6 @@ public class AtArgument extends StringArgument {
         super(input, "at", "The at date should not be empty!",
                 "This command needs an at date");
     }
-
-    @Override
-    public String getShortDescription() {
-        return formatHelp("at date", true);
-    }
-
     @Override
     public String getUsage() {
         return formatHelp("next Monday", false);

@@ -34,12 +34,6 @@ public class StringArgument extends Argument<String> {
         this.emptyMessage = emptyMessage;
         this.missingMessage = missingMessage;
     }
-
-    @Override
-    public String getShortDescription() {
-        return null;
-    }
-
     @Override
     public String getUsage() {
         return null;

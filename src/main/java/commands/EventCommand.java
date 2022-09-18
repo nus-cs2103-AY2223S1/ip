@@ -47,12 +47,6 @@ public class EventCommand extends Command {
         TaskResponse res = taskModel.addEvent(description.getParameter(), at.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(description, at);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(description, at);

@@ -13,12 +13,6 @@ public class TaskIdArgument extends Argument<Integer> {
     public TaskIdArgument() {
         super("id");
     }
-
-    @Override
-    public String getShortDescription() {
-        return formatHelp("id", true);
-    }
-
     @Override
     public String getUsage() {
         return formatHelp("1", false);

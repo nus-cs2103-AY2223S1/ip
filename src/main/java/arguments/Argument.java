@@ -27,7 +27,6 @@ public abstract class Argument<T> {
     public String getArgumentName() {
         return Input.ARG_START + argumentName;
     }
-    public abstract String getShortDescription();
     public abstract String getUsage();
 
     /**

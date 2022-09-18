@@ -36,32 +36,21 @@ public abstract class Command {
     // with some state and return a response
     public abstract CommandResponse run(Input input) throws DukeException;
 
-    private String getDescription(boolean isShort, Argument...arguments) {
+    private String getDescription(Argument...arguments) {
         StringJoiner joiner = new StringJoiner(Input.DELIMITER);
         joiner.add(commandName);
 
         for (Argument arg: arguments) {
             assert arg != null : "Null argument in getDescription";
-            joiner.add(isShort ? arg.getShortDescription() : arg.getUsage());
+            joiner.add(arg.getUsage());
         }
         return joiner.toString();
     }
-
-    /**
-     * Returns short description for this command with given arguments
-     * @param arguments Arguments for the command
-     * @return String describing the command
-     */
-    protected String makeShortDescription(Argument...arguments) {
-        return getDescription(true, arguments);
-    }
-
     protected String makeUsage(Argument ...arguments) {
         StringJoiner joiner = new StringJoiner("\n");
         joiner.add(usageDescription);
-        joiner.add("Usage: " + getDescription(false, arguments));
+        joiner.add("Usage: " + getDescription(arguments));
         return joiner.toString();
     }
-    public abstract String getShortDescription();
     public abstract String getUsageDescription();
 }

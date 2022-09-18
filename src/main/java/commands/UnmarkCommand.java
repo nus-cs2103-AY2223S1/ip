@@ -53,11 +53,6 @@ public class UnmarkCommand extends Command {
         }
     }
     @Override
-    public String getShortDescription() {
-        return makeShortDescription(taskId);
-    }
-
-    @Override
     public String getUsageDescription() {
         return makeUsage(taskId);
     }

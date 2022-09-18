@@ -52,12 +52,6 @@ public class FindCommand extends Command {
         }
         return new CommandResponse(OutputLogger.numberedOutput(stringList));
     }
-
-    @Override
-    public String getShortDescription() {
-        return makeShortDescription(search);
-    }
-
     @Override
     public String getUsageDescription() {
         return makeUsage(search);

@@ -22,12 +22,6 @@ public class DescriptionArgument extends StringArgument {
         super("d", "The description should not be empty!",
                 "This command needs a non-empty description.");
     }
-
-    @Override
-    public String getShortDescription() {
-        return formatHelp("description", true);
-    }
-
     @Override
     public String getUsage() {
         return formatHelp("Get groceries", false);

@@ -23,13 +23,6 @@ public class SearchArgument extends StringArgument {
         super("s", "Search argument should not be empty!",
                 "This command needs a search argument! e.g /s book");
     }
-
-
-    @Override
-    public String getShortDescription() {
-        return formatHelp("query", true);
-    }
-
     @Override
     public String getUsage() {
         return formatHelp("book", false);
