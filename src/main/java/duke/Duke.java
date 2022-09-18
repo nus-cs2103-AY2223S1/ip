@@ -1,5 +1,11 @@
 package duke;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 public class Duke {
 
     private static Storage storage;
@@ -11,11 +17,11 @@ public class Duke {
         ui = new Ui();
 
         String workingDir = System.getProperty("user.dir");
-        System.out.println(workingDir);
-        String pathToDuke = workingDir + "/out/KiwiList.txt";
-        storage = new Storage(pathToDuke);
+        Path pathToDuke = Paths.get(workingDir, "out", "kiwi.txt");
+        storage = new Storage(String.valueOf(pathToDuke));
 
-        taskList = storage.load();
+            taskList = storage.load();
+
 
     }
 

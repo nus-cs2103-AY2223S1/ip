@@ -21,19 +21,10 @@ public class Storage {
 
     public void save(TaskList tasks) {
         File f = new File(filePath);
-        if (!f.exists()) {
-            try {
-                f.createNewFile();
-                writeToFile(filePath, tasks);
-            } catch (IOException e) {
-                Ui.printCannotOpenFile();
-            }
-        } else {
-            try {
-                writeToFile(filePath, tasks);
-            } catch (IOException e) {
-                Ui.printUnableToAppend();
-            }
+        try {
+            writeToFile(filePath, tasks);
+        } catch (IOException e) {
+            Ui.printUnableToAppend();
         }
     }
 
@@ -49,16 +40,25 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         int index = 1;
-        File f = new File(filePath);
+        File file = new File(this.filePath);
 
-        if (!f.exists()) {
-            return new TaskList(tasks, new Ui());
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+            }
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            Ui.printCannotOpenFile();
         }
 
         Scanner sc = null;
 
         try {
+            File f = new File(filePath);
             sc = new Scanner(f);
+
         } catch (FileNotFoundException e) {
             Ui.printFileNotFound();
         }
@@ -105,6 +105,7 @@ public class Storage {
 
         sc.close();
         return new TaskList(tasks, new Ui());
+
     }
 
     private String descStr(String str) {
