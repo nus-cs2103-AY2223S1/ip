@@ -1,5 +1,6 @@
 package iana.command;
 
+import iana.exception.IanaException;
 import iana.tasks.TaskList;
 import iana.ui.Ui;
 
@@ -19,7 +20,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) throws IanaException {
         TaskList list = tasks.findKeyword(this.keyword);
         return ui.list(list);
     }

@@ -29,37 +29,41 @@ public class Parser {
         String[] taskArray = input.split(" ", 2);
         String action = taskArray[0];
 
-        switch(action) {
-            case "bye": 
-            return new ExitCommand();
+        try {
+            switch(action) {
+                case "bye": 
+                return new ExitCommand();
 
-            case "list":
-            return new ListCommand();
+                case "list":
+                return new ListCommand();
 
-            case "delete":
-            return new DeleteCommand(taskArray[1]);
+                case "delete":
+                return new DeleteCommand(taskArray[1]);
 
-            case "mark":
-            return new MarkCommand(taskArray[1]);
+                case "mark":
+                return new MarkCommand(taskArray[1]);
 
-            case "unmark":
-            return new UnmarkCommand(taskArray[1]);
+                case "unmark":
+                return new UnmarkCommand(taskArray[1]);
 
-            case "todo":
+                case "todo":
 
-            case "event":
+                case "event":
 
-            case "deadline":
-            return new AddTaskCommand(input);
+                case "deadline":
+                return new AddTaskCommand(input);
 
-            case "find":
-            return new FindCommand(taskArray[1]);
+                case "find":
+                return new FindCommand(taskArray[1]);
 
-            case "help":
-            return new HelpCommand();
+                case "help":
+                return new HelpCommand();
 
-            default:
-            return new AnotherCommand();
+                default:
+                return new AnotherCommand();
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IanaException("Oh no, you cannot use the command this way! :O");
         }
     }
 }
