@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.task.TaskList;
 
 /**
@@ -25,9 +24,8 @@ public class DeleteCommand extends Command {
             }
             tasks.delete(index);
             storage.delete(index);
-            return "Got it! Task " + index + " has been deleted from the list:\n  "
-                        + tasks.showTask(index)
-                        + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.";
+            return "Got it! Task " + index + " has been deleted from the list:\n  " + tasks.showTask(index)
+                    + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.";
 
         } catch (NumberFormatException e) {
             return "You need to provide a task's index to delete!";
