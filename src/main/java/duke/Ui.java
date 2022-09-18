@@ -6,7 +6,8 @@ import java.util.Scanner;
  * Represents the UI component of Duke.
  */
 public class Ui {
-    public Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
+    private String output = "";
 
     /**
      * Prints a String to the UI.
@@ -14,7 +15,7 @@ public class Ui {
      * @param string String to print.
      */
     public void print(String string) {
-        System.out.println(string);
+        output += string + '\n';
     }
 
     /**
@@ -105,6 +106,17 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             print((i + 1) + ". " + tasks.get(i));
         }
+    }
+
+    /**
+     * Collects the output accumulated by the UI, returns it, and resets the UI output.
+     *
+     * @return Output accumulated in the UI.
+     */
+    public String collect() {
+        String temp = output;
+        output = "";
+        return temp;
     }
 
     /**
