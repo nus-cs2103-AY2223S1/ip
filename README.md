@@ -12,11 +12,11 @@ All you need to do is,
 2. Add/Remove tasks
 3. View your tasks whenever you need!
 
-AND it is not EXPENSIVE! It is actually FREE!
+AND it is not EXPENSIVE! It is actually **FREE**!
 
 Features:
-- [ ] Managing Tasks
-- [ ] Managing Deadlines
+- [X] Managing Tasks
+- [X] Managing Deadlines
 - [ ] Reminders (coming soon)
 
 Love to code? Use DukeManage to practice your coding! Here's the main method: 
