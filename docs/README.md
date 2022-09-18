@@ -1,29 +1,86 @@
-# User Guide
+# 💩 :bowtie: DOOKIE :bowtie: 💩
+
+Welcome to the world of ***DOOKIE***, where we turn your world from utter Dookie to a 
+brand spanking clean world!!!
+
+Dookie aims to help users keep track of all the Dookies in their lives, including **Todos**, **
+
+## Getting started
+
+1. Make sure you have the *non-dookie* Java 11 installed[^1]
+
+```
+$ java --version
+```
+
+[^1]: Dookie is only supported on Java 11.
+
+2. Download the latest Dookielicious release JAR file.
+3. Run **DOOKIE** by double-clicking the file that you have just installed. 
+4. HAVE A ***DOOKIE-FILLED*** time :smile: :smile:
 
 ## Features 
 
-### Feature-ABC
+### Show all Tasks - `list` 
 
-Description of the feature.
+Displays all the *DOOKIE* tasks that the user has added.
 
-### Feature-XYZ
+Command: ```list```
 
-Description of the feature.
 
-## Usage
+### CREATE 3 DIFFERENT TYPE OF ***DOOKIE*** TASKS
 
-### `Keyword` - Describe action
+#### Create a TODO task - `todo`
 
-Describe the action and its outcome.
+Command: ```todo <task>```
 
-Example of usage: 
+This will create a todo task.
 
-`keyword (optional arguments)`
+#### Create a deadline task - `Deadline`
 
-Expected outcome:
+Command: ```deadline <task> /by <dd/mm/yyyy> <time>```
 
-Description of the outcome.
+This will create a deadline task with a set date and time to complete.
 
-```
-expected output
-```
+#### Create a event task - `Event`
+
+Command: ```event <task> /at <dd/mm/yyyy> <time>```
+
+This will create a deadline task with a set date and time to complete.
+
+
+### Delete a task - `delete`
+
+Deletes a specific task by its index.
+
+Command: ```delete <num>```
+
+
+### Find a task - `find`
+
+Finds all related tasks containing a certain keyword.
+
+Command: ```find <keyword>```
+
+
+### Mark a task - `mark`
+
+Marks a certain task done.
+
+Command: ```mark <num>```
+
+
+### Unmark a task - `unmark`
+
+Unmarks a certain task as uncompleted. 
+
+Command: ```unmark <num>```
+
+
+### Exit the program - `bye`
+
+Exits ***DOOKIE*** 😭
+
+Command: ```bye```
+
+
