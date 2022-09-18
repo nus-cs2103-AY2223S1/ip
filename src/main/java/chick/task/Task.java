@@ -59,6 +59,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns description of Task.
+     *
+     * @return Description string of Task.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * Returns string representation of Task for storage purposes.
      * This string representation is the command used to create and store the Task.
      *

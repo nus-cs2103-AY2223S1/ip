@@ -107,7 +107,7 @@ public class TaskList {
         String messageList = "";
         int taskCount = 1;
         for (Task t: tasks) {
-            if (t.toString().contains(identifier)) {
+            if (t.getDescription().contains(identifier)) {
                 messageList += "\n    " + taskCount++ + ". " + t;
             }
         }
