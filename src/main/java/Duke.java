@@ -54,6 +54,8 @@ public class Duke extends Chatbot {
                             duke.deleteTask(duke, id);
                             break;
                     }
+
+                    FrenIO.updateData(duke.tasks);
                 } catch (DukeException ex) {
                     duke.echo("Index is out of bounds!");
                 }
