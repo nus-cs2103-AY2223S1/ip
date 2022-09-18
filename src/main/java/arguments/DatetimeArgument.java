@@ -17,7 +17,7 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
     private static final String ARG_NAME = "by";
 
     /**
-     * Initialise argument
+     * Initialises argument
      * @param input Input to argument
      */
     public DatetimeArgument(Input input) {

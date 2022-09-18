@@ -9,6 +9,9 @@ import task.TaskResponse;
  * Commands decide how to format data received from Model, hence this is in commands package
  */
 public class TaskResponseFormatter {
+    private static String getForm(int count) {
+        return count == 1 ? "task" : "tasks";
+    }
     /**
      * Formats a TaskResponse for added task to an appropriate String message
      * @param res TaskResponse from TaskModel for an added task
@@ -19,7 +22,7 @@ public class TaskResponseFormatter {
         sb.append("Sure! I've added this task:\n");
         sb.append(OutputLogger.indent(res.getTask().toString()));
         sb.append("\n");
-        sb.append(String.format("You now have %d tasks to do.", res.getTaskCount()));
+        sb.append(String.format("You now have %d %s to do.", res.getTaskCount(), getForm(res.getTaskCount())));
         return sb.toString();
     }
 
@@ -33,7 +36,7 @@ public class TaskResponseFormatter {
         sb.append("Noted, I've removed this task:\n");
         sb.append(OutputLogger.indent(res.getTask().toString()));
         sb.append("\n");
-        sb.append(String.format("You now have %d tasks to do.", res.getTaskCount()));
+        sb.append(String.format("You now have %d %s to do.", res.getTaskCount(), getForm(res.getTaskCount())));
         return sb.toString();
     }
 }

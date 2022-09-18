@@ -51,7 +51,7 @@ public abstract class Argument<T> {
     }
 
     /**
-     * Validate a variable number of Argument objects, collecting any error messages into a List to return
+     * Validates a variable number of Argument objects, collecting any error messages into a List to return
      * @param args Variable number of argument objects
      * @return List of error messages from validation
      */

@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
     private TaskModel taskModel;
 
     /**
-     * Initialise ExitCommand
+     * Initialises ExitCommand
      * @param taskModel Task model to use
      */
     public ExitCommand(TaskModel taskModel) {
