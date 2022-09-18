@@ -197,4 +197,18 @@ public class Commands {
             ui.printMatchedTasks(matched);
         }
     }
+
+    /**
+     * Removes tag for the task
+     *
+     * @param input by user
+     */
+    public void removeTag(String input) {
+        String[] parts = input.split(" ", 3);
+        int index = Integer.parseInt(parts[2]) - 1;
+        Task task = taskList.get(index);
+        task.setTag("");
+        ui.unTag();
+        System.out.println(task);
+    }
 }

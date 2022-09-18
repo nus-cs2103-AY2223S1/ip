@@ -251,6 +251,21 @@ public class GuiUi {
         }
     }
 
+    /**
+     * Removes tag for the task
+     *
+     * @param input by user
+     * @return task after removing tags
+     */
+    public String removeTag(String input) {
+        String[] parts = input.split(" ", 3);
+        int index = Integer.parseInt(parts[2]) - 1;
+        Task task = taskList.get(index);
+        task.setTag("");
+        String s = "Tag is removed. \n";
+        return s + task.toString();
+    }
+
     public String enterText() {
        return "Sorry, please enter text again :(";
     }

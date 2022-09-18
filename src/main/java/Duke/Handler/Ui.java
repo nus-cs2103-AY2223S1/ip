@@ -148,4 +148,8 @@ public class Ui {
     public void tag() {
         System.out.println("Yay, you have successfully tagged your task!");
     }
+
+    public void unTag() {
+        System.out.println("Tag is removed.");
+    }
 }

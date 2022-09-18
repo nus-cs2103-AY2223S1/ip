@@ -55,6 +55,8 @@ public class Parser {
             commands.searchDate(input);
         case "tag":
             commands.tagTask(input);
+        case "remove":
+            commands.removeTag(input);
         }
     }
 }

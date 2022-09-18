@@ -218,9 +218,13 @@ public class Duke extends Application {
             response = guiUi.printTaskTag(input);
         } else if (input.startsWith("#")) {
             response = guiUi.searchTag(input);
-        } else {
+        } else if (input.startsWith("remove tag")) {
+            response = guiUi.removeTag(input);
+        } else if (input.startsWith("dayFilter")){
             //starts with dateFilter
             response = guiUi.displaySearchDate(input);
+        } else {
+            response = "no such command, check user guide";
         }
         return response;
     }
