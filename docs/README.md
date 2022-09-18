@@ -120,3 +120,61 @@ Here are your tasks. You better start now:
 2.[D][ ] math assignment (by: 23 Mar 2022 10:00)
 3.[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
 ```
+
+### `mark`
+
+Marks a task as finished: `mark {number of the task}`
+
+Example of usage: 
+
+`mark 1`
+
+Expected outcome:
+
+Marks and displays the first task as finished.
+
+```
+Nice one lah, finally doing your work.
+[T][X] learn how to play the guitar
+```
+
+### `unmark`
+
+Marks a task as unfinished: `unmark {number of the task}`
+
+Example of usage: 
+
+`mark 1`
+
+Expected outcome:
+
+Marks and displays the first task as unfinished.
+
+```
+What happened bro.
+[T][ ] learn how to play the guitar
+```
+
+### `delete`
+
+Deletes a task from the task list: `delete {number of the task}`
+
+Example of usage: 
+
+`delete 1`
+
+Expected outcome:
+
+Deletes the first task from the task list and displays the remaining number of tasks in the task list.
+
+```
+I hope you're not deleting this just to avoid work:
+[T][ ] learn how to play the guitar
+You have 2 task(s). Stop procrastinating bro.
+```
+
+### `find`
+
+### `undo`
+
+### `bye`
