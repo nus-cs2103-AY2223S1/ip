@@ -17,7 +17,8 @@ Graphical User Interface (GUI).
     - [Terminating the program: `bye`](http://shawnchew.github.io/ip/#terminating-the-program-bye)
 - [FAQ](http://shawnchew.github.io/ip/#faq)
 - [Summary](http://shawnchew.github.io/ip/#command-summary)
----
+
+
 
 ## Quick start
 1. Ensure you have Java `11` or above install in your Computer.
@@ -33,8 +34,9 @@ Graphical User Interface (GUI).
     - `delete 3`: Deletes the 3rd task on the current list.
     - `mark 2`: Marks the 2nd task on the current list.
     - `bye`: Terminates the program.
-6. Refer to [Features]() below for details of each command.
----
+6. Refer to [Features](http://shawnchew.github.io/ip/#features) below for details of each command.
+
+
 
 ## Features
 > Notes about command format:
@@ -117,7 +119,7 @@ Examples:
 Saves the current list and ends the program.
 Format: `bye`
 
----
+
 
 ## FAQ
 No Questions yet.
