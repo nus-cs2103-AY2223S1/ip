@@ -26,8 +26,13 @@ public class TaskList {
         list = new ArrayList<>();
     }
 
+    public int getTaskListSize() {
+        return list.size();
+    }
 
-
+    public Task getTask(int i) {
+        return list.get(i);
+    }
 
     public boolean isValidTaskNumber(int taskNumber) {
         return taskNumber <= list.size() && taskNumber >= 1;
