@@ -4,25 +4,13 @@ import duke.Duke;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import storage.Storage;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import storage.Storage;
 
 import ui.UI;
 
@@ -36,8 +24,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Duke duke;
 
@@ -47,7 +33,7 @@ public class MainWindow extends AnchorPane {
     private  Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private  Image reminderImage = new Image(this.getClass().getResourceAsStream("/images/DaReminder.jpg"));
 
-    public MainWindow() throws FileNotFoundException {
+    public MainWindow() {
     }
 
     @FXML
@@ -95,19 +81,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-    }
-
-    public void exit() {
-        dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("bye", dukeImage)
-        );
-        try {
-            Thread.sleep(1000);
-            Platform.exit();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
 }

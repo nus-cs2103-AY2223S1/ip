@@ -1,11 +1,12 @@
 package reminder;
 
+import duke.DukeException;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import duke.DukeException;
 import task.Deadline;
 import task.Event;
 import task.Task;

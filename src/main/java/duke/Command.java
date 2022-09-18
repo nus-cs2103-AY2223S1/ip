@@ -15,10 +15,9 @@ public enum Command {
     DELETE("delete"),
     UNKNOWN("unknown");
 
-    private final String command;
 
     Command(String command) {
-        this.command = command;
+
     }
 
 
@@ -69,14 +68,12 @@ public enum Command {
                 return TODO;
             case "mark":
                 try {
-                    int i = Integer.parseInt(input[1]);
                     return MARK;
                 } catch (NumberFormatException e) {
                     return UNKNOWN;
                 }
             case "unmark":
                 try {
-                    int i = Integer.parseInt(input[1]);
                     return UNMARK;
                 } catch (NumberFormatException e) {
                     return UNKNOWN;
@@ -85,7 +82,6 @@ public enum Command {
                 return FIND;
             case "delete":
                 try {
-                    int i = Integer.parseInt(input[1]);
                     return DELETE;
                 } catch (NumberFormatException e) {
                     return UNKNOWN;
@@ -102,22 +98,23 @@ public enum Command {
      */
     private static Command moreThanTwoWords(String input) {
         String[] strArr = input.split(" ");
-        if (strArr[0].equals("deadline")) {
-            if (input.contains("/by ")) {
-                return DEADLINE;
-            } else {
+        switch (strArr[0]) {
+            case "deadline":
+                if (input.contains("/by ")) {
+                    return DEADLINE;
+                } else {
+                    return UNKNOWN;
+                }
+            case "event":
+                if (input.contains("/at ")) {
+                    return EVENT;
+                } else {
+                    return UNKNOWN;
+                }
+            case "todo":
+                return TODO;
+            default:
                 return UNKNOWN;
-            }
-        } else if (strArr[0].equals("event")) {
-            if (input.contains("/at ")) {
-                return EVENT;
-            } else {
-                return UNKNOWN;
-            }
-        } else if (strArr[0].equals("todo")) {
-            return TODO;
-        } else {
-            return UNKNOWN;
         }
     }
 

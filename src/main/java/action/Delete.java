@@ -9,7 +9,7 @@ import ui.UI;
 
 public class Delete {
 
-    private static UI ui = new UI();
+    private static final UI ui = new UI();
 
     /**
      * Deletes the specified index of task from TaskList.

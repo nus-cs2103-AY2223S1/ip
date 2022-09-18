@@ -3,11 +3,12 @@ package action;
 import duke.DukeException;
 
 import task.TaskList;
+
 import ui.UI;
 
 public class Mark {
 
-    private static UI ui = new UI();
+    private static final UI ui = new UI();
 
     /**
      * Marks a Task done specified by user input.

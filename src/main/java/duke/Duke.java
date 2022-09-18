@@ -2,10 +2,8 @@ package duke;
 
 import java.io.FileNotFoundException;
 
-import gui.MainWindow;
 import javafx.application.Platform;
 
-import javafx.fxml.FXMLLoader;
 import parser.Parser;
 
 import storage.Storage;

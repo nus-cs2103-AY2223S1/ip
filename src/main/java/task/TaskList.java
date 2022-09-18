@@ -1,7 +1,5 @@
 package task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
 
 public class TaskList {
@@ -28,10 +26,6 @@ public class TaskList {
         this.taskArray = new ArrayList<Task>(100);
         this.size = 0;
     }
-
-
-
-
 
 
     /**

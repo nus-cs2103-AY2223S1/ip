@@ -4,13 +4,12 @@ package action;
 import duke.DukeException;
 
 import task.TaskList;
+
 import ui.UI;
-
-
 
 public class Unmark {
 
-    private static UI ui = new UI();
+    private static final UI ui = new UI();
 
     /**
      * UnMarks a Task done specified by user input.
