@@ -29,6 +29,11 @@ public class Ui {
         return response;
     }
 
+    /**
+     * Displays list of commands
+     *
+     * @return list of commands
+     */
     public String displayCommands() {
         String response = "    ↓ here's what you can do! ↓\n"
                 + "    ---------------------------\n"
