@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -42,17 +41,11 @@ class StorageTest {
         }
         /**
          * Before each test, create the files containing the task lists
+         * @throws IOException Throws IOException
          */
         @AfterAll
-        void tearDown() {
-            final File file = new File(Storage.FILE_PATH);
-            final File file2 = new File(Storage.PREVIOUS_TASKS_FILE_PATH);
-            if (file.exists() && !file.delete()) {
-                throw new RuntimeException("Could not delete current tasks file");
-            }
-            if (file2.exists() && !file2.delete()) {
-                throw new RuntimeException("Could not delete previous tasks file");
-            }
+        void tearDown() throws IOException {
+            ParserTest.deleteStorageFiles();
         }
         /**
          * Tests that the current tasks file was parsed successfully.
