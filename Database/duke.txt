@@ -1,8 +1,1 @@
 [T][X] wash clothes
-[T][ ] dry cothes
-[T][ ] buy clothes
-[T][ ] sell clothes
-[T][ ] trade clothes
-[T][ ] drink water
-[T][ ] drink beer
-[T][ ] asdasdas

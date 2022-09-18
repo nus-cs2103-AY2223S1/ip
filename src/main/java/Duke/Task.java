@@ -47,4 +47,8 @@ public class Task {
 
         return "[" + this.getStatusIcon() + "] " + description;
     }
+
+    public String dTString() {
+        return "[" + this.getStatusIcon() + "] " + description;
+    }
 }

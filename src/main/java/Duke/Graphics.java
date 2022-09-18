@@ -27,8 +27,8 @@ public class Graphics {
         response += "____________________________________\n";
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(i + 1 + "." + taskList.get(i).toString());
-            response += i + 1 + "." + taskList.get(i).toString() + "\n";
+            System.out.println(i + 1 + "." + taskList.get(i).dTString());
+            response += i + 1 + "." + taskList.get(i).dTString() + "\n";
         }
         System.out.println("____________________________________");
         response += "____________________________________";
@@ -46,12 +46,12 @@ public class Graphics {
         int taskCount = taskList.size();
         System.out.println("____________________________________");
         System.out.println("Got it, i've added this task:");
-        System.out.println(task.toString());
+        System.out.println(task.dTString());
         System.out.println("You now have " + taskCount + " tasks in the list.");
         System.out.println("____________________________________");
         response += "____________________________________\n";
         response += "Got it, i've added this task:\n";
-        response += task.toString() + "\n";
+        response += task.dTString() + "\n";
         response += "You now have " + taskCount + " tasks in the list.\n";
         response += "____________________________________";
         return response;
@@ -66,11 +66,11 @@ public class Graphics {
         String response = "";
         System.out.println("____________________________________");
         System.out.println("I've marked this task as done");
-        System.out.println(taskList.get(taskIndex).toString());
+        System.out.println(taskList.get(taskIndex).dTString());
         System.out.println("____________________________________");
         response += "____________________________________\n";
         response += "I've marked this task as done\n";
-        response += taskList.get(taskIndex).toString() + "\n";
+        response += taskList.get(taskIndex).dTString() + "\n";
         response += "____________________________________";
         return response;
     }
@@ -84,11 +84,11 @@ public class Graphics {
         String response = "";
         System.out.println("____________________________________");
         System.out.println("Ok, i've unmarked this task");
-        System.out.println(taskList.get(taskIndex).toString());
+        System.out.println(taskList.get(taskIndex).dTString());
         System.out.println("____________________________________");
         response += "____________________________________\n";
         response += "Ok, i've unmarked this task\n";
-        response += taskList.get(taskIndex).toString() + "\n";
+        response += taskList.get(taskIndex).dTString() + "\n";
         response += "____________________________________";
         return response;
     }
@@ -103,11 +103,11 @@ public class Graphics {
         String response = "";
         System.out.println("____________________________________");
         System.out.println("Got it, i've deleted this task");
-        System.out.println(list.get(taskIndex).toString());
+        System.out.println(list.get(taskIndex).dTString());
         System.out.println("____________________________________");
         response += "____________________________________\n" ;
         response += "Got it, i've deleted this task\n";
-        response += list.get(taskIndex).toString() + "\n";
+        response += list.get(taskIndex).dTString() + "\n";
         response += "____________________________________";
         return response;
     }
@@ -132,8 +132,8 @@ public class Graphics {
             System.out.println("Are these what you are looking for:");
             response = response + "Are these what you are looking for:\n";
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(1 + i + "." + tasks.get(i).toString());
-                response += 1 + i + "." + tasks.get(i).toString() + "\n";
+                System.out.println(1 + i + "." + tasks.get(i).dTString());
+                response += 1 + i + "." + tasks.get(i).dTString() + "\n";
 
             }
         }

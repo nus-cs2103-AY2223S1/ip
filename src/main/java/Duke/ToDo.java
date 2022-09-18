@@ -24,4 +24,11 @@ public class ToDo extends Task {
         return "[T]" + super.toString();
     }
 
+    @Override
+    public String dTString() {
+        return "[T]" + super.dTString();
+    }
+
+
+
 }
