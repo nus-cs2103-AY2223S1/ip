@@ -21,14 +21,17 @@ public class Storage {
 
     private static final String DEFAULT_STORAGE_FILE = "task.txt";
     private static final String CURRENT_DIRECTORY = "user.dir";
+    private static final String DEFAULT_STORAGE_FOLDER = "data";
     private static final String currentDir = System.getProperty(CURRENT_DIRECTORY);
     private final Path path;
+    private final Path folder;
 
     /**
      * Constructs a Storage Object with specifying the current directory as the directory to put the storage file.
      */
     public Storage() {
-        this.path = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
+        this.path = Paths.get(currentDir, DEFAULT_STORAGE_FOLDER, DEFAULT_STORAGE_FILE);
+        this.folder = Paths.get(currentDir, DEFAULT_STORAGE_FOLDER);
     }
 
 
@@ -40,7 +43,10 @@ public class Storage {
      */
     public void save(TaskList taskList) throws FileIoException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
-
+        File savedFolder = folder.toFile();
+        if (!savedFolder.exists()) {
+            savedFolder.mkdirs();
+        }
         try {
             PrintWriter printWriter = new PrintWriter(path.toFile());
             for (String encodedTask : encodedTasks) {

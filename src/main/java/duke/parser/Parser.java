@@ -57,7 +57,8 @@ public class Parser {
         "yyyy/MM/dd HH:mm", "yyyy/MM/dd'T'HHmm",
         "yyyy/MM/dd'T'HH:mm", "yyyy-MM-dd HHmm",
         "yyyy-MM-dd HH:mm", "dd MMM yyyy HHmm",
-        "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"
+        "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm",
+        "MMM dd, yyyy HH:mm", "dd-mm-yyyy HHmm"
         };
     //@@author
 
@@ -179,16 +180,16 @@ public class Parser {
             Task editedTask = rescheduledTaskAddCommand.getTask();
             return new EditCommand(taskToReschedule, editedTask);
         } catch (InvalidCommandException unknownCommandError) {
-            throw new InvalidEditCommandException("Unknown new task + \n"
+            throw new InvalidEditCommandException("Unknown new task \n"
                     + EditCommand.MESSAGE_USAGE);
         } catch (IllegalInputException invalidIndexError) {
-            throw new InvalidEditCommandException("Please enter a positive number for index + \n "
+            throw new InvalidEditCommandException("Please enter a positive number for index \n "
                     + EditCommand.MESSAGE_USAGE);
         } catch (IllegalSyntaxException syntaxError) {
             throw new InvalidEditCommandException("Invalid syntax for edit command \n"
                     + EditCommand.MESSAGE_USAGE);
         } catch (ClassCastException classCastError) {
-            throw new InvalidEditCommandException("Edit could only change the selected task to other task + \n"
+            throw new InvalidEditCommandException("Edit could only change the selected task to other task \n"
                     + EditCommand.MESSAGE_USAGE);
         }
 

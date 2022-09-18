@@ -29,7 +29,7 @@ public class Main extends Application {
             stage.setTitle("Duke");
             stage.getIcons().add(new Image(Objects.requireNonNull(
                         Main.class.getResource("/images/dukeImage.png")).openStream()));
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
