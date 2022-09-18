@@ -14,7 +14,6 @@ public class Jarvis {
     static TaskList taskList1;
     private Storage storage;
     private TaskList taskList;
-    private Ui ui;
     private Parser parser;
 
     /**
@@ -27,11 +26,10 @@ public class Jarvis {
         try {
             taskList = storage.loadTaskList();
         } catch (JarvisException e) {
-            ui.showLoadingError();
             taskList = new TaskList();
         }
         //ui = new Ui(taskList, storage);
-        parser = new Parser(taskList, storage);
+        parser = new Parser(taskList);
     }
 
 //    public void run() {

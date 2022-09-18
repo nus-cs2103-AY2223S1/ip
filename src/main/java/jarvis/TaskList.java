@@ -44,10 +44,11 @@ public class TaskList {
         } catch (DateTimeParseException e) {
             return "Wrong time format";
         }
-
+        int originalSize = taskList.size();
         taskList.add(task);
+        assert taskList.size() == originalSize + 1 : "Task list size should increase"
+                + "by 1 after adding";
         storage.saveAddedTask(task);
-
         String msg = "Got it. I've added this task:\n" + "  "
                 + task
                 + "\n" + "Now you have " + taskList.size() + " tasks in the list";
@@ -60,8 +61,6 @@ public class TaskList {
      * @param task The task to append
      */
     public void appendLoadedTask(Task task) {
-
-
         taskList.add(task);
     }
 
@@ -93,15 +92,18 @@ public class TaskList {
      * Delete(remove) a task from the task list
      * @param index The position of the task to delete, 0-based
      */
-    public String deleteTask(int index) {
+    public String deleteTask(int index) throws IOException {
         if (index >= taskList.size()) {
             return "There is no task with index " + (index + 1);
         }
-
         String msg = "Noted. I've removed this task:\n"
                 + taskList.get(index) + "\n"
                 + "Now you have " + (taskList.size() - 1) + " tasks in the list";
+        int originalSize = taskList.size();
         taskList.remove(index);
+        assert taskList.size() == originalSize - 1 : "Task list length should decrease"
+                + "by 1 after deletion";
+        storage.saveTaskList(this);
         return msg;
     }
 
@@ -112,11 +114,11 @@ public class TaskList {
         if (taskList.size() == 0) {
             return "There's nothing in the list.";
         }
-        String msg = "Here are the tasks in your list:\n";
+        StringBuilder msg = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
-            msg += (i + 1) + ". " + taskList.get(i) + "\n";
+            msg.append(i + 1).append(". ").append(taskList.get(i)).append("\n");
         }
-        return msg;
+        return msg.toString();
     }
 
     public Task getTask(int i) {
@@ -136,10 +138,10 @@ public class TaskList {
         if (searchResult.length == 0) {
             return "There's no matching task";
         }
-        String msg = "Here are the matching tasks in your list:";
+        StringBuilder msg = new StringBuilder("Here are the matching tasks in your list:");
         for (int i = 0; i < searchResult.length; i++) {
-            msg += "\n" + (i + 1) + ". " + searchResult[i];
+            msg.append("\n").append(i + 1).append(". ").append(searchResult[i]);
         }
-        return msg;
+        return msg.toString();
     }
 }
