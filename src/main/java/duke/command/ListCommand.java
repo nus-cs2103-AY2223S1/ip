@@ -9,6 +9,9 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
     @Override
     public String getResponse(TaskList tasks, Storage storage) {
+        if (tasks.getNumberOfTasks() == 0) {
+            return "Yay! You don't have any tasks in your list.";
+        }
         return "This is your task list:\n" + tasks.toString();
     }
 

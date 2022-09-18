@@ -34,6 +34,10 @@ public class Duke {
         }
     }
 
+    public void exit() {
+        storage.storeTasks(tasks);
+    }
+
     public static void main(String[] args) {
     }
 }

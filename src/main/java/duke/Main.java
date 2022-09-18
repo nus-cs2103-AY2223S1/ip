@@ -24,7 +24,13 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.setOnCloseRequest(e -> {
+                e.consume();
+                duke.exit();
+                fxmlLoader.<MainWindow>getController().closeWindow();
+            });
             stage.show();
+            stage.setTitle("Sheep");
         } catch (IOException e) {
             e.printStackTrace();
         }
