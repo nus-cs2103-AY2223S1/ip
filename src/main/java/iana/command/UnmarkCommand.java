@@ -8,7 +8,8 @@ import iana.ui.Ui;
  * Command to mark a task in the task list as incomplete.
  */
 public class UnmarkCommand extends Command {
-    public String taskNum;
+
+    private String taskNum;
 
     /**
      * Constructor for UnmarkCommand class.

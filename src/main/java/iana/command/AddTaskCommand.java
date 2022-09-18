@@ -9,11 +9,12 @@ import iana.ui.Ui;
  * Command that adds a new task to the list.
  */
 public class AddTaskCommand extends Command {
+
     private String taskInput;
 
     /**
      * Constructor for AddTaskCommand.
-     * 
+     *
      * @param taskInput the full input that describes the task.
      */
     public AddTaskCommand(String taskInput) {

@@ -11,7 +11,7 @@ import iana.ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public String execute(TaskList tasks, Ui ui) throws IanaException{
+    public String execute(TaskList tasks, Ui ui) throws IanaException {
         Storage.store(tasks);
         return ui.sayBye();
     }

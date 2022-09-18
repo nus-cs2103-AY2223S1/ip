@@ -8,8 +8,9 @@ import iana.ui.Ui;
  * Command to tasks with given keyword.
  */
 public class FindCommand extends Command {
+
     private String keyword;
-    
+
     /**
      * Constructor for FindCommand class.
      * 

@@ -9,11 +9,12 @@ import iana.ui.Ui;
  * Command that deletes a task.
  */
 public class DeleteCommand extends Command {
+
     private String taskNum;
     
     /**
      * Constructor for DeleteCommand class.
-     * 
+     *
      * @param taskNum the task number to be deleted from the task list.
      */
     public DeleteCommand(String taskNum) {

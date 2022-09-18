@@ -1,9 +1,9 @@
 package iana.tasks;
 
-import iana.exception.IanaException;
-import iana.tasks.TaskList;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import iana.exception.IanaException;
 
 /**
  * Represents the list that contains and manage all the current tasks.

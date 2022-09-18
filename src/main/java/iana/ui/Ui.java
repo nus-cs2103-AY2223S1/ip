@@ -1,8 +1,9 @@
 package iana.ui;
 
+import java.util.Scanner;
+
 import iana.tasks.Task;
 import iana.tasks.TaskList;
-import java.util.Scanner;
 
 /**
  * User interface that will interact with user.
@@ -53,8 +54,8 @@ public class Ui {
      * @return IANA's welcome message.
      */
     public String sayHi() {
-        return say("Hello there~ I'm your assistant, Iana.\n\n" +
-        "\tHow can I help you today? ^_^");
+        return say("Hello there~ I'm your assistant, Iana.\n\n" 
+        + "\tHow can I help you today? ^_^");
     }
 
     /**
@@ -108,7 +109,7 @@ public class Ui {
     /**
      * Returns information of task that is unmarked.
      *  
-     * @param markedTask the description of task that is unmarked.
+     * @param unmarkedTask the description of task that is unmarked.
      * @return IANA's response and unmarked task description.
      */
     public String sayTaskUnmarked(String unmarkedTask) {

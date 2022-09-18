@@ -8,7 +8,8 @@ import iana.ui.Ui;
  * Command that marks task as completed.
  */
 public class MarkCommand extends Command {
-    public String taskNum;
+
+    private String taskNum;
     
     /**
      * Constructor for MarkCommand class.

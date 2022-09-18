@@ -56,5 +56,5 @@ run {
 }
 
 checkstyle {
-    toolVersion = '10.3'
+    toolVersion = '10.2'
 }

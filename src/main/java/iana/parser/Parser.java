@@ -1,6 +1,5 @@
 package iana.parser;
 
-// import iana.command.Actions;
 import iana.command.AddTaskCommand;
 import iana.command.AnotherCommand;
 import iana.command.Command;
@@ -31,35 +30,35 @@ public class Parser {
 
         try {
             switch(action) {
-                case "bye": 
+            case "bye": 
                 return new ExitCommand();
 
-                case "list":
+            case "list":
                 return new ListCommand();
 
-                case "delete":
+            case "delete":
                 return new DeleteCommand(taskArray[1]);
 
-                case "mark":
+            case "mark":
                 return new MarkCommand(taskArray[1]);
 
-                case "unmark":
+            case "unmark":
                 return new UnmarkCommand(taskArray[1]);
 
-                case "todo":
+            case "todo":
 
-                case "event":
+            case "event":
 
-                case "deadline":
+            case "deadline":
                 return new AddTaskCommand(input);
 
-                case "find":
+            case "find":
                 return new FindCommand(taskArray[1]);
 
-                case "help":
+            case "help":
                 return new HelpCommand();
 
-                default:
+            default:
                 return new AnotherCommand();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
