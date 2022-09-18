@@ -26,10 +26,11 @@ public class DefaultCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @return A String type response.
      * @throws CleverNotBotException Gives an exception.
      */
     @Override
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
-        textBox.chat("This command doesn't exist!");
+    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+        return "This command doesn't exist!";
     }
 }

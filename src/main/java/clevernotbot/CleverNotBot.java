@@ -4,27 +4,33 @@ import command.Command;
 import exception.CleverNotBotException;
 import task.TaskList;
 
-import java.util.Scanner;
 
 public class CleverNotBot {
-    public static void main(String[] args) throws CleverNotBotException {
 
-        UI textBox = new UI();
+    public static void main(String[] args) {
+        ChatBot chatBot = new ChatBot();
+        chatBot.startChatBot();
+    }
+
+    /**
+     * Returns a string response to the User for any input that the User place
+     *
+     * @param input User input
+     * @return A corresponding response from chatbot.
+     */
+    public String getResponse(String input) {
+        UI uI = new UI();
         Storage storage = new Storage();
         TaskList tasks = new TaskList(storage.getTasksFromFile());
-        Scanner sc = new Scanner(System.in);
         Parser parser = new Parser();
-
-        parser.parseText("greet").run(tasks, textBox, storage);
-        while (sc.hasNext()) {
-            String input = sc.nextLine();
+        try {
             Command commandToRun = parser.parseText(input);
-            commandToRun.run(tasks, textBox, storage);
-            if (commandToRun.isExitingProgram()) {
-                break;
-            }
+            assert commandToRun != null; // assert that command can not be null
+            String reply = commandToRun.run(tasks, uI, storage).trim();
+            return reply;
+        } catch(CleverNotBotException e) {
+            return e.toString();
         }
-
     }
 
 }

@@ -27,9 +27,10 @@ public class DeleteCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @return A String type response.
      * @throws CleverNotBotException Gives an exception if there is not a valid number or if task does not exist.
      */
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         try {
             String[] desc = getCommandName().split(" ");
             if (desc.length <= 1) {
@@ -38,15 +39,15 @@ public class DeleteCommand extends Command {
             Task deletedTask = tasks.getTask(Integer.parseInt(desc[1]) - 1); // Task.Task 3 is in idx 2
             tasks.removeTask(deletedTask);
             storage.writeToFile(tasks.getTaskList());
-            textBox.chat(String.format(
+            return String.format(
                     "Noted. I've removed this task:" +
                             "\n  %s" +
                             "\nNow you have %d tasks in the list."
-                    , deletedTask.toString(), tasks.getSize()));
+                    , deletedTask.toString(), tasks.getSize());
         } catch (IndexOutOfBoundsException e) {
             throw new CleverNotBotException("The task does not exist!", textBox);
-        } catch(NumberFormatException ex) {
-            throw new CleverNotBotException("Input a valid number!",textBox);
+        } catch (NumberFormatException ex) {
+            throw new CleverNotBotException("Input a valid number!", textBox);
         }
 
     }

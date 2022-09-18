@@ -75,16 +75,19 @@ public class Storage {
             for (Task task : tasks) {
                 String taskToStorage = "";
                 String prefix = task.getTaskType();
-                switch(prefix){
+                switch(prefix.trim()){
                 case TODO_PREFIX:
                     taskToStorage = String.format("%s | %d | %s",
                             task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName());
+                    break;
                 case DEADLINE_PREFIX:
                 case EVENT_PREFIX:
                     taskToStorage = String.format("%s | %d | %s | %s",
                             task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName(), task.getTime());
+                    break;
                 default:
                     System.out.println("Warning! Illegal entries has been detected!");
+                    System.out.println(prefix);
                 }
                 op.append(taskToStorage);
                 counter++;

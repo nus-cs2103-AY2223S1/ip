@@ -30,9 +30,10 @@ public class AddToDoCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
-     * @throws CleverNotBotException Gives an exception when todo's description is empty.
+     * @return A String type response.
+     * @throws CleverNotBotException
      */
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length != 1) {
@@ -42,11 +43,11 @@ public class AddToDoCommand extends Command {
                 Task newTask = new ToDo(joinDesc, false);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
-                textBox.chat(String.format(
+                return String.format(
                         "Got it. I've added this task:"
                                 + "\n  %s"
                                 + "\nNow you have %d tasks in the list."
-                        , newTask.toString(), tasks.getSize()));
+                        , newTask.toString(), tasks.getSize());
             } else {
                 throw new CleverNotBotException("Please fill in the description of ToDo!", textBox);
             }

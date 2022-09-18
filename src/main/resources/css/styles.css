@@ -1,0 +1,7 @@
+#dialog{
+    -fx-background-image: url("/images/ChatBubble.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+    -fx-background-position: center center;
+    -fx-text-fill:"white"
+}

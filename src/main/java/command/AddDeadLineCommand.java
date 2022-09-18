@@ -30,7 +30,7 @@ public class AddDeadLineCommand extends Command {
      * @param storage The data where it is stored.
      * @throws CleverNotBotException Gives an exception when deadline description is empty or not contain /by.
      */
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length == 1) {
@@ -48,11 +48,11 @@ public class AddDeadLineCommand extends Command {
                 Task newTask = new Deadline(commandName, false, dateTime);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
-                textBox.chat(String.format(
+                return String.format(
                         "Got it. I've added this task:"
                                 + "\n  %s"
                                 + "\nNow you have %d tasks in the list."
-                        , newTask.toString(), tasks.getSize()));
+                        , newTask.toString(), tasks.getSize());
             }
         } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Deadline description must not be empty or must contain /by!", textBox);

@@ -30,7 +30,7 @@ public class AddEventCommand extends Command {
      * @param storage The data where it is stored.
      * @throws CleverNotBotException Gives an exception when event's description is empty or not contain /at.
      */
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length == 1) {
@@ -46,11 +46,11 @@ public class AddEventCommand extends Command {
                 Task newTask = new Event(commandName, false, at);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
-                textBox.chat(String.format(
+                return String.format(
                         "Got it. I've added this task:"
                                 + "\n  %s"
                                 + "\nNow you have %d tasks in the list."
-                        , newTask.toString(), tasks.getSize()));
+                        , newTask.toString(), tasks.getSize());
             }
         } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Event description must not be empty or must contain /at!", textBox);

@@ -47,7 +47,8 @@ public abstract class Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @return A String type response.
      * @throws CleverNotBotException Gives an exception.
      */
-    public abstract void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException;
+    public abstract String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException;
 }

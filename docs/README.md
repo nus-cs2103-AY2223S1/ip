@@ -1,5 +1,11 @@
 # User Guide
+Clevernotbot is a **free desktop java app for managing your task, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+- Quick Start
+- Features
+    - Viewing help: help
+- FAQ
+- Command Summary
 ## Features 
 
 ### Feature-ABC

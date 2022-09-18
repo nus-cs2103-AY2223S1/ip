@@ -66,7 +66,6 @@ public abstract class Task {
      * @return A toggled version. (Completed = true -> Completed = false)
      */
     public abstract Task toggleCompleted();
-    //return new Task.Task(name,!completed);
 
     /**
      * Converts <Code>Task</Code> to a string.
