@@ -21,3 +21,5 @@ bin/
 *.duke
 .vscode/*
 *.log
+
+docs/_site/

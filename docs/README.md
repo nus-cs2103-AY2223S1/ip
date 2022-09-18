@@ -172,19 +172,19 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
 # Command Summary
 
- Action/Command | Format, Examples 
- ------------ | ----------------------------------------------------------
- `bye` | `bye` 
- `list` | `list` 
- `mark` | `mark [task index]`, `mark 1`, ` mark 4` 
- `unmark` | `unmark [task index]`, `unmark 1`, ` unmark 4` 
- `delete` | `delete [task index]`, `delete 1`, ` delete 4` 
- `find` | `find [search string], find CS2103T, find CS3230` 
- `by` | `by [date time/date]`, `by Oct 20 2022`, `by 05/12/2023` 
- `todo` | `todo [task description]`, `todo cook dinner, todo revise for midterm` 
- `deadline` | `deadline [task description] /by [datetime/string]`, <br />`deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` 
- `event` | `event [task description] /at [datetime/string]`, <br />`event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` 
- `alias` | `alias [new command] -> [old command]`, <br /> `alias t->todo, alias d->delete`
- `rmalias`|`rmalias [command]`, `rmalias d`
- `resetAlias`|`resetAlias`
- `replaceUs`|`replaceUs` 
+Action | Format, Examples
+--------|------------------
+`bye` | `bye` 
+`list` | `list` 
+`mark` | `mark [task index]`<br> e.g. `mark 1`, ` mark 4` 
+`unmark` | `unmark [task index]`<br> e.g. `unmark 1`, ` unmark 4` 
+`delete` | `delete [task index]`<br> e.g. `delete 1`, ` delete 4` 
+`find` | `find [search string]`<br> e.g. `find CS2103T, find CS3230` 
+`by` | `by [date time/date]`<br> e.g. `by Oct 20 2022`, `by 05/12/2023` 
+`todo` | `todo [task description]`<br> e.g. `todo cook dinner, todo revise for midterm` 
+`deadline` | `deadline [task description] /by [datetime/string]` <br>e.g. `deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` 
+`event` | `event [task description] /at [datetime/string]` <br> e.g. `event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` 
+`alias` | `alias [new command] -> [old command]` <br>e.g. `alias t->todo, alias d->delete`
+`rmalias`|`rmalias [command]`, <br> e.g. `rmalias d`
+`resetAlias`|`resetAlias`
+`replaceUs`|`replaceUs` 
