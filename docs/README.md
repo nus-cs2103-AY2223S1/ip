@@ -23,7 +23,7 @@
 
 ### `todo`
 
-Adding tasks that are not time sensitive:`todo {name of the task}`
+Adding tasks that are not time sensitive: `todo {name of the task}`
 
 Example of usage: 
 
@@ -41,7 +41,7 @@ You have 1 task(s). Stop procrastinating bro.
 
 ### `deadline`
 
-Adding tasks that have a deadline:`deadline {name of the task} /by {date of the deadline} {optional: time of the deadline}`
+Adding tasks that have a deadline: `deadline {name of the task} /by {date of the deadline} {optional: time of the deadline}`
 
 - The date of the deadline should be written in the form of DD/MM/YYYY.
 
@@ -68,12 +68,12 @@ You have 2 task(s). Stop procrastinating bro.
 ```
 I gotchu fam. Your task has been added:
 [D][ ] math assignment (by: 23 Mar 2022 10:00)
-You have 3 task(s). Stop procrastinating bro.
+You have 2 task(s). Stop procrastinating bro.
 ```
 
 ### `event`
 
-Adding events that occur on a certain date and during a time frame:`event {name of the event} /at {date of the event} {optional: start time of the event - end time of the event}`
+Adding events that occur on a certain date and during a time frame: `event {name of the event} /at {date of the event} {optional: start time of the event - end time of the event}`
 
 - The date of the event should be written in the form of DD/MM/YYYY.
 
@@ -94,11 +94,33 @@ Adds an event with the event name being "birthday celebration" and event date be
 ```
 I gotchu fam. Your task has been added:
 [E][ ] birthday celebration (at: 23 Mar 2022)
-You have 4 task(s). Stop procrastinating bro.
+You have 3 task(s). Stop procrastinating bro.
 ```
 
 ```
 I gotchu fam. Your task has been added:
 [E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
-You have 5 task(s). Stop procrastinating bro.
+You have 3 task(s). Stop procrastinating bro.
+```
+
+### `list`
+
+Listing out all the events currently in the task list: `list`
+
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+Lists out all the events currently in the task list.
+
+- The first letter represents what type of task it is (T is a todo task, D is a task with a deadline and E is an event)
+- The second box represents whether the task is finished (`[ ]` for unfinished and `[X]` for finished)
+
+```
+Here are your tasks. You better start now:
+1.[T][X] learn how to play the guitar
+2.[D][ ] math assignment (by: 23 Mar 2022 10:00)
+3.[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
 ```
