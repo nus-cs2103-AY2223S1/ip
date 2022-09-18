@@ -25,3 +25,5 @@ All you need to do is,
 ----
 
 ## User Guide
+
+Check out the user guide [here](wweqg.github.io/ip)
