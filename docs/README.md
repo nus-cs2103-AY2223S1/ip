@@ -1,19 +1,20 @@
-# User Guide
+<h1 align="center">User Guide</h1>
+
+##  *Introduction*
 
 Inspired by Rem from Re:Zero, here is a comprehensive user guide to show
 how you can use your personal assistant, **Rem Taskhelper**, to add tasks
 to your personal checklist. Classify your tasks into _todo_, _deadline_ and _event_ tasks,
 and **Rem Taskhelper** will help you keep track of them!
 
-## Table of Contents
+## *Table of Contents*
 
 1. [Getting Started](#getting-started)
-2. [Features](#features)
-3. [Usage](#usage)
-4. [Command Prompt](#command-prompt)
-5. [Landing Page](#landing-page)
+2. [Usage](#usage)
+3. [Command Prompt](#command-prompt)
+4. [Examples of Usage](#examples-of-usage)
 
-## Getting Started
+## *Getting Started*
 
 - Ensure that you have Java 11 or above installed in your Computer.
 - Download the latest `duke.jar` from [here](https://github.com/nehcuy/ip).
@@ -21,45 +22,34 @@ and **Rem Taskhelper** will help you keep track of them!
 - Open up your command prompt/terminal and navigate to the folder containing
 the duke.jar file.
 - Run the file by typing in the command `java -jar duke.jar` and pressing Enter.
-You can also double-click the file to start the app.
+You can also double-click the file to start the app. (An illustration of this is shown
+[below](#command-prompt))
 - The GUI should appear in a few seconds. You will then arrive at the [landing page](#landing-page).
 - Start typing in your commands into the text bar and press Enter or click the send button to interact
 with **Rem Taskhelper**.
 
-## Features
+## *Summary of Commands*
 
-### Display Tasks
-
-Display your list of tasks by using the command `list`.
-
-### Add Tasks
-
-Add tasks into your checklist by using the command `todo`, `deadline` or `event`.
-This will be stored in your local storage under the file `data/rem_taskhelper.txt`.
-
-### Mark Tasks
-
-Mark your tasks as done, or unmark them when you are not done with them yet,
-by using the commands `mark` or `unmark`.
-
-### Delete Tasks
-
-Delete tasks from your checklist by using the command `delete`.
-
-### Find Tasks
-
-Find your tasks by using the command `find`.
-
-### Exit Rem
-
-Exit the Rem Taskhelper and save your updated checklist into your file by using the command `bye`.
-
-## Usage
+|         Command         |                    Description                    |
+|:-----------------------:|:-------------------------------------------------:|
+|     [list](#`list`)     |             Displays task checklist.              |
+|     [todo](#`todo`)     |      Adds a todo task to the task checklist.      |
+| [deadline](#`deadline`) |    Adds a deadline task to the task checklist.    |
+|    [event](#`event`)    |     Adds an event task to the task checklist.     |
+|     [mark](#`mark`)     |  Marks given task numbers/all tasks as complete.  |
+|   [unmark](#`unmark`)   | Marks given task numbers/all tasks as incomplete. |
+|   [delete](#`delete`)   |       Deletes given task numbers/all tasks.       |
+|     [find](#`find`)     | Displays tasks in task checklist matching input.  |
+|    [clear](#`clear`)    |            Clears the window outputs.             |
+|      [bye](#`bye`)      |       Saves tasks and exits Rem Taskhelper.       |
+                                                                                                              |
+## *Usage*
 
 ### `list` - Displays your checklist
 
 **Description:** Retrieves the list of tasks from your local storage and displays your list of tasks.  
-**Usage:** list
+**Usage:** list  
+**Example:** `list`
 
 ### `todo` - Adds a todo task
 
@@ -130,13 +120,40 @@ Also supports deleting all the tasks at once. This action is **IRREVERSIBLE**.
 **Usage:** find [*task description*]  
 **Example:** `find book`
 
+### `clear` - Clears the window outputs
+
+**Description:** Cleans the window of all Dialogue outputs between you and Rem Taskhelper.  
+**Usage:** clear  
+**Example:** `clear`
+
 ### `bye` - Saves and Exits Rem
 
 **Description:** Saves and exits the Rem Taskhelper.
 Please ensure all your changes are finalised before using this command, as your updated checklist
 would **OVERWRITE** your previous checklist.  
-**Usage:** bye
+**Usage:** bye  
+**Example:** `bye`
 
-## Command Prompt
+## *Command Prompt*
 
-## Landing Page
+<h3 align="center">Command Prompt Illustration</h3>
+<p align="center">
+    <img src="CmdPrompt.png" alt="Command Prompt Illustration">
+</p>
+
+## *Examples of Usage*
+
+<h3 align="center">Landing Page</h3>
+<p align="center">
+    <img src="LandingPage.png" alt="Landing Page">
+</p>
+
+<h3 align="center">Adding Tasks</h3>
+<p align="center">
+    <img src="Ui.png" alt="Adding Tasks">
+</p>
+
+<h3 align="center">Marking Tasks</h3>
+<p align="center">
+    <img src="Ui-2.png" alt="Marking Tasks">
+</p>
