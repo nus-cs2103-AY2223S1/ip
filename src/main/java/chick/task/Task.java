@@ -25,26 +25,25 @@ public abstract class Task {
     }
 
     /**
-     * Gets a string representing whether Task is done or not.
-     *
-     * @return "mark" if task is done, "unmark" if task is not yet done.
-     */
-    public String getStatus() {
-        return (isDone ? "mark" : "unmark");
-    }
-
-    /**
      * Marks current Task as done.
+     *
+     * @return Whether task status changed.
      */
-    public void setAsDone() {
-        this.isDone = true;
+    public boolean setAsDone() {
+        boolean previousStatus = isDone;
+        isDone = true;
+        return !previousStatus;
     }
 
     /**
      * Marks current Task as not done.
+     *
+     * @return Whether task status changed.
      */
-    public void setAsUndone() {
-        this.isDone = false;
+    public boolean setAsUndone() {
+        boolean previousStatus = isDone;
+        isDone = false;
+        return previousStatus;
     }
 
     /**
@@ -75,7 +74,7 @@ public abstract class Task {
      */
     public String toStorageString() {
         assert commandString != null;
-        return commandString + "\n" + getStatus();
+        return isDone ? commandString + "\nmark" : commandString;
     }
 
     @Override
