@@ -45,4 +45,17 @@ public class DeadlineCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        Deadline tmp = new Deadline(desc, datetime);
+        tasks.addDeadline(tmp);
+        storage.write(tasks.toStringWritable());
+        return "Got it. I added this task:\n" +
+                "\t" + tmp + "\n" +
+                "Now you have " + tasks.getLength() + " tasks in the list.";
+    }
 }

@@ -40,4 +40,19 @@ public class UnmarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        try {
+            tasks.unmark(taskNo);
+            storage.write(tasks.toStringWritable());
+            return "Ok, I've marked this task as not done yet:\n" +
+                "\t" + tasks.getTask(taskNo).toString();
+        } catch (IndexOutOfBoundsException err) {
+            throw new DukeException("Invalid task index to unmark.");
+        }
+    }
 }

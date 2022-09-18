@@ -24,4 +24,12 @@ public class GoodbyeCommand extends Command {
     public boolean isExit() {
         return true;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        return "Bye. Hope to see you again soon!";
+    }
 }
