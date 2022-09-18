@@ -48,12 +48,13 @@ test {
 }
 
 application {
-    mainClassName = "clevernotbot.CleverNotBot"
+    mainClassName = "clevernotbot.Launcher"
 }
 
 jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes "Main-Class": "clevernotbot.CleverNotBot"
+        attributes "Main-Class": "clevernotbot.Launcher"
     }
 
     from {
