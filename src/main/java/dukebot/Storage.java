@@ -20,13 +20,10 @@ public class Storage {
 
     private Path path;
 
-    public Storage(String filePath) {
-        if (filePath.isBlank()) {
-            path = Paths.get(System.getProperty("user.dir"), "src", "main", "tasks.txt");
-        } else {
-            path = Paths.get(System.getProperty("user.dir"), filePath);
-        }
+    public Storage() {
+        path = Paths.get(System.getProperty("user.home"),"CS2103T", "tasks.txt");
         file = new File(path.toUri());
+        file.getParentFile().mkdirs();
         try {
             file.createNewFile();
         } catch (IOException e) {

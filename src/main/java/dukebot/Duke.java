@@ -13,7 +13,7 @@ public class Duke {
     private boolean isExit = false;
 
     public Duke() {
-        storage = new Storage("src/main/tasks.txt");
+        storage = new Storage();
         try {
             tasks = storage.load();
         } catch (DukeException e) {
