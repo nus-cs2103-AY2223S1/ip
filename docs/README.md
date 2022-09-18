@@ -92,7 +92,7 @@ Marks a task in the list as done.
 
 Command: `mark {index}`
 
-Example: `mark 1 marks the task at index 2 of the list`
+Example: `mark 1 marks the task at index 1 of the list`
 
 Expected outcome:
 ```
@@ -120,7 +120,7 @@ Finds all tasks matching the keyword.
 
 Command: `find {keyword}`
 
-Example: `find play` will find all tasks with keyword "book"
+Example: `find play` will find all tasks with keyword "play"
 
 Expected outcome:
 ```
