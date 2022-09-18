@@ -4,7 +4,7 @@ Duke is a desktop app for managing task optimized for both GUI and CLI usage! Pa
 
 {:toc}
 
-------
+---
 
 # Quick Start
 
@@ -29,7 +29,7 @@ Duke is a desktop app for managing task optimized for both GUI and CLI usage! Pa
 
    6. Refer to features below for all the commands and their usage.
 
-# Features 
+# Features
 
 ## Additional Launch flags
 
@@ -39,19 +39,19 @@ Need speed? Launch Duke in CLI mode and enjoy blazing smooth user experience wit
 
 Launch Duke using `java -jar duke.jar` as you can pass in the addition flag displayed above.
 
-### Launching in GUI mode 
+### Launching in GUI mode
 
 - `-g` or `--gui` Launches the app in GUI mode
 
-### Launching in CLI mode 
+### Launching in CLI mode
 
 - `-ng` or `--no-gui` Launches the app in CLI mode
 
-### Specifying save file 
+### Specifying save file
 
 - `-s` or `--use-save` allows you to specify/create a specific save file for your Duke session.
 
-### Icon  Replace Us
+### Icon Replace Us
 
 Tired of seeing the same icon every time, get a fresh icon with a simple command.
 
@@ -61,27 +61,27 @@ Sampled from fake images generated using a GAN, you will hardly see the same ico
 
 Duke supports creation of 3 different kind of tasks: todo, deadline, event.
 
-### Task todo 
+### Task todo
 
-​	Use todo for less urgent tasks / tasks of lower priority. 
+​ Use todo for less urgent tasks / tasks of lower priority.
 
 - `todo [Task description]` : Adds a todo task to the task list
 
 ### Task deadline
 
-​	Use deadline for task of higher priority, you can add a specific date modifier to it or just keep the extra information as a String
+​ Use deadline for task of higher priority, you can add a specific date modifier to it or just keep the extra information as a String
 
 - `deadline [task description] /by [completion time/other information]`: Adds a deadline task to the task list
 
 ### Task event
 
-​	Use event to mark things that are going to happen, you can add a specific date modifier to it or just keep the extra information as a String
+​ Use event to mark things that are going to happen, you can add a specific date modifier to it or just keep the extra information as a String
 
 - `event[task description] /by [event date/other information]`: Adds a event task to the task list
 
 ## Listing all tasks
 
-​	To view all currently added tasks, use:
+​ To view all currently added tasks, use:
 
 - `list` : Prints out all tasks
 
@@ -89,15 +89,15 @@ Duke supports creation of 3 different kind of tasks: todo, deadline, event.
 
 ## Marking Tasks
 
-### Mark 
+### Mark
 
-To mark task as completed: 
+To mark task as completed:
 
 - `mark [task id]`: to mark the task with the specified id from `list` as marked
 
-### Unmark 
+### Unmark
 
-To mark task as incomplete: 
+To mark task as incomplete:
 
 - `unmark [task id]`: to unmark the task with the specified id from `list` as marked
 
@@ -107,17 +107,17 @@ To mark task as incomplete:
 
 ### By keywords
 
-​	To filter the current list using keywords, use the `find` command
+​ To filter the current list using keywords, use the `find` command
 
 - `find [search pattern]`: prints out all the tasks that have the specified pattern.
 
   <img src="./img/find.png" style="zoom:67%;" />
 
-##    
+##
 
 ### By Date
 
-​	To see all the tasks that have an attached date before certain period, use:
+​ To see all the tasks that have an attached date before certain period, use:
 
 - `by [datetime pattern]`: prints out all tasks that have an attached datetime before the given one.
 
@@ -159,7 +159,7 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
   <img src="./img/resetAlias.png" style="zoom:67%;" />
 
-## Exiting Duke 
+## Exiting Duke
 
 - `bye`: To exit duke. (Note there will be a 2 second buffer for your to read the message before exiting on GUI)
 
@@ -167,20 +167,17 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
 # Command Summary
 
-| Action/Command |                       Format, Examples                       |
-| :------------: | :----------------------------------------------------------: |
-|     `bye`      |                            `bye`                             |
-|     `list`     |                            `list`                            |
-|     `mark`     |          `mark [task index]`, `mark 1`,  ` mark 4`           |
-|    `unmark`    |       `unmark [task index]`, `unmark 1`,  ` unmark 4`        |
-|    `delete`    |       `delete [task index]`, `delete 1`,  ` delete 4`        |
-|     `find`     |      `find [search string], find CS2103T, find CS3230`       |
-|      `by`      |   `by [date time/date]`, `by Oct 20 2022`, `by 05/12/2023`   |
-|     `todo`     | `todo [task description]`, `todo cook dinner, todo revise for midterm` |
-|   `deadline`   | `deadline [task description] /by [datetime/string]`, <br />`deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` |
-|    `event`     | `event [task description] /at [datetime/string]`, <br />`event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` |
-|    `alias`     | `alias [new command] -> [old command]`, alias t->todo, alias d->delete` |
-|   `rmalias`    |               `rmalias [command]`, `rmalias d`               |
-|  `resetAlias`  |                         `resetAlias`                         |
-|  `replaceUs`   |                         `replaceUs`                          |
+| Action/Command | Format, Examples |
 
+| :------------: | :----------------------------------------------------------: |
+| `bye` | `bye` |
+| `list` | `list` |
+| `mark` | `mark [task index]`, `mark 1`, ` mark 4` |
+| `unmark` | `unmark [task index]`, `unmark 1`, ` unmark 4` |
+| `delete` | `delete [task index]`, `delete 1`, ` delete 4` |
+| `find` | `find [search string], find CS2103T, find CS3230` |
+| `by` | `by [date time/date]`, `by Oct 20 2022`, `by 05/12/2023` |
+| `todo` | `todo [task description]`, `todo cook dinner, todo revise for midterm` |
+| `deadline` | `deadline [task description] /by [datetime/string]`, <br />`deadline CS2109S ps3 /by This friday, deadline CS2109S ps3 /by 02/05/2022` |
+| `event` | `event [task description] /at [datetime/string]`, <br />`event meeting up /at 03/04/2023 13:23, event Sports Finals /at Indoor sports hall` |
+| `alias` | `alias [new command] -> [old command]`, alias t->todo, alias d->delete`| | `rmalias`|`rmalias [command]`, `rmalias d`| |`resetAlias`|`resetAlias`| |`replaceUs`|`replaceUs` |
