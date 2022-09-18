@@ -6,15 +6,16 @@ import duke.task.TaskList;
 
 public class DeleteCommand extends Command {
 
-    private int index;
+    private String number;
 
-    public DeleteCommand(int command) {
-        index = command;
+    public DeleteCommand(String command) {
+        number = command;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
+            int index = Integer.parseInt(number);
             String taskS = "tasks";
             if (tasks.listSize() - 1 == 1) {
                 taskS = "task";
@@ -24,6 +25,8 @@ public class DeleteCommand extends Command {
                     + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.");
             tasks.delete(index);
             storage.delete(index);
+        } catch (NumberFormatException e) {
+            ui.showError("You need to provide a task's index to delete!");
         } catch (IndexOutOfBoundsException e) {
             ui.showError("You've given me an invalid task to delete!");
         }

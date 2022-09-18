@@ -6,18 +6,21 @@ import duke.task.TaskList;
 
 public class UnmarkCommand extends Command {
 
-    private int index;
+    private String number;
 
-    public UnmarkCommand(int command) {
-        index = command;
+    public UnmarkCommand(String command) {
+        number = command;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
+            int index = Integer.parseInt(number);
             tasks.unmark(index);
             storage.unmark(index);
             ui.showMessage("Got it! Task " + index + " has not yet been completed:\n  " + tasks.showTask(index));
+        } catch (NumberFormatException e) {
+            ui.showError("You need to provide a task's index to unmark!");
         } catch (IndexOutOfBoundsException e) {
             ui.showError("You've given me an invalid task to unmark!");
         }
