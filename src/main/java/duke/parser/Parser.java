@@ -8,6 +8,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SortCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
@@ -65,6 +66,17 @@ public class Parser {
                 throw new DukeException("The keyword to search for cannot be empty.");
             }
             return new FindCommand(input.substring(5));
+        case SORT:
+            int commandLength = 4;
+            if (input.length() == commandLength) {
+                return new SortCommand();
+            }
+            if (input.equals("sort deadline")) {
+                return new SortCommand("deadline");
+            }
+            if (input.equals("sort event")) {
+                return new SortCommand("event");
+            }
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -89,6 +101,8 @@ public class Parser {
             return CommandWords.DELETE;
         } else if (input.length() > 3 && input.substring(0, 4).equals("find")) {
             return CommandWords.FIND;
+        } else if (input.length() > 3 && input.substring(0, 4).equals("sort")) {
+            return CommandWords.SORT;
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
