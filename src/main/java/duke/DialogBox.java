@@ -21,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 /**
  * An example of a custom control using FXML.
@@ -49,6 +50,7 @@ public class DialogBox extends HBox {
     private void configureDisplayPicture(Image img) {
         displayPicture.setClip(new Circle(50, 50, 44));
         displayPicture.setImage(img);
+        displayPicture.preserveRatioProperty();
     }
     private void configureDialogBubble(String txt) {
         Rectangle box = new Rectangle();
@@ -59,6 +61,9 @@ public class DialogBox extends HBox {
         Label text = new Label(txt);
         text.setFont(new Font("Wingdings", 11.5));
         text.setPadding(new Insets(10));
+        text.setWrapText(true);
+        text.setTextAlignment(TextAlignment.JUSTIFY);
+        text.setMaxWidth(280);
 
         box.heightProperty().bind(text.heightProperty());
         box.widthProperty().bind(text.widthProperty());
