@@ -59,7 +59,6 @@ public class TaskList {
         }
     }
 
-
     private String addItem(Item item) {
         int isDup = this.isDuplicate(item);
         if (isDup > -1) {

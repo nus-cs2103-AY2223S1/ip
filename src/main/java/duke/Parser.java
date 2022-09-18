@@ -30,6 +30,7 @@ public class Parser {
         case "deadline":
             try {
                 String[] splitArgs = input[1].split(" /by ", 2);
+                String checkSecondArg = splitArgs[1];
                 return new Command(CommandsList.DEADLINE, splitArgs);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return new Command(CommandsList.ERROR, "Whoops! deadline needs a description of the task "
@@ -39,6 +40,7 @@ public class Parser {
         case "event":
             try {
                 String[] splitArgs = input[1].split(" /at ", 2);
+                String checkSecondArg = splitArgs[1];
                 return new Command(CommandsList.EVENT, splitArgs);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return new Command(CommandsList.ERROR, "Whoops! event needs a description of the task "
