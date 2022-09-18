@@ -120,6 +120,31 @@ public class Duke extends Application {
     }
 
     /**
+     * Prints the nearest date without task to the UI.
+     */
+    public void findFreeTimes() {
+        LocalDate now = LocalDate.now();
+        ArrayList<Long> distances = new ArrayList<>();
+        tasks.forEach(task -> {
+            if (task.type == 'D') {
+                distances.add(((Deadline) task).deadline.toEpochDay() - now.toEpochDay());
+            } else if (task.type == 'E') {
+                distances.add(((Event) task).time.toEpochDay() - now.toEpochDay());
+            }
+        });
+        distances.sort((a, b) -> (int) (a - b));
+        int counter = 1;
+        for (Long distance : distances) {
+            if (distance > counter) {
+                break;
+            } else if (distance == counter) {
+                counter++;
+            }
+        }
+        ui.findFreeTimes(now.plusDays(counter));
+    }
+
+    /**
      * Exit the Duke Chatterbot.
      */
     public void exit() {
@@ -232,30 +257,5 @@ public class Duke extends Application {
             ui.print(e.getMessage());
         }
         return ui.collect();
-    }
-
-    /**
-     * Prints the nearest date without task to the UI.
-     */
-    public void findFreeTimes() {
-        LocalDate now = LocalDate.now();
-        ArrayList<Long> distances = new ArrayList<>();
-        tasks.forEach(task -> {
-            if (task.type == 'D') {
-                distances.add(((Deadline) task).deadline.toEpochDay() - now.toEpochDay());
-            } else if (task.type == 'E') {
-                distances.add(((Event) task).time.toEpochDay() - now.toEpochDay());
-            }
-        });
-        distances.sort((a, b) -> (int) (a - b));
-        int counter = 1;
-        for (Long distance : distances) {
-            if (distance > counter) {
-                break;
-            } else if (distance == counter) {
-                counter++;
-            }
-        }
-        ui.findFreeTimes(now.plusDays(counter));
     }
 }
