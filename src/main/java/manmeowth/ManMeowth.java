@@ -23,7 +23,7 @@ public class ManMeowth {
     /** ui.manmeowth.Ui handling interactions of input and output with users */
     private final Ui ui;
     private String startUpMessage;
-    private String startUpError;
+    private String startUpError = "";
 
     private boolean isExit = false;
 
