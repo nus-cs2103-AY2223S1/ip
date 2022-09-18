@@ -7,8 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -33,9 +32,17 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
     private Image pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
 
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        Background background = new Background(new BackgroundImage(backgroundImage,
+                BackgroundRepeat.SPACE,
+                BackgroundRepeat.ROUND,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(getWidth(), getHeight(), true, true, true, false)));
+        dialogContainer.setBackground(background);
     }
 
     public void setPikachu(Pikachu d) {
