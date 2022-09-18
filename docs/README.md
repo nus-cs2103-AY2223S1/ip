@@ -13,6 +13,7 @@ and **Rem Taskhelper** will help you keep track of them!
 2. [Usage](#usage)
 3. [Command Prompt](#command-prompt)
 4. [Examples of Usage](#examples-of-usage)
+5. [Image Sources](#image-sources)
 
 ## *Getting Started*
 
@@ -157,3 +158,8 @@ would **OVERWRITE** your previous checklist.
 <p align="center">
     <img src="Ui-2.png" alt="Marking Tasks">
 </p>
+
+## *Image Sources*
+
+- Icons and Profile Pictures from [AniYuki](https://aniyuki.com/rem-images/).
+- Background Image from [Canva](https://www.canva.com/templates/).
