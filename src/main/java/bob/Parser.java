@@ -8,7 +8,7 @@ import bob.commands.*;
 public class Parser {
 
     private enum PossibleCommands {
-        BYE, LIST, MARK, UNMARK, REMOVE, FILTER, FIND, TODO, DEADLINE, EVENT, UPDATE
+        BYE, LIST, MARK, UNMARK, REMOVE, FILTER, FIND, TODO, DEADLINE, EVENT, UPDATE, HELP
     }
 
     /**
@@ -27,6 +27,8 @@ public class Parser {
             switch (c) {
             case BYE:
                 return new ByeCommand();
+            case HELP:
+                return new HelpCommand();
             case LIST:
                 return new ListCommand();
             case MARK:

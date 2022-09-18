@@ -25,7 +25,12 @@ public class Ui {
     public String displayWelcomeMessage() {
         String response = "hey, i'm bob!\ndo you need help?\n"
                 + this.printLine()
-                + "    ↓ here's what you can do! ↓\n"
+                + displayCommands();
+        return response;
+    }
+
+    public String displayCommands() {
+        String response = "    ↓ here's what you can do! ↓\n"
                 + "    ---------------------------\n"
                 + "1.    ADD A TODO TASK: todo <task>\n"
                 + "2.    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
@@ -36,8 +41,8 @@ public class Ui {
                 + "7.    REMOVE TASK: remove <task number>\n"
                 + "8.    FILTER TASKS OF SPECIFIC DATE: filter <yyyy-mm-dd>\n"
                 + "9.    EDIT TASK: edit <task number> <name-to-be-edited OR /date-to-be-edited>\n"
-                // HELP/DISPLAY COMMANDS: help\n" (to be added)
-                + "10.   TO END THE PROGRAM: bye\n";
+                + "10.   DISPLAY COMMANDS: help\n"
+                + "11.   TO END THE PROGRAM: bye\n";
         return response;
     }
 
