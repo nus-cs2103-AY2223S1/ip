@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import functional.Deadline;
 import functional.Event;
@@ -65,53 +66,50 @@ public class TaskList {
             taskList.size())});
     }
 
+    private static String[] readFlags(String[] arguments, String ... keys) {
+        StringBuilder[] flagged = new StringBuilder[keys.length];
+        for (int i = 0; i < flagged.length; ++i) {
+            flagged[i] = new StringBuilder();
+        }
+        for (String i : arguments) {
+            int mode = Arrays.asList(keys).indexOf(i) + 1;
+            if (flagged[mode].length() != 0) {
+                flagged[mode].append(' ');
+            }
+            flagged[mode].append(i);
+        }
+        String[] ret = new String[keys.length];
+        for (int i = 0; i < ret.length; ++i) {
+            ret[i] = flagged[i].toString();
+        }
+        return ret;
+    }
+
     /**
-     * Append a functional.Todo to the todoList.
+     * Append a Todo to the todoList.
      *
      * @param arguments The command arguments.
      */
     public static String todo(String[] arguments) throws IOException {
-        StringBuilder todoName = new StringBuilder();
-        for (int i = 1; i < arguments.length; ++i) {
-            if (todoName.length() != 0) {
-                todoName.append(' ');
-            }
-            todoName.append(arguments[i]);
-        }
+        String[] flagged = readFlags(arguments);
+        String todoName = flagged[0];
         if (todoName.length() == 0) {
             return Ui.reply("Please include a name");
         }
-        taskList.add(new Todo(todoName.toString()));
+        taskList.add(new Todo(todoName));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         return justAddedComment();
     }
 
     /**
-     * Append a functional.Deadline to the todoList.
+     * Append a Deadline to the todoList.
      *
      * @param arguments The command arguments.
      */
     public static String deadline(String[] arguments) throws IOException {
-        StringBuilder deadlineName = new StringBuilder();
-        StringBuilder deadlineDeadlineString = new StringBuilder();
-        boolean byFlagRead = false;
-        for (int i = 1; i < arguments.length; ++i) {
-            if (arguments[i].equals("/by") && !byFlagRead) {
-                byFlagRead = true;
-                continue;
-            }
-            if (byFlagRead) {
-                if (deadlineDeadlineString.length() != 0) {
-                    deadlineDeadlineString.append(' ');
-                }
-                deadlineDeadlineString.append(arguments[i]);
-            } else {
-                if (deadlineName.length() != 0) {
-                    deadlineName.append(' ');
-                }
-                deadlineName.append(arguments[i]);
-            }
-        }
+        String[] flagged = readFlags(arguments, "/by");
+        String deadlineName = flagged[0];
+        String deadlineDeadlineString = flagged[1];
         if (deadlineName.length() == 0 || deadlineDeadlineString.length() == 0) {
             return Ui.reply(new String[]{"Format the command as follows:",
                 "deadline <deadline name> /by <deadline>"});
@@ -119,53 +117,27 @@ public class TaskList {
         LocalDateTime deadlineDeadline;
         try {
             deadlineDeadline = LocalDateTime
-                .parse(deadlineDeadlineString.toString(),
+                .parse(deadlineDeadlineString,
                     DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
         } catch (DateTimeParseException e) {
             return Ui.reply("Please format your date as"
                 + " \"year/month/date hour/minute/second\" (24 hour format).");
         }
-        taskList.add(new Deadline(deadlineName.toString(), deadlineDeadline));
+        taskList.add(new Deadline(deadlineName, deadlineDeadline));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         return justAddedComment();
     }
 
     /**
-     * Append a functional.Event to the todoList.
+     * Append an Event to the todoList.
      *
      * @param arguments The command arguments.
      */
     public static String event(String[] arguments) throws IOException {
-        StringBuilder eventName = new StringBuilder();
-        StringBuilder eventStartTimeString = new StringBuilder();
-        StringBuilder eventEndTimeString = new StringBuilder();
-        int readMode = 0;
-        for (int i = 1; i < arguments.length; ++i) {
-            if (arguments[i].equals("/from")) {
-                readMode = 1;
-                continue;
-            }
-            if (arguments[i].equals("/to")) {
-                readMode = 2;
-                continue;
-            }
-            if (readMode == 0) {
-                if (eventName.length() != 0) {
-                    eventName.append(' ');
-                }
-                eventName.append(arguments[i]);
-            } else if (readMode == 1) {
-                if (eventStartTimeString.length() != 0) {
-                    eventStartTimeString.append(' ');
-                }
-                eventStartTimeString.append(arguments[i]);
-            } else if (readMode == 2) {
-                if (eventEndTimeString.length() != 0) {
-                    eventEndTimeString.append(' ');
-                }
-                eventEndTimeString.append(arguments[i]);
-            }
-        }
+        String[] flagged = readFlags(arguments, "/from", "/to");
+        String eventName = flagged[0];
+        String eventStartTimeString = flagged[1];
+        String eventEndTimeString = flagged[2];
         if (eventName.length() == 0 || eventStartTimeString.length() == 0
             || eventEndTimeString.length() == 0) {
             return Ui.reply(new String[]{"Format the command as follows:",
@@ -175,16 +147,16 @@ public class TaskList {
         LocalDateTime eventEndTime;
         try {
             eventStartTime = LocalDateTime
-                .parse(eventStartTimeString.toString(),
+                .parse(eventStartTimeString,
                     DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
             eventEndTime = LocalDateTime
-                .parse(eventEndTimeString.toString(),
+                .parse(eventEndTimeString,
                     DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
         } catch (DateTimeParseException e) {
             return Ui.reply("Please format your date as"
                 + " \"year/month/date hour/minute/second\" (24 hour format).");
         }
-        taskList.add(new Event(eventName.toString(), eventStartTime, eventEndTime));
+        taskList.add(new Event(eventName, eventStartTime, eventEndTime));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         return justAddedComment();
     }
@@ -295,14 +267,8 @@ public class TaskList {
         if (taskList.isEmpty()) {
             return Ui.reply("You have no tasks in your list.");
         }
-        StringBuilder searchPhraseStringBuilder = new StringBuilder();
-        for (int i = 1; i < arguments.length; ++i) {
-            if (i > 1) {
-                searchPhraseStringBuilder.append(' ');
-            }
-            searchPhraseStringBuilder.append(arguments[i]);
-        }
-        String searchPhrase = searchPhraseStringBuilder.toString();
+        String searchPhrase = String.join(" ",
+            Arrays.asList(arguments).subList(1, arguments.length));
         ArrayList<String> toReplyArrayList = new ArrayList<>();
         toReplyArrayList.add("Here are the tasks in your list which matches the"
             + " search phrase.");

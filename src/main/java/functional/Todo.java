@@ -57,10 +57,10 @@ public class Todo extends Task {
      */
     @Override
     public boolean equals(Object rhs) {
-        if (rhs instanceof Todo) {
-            Todo rhsDeadline = (Todo) rhs;
-            return toData().equals(rhsDeadline.toData());
+        if (!(rhs instanceof Todo)) {
+            return false;
         }
-        return false;
+        Todo rhsDeadline = (Todo) rhs;
+        return toData().equals(rhsDeadline.toData());
     }
 }
