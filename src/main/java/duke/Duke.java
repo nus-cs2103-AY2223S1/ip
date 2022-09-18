@@ -1,6 +1,6 @@
 package duke;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 import duke.javafx.DialogBox;
 import javafx.application.Application;
@@ -23,10 +23,9 @@ import duke.commands.Command;
  */
 public class Duke extends Application {
     // Chatbot stuff
-    private Scanner scanner;
-    private UI ui;
-    private TaskList taskList;
-    private Parser parser;
+    private final UI ui;
+    private final TaskList taskList;
+    private final Parser parser;
 
     // Java FX Stuff
     private Stage stage;
@@ -35,12 +34,11 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image userPhoto = new Image(this.getClass().getResourceAsStream("/images/randomJonin.png"));
-    private Image narutoPhoto = new Image(this.getClass().getResourceAsStream("/images/naruto.png"));
+    private final Image userPhoto = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/randomJonin.png")));
+    private final Image narutoPhoto = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/naruto.png")));
 
 
     public Duke() {
-        this.scanner = new Scanner(System.in);
         this.ui = new UI();
         this.taskList = new TaskList(ui);
         this.parser = new Parser();

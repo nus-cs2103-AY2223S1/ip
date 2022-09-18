@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -37,12 +38,7 @@ public class Storage {
         JSONArray itemsJson;
         ArrayList<Item> storedItems = new ArrayList<>(100);
 
-        try (FileReader reader = new FileReader(this.filePath)) {
-            JSONParser parser = new JSONParser();
-            itemsJson = (JSONArray) parser.parse(reader);
-            itemsJson.forEach(obj -> this.parseJsonToItem((JSONObject) obj, storedItems));
-        } catch (FileNotFoundException e) {
-            System.out.println("Save File does not exist, starting with a new list.");
+        if (!Files.exists(Paths.get(this.filePath))) {
             try {
                 File file = new File(this.filePath);
                 file.createNewFile();
@@ -50,6 +46,15 @@ public class Storage {
             } catch (IOException io) {
                 System.out.println("Error creating new save file");
             }
+        }
+
+        // Assert that the file just created / already there exists
+        assert Files.exists(Paths.get(this.filePath));
+
+        try (FileReader reader = new FileReader(this.filePath)) {
+            JSONParser parser = new JSONParser();
+            itemsJson = (JSONArray) parser.parse(reader);
+            itemsJson.forEach(obj -> this.parseJsonToItem((JSONObject) obj, storedItems));
         } catch (IOException e) {
             System.out.println("Error whilst opening file, please try again later.");
         } catch (ParseException e) {
