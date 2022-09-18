@@ -1,0 +1,18 @@
+list
+todo eat
+todo sleep
+event life /at now
+deadline project /by today
+list
+mark 2
+list
+mark 5
+list
+unmark 2
+list
+todo
+todo   
+event  
+delete 2
+list
+bye
