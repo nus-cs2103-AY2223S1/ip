@@ -19,6 +19,7 @@ public class SaveLine {
      * @param nameData The details of the data.
      */
     public SaveLine(String infoType, String ... nameData) {
+        assert(nameData.length % 2 == 0);
         this.infoType = infoType;
         this.keyValuePairs = new ArrayList<>();
         for (int i = 0; i < nameData.length; i += 2) {

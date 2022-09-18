@@ -1,9 +1,9 @@
 package technical;
 
+import java.io.IOException;
+
 import javafx.util.Pair;
 import ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Parser class to process user inputs.

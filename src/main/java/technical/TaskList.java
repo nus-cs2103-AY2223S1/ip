@@ -18,26 +18,26 @@ import ui.Ui;
  * @author Nicholas Patrick
  */
 public class TaskList {
-    private static ArrayList<Task> taskList = new ArrayList<>();
+    private static final ArrayList<Task> taskList = new ArrayList<>();
 
     /**
      * Loads tasks from the save file.
-     * @throws IOException
+     * @throws IOException if it, for any reason, fails to load the file
      */
     public static void loadFromSaveFile() throws IOException {
         SaveFile.loadSaveFile();
         for (SaveLine i : SaveFile.getFileData()) {
             if (i.getInfoType().equals("todo")) {
-                TaskList.taskList.add(new Todo(i));
+                taskList.add(new Todo(i));
                 continue;
             }
             if (i.getInfoType().equals("deadline")) {
-                TaskList.taskList.add(new Deadline(i));
+                taskList.add(new Deadline(i));
                 continue;
             }
             if (i.getInfoType().equals("event")) {
-                TaskList.taskList.add(new Event(i));
-                continue;
+                taskList.add(new Event(i));
+                // continue;
             }
         }
     }
@@ -121,7 +121,7 @@ public class TaskList {
                     DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
         } catch (DateTimeParseException e) {
             return Ui.reply("Please format your date as"
-                + " \"year/month/date hour/minute/second\" (24 hour format).");
+                + " \"year/month/date hour:minute:second\" (24 hour format).");
         }
         taskList.add(new Deadline(deadlineName, deadlineDeadline));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
@@ -154,7 +154,7 @@ public class TaskList {
                     DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
         } catch (DateTimeParseException e) {
             return Ui.reply("Please format your date as"
-                + " \"year/month/date hour/minute/second\" (24 hour format).");
+                + " \"year/month/date hour:minute:second\" (24 hour format).");
         }
         taskList.add(new Event(eventName, eventStartTime, eventEndTime));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
