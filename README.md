@@ -12,7 +12,7 @@ Duke is a flexible software that helps to plan, manage and track all your tasks.
 
 All you need to do is, 
 
-1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.6/duke.jar).
+1. download it from [here](https://github.com/wweqg/ip/releases/tag/v0.2).
 2. place it in the directory that you would like to place your task list at.
 3. open your terminal in the same directory, enter `java -jar duke.jar`.
 
