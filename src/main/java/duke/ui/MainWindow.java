@@ -1,9 +1,8 @@
 package duke.ui;
 
 import duke.Duke;
-import duke.ui.DialogBox;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -15,6 +14,8 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    private static final String EXIT_RESPONSE = "Baa! :( See you later.";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -59,5 +60,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (response.equals(EXIT_RESPONSE)) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // do nothing
+                }
+                Platform.exit();
+            }).start();
+        }
     }
 }
