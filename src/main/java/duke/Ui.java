@@ -1,5 +1,7 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -113,6 +115,15 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             print((i + 1) + ". " + tasks.get(i));
         }
+    }
+
+    /**
+     * Prints the nearest date without task to the UI.
+     *
+     * @param date Nearest date without task.
+     */
+    public void findFreeTimes(LocalDate date) {
+        print("The nearest date without task is " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ".");
     }
 
     /**
