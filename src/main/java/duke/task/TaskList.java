@@ -66,6 +66,8 @@ public class TaskList {
      */
     public void markTaskAtPos(int position) throws IndexOutOfBoundsException{
         Task currTask = getTask(position);
+        assert position <= this.count && position > 0 :
+                "Position argument should be more than 0 and less than or equal to the task list size";
         currTask.markAsDone();
     }
 
@@ -77,6 +79,8 @@ public class TaskList {
      */
     public void unmarkTaskAtPos(int position) throws IndexOutOfBoundsException{
         Task currTask = getTask(position);
+        assert position <= this.count && position > 0 :
+                "Position argument should be more than 0 and less than or equal to the task list size";
         currTask.unmark();
     }
 
@@ -90,6 +94,8 @@ public class TaskList {
      */
     public Task deleteTaskAtPos(int position) throws IndexOutOfBoundsException {
         Task deletedTask = getTask(position);
+        assert position <= this.count && position > 0 :
+                "Position argument should be more than 0 and less than or equal to the task list size";
         this.taskArray.remove(position - 1);
         this.count -= 1;
         return deletedTask;
