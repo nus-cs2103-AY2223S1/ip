@@ -12,9 +12,7 @@ import task.TaskList;
 import ui.UI;
 
 
-/**
- * Bye is a class that writes all the tasks from the TaskList to duke.txt.
- */
+
 public class Bye {
 
     protected static UI ui = new UI();

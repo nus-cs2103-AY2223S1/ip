@@ -5,9 +5,6 @@ import duke.DukeException;
 import task.TaskList;
 import ui.UI;
 
-/**
- * A class that marks a Task done.
- */
 public class Mark {
 
     private static UI ui = new UI();

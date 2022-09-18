@@ -1,27 +1,17 @@
 package duke;
 
-/**
- * Enum class that contains all the possible type of user input.
- */
+
 public enum Command {
 
-    //todo must have some other things behind
+
     TODO("todo"),
-    //deadline need to have deadline, action, /by, date and time
     DEADLINE("deadline"),
-    //event need event, action, /at, date and time
     EVENT("event"),
-    //bye need only bye nothing else
     BYE("bye"),
-    //list need only list nothing else
     LIST("list"),
-    //find can only find 1 word, so find and a word
     FIND("find"),
-    //mark can only mark one index, so mark and integer
     MARK("mark"),
-    //unmark can only unmark one index, so unmark and integer
     UNMARK("unmark"),
-    //delete can only delete one index, so delete and integer
     DELETE("delete"),
     UNKNOWN("unknown");
 

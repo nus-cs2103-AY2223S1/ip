@@ -6,9 +6,7 @@ import task.Task;
 import task.TaskList;
 
 
-/**\
- * Find is a class that searches for tasks that contain a specified word.
- */
+
 public class Find {
 
     /**

@@ -3,9 +3,7 @@ package action;
 import task.TaskList;
 import ui.UI;
 
-/**
- * ListOut is a class that lists out all the tasks in a TaskList.
- */
+
 public class ListOut {
 
     protected static UI ui = new UI();

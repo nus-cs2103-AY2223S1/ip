@@ -2,9 +2,6 @@ package ui;
 
 public class UI {
 
-    /**
-     * Creates a new UI.
-     */
     public UI () {
 
     }

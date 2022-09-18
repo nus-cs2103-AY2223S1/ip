@@ -6,9 +6,7 @@ import task.TaskList;
 
 import ui.UI;
 
-/**
- * Delete is a class that removes a task from the TaskList.
- */
+
 public class Delete {
 
     private static UI ui = new UI();
