@@ -43,6 +43,10 @@ public class Iana {
         return ui.sayHi();
     }
 
+    public String getHelp() {
+        return ui.help();
+    }
+
     /**
      * Checks if user input is an exit command.
      * 

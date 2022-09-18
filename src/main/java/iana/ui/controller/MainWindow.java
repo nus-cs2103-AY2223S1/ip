@@ -59,7 +59,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void welcome() {
         dialogContainer.getChildren().addAll(
-            DialogBox.getIanaDialog(iana.getHi(), ianaImage)
+            DialogBox.getIanaDialog(iana.getHi() + "\n\n" + iana.getHelp(), ianaImage)
         );
         userInput.clear();
     }

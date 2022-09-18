@@ -53,13 +53,8 @@ public class Ui {
      * @return IANA's welcome message.
      */
     public String sayHi() {
-        return say("Hello there~ I'm your assistant\n" +
-        // " ___    _    _   _    _    \n" +
-        // "|_ _|  / \\  | \\ | |  / \\   \n" +
-        // " | |  / _ \\ |  \\| | / _ \\  \n" +
-        // " | | / ___ \\| |\\  |/ ___ \\ \n" +
-        // "|___/_/   \\_\\_| \\_/_/   \\_\\\n" +
-        "\n\t How can I help you today? ^_^");
+        return say("Hello there~ I'm your assistant, Iana.\n\n" +
+        "\tHow can I help you today? ^_^");
     }
 
     /**
@@ -122,5 +117,20 @@ public class Ui {
      */
     public String readCommand() {
         return this.sc.nextLine();
+    }
+
+    public String help() {
+        String todo = "\n\t1. todo <todo name>  : add new todo";
+        String event = "\n\t2. event <event name> /at <event time> : add new event";
+        String deadline = "\n\t3. deadline <name> /by <time> : add new deadline";
+        String list = "\n\t4. list : list all current tasks";
+        String delete = "\n\t5. delete <task number> : delete task";
+        String mark = "\n\t6. mark <task number> : mark task as complete";
+        String unmark = "\n\t7. unmark <task number> : unmark task as complete";
+        String find = "\n\t8. find <keyword> : find task with keyword";
+        String help = "\n\t9. help : get all available commands";
+
+        return String.format("These are the commands you can use, try them!%s%s%s%s%s%s%s%s%s", todo,
+        event, deadline, list, delete, mark, unmark, find, help);
     }
 }

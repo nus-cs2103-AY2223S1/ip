@@ -7,6 +7,7 @@ import iana.command.Command;
 import iana.command.DeleteCommand;
 import iana.command.ExitCommand;
 import iana.command.FindCommand;
+import iana.command.HelpCommand;
 import iana.command.ListCommand;
 import iana.command.MarkCommand;
 import iana.command.UnmarkCommand;
@@ -53,6 +54,9 @@ public class Parser {
 
             case "find":
             return new FindCommand(taskArray[1]);
+
+            case "help":
+            return new HelpCommand();
 
             default:
             return new AnotherCommand();
