@@ -1,13 +1,16 @@
 package duke.storage;
 
+import java.time.LocalDate;
+
 import duke.exceptions.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.time.LocalDate;
-
+/**
+ * Class for reading the lines in the save file.
+ */
 public class StorageReader {
 
     /**

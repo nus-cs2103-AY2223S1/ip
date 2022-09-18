@@ -10,8 +10,8 @@ import duke.task.TaskList;
  * Represents the command for the tagging a task.
  */
 public class TagCommand implements Command {
-    private final int TO_TAG;
-    private final Tag TAG;
+    private int toTag;
+    private Tag tag;
 
     /**
      * Constructs a TagCommand.
@@ -21,8 +21,8 @@ public class TagCommand implements Command {
     public TagCommand(String[] inputs) {
         try {
             String[] parameters = inputs[1].split(" ");
-            this.TO_TAG = Integer.parseInt(parameters[0]) - 1;
-            this.TAG = new Tag(parameters[1]);
+            this.toTag = Integer.parseInt(parameters[0]) - 1;
+            this.tag = new Tag(parameters[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeBadFormatException("tag <integer: toTag> <tagName>");
         }
@@ -37,7 +37,7 @@ public class TagCommand implements Command {
      * @throws DukeIndexRangeException Exception when target to tag does not exist.
      */
     public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
-        String res = tasks.addTag(TO_TAG, TAG);
+        String res = tasks.addTag(toTag, tag);
         storage.refresh(tasks);
         return res;
     }

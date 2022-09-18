@@ -1,13 +1,20 @@
 package duke;
 
-import duke.command.*;
-import duke.exceptions.DukeDateFormatException;
-import duke.exceptions.DukeException;
-import duke.exceptions.DukeMissingParameterException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TagCommand;
+import duke.command.UnmarkCommand;
+import duke.exceptions.DukeDateFormatException;
+import duke.exceptions.DukeException;
+import duke.exceptions.DukeMissingParameterException;
 
 /**
  * A parser class which parses the user input to make it understandable to the duke program.
@@ -64,7 +71,7 @@ public class Parser {
      */
     public static String getDescription(String[] inputs, String escape) {
         String description = null;
-        
+
         try {
             description = inputs[1];
         } catch (ArrayIndexOutOfBoundsException e) {

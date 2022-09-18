@@ -1,17 +1,17 @@
 package duke.command;
 
 import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
 
 /**
  * Represents the command for the deleting tasks from Duke's TaskList.
  */
-public class DeleteCommand implements Command{
+public class DeleteCommand implements Command {
 
-    private final int to_delete;
+    private final int toDelete;
 
     /**
      * Constructs a DeleteCommand.
@@ -20,7 +20,7 @@ public class DeleteCommand implements Command{
      */
     public DeleteCommand(String[] inputs) {
         try {
-            this.to_delete = Integer.parseInt(inputs[1]) - 1;
+            this.toDelete = Integer.parseInt(inputs[1]) - 1;
         } catch (NumberFormatException e) {
             throw new DukeBadFormatException("delete <integer>");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -37,7 +37,7 @@ public class DeleteCommand implements Command{
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
-        String res = tasks.delete(to_delete);
+        String res = tasks.delete(toDelete);
         storage.refresh(tasks);
         return res;
     }

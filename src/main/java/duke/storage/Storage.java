@@ -1,7 +1,6 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-import duke.task.*;
+import static duke.storage.StorageReader.fileLineToTask;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,13 +11,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static duke.storage.StorageReader.fileLineToTask;
+import duke.exceptions.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * A class for storing and retrieving save data for Duke.
  */
 public class Storage {
-    File file;
+    private File file;
 
     /**
      * Constructs a Storage.

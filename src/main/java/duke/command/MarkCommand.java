@@ -1,19 +1,16 @@
 package duke.command;
 
-import duke.Duke;
 import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
-
-import java.lang.reflect.Array;
 
 /**
  * Represents the command for marking a task in Duke's TaskList.
  */
-public class MarkCommand implements Command{
-    private final int to_mark;
+public class MarkCommand implements Command {
+    private final int toMark;
 
     /**
      * Constructs a MarkCommand.
@@ -22,7 +19,7 @@ public class MarkCommand implements Command{
      */
     public MarkCommand(String[] inputs) {
         try {
-            this.to_mark = Integer.parseInt(inputs[1]) - 1;
+            this.toMark = Integer.parseInt(inputs[1]) - 1;
         } catch (NumberFormatException e) {
             throw new DukeBadFormatException("mark <integer>");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -39,7 +36,7 @@ public class MarkCommand implements Command{
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
-        String res = tasks.mark(to_mark);
+        String res = tasks.mark(toMark);
         storage.refresh(tasks);
         return res;
     }

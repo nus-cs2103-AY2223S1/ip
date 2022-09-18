@@ -4,7 +4,7 @@ package duke.exceptions;
  * DukeException represents the possible exceptions that might occur while using Duke.
  */
 public class DukeException extends RuntimeException {
-    private final String MESSAGE;
+    private String message;
 
     /**
      * Constructs a DukeException.
@@ -12,7 +12,7 @@ public class DukeException extends RuntimeException {
      * @param message Exception message.
      */
     public DukeException(String message) {
-        this.MESSAGE = message;
+        this.message = message;
     }
 
     /**
@@ -22,7 +22,7 @@ public class DukeException extends RuntimeException {
      */
     @Override
     public String getMessage() {
-        return "Squeak!\n" + this.MESSAGE + "\n";
+        return "Squeak!\n" + this.message + "\n";
     }
-    
+
 }

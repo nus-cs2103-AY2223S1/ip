@@ -1,17 +1,17 @@
 package duke.command;
 
 import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
 
 /**
  * Represents the command for un-marking a task in Duke's TaskList.
  */
-public class UnmarkCommand implements Command{
+public class UnmarkCommand implements Command {
 
-    private final int to_unmark;
+    private final int toUnmark;
 
     /**
      * Constructs an UnmarkCommand.
@@ -20,7 +20,7 @@ public class UnmarkCommand implements Command{
      */
     public UnmarkCommand(String[] inputs) {
         try {
-            this.to_unmark = Integer.parseInt(inputs[1]) - 1;
+            this.toUnmark = Integer.parseInt(inputs[1]) - 1;
         } catch (NumberFormatException e) {
             throw new DukeBadFormatException("unmark <integer>");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -37,7 +37,7 @@ public class UnmarkCommand implements Command{
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
-        String res = tasks.unmark(to_unmark);
+        String res = tasks.unmark(toUnmark);
         storage.refresh(tasks);
         return res;
     }

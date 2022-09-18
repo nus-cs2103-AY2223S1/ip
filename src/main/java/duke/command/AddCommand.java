@@ -10,8 +10,8 @@ import duke.task.TaskList;
  * Represents the command for the addition of new tasks to Duke's TaskList.
  */
 public class AddCommand implements Command {
-    String[] inputs;
-    String commandType;
+    private String[] inputs;
+    private String commandType;
 
     /**
      * Constructs an AddCommand.

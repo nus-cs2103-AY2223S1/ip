@@ -1,7 +1,6 @@
 package duke.task;
 
 import duke.Parser;
-import duke.exceptions.DukeDateFormatException;
 import duke.exceptions.DukeException;
 
 /**
@@ -107,8 +106,8 @@ public abstract class Task {
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
             Task tmp = (Task) obj;
-            return tmp.description.equals(this.description) &&
-                    tmp.isDone == this.isDone;
+            return tmp.description.equals(this.description)
+                    && tmp.isDone == this.isDone;
         }
         return false;
     }

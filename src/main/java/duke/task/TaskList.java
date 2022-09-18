@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.exceptions.DukeIndexRangeException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.exceptions.DukeIndexRangeException;
 
 /**
  * A class representing a list of tasks.
@@ -62,8 +62,9 @@ public class TaskList {
         }
 
         task.mark();
-        return "Meow task done. Good job!\n" +
-                "  " + task;
+        return "Meow task done. Good job!\n"
+                + "  "
+                + task;
     }
 
     /**
@@ -83,8 +84,9 @@ public class TaskList {
         }
 
         task.unmark();
-        return "Boooo. Task is marked as not done.\n" +
-                "  " + task;
+        return "Boooo. Task is marked as not done.\n"
+                + "  "
+                + task;
     }
 
     /**
@@ -105,9 +107,11 @@ public class TaskList {
 
         this.tasks.remove(index);
         assert !this.tasks.contains(task);
-        return "Yikes! I've removed this task:\n" +
-                "  " + task.toString() + "\n" +
-                String.format("Now you have %d tasks in the list.", this.tasks.size());
+        return "Yikes! I've removed this task:\n"
+                + "  "
+                + task.toString()
+                + "\n"
+                + String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
     /**
@@ -116,12 +120,12 @@ public class TaskList {
      * @param task Task to be added.
      * @return Output message after successfully adding the task.
      */
-    public String add(Task task){
+    public String add(Task task) {
         this.tasks.add(task);
         assert this.tasks.contains(task);
-        return "Hiss. I've added this task:\n" +
-                "   " + task.toString() + "\n" +
-                String.format("Now you have %d tasks in the list.", this.tasks.size());
+        return "Hiss. I've added this task:\n"
+                + "   " + task.toString() + "\n"
+                + String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
     /**
