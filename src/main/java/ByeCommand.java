@@ -10,12 +10,12 @@ public class ByeCommand extends Command {
     /**
      * Returns KKBot's closer message when user inputs "bye"
      * @param tasks the list of tasks stored by KKBot
-     * @param display the display object that governs what response is returned to the user
+     * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
      * @return the closer message when KKBot is terminated
      */
     @Override
-    public String execute(TaskList tasks, Display display, Storage storage) {
-        return display.showCloser();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showCloser();
     }
 }

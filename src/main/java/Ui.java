@@ -1,17 +1,17 @@
 /**
- * Display class that includes all text-based visual elements
+ * Ui class that includes all text-based visual elements
  * for KKBot.
  * Only used for welcome message.
  *
  * @author AkkFiros
  */
 
-public class Display {
+public class Ui {
 
     /**
-     * Empty constructor for Display class
+     * Empty constructor for Ui class
      */
-    public Display() {}
+    public Ui() {}
 
     private static String DIVIDER = "____________________________________________________________\n";
 
