@@ -23,8 +23,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return this + tasks.compileAllTasks()
-                + "\n________________________________________";
+        return this + tasks.compileAllTasks();
     }
 
     /**
@@ -34,7 +33,6 @@ public class ListCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Here are the tasks in your to-do list:";
+        return "Here are the tasks in your to-do list:";
     }
 }

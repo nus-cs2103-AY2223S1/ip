@@ -30,11 +30,9 @@ public class Ui {
      * @return String representation of a Welcome Message
      */
     public static String welcomeMessage() {
-        return "________________________________________\n"
-                + "Kon'nichiwa, I am Raijinmaru! A Fat Capybara!\n"
+        return "Kon'nichiwa, I am Raijinmaru! A Fat Capybara!\n"
                 + "How may I assist you today?\n"
-                + "Type help for list of commands\n"
-                + "________________________________________";
+                + "Type help for list of commands";
     }
 
     /**
@@ -47,10 +45,10 @@ public class Ui {
     }
 
     /**
-     * Stops the ChatBot and closes the window after 5 seconds.
+     * Stops the ChatBot and closes the window after 2 seconds.
      */
     public void stopDuke() {
-        PauseTransition closeWindow = new PauseTransition(Duration.seconds(5));
+        PauseTransition closeWindow = new PauseTransition(Duration.seconds(2));
         closeWindow.setOnFinished(e -> this.stage.close());
         closeWindow.play();
     }

@@ -62,14 +62,12 @@ public class AddCommand extends Command {
         storage.writeToFile(tasks);
         if (tasks.size() == 1) {
             return this + taskDescription
-                    + "\nNow you have 1 task in the list."
-                    + "\n________________________________________";
+                    + "\nNow you have 1 task in the list.";
         } else {
             return this + taskDescription
                     + "\nNow you have "
                     + tasks.size()
-                    + " tasks in the list."
-                    + "\n________________________________________";
+                    + " tasks in the list.";
         }
 
     }
@@ -97,8 +95,7 @@ public class AddCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Got it. I have added this task:\n";
+        return "Got it. I have added this task:\n";
     }
 
     /**

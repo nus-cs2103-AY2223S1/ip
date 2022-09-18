@@ -33,8 +33,6 @@ public class WrongCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Sorry! I don't know what that means :(\n"
-                + "________________________________________";
+        return "Sorry! I don't know what that means :(";
     }
 }

@@ -38,9 +38,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Sayonara! Mata ne!\n"
-                + "--- The window will close in 5 seconds ---\n"
-                + "________________________________________";
+        return "Sayonara! Mata ne!\n"
+                + "--- The window will close in 2 seconds ---";
     }
 }

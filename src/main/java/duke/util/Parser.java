@@ -44,49 +44,27 @@ public class Parser {
     private static int taskNumber = -1;
 
     //List of customised error messages
-    private static String emptyInputError = "________________________________________\n"
-            + "Empty strings or blanks are invalid!\n"
-            + "________________________________________";
+    private static String emptyInputError = "Empty strings or blanks are invalid!";
 
-    private static String deleteNullError = "________________________________________\n"
-            + "OOPS!!! The task number for deleting must be specified!\n"
-            + "________________________________________";
+    private static String deleteNullError = "OOPS!!! The task number for deleting must be specified!";
 
-    private static String deleteInvalidError = "________________________________________\n"
-            + "OOPS!!! Please input a number after delete keyword!\n"
-            + "________________________________________";
+    private static String deleteInvalidError = "OOPS!!! Please input a number after delete keyword!";
 
-    private static String markNullError = "________________________________________\n"
-            + "OOPS!!! The task number for marking must be specified!\n"
-            + "________________________________________";
+    private static String markNullError = "OOPS!!! The task number for marking must be specified!";
 
-    private static String markInvalidError = "________________________________________\n"
-            + "OOPS!!! Please input a number after mark keyword!\n"
-            + "________________________________________";
+    private static String markInvalidError = "OOPS!!! Please input a number after mark keyword!";
 
-    private static String unmarkNullError = "________________________________________\n"
-            + "OOPS!!! The task number for unmarking must be specified!\n"
-            + "________________________________________";
+    private static String unmarkNullError = "OOPS!!! The task number for unmarking must be specified!";
 
-    private static String unmarkInvalidError = "________________________________________\n"
-            + "OOPS!!! Please input a number after unmark keyword!\n"
-            + "________________________________________";
+    private static String unmarkInvalidError = "OOPS!!! Please input a number after unmark keyword!";
 
-    private static String todoNullError = "________________________________________\n"
-            + "OOPS!!! The description of a todo cannot be empty.\n"
-            + "________________________________________";
+    private static String todoNullError = "OOPS!!! The description of a todo cannot be empty.";
 
-    private static String deadlineNullError = "________________________________________\n"
-            + "OOPS!!! The description of a deadline cannot be empty.\n"
-            + "________________________________________";
+    private static String deadlineNullError = "OOPS!!! The description of a deadline cannot be empty.";
 
-    private static String eventNullError = "________________________________________\n"
-            + "OOPS!!! The description of an event cannot be empty.\n"
-            + "________________________________________";
+    private static String eventNullError = "OOPS!!! The description of an event cannot be empty.";
 
-    private static String findNullError = "________________________________________\n"
-            + "OOPS!!! The keyword to search cannot be empty.\n"
-            + "________________________________________";
+    private static String findNullError = "OOPS!!! The keyword to search cannot be empty.";
 
     /**
      * Creates an instance of a Parser.

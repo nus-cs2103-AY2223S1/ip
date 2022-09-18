@@ -7,12 +7,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 /**
  * An example of a custom control using FXML.
@@ -28,12 +33,18 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    private Color labelColor;
+    private CornerRadii labelCornerRadii = new CornerRadii(10);
+
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            this.labelColor = Color.web("#ECCBA9"); // Color for users
+            BackgroundFill userBackground = new BackgroundFill(this.labelColor, labelCornerRadii, Insets.EMPTY);
+            dialog.setBackground(new Background(userBackground));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,6 +61,9 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        this.labelColor = Color.web("#E9EDC9"); // Color for duke
+        BackgroundFill dukeBackground = new BackgroundFill(this.labelColor, labelCornerRadii, Insets.EMPTY);
+        dialog.setBackground(new Background(dukeBackground));
     }
 
     /**

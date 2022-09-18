@@ -21,27 +21,13 @@ public class UndoCommand extends Command {
     private int taskNumber;
 
     // Messages to return for the various Commands
-    private final String undoMarkMessage = "________________________________________\n"
-            + "Undo Complete! I unmarked the task\n"
-            + "________________________________________";;
-    private final String undoUnmarkMessage = "________________________________________\n"
-            + "Undo Complete! I marked the task\n"
-            + "________________________________________";;
-    private final String undoTodoMessage = "________________________________________\n"
-            + "Undo Complete! I deleted the todo task\n"
-            + "________________________________________";;
-    private final String undoDeadlineMessage = "________________________________________\n"
-            + "Undo Complete! I deleted the deadline task\n"
-            + "________________________________________";;
-    private final String undoEventMessage = "________________________________________\n"
-            + "Undo Complete! I deleted the event task\n"
-            + "________________________________________";
-    private final String undoDeleteMessage = "________________________________________\n"
-            + "Undo Complete! I added back the deleted task\n"
-            + "________________________________________";
-    private final String undoDefaultMessage = "________________________________________\n"
-            + "Error! Cannot undo the previous command >.<\n"
-            + "________________________________________";
+    private final String undoMarkMessage = "Undo Complete! I unmarked the task";
+    private final String undoUnmarkMessage = "Undo Complete! I marked the task";
+    private final String undoTodoMessage = "Undo Complete! I deleted the todo task";
+    private final String undoDeadlineMessage = "Undo Complete! I deleted the deadline task";
+    private final String undoEventMessage = "Undo Complete! I deleted the event task";
+    private final String undoDeleteMessage = "Undo Complete! I added back the deleted task";
+    private final String undoDefaultMessage = "Error! Cannot undo the previous command >.<";
 
     /**
      * Creates an instance of UndoCommand.

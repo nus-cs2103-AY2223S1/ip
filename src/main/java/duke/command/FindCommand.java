@@ -37,7 +37,7 @@ public class FindCommand extends Command {
         for (int i = 0; i < this.keyWord.length; i++) {
             respondMessage.append(tasks.findTasks(this.keyWord[i]));
         }
-        return respondMessage.append("\n________________________________________").toString();
+        return respondMessage.toString();
     }
 
     /**
@@ -47,7 +47,6 @@ public class FindCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Here are the matching tasks in your to-do list:";
+        return "Here are the matching tasks in your to-do list:";
     }
 }

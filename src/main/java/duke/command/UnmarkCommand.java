@@ -40,9 +40,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
-            String errorMessage = "________________________________________\n"
-                    + "OOPS!!! There is no such task number!\n"
-                    + "________________________________________";
+            String errorMessage = "OOPS!!! There is no such task number!";
             throw new DukeException(errorMessage);
         }
 
@@ -50,8 +48,7 @@ public class UnmarkCommand extends Command {
         storage.writeToFile(tasks);
         return this
                 + "  "
-                + tasks.getTask(this.taskNumber - 1).toString()
-                + "\n________________________________________";
+                + tasks.getTask(this.taskNumber - 1).toString();
     }
 
     /**
@@ -61,8 +58,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Alright! I have marked this task as not done yet:\n";
+        return "Alright! I have marked this task as not done yet:\n";
     }
 
     /**

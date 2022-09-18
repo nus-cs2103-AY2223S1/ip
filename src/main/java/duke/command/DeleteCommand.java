@@ -41,17 +41,13 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         //Exception: Throw an error when user tries to delete from an empty list
         if (tasks.isEmpty()) {
-            String errorMessage = "________________________________________\n"
-                    + "OOPS!!! There are no task left to be deleted!\n"
-                    + "________________________________________";
+            String errorMessage = "OOPS!!! There are no task left to be deleted!";
             throw new DukeException(errorMessage);
         }
 
         //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
         if (taskNumber > tasks.size() || taskNumber < 1) {
-            String errorMessage = "________________________________________\n"
-                    + "OOPS!!! There is no such task number!\n"
-                    + "________________________________________";;
+            String errorMessage = "OOPS!!! There is no such task number!";
             throw new DukeException(errorMessage);
         }
         String taskDescription = tasks.getTask(taskNumber - 1).toString();
@@ -60,8 +56,7 @@ public class DeleteCommand extends Command {
                 + taskDescription
                 + "\n Now you have "
                 + (tasks.size() - 1)
-                + " tasks in the list."
-                + "\n________________________________________";
+                + " tasks in the list.";
         Parser.setTaskDescription(taskDescription);
         tasks.delete(this.taskNumber - 1);
         storage.writeToFile(tasks);
@@ -75,8 +70,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String toString() {
-        return "________________________________________\n"
-                + "Noted. I have removed this task:\n";
+        return "Noted. I have removed this task:\n";
     }
 
     /**
