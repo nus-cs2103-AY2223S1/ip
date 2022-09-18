@@ -107,7 +107,12 @@ public class TaskList {
             list += newLine;
             count += 1;
         }
-        return list;
+        if (count == 1) {
+            String empty = "Your list is empty.";
+            return empty;
+        } else {
+            return list;
+        }
     }
 
     /**
@@ -120,11 +125,13 @@ public class TaskList {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
         assert number >= 0 : "idx should be >= 0";
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + tasks.get(number).toString());
+        String line1 = "Noted. I've removed this task:";
+        String line2 = "  " + tasks.get(number).toString();
         tasks.remove(number);
         size -= 1;
-        return "Now you have " + size + " tasks in the list";
+        String line3 = "Now you have " + size + " tasks in the list";
+        String message = line1 + "\n" + line2 + "\n" + line3;
+        return message;
     }
 
     /**
