@@ -39,7 +39,7 @@ Example:
 Expected outcome:
 ```
 Got it! I've added this task: 
-[D][] go gym (at: Monday, 12 December 2022)
+[E][] go gym (at: Monday, 12 December 2022)
 You have 1 tasks in your list.
 ```
 ### `deadline` `dl` Adding deadlines
