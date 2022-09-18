@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -38,11 +39,14 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
         Background background = new Background(new BackgroundImage(backgroundImage,
-                BackgroundRepeat.SPACE,
                 BackgroundRepeat.ROUND,
-                BackgroundPosition.DEFAULT,
-                new BackgroundSize(getWidth(), getHeight(), true, true, true, false)));
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, false, true)));
         dialogContainer.setBackground(background);
+        sendButton.setFont(Font.font("Verdana"));
+        sendButton.setStyle("-fx-background-color: #8B5B5B; -fx-text-fill: white; -fx-background-radius: 10;");
+        userInput.setFont(Font.font("Verdana"));
     }
 
     public void setPikachu(Pikachu d) {
