@@ -97,9 +97,8 @@ public class Display {
      * Returns a string representation of the list of all the tasks stored in KKBot.
      * @param tasks the list of tasks stored in KKBot
      * @return the string representation of all tasks on the list
-     * @throws InvalidTaskException if user input is wrong
      */
-    public String showAllTasks(TaskList tasks) throws InvalidTaskException{
+    public String showAllTasks(TaskList tasks) {
         int numOfTasks = tasks.getNumberOfTasks();
         if (numOfTasks == 0) {
             return DIVIDER + "Woohoo! You don't have any tasks!" + DIVIDER;

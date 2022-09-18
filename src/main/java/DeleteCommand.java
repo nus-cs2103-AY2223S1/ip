@@ -22,11 +22,15 @@ public class DeleteCommand extends Command {
      * Returns a command for KKBot when user inputs "delete".
      * @param tasks the list of tasks stored by KKBot
      * @param display the display object that governs what response is returned to the user
+     * @param storage the storage object to save tasks to hard drive
      * @return the message shown when a task is deleted
      * @throws InvalidTaskException when the user input is wrong
+     * @throws StorageException if there is an error reading from/writing to hard drive
      */
-    public String execute(TaskList tasks, Display display) throws InvalidTaskException {
+    public String execute(TaskList tasks, Display display, Storage storage)
+            throws InvalidTaskException, StorageException {
         Task task = tasks.deleteTask(index);
+        storage.save(tasks);
         return display.showTaskDeletion(task)
                 + display.showNumberOfTasks(tasks.getNumberOfTasks());
     }

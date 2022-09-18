@@ -24,7 +24,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[%s] %s (by: %s)", Deadline.DEADLINE_SYMBOL,
-                super.toString(), DateParser.getParsedDate(date));
+                super.toString(), Parser.parseDate(date));
     }
 
     /**

@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import static java.lang.Boolean.parseBoolean;
 
 /**
@@ -11,6 +15,7 @@ public class Parser {
     private enum MissingDetails {
         TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE, DATE, KEYWORD
     }
+    private static final String DATE_FORMAT = "yyyy-mm-dd";
 
     /**
      * Parse method to determine the command to pass to KKBot.
@@ -44,7 +49,7 @@ public class Parser {
     /**
      * Method to parse for a user-specified index number.
      * @param splitInput array of input components after initial parse
-     * @param inputCommand the commmand input by user
+     * @param inputCommand the command input by user
      * @return the command after retrieving the user input task index number
      * @throws InvalidCommandException when user input a wrong command
      * @throws InvalidArgumentException when user input is invalid
@@ -81,5 +86,66 @@ public class Parser {
     }
 
     private static Command parseForDate(String[] splitInput, String type)
-        throws In
+            throws InvalidArgumentException, InvalidDateException {
+        checkInputLength(splitInput, MissingDetails.DESCRIPTION_AND_DATE);
+        assert splitInput.length == 2 : INVALID_INPUT;
+        String description = splitInput[1];
+        boolean isDeadline = type.equals("deadline");
+        String[] splitDescription;
+        if (isDeadline) {
+            splitDescription = description.split(DeadlineCommand.DATE_INPUT, 2);
+        } else {
+            splitDescription = description.split(EventCommand.DATE_INPUT, 2);
+        }
+        checkInputLength(splitDescription, MissingDetails.DESCRIPTION_AND_DATE);
+        assert splitDescription.length == 2 : INVALID_INPUT;
+        String date = splitDescription[1].trim();
+        checkDateFormat(date);
+        String taskDescription = splitDescription[0].trim();
+        if (isDeadline) {
+            return new DeadlineCommand(taskDescription, date);
+        } else {
+            return new EventCommand(taskDescription, date);
+        }
+    }
+
+    private static void checkInputLength(String[] splitInput, MissingDetails details)
+            throws InvalidArgumentException {
+        if (splitInput.length < 2) {
+            switch (details) {
+                case TASK_NUMBER:
+                    throw new InvalidArgumentException("You missed out a task number, please input one!");
+                case DESCRIPTION:
+                    throw new InvalidArgumentException("You missed out a task description, please input one!");
+                case DESCRIPTION_AND_DATE:
+                    throw new InvalidArgumentException("You missed out a task description and date, please input one!");
+                case DATE:
+                    throw new InvalidArgumentException("You missed out a date, please input one!");
+                case KEYWORD:
+                    throw new InvalidArgumentException("You missed out a command, please input one!");
+            }
+        }
+    }
+
+    private static int getTaskNumber(String taskNumber)
+            throws InvalidArgumentException {
+        try {
+            return Integer.parseInt(taskNumber.trim());
+        } catch (NumberFormatException e) {
+            throw new InvalidArgumentException("Woops! The task number isn't valid! Please correct it!");
+        }
+    }
+
+    public static void checkDateFormat(String date) throws InvalidDateException {
+        try {
+            LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(DATE_FORMAT);
+        }
+    }
+
+    public static String parseDate(String date) {
+        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return localDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+    }
 }
