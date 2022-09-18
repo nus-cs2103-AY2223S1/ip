@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 /*
 Possible types of tasks to be created
@@ -19,46 +20,11 @@ public class Task {
     private String taskName;
     private TaskType taskType;
     private LocalDate date;
-    private LocalTime time;
-
-    public Task (String taskName, String taskType, boolean done) {
-        this.done = done;
-        this.time = null;
-        if (taskType.equals("TODO")) {
-            this.taskType = TaskType.TODO;
-            this.taskName = taskName;
-            this.date = null;
-            this.time = null;
-        } else if (taskType.equals("DEADLINE") || taskType.equals("EVENT")) {
-            if (taskType.equals("EVENT")) {
-                this.taskType = TaskType.EVENT;
-            } else {
-                this.taskType = TaskType.DEADLINE;
-            }
-            this.taskName = taskName.substring(0, taskName.indexOf("/")).trim();
-            try {
-                this.date = LocalDate.parse(taskName.substring(taskName.indexOf("/") + 4, taskName.indexOf("/") + 14));
-            } catch (DateTimeParseException e) {
-                System.out.println(e.getMessage().substring(e.getMessage().indexOf(": ") + 2));
-            }
-            // for localtime 
-            /* if (taskName.substring(taskName.indexOf("/") + 4).trim().length() != 0) {
-                String hhmm = taskName.substring(taskName.indexOf("/" + 16)).trim();
-                int hour = Integer.parseInt(hhmm.substring(0, 1));
-                int min = Integer.parseInt(hhmm.substring(2, 3));
-                try {
-                    this.time = LocalTime.of(hour, min);
-                } catch (DateTimeParseException e) {
-                    System.out.println(e.getMessage().substring(e.getMessage().indexOf(": ") + 2));
-                }
-            } */
-        }
-    }
 
     public Task (String taskName, String taskType, String timing, boolean done) {
         this.done = done;
         this.taskName = taskName;
-        this.time = null;
+        this.date = null;
         switch (taskType) {
         case "T":
             this.taskType = TaskType.TODO;
@@ -70,6 +36,24 @@ public class Task {
         case "E":
             this.taskType = TaskType.EVENT;
             this.date = LocalDate.parse(timing);
+        }
+    }
+
+    public Task (String taskName, String taskType, String timing) {
+        this.done = false;
+        this.taskName = taskName;
+        this.date = null;
+        switch (taskType.toUpperCase(Locale.ROOT)) {
+            case "TODO":
+                this.taskType = TaskType.TODO;
+                return;
+            case "DEADLINE":
+                this.taskType = TaskType.DEADLINE;
+                this.date = LocalDate.parse(timing);
+                return;
+            case "EVENT":
+                this.taskType = TaskType.EVENT;
+                this.date = LocalDate.parse(timing);
         }
     }
 
@@ -99,22 +83,19 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + getTypeLetter() + "]" + isDoneString() + " " + this.taskName + " " + this.date;
+        if (this.date != null) {
+            return "[" + getTypeLetter() + "]" + isDoneString() + " " + this.taskName + " " + this.date;
+        }
+        return "[" + getTypeLetter() + "]" + isDoneString() + " " + this.taskName;
     }
 
     public String toTxt() {
-        /* if (taskType == duke.TaskType.TODO) {
-            if (done) {
-                return taskType.toString().charAt(0) + " | 1 | " + this.taskName + "\n";
-            }
-            return taskType.toString().charAt(0) + " | 0 | " + this.taskName + "\n";
-        } */
         if (done) {
             return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " +
-                    this.date + timeToString(this.time) + "\n";
+                    this.date + "\n";
         }
         return this.taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " +
-                this.date + timeToString(this.time) + "\n";
+                this.date + "\n";
     }
 
     public void markDone() {

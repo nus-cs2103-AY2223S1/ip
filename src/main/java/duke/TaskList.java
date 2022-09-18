@@ -23,20 +23,24 @@ public class TaskList {
         return taskList;
     }
 
+    public int getTaskListSize() {
+        return this.taskList.size();
+    }
+
     /**
      * Marks a task as done if it is present.
      *
      * @param task Name of the task to be marked as done.
      * @return The success or unsuccessful message to be shown.
      */
-    public String markDone(String task) {
+    public boolean markDone(String task) {
         for (int i = 0; i < this.taskList.size(); i++) {
             if (this.taskList.get(i).getTask().equals(task)) {
                 this.taskList.get(i).markDone();
-                return " okie! " + task + " is done ~\n [X] " + task + "\n";
+                return true;
             }
         }
-        return task + " not found :(\n";
+        return false;
     }
 
     /**
@@ -45,14 +49,14 @@ public class TaskList {
      * @param task Name of the task to be marked as undone.
      * @return The success or unsuccessful message to be shown.
      */
-    public String unmarkDone(String task) {
+    public boolean unmarkDone(String task) {
         for (int i = 0; i < this.taskList.size(); i++) {
             if (this.taskList.get(i).getTask().equals(task)) {
                 this.taskList.get(i).unmarkDone();
-                return " owh ;< so you haven't done " + task + ". unmarked ~\n [ ] " + task + "\n";
+                return true;
             }
         }
-        return task + " not found :(\n";
+        return false;
     }
 
     /**
@@ -61,38 +65,36 @@ public class TaskList {
      * @param userInput Index number of the task to be removed from list.
      * @throws DukeException If task does not exist.
      */
-    public String deleteTask(String userInput) throws DukeException {
-        String line = " _______________________________________ \n";
-        int index = Integer.parseInt(userInput.trim());
+    public Task deleteTask(String userInput) throws DukeException {
+        int index;
+        try {
+            index = Integer.parseInt(userInput.trim());
+        } catch (NumberFormatException e) {
+            throw new DukeException("please enter the index of the task to delete!");
+        }
         if (index <= 0 || index > this.taskList.size()) {
             throw new DukeException("sowwie this item is not found. enter a valid index number from list please!");
         }
         Task taskRemoved = this.taskList.get(index - 1);
         this.taskList.remove(index - 1);
-        return "okie! i've removed: \n " + taskRemoved +
-                "\n now you have " + this.taskList.size() + " task(s) in your list!";
+        return taskRemoved;
     }
 
     /**
      * Adds a task to the task list.
      *
-     * @param userInput Complete user input.
+     * @param task Complete user input.
      * @throws DukeException If task name does not exist.
      */
-    public String addTask(String userInput) throws DukeException {
-        String line = " _______________________________________ \n";
-        if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
+    public void addTask(Task task) throws DukeException {
+        /* if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
             throw new DukeException("the description of a task cannot be empty.");
         }
-        /* Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false); */
-        /* Task t = new Task(Parser.parseUserInput(userInput),
-                Parser.getTaskName(userInput), Parser.parseUserDate(userInput), false); */
         Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
-        this.taskList.add(t);
-        return "okie! i've added: \n " + t +
-                "\n now you have " + this.taskList.size() + " task(s) in your list!";
+                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false); */
+        this.taskList.add(task);
+        /* return "okie! i've added: \n " + t +
+                "\n now you have " + this.taskList.size() + " task(s) in your list!"; */
     }
 
     public ArrayList<Task> find(String keyword) {

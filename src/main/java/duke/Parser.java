@@ -1,4 +1,13 @@
 package duke;
+import duke.command.Command;
+import duke.command.ByeCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.ScheduleCommand;
+import duke.command.FindCommand;
 
 /*
 Makes sense of user command
@@ -11,11 +20,33 @@ public class Parser {
      * @param userInput String of user input.
      * @return The extracted command word.
      */
-    public static String parseUserInput(String userInput) {
-        if (userInput.trim().contains(" ")) {
-            return userInput.trim().substring(0, userInput.indexOf(" ")).trim();
+    public static Command parseUserInput(String userInput) throws DukeException{
+        String[] splitUserInput = userInput.split(" ");
+
+        switch (splitUserInput[0]) {
+            case "bye":
+                return new ByeCommand();
+            case "list":
+                return new ListCommand();
+            case "mark":
+                return new MarkCommand(getTaskName(userInput));
+            case "unmark":
+                return new UnmarkCommand(getTaskName(userInput));
+            case "delete":
+                return new DeleteCommand(getTaskName(userInput));
+            case "schedule":
+                return new ScheduleCommand(getDate(userInput));
+            case "find":
+                return new FindCommand(splitUserInput[1]);
+            case "todo":
+                return new AddCommand(getTaskName(userInput), splitUserInput[0]);
+            case "deadline":
+            case "event":
+                return new AddCommand(getTaskName(userInput), getDate(userInput), splitUserInput[0]);
         }
-        return userInput;
+
+        throw new DukeException("i don't think i know this command :(");
+
     }
 
     /**
@@ -25,8 +56,6 @@ public class Parser {
      * @return The extracted task name.
      */
     public static String getTaskName(String userInput) {
-        /* String[] splitString = userInput.split(" ");
-        return splitString[1]; */
         if (userInput.contains("/")) {
             return userInput.substring(userInput.indexOf(" ") + 1, userInput.indexOf("/") - 1).trim();
         }
@@ -40,14 +69,9 @@ public class Parser {
      * @return The extracted date.
      */
     public static String getDate(String userInput) {
-        return userInput.substring(9);
-    }
-
-    public static String parseUserDate(String userInput) {
         if (userInput.contains("/")) {
-            System.out.println("Date: " + userInput.substring(userInput.indexOf("/") + 4));
             return userInput.substring(userInput.indexOf("/") + 4);
         }
-        return "";
+        return userInput.split(" ")[1];
     }
 }

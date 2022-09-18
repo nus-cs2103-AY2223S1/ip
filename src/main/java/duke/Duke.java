@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Duke {
     private DukieUi dukieUi;
 
     public Duke() {
-        dukieUi = new DukieUi();
+        ui = new Ui();
         storage = new Storage("data/duke.txt");
         try {
             tasks = new TaskList(storage.load());
@@ -34,7 +35,7 @@ public class Duke {
      * Contains Scanner which gets user input and passes it into
      * other objects for interpretation
      */
-    public void run() {
+    /* public void run() {
         ui.sayHello();
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -43,7 +44,7 @@ public class Duke {
         while (true) {
 
             userInput = myObj.nextLine();  // Read user input
-            String command = Parser.parseUserInput(userInput);
+            // String command = Parser.parseUserInput(userInput);
 
             switch (command) {
                 case "bye":
@@ -91,70 +92,30 @@ public class Duke {
                     break;
             }
         }
-    }
+    } */
 
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        // return "Duke heard: " + input;
-        String response = dukieUi.showDoNotKnowMessage();
+        // String response = dukieUi.showDoNotKnowMessage();
 
-        String command = Parser.parseUserInput(input);
+        Command command;
+        String response;
 
-        switch (command) {
-            /* case "bye":
-                ui.showByeMessage();
-                storage.writeItems(list);
-                response = "bye" */
-            case "list":
-                response = dukieUi.showList(this.list);
-                break;
-            case "mark":
-                response = this.tasks.markDone(Parser.getTaskName(input));
-                break;
-            case "unmark":
-                response = this.tasks.unmarkDone(Parser.getTaskName(input));
-                break;
-            case "delete":
-                try {
-                    response = this.tasks.deleteTask(Parser.getTaskName(input));
-                } catch (DukeException e) {
-                    response = e.getMessage();
-                }
-                break;
-            case "schedule":
-                String date = Parser.getDate(input);
-                response = dukieUi.showSchedule(date, list);
-                break;
-            case "find":
-                String keyword = Parser.getTaskName(input);
-                ArrayList<Task> foundTasks = this.tasks.find(keyword);
-                //ui.showMessage("Here are the matching tasks in your list:\n");
-                //ui.showList(foundTasks);
-                response = dukieUi.showFoundTasks(foundTasks, keyword);
-            case "todo":
-            case "deadline":
-            case "event":
-                try {
-                    response = this.tasks.addTask(input);
-                } catch (DukeException e) {
-                    response = e.getMessage();
-                }
-                break;
+        try {
+            command = Parser.parseUserInput(input);
+            response = command.exec(tasks, storage, ui);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
+
         return response;
     }
 
     public String welcome() {
         return "hi I'm Dukie! \nstart by adding a task using one of these commands: \"todo\", \"deadline\", \"event\"";
-    }
-
-
-    public String bye() {
-        storage.writeItems(list);
-        return "hi I'm Dukie! \n start by adding a task using one of these commands: \"todo\", \"deadline\", \"event\"";
     }
 
 }
