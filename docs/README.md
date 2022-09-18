@@ -15,8 +15,8 @@ $ java --version
 
 [^1]: Dookie is only supported on Java 11.
 
-2. Download the latest Dookielicious release JAR file.
-3. Run **DOOKIE** by double-clicking the file that you have just installed. 
+2. Download the latest Dookielicious release JAR file from [here](https://github.com/Jo3LW/ip/releases).
+3. Run **DOOKIE** by double-clicking the file that you have just installed.
 4. HAVE A ***DOOKIE-FILLED*** time :smile: :smile:
 
 ## Features 
