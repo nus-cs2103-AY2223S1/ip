@@ -61,12 +61,12 @@ public class TaskList {
 
 
     private String addItem(Item item) {
-        this.storedItems.add(item);
         int isDup = this.isDuplicate(item);
         if (isDup > -1) {
             return "    Whoops, it seems you've added a duplicate item already in our list:\n    "
                     + this.getListElement(isDup);
         }
+        this.storedItems.add(item);
         return "    Alright! I've added it to our list:" + getListElement(storedItems.size() - 1)
                 + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
