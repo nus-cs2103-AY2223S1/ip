@@ -45,8 +45,8 @@ public class Duke {
                 parsedCommand.execute(storage, taskList);
             }
             fileScanner.close();
-        } catch (CustomMessageException ignored) {
-            System.out.println("Unable to load existing data");
+        } catch (CustomMessageException e) {
+            System.out.println("Unable to parse existing data");
         }
     }
 
