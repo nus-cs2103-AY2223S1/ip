@@ -34,6 +34,17 @@ public class ManageEvents {
         ToDo temp = new ToDo(description);
         this.taskList.add(temp);
         return graphics.addMessage(temp);
+
+    }
+
+    public String addT(String input) throws BlankDescriptionException {
+        if (input.length() == 1) {
+            throw new BlankDescriptionException();
+        }
+        String description = input.substring(1);
+        ToDo temp = new ToDo(description);
+        this.taskList.add(temp);
+        return graphics.addMessage(temp);
     }
 
     /**
@@ -55,6 +66,7 @@ public class ManageEvents {
         return graphics.addMessage(tempTask);
     }
 
+
     public String addDL(String input) throws BlankDescriptionException {
         if (input.length() == 2) {
             throw new BlankDescriptionException();
@@ -66,7 +78,6 @@ public class ManageEvents {
         Deadline tempTask = new Deadline(description, by);
         this.taskList.add(tempTask);
         return graphics.addMessage(tempTask);
-
     }
 
     /**
@@ -88,6 +99,19 @@ public class ManageEvents {
         return graphics.addMessage(tempTask);
     }
 
+    public String addE(String input) throws BlankDescriptionException {
+        if (input.length() == 1) {
+            throw new BlankDescriptionException();
+        }
+        int endAt = input.indexOf("/");
+        String description = input.substring(2, endAt);
+        String at = input.substring(endAt + 4);
+
+        Event tempTask = new Event(description, at);
+        this.taskList.add(tempTask);
+        return graphics.addMessage(tempTask);
+    }
+
     /**
      * Method to mark a task in the task list as done
      * @param input The input by the user
@@ -99,12 +123,25 @@ public class ManageEvents {
         return graphics.markMessage(taskIndex);
     }
 
+    public String mTask(String input) {
+        int taskIndex = Integer.parseInt(input.substring(2)) - 1;
+        taskList.get(taskIndex).markAsDone();
+        return graphics.markMessage(taskIndex);
+    }
+
     /**
      * Method to mark a task in the task list as not done
      * @param input The input by the user
      */
     public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
+        taskList.get(taskIndex).markAsUndone();
+        assert taskIndex >= 0: "task index should not be negative";
+        return graphics.unmarkMessage(taskIndex);
+    }
+
+    public String umTask(String input) {
+        int taskIndex = Integer.parseInt(input.substring(3)) - 1;
         taskList.get(taskIndex).markAsUndone();
         assert taskIndex >= 0: "task index should not be negative";
         return graphics.unmarkMessage(taskIndex);
@@ -128,6 +165,12 @@ public class ManageEvents {
         TaskList results = taskList.findTasks(keyword);
         return graphics.printSearches(results);
 
+    }
+
+    public String f(String input) {
+        String keyword = input.substring(2);
+        TaskList results = taskList.findTasks(keyword);
+        return graphics.printSearches(results);
     }
 
 
