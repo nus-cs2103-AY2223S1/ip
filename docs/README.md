@@ -18,14 +18,14 @@ Graphical User Interface (GUI).
 - [FAQ](http://shawnchew.github.io/ip/#faq)
 - [Summary](http://shawnchew.github.io/ip/#command-summary)
 
-
+<br/>
 
 ## Quick start
 1. Ensure you have Java `11` or above install in your Computer.
 2. Download the latest duke.jar from [here]().
 3. Copy the file to the folder you want to use as the home folder for your Duke.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-   Note how the app contains sample data.
+   Note how the app contains sample data. <br/>
    ![SampleGUI](/SampleGUI.png)
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
@@ -36,7 +36,7 @@ Graphical User Interface (GUI).
     - `bye`: Terminates the program.
 6. Refer to [Features](http://shawnchew.github.io/ip/#features) below for details of each command.
 
-
+<br/>
 
 ## Features
 > Notes about command format:
@@ -119,12 +119,15 @@ Examples:
 Saves the current list and ends the program.
 Format: `bye`
 
-
+<br/>
 
 ## FAQ
 No Questions yet.
 
+<br/>
+
 ## Command summary
+
 | Action   | Format, Examples                                                        |
 |----------|-------------------------------------------------------------------------|
 | list     | `list`                                                                  |
