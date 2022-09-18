@@ -35,7 +35,7 @@ public class Ui {
                 + "1.    ADD A TODO TASK: todo <task>\n"
                 + "2.    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
                 + "3.    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n"
-                + "4.    VIEW LIST OF EVENTS: list\n"
+                + "4.    VIEW LIST OF TASKS: list\n"
                 + "5.    MARK AS DONE: mark <task number>\n"
                 + "6.    UNMARK TASK: unmark <task number>\n"
                 + "7.    REMOVE TASK: remove <task number>\n"
