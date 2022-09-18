@@ -48,11 +48,11 @@ test {
 }
 
 application {
-    mainClassName = "duke.Duke"
+    mainClassName = "manmeowth.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "The Mythical Man-Meowth"
     archiveClassifier = null
 }
 

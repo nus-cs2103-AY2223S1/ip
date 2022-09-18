@@ -9,9 +9,9 @@
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="400.0" style="-fx-background-color: #008080; -fx-border-radius: 39; -fx-border-width: 3; -fx-background-radius: 40; -fx-border-color: #c98a77;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" minHeight="-Infinity" text="Label" textFill="#c98a77" wrapText="true" HBox.hgrow="ALWAYS">
-         <font>
-            <Font name="Bauhaus 93" size="12.0" />
-         </font></Label>
+            <font>
+                <Font name="Arial Black" size="12.0" />
+            </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
