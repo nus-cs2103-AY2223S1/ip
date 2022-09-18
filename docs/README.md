@@ -63,25 +63,25 @@ Duke supports creation of 3 different kind of tasks: todo, deadline, event.
 
 ### Task todo
 
-​ Use todo for less urgent tasks / tasks of lower priority.
+ Use todo for less urgent tasks / tasks of lower priority.
 
 - `todo [Task description]` : Adds a todo task to the task list
 
 ### Task deadline
 
-​ Use deadline for task of higher priority, you can add a specific date modifier to it or just keep the extra information as a String
+ Use deadline for task of higher priority, you can add a specific date modifier to it or just keep the extra information as a String
 
 - `deadline [task description] /by [completion time/other information]`: Adds a deadline task to the task list
 
 ### Task event
 
-​ Use event to mark things that are going to happen, you can add a specific date modifier to it or just keep the extra information as a String
+ Use event to mark things that are going to happen, you can add a specific date modifier to it or just keep the extra information as a String
 
 - `event[task description] /by [event date/other information]`: Adds a event task to the task list
 
 ## Listing all tasks
 
-​ To view all currently added tasks, use:
+ To view all currently added tasks, use:
 
 - `list` : Prints out all tasks
 
@@ -107,7 +107,7 @@ To mark task as incomplete:
 
 ### By keywords
 
-​ To filter the current list using keywords, use the `find` command
+ To filter the current list using keywords, use the `find` command
 
 - `find [search pattern]`: prints out all the tasks that have the specified pattern.
 
@@ -117,7 +117,7 @@ To mark task as incomplete:
 
 ### By Date
 
-​ To see all the tasks that have an attached date before certain period, use:
+ To see all the tasks that have an attached date before certain period, use:
 
 - `by [datetime pattern]`: prints out all tasks that have an attached datetime before the given one.
 
@@ -168,8 +168,7 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 # Command Summary
 
 | Action/Command | Format, Examples |
-| :------------: | :--------------: |
-
+| :------------: | :----------------------------------------------------------: |
 | `bye` | `bye` |
 | `list` | `list` |
 | `mark` | `mark [task index]`, `mark 1`, ` mark 4` |
