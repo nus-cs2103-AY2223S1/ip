@@ -18,4 +18,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 
 henryData/*
 
-src/main/resources/bots/henry/aimlif/*.aiml
+src/main/resources/bots/henry/aimlif/*.aiml.csv
