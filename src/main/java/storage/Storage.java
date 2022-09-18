@@ -3,8 +3,10 @@ package storage;
 import duke.DukeException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.util.ArrayList;
@@ -66,13 +68,19 @@ public class Storage {
     public String printOutContent() {
         StringBuilder out = new StringBuilder();
         try {
-            Scanner myReader = new Scanner(file);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                out.append("\n").append(data);
+            File task = new File(filePath);
+            task.getParentFile().mkdirs();
+            if (!task.createNewFile()) {
+                Scanner myReader = new Scanner(file);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    out.append("\n").append(data);
+                }
             }
-        } catch (IOException | StringIndexOutOfBoundsException e) {
-            throw new DukeException("");
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("STRINGOUTOFBOUNDS");
+        } catch (IOException e) {
+            throw new DukeException("IOEXECPT");
         }
         return out.toString();
     }

@@ -58,19 +58,19 @@ public class Duke {
     public String getResponse(String input) {
         Parser parser = new Parser();
         try {
-            parser.parse(tasks, input);
+            String out = parser.parse(tasks, input);
+
+            if (parser.isBye()) {
+                try {
+                    return execute(out);
+                } catch (DukeException e) {
+                    return e.getMessage();
+                }
+            }
+            return out;
         } catch (DukeException e) {
             return e.getMessage();
         }
-        String out = parser.parse(tasks, input);
-        if (parser.isBye()) {
-            try {
-                return execute(out);
-            } catch (DukeException e) {
-                return e.getMessage();
-            }
-        }
-        return out;
     }
 
     public String execute(String out) {

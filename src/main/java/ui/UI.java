@@ -36,7 +36,7 @@ public class UI {
     }
 
     public String indexOutOfBounds(int i) {
-        String out = "----------------------\nThe number" + i + " is out of bounds please choose a smaller index.\n" +
+        String out = "----------------------\nThe number " + (i + 1) + " is out of bounds please choose a smaller index.\n" +
                 "----------------------\n";
         return out;
     }
