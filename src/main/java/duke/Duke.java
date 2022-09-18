@@ -1,6 +1,7 @@
 package duke;
 
-import duke.javafx.DialogBox;
+import java.util.Objects;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,11 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import duke.commands.Command;
 import javafx.stage.WindowEvent;
 
-import java.util.Objects;
+import duke.commands.Command;
+import duke.javafx.DialogBox;
+
+
 
 /**
  * Chatbot main.
@@ -51,13 +53,19 @@ public class Duke extends Application {
     @Override
     public void start(Stage stage) {
 
+        this.dialogContainer = this.setUpDialogueContainer();
         this.scrollPane = this.setUpScrollPane();
-        this.dialogContainer = this.setUpDialogueBox();
+        //Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         this.userInput = this.setUpUserInput();
         this.sendButton = this.setUpSendButton();
         this.mainLayout = this.setUpLayout(this.scrollPane, this.userInput, this.sendButton);
         this.scene = new Scene(this.mainLayout);
         this.stage = setUpStage(stage);
+        this.addWelcomeMessage();
+
+        userInput.setOnAction((event) -> this.handleUserInput());
+        sendButton.setOnMouseClicked((event) -> this.handleUserInput());
 
         this.stage.setScene(scene);
         this.stage.show();
@@ -78,11 +86,9 @@ public class Duke extends Application {
         return scrollPane;
     }
 
-    private VBox setUpDialogueBox() {
+    private VBox setUpDialogueContainer() {
         VBox dialogContainer = new VBox();
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        //Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         return dialogContainer;
     }
 
@@ -91,7 +97,7 @@ public class Duke extends Application {
         userInput.setPrefWidth(325.0);
         userInput.setMinWidth(160);
 
-        userInput.setOnAction((event) -> this.handleUserInput());
+
         return userInput;
     }
 
@@ -100,7 +106,7 @@ public class Duke extends Application {
         sendButton.setPrefWidth(55.0);
         sendButton.setMinWidth(40);
 
-        sendButton.setOnMouseClicked((event) -> this.handleUserInput());
+
         return sendButton;
     }
 
@@ -122,22 +128,26 @@ public class Duke extends Application {
     }
 
     private Stage setUpStage(Stage stage) {
-        // Handle Close Button
-        stage.setOnCloseRequest(this::handleCloseRequest);
-
-        // Setting Stage
-        stage.setTitle("Duke");
+        stage.setTitle("Naruto");
         stage.setResizable(true);
         stage.setMinHeight(300.0);
         stage.setMinWidth(200.0);
         stage.setMaxHeight(620);
         stage.setMaxWidth(415);
+        // Handle Close Button
+        stage.setOnCloseRequest(this::handleCloseRequest);
 
         return stage;
     }
 
+    private void addWelcomeMessage() {
+        Label welcomeMessage = new Label(this.ui.getWelcomeMessage());
+        this.dialogContainer.getChildren().add(
+            DialogBox.getDukeDialog(welcomeMessage, new ImageView(this.narutoPhoto)));
+    }
+
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
+        Label userText = new Label(this.userInput.getText());
         this.dialogContainer.getChildren().add(
                 DialogBox.getUserDialog(userText, new ImageView(this.userPhoto)));
         Label dukeText = new Label(parseInput(userInput.getText()));
