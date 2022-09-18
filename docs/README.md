@@ -119,7 +119,6 @@ To mark task as incomplete:
 
   <img src="./img/find.png" style="zoom:67%;" />
 
-##
 
 ### By Date
 
