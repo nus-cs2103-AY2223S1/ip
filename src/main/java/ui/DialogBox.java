@@ -9,11 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 /**
@@ -39,6 +43,30 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        //
+        // set a clip to apply rounded border to the original image.
+        Rectangle clip = new Rectangle(
+                displayPicture.getFitWidth(), displayPicture.getFitHeight()
+        );
+        clip.setArcWidth(100);
+        clip.setArcHeight(100);
+        displayPicture.setClip(clip);
+
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = displayPicture.snapshot(parameters, null);
+
+        // remove the rounding clip so that our effect can show through.
+        displayPicture.setClip(null);
+
+        // apply a shadow effect.
+        displayPicture.setEffect(new DropShadow(2, Color.BLACK));
+
+        // store the rounded image in the imageView.
+        displayPicture.setImage(image);
+        //
     }
 
     /**
