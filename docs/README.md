@@ -162,4 +162,4 @@ would **OVERWRITE** your previous checklist.
 ## *Image Sources*
 
 - Icons and Profile Pictures from [AniYuki](https://aniyuki.com/rem-images/).
-- Background Image from [Canva](https://www.canva.com/templates/).
+- Background Image from [Canva](https://www.canva.com/photos/MAEEedQXRU4-galaxy-background/).
