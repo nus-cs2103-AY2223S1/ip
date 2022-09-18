@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
      * @param ui A ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printMarkTask(taskList.markTask(index));
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printMarkTask(taskList.markTask(index));
     }
 }

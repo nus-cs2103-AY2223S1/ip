@@ -28,8 +28,7 @@ public class ToDoCommand extends Command {
      * @param ui An ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addToDo(this.description));
-        ui.printSizeOfList(taskList.size());
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printAddTask(taskList.addToDo(this.description), taskList.size());
     }
 }

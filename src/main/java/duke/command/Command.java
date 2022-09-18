@@ -18,7 +18,7 @@ public abstract class Command {
      * @param taskList A list of tasks
      * @param ui A ui responsible for printing output to the user
      */
-    public abstract void execute(TaskList taskList, Ui ui);
+    public abstract String execute(TaskList taskList, Ui ui);
 
     /**
      * Sets isExit of the command to true.

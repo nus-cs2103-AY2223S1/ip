@@ -18,8 +18,8 @@ public class ByeCommand extends Command {
      * @param ui A ui which prints output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String execute(TaskList taskList, Ui ui) {
         setExit();
+        return ui.printByeCommand();
     }
 }

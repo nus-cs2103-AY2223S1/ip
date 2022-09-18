@@ -28,8 +28,7 @@ public class DeleteCommand extends Command {
      * @param ui A ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printDeleteTask(taskList.deleteTask(index));
-        ui.printSizeOfList(taskList.size());
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printDeleteTask(taskList.deleteTask(index), taskList.size());
     }
 }

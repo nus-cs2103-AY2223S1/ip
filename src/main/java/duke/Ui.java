@@ -33,8 +33,8 @@ public class Ui {
      *
      * @param message The message to be printed
      */
-    public void print(String message) {
-        System.out.println(message);
+    public String print(String message) {
+        return message;
     }
 
     /**
@@ -42,8 +42,8 @@ public class Ui {
      *
      * @param size The size to be printed
      */
-    public void printSizeOfList(int size) {
-        System.out.println(String.format("Now you have %d tasks in the list", size));
+    public String printSizeOfList(int size) {
+        return String.format("Now you have %d tasks in the list", size);
     }
 
     /**
@@ -51,9 +51,8 @@ public class Ui {
      *
      * @param task The Task that was marked
      */
-    public void printMarkTask(String task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task.toString());
+    public String printMarkTask(String task) {
+        return "Nice! I've marked this task as done:" + task;
     }
 
     /**
@@ -61,9 +60,8 @@ public class Ui {
      *
      * @param task The Task that was unmarked
      */
-    public void printUnmarkTask(String task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task.toString());
+    public String printUnmarkTask(String task) {
+        return "OK, I've marked this task as not done yet:" + task;
     }
 
     /**
@@ -71,9 +69,8 @@ public class Ui {
      *
      * @param task The Task that was deleted from the TaskList
      */
-    public void printDeleteTask(String task) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
+    public String printDeleteTask(String task, int size) {
+        return "Noted. I've removed this task:\n" + task + "\n" +printSizeOfList(size);
     }
 
     /**
@@ -81,13 +78,15 @@ public class Ui {
      *
      * @param task The Task that was added to the TaskList
      */
-    public void printAddTask(String task) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
+    public String printAddTask(String task, int size) {
+        return "Got it. I've added this task:\n" + task + "\n" + printSizeOfList(size);
     }
 
-    public void printSearchedList(String searchedList) {
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println(searchedList);
+    public String printSearchedList(String searchedList) {
+        return "Here are the matching tasks in your list:" + "\n" + searchedList;
+    }
+
+    public String printByeCommand() {
+        return "Bye. Hope to see you again soon!";
     }
 }

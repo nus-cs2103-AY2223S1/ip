@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
      * @param ui An ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printUnmarkTask(taskList.unmarkTask(index));
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printUnmarkTask(taskList.unmarkTask(index));
     }
 }

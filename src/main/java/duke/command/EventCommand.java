@@ -33,8 +33,7 @@ public class EventCommand extends Command {
      * @param ui A ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addEvent(this.description, this.at));
-        ui.printSizeOfList(taskList.size());
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printAddTask(taskList.addEvent(this.description, this.at), taskList.size());
     }
 }

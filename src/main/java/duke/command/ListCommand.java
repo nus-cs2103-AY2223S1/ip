@@ -17,11 +17,11 @@ public class ListCommand extends Command {
      * @param ui An ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         if (taskList.toString() == null) {
-            System.out.println("Nice! You have no tasks as of now.");
+            return ui.print("You have no tasks as of now!");
         } else {
-            ui.print(taskList.toString());
+            return ui.print(taskList.toString());
         }
     }
 }

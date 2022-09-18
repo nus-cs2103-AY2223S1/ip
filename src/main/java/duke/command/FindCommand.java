@@ -28,7 +28,7 @@ public class FindCommand extends Command {
      * @param ui An ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printSearchedList(taskList.searchTasks(this.keyword).toString());
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printSearchedList(taskList.searchTasks(this.keyword).toString());
     }
 }

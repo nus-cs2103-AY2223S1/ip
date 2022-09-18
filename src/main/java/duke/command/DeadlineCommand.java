@@ -32,8 +32,7 @@ public class DeadlineCommand extends Command {
      * @param ui A ui responsible for printing output to the user
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addDeadline(this.description, this.by));
-        ui.printSizeOfList(taskList.size());
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.printAddTask(taskList.addDeadline(this.description, this.by), taskList.size());
     }
 }
