@@ -18,7 +18,7 @@ and **Rem Taskhelper** will help you keep track of them!
 ## *Getting Started*
 
 - Ensure that you have Java 11 or above installed in your Computer.
-- Download the latest `duke.jar` from [here](https://github.com/nehcuy/ip).
+- Download the latest `duke.jar` from [here](https://github.com/nehcuy/ip/releases/tag/v1.1).
 - Move the file into your desired folder to run it from.
 - Open up your command prompt/terminal and navigate to the folder containing
 the duke.jar file.
