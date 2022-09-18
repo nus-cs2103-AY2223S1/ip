@@ -34,6 +34,7 @@ public class DialogBox extends HBox {
     private StackPane dialogBubble;
     @FXML
     private ImageView displayPicture;
+    private final Circle clip = new Circle(25, 25, 25);
 
     private DialogBox(String text, Image img) {
         try {
@@ -48,12 +49,14 @@ public class DialogBox extends HBox {
         configureDisplayPicture(img);
     }
     private void configureDisplayPicture(Image img) {
-        displayPicture.setClip(new Circle(50, 50, 44));
         displayPicture.setImage(img);
-        displayPicture.preserveRatioProperty();
+        displayPicture.setFitHeight(52);
+        displayPicture.setFitWidth(52);
+        displayPicture.setClip(clip);
+
     }
     private void configureDialogBubble(String txt) {
-        Rectangle box = new Rectangle();
+        Rectangle box = new Rectangle(300, 50);
         box.setArcHeight(20);
         box.setArcWidth(20);
         box.setFill(Color.GHOSTWHITE);
@@ -61,9 +64,10 @@ public class DialogBox extends HBox {
         Label text = new Label(txt);
         text.setFont(new Font("Wingdings", 10));
         text.setPadding(new Insets(10));
-        text.setWrapText(true);
         text.setTextAlignment(TextAlignment.JUSTIFY);
-        text.setMaxWidth(280);
+        text.setWrapText(true);
+
+        //text.setMaxWidth(280);
 
         box.heightProperty().bind(text.heightProperty());
         box.widthProperty().bind(text.widthProperty());
