@@ -1,12 +1,18 @@
 package duke;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -29,6 +35,16 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        userInput.setBackground(new Background(new BackgroundFill(
+                Color.web("#FFFFFF"),
+                new CornerRadii(20.0),
+                Insets.EMPTY)
+        ));
+
+        sendButton.setTextFill(Paint.valueOf("#FFFFFF"));
+        sendButton.setBackground(new Background(new BackgroundFill(Color.web("#767676"),
+                new CornerRadii(20.0), new Insets(-5.0))));
     }
 
     public void setDuke(Duke d) {
