@@ -1,1 +1,3 @@
-[T][X] wash clothes
+[T][ ]  hang clothes
+[D][X] return book (by: 2/12/2019 1800)
+[T][ ]  eat

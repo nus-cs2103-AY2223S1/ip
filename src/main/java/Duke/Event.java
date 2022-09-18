@@ -31,7 +31,7 @@ public class Event extends Task{
 
     @Override
     public String dTString() {
-        return "[E]" + super.dTString() + " (by: " + this.dateTime.format(DateTimeFormatter
+        return "[E]" + super.dTString() + " (at: " + this.dateTime.format(DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)) + ")";
     }
 }
