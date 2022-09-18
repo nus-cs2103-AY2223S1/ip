@@ -1,0 +1,4 @@
+T | 1 | test | fun
+E | 1 | project meeting | Mon 2-4pm | work
+D | 1 | return book | Sunday | reminder
+T | 0 | borrow book | no tag
