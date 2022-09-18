@@ -1,7 +1,5 @@
 package duke.task;
 
-import java.time.format.DateTimeFormatter;
-
 /**
  * Class which manages tasks of type do after.
  */
