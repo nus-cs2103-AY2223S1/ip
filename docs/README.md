@@ -14,7 +14,7 @@ Duke is a **desktop chatbot app for managing and storing tasks, optimized for us
     * [List all tasks: `list`](#list-all-tasks-list)
     * [Mark a task: `mark`](#mark-a-task-mark)
     * [Unmark a task: `unmark`](#unmark-a-task-unmark)
-    * [Find a task by keyowrd: `find`, `f`](#find-a-task-by-keyword-find)
+    * [Find a task by keyword: `find`, `f`](#find-a-task-by-keyword-find)
     * [Delete a task: `delete`, `rm`](#delete-a-task-delete)
     * [Exit the program: `bye`, `exit`, `quit`](#exiting-the-program-bye)
 - [FAQ](#faq)
