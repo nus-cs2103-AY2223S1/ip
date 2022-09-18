@@ -5,7 +5,6 @@ import java.util.Scanner;
  * Represents class for user interface
  */
 public class Ui {
-    private static final String DIVIDER = "\t___________________________\n";
     private final Scanner sc;
 
     /**
@@ -138,8 +137,8 @@ public class Ui {
         String output = "Here are the commands\n";
         String tasks = "To add tasks:\n";
         String todo_message = "1.todo <description>\n";
-        String deadline_message = "2.deadline <description> /by YYYY-MM-DD HH:mm\n";
-        String event_message = "3.event <description> /at YYYY-MM-DD HH:mm\n";
+        String deadline_message = "2.deadline <description> /by yyyy-mm-dd HH:MM\n";
+        String event_message = "3.event <description> /at yyyy-mm-dd HH:MM\n";
         String actions = "List of actions:\n";
         String mark = "4.mark <index>\n";
         String delete = "5.delete <index>\n";

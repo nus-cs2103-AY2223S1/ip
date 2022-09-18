@@ -27,6 +27,7 @@ public class UnmarkCommand extends Command {
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
+     * @return Returns String that contains task that is deleted to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {

@@ -9,11 +9,7 @@ import duke.utility.Ui;
 
 
 import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+
 
 
 /**
@@ -24,11 +20,6 @@ public class Duke  {
     private TaskList tasks;
     private Ui ui;
 
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
 
     /**
      * Instantiates a new duke object that load previous saved task from

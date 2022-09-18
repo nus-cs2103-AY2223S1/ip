@@ -37,7 +37,7 @@ public class TimeTaskCommand extends Command {
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
-     * @return Returns String that contains message to be printed by gui
+     * @return Returns a String format that contains a new TimeTask object created to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -48,7 +48,6 @@ public class TimeTaskCommand extends Command {
             } else {
                 newTask = new Deadline(super.getInput(), time);
             }
-
             String message = tasks.addTask(newTask);
             String output = ui.add(tasks.numOfTasks(), message);
             storage.save(newTask);

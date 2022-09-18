@@ -27,7 +27,7 @@ public class TodoCommand extends Command {
      * @param tasks The list containing all the tasks
      * @param ui User interface for printing the message
      * @param storage To write and read from a text file
-     * @return Returns String that contains message to be printed by gui
+     * @return Returns a String format of the Todo object created to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {

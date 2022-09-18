@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/snooze.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/starbucks.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/coffee.png"));
 
 
     @FXML
@@ -53,7 +53,7 @@ public class MainWindow extends AnchorPane {
 
     public void greetings() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("Hello user!!! Type help for a quick guide\n", dukeImage)
+                DialogBox.getDukeDialog("Hello user, I am CaffeineBot!!! Type help for a quick guide\n", dukeImage)
         );
     }
 }

@@ -10,13 +10,13 @@ import duke.task.Task;
  */
 public class TaskList {
     private List<Task> tasks;
-    private final String DUPLICATE_MESSAGE = "This task is a duplicate";
+    private static final String DUPLICATE_MESSAGE = "This task is a duplicate";
 
     /**
      * Instantiates a new TaskList with empty list
      */
     public TaskList() {
-        this.tasks = new ArrayList<Task>(100);
+        this.tasks = new ArrayList<>(100);
     }
 
     /**
@@ -95,11 +95,11 @@ public class TaskList {
         if (tasks.size() == 0) {
             throw new DukeException("Tasklist is empty");
         }
+        assert index >=0 && index < tasks.size(): "index of element to be removed must be non-negative " +
+                "and smaller than size of list";
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException(invalidAction("delete"));
         }
-        assert index >=0 && index < tasks.size(): "index of element to be removed must be non-negative " +
-                "and smaller than size of list";
         Task currTask = tasks.remove(index);
         String output = String.format("%s\n", currTask);
         return output;
@@ -167,6 +167,14 @@ public class TaskList {
         return output;
     }
 
+
+    /**
+     * Returns a String representation of error message to be thrown for DukeException
+     * for different message given in the input.
+     *
+     * @param message String representation of keywords such as mark, unmark and delete
+     * @return String representation error message to be thrown for DukeException
+     */
     public static String invalidAction(String message) {
         if (message.equals("")) {
             return "Invalid command, I don't know what that means :-(";

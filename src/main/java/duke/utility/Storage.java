@@ -81,7 +81,7 @@ public class Storage {
      */
     public List<Task> load() {
         try {
-            List<Task> tasksList = new ArrayList<Task>(100);
+            List<Task> tasksList = new ArrayList<>(100);
             File myObj = new File(filePath);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -107,7 +107,7 @@ public class Storage {
             System.out.println("An error occurred.");
             e.printStackTrace();
         } 
-        return new ArrayList<Task>(100);
+        return new ArrayList<>(100);
     }
 
     public void loadEvent(String input, List<Task> tasksList) {

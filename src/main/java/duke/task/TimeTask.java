@@ -63,7 +63,7 @@ public class TimeTask extends Task {
         if (o instanceof TimeTask) {
             TimeTask c = (TimeTask) o;
             return c.getIcon().equals(icon) && c.getDescription().equals(description)
-                    && c.getLocalTimeDate().equals(date);
+                    && c.getLocalTimeDate().isEqual(date);
         } else {
             return false;
         }

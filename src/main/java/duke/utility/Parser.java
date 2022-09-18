@@ -16,8 +16,7 @@ public class Parser {
      *
      * @param fullCommand full command given by user
      * @return the correct Command for the given keyword
-     * @throws DukeException  If fullCommand is empty or
-     * invalid full command
+     * @throws DukeException  If fullCommand is empty or invalid full command
      */
     public static Command parse(String fullCommand) throws DukeException {
         if (fullCommand == null || fullCommand.equals("")) {
@@ -51,7 +50,13 @@ public class Parser {
         }
     }
 
-
+    /**
+     * Returns a String representation of error message to be thrown for DukeException
+     * for empty descriptions.
+     *
+     * @param message String representation of command that its description is empty
+     * @return String representation error message to be thrown for DukeException
+     */
     public static String emptyMessage(String message) {
         if (message.equals("")) {
             return "The description cannot be empty";
@@ -59,6 +64,13 @@ public class Parser {
         return String.format("The description of %s cannot be empty", message);
     }
 
+    /**
+     * Returns a String representation of error message to be thrown for DukeException
+     * that is an invalid command.
+     *
+     * @param message String representation of command that is given by user and has invalid format
+     * @return String representation error message to be thrown for DukeException
+     */
     public static String invalidAction(String message) {
         if (message.equals("")) {
             return "Invalid command, I don't know what that means :-(";
@@ -66,10 +78,27 @@ public class Parser {
         return String.format("It must be in the format of: %s <position in list>", message);
     }
 
+
+    /**
+     * Returns a String representation of error message to be thrown for DukeException
+     * that is an invalid command for tasks that has time element.
+     *
+     * @param message String representation of a command with time element
+     * that is given by user and has invalid format
+     * @param type String format of whether it is at or by
+     * @return String representation error message to be thrown for DukeException
+     */
     public static String invalidTaskAction(String message, String type) {
         return String.format("It must be in the format of: %s <description> /%s <yyyy-mm-dd HH:MM>", message, type);
     }
 
+    /**
+     * Checks for empty command and return the keyword of the full command.
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns the keyword of the full command.
+     * @throws DukeException If split[0] is empty string.
+     */
     public static String checkEmptyString(String[] split) throws DukeException {
         String keyword = split[0];
         if (keyword.equals("")) {
@@ -78,6 +107,13 @@ public class Parser {
         return keyword;
     }
 
+    /**
+     * Return a ByeCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns ByeCommand
+     * @throws DukeException If split.length > 1.
+     */
     public static Command parseBye(String[] split) throws DukeException {
         if (split.length > 1) {
             throw new DukeException(invalidAction(""));
@@ -85,6 +121,13 @@ public class Parser {
         return new ByeCommand();
     }
 
+    /**
+     * Return a HelpCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns HelpCommand
+     * @throws DukeException If split.length > 1.
+     */
     public static Command parseHelp(String[] split) throws DukeException {
         if (split.length > 1) {
             throw new DukeException(invalidAction(""));
@@ -92,6 +135,14 @@ public class Parser {
         return new HelpCommand();
     }
 
+
+    /**
+     * Return a ListCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns ListCommand
+     * @throws DukeException If split.length > 1.
+     */
     public static Command parseList(String[] split) throws DukeException {
         if (split.length > 1) {
             throw new DukeException(invalidAction(""));
@@ -99,6 +150,15 @@ public class Parser {
         return new ListCommand();
     }
 
+    /**
+     * Return a MarkCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @param fullCommand full command input by user
+     * @return Returns MarkCommand
+     * @throws DukeException If split.length == 1. If fullCommand has more than 1 word and 1 index
+     * or index is not a number
+     */
     public static Command parseMark(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("mark"));
@@ -116,6 +176,15 @@ public class Parser {
         return new MarkCommand(Integer.parseInt(split[1]));
     }
 
+    /**
+     * Return a UnmarkCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @param fullCommand full command input by user
+     * @return Returns UnmarkCommand
+     * @throws DukeException If split.length == 1. If fullCommand has more than 1 word and 1 index
+     * or index is not a number
+     */
     public static Command parseUnmark(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("unmark"));
@@ -133,6 +202,15 @@ public class Parser {
         return new UnmarkCommand(Integer.parseInt(split[1]));
     }
 
+    /**
+     * Return a DeleteCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @param fullCommand full command input by user
+     * @return Returns DeleteCommand
+     * @throws DukeException If split.length == 1. If fullCommand has more than 1 word and 1 index
+     * or index is not a number
+     */
     public static Command parseDelete(String[] split, String fullCommand) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("delete"));
@@ -150,6 +228,13 @@ public class Parser {
         return new DeleteCommand(Integer.parseInt(split[1]));
     }
 
+    /**
+     * Return a TodoCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns TodoCommand
+     * @throws DukeException If split.length == 1. If split[1].isBlank() == true.
+     */
     public static Command parseTodo(String[] split) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("todo"));
@@ -160,6 +245,14 @@ public class Parser {
         return new TodoCommand(split[1]);
     }
 
+    /**
+     * Return a TimeTaskCommand with deadline keyword
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Return a TimeTaskCommand with deadline keyword
+     * @throws DukeException If split.length == 1. Or
+     * If format of user input is not deadline <description> /by yyyy-MM-dd HH:mm
+     */
     public static Command parseDeadline(String[] split) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("deadline"));
@@ -190,6 +283,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Return a TimeTaskCommand with event keyword
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Return a TimeTaskCommand with event keyword
+     * @throws DukeException If split.length == 1. Or
+     * If format of user input is not event <description> /at yyyy-MM-dd HH:mm
+     */
     public static Command parseEvent(String[] split) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("event"));
@@ -220,6 +321,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Return a FindCommand
+     *
+     * @param split fullCommand given by user that is split by spaces
+     * @return Returns FindCommand
+     * @throws DukeException If split.length == 1.
+     */
     public static Command parseFind(String[] split) throws DukeException {
         if (split.length == 1) {
             throw new DukeException(emptyMessage("find"));
