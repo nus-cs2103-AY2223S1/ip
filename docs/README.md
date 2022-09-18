@@ -54,6 +54,7 @@ Format: `mark INDEX`
 Example: 
 - `mark 1`
 - `mark 10`
+
 ### Unmarking a task: `unmark`
 Unmarks a task in the task list.
 
@@ -63,6 +64,7 @@ Format: `unmark INDEX`
 Example:
 - `unmark 1`
 - `unmark 10`
+
 ### Listing out all tasks: `list`
 Shows a list of all tasks in the task list.
 
@@ -70,6 +72,7 @@ Format: `list`
 
 Example:
 - `list`
+
 ### Adding a todo Task: `todo`
 Adds a todo task into the task list.
 
@@ -77,6 +80,7 @@ Format: `todo TODOTASKNAME`
 
 Example:
 - `todo going to go to airport and take a picture of the famous airport`
+
 ### Adding a event Task: `event`
 Adds an event task into the task list.
 
@@ -84,6 +88,7 @@ Format: `event EVENTTASKNAME /at EVENTTIME `
 
 Example:
 - `event jar releasing /at today 9p.m.`
+
 ### Adding a deadline Task: `deadline`
 Adds a deadline task into the task list.
 
@@ -91,6 +96,7 @@ Format: `deadline DEADLINETASKNAME /by TIMEIN_dd-MM-yyyy_HH:mm`
 
 Example:
 - `deadline super sekrit project /by 02-12-2018 18:00`
+
 ### Deleting a selected Task: `delete`
 Deletes a task from the task list.
 
@@ -100,6 +106,7 @@ Format: `delete INDEX`
 Example:
 - `delete 1`
 - `delete 3`
+
 ### Greet user: `greet`
 Greets User.
 
@@ -107,6 +114,7 @@ Format: `greet`
 
 Example:
 - `greet`
+
 ### Ending chat with chatbot: `bye`
 Ends the chat with chatbot.
 
