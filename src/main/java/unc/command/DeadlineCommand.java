@@ -29,16 +29,20 @@ public class DeadlineCommand extends Command {
      * @param taskList {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param storage {@inheritDoc}
-     * @return the message to be shown by UI
+     * @return The message to be shown by UI.
      * @throws UncException If error occurs when creating new Deadline.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
-        String[] phrases = description.split(" /by ", 2);
-        Deadline newDeadline = new Deadline(phrases[0], phrases[1]);
-        taskList.add(newDeadline);
-        storage.save(taskList);
-        return ui.addDeadline(taskList, newDeadline);
+        try {
+            String[] phrases = description.split(" /by ", 2);
+            Deadline newDeadline = new Deadline(phrases[0], phrases[1]);
+            taskList.add(newDeadline);
+            storage.save(taskList);
+            return ui.addDeadline(taskList, newDeadline);
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new UncException("I need a task and a date");
+        }
     }
 
     /**

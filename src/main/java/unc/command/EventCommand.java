@@ -29,16 +29,20 @@ public class EventCommand extends Command {
      * @param taskList List to be operated on.
      * @param ui UI to print message.
      * @param storage Storage to save updated list.
-     * @return the message to be shown by UI
+     * @return The message to be shown by UI.
      * @throws UncException If error occurs when creating new Event.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
-        String[] phrases = description.split(" /at ", 2);
-        Event newEvent = new Event(phrases[0], phrases[1]);
-        taskList.add(newEvent);
-        storage.save(taskList);
-        return ui.addEvent(taskList, newEvent);
+        try {
+            String[] phrases = description.split(" /at ", 2);
+            Event newEvent = new Event(phrases[0], phrases[1]);
+            taskList.add(newEvent);
+            storage.save(taskList);
+            return ui.addEvent(taskList, newEvent);
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new UncException("I need a task and a date.");
+        }
     }
 
     /**

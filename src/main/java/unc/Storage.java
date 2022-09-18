@@ -64,15 +64,12 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("here");
             try {
                 saveFile.getParentFile().mkdir();
                 saveFile.createNewFile();
             } catch (IOException ioException) {
-                System.out.println("there");
                 System.out.println(ioException);
             } catch (SecurityException securityException) {
-                System.out.println("or here");
                 System.out.println(securityException);
             }
             System.out.println("Starting new file.");

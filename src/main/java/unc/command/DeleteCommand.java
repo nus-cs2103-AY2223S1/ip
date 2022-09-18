@@ -3,6 +3,7 @@ package unc.command;
 import unc.Storage;
 import unc.TaskList;
 import unc.Ui;
+import unc.UncException;
 import unc.task.Task;
 
 /**
@@ -27,14 +28,18 @@ public class DeleteCommand extends Command {
      * @param taskList {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param storage {@inheritDoc}
-     * @return the message to be shown by UI
+     * @return The message to be shown by UI.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
-        Task tempTask = taskList.get(index);
-        taskList.delete(index);
-        storage.save(taskList);
-        return ui.delete(tempTask, taskList.size());
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
+        try {
+            Task tempTask = taskList.get(index);
+            taskList.delete(index);
+            storage.save(taskList);
+            return ui.delete(tempTask, taskList.size());
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new UncException("Please pick an index on the list.");
+        }
     }
 
     /**

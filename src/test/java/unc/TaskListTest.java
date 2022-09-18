@@ -28,7 +28,7 @@ public class TaskListTest {
     @Test
     public void getTest() {
         TaskList taskList = new TaskList(testList());
-        String expected = "[E][X] Celebrate (at: 11-09-2001)";
+        String expected = "[E][X] Celebrate (at: 11 Sep 2001)";
         assertEquals(expected, taskList.get(1).toString());
     }
 
@@ -36,23 +36,7 @@ public class TaskListTest {
     public void deleteTaskList() {
         TaskList tasklist = new TaskList(testList());
         tasklist.delete(1);
-        String expected = "[D][ ] Trade (by: 02-08-2022)";
-        assertEquals(expected, tasklist.get(1).toString());
-    }
-
-    @Test
-    public void markTaskList() {
-        TaskList tasklist = new TaskList(testList());
-        tasklist.markAsDone(2);
-        String expected = "[D][X] Trade (by: 02-08-2022)";
-        assertEquals(expected, tasklist.get(2).toString());
-    }
-
-    @Test
-    public void unMarkTaskList() {
-        TaskList tasklist = new TaskList(testList());
-        tasklist.markAsNotDone(1);
-        String expected = "[E][ ] Celebrate (at: 11-09-2001)";
+        String expected = "[D][ ] Trade (by: 02 Aug 2022)";
         assertEquals(expected, tasklist.get(1).toString());
     }
 

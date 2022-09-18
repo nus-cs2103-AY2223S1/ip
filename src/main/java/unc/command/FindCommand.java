@@ -21,7 +21,7 @@ public class FindCommand extends Command {
      * @param taskList List to be operated on.
      * @param ui UI to print message.
      * @param storage Storage to save updated list.
-     * @return the message to be shown by UI
+     * @return The message to be shown by UI.
      * @throws UncException
      */
     @Override

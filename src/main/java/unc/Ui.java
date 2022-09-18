@@ -10,20 +10,6 @@ import unc.task.Todo;
  * Handles input and output.
  */
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
-    /**
-     * Prints a preset welcome message.
-     */
-    public void showWelcome() {
-
-        System.out.println("Hello from\n" + LOGO);
-        System.out.println("Welcome to UNC\n");
-    }
 
     /**
      * Stops reading inputs.
@@ -40,11 +26,12 @@ public class Ui {
      * @param taskList List.
      */
     public String displayList(TaskList taskList) {
-        String s = "";
+        StringBuilder s = new StringBuilder("Here are your tasks:");
         for (int i = 0; i < taskList.size(); i++) {
-            s = s + ("\n" + (i + 1) + ". " + taskList.get(i));
+            s.append("\n").append(i + 1).append(". ").append(taskList.get(i));
         }
-        return s;
+        s.append("\nYou have ").append(taskList.size()).append(" tasks on the list.");
+        return s.toString();
     }
 
     /**
@@ -54,7 +41,7 @@ public class Ui {
      * @param todo Added task.
      */
     public String addTodo(TaskList taskList, Todo todo) {
-        return ("added: \n " + todo + "\nNow you have " + taskList.size()
+        return ("Added: \n " + todo + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -65,7 +52,7 @@ public class Ui {
      * @param event Added task.
      */
     public String addEvent(TaskList taskList, Event event) {
-        return ("added: \n " + event + "\nNow you have " + taskList.size()
+        return ("Added: \n " + event + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -76,7 +63,7 @@ public class Ui {
      * @param deadline Added task.
      */
     public String addDeadline(TaskList taskList, Deadline deadline) {
-        return ("added: \n " + deadline + "\nNow you have " + taskList.size()
+        return ("Added: \n " + deadline + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -112,6 +99,10 @@ public class Ui {
     }
 
     public String displayFoundList(TaskList taskList) {
-        return displayList(taskList);
+        if (taskList.size() == 0){
+            return "No tasks with keyword were found.";
+        } else {
+            return displayList(taskList);
+        }
     }
 }

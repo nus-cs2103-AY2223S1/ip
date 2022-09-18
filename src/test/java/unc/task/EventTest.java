@@ -19,14 +19,14 @@ public class EventTest {
 
     @Test
     public void toStringTest() {
-        assertEquals("[E][ ] Celebrate (at: 11-09-2001)", testEvent().toString());
+        assertEquals("[E][ ] Celebrate (at: 11 Sep 2001)", testEvent().toString());
     }
 
     @Test
     public void markEventTest() {
         Event event = testEvent();
         event.markAsDone();
-        assertEquals("[E][X] Celebrate (at: 11-09-2001)", event.toString());
+        assertEquals("[E][X] Celebrate (at: 11 Sep 2001)", event.toString());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class EventTest {
         Event event = testEvent();
         event.markAsDone();
         event.markAsNotDone();
-        assertEquals("[E][ ] Celebrate (at: 11-09-2001)", event.toString());
+        assertEquals("[E][ ] Celebrate (at: 11 Sep 2001)", event.toString());
     }
 
     @Test

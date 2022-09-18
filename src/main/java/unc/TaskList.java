@@ -41,18 +41,28 @@ public class TaskList {
      * Marks a Task as done.
      *
      * @param index Index of the Task in ArrayList structure.
+     * @throws UncException If index is out of bounds.
      */
-    public void markAsDone(int index) {
-        taskList.get(index).markAsDone();
+    public void markAsDone(int index) throws UncException {
+        try {
+            taskList.get(index).markAsDone();
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new UncException("Please pick an index on the list.");
+        }
     }
 
     /**
      * Marks a Task as not done.
      *
      * @param index Index of the Task in ArrayList structure.
+     * @throws UncException If index is out of bounds.
      */
-    public void markAsNotDone(int index) {
-        taskList.get(index).markAsNotDone();
+    public void markAsNotDone(int index) throws UncException {
+        try {
+            taskList.get(index).markAsNotDone();
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new UncException("Please pick an index on the list.");
+        }
     }
 
     /**
