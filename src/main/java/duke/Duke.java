@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 /**
  * Duke is an interactive personal chat robot to keep track of user inputted tasks.
  *
@@ -36,7 +38,7 @@ public class Duke extends Application {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.tasks = new TaskList(storage.load());
+            this.tasks = new TaskList(storage.loadData());
         } catch (DukeException e) {
             ui.showLoadingError();
             this.tasks = new TaskList();
@@ -48,11 +50,16 @@ public class Duke extends Application {
     }
 
     private void run() {
-
         ui.showWelcome();
-        new Parser(this.tasks).parser();
-        storage.save(this.tasks);
+        storage.saveData(this.tasks);
         ui.farewell();
+    }
+
+    public String getResponse(String input) {
+        if (input.equals("bye")) {
+            storage.saveData(this.tasks);
+        }
+        return new Parser(this.tasks).parser(input);
     }
 
     @Override

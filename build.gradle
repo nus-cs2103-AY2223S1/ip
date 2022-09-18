@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "Main.java"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
@@ -55,7 +55,7 @@ run{
     standardInput = System.in
 }
 
-javafx {
+/*javafx {
     version = "18.0.2"
     modules = [ 'javafx.controls' ]
-}
+}*/

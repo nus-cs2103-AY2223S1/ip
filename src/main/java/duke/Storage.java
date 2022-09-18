@@ -28,7 +28,7 @@ public class Storage {
      * @return ArrayList of Task stored in a previously saved file if any or a new ArrayList.
      * @throws DukeException If the type format in the .txt file is invalid.
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             File taskFile = new File(this.path);
@@ -77,7 +77,7 @@ public class Storage {
      * Saves an ArrayList of Task in a .txt file
      * @param tasks TaskList object consists of a list of task inputted by user
      */
-    public void save(TaskList tasks) {
+    public void saveData(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(this.path);
             for(int i = 0; i < tasks.getSize(); i++) {
