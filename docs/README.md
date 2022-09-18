@@ -32,7 +32,7 @@ You have 3 tasks on the list.
 ```
 
 
-### Add `todo`
+### add `todo`
 
 Adds a task to be completed to your list.
 
@@ -51,7 +51,7 @@ Now you have 4 tasks on the list.
 ```
 
 
-### Add `deadline`
+### add `deadline`
 
 Adds a task with a date to be completed by.
 
@@ -70,7 +70,7 @@ Added:
 Now you have 5 tasks on the list.
 ```
 
-### Add `event`
+### add `event`
 
 Adds a task that happens at a specific date.
 
@@ -184,7 +184,7 @@ Here are your tasks:
 5. [T][] read book
 ```
 
-### `bye` and close the app
+### say `bye` to UNC
 
 Stops the program and closes the application window.
 
