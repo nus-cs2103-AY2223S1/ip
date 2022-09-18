@@ -39,8 +39,9 @@ public class Fred {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Get response from Fred from the given input.
+     * @param input String which contains the input from the user
+     * @return String which contains Fred's response
      */
     public String getResponse(String input) {
         try {
@@ -63,7 +64,7 @@ public class Fred {
 
     /**
      * Return Fred's welcome message.
-     * @return Returns a string containing Fred's welcome message.
+     * @return Returns a string containing Fred's welcome message
      */
     public String getWelcomeMessage() {
         return welcomeMessage;
