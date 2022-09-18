@@ -16,13 +16,6 @@ public class Ui {
      */
     public Ui() {}
 
-    public String logo  =         "___   ___    ___  ____                     ___   ___ \n"
-                               + "|  |  /  /  |  |  \\  \\      ------      /  /   |  | \n"
-                               + "|   /   /   |  |   \\  \\    / / \\ \\    /  /    |  | \n"
-                               + "|   \\  \\   |  |     \\  \\  /  /   \\ \\  /  /     |  | \n"
-                               + "|    \\  \\  |  |      \\  \\/  /     \\ \\/  /      |  | \n"
-                               + "|___| \\__\\ |__|       \\____/       \\____/       |__| \n";
-
     /**
      * Returns a string with the greeting message and saved list when starting up the project.
      *

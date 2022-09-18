@@ -3,9 +3,6 @@ package duke;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 public class Duke {
 
     private static Storage storage;

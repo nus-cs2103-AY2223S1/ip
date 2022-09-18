@@ -125,6 +125,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a LocalDate Object when given user input.
+     *
+     * @param userInput the String input from the console
+     * @param indexOfSlash the integer representing position of slash in input
+     * @return a LocalDate object representing the date for deadline or event.
+     */
     public LocalDate parseEventOrDeadlineDate(String userInput, int indexOfSlash) {
 
         String date = userInput.substring(indexOfSlash + 4, indexOfSlash + 13);
@@ -140,6 +147,13 @@ public class Parser {
         return d1;
     }
 
+    /**
+     * Returns a String representing time given a String userInput.
+     *
+     * @param userInput the String input from the console.
+     * @param indexOfSlash the integer representing position of slash in input.
+     * @return a String representation of time of deadline or event.
+     */
     public String parseEventOrDeadlineTime(String userInput, int indexOfSlash) {
         String time = userInput.substring(indexOfSlash + 14);
         String newTime = parseTime(time);
