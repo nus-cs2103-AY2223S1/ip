@@ -323,14 +323,22 @@ public class DateFormat {
         if (date.length() > 10 && time.length() != 0) {
             if (time.length() <= 3) {
                 hour = "0" + time.charAt(0);
-                System.out.println(hour);
                 minutes = time.substring(1, 3);
             } else {
                 hour = time.substring(0, 2);
                 minutes = time.substring(2, 4);
             }
             this.stringTime = hour + ":" + minutes + ":00";
-            this.timeFormatted = LocalTime.parse(hour + ":" + minutes + ":" + "00");
+            boolean hourRange = Integer.parseInt(hour) >= 0 && Integer.parseInt(hour) < 24;
+            boolean minuteRange = Integer.parseInt(minutes) >= 0 && Integer.parseInt(minutes) < 60;
+            System.out.println(stringTime);
+            System.out.println(hourRange);
+            System.out.println(hourRange);
+            if (hourRange && minuteRange) {
+                this.timeFormatted = LocalTime.parse(hour + ":" + minutes + ":" + "00");
+            } else {
+                System.out.println("You retarded? Your time is out of range!");
+            }
         }
         if (this.timeFormatted != null) {
             this.dateAndTime = LocalDateTime.parse(this.stringDate + "T" + this.stringTime);
@@ -380,8 +388,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("12 jun 2022 1800");
+        DateFormat d4 = new DateFormat("12 jun 2022 2400");
         System.out.println(d4.formatDate("MMM d yyyy"));
-        System.out.println(d4.formatTime());
     }
 }

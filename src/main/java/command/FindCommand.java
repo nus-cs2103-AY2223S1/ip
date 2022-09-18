@@ -68,13 +68,16 @@ public class FindCommand extends Command {
                     throw new DukeException("There is nothing that matches the task.");
                 } else {
                     System.out.println("Here are the matching tasks in your list:");
-                    tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1)
-                            + "." + n.toString()));
+                    for (int l = 0; l < tasksFound.size(); l++) {
+                        Task currTask = tasksFound.get(l);
+                        String currTaskString = currTask.toString();
+                        System.out.println(currTaskString);
+                    }
                     System.out.println();
                     response = "Here are the matching tasks in your list:\n";
                     for (int k = 0; k < tasksFound.size(); k++) {
                         Task currTaskFound = tasksFound.get(k);
-                        String currTaskFoundString = currTaskFound.toString();
+                        String currTaskFoundString = currTaskFound.toString() + "\n";
                         response += currTaskFoundString;
                     }
                     return response;

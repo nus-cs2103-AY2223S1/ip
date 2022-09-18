@@ -1,6 +1,7 @@
 package GUI;
 
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -48,6 +49,9 @@ public class MainWindow extends VBox {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        if (response.startsWith("Bye")) {
+            Platform.exit();
+        }
         userInput.clear();
     }
 }
