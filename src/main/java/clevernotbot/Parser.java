@@ -38,6 +38,8 @@ public class Parser {
             return new ByeCommand(text, true);
         case "undo":
             return new UndoCommand(text,true);
+        case "help":
+            return new HelpCommand(text,true);
         default:
             return new DefaultCommand(text, false);
         }

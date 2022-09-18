@@ -33,7 +33,7 @@ Clevernotbot is a **free desktop java app for managing your task, optimized for 
 ## Features 
 
 ### Viewing help: `help`
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 ### Finding tasks: `find`

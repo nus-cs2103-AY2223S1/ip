@@ -65,7 +65,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return date and time with a specific format.
+     * Returns date and time with a specific format.
      *
      * @param format String of a format e.g. "yyyy-dd-MM HH:mm".
      * @return The date and time in a specific format.
@@ -75,7 +75,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return the date only in MMM d yyyy format.
+     * Returns the date only in MMM d yyyy format.
      *
      * @return Date in MMM d yyyy format.
      */

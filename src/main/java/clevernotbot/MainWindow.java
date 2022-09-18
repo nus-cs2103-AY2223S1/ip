@@ -66,6 +66,22 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    @FXML
+    public void openHelpWindow(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/HelpWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Help Command");
+            Scene scene = new Scene(root1);
+            stage.getIcons().add(new Image("/images/CleverNotBotTaskIcon.png"));
+            stage.setScene(scene);
+            stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
     private boolean isExit(String input){
         return input.equals("bye");
     }
@@ -73,6 +89,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void handleCloseButtonAction(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    public void undoButtonAction(ActionEvent event) {
+        String response = cleverNotBot.getResponse("undo");
+        dialogContainer.getChildren().addAll(
+                DialogBox.getCleverNotBotDialog(response, cleverNotBotImage));
     }
 
     @FXML

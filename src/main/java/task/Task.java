@@ -6,17 +6,17 @@ package task;
  */
 public abstract class Task {
     private final String name;
-    private final boolean completed;
+    private final boolean isCompleted;
 
     /**
      * Constructor for Task.
      *
      * @param name      Name of the task.
-     * @param completed The status of the task. (Completed or not)
+     * @param isCompleted The status of the task. (Completed or not)
      */
-    public Task(String name, boolean completed) {
+    public Task(String name, boolean isCompleted) {
         this.name = name;
-        this.completed = completed;
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class Task {
      * @return Task's completion.
      */
     public boolean isCompleted() {
-        return completed;
+        return isCompleted;
     }
 
     /**

@@ -36,7 +36,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Action">
             <items>
-              <MenuItem mnemonicParsing="false" text="Undo">
+              <MenuItem mnemonicParsing="false" onAction="#undoButtonAction" text="Undo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Z" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -44,6 +44,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
+                  <MenuItem fx:id="commandMenuHelpButton" mnemonicParsing="false" onAction="#openHelpWindow" text="Command Help" />
                   <MenuItem fx:id="visitButton" mnemonicParsing="false" onAction="#visitButtonAction" text="Visit GitHub Page" />
               <MenuItem fx:id="aboutButton" mnemonicParsing="false" onAction="#aboutButtonAction" text="About" />
             </items>

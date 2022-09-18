@@ -11,17 +11,17 @@ import task.TaskList;
  */
 public abstract class Command {
     private String commandName;
-    private boolean exit;
+    private boolean isExit;
 
     /**
      * Constructor for the Command.
      *
      * @param commandName Description of Command.
-     * @param exit        Checking if program intends to exit.
+     * @param isExit        Checking if program intends to exit.
      */
-    public Command(String commandName, boolean exit) {
+    public Command(String commandName, boolean isExit) {
         this.commandName = commandName;
-        this.exit = exit;
+        this.isExit = isExit;
     }
 
     /**
@@ -39,11 +39,11 @@ public abstract class Command {
      * @return Exit status.
      */
     public boolean isExitingProgram() {
-        return exit;
+        return isExit;
     }
 
     /**
-     * An abstract method of run
+     * Runs the command that it is supposed to.
      *
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
