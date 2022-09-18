@@ -282,7 +282,7 @@ public class Ui {
      * @return String containing the loading error message.
      */
     public String showLoadingError() {
-        String content = "File cannyat load. Please check saved list text\n";
+        String content = "File cannyat load. Please check saved list-text.\n";
         return content;
     }
 
