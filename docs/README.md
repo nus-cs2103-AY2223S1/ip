@@ -168,6 +168,7 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 # Command Summary
 
 | Action/Command | Format, Examples |
+| :------------: | :--------------: |
 
 | `bye` | `bye` |
 | `list` | `list` |
