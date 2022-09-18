@@ -62,6 +62,9 @@ public class Duke {
         } else if (input.startsWith("deadline")) {
             database.save();
             return manage.addDeadline(input);
+        } else if (input.startsWith("dl")) {
+            database.save();
+            return manage.addDL(input);
         } else if (input.startsWith("event")) {
             database.save();
             return manage.addEvent(input);

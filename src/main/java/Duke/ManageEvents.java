@@ -55,6 +55,20 @@ public class ManageEvents {
         return graphics.addMessage(tempTask);
     }
 
+    public String addDL(String input) throws BlankDescriptionException {
+        if (input.length() == 2) {
+            throw new BlankDescriptionException();
+        }
+        int endAt = input.indexOf("/");
+        String description = input.substring(3, endAt);
+        String by = input.substring(endAt + 4);
+
+        Deadline tempTask = new Deadline(description, by);
+        this.taskList.add(tempTask);
+        return graphics.addMessage(tempTask);
+
+    }
+
     /**
      * Method to add the object event
      * @param input                      The input by the user
