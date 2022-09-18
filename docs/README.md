@@ -21,7 +21,7 @@ It is a task management system with a priority scheduling which allows users to 
 
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Duke.jar` file from [here](https://github.com/jialatteo/ip/releases/tag/v0.2).
+2. Download the latest `Duke.jar` file from [here](https://github.com/wongyewjon/ip/releases/tag/v0.2).
 3. Copy the file to the folder you want to use as the home folder for your task list.
 4. Double-click the file to start the app.
 5. Refer to the [Features](#Features) below for details on how to use each command.
