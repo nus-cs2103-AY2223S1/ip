@@ -3,9 +3,15 @@ package duke.handlers;
 import duke.exceptions.DukeException;
 import java.util.HashMap;
 
+/**
+ * Represents a map containing all duke commands.
+ */
 public class DukeCommandMap {
     protected HashMap<String, DukeCommand> commandMap = new HashMap<>();
 
+    /**
+     * Constructs the command map with all the available commands.
+     */
     public DukeCommandMap () {
         commandMap.put("list", new ListTasksCommand());
         commandMap.put("mark", new MarkAsDoneCommand());
@@ -20,6 +26,13 @@ public class DukeCommandMap {
         commandMap.put("bye", new ExitCommand());
     }
 
+    /**
+     * Find the command that matches with the user input.
+     *
+     * @param keyword The command keyword user entered.
+     * @return The command matched.
+     * @throws DukeException If the command is not found.
+     */
     public DukeCommand getCommand(String keyword) throws DukeException {
         if (!commandMap.containsKey(keyword)) {
             throw new DukeException("Command not found!");
