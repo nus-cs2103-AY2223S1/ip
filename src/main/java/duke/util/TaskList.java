@@ -39,9 +39,9 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task from the list.
+     * Deletes tasks from the list.
      *
-     * @param taskNum the index of task to be deleted
+     * @param toDelete the sublist of tasks to be deleted
      */
     public void deleteTask(ArrayList<Task> toDelete) {
         tasks.removeAll(toDelete);
