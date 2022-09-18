@@ -55,29 +55,31 @@ public class FindCommand extends Command {
                         tasksFound.add(currTask);
                     }
                 }
-                for (int j = 0; j < taskList.size(); j++) {
-                    Task currNote = notesList.get(j);
-                    String currNoteString = currNote.toString();
-                    if (currNoteString.contains(taskToFind)) {
-                        tasksFound.add(currNote);
-                    }
-                }
-                    if (tasksFound.isEmpty()) {
-                        throw new DukeException("There is nothing that matches the task.");
-                    } else {
-                        System.out.println("Here are the matching tasks in your list:");
-                        tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1)
-                                + "." + n.toString()));
-                        response = "Here are the matching tasks in your list:\n";
-                        for (int k = 0; k < tasksFound.size(); k++) {
-                            Task currTaskFound = tasksFound.get(k);
-                            String currTaskFoundString = currTaskFound.toString();
-                            response += currTaskFoundString;
+                if (!notesList.isEmpty()) {
+                    for (int j = 0; j < taskList.size(); j++) {
+                        Task currNote = notesList.get(j);
+                        String currNoteString = currNote.toString();
+                        if (currNoteString.contains(taskToFind)) {
+                            tasksFound.add(currNote);
                         }
-                        return response;
-
                     }
                 }
+                if (tasksFound.isEmpty()) {
+                    throw new DukeException("There is nothing that matches the task.");
+                } else {
+                    System.out.println("Here are the matching tasks in your list:");
+                    tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1)
+                            + "." + n.toString()));
+                    System.out.println();
+                    response = "Here are the matching tasks in your list:\n";
+                    for (int k = 0; k < tasksFound.size(); k++) {
+                        Task currTaskFound = tasksFound.get(k);
+                        String currTaskFoundString = currTaskFound.toString();
+                        response += currTaskFoundString;
+                    }
+                    return response;
+                }
+            }
         } catch (DukeException e) {
             System.out.println(e.toString());
             return e.toString();

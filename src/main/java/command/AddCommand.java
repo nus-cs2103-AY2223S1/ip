@@ -127,7 +127,7 @@ public class AddCommand extends Command {
         } else {
             try {
                 if (commandLine.length() <= 6) {
-                    throw new DukeException("The description of a todo cannot be empty.");
+                    throw new DukeException("The description of a notes cannot be empty.");
                 } else {
                     String actTask = commandLine.substring(6);
                     Task currNote = new Notes(actTask);

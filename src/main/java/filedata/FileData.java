@@ -20,8 +20,8 @@ public class FileData {
 
 
     public FileData(String fileName) {
-        String home = System.getProperty("user.home");
-        java.nio.file.Path path = java.nio.file.Paths.get(home, "Desktop", fileName);
+        String home = System.getProperty("user.dir");
+        java.nio.file.Path path = java.nio.file.Paths.get(home, "data", "duckwifaknife.txt");
         this.fileName = String.valueOf(path);
         this.file = new File(String.valueOf(path));
         this.tasks = this.storeArray();
