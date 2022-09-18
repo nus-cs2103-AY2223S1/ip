@@ -2,20 +2,20 @@ package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Objects;
+//import java.util.Objects;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+//import javafx.application.Application;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.Label;
+//import javafx.scene.control.ScrollPane;
+//import javafx.scene.control.TextField;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
+//import javafx.scene.layout.AnchorPane;
+//import javafx.scene.layout.Region;
+//import javafx.scene.layout.VBox;
+//import javafx.stage.Stage;
 
 /**
  * The self-named main class that controls our lovely chatbot, Duke
@@ -23,17 +23,17 @@ import javafx.stage.Stage;
  * @author eugeneleong
  * @version 1.0
  */
-public class Duke extends Application {
+public class Duke {
 
-    private final Image user = new Image(Objects.requireNonNull(
-            this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png")));
-    private final Image duke = new Image(Objects.requireNonNull(
-            this.getClass().getResourceAsStream("/images/PoliteCat.png")));
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
+    //private final Image user = new Image(Objects.requireNonNull(
+    //        this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png")));
+    //private final Image duke = new Image(Objects.requireNonNull(
+    //        this.getClass().getResourceAsStream("/images/PoliteCat.png")));
+    //private ScrollPane scrollPane;
+    //private VBox dialogContainer;
+    //private TextField userInput;
+    //private Button sendButton;
+    //private Scene scene;
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
@@ -51,7 +51,7 @@ public class Duke extends Application {
             tasks = new TaskList();
         }
     }
-
+    /*
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
@@ -112,12 +112,14 @@ public class Duke extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
     }
-
+*/
+    /*
     /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
+    /*
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
@@ -126,7 +128,7 @@ public class Duke extends Application {
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
-    }
+    }*/
 
     /**
      * You should have your own function to generate a response to user input.

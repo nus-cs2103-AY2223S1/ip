@@ -1,13 +1,13 @@
 package duke;
 
 import javafx.fxml.FXML;
+//import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -20,15 +20,20 @@ public class MainWindow extends AnchorPane {
     @FXML
     private TextField userInput;
     @FXML
-    private Button sendButton;
+    private Button sendButton; // not needed
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/PoliteCat.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/PoliteCat.png"));
 
+    @SuppressWarnings("checkstyle:MissingJavadocMethod")
     @FXML
     public void initialize() {
+        //dialogContainer.setPadding(new Insets(20));
+        //dialogContainer.setSpacing(100);
+        dialogContainer.setPrefHeight(100);
+        dialogContainer.setMaxHeight(100);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -52,7 +57,6 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        userInput.setFont(new Font("Monospaced", 24));
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(

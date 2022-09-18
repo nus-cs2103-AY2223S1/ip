@@ -36,6 +36,9 @@ public class Storage {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
+                if (input.equals("")) { // for empty spacing in nextLine
+                    input = sc.nextLine();
+                }
                 String commandType = Parser.getCommandType(input);
                 switch(commandType) {
                 case "MARK":
