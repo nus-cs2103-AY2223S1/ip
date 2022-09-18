@@ -12,12 +12,16 @@ public class ChatBot {
     private TaskList tasks = new TaskList(storage.getTasksFromFile());
     private Scanner sc = new Scanner(System.in);
     private Parser parser = new Parser();
+    private History history = new History();
     private boolean isExitProgram = false;
 
     public ChatBot() {
 
     }
 
+    /**
+     * Starts the chat bot.
+     */
     public void startChatBot() {
         greetUser();
         while (sc.hasNext()) {
@@ -31,6 +35,11 @@ public class ChatBot {
 
     }
 
+    /**
+     * Greets user.
+     *
+     * @return String that greet user.
+     */
     private String greetUser() {
         return getResponse("greet");
     }
@@ -46,7 +55,7 @@ public class ChatBot {
             Command commandToRun = parser.parseText(input);
             assert commandToRun != null; // assert that command is not null
             isExitProgram = commandToRun.isExitingProgram();
-            String reply = commandToRun.run(tasks, uI, storage).trim();
+            String reply = commandToRun.run(tasks, uI, storage, history).trim();
             return reply;
         } catch (CleverNotBotException e) {
             return e.toString();

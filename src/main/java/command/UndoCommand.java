@@ -8,22 +8,22 @@ import task.Task;
 import task.TaskList;
 
 /**
- * Represents a command to show what is in the list.
+ * Represents a command to mark a task.
  */
-public class ListCommand extends Command {
+public class UndoCommand extends Command {
 
     /**
-     * Constructor for the ListCommand.
+     * Constructor for the UndoCommand.
      *
-     * @param commandName Description of Command.
+     * @param commandName Description of command.
      * @param exit        Checking if program intends to exit.
      */
-    public ListCommand(String commandName, boolean exit) {
+    public UndoCommand(String commandName, boolean exit) {
         super(commandName, exit);
     }
 
     /**
-     * Runs the list command to list out every task in list.
+     * Runs the undo command to undo the previous action.
      *
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
@@ -34,18 +34,12 @@ public class ListCommand extends Command {
      */
     @Override
     public String run(TaskList tasks, UI textBox, Storage storage, History history) throws CleverNotBotException {
-        if (tasks.getSize() < 1) {
-            return "There is no task currently assigned.";
+        if(history.canUndo()) {
+            TaskList prevState = history.retrieveLastHistory(tasks);
+            storage.writeToFile(prevState.getTaskList());
+            return "The previous command has been undone!";
         } else {
-            int counter = 1;
-            StringBuilder op = new StringBuilder();
-            for (Task task : tasks.getTaskList()) {
-                op.append(counter++);
-                op.append(".");
-                op.append(task.toString());
-                op.append("\n");
-            }
-            return op.toString();
+            throw new CleverNotBotException("There is no more command to undo!",textBox);
         }
     }
 }

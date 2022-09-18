@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
 
 /**
@@ -63,6 +62,7 @@ public class MainWindow extends AnchorPane {
         if (isExit(input)) {
             userInput.setEditable(false);
             userInput.setPromptText("Please press X on the top right hand to exit");
+            sendButton.setDisable(true);
         }
     }
 

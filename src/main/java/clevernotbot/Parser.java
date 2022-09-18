@@ -36,6 +36,8 @@ public class Parser {
             return new GreetCommand(text, false);
         case "bye":
             return new ByeCommand(text, true);
+        case "undo":
+            return new UndoCommand(text,true);
         default:
             return new DefaultCommand(text, false);
         }

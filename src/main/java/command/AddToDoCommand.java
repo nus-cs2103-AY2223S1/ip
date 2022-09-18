@@ -1,5 +1,6 @@
 package command;
 
+import clevernotbot.History;
 import clevernotbot.Storage;
 import clevernotbot.UI;
 import exception.CleverNotBotException;
@@ -30,10 +31,11 @@ public class AddToDoCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @param history All the history done for adding and removing stuff.
      * @return A String type response.
      * @throws CleverNotBotException
      */
-    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage, History history) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length != 1) {
@@ -41,6 +43,7 @@ public class AddToDoCommand extends Command {
                 String[] descOnly = Arrays.copyOfRange(desc, 1, desc.length);
                 String joinDesc = String.join(" ", descOnly);
                 Task newTask = new ToDo(joinDesc, false);
+                history.addToHistoryList(tasks);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
                 return String.format(

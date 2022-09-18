@@ -23,10 +23,11 @@ public class CleverNotBot {
         Storage storage = new Storage();
         TaskList tasks = new TaskList(storage.getTasksFromFile());
         Parser parser = new Parser();
+        History history = new History();
         try {
             Command commandToRun = parser.parseText(input);
             assert commandToRun != null; // assert that command can not be null
-            String reply = commandToRun.run(tasks, uI, storage).trim();
+            String reply = commandToRun.run(tasks, uI, storage, history).trim();
             return reply;
         } catch(CleverNotBotException e) {
             return e.toString();

@@ -1,5 +1,6 @@
 package command;
 
+import clevernotbot.History;
 import clevernotbot.Storage;
 import clevernotbot.UI;
 import exception.CleverNotBotException;
@@ -28,9 +29,10 @@ public class AddDeadLineCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @param history All the history done for adding and removing stuff.
      * @throws CleverNotBotException Gives an exception when deadline description is empty or not contain /by.
      */
-    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage, History history) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length == 1) {
@@ -46,6 +48,7 @@ public class AddDeadLineCommand extends Command {
                 String dateTime = getCommandName().substring(mid + searchWord.length() + 1); // to remove the space
                 Deadline.validDateTime(dateTime);
                 Task newTask = new Deadline(commandName, false, dateTime);
+                history.addToHistoryList(tasks);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
                 return String.format(

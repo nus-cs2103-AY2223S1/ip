@@ -1,5 +1,6 @@
 package command;
 
+import clevernotbot.History;
 import clevernotbot.Storage;
 import clevernotbot.UI;
 import exception.CleverNotBotException;
@@ -27,16 +28,18 @@ public class UnmarkCommand extends Command {
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
+     * @param history All the history done for adding and removing stuff.
      * @return A String type response.
      * @throws CleverNotBotException Gives an exception.
      */
     @Override
-    public String run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+    public String run(TaskList tasks, UI textBox, Storage storage, History history) throws CleverNotBotException {
         try {
             //unmark 3 -> 2, because number 3 is actually idx 2
             int number = Integer.parseInt(getCommandName().split(" ")[1]) - 1;
             Task taskToUnmark = tasks.getTask(number);
             if (taskToUnmark.checkMarked().equals("X")) {
+                history.addToHistoryList(tasks);
                 Task unmarkedTask = taskToUnmark.toggleCompleted();
                 tasks.removeTask(taskToUnmark);
                 tasks.addTaskByIdx(number, unmarkedTask);
