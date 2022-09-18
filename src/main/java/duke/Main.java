@@ -14,6 +14,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     private static final String APPLICATION_TITLE = "Little Duke";
+    private static final double minWidth = 300.0;
+    private static final double minHeight = 200.0;
     private final Duke duke = new Duke();
 
     /**
@@ -33,6 +35,8 @@ public class Main extends Application {
             scene.getStylesheets().add("/styles/stylesheet.css");
             stage.setScene(scene);
             stage.setTitle(APPLICATION_TITLE);
+            stage.setMinWidth(minWidth);
+            stage.setMinHeight(minHeight);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
