@@ -23,11 +23,6 @@ public class Ui {
     public void greeting() {
         this.chat(this.MESSAGE_GREETING);
     }
-
-    public void find() {
-
-    }
-
     
     /** 
      * Shows a list of the tasks the chatbot holds to the user in tasklist index order, 
