@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -54,6 +55,7 @@ public class Storage {
             }
         } catch (CorruptedFileException e) {
             duplicateCorruptFile();
+            return new TaskList();
         } catch (FileNotFoundException e) {
             // Allow KarenBot to continue operation on a clean slate
             return new TaskList();
@@ -110,7 +112,13 @@ public class Storage {
             corruptFileDirectory = folderDirectory + "/" + this.fileName + CORRUPT_POSTFIX + counter + ".txt";
             corruptFile = new File(corruptFileDirectory);
         }
-        originalFile.renameTo(corruptFile);
+        try {
+            Files.copy(originalFile.toPath(), corruptFile.toPath());
+            originalFile.delete();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            assert false;
+        }
     }
 
     /**
