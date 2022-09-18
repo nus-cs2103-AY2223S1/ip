@@ -345,10 +345,12 @@ public abstract class Command {
             try {
                 if (isCompleted) {
                     Task task = tasks.markTaskAsCompleted(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, String.valueOf(tasks.getNumberOfTasks()));
+                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task,
+                            String.valueOf(tasks.getNumberOfTasks()));
                 } else {
                     Task task = tasks.markTaskAsIncomplete(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, String.valueOf(tasks.getNumberOfTasks()));
+                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task,
+                            String.valueOf(tasks.getNumberOfTasks()));
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
@@ -378,7 +380,8 @@ public abstract class Command {
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String message = tasks.craftTaskString();
-            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.getNumberOfTasks()), message);
+            return ui.sendAndReturnMessage(ActionKeywords.LIST, null,
+                    String.valueOf(tasks.getNumberOfTasks()), message);
         }
     }
 
