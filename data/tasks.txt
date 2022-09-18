@@ -2,6 +2,4 @@ T | 1 | play read | URGENT
 E | 0 | shit | today | HIGH
 T | 0 | play book | MEDIUM
 T | 0 | read book | LOW
-T | 0 | read     book | LOW
-T | 0 | read boook | LOW
-T | 0 | readd   as | LOW
+T | 0 | read bok null | LOW

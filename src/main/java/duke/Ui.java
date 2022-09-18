@@ -6,11 +6,11 @@ package duke;
 public class Ui {
 
     public static String start() {
-        return "Hi! I'm Olaf and i like warm hugs.\n" + "What can I do for you?\n";
+        return "Hi! I'm Olaf and I like warm hugs.\n" + "What can I do for you?\n";
     }
 
     public static String end() {
-        return "\nBye. Hope to see you again soon!";
+        return "Bye. Hope to see you again soon!";
     }
 
     public static String showLoadingError(DukeException e) {

@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Encapsulates a parser that reads the input and parse accordingly.
@@ -31,9 +32,9 @@ public class Parser {
      * @throws DukeException Throws a DukeException.
      */
     public String parse(String cmd) throws DukeException {
-        String[] temp = cmd.split(" ");
-        String mainCmd = temp[0];
-        String[] subCmd = Arrays.copyOfRange(temp, 1, temp.length);
+        ArrayList<String> temp = inSensitiveTrimmedCommand(cmd);
+        String mainCmd = temp.get(0);
+        String [] subCmd = getSubCmd(temp);
 
         switch (mainCmd) {
         case "list":
@@ -123,7 +124,7 @@ public class Parser {
             prioritySplit.add("LOW");
         }
 
-        Todo tmpTask = new Todo(prioritySplit.get(0), false, PriorityLevel.getPriorityString(prioritySplit.get(1)));
+        Todo tmpTask = new Todo(prioritySplit.get(0).trim(), false, PriorityLevel.getPriorityString(prioritySplit.get(1)));
         String toDoMessage = this.taskList.addTask(tmpTask);
         this.storage.save(this.taskList);
         return toDoMessage;
@@ -215,7 +216,7 @@ public class Parser {
         }
     }
 
-    public String parseBye() throws DukeException {
+    public String parseBye() {
         return Ui.end();
     }
 
@@ -228,5 +229,23 @@ public class Parser {
             return Integer.parseInt(index) <= 0 || Integer.parseInt(index) > this.taskList.size();
         }
         return true;
+    }
+
+    public ArrayList<String> inSensitiveTrimmedCommand(String cmd) {
+        String[] regularCmd = cmd.split(" ");
+        ArrayList<String> temp = new ArrayList<>();
+        for (int i =0; i < regularCmd.length; i++) {
+            if(!regularCmd[i].isEmpty()) {
+                temp.add(regularCmd[i].trim().toLowerCase());
+            }
+        }
+        return temp;
+    }
+
+    public String[] getSubCmd(ArrayList<String> cmd) {
+        List<String> subTemp = cmd.subList(1, cmd.size());
+        String[] subCmd = new String[subTemp.size()];
+        subCmd = subTemp.toArray(subCmd);
+        return subCmd;
     }
 }
