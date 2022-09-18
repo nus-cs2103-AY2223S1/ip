@@ -15,15 +15,12 @@ import duke.items.ToDo;
 public class TaskList {
     private final ArrayList<Item> storedItems;
     private final Storage saveManager = new Storage();
-    private final UI ui;
 
     /**
      * Creates a Tasklist Object.
-     * @param ui UI Object to display messages to user.
      */
-    public TaskList(UI ui) {
+    public TaskList() {
         this.storedItems = this.saveManager.loadItems();
-        this.ui = ui;
     }
 
     /**
@@ -65,8 +62,29 @@ public class TaskList {
 
     private String addItem(Item item) {
         this.storedItems.add(item);
-        return "    Alright! I've added it to our list:\n      " + item.toString()
+        int isDup = this.isDuplicate(item);
+        if (isDup > -1) {
+            return "    Whoops, it seems you've added a duplicate item already in our list:\n    "
+                    + this.getListElement(isDup);
+        }
+        return "    Alright! I've added it to our list:" + getListElement(storedItems.size() - 1)
                 + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
+    }
+
+    private int isDuplicate(Item newItem) {
+        for (int count = 0; count < this.storedItems.size(); count++) {
+            Item currItem = this.storedItems.get(count);
+            if (!newItem.getItemType().equals(currItem.getItemType())) {
+                continue;
+            }
+            if (!newItem.getName().equals(currItem.getName())) {
+                continue;
+            }
+            if (newItem instanceof ToDo || newItem.getDateTimeString().equals(currItem.getDateTimeString())) {
+                return count;
+            }
+        }
+        return -1;
     }
 
     private String addToDo(String item) {
@@ -79,9 +97,8 @@ public class TaskList {
             Deadline deadline = new Deadline(item, due);
             return this.addItem(deadline);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, "
-                    + "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)");
-            return null;
+            return "Error Parsing Date Time Info, duke.items.Item not added, "
+                    + "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)";
         }
     }
 
@@ -90,9 +107,8 @@ public class TaskList {
             Event event = new Event(item, at);
             return this.addItem(event);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, "
-                    + "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)");
-            return null;
+            return "Error Parsing Date Time Info, duke.items.Item not added, "
+                    + "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)";
         }
     }
 
@@ -102,31 +118,33 @@ public class TaskList {
         }
         StringBuilder list = new StringBuilder("    Here's the list you asked for Dattebayo:");
         for (int count = 0; count < this.storedItems.size(); count++) {
-            list.append("\n").append("    ").append(count + 1).append(".").append(storedItems.get(count).toString());
+            list.append(this.getListElement(count));
         }
         return list.toString();
+    }
+
+    private String getListElement(int count) {
+        return "\n" + "    " + (count + 1) + "." + storedItems.get(count).toString();
     }
 
     private String markItem(String strIndex) {
         int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
-            return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
+            return "    Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
         }
         this.storedItems.get(index).setDone();
-        return "    Alright! I've marked this task as done Dattebayo:\n  " + this.storedItems.get(index).toString();
+        return "    Alright! I've marked this task as done Dattebayo:" + this.getListElement(index);
     }
 
     private String unMarkItem(String strIndex) {
         int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
-            ui.printErrorMessage("Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
-                    + " items in the list Dattebayo!");
-            return null;
+            return "    Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
+                    + " items in the list Dattebayo!";
         }
         this.storedItems.get(index).setUnDone();
-        return "    Alright! I've marked this task as not done yet Dattebayo: \n  "
-                + this.storedItems.get(index).toString();
+        return "    Alright! I've marked this task as not done yet Dattebayo:" + this.getListElement(index);
     }
 
 
@@ -136,9 +154,9 @@ public class TaskList {
             return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
         }
-        Item item = this.storedItems.get(index);
+        String deletedItem = this.getListElement(index);
         this.storedItems.remove(index);
-        return "    Alright! I've removed this task Dattebayo: \n  " + item.toString()
+        return "    Alright! I've removed this task Dattebayo:" + deletedItem
                 + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
 
@@ -146,8 +164,7 @@ public class TaskList {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            ui.printErrorMessage("Whoops! it seems you your index is not an integer Dattebayo!"
-                    + "\n'delete <Index>'");
+//            return "Whoops! it seems you your index is not an integer Dattebayo!"+ "\n'delete <Index>'";
             return -1;
         }
     }
