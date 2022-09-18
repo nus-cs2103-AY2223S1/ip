@@ -99,6 +99,14 @@ public class Parser {
         return new ToDoCommand(description);
     }
 
+    /**
+     * Method to parse user-input for tasks that involve a date
+     * @param splitInput array of input components after initial parse
+     * @param type Either a deadline or event type task
+     * @return the command to create a Deadline or Event task
+     * @throws InvalidArgumentException when user input is invalid
+     * @throws InvalidDateException when user input date is invalid
+     */
     private static Command parseForDate(String[] splitInput, String type)
             throws InvalidArgumentException, InvalidDateException {
         checkInputLength(splitInput, MissingDetails.DESCRIPTION_AND_DATE);
@@ -123,6 +131,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Method to check the length of a user input
+     * @param splitInput array of input components after initial parse
+     * @param details Enum of possible missing details in user input
+     * @throws InvalidArgumentException when user input is invalid
+     */
     private static void checkInputLength(String[] splitInput, MissingDetails details)
             throws InvalidArgumentException {
         if (splitInput.length < 2) {
@@ -141,6 +155,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Method to retrieve task number from user input by parsing
+     * @param taskNumber the user input string to parse
+     * @return the task number retrieved from user input
+     * @throws InvalidArgumentException when user input is invalid
+     */
     private static int getTaskNumber(String taskNumber)
             throws InvalidArgumentException {
         try {
@@ -150,6 +170,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Method to check if user-input date follows the proper format
+     * @param date the user-input date
+     * @throws InvalidDateException when user-input date is erroneous
+     */
     public static void checkDateFormat(String date) throws InvalidDateException {
         try {
             LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
@@ -158,6 +183,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Method to parse user inputs to retrieve the date
+     * @param date the user input to parse
+     * @return returns the date in a desired format
+     */
     public static String parseDate(String date) {
         LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
         return localDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
