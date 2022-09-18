@@ -163,7 +163,7 @@ This is your task list:
 
 ### `find` - Find all the tasks containing keywords
 
-> Displays the list of tasks with the descriptions that contains given keywords.
+> Displays the list of tasks with the descriptions or tags that contains given keywords.
 
 Example of usage:
 
