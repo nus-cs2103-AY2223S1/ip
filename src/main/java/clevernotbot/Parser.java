@@ -15,7 +15,7 @@ public class Parser {
      */
     public Command parseText(String text) {
         String[] txtArr = text.split(" ");
-        switch (txtArr[0]) {
+        switch (txtArr[0].toLowerCase()) {
         case "find":
             return new FindCommand(text, false);
         case "mark":
