@@ -1,2 +1,4 @@
 [T][X]  hang clothes
 [D][ ] return book (by: 2/12/2019 1800)
+[D][ ] return book (by: 2/12/2019 1800)
+[D][ ] return book (by: 2/12/2019 1800)
