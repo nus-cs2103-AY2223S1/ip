@@ -1,25 +1,20 @@
 /**
  * Events are tasks that have a description, a start and end time.
+ *
+ * @author AkkFiros
  */
 public class Event extends Task {
-    protected String at;
+    private static final String EVENT_SYMBOL = "E";
+    protected String date;
 
     /**
      * Constructor for an Event task
      * @param description description of a task that the user inputs
-     * @param at the time frame which this Event task occurs at
+     * @param date the date which this Event task occurs at
      */
-    public Event(String description, String at) {
+    public Event(String description, String date) {
         super(description);
-        this.at = at;
-    }
-
-    /**
-     * Retrieves the time that an Event task occurs at
-     * @return the time which the Event task occurs at
-     */
-    public String getTiming() {
-        return this.at;
+        this.date = date;
     }
 
     /**
@@ -28,6 +23,25 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return String.format("[%s]%s (by: %s)", Event.EVENT_SYMBOL,
+                super.toString(), DateParser.getParsedDate(date));
     }
+
+    /**
+     * Method to retrieve am Event task's type
+     * @return Symbol representation of an Event task
+     */
+    @Override
+    public String getType() {
+        return Event.EVENT_SYMBOL;
+    }
+
+    /**
+     * Retrieves the time that an Event task occurs at
+     * @return the time which the Event task occurs at
+     */
+    public String getDate() {
+        return date;
+    }
+
 }

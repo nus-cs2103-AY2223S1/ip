@@ -3,7 +3,7 @@
  *
  * @author AkkFiros
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -43,18 +43,8 @@ public class Task {
     /**
      * Sets a task to complete
      */
-    public void setComplete() {
-        isDone = true;
-        System.out.println("Woohoo! You completed a task:\n" + getStatusIcon() + " " + getDescription());
-    }
-
-    /**
-     * Sets a task to incomplete
-     */
-    public void setIncomplete() {
-        isDone = false;
-        System.out.println("Trynna cheat the system are we? Well, no you, task marked as incomplete:\n"
-                + getStatusIcon() + " " + getDescription());
+    public void changeStatus(boolean status) {
+        this.isDone = status;
     }
 
     /**
@@ -63,6 +53,18 @@ public class Task {
      */
     @Override
     public String toString() {
-        return getStatusIcon() + " " + description;
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
+
+    /**
+     * Method to retrieve a task's type
+     * @return Symbol representation of the Task's type
+     */
+    public abstract String getType();
+
+    /**
+     * Method to retrieve a task's date
+     * @return the date of a task (if any)
+     */
+    public abstract String getDate();
 }

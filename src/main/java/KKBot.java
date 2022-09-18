@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,70 @@ import java.util.List;
 public class KKBot {
     // create a class level array to store all user-input tasks
     private static List<Task> tasks = new ArrayList<>();
+    final static String PATH = "./data";
+    final static String FILENAME = "./data/kkbot.txt";
+    private static String divider = "____________________________________________________________\n";
+
+    /**
+     * getTasks method to retrieve the list of tasks (for writing to file)
+     * @return the list of tasks as a string
+     */
+    private static String getTasks() {
+        String result = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            result += tasks.get(i).toString() + "\n";
+        }
+        return result;
+    }
+
+    /**
+     * writeFile method to write tasks to file
+     * @param list the list of tasks to be saved to the hard disk
+     */
+    private static void writeFile(String list) {
+        try {
+            FileWriter fw = new FileWriter(FILENAME);
+            fw.write(list);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * createFile method to create a new file to hard disk for saving
+     */
+    private static void createFile() {
+        File directory = new File(PATH);
+        if(!directory.exists()) {
+            directory.mkdir();
+        }
+        File file = new File(FILENAME);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static void list() {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            String completionIcon = task.getStatusIcon();
+            String description = task.getDescription();
+            String index = String.valueOf(i + 1);
+            //if last task in list, add a divider after
+            if (i == tasks.size() - 1) {
+                System.out.println(index + ". " + task.toString() + "\n" + divider);
+            } else {
+                System.out.println(index + ". " + task.toString() + "\n");
+            }
+        }
+    }
 
     public static void main(String[] args) {
         // Welcome message and header
-        String divider = "____________________________________________________________\n";
         String logo = " __   __   __   __  _____\n"
                     + "|  | /  / |  | /  /|  __  \\\n"
                     + "|  |/  /  |  |/  / | |__|  |\n"
@@ -34,8 +95,11 @@ public class KKBot {
                 + "What can I do for you?\n";
         System.out.println(divider + logo + welcomeMessage + divider);
 
+
+
         // Add scanner in for user input (create scanner object)
         Scanner userText = new Scanner(System.in);
+
         // Chatbot function:
         while (true) {
             String input = userText.nextLine();
@@ -76,6 +140,7 @@ public class KKBot {
                     if (task != null) {
                         if (!task.getCompletion()) {
                             task.setComplete();
+                            writeFile(getTasks());
                             System.out.println(divider);
                         } else {
                             System.out.println("Silly you, that task is already complete!\n" + divider);
@@ -95,6 +160,7 @@ public class KKBot {
                     if (task != null) {
                         if (task.getCompletion()) {
                             task.setIncomplete();
+                            writeFile(getTasks());
                             System.out.println(divider);
                         } else {
                             System.out.println("Erm... that task was never complete...\n" + divider);
@@ -111,6 +177,7 @@ public class KKBot {
                     String description = input.substring(5);
                     ToDo newToDo = new ToDo(description);
                     tasks.add(newToDo);
+                    writeFile(getTasks());
                     System.out.println("I've added something to do to your list:\n" + "    " + newToDo.toString()
                             + "\n" + "Now you have " + tasks.size() + " tasks in the list!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
@@ -125,6 +192,7 @@ public class KKBot {
                     String by = input.substring(separator + 5);
                     Deadline newDeadline = new Deadline(description, by);
                     tasks.add(newDeadline);
+                    writeFile(getTasks());
                     System.out.println("You've got a new deadline added to your list:\n" + "    "
                             + newDeadline.toString() + "\n" + "Now you have " + tasks.size()
                             + " tasks in the list!\n" + divider);
@@ -140,6 +208,7 @@ public class KKBot {
                     String at = input.substring(separator + 5);
                     Event newEvent = new Event(description, at);
                     tasks.add(newEvent);
+                    writeFile(getTasks());
                     System.out.println("A new event is lined up and added to your list:\n"
                             + "    " + newEvent.toString() + "\n" + "Now you have "
                             + tasks.size() + " tasks in the list!\n" + divider);
@@ -152,6 +221,7 @@ public class KKBot {
                     int taskNumber = Integer.parseInt(inputNumber);
                     Task toRemove = tasks.get(taskNumber - 1);
                     tasks.remove(toRemove);
+                    writeFile(getTasks());
                     System.out.println("This task has been deleted:\n" + "    " + toRemove.toString() + "\n"
                             + "Now you have " + tasks.size() + " tasks in the list!\n" + divider);
                 } catch (NumberFormatException nfe) {

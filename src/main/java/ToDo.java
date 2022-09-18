@@ -4,6 +4,7 @@
  * @author AkkFiros
  */
 public class ToDo extends Task {
+    private static final String TODO_SYMBOL = "T";
     /**
      * Constructor for a ToDo task
      * @param description description of a task that the user inputs
@@ -18,6 +19,24 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return String.format("[%s] %s", ToDo.TODO_SYMBOL, super.toString());
+    }
+
+    /**
+     * Method to retrieve a ToDo task's type
+     * @return Symbol representation of a ToDo task
+     */
+    @Override
+    public String getType() {
+        return ToDo.TODO_SYMBOL;
+    }
+
+    /**
+     * Returns the date of a ToDo task
+     * @return A blank string (ToDo tasks do not have dates)
+     */
+    @Override
+    public String getDate() {
+        return " ";
     }
 }
