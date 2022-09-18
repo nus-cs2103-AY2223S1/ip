@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class Storage {
 
-    private final String DATA_FILEPATH = "ip/src/main/data/duke.txt";
+    private final String DATA_FILEPATH = "data/duke.txt";
 
 
     public void createDataFile() throws IOException {
@@ -42,20 +42,20 @@ class Storage {
         while(sc.hasNextLine()) {
 
             String task = sc.nextLine();
-            char type = task.charAt(0);
-            boolean isDone = task.charAt(1) == '1';
-            String[] description = task.substring(2).split("\\|");
+            String[] description = task.split(" \\| ");
 
-            switch(type){
+            boolean isDone = description[1].equals("1");
 
-                case 'T':
-                    taskList.add(new ToDo(description[0], isDone));
+            switch(description[0]){
+
+                case "T":
+                    taskList.add(new ToDo(description[2], isDone));
                     break;
-                case 'D':
-                    taskList.add(new Deadline(description[0], isDone, description[1]));
+                case "D":
+                    taskList.add(new Deadline(description[2], isDone, description[3]));
                     break;
-                case 'E':
-                    taskList.add(new Events(description[0], isDone, description[1]));
+                case "E":
+                    taskList.add(new Event(description[2], isDone, description[3]));
                     break;
                 default:
                     break;
@@ -71,11 +71,14 @@ class Storage {
 
         FileWriter fw = new FileWriter(DATA_FILEPATH);
 
+
         for(Task t : taskList) {
 
             fw.write(t.toFileString() + System.lineSeparator());
 
         }
+
+
 
         fw.close();
 

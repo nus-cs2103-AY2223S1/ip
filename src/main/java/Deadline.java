@@ -9,7 +9,7 @@ class Deadline extends Task {
     Deadline(String description, String completeBy) {
         super(description, false);
         this.completeBy = LocalDateTime.parse(completeBy,
-                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
     Deadline(String description, boolean isDone, String completeBy) {
@@ -17,15 +17,14 @@ class Deadline extends Task {
         super(description, isDone);
 
         this.completeBy = LocalDateTime.parse(completeBy,
-                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
 
     }
 
     @Override
     public String toFileString() {
 
-        return "D | " + (this.isDone ? 1 : 0) + " | " +
-                this.description + " | " + this.completeBy;
+        return "D" + super.toFileString();
     }
 
     @Override
@@ -34,6 +33,7 @@ class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " +
                 completeBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ")";
+
     }
 
 }

@@ -12,8 +12,7 @@ class ToDo extends Task {
     @Override
     public String toFileString() {
 
-        return "T | " + (this.isDone ? 1 : 0) + " | " +
-                this.description;
+        return "T" + super.toFileString();
     }
 
     @Override

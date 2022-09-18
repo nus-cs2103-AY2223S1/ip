@@ -2,30 +2,29 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-class Events extends Task {
+class Event extends Task {
 
     private LocalDateTime eventTime;
 
-    Events(String description, String eventTime) {
+    Event(String description, String eventTime) {
 
         super(description, false);
         this.eventTime = LocalDateTime.parse(eventTime,
-                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
-    Events(String description, boolean isDone, String eventTime) {
+    Event(String description, boolean isDone, String eventTime) {
 
         super(description, isDone);
         this.eventTime = LocalDateTime.parse(eventTime,
-                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
 
     }
 
     @Override
     public String toFileString() {
 
-        return "E | " + (this.isDone ? 1 : 0) + " | " +
-                this.description + " | " + this.eventTime;
+        return "E" + super.toFileString();
     }
 
     @Override
@@ -34,6 +33,7 @@ class Events extends Task {
         return "[E]" + super.toString() + " (at: " +
                 eventTime.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ")";
+
     }
 
 }
