@@ -22,6 +22,7 @@ public class TodoCommands extends Executor {
 
     public TodoCommands(String input) {
         super(input);
+        assert input.startsWith("todo");
     }
 
 

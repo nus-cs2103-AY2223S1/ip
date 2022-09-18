@@ -22,6 +22,7 @@ public class DeadlineCommands extends Executor {
 
     public DeadlineCommands(String input) {
         super(input);
+        assert input.startsWith("deadline");
     }
 
 

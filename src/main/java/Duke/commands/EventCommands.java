@@ -22,6 +22,7 @@ public class EventCommands extends Executor {
 
     public EventCommands(String input) {
         super(input);
+        assert input.startsWith("event");
     }
 
 
