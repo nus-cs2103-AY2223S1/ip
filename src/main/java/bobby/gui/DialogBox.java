@@ -1,4 +1,4 @@
-package duke.gui;
+package bobby.gui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -48,13 +48,21 @@ public class DialogBox extends HBox {
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
-
+    private void setDukeBackground() {
+        this.dialog.setStyle("-fx-background-color: #ace5e8; -fx-label-padding: 10; -fx-background-radius: 15");
+    }
+    public void setUserBackground() {
+        this.dialog.setStyle("-fx-background-color: #64ade8;-fx-label-padding: 10; -fx-background-radius: 15");
+    }
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.setUserBackground();
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.setDukeBackground();
         db.flip();
         return db;
     }

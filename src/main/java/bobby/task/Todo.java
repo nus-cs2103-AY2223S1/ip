@@ -1,4 +1,4 @@
-package duke.task;
+package bobby.task;
 
 public class Todo extends Task {
     public Todo(String description, Boolean isDone) {
@@ -10,7 +10,7 @@ public class Todo extends Task {
     }
     @Override
     public String formatTaskString() {
-        return String.format("T|%s|%s", this.isDone, this.description);
+        return String.format("T|%s|%s", this.description, this.isDone);
     }
 
     @Override

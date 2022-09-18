@@ -1,4 +1,4 @@
-package duke;
+package bobby;
 import javafx.application.Application;
 /**
  * Launcher to launch the application

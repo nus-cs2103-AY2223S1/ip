@@ -1,12 +1,14 @@
-package duke;
+package bobby;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-import duke.exceptions.DukeException;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import bobby.exceptions.DukeException;
+import bobby.task.Deadline;
+import bobby.task.Event;
+import bobby.task.Task;
+import bobby.task.Todo;
 
 
 /**
@@ -24,30 +26,30 @@ public class Parser {
      * @return enum Duke.Commands value
      * @throws DukeException
      */
-    public Duke.Commands analyzeCommand(String input) throws DukeException {
+    public Bobby.Commands analyzeCommand(String input) throws DukeException {
         if (input.matches("list(.*)")) {
-            return Duke.Commands.LIST;
+            return Bobby.Commands.LIST;
         } else if (input.matches("bye(.*)")) {
-            return Duke.Commands.BYE;
+            return Bobby.Commands.BYE;
 
         } else if (input.matches("todo(.*)")) {
-            return Duke.Commands.TODO;
+            return Bobby.Commands.TODO;
 
         } else if (input.matches("mark(.*)")) {
-            return Duke.Commands.MARK;
+            return Bobby.Commands.MARK;
         } else if (input.matches("unmark(.*)")) {
-            return Duke.Commands.UNMARK;
+            return Bobby.Commands.UNMARK;
         } else if (input.matches("event(.*)")) {
-            return Duke.Commands.EVENT;
+            return Bobby.Commands.EVENT;
 
         } else if (input.matches("deadline(.*)")) {
-            return Duke.Commands.DEADLINE;
+            return Bobby.Commands.DEADLINE;
         } else if (input.matches("delete(.*)")) {
-            return Duke.Commands.DELETE;
+            return Bobby.Commands.DELETE;
         } else if (input.matches("find(.*)")) {
-            return Duke.Commands.FIND;
+            return Bobby.Commands.FIND;
         } else if (input.matches("switch(.*)")) {
-            return Duke.Commands.SWITCH;
+            return Bobby.Commands.SWITCH;
         }
         throw new DukeException("I dont understand this command booo");
     }
@@ -121,6 +123,7 @@ public class Parser {
     }
 
     private String handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (!input.contains("/at")) {
             throw new DukeException("Event command must have /at param");
         }
@@ -130,8 +133,17 @@ public class Parser {
         }
         String description = inputArr[0];
         try {
-            LocalDateTime time = formatTime(inputArr[1].strip());
-            Task task = new Event(description, time);
+            String[] datetimeArr = inputArr[1].strip().split(" ");
+            String startTimeString = (datetimeArr[0] + " " + datetimeArr[1]).strip();
+            String endTimeString = null;
+            if (datetimeArr.length < 5) {
+                endTimeString = (datetimeArr[0] + " " + datetimeArr[3]).strip();
+            } else {
+                endTimeString = (datetimeArr[3] + " " + datetimeArr[4]).strip();
+            }
+            LocalDateTime startTime = LocalDateTime.parse(startTimeString, dateTimeFormat);
+            LocalDateTime endTime = LocalDateTime.parse(endTimeString, dateTimeFormat);
+            Task task = new Event(description, startTime, endTime);
             taskList.addTask(task);
             storage.updateFile(taskList.list);
             return ui.showAddTask(taskList, task);
@@ -142,6 +154,7 @@ public class Parser {
     }
 
     private String handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) throws DukeException {
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (!input.contains("/by")) {
             throw new DukeException("Deadline command must have /by param");
         }
@@ -151,8 +164,8 @@ public class Parser {
         }
         try {
             String description = inputArr[0];
-            LocalDateTime time = formatTime(inputArr[1].strip());
-            Task task = new Event(description, time);
+            LocalDateTime time = LocalDateTime.parse(inputArr[1].strip(), dateTimeFormat);
+            Task task = new Deadline(description, time);
             taskList.addTask(task);
             storage.updateFile(taskList.list);
             return ui.showAddTask(taskList, task);

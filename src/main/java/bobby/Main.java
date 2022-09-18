@@ -1,7 +1,7 @@
-package duke;
+package bobby;
 import java.io.IOException;
 
-import duke.gui.MainWindow;
+import bobby.gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,9 +14,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private Ui ui = new Ui();
     private Parser parser = new Parser();
-    private Storage storage = new Storage("duke.txt");
+    private Storage storage = new Storage("bobby.txt");
     private TaskList taskList = new TaskList(storage.readFile());
-    private Duke duke = new Duke(parser, ui, taskList, storage);
+    private Bobby duke = new Bobby(parser, ui, taskList, storage);
     @Override
     public void start(Stage stage) {
         try {

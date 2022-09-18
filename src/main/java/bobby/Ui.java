@@ -1,7 +1,6 @@
-package duke;
+package bobby;
 
-import duke.task.Task;
-
+import bobby.task.Task;
 
 public class Ui {
     public Ui() {
@@ -22,7 +21,7 @@ public class Ui {
      * Shows the goodbye message
      */
     protected String showBye() {
-        return "Duke was ejected...";
+        return "Bobby was ejected...";
     }
 
     /**

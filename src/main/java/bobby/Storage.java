@@ -1,4 +1,4 @@
-package duke;
+package bobby;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import bobby.task.Deadline;
+import bobby.task.Event;
+import bobby.task.Task;
+import bobby.task.Todo;
 
 /**
  * Storage class for writing and reading form data file
@@ -41,7 +41,6 @@ public class Storage {
      */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
-        System.out.println();
         File file = new File(getFullPath());
         checkFileExist();
         try {
@@ -51,12 +50,15 @@ public class Storage {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
+                System.out.println(taskInfo[1]);
+
                 if (taskInfo[0].equals("T")) {
                     data.add(new Todo(taskInfo[1], Boolean.parseBoolean(taskInfo[2])));
                 } else if (taskInfo[0].equals("E")) {
                     data.add(new Event(taskInfo[1],
                             Boolean.parseBoolean(taskInfo[2]),
-                            LocalDateTime.parse(taskInfo[3])));
+                            LocalDateTime.parse(taskInfo[3]),
+                            LocalDateTime.parse(taskInfo[4])));
 
                 } else if (taskInfo[0].equals("D")) {
                     data.add(new Deadline(taskInfo[1],
@@ -85,6 +87,7 @@ public class Storage {
         for (Task task : updatedData) {
             dataString += String.format("%s\n", task.formatTaskString());
         }
+        System.out.println(dataString);
         try {
             FileWriter fileWriter = new FileWriter(getFullPath());
             fileWriter.write(dataString);

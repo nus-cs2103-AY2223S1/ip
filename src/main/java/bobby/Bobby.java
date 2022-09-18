@@ -1,9 +1,9 @@
-package duke;
+package bobby;
 
 /**
- * Main class for duke application
+ * Main class for bobby application
  */
-public class Duke {
+public class Bobby {
     private TaskList taskList;
     private Parser parser;
     private Ui ui;
@@ -26,13 +26,13 @@ public class Duke {
     }
 
     /**
-     * Constructor for Duke
+     * Constructor for Bobby
      * @param parser
      * @param ui
      * @param taskList
      * @param storage
      */
-    public Duke(Parser parser, Ui ui, TaskList taskList, Storage storage) {
+    public Bobby(Parser parser, Ui ui, TaskList taskList, Storage storage) {
         this.parser = parser;
         this.ui = ui;
         this.taskList = taskList;

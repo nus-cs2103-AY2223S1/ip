@@ -1,7 +1,7 @@
-package duke;
+package bobby;
 import java.util.ArrayList;
 
-import duke.task.Task;
+import bobby.task.Task;
 
 
 public class TaskList {
@@ -40,7 +40,7 @@ public class TaskList {
         int length = this.list.size();
         for (int i = 0; i < length; i++) {
             Task curr = this.list.get(i);
-            result +=String.format("%d. %s \n",i + 1, curr);
+            result += String.format("%d. %s \n", i + 1, curr);
         }
         return result;
     }
