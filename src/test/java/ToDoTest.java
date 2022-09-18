@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import KKBot.tasks.ToDo;
+import kkbot.tasks.ToDo;
 import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
