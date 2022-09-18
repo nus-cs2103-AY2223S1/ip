@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
     @FXML
+    private AnchorPane root;
+    @FXML
     private ScrollPane scrollPane;
     @FXML
     private VBox dialogContainer;

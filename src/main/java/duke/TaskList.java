@@ -54,9 +54,10 @@ public class TaskList {
         if (ind > this.tasks.size() - 1) {
             throw new DukeException("Oops, no such task to delete.");
         } else {
-            System.out.println("Task removed: " + this.tasks.get(ind));
+            String response = "Task removed: " + this.tasks.get(ind);
             this.tasks.remove(ind);
-            return this.tasks.size() + " tasks remaining.";
+            response += "\n" + this.tasks.size() + " tasks remaining.";
+            return response;
         }
     }
 

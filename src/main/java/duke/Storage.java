@@ -75,7 +75,6 @@ public class Storage {
                     throw new DukeException("Oops, unknown task type.");
                 }
             }
-            System.out.println("Loaded tasks.");
         }
         return tasks;
     }
