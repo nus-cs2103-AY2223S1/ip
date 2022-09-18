@@ -169,7 +169,6 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
 | Action/Command | Format, Examples |
 
-| :------------: | :----------------------------------------------------------: |
 | `bye` | `bye` |
 | `list` | `list` |
 | `mark` | `mark [task index]`, `mark 1`, ` mark 4` |
