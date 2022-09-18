@@ -38,7 +38,16 @@ public abstract class Task {
         return completed + this.taskName;
     }
 
-    public abstract String getStorageDescription();
+    /**
+     * Returns a String representing all the relevant information of a task, in the format of whether the task has been
+     * finished and the name of the task, to be placed in a text file as storage.
+     *
+     * @return A String containing whether it has been finished and the name of the task in the storage format.
+     */
+    public String getStorageDescription() {
+        String finishedStatus = this.isFinished ? "finished" : "unfinished";
+        return finishedStatus + ", " + this.taskName + "\n";
+    };
 
     /**
      * Represents a Task object that does not have any date or time associated with it, namely a todo task.
@@ -72,8 +81,7 @@ public abstract class Task {
          */
         @Override
         public String getStorageDescription() {
-            String finishedStatus = this.isFinished ? "finished" : "unfinished";
-            return "[T], " + finishedStatus + ", " + this.taskName + "\n";
+            return "[T], " + super.getStorageDescription();
         }
     }
 }
