@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>WHAT IS JAVA</pattern>
+		<template>Java is a programming language.</template>
+	</category>
+</aiml>
