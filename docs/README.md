@@ -156,9 +156,13 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
   <img src="./img/alias.png" style="zoom: 67%;" />
 
+### Removing Alias
+
 - `rmalias [Command]`: removes the user added Command from Duke
 
   <img src="./img/rmalias.png" style="zoom:67%;" />
+
+### Resetting Alias
 
 - `resetAlias`: resets all user added commands to the default controls
 
