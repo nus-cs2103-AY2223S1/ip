@@ -1,0 +1,9 @@
+.dialog {
+    -fx-text-fill: white;
+    -fx-background-color: teal;
+    -fx-padding:7px;
+    -fx-border-width:1;
+    -fx-border-color:black;
+    -fx-border-radius:12px;
+    -fx-background-radius:12px;
+}

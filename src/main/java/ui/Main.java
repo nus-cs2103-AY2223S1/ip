@@ -26,6 +26,7 @@ public class Main extends Application {
             fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            scene.getStylesheets().add(getClass().getResource("/view/style.css").toExternalForm());
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setJarvis(jarvis);
             fxmlLoader.<MainWindow>getController().setStage(stage);
