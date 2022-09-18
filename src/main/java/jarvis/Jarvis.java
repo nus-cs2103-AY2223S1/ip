@@ -15,6 +15,7 @@ public class Jarvis {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+    private Parser parser;
 
     /**
      * Constructor for a Jarvis Chatbot. Initialize the needed objects
@@ -29,19 +30,28 @@ public class Jarvis {
             ui.showLoadingError();
             taskList = new TaskList();
         }
-        ui = new Ui(taskList, storage);
+        //ui = new Ui(taskList, storage);
+        parser = new Parser(taskList, storage);
     }
 
-    public void run() {
-        ui.run();
+//    public void run() {
+//        ui.run();
+//    }
+
+    public String getResponse(String input) {
+        return this.parser.parse(input);
+    }
+
+    public boolean getByeStatus() {
+        return parser.getByeStatus();
     }
 
 
-    public static void main(String[] args) {
-
-        Jarvis jarvis = new Jarvis("data/task_list.txt");
-        jarvis.run();
-        // branch Level 8
-
-    }
+//    public static void main(String[] args) {
+//
+//        Jarvis jarvis = new Jarvis("data/task_list.txt");
+//        jarvis.run();
+//        // branch Level 8
+//
+//    }
 }

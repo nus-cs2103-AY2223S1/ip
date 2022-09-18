@@ -33,7 +33,7 @@ public class TaskList {
      * @param isDone Whether the task is done initially
      * @throws IOException If something went wrong when storing task to database
      */
-    public void addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
+    public String addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
         Task task;
         try {
             task = taskType == Task.TaskType.ToDo
@@ -42,7 +42,7 @@ public class TaskList {
                     ? new Event(input, isDone)
                     : new Deadline(input, isDone);
         } catch (DateTimeParseException e) {
-            return;
+            return "Wrong time format";
         }
 
         taskList.add(task);
@@ -51,7 +51,7 @@ public class TaskList {
         String msg = "Got it. I've added this task:\n" + "  "
                 + task
                 + "\n" + "Now you have " + taskList.size() + " tasks in the list";
-        System.out.println(msg);
+        return msg;
         //++firstEmptyIndex;
     }
 
@@ -65,55 +65,58 @@ public class TaskList {
         taskList.add(task);
     }
 
-    public void markTaskAsDone(int taskNum) {
+    public String markTaskAsDone(int taskNum) throws IOException {
         if (taskNum >= taskList.size()) {
-            System.out.println("There is no task with index " + (taskNum + 1));
-            return;
+            return "There is no task with index " + (taskNum + 1);
         }
         taskList.get(taskNum).markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.get(taskNum));
+        String msg = "Nice! I've marked this task as done:\n";
+        msg += taskList.get(taskNum);
+        // Initially I want to just change the line of the task instead of rewrite the whole
+        // data file as it's more efficient, but I haven't found a way to implement it.
+        storage.saveTaskList(this);
+        return msg;
     }
 
-    public void markTaskAsUnDone(int taskNum) {
+    public String markTaskAsUnDone(int taskNum) throws IOException {
         if (taskNum >= taskList.size()) {
-            System.out.println("There is no task with index " + (taskNum + 1));
-            return;
+            return "There is no task with index " + (taskNum + 1);
         }
         taskList.get(taskNum).markAsUnDone();
-        System.out.println("I've marked this task as not done:");
-        System.out.println(taskList.get(taskNum));
+        String msg = "Nice! I've marked this task as done:\n";
+        msg += taskList.get(taskNum);
+        storage.saveTaskList(this);
+        return msg;
     }
 
     /**
      * Delete(remove) a task from the task list
      * @param index The position of the task to delete, 0-based
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         if (index >= taskList.size()) {
-            System.out.println("There is no task with index " + (index + 1));
-            return;
+            return "There is no task with index " + (index + 1);
         }
 
-        System.out.println("Noted. I've removed this task:\n"
+        String msg = "Noted. I've removed this task:\n"
                 + taskList.get(index) + "\n"
-                + "Now you have " + (taskList.size() - 1) + " tasks in the list");
+                + "Now you have " + (taskList.size() - 1) + " tasks in the list";
         taskList.remove(index);
-
+        return msg;
     }
 
     /**
      * Print all the task in the task list
      */
-    public void printTasks() {
+    public String printTasks() {
         if (taskList.size() == 0) {
-            System.out.println("There's nothing in the list.");
-            return;
+            return "There's nothing in the list.";
         }
-        System.out.println("Here are the tasks in your list:");
+        String msg = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i + 1) + ". " + taskList.get(i));
+            msg += (i + 1) + ". " + taskList.get(i) + "\n";
         }
+        return msg;
     }
 
     public Task getTask(int i) {
@@ -128,16 +131,15 @@ public class TaskList {
         return taskList.size();
     }
 
-    public void find(String keyword) {
+    public String find(String keyword) {
         Task[] searchResult = taskList.stream().filter(task -> task.match(keyword)).toArray(Task[]::new);
         if (searchResult.length == 0) {
-            System.out.println("There's no matching task");
-            return;
+            return "There's no matching task";
         }
         String msg = "Here are the matching tasks in your list:";
         for (int i = 0; i < searchResult.length; i++) {
             msg += "\n" + (i + 1) + ". " + searchResult[i];
         }
-        System.out.println(msg);
+        return msg;
     }
 }
