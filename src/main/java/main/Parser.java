@@ -30,12 +30,17 @@ public class Parser {
 
     public Command parse(String userCommand) throws InvalidCommandException {
 
+        //split user command into command word and arguments
         String splitUserStatement[] = userCommand.split(" ", 2);
         String command = splitUserStatement[0];
+
+        //initialise empty string to store arguments
         String commandArgs = "";
         if (splitUserStatement.length > 1){
             commandArgs = splitUserStatement[1].strip();
         }
+
+        //switch-case for command word
         switch(command) { //no breaks as all cases lead to return
         case COMMAND_LOAD:
             if (!commandArgs.equals("")) {
@@ -55,11 +60,13 @@ public class Parser {
         case COMMAND_TODO:
             return new TodoCommand(commandArgs);
         case COMMAND_DEADLINE:   
+            //process arguments to pass into Command constructor
             String[] deadlineArgs = parseCommandArgs("/by",commandArgs); 
             String deadlineDescription = deadlineArgs[0];
             String deadlineDate = deadlineArgs[1].strip();  
             return new DeadlineCommand(deadlineDescription, deadlineDate);
         case COMMAND_EVENT:
+        //process arguments to pass into Command constructor
             String[] eventArgs = parseCommandArgs("/at",commandArgs); 
             String eventDescription = eventArgs[0];
             String eventDate = eventArgs[1].strip();          

@@ -21,25 +21,30 @@ public class Storage {
     private ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
     private TaskList existingTasks;
     private Ui ui;
-    private Storage storage;
 
-    public Storage(TaskList existingTasks, Ui ui, Storage storage) {
+    public Storage(TaskList existingTasks, Ui ui) {
         this.existingTasks = existingTasks;
         this.ui = ui;
-        this.storage = storage;
     }
     
     public TaskList loadLog() throws DukeException{
         try {
+            //initialise parser, file scanner and tasklist
             Parser parser = new Parser();
             Scanner fileReader = new Scanner(new File(logFileAddress));
             TaskList newTaskList = new TaskList();
+
+            //read the log file and store tasks read to the temporary arraylist of task logs
             while (fileReader.hasNextLine()) {
                 String nextLogLine = fileReader.nextLine();
                 String[] parsedLogLine = nextLogLine.split(",", 2);
                 loggedTasks.add(parsedLogLine);
             }
+
+            //close the scanner
             fileReader.close();
+
+            //add all the tasks in the temporary array list of task logs into the tasklist
             for (String[] loggedTask : loggedTasks) {
                 boolean isDone = Integer.parseInt(loggedTask[0]) == 1;
                 Command parsedCommand = parser.parse(loggedTask[1]);
@@ -49,6 +54,8 @@ public class Storage {
                 }
                 newTaskList.add(parsedCommand.getTask());
             }
+
+            //return the new tasklist to be used
             return newTaskList;
         } catch (InvalidCommandException e) {
             throw e;
@@ -58,16 +65,23 @@ public class Storage {
     }
 
     public void cleanUp() throws DukeException {
+        //if no tasks to be saved, exit with message
         if (existingTasks.size() == 0) {
             this.sendNoTasksMessage();
+            return;
         }
         try {
+            //initialise file writer and integer counter
             FileWriter fileWriter = new FileWriter(logFileAddress);
             int numOfTasks = 0;
+
+            //log tasks in tasklist
             for (Task task : existingTasks.getTasks()) {
                 fileWriter.write(task.log());
                 numOfTasks += 1;
             }
+
+            //close file writer and show message to user
             fileWriter.close();
             this.sendEndMessage(numOfTasks);
         }

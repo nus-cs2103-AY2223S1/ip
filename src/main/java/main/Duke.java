@@ -18,7 +18,7 @@ public class Duke {
         this.parser = new Parser();
         this.tasks = new TaskList();
         this.ui = new Ui(this.tasks);
-        this.storage = new Storage(this.tasks, this.ui, this.storage);
+        this.storage = new Storage(this.tasks, this.ui);
     }
 
     public void run() {
