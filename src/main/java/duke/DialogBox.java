@@ -53,13 +53,13 @@ public class DialogBox extends HBox {
         displayPicture.preserveRatioProperty();
     }
     private void configureDialogBubble(String txt) {
-        Rectangle box = new Rectangle();
+        Rectangle box = new Rectangle(300,100);
         box.setArcHeight(20);
         box.setArcWidth(20);
         box.setFill(Color.GHOSTWHITE);
 
         Label text = new Label(txt);
-        text.setFont(new Font("Wingdings", 11.5));
+        text.setFont(new Font("Wingdings", 10));
         text.setPadding(new Insets(10));
         text.setWrapText(true);
         text.setTextAlignment(TextAlignment.JUSTIFY);
