@@ -28,7 +28,7 @@ public class MainWindow extends VBox {
     private Duke duke;
 
     private final Image userImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.jpeg"))
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png"))
     );
     private final Image dukeImage = new Image(
             Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png"))
