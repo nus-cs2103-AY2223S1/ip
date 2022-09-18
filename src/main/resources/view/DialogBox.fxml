@@ -12,7 +12,7 @@
             <Insets left="5" right="5" />
         </HBox.margin>
         </Label>
-        <Circle fx:id="displayPicture" pickOnBounds="true" radius="35" />
+        <Circle fx:id="displayPicture" radius="35" />
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
