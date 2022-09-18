@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.CommandWords;
 import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
@@ -31,6 +32,7 @@ public class Parser {
      */
     public static Command parse(String input) throws DukeException {
         CommandWords commandWord = getCommand(input);
+        int startIndexOfDescription;
         switch (commandWord) {
         case BYE:
             return new ExitCommand();
@@ -43,11 +45,10 @@ public class Parser {
         case DELETE:
             return new DeleteCommand(getTaskNumber(6, input));
         case TODO:
-            if (input.length() < 6) {
+            checkSeperatedBySpace(4, input);
+            startIndexOfDescription = 6;
+            if (input.length() < startIndexOfDescription) {
                 throw new DukeException("The description of a todo cannot be empty.");
-            }
-            if (!input.substring(4, 5).equals(" ")) {
-                throw new DukeException("Command and description should be separated by a space.");
             }
             Task newTask = new Todo(input.substring(5));
             return new AddCommand(newTask);
@@ -58,11 +59,10 @@ public class Parser {
             String[] deadlineDescDate = parseDescDate("/by", "deadline", input);
             return new AddCommand(new Deadline(deadlineDescDate[0], parseDate(deadlineDescDate[1])));
         case FIND:
-            if (input.length() < 6) {
+            checkSeperatedBySpace(4, input);
+            startIndexOfDescription = 6;
+            if (input.length() < startIndexOfDescription) {
                 throw new DukeException("The keyword to search for cannot be empty.");
-            }
-            if (!input.substring(4, 5).equals(" ")) {
-                throw new DukeException("Command and keyword should be separated by a space.");
             }
             return new FindCommand(input.substring(5));
         default:
@@ -70,21 +70,6 @@ public class Parser {
         }
     }
 
-    private static int getTaskNumber(int commandLength, String input) throws DukeException {
-        if (input.length() == commandLength || (input.length() == commandLength + 1 &&
-                input.substring(commandLength, commandLength + 1).equals(" "))) {
-            throw new DukeException("Task number cannot be empty.");
-        }
-        if (input.length() > commandLength && !input.substring(commandLength, commandLength + 1).equals(" ")) {
-            throw new DukeException("Command and task number should be separated by a space.");
-        }
-        try {
-            int taskNumber = Integer.parseInt(input.substring(commandLength + 1));
-            return taskNumber;
-        } catch (NumberFormatException e) {
-            throw new DukeException("Task number invalid.");
-        }
-    }
     private static CommandWords getCommand(String input) throws DukeException {
         if (input.equals("bye")) {
             return CommandWords.BYE;
@@ -109,20 +94,42 @@ public class Parser {
         }
     }
 
+    private static void checkSeperatedBySpace(int commandLength, String input) throws DukeException {
+        boolean hasSpace = input.charAt(commandLength) != ' ';
+        if (!hasSpace) {
+            throw new DukeException("Command and keyword should be separated by a space.");
+        }
+    }
+
+    private static int getTaskNumber(int commandLength, String input) throws DukeException {
+        boolean doesOnlyContainCommand = input.length() == commandLength;
+        boolean doesOnlyContainCommandAndSpace = input.length() == commandLength + 1 &&
+                input.charAt(commandLength) == ' ';
+        if (doesOnlyContainCommand || doesOnlyContainCommandAndSpace) {
+            throw new DukeException("Task number cannot be empty.");
+        }
+        checkSeperatedBySpace(commandLength, input);
+        try {
+            return Integer.parseInt(input.substring(commandLength + 1));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task number invalid.");
+        }
+    }
+
     private static String[] parseDescDate(String parser, String command, String input) throws DukeException{
         int commandLength = command.length();
         if (input.length() < commandLength + 2) {
             throw new DukeException("The description of a " + command + " cannot be empty.");
         }
-        if (!input.substring(commandLength, commandLength + 1).equals(" ")) {
-            throw new DukeException("Command and description should be separated by a space.");
-        }
+        checkSeperatedBySpace(commandLength, input);
         String inputWithoutCommand = input.substring(commandLength + 1);
         String[] descDate = inputWithoutCommand.split(" " + parser + " ");
-        if (descDate.length < 2) {
+        boolean hasDate = descDate.length >= 2;
+        boolean hasMoreThanOneDate = descDate.length > 2;
+        if (!hasDate) {
             throw new DukeException(command + " date cannot be empty.");
         }
-        if (descDate.length > 2) {
+        if (hasMoreThanOneDate) {
             throw new DukeException("More than one " + command + " date entered.");
         }
         return descDate;

@@ -1,4 +1,4 @@
-package duke.parser;
+package duke;
 
 /**
  * Commands that the user can use in the Duke Application.

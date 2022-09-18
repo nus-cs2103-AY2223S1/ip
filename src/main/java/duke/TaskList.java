@@ -1,6 +1,7 @@
 package duke;
 
 import duke.exception.DukeException;
+import duke.exception.DukeRuntimeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -21,7 +22,7 @@ public class TaskList {
      * Initialises an empty task list.
      */
     public TaskList() {
-        tasks = new ArrayList<Task>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -29,9 +30,8 @@ public class TaskList {
      * @param taskStringList List with each element containing details of a task.
      */
     public TaskList(ArrayList<String> taskStringList) {
-        tasks = new ArrayList<Task>();
-        for (int i = 0; i < taskStringList.size(); i++) {
-            String taskString = taskStringList.get(i);
+        tasks = new ArrayList<>();
+        for (String taskString : taskStringList) {
             Task task = parseTaskString(taskString);
             tasks.add(task);
         }
@@ -53,11 +53,11 @@ public class TaskList {
      * @throws DukeException If task number <= 0 or exceeds number of tasks.
      */
     public Task deleteTask(int i) throws DukeException {
-        if (i < 1 || i > tasks.size()) {
+        boolean isTaskNumberWithinLimit = i < 1 || i > tasks.size();
+        if (isTaskNumberWithinLimit) {
             throw new DukeException("Invalid task number.");
         }
-        Task removedTask = tasks.remove(i - 1);
-        return removedTask;
+        return tasks.remove(i - 1);
     }
 
     /**
@@ -75,7 +75,8 @@ public class TaskList {
      * @throws DukeException If task number <= 0 or exceeds number of tasks.
      */
     public Task getTask(int i) throws DukeException {
-        if (i < 1 || i > tasks.size()) {
+        boolean isTaskNumberWithinLimit = i < 1 || i > tasks.size();
+        if (isTaskNumberWithinLimit) {
             throw new DukeException("Invalid task number.");
         }
         return tasks.get(i - 1);
@@ -88,8 +89,7 @@ public class TaskList {
      */
     public TaskList find(String keyword) {
         TaskList foundTasks = new TaskList();
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
+        for (Task task : tasks) {
             String taskDescription = task.getDescription();
             if (taskDescription.contains(keyword)) {
                 foundTasks.addTask(task);
@@ -119,43 +119,53 @@ public class TaskList {
     private Task parseTaskString(String taskString) {
         String withoutNumber = taskString.substring(taskString.indexOf(".") + 2);
         String typeOfTask = withoutNumber.substring(1, 2);
-        assert (typeOfTask.equals("T") || typeOfTask.equals("D") || typeOfTask.equals("E")) : "Invalid stored task " +
-                "type.";
+        boolean isTodo = typeOfTask.equals("T");
+        boolean isEvent = typeOfTask.equals("E");
+        boolean isDeadline = typeOfTask.equals("D");
+        assert (isTodo || isDeadline || isEvent) : "Invalid stored task type.";
         String marked = withoutNumber.substring(4, 5);
         String description = withoutNumber.substring(7);
-        if (typeOfTask.equals("T")) {
+        if (isTodo) {
             Task task = new Todo(description);
             if (marked.equals("X")) {
                 task.markAsDone();
             }
             return task;
-        } else if (typeOfTask.equals("D")) {
+        } else if (isDeadline) {
             assert description.contains(" (by: ") : "Stored deadline does not contain by date.";
-            String[] descriptionAndDate = description.split(" \\(by: ");
-            String descriptionOnly = descriptionAndDate[0];
-            String dateOnly = descriptionAndDate[1].substring(0, descriptionAndDate[1].length() - 1);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-            LocalDateTime dateTime = LocalDateTime.parse(dateOnly, formatter);
-
-            Task task = new Deadline(descriptionOnly, dateTime);
-            if (marked.equals("X")) {
-                task.markAsDone();
-            }
-            return task;
-        } else {
+            return parseDescriptionDate("by", CommandWords.DEADLINE, description, marked);
+        } else if (isEvent) {
             assert description.contains(" (at: ") : "Stored event does not contain at date.";
-            String[] descriptionAndDate = description.split(" \\(at: ");
-            String descriptionOnly = descriptionAndDate[0];
-            String dateOnly = descriptionAndDate[1].substring(0, descriptionAndDate[1].length() - 1);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-            LocalDateTime dateTime = LocalDateTime.parse(dateOnly, formatter);
-
-            Task task = new Event(descriptionOnly, dateTime);
-            if (marked.equals("X")) {
-                task.markAsDone();
-            }
-            return task;
+            return parseDescriptionDate("at", CommandWords.EVENT, description, marked);
+        } else {
+            throw new DukeRuntimeException("TaskList::parseTaskString Stored task is not a todo, deadline or event");
         }
+    }
+
+    private Task parseDescriptionDate(String separator, CommandWords command, String description, String marked) {
+        String[] descriptionAndDate = description.split(" \\("+ separator + ": ");
+        String descriptionOnly = descriptionAndDate[0];
+        String dateOnly = descriptionAndDate[1].substring(0, descriptionAndDate[1].length() - 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(dateOnly, formatter);
+        Task task;
+
+        switch (command) {
+        case EVENT:
+            task = new Event(descriptionOnly, dateTime);
+            break;
+        case DEADLINE:
+            task = new Deadline(descriptionOnly, dateTime);
+            break;
+        default:
+            throw new DukeRuntimeException("TaskList::parseDescriptionDate Invalid input");
+        }
+
+        boolean isMarked = marked.equals("X");
+        if (isMarked) {
+            task.markAsDone();
+        }
+        return task;
     }
 
 }
