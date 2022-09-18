@@ -16,14 +16,11 @@ public class Storage {
      *
      * @param filePath File path specified as a String.
      */
-    public Storage(String filePath) {
+    public Storage(String filePath, String directory) {
+        this.file = new File(filePath);
         try {
-            this.file = new File(filePath);
-            if (file.createNewFile()) {
-                System.out.println("file created!");
-            } else {
-                System.out.println("file exists!");
-            }
+            new File(directory).mkdir();
+            new File(filePath).createNewFile();
         } catch (IOException e) {
             System.out.println("IO exception");
         }

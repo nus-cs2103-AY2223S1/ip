@@ -31,7 +31,7 @@ public class Duke extends Application {
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("./data/duke.txt");
+        storage = new Storage("./data/duke.txt", "./data");
         tasks = new TaskList();
     }
 
@@ -40,15 +40,15 @@ public class Duke extends Application {
      *
      * @param filePath The file path name on a computer.
      */
-    public Duke(String filePath) {
+    public Duke(String filePath, String directory) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, directory);
         tasks = new TaskList();
     }
 
     public static void main(String[] args) {
         System.out.println("Duke starting");
-        Duke duke = new Duke("./data/duke.txt");
+        Duke duke = new Duke("./data/duke.txt", "./data");
         System.out.println("Duke started");
         duke.run();
     }
@@ -126,7 +126,7 @@ public class Duke extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
-        Duke duke = new Duke("./data/duke.txt");
+        Duke duke = new Duke("./data/duke.txt", "./data");
         assert duke.tasks != null : "TaskList should exist!";
         duke.storage.readData(duke.tasks);
         Label greeting = getDialogLabel(this.ui.greet());
