@@ -5,7 +5,7 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.TaskList;
 import duke.tasks.Todo;
-import duke.UI.Ui;
+import duke.ui.Ui;
 import duke.parser.Parser;
 
 import java.time.LocalDateTime;
