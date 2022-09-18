@@ -49,12 +49,7 @@ public class MainWindow extends AnchorPane {
             dialogContainer.getChildren().addAll(
                     DialogBox.getDukeDialog(duke.displayBye(), dukeImage)
             );
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Platform.exit();
+           Platform.exit();
         }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
