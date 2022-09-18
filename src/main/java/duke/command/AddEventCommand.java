@@ -5,7 +5,9 @@ import duke.oop.TaskList;
 import duke.oop.Ui;
 import duke.task.Event;
 
-public class AddEventCommand extends Command{
+import java.time.format.DateTimeParseException;
+
+public class AddEventCommand extends Command {
 
     private String eventTask;
     private String eventTime;
@@ -17,6 +19,11 @@ public class AddEventCommand extends Command{
 
     @Override
     public String execute(TaskList taskList, Storage storage, Ui ui) {
+        try {
+            Event newEvent = new Event(eventTask, eventTime);
+        } catch (DateTimeParseException e) {
+            return "Can not parse. Wrong input format.";
+        }
         Event newEvent = new Event(eventTask, eventTime);
         taskList.getTasks().add(newEvent);
         storage.update((taskList.getTasks()));

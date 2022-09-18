@@ -10,14 +10,10 @@ public class Deadline extends Task {
     public String dl;
     public LocalDate exactTime;
 
-    public Deadline(String name, String dl) {
+    public Deadline(String name, String dl) throws DateTimeParseException{
         super(name);
         this.dl = dl;
-        try {
-            this.exactTime = LocalDate.parse(dl);
-        } catch (DateTimeParseException e) {
-            System.out.println("Wrong input format!");
-        }
+        this.exactTime = LocalDate.parse(dl);
     }
 
     @Override

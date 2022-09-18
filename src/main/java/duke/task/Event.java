@@ -11,14 +11,10 @@ public class Event extends Task {
     public String eventTime;
     public LocalDate exactTime;
 
-    public Event(String name, String eventTime) {
+    public Event(String name, String eventTime) throws DateTimeParseException {
         super(name);
         this.eventTime = eventTime;
-        try {
-            this.exactTime = LocalDate.parse(eventTime);
-        } catch (DateTimeParseException e) {
-            System.out.println("Wrong input format!");
-        }
+        this.exactTime = LocalDate.parse(eventTime);
     }
 
     @Override

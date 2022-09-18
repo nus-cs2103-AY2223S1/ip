@@ -42,15 +42,15 @@ public class Parser {
             String event = input.replace("event", "").trim();
             validateDeadline(event);
             String[] eventArr = input.replace("event", "").split(" /at ");
-            String eventName = eventArr[0];
-            String eventTime = eventArr[1];
+            String eventName = eventArr[0].trim();
+            String eventTime = eventArr[1].trim();
             return new AddEventCommand(eventName, eventTime);
         case "deadline":
             String deadline = input.replace("deadline", "").trim();
             validateDeadline(deadline);
             String[] deadlineArr = input.replace("deadline", "").split(" /by ");
-            String deadlineName = deadlineArr[0];
-            String deadlineTime = deadlineArr[1];
+            String deadlineName = deadlineArr[0].trim();
+            String deadlineTime = deadlineArr[1].trim();
             return new AddDeadlineCommand(deadlineName, deadlineTime);
         case "reminder":
             return new ReminderCommand();
