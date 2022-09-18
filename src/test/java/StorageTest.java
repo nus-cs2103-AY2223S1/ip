@@ -28,7 +28,7 @@ public class StorageTest {
      * Tests if the saved file has been loaded properly into the tasklist.
      */
     @Test
-    public void testLoadSavedFile1() {
+    public void testLoadSavedFileTodo() {
         Storage storage = new Storage("src/test/java/test.txt");
         TaskList task = storage.loadFile(new TaskList());
         String todo = new Todo("test").toString();
@@ -39,7 +39,7 @@ public class StorageTest {
      * Tests if the saved file has been loaded properly into the tasklist.
      */
     @Test
-    public void testLoadSavedFile2() {
+    public void testLoadSavedFileDeadline() {
         Storage storage = new Storage("src/test/java/test.txt");
         TaskList task = storage.loadFile(new TaskList());
         String deadline = "[D][X] test (by: DECEMBER 12 2022 10:55)";
