@@ -4,16 +4,16 @@ import duke.exceptions.DukeException;
 import duke.models.Event;
 
 public class IntervalUtil {
-    public static Event.Interval getInterval(String taskInterval) throws DukeException {
+    public static Interval getInterval(String taskInterval) throws DukeException {
         switch (taskInterval) {
             case "D":
-                return Event.Interval.Day;
+                return Interval.Day;
             case "W":
-                return Event.Interval.Week;
+                return Interval.Week;
             case "M":
-                return Event.Interval.Month;
+                return Interval.Month;
             case " ":
-                return Event.Interval.None;
+                return Interval.None;
             default:
                 throw new DukeException("Invalid Interval Flag in storage file, please delete duke.txt and restart.");
         }

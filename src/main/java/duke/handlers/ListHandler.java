@@ -15,7 +15,7 @@ public class ListHandler {
     public static String getResponse(TaskList list){
         StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < list.size(); i++) {
-            response.append(i).append(". ").append(list.get(i)).append("\n");
+            response.append(i+1).append(". ").append(list.get(i)).append("\n");
         }
         return response.toString();
     }

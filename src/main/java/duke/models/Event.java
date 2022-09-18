@@ -1,55 +1,43 @@
 package duke.models;
 
-public class Event extends Task {
+import duke.utils.Interval;
 
-    protected String at;
+public class Event extends Task {
     protected FormattedDate formattedDate;
     protected boolean isRecurring;
     protected Interval interval = Interval.None;
 
-    public enum Interval {
-        Day,
-        Week,
-        Month,
-        None;
-
-        @Override
-        public String toString() {
-            switch(this) {
-                case Day: return "D";
-                case Week: return "W";
-                case Month: return "M";
-                case None: return " ";
-                default: throw new IllegalArgumentException();
-            }
-        }
-    }
-
     public Event(String description, String at) {
         super(description);
-        this.at = at;
         this.formattedDate = new FormattedDate(at);
     }
 
     public Event(String description, boolean isDone, String at) {
         super(description, isDone);
-        this.at = at;
         this.formattedDate = new FormattedDate(at);
     }
 
     public Event(String description, boolean isDone, String at, Interval interval) {
-        super(description, isDone);
-        this.at = at;
+        super(description, isDone, interval);
         this.formattedDate = new FormattedDate(at);
-        this.interval = interval;
     }
 
-    public void setRecurring(Interval interval) {
-        this.interval = interval;
+    public Event(String description, boolean isDone, FormattedDate formattedDate, Interval interval) {
+        super(description, isDone, interval);
+        this.formattedDate = formattedDate;
+    }
+
+    /**
+     * Gets the formatted date of the Event.
+     *
+     * @return Event at date.
+     */
+    public FormattedDate getFormattedDate() {
+        return this.formattedDate;
     }
 
     @Override
     public String toString() {
-        return String.format("[E][%s]%s (at: %s)", this.interval, super.toString(), this.formattedDate);
+        return String.format("[E]%s (at: %s)", super.toString(), this.formattedDate);
     }
 }

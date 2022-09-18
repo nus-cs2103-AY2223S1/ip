@@ -2,12 +2,11 @@ package duke.handlers;
 
 import duke.exceptions.DukeException;
 import duke.models.*;
+import duke.utils.Interval;
 import duke.utils.IntervalUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static duke.services.Ui.dukePrint;
 
 public class EventHandler {
 
@@ -47,7 +46,7 @@ public class EventHandler {
             String eventDescription = m.group(1);
             System.out.println(eventDescription);
             String eventDate = m.group(2);
-            Event.Interval eventInterval = IntervalUtil.getInterval(m.group(3));
+            Interval eventInterval = IntervalUtil.getInterval(m.group(3));
             Task newTask = new Event(eventDescription, false, eventDate, eventInterval);
             list.add(newTask);
             return (String.format("Recurring Event every %s added!", eventInterval.toString()));

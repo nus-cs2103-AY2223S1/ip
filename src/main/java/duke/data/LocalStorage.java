@@ -3,6 +3,7 @@ package duke.data;
 import duke.Duke;
 import duke.exceptions.DukeException;
 import duke.models.*;
+import duke.utils.Interval;
 import duke.utils.IntervalUtil;
 
 import java.io.*;
@@ -89,7 +90,7 @@ public class LocalStorage {
                     taskList.add(new Deadline(taskName, taskDone.equalsIgnoreCase("X"), taskDate));
                     break;
                 case "E":
-                    Event.Interval interval = IntervalUtil.getInterval(taskInterval);
+                    Interval interval = IntervalUtil.getInterval(taskInterval);
                     taskList.add(new Event(taskName, taskDone.equalsIgnoreCase("X"), taskDate, interval));
                     break;
                 }
