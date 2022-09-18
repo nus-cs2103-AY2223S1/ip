@@ -16,7 +16,7 @@ ChadBot is a **desktop app that helps users keep track of their tasks, optimised
 
 2. Download the latest `duke.jar` from [here](https://github.com/jetlfj/ip/releases).
 
-3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
+3. Launch the app by double-clicking the file or by using the command `java -jar duke.jar`. The GUI similar to the below should appear in a few seconds.<br>
    ![Ui](Ui.png)
 
 4. Type the command in the command box and press Enter to execute it.
