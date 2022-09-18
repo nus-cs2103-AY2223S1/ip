@@ -88,7 +88,7 @@ public class TaskList implements Serializable {
     public TaskList findKeyword(String keyword) {
         TaskList list = new TaskList();
         for (Task task : this.taskList) {
-            if (!task.containsKeyword(keyword)) {
+            if (task.containsKeyword(keyword)) {
                 list.add(task);
             }
         }

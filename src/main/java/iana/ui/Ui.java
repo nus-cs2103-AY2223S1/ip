@@ -34,7 +34,7 @@ public class Ui {
      * @return IANA's response and task list.
      */
     public String list(TaskList tasks) {
-        String listMessage = "Sure! @-@ These are the tasks you have left: \n" + tasks.toString();
+        String listMessage = "Sure! These are the tasks left: \n\n" + tasks.toString();
         return listMessage;
     }
 
@@ -73,7 +73,7 @@ public class Ui {
      * @return IANA's response and added task information. 
      */
     public String sayTaskAdded(Task task) {
-        return say(String.format("Okay :). Remember to complete the task:\n\t   %s", task.toString()));
+        return say(String.format("Okay! Remember to complete the task:\n\n\t   %s", task.toString()));
     }
 
     /**
@@ -84,8 +84,14 @@ public class Ui {
      * @return IANA's response, deleted task information, and number of tasks left.
      */
     public String sayTaskDeleted(Task task, int listSize) {
-        return say(String.format("Nice! I've removed the task:\n\t%s\n\tNow there's %d tasks left!! Good job! [:", 
-        task.toString(), listSize));
+        String msg = "";
+        if (listSize <= 1) {
+            msg = String.format("Now there is %d task left, good job! ^_^", listSize);
+        } else {
+            msg = String.format("Now there are %d task left, keep going! :D", listSize);
+        }
+        return say(String.format("Done, I've removed the task :\n\n\t%s\n\n%s", 
+        task.toString(), msg));
     }
 
     /**
@@ -95,7 +101,7 @@ public class Ui {
      * @return IANA's response and marked task description.
      */
     public String sayTaskMarked(String markedTask) {
-        String markedMsg = "Nice! I've marked this task as done:\n";
+        String markedMsg = "Nice! I've marked this task as done:\n\n";
         return String.format("%s\t   %s", markedMsg, markedTask);
     }
 
@@ -106,7 +112,7 @@ public class Ui {
      * @return IANA's response and unmarked task description.
      */
     public String sayTaskUnmarked(String unmarkedTask) {
-        String unmarkedMsg = "Aw man, I've unmarked the following task:\n";
+        String unmarkedMsg = "Aw man, I've unmarked the following task:\n\n";
         return String.format("%s\t   %s", unmarkedMsg, unmarkedTask);
     }
 
@@ -134,8 +140,9 @@ public class Ui {
         String unmark = "\n\t7. unmark <task number> : unmark task as complete";
         String find = "\n\t8. find <keyword> : find task with keyword";
         String help = "\n\t9. help : get all available commands";
+        String bye = "\n\t10. bye : save all current tasks and leave app";
 
-        return String.format("These are the commands you can use, try them!\n%s%s%s%s%s%s%s%s%s", todo,
-        event, deadline, list, delete, mark, unmark, find, help);
+        return String.format("These are the commands you can use, try them!\n%s%s%s%s%s%s%s%s%s%s", todo,
+        event, deadline, list, delete, mark, unmark, find, help, bye);
     }
 }
