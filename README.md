@@ -139,7 +139,7 @@ would **OVERWRITE** your previous checklist.
 
 <h3 align="center">Command Prompt Illustration</h3>
 <p align="center">
-    <img src="CmdPrompt.png" alt="Command Prompt Illustration">
+    <img src="docs/CmdPrompt.png" alt="Command Prompt Illustration">
 </p>
 
 ## *Examples of Usage*
