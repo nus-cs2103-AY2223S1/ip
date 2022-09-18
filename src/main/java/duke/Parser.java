@@ -61,6 +61,7 @@ public class Parser {
         if (description.length() == 0) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty :/");
         }
+        assert description.length() > 0 : "Description length should not be 0.";
         return new DeadlineCommand(description, LocalDate.parse(userInput.substring(index + 3).trim()));
     }
 
@@ -70,6 +71,7 @@ public class Parser {
         if (description.length() == 0) {
             throw new DukeException("OOPS!!! The description of an event cannot be empty :/");
         }
+        assert description.length() > 0 : "Description length should not be 0.";
         return new EventCommand(description, LocalDate.parse(userInput.substring(index + 3).trim()));
     }
 
@@ -78,6 +80,7 @@ public class Parser {
         if (description.length() == 0) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty :/");
         }
+        assert description.length() > 0 : "Description length should not be 0.";
         return new ToDoCommand(description);
     }
 

@@ -68,6 +68,7 @@ public class TaskList {
      * @return The String representation of the deleted Task
      */
     public String deleteTask(int index) {
+        assert index >= 0 : "Index cannot be negative";
         Task task = this.tasks.remove(index - 1);
         return task.toString();
     }
@@ -147,6 +148,7 @@ public class TaskList {
         if (this.tasks.size() == 0) {
             return null;
         } else {
+            assert this.tasks.size() > 0 : "There should be at least 1 Task in the list.";
             for (int i = 0; i < this.tasks.size(); i++) {
                 result += String.format("%d. %s\n", 1 + i, this.tasks.get(i).toString());
             }
