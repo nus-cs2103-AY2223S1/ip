@@ -1,0 +1,7 @@
+test
+clear
+todo test description
+deadline test description /by wrong date format
+mark 1
+mark 1
+exit
