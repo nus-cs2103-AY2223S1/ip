@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
     private Image pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
 
-    private final Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
+    private final Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
 
     /**
      * Initialise the main window
