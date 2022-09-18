@@ -41,7 +41,6 @@ public class TimeTaskCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            //create new task here
             Task newTask;
             if (keyword.equals("event")) {
                 newTask = new Event(super.getInput(), time);

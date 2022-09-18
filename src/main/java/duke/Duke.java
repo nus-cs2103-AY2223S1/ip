@@ -31,17 +31,6 @@ public class Duke  {
         tasks = new TaskList(storage.load());
     }
 
-    /**
-     * Instantiates a new duke object that load previous saved task from
-     * a specified file path
-     *
-     * @param filePath file path that a user wants to load and save tasks objects to
-     */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        tasks = new TaskList(storage.load());
-    }
 
 
     /**

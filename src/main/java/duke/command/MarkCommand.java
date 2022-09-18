@@ -32,7 +32,6 @@ public class MarkCommand extends Command {
      * @return Returns String that contains task that is marked to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        //create new task here
         try {
             String message = tasks.mark(index - 1);
             String output = ui.mark(message);

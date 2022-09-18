@@ -15,17 +15,6 @@ public class Ui {
     }
 
 
-    /**
-     * Reads next line from the scanner
-     *
-     * @return String representation of command given in the scanner
-     */
-    public String readCommand() {
-        if (sc.hasNextLine()) {
-            return sc.nextLine();
-        }
-        return "";
-    }
 
 
     /**

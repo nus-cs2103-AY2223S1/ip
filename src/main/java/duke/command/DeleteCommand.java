@@ -30,7 +30,6 @@ public class DeleteCommand extends Command {
      * @return Returns String that contains message to be printed by gui
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        //create new task here
         try {
             String message = tasks.deleteTask(index - 1);
             String output = ui.delete(tasks.numOfTasks(), message);

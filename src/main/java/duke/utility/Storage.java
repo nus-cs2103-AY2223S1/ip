@@ -21,12 +21,6 @@ public class Storage {
 
     private final String filePath;
 
-    private void writeToFile(String filePath, String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(textToAdd);
-        fw.close();
-    }
-
     /**
      * Instantiates a new Storage object
      */
