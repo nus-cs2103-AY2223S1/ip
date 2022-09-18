@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     public Boolean isEmpty() {
-        return this.size() > 0;
+        return !(this.size() > 0);
     }
 
     public int getSize() {
@@ -33,6 +33,7 @@ public class TaskList {
 
     public void add(Task newTask) {
         this.tasks.add(newTask);
+        this.size += 1;
     }
 
     public void delete(int pos) throws TaskListOutOfBoundsException{
@@ -40,6 +41,7 @@ public class TaskList {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.ERRORMESSAGE,this.getSize()));
         }
         this.tasks.remove(pos-1);
+        this.size -= 1;
     }
 
     public Task get(int pos) throws TaskListOutOfBoundsException{
