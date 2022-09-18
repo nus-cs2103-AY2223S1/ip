@@ -18,7 +18,6 @@ public class HelpCommand extends Command {
     public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
         return new CommandResult(
                 HelpCommand.MESSAGE_USAGE
-                + "\n" + ColourCommand.MESSAGE_USAGE
                 + "\n" + TodoCommand.MESSAGE_USAGE
                 + "\n" + DeadlineCommand.MESSAGE_USAGE
                 + "\n" + EventCommand.MESSAGE_USAGE

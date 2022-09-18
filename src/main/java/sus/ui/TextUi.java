@@ -12,52 +12,10 @@ import sus.common.Messages;
 public class TextUi {
 
     private static final String DIVIDER = "────────────────────────────────────────────────────────────";
-    private static final String PREFIX = "duke >> ";
+    private static final String PREFIX = "sus >> ";
 
     private static final PrintStream out = System.out;
     private final Scanner in;
-    private Colour currentColour = Colour.GREEN;
-
-    /**
-     * Represents the available colours the CLI can show.
-     */
-    public enum Colour {
-        RESET("\u001B[0m"),
-        BLACK("\u001B[30m"),
-        RED("\u001B[31m"),
-        GREEN("\u001B[32m"),
-        YELLOW("\u001B[33m"),
-        BLUE("\u001B[34m"),
-        PURPLE("\u001B[35m"),
-        CYAN("\u001B[36m"),
-        WHITE("\u001B[36m");
-
-        private final String colourCode;
-
-        Colour(String colourCode) {
-            this.colourCode = colourCode;
-        }
-
-        private String getColourCode() {
-            return colourCode;
-        }
-
-        /**
-         * Check if input colour is supported
-         * @param colour specified colour
-         * @return true if colour is supported, false otherwise
-         */
-        public static boolean contains(String colour) {
-            for (Colour c : Colour.values()) {
-                if (c.name().equalsIgnoreCase(colour)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    }
-
     /**
      * Sets up the Ui, loads the Jansi library (enables colour support on Windows/Unix)
      */
@@ -71,7 +29,7 @@ public class TextUi {
     public String getUserCommand() {
         out.print("Enter command: ");
         String inputLine = in.nextLine();
-        out.println(Colour.PURPLE.getColourCode() + PREFIX + inputLine + Colour.RESET.getColourCode());
+        out.println(PREFIX + inputLine);
 
         return inputLine;
     }
@@ -81,29 +39,24 @@ public class TextUi {
      */
     public void showResultToUser(CommandResult result) {
         showDivider();
-        showWithCurrentColour(result.getCommandResult());
+        showMessages(result.getCommandResult());
         showDivider();
     }
 
     /**
      * Shows messages to the user with the set output colour.
      */
-    public void showWithCurrentColour(String... messages) {
+    public void showMessages(String... messages) {
         for (String s : messages) {
-            out.println(currentColour.getColourCode() + s + Colour.RESET.getColourCode());
+            out.println(s);
         }
     }
-
-    public void setOutputColor(String inputColour) {
-        currentColour = Colour.valueOf(inputColour);
-    }
-
     /**
      * Shows the welcome message when Duke starts.
      */
     public void showWelcome() {
         showDivider();
-        showWithCurrentColour(Messages.MESSAGE_WELCOME);
+        showMessages(Messages.MESSAGE_WELCOME);
         showDivider();
     }
 
@@ -112,12 +65,12 @@ public class TextUi {
      */
     public void showExit() {
         showDivider();
-        showWithCurrentColour(Messages.MESSAGE_EXIT);
+        showMessages(Messages.MESSAGE_EXIT);
         showDivider();
     }
 
     private void showDivider() {
-        showWithCurrentColour(DIVIDER);
+        showMessages(DIVIDER);
     }
 
 }

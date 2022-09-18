@@ -1,18 +1,15 @@
 package sus.storage;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import sus.Sus;
 import sus.SusException;
 import sus.task.Deadline;
 import sus.task.Event;
@@ -35,9 +32,7 @@ public class StorageFile {
      */
     public StorageFile() {
         try {
-            String path2 = Sus.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            String decodedPath = URLDecoder.decode(path2, StandardCharsets.UTF_8);
-            path = Path.of(Paths.get(decodedPath).getParent() + DEFAULT_STORAGE_FILEPATH);
+            path = Path.of(new File(".").getCanonicalPath() + DEFAULT_STORAGE_FILEPATH);
             Files.createDirectory(path.getParent());
             Files.createFile(path);
         } catch (IOException ignored) {

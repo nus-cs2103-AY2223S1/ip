@@ -8,7 +8,7 @@ import sus.task.TaskList;
 import sus.ui.TextUi;
 
 /**
- * Entry point of the Duke application.
+ * Entry point of the Sus CLI.
  * Initialises the application and starts the interaction with the user.
  */
 public class Sus {
@@ -50,14 +50,14 @@ public class Sus {
 
     /** Reads the user command and executes it, until the user issues the exit command */
     public void runCommandLoop() {
-        boolean isExit;
-        do {
+        boolean isExit = false;
+        while (!isExit) {
             final String userCommand = textUi.getUserCommand();
             final Command command = new Parser().parseCommand(userCommand);
             CommandResult result = command.execute(taskList, textUi, storage);
             textUi.showResultToUser(result);
             isExit = command.isExit();
-        } while (!isExit);
+        }
     }
 
 }

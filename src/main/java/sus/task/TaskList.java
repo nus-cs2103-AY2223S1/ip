@@ -125,6 +125,13 @@ public class TaskList {
     }
 
     /**
+     * Clears the task list.
+     */
+    public void clearTasks() {
+        tasks.clear();
+    }
+
+    /**
      * Convert the given list of tasks into a string to further process.
      */
     public static String convertListOfTasksToString(List<Task> tasks) {

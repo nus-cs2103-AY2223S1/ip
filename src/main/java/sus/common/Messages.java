@@ -14,7 +14,6 @@ public class Messages {
     public static final String MESSAGE_TASK_NUMBER = "You have %d tasks in the list.";
     public static final String MESSAGE_TASK_LIST = "LIST of tasks:";
 
-    public static final String MESSAGE_OUTPUT_COLOUR_SET = "CHANGED output colour to %s.";
     public static final String MESSAGE_UPDATED_DESCRIPTION = "UPDATED task description:\n%s";
 
     public static final String MESSAGE_INVALID_COMMAND = "Command not found. Please do help command.";
@@ -27,5 +26,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_NUMBER = "Please specify a valid task number.";
     public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already MARKED.";
     public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already UNMARKED.";
-    public static final String MESSAGE_COLOUR_NOT_SUPPPORTED = "The colour is UNSUPPORTED. Please check help.";
+    public static final String MESSAGE_TASKS_CLEARED = "CLEARED task list.";
 }

@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import sus.SusException;
-import sus.commands.ColourCommand;
+import sus.commands.ClearCommand;
 import sus.commands.Command;
 import sus.commands.DeadlineCommand;
 import sus.commands.DeleteCommand;
@@ -21,7 +21,6 @@ import sus.commands.UnmarkCommand;
 import sus.commands.UpdateCommand;
 import sus.common.Messages;
 import sus.common.Utils;
-import sus.ui.TextUi;
 
 /**
  * Parses user input.
@@ -57,8 +56,6 @@ public class Parser {
         switch (command) {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case ColourCommand.COMMAND_WORD:
-            return prepareColour(arguments);
         case TodoCommand.COMMAND_WORD:
             return prepareTodo(arguments);
         case DeadlineCommand.COMMAND_WORD:
@@ -67,6 +64,8 @@ public class Parser {
             return prepareEvent(arguments);
         case UpdateCommand.COMMAND_WORD:
             return prepareUpdate(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case FindCommand.COMMAND_WORD:
@@ -130,17 +129,6 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_INVALID_ARGUMENTS);
         }
         return new FindCommand(args.trim());
-    }
-
-    private Command prepareColour(String args) {
-        if (args.trim().split("\\s+").length != 1) {
-            return new InvalidCommand(Messages.MESSAGE_INVALID_ARGUMENTS);
-        }
-
-        if (!TextUi.Colour.contains(args.trim())) {
-            return new InvalidCommand(Messages.MESSAGE_COLOUR_NOT_SUPPPORTED);
-        }
-        return new ColourCommand(args.trim());
     }
 
     private Command prepareDelete(String args) {
