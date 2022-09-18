@@ -108,7 +108,7 @@ public class Pikachu extends Application {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
-        scrollPane.setStyle("-fx-background-image:url('images/background.jpg')");
+        scrollPane.setStyle("-fx-background-image:url('images/background.png')");
 
         userInput = new TextField();
         sendButton = new Button("Send");

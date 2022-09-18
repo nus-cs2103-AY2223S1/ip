@@ -32,10 +32,10 @@ public class MainWindow extends AnchorPane {
 
     private Pikachu pikachu;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
-    private Image pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.png"));
+    private Image pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.png"));
 
-    private final Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
+    private final Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
 
     /**
      * Initialise the main window
@@ -63,28 +63,28 @@ public class MainWindow extends AnchorPane {
     public void setPikachuImage(PikachuEmotion emotion) {
         switch (emotion) {
         case CRY:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/cry.jpg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/cry.png"));
             break;
         case CONFUSED:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/confused.jpeg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/confused.png"));
             break;
         case OK:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/ok.jpg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/ok.png"));
             break;
         case SAD:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/sad.jpeg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/sad.png"));
             break;
         case YEA:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/yea.jpg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/yea.png"));
             break;
         case PLAY:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/play.jpg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/play.png"));
             break;
         case HAPPY:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/happy.jpeg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/happy.png"));
             break;
         default:
-            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.png"));
         }
     }
 
