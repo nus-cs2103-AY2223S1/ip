@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutX="1.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="321.0" promptText="hihihih" style="-fx-background-color: #e1e3e3#e1e3e3;" AnchorPane.bottomAnchor="1.0">
+        <TextField fx:id="userInput" layoutX="1.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="321.0" promptText="type here" style="-fx-background-color: #e1e3e3#e1e3e3;" AnchorPane.bottomAnchor="1.0">
          <font>
             <Font name="Weibei SC Bold" size="13.0" />
          </font></TextField>

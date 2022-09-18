@@ -84,17 +84,9 @@ public class TaskList {
      * Adds a task to the task list.
      *
      * @param task Complete user input.
-     * @throws DukeException If task name does not exist.
      */
-    public void addTask(Task task) throws DukeException {
-        /* if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
-            throw new DukeException("the description of a task cannot be empty.");
-        }
-        Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false); */
+    public void addTask(Task task) {
         this.taskList.add(task);
-        /* return "okie! i've added: \n " + t +
-                "\n now you have " + this.taskList.size() + " task(s) in your list!"; */
     }
 
     public ArrayList<Task> find(String keyword) {
@@ -105,6 +97,16 @@ public class TaskList {
             }
         }
         return foundTasks;
+    }
+
+    public Task updateDate(String taskName, String newDate) throws DukeException {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getTask().contains(taskName)) {
+                taskList.get(i).updateDate(newDate);
+                return taskList.get(i);
+            }
+        }
+        return null;
     }
 
 }
