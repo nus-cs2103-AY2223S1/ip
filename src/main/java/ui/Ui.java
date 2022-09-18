@@ -33,74 +33,84 @@ public class Ui {
 
     /**
      * Prints the welcome message when the user first starts the application.
+     *
+     * @return String Welcome dialog to be read by user.
      */
-    public void printWelcome() {
-        prettyPrint(WELCOME_MESSAGE);
+    public String printWelcome() {
+        return prettyPrint(WELCOME_MESSAGE);
     }
 
     /**
      *  Prints the goodbye message when the user closes the program.
+     *
+     * @return String Goodbye dialog to be read by user.
      */
-    public void printGoodbye() {
+    public String printGoodbye() {
         sc.close();
-        prettyPrint(GOODBYE_MESSAGE);
+        return prettyPrint(GOODBYE_MESSAGE);
     }
 
     /**
      * Prints error messages when an exception is thrown and passed back to the parser.
      *
      * @param e The exception passed to the parser.
+     * @return String Error message dialogue to be read by user.
      */
-    public void printException(Exception e) {
-        prettyPrint(String.format("%s: %s", ERROR_PREFIX, e.toString()));
+    public String printException(Exception e) {
+        return prettyPrint(String.format("%s: %s", ERROR_PREFIX, e.toString()));
     }
 
     /**
      * Prints a task after it has been successfully created.
      *
      * @param task A successfully created task.
+     * @return String Task created dialogue to be read by user.
      */
-    public void printTaskCreated(Task task) {
+    public String printTaskCreated(Task task) {
         String taskStr = task.toString();
-        prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
     }
 
     /**
      * Prints a task after it has been successfully marked as complete.
      *
      * @param task A successfully marked task.
+     * @return String Task marked dialogue to be read by user.
      */
-    public void printTaskMarked(Task task) {
+    public String printTaskMarked(Task task) {
         String taskStr = task.toString();
-        prettyPrint(String.format("%s\n%s %s", MARK_MESSAGE, TAB, taskStr));
+        return prettyPrint(String.format("%s\n%s %s", MARK_MESSAGE, TAB, taskStr));
     }
 
     /**
      * Prints a task after it has been successfully marked as incomplete.
      *
      * @param task A successfully unmarked task.
+     * @return String Task unmarked dialogue to be read by user.
      */
-    public void printTaskUnmarked(Task task) {
+    public String printTaskUnmarked(Task task) {
         String taskStr = task.toString();
-        prettyPrint(String.format("%s\n%s %s", UNMARK_MESSAGE, TAB, taskStr));
+        return prettyPrint(String.format("%s\n%s %s", UNMARK_MESSAGE, TAB, taskStr));
     }
 
     /**
      * Prints a task after it has been successfully deleted.
      *
      * @param task A successfully deleted task.
+     * @return String Task deleted dialogue to be read by user.
      */
-    public void printTaskDeleted(Task task) {
+    public String printTaskDeleted(Task task) {
         String taskStr = task.toString();
-        prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
     }
 
     /**
      * Prints out the entire list of tasks stored in the taskList.
      *
      * @param taskList The object that stores all the user's tasks.
+     * @return String List of all Tasks dialogue to be read by user.
      */
-    public void printAll(TaskList taskList) {
+    public String printAll(TaskList taskList) {
         List<Task> taskArrayList = taskList.getTaskList();
         List<String> printables = new ArrayList<>();
         printables.add(LIST_MESSAGE);
@@ -109,7 +119,7 @@ public class Ui {
             int index = i + 1;
             printables.add(String.format("%d.%s", index, task.toString()));
         }
-        prettyPrint(printables);
+        return prettyPrint(printables);
     }
 
     /**
@@ -117,11 +127,11 @@ public class Ui {
      * If no tasks are found, prints a message to indicate failure to find any tasks.
      *
      * @param foundTasks an array of found tasks from TaskList that match keyword
+     * @return String List of all tasks that match keyword dialogue to be read by user.
      */
-    public void printFoundTasks(Task[] foundTasks) {
+    public String printFoundTasks(Task[] foundTasks) {
         if (foundTasks.length <= 0) {
-            prettyPrint(NOT_FOUND_MESSAGE);
-            return;
+            return prettyPrint(NOT_FOUND_MESSAGE);
         }
         List<String> printables = new ArrayList<>();
         printables.add(FOUND_MESSAGE);
@@ -130,15 +140,14 @@ public class Ui {
             int index = i + 1;
             printables.add(String.format("%d.%s", index, task.toString()));
         }
-        prettyPrint(printables);
+        return prettyPrint(printables);
     }
 
-    private void prettyPrint(String printable) {
-        String out = String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
-        System.out.println(out);
+    private String prettyPrint(String printable) {
+        return String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
     }
 
-    private void prettyPrint(List<String> printables) {
+    private String prettyPrint(List<String> printables) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < printables.size(); i++) {
             String s = printables.get(i);
@@ -149,7 +158,7 @@ public class Ui {
             }
         }
         String printable = sb.toString();
-        prettyPrint(printable);
+        return prettyPrint(printable);
     }
 
     /**

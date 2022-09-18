@@ -21,7 +21,7 @@ import java.util.Scanner;
  * Represents the long term Storage that application stores data in.
  */
 public class Storage {
-    private final String filePath;
+    public final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;

@@ -47,59 +47,51 @@ public class Parser {
     /**
      * Recognises the command given by the user and calls the relevant handler to manage user input.
      */
-    public void handleNext() {
+    public String handleNext(String input) {
         try {
-            String inputCmd = getNext();
-            String inputRem = getNextLine().strip();
+            String inputCmd = getNext(input);
+            String inputRem = getNextLine(input).strip();
             switch (inputCmd) {
             case (END_COMMAND):
-                closeParser();
-                break;
+                return closeParser();
             case (PRINT_COMMAND):
-                printAllTasks();
-                break;
+                return printAllTasks();
             case (MARK_COMMAND):
-                markTask(inputRem);
-                break;
+                return markTask(inputRem);
             case (UNMARK_COMMAND):
-                unmarkTask(inputRem);
-                break;
+                return unmarkTask(inputRem);
             case (TODO_COMMAND):
-                createAndAddTodo(inputRem);
-                break;
+                return createAndAddTodo(inputRem);
             case (DEADLINE_COMMAND):
-                createAndAddDeadline(inputRem);
-                break;
+                return createAndAddDeadline(inputRem);
             case (EVENT_COMMAND):
-                createAndAddEvent(inputRem);
-                break;
+                return createAndAddEvent(inputRem);
             case (DELETE_COMMAND):
-                deleteTask(inputRem);
-                break;
+                return deleteTask(inputRem);
             case (FIND_COMMAND):
-                findTasks(inputRem);
-                break;
+                return findTasks(inputRem);
             default:
                 throw new DukeException("Unexpected task type!");
             }
         } catch (DukeException de) {
-            ui.printException(de);
+            return ui.printException(de);
         }
     }
 
-    private void closeParser() {
+    private String closeParser() {
         this.isEnded = true;
+        return this.ui.printGoodbye();
     }
 
-    private void printAllTasks() {
-        this.ui.printAll(this.taskList);
+    private String printAllTasks() {
+        return this.ui.printAll(this.taskList);
     }
 
-    private void markTask(String indexStr) throws DukeException {
+    private String markTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
             Task task = taskList.markTask(--index);
-            ui.printTaskMarked(task);
+            return ui.printTaskMarked(task);
         } catch (NumberFormatException e) {
             throw DukeException.markTaskException("Please input a valid number!");
         } catch (DukeException de) {
@@ -107,11 +99,11 @@ public class Parser {
         }
     }
 
-    private void unmarkTask(String indexStr) throws DukeException {
+    private String unmarkTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
             Task task = taskList.unmarkTask(--index);
-            ui.printTaskUnmarked(task);
+            return ui.printTaskUnmarked(task);
         } catch (NumberFormatException e){
             throw DukeException.unmarkTaskException("Please input a valid number!");
         } catch (DukeException de) {
@@ -119,37 +111,33 @@ public class Parser {
         }
     }
 
-    private void createAndAddTodo(String str) throws DukeException {
+    private String createAndAddTodo(String str) throws DukeException {
         try {
             String description = getValidDescription(str, TODO_SEPARATOR);
             Task newTodo = new ToDo(description);
-            addTask(newTodo);
+            return addTask(newTodo);
         } catch (DukeException de) {
             throw DukeException.createTaskException(de.toString());
         }
     }
 
-    private void createAndAddDeadline(String str) throws DukeException {
+    private String createAndAddDeadline(String str) throws DukeException {
         try {
             String description = getValidDescription(str, DEADLINE_SEPARATOR);
-
             LocalDateTime by = getValidDateTime(str, DEADLINE_SEPARATOR);
-
             Task newDeadline = new Deadline(description, by);
-            addTask(newDeadline);
+            return addTask(newDeadline);
         } catch (DukeException de) {
             throw DukeException.createTaskException(de.toString());
         }
     }
 
-    private void createAndAddEvent(String str) throws DukeException {
+    private String createAndAddEvent(String str) throws DukeException {
         try {
             String description = getValidDescription(str, EVENT_SEPARATOR);
-
             LocalDateTime at = getValidDateTime(str, EVENT_SEPARATOR);
-
             Task newEvent = new Event(description, at);
-            addTask(newEvent);
+            return addTask(newEvent);
         } catch (DukeException de) {
             throw DukeException.createTaskException(de.toString());
         }
@@ -202,16 +190,16 @@ public class Parser {
         return tokens;
     }
 
-    private void addTask(Task task) throws DukeException {
+    private String addTask(Task task) throws DukeException {
         taskList.addTask(task);
-        ui.printTaskCreated(task);
+        return ui.printTaskCreated(task);
     }
 
-    private void deleteTask(String indexStr) throws DukeException {
+    private String deleteTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
             Task task = taskList.deleteTask(--index);
-            ui.printTaskDeleted(task);
+            return ui.printTaskDeleted(task);
         } catch (NumberFormatException e) {
             throw DukeException.deleteTaskException("Please input a valid number!");
         } catch (DukeException de) {
@@ -219,19 +207,27 @@ public class Parser {
         }
     }
 
-    private String getNext() {
-        return ui.getNext().strip();
+    private String[] splitInput(String input) {
+        return input.split(" ", 2);
     }
 
-    private String getNextLine() {
-        return ui.getNextLine().strip();
+    private String getNext(String input) {
+        return splitInput(input)[0];
     }
 
-    private void findTasks(String keyword) throws DukeException {
+    private String getNextLine(String input) {
+        String[] splitInput = splitInput(input);
+        if (splitInput.length < 2) {
+            return "";
+        }
+        return splitInput[1];
+    }
+
+    private String findTasks(String keyword) throws DukeException {
         try {
             String validKeyword = getValidKeyword(keyword);
             Task[] foundTasks = taskList.findTasks(validKeyword);
-            ui.printFoundTasks(foundTasks);
+            return ui.printFoundTasks(foundTasks);
         } catch (DukeException de) {
             throw DukeException.findTaskException(de.toString());
         }
