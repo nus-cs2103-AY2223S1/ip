@@ -1,6 +1,3 @@
-# User Guide
-
-
 
 <h2><span style="color:orange">Quick start</span></h2>
 
