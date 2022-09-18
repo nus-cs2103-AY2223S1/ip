@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class EventParser extends Parser {
     private final Pattern pattern = Pattern.compile("[\\S+]\\s/at\\s[\\S+]");
     private final String EVENT_FORMAT_ERROR =
-            "Deadline must be in this format: <Description> /at <DateTime>";
+            "Event must be in this format: <Description> /at <DateTime>";
     private final String DATE_FORMAT_ERROR =
             "Your date must be a valid date in dd/MM/yyyy format";
 
@@ -26,7 +26,7 @@ public class EventParser extends Parser {
      * @return The event object represented by the user input string.
      * @throws DukeException If the user input does not follow the required patterns.
      */
-    public Event parseEvnet(String content) throws DukeException {
+    public Event parseEvent(String content) throws DukeException {
         if (!pattern.matcher(content).find()) {
             throw new DukeException(EVENT_FORMAT_ERROR);
         }

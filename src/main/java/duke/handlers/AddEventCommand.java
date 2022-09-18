@@ -7,7 +7,7 @@ import duke.models.EventParser;
 import duke.models.TaskList;
 
 /**
- * Represents a command to add event.
+ * Represents a command to addx event.
  */
 public class AddEventCommand implements DukeCommand {
    private final EventParser eventParser = new EventParser();
@@ -21,7 +21,7 @@ public class AddEventCommand implements DukeCommand {
      * @throws DukeException If an error occurs during parsing the user input.
      */
     public DukeResponse run (TaskList taskList, String content) throws DukeException {
-        Event event = eventParser.parseEvnet(content);
+        Event event = eventParser.parseEvent(content);
         taskList.addTask(event);
         return new DukeResponse("Added a event: " + event.toString());
     }
