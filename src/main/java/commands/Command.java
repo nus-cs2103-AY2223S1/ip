@@ -32,8 +32,6 @@ public abstract class Command {
      * @return CommandResponse with message and exit boolean
      * @throws DukeException - if any issues occur
      */
-    // Each Command implements its own run method to perform its behaviour (validate necessary arguments, interact
-    // with some state and return a response
     public abstract CommandResponse run(Input input) throws DukeException;
 
     private String getDescription(Argument...arguments) {
@@ -52,5 +50,10 @@ public abstract class Command {
         joiner.add("Usage: " + getDescription(arguments));
         return joiner.toString();
     }
+
+    /**
+     * Returns a String describing usage of the command
+     * @return String describing usage of the command
+     */
     public abstract String getUsageDescription();
 }

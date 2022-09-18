@@ -24,7 +24,7 @@ public class StringArgument extends Argument<String> {
     }
 
     /**
-     * Creates new StringArgument with necessary parameters
+     * Creates new StringArgument with necessary parameters without input
      * @param argumentName Name for argument
      * @param emptyMessage Message to show if argument is empty
      * @param missingMessage Message to show if argument is missing

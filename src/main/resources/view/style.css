@@ -9,7 +9,7 @@
 
 #dialog {
     -fx-text-fill: white;
-    -fx-padding:5 10 5 10;
+    -fx-padding:10 10 10 10;
     -fx-border-width:1;
     -fx-border-color:black;
     -fx-border-radius:12px;

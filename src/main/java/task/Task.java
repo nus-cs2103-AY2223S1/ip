@@ -53,6 +53,11 @@ public abstract class Task {
         obj.put("isDone", isDone);
         return obj;
     }
+
+    /**
+     * Converts the Task object into a String that can be deserialized
+     * @return Serialized String representing the Task
+     */
     protected abstract String serialize();
 
     @Override

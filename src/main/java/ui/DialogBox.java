@@ -44,6 +44,8 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         String styleClass = isUser ? "user" : "bot";
+        // Solution adapted from:
+        // https://stackoverflow.com/questions/44404869/how-to-create-and-add-a-style-class-dynamically-in-javafx
         dialog.getStyleClass().add(styleClass);
         displayPicture.setImage(img);
         addRoundedBorder();
@@ -92,11 +94,23 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns DialogBox corresponding to the user
+     * @param text Text to display
+     * @param img Image to use
+     * @return DialogBox
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox dialog = new DialogBox(text, img, true);
         return dialog;
     }
 
+    /**
+     * Returns DialogBox corresponding to the bot
+     * @param text Text to display
+     * @param img Image to use
+     * @return DialogBox
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img, false);
         db.flip();
