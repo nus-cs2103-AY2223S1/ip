@@ -236,8 +236,11 @@ public class DateFormat {
                 if (afterMonthSpaceIndex == 1) {
                     month = "0" + afterDay.charAt(0);
                     afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
-                } else {
+                } else if (afterMonthSpaceIndex == 2) {
                     month = afterDay.substring(0, 2);
+                    afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
+                } else {
+                    month = afterDay.substring(0, 3);
                     afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
                 }
                 year = afterMonth.substring(0, 4);
@@ -285,8 +288,11 @@ public class DateFormat {
                 if (afterMonthSpaceIndex == 1) {
                     month = "0" + afterYear.charAt(0);
                     afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
-                } else {
+                } else if (afterMonthSpaceIndex == 2) {
                     month = afterYear.substring(0, 2);
+                    afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
+                } else {
+                    month = afterYear.substring(0, 3);
                     afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
                 }
                 String afterDay;
@@ -374,7 +380,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("30 08 2022 1800");
+        DateFormat d4 = new DateFormat("12 jun 2022 1800");
         System.out.println(d4.formatDate("MMM d yyyy"));
         System.out.println(d4.formatTime());
     }
