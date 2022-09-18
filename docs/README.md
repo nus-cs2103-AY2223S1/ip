@@ -43,7 +43,7 @@ with **Rem Taskhelper**.
 |     [find](#`find`)     | Displays tasks in task checklist matching input.  |
 |    [clear](#`clear`)    |            Clears the window outputs.             |
 |      [bye](#`bye`)      |       Saves tasks and exits Rem Taskhelper.       |
-                                                                                                              |
+
 ## *Usage*
 
 ### `list` - Displays your checklist
