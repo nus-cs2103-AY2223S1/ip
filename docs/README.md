@@ -1,4 +1,4 @@
-# :smile: 💩 :smile: **DOOKIE** :smile: 💩 :smile:
+# 🥇💩🥇 **DOOKIE** 🥇💩🥇
 
 Welcome to the world of ***DOOKIE***, where we turn your world from utter Dookie to a 
 brand spanking clean world!!!
