@@ -2,30 +2,7 @@
 
 Duke is a desktop app for managing task optimized for both GUI and CLI usage! Packaged like a chat bot, Duke will provide you with a personalised service to help you track and manage your tasks.
 
-- Quick Start
-- Features
-  - Additional Launch flags
-    - Launching in GUI Mode
-    - Launching in CLI Mode
-    - Specifying Save file
-  - Creating Tasks
-    - Todo
-    - Deadline
-    - Event
-  - List All Task
-  - Marking Tasks
-    - Mark
-    - Unmark
-  - Searching for Tasks
-    - By keywords
-    - By time
-  - Deleting Tasks
-  - Changing icons
-  - Renaming Commands
-    - Adding Alias
-    - Removing Alias
-    - Reset Alias
-  - Exiting Duke
+{:toc}
 
 ------
 
@@ -186,7 +163,7 @@ To define an alias for existing commands to make your life easier, use `alias`, 
 
 - `bye`: To exit duke. (Note there will be a 2 second buffer for your to read the message before exiting on GUI)
 
-  <img src="D:\NUS\CS2103T\Solo\ip\docs\img\Bye.png" style="zoom: 67%;" />
+  <img src="./img/Bye.png" style="zoom: 67%;" />
 
 # Command Summary
 
