@@ -55,7 +55,7 @@ Format: `list`
 
 ### Reschedule Deadline tasks: `reshedule`
 
-Reschedule a specific Deadline task based on task number. Note the task rescheduled has be a `Deadline` task.
+Reschedule a specific Deadline task based on task number. Note the task rescheduled has to be a `Deadline` task.
 
 Format: `reschedule TASK_NUMBER DATE OPTIONAL_TIME`
 
