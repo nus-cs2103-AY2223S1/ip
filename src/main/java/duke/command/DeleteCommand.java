@@ -16,22 +16,23 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         try {
             int index = Integer.parseInt(number);
             String taskS = "tasks";
             if (tasks.listSize() - 1 == 1) {
                 taskS = "task";
             }
-            ui.showMessage("Got it! Task " + index + " has been deleted from the list:\n  "
-                    + tasks.showTask(index)
-                    + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.");
             tasks.delete(index);
             storage.delete(index);
+            return "Got it! Task " + index + " has been deleted from the list:\n  "
+                        + tasks.showTask(index)
+                        + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.";
+
         } catch (NumberFormatException e) {
-            ui.showError("You need to provide a task's index to delete!");
+            return "You need to provide a task's index to delete!";
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("You've given me an invalid task to delete!");
+            return "You've given me an invalid task to delete!";
         }
     }
 

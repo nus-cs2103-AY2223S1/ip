@@ -39,9 +39,9 @@ public class TaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         if (description.equals("") || description.split(" ").length == 0) {
-            ui.showError("You've given me an invalid task description!");
+            return "You've given me an invalid task description!";
         } else {
             try {
                 tasks.add(task);
@@ -50,10 +50,10 @@ public class TaskCommand extends Command {
                 if (tasks.listSize() == 1) {
                     taskS = "task";
                 }
-                ui.showMessage("I've added this task to the list:\n  " + task.getTask()
-                        + "\nYou have a total of " + tasks.listSize() + " " + taskS + " in the list.");
+                return "I've added this task to the list:\n  " + task.getTask()
+                        + "\nYou have a total of " + tasks.listSize() + " " + taskS + " in the list.";
             } catch (NullPointerException e) {
-                ui.showError("You've given me an invalid task description!");
+                return "You've given me an invalid task description!";
             }
         }
     }

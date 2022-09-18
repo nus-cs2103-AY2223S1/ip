@@ -1,3 +1,4 @@
-todo read book | X
+todo read book
 deadline return book /by 06-06-2022
-todo shamus
+event project meeting /at 06-09-2022
+todo join sports club | X

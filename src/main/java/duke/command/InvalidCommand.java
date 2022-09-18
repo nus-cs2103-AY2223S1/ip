@@ -10,8 +10,8 @@ import duke.task.TaskList;
 public class InvalidCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showError("You've entered an invalid input!");
+    public String execute(TaskList tasks, Storage storage) {
+        return "You've entered an invalid input!";
     }
 
     @Override

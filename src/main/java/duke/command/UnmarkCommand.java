@@ -16,16 +16,16 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         try {
             int index = Integer.parseInt(number);
             tasks.unmark(index);
             storage.unmark(index);
-            ui.showMessage("Got it! Task " + index + " has not yet been completed:\n  " + tasks.showTask(index));
+            return "Got it! Task " + index + " has not yet been completed:\n  " + tasks.showTask(index);
         } catch (NumberFormatException e) {
-            ui.showError("You need to provide a task's index to unmark!");
+            return "You need to provide a task's index to unmark!";
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("You've given me an invalid task to unmark!");
+            return "You've given me an invalid task to unmark!";
         }
     }
 

@@ -20,16 +20,16 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         try {
             int index = Integer.parseInt(number);
             tasks.mark(index);
             storage.mark(index);
-            ui.showMessage("Good job! Task " + index + " has been completed:\n  " + tasks.showTask(index));
+            return "Good job! Task " + index + " has been completed:\n  " + tasks.showTask(index);
         } catch (NumberFormatException e) {
-            ui.showError("You need to provide a task's index to mark!");
+            return "You need to provide a task's index to mark!";
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("You've given me an invalid task to mark!");
+            return "You've given me an invalid task to mark!";
         }
     }
 

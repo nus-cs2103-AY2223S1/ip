@@ -10,9 +10,9 @@ import duke.task.TaskList;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         storage.store();
-        ui.showExit();
+        return "Many thanks from Duke. Have a nice day!";
     }
 
     @Override

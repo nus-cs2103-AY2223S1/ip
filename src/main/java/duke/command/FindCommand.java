@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         int len = tasks.listSize();
         int counter = 1;
 
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
                 counter += 1;
             }
         }
-        ui.showMessage(output.toString());
+        return output.toString();
     }
 
     @Override
