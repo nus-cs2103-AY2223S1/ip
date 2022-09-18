@@ -119,7 +119,6 @@ public class Duke  {
             default:
                 response += tasks.printUpcomingTasks();
             }
-
             storage.save(tasks);
             return response;
         } catch (DukeException e) {

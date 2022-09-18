@@ -6,6 +6,7 @@ import duke.tasks.Deadline;
 import duke.tasks.Task;
 import duke.tasks.Todo;
 import duke.tasks.TaskList;
+import duke.parser.Parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,6 +36,17 @@ public class Storage {
         this.pathFile = pathFile;
     }
 
+    /**
+     * Introduce a method to mark the d
+     * @param task
+     * @param status
+     */
+    public void updateTaskSatus(Task task, int status) {
+        if (status == 1) {
+            task.mark();
+        }
+    }
+
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<Task>();
         try {
@@ -52,50 +64,24 @@ public class Storage {
                 int status = Integer.valueOf(parts[1]);
                 String task = parts[2];
 
-                // if the task is a deadline or event, we must also include the date and time
-                if (taskType.equals("D") | taskType.equals("E")) {
-                    String dateTime = parts[3];
-                    if (taskType.equals("D")) {
-                        // assign the date and time separately to local variables
-                        String[] splitTime = dateTime.split("\\s+");
-                        LocalDate date = LocalDate.parse(splitTime[1]
-                                , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        LocalTime time = LocalTime.parse(splitTime[2]
-                                , DateTimeFormatter.ofPattern("HHmm"));
+                switch (taskType) {
+                case "D":
+                    Deadline newDeadline = new Deadline(task, Parser.parseDateTime(data));
+                    tasks.add(newDeadline);
+                    updateTaskSatus(newDeadline, status);
+                    break;
 
-                        //create a new deadline to add to our task list
-                        Deadline newDeadline = new Deadline(task, LocalDateTime.of(date, time));
-                        tasks.add(newDeadline);
+                case "E":
+                    Event newEvent = new Event(task, Parser.parseDateTime(data));
+                    tasks.add(newEvent);
+                    updateTaskSatus(newEvent, status);
+                    break;
 
-                        // mark our task depending on the status
-                        if (status == 1) {
-                            newDeadline.mark();
-                        }
-                    } else {
-                        //again assign the date and time separately to local variables
-                        String[] splitTime = dateTime.split("\\s+");
-                        LocalDate date = LocalDate.parse(splitTime[1],
-                                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        LocalTime time = LocalTime.parse(splitTime[2],
-                                DateTimeFormatter.ofPattern("HHmm"));
-
-                        //create a new event to add to our task list
-                        Event newEvent = new Event(task, LocalDateTime.of(date, time));
-                        tasks.add(newEvent);
-
-                        // mark our task depending on the status
-                        if (status == 1) {
-                            newEvent.mark();
-                        }
-                    }
-                } else {
-                    Task newTask = new Todo(task);
-                    tasks.add(newTask);
-
-                    // mark our task depending on the status
-                    if (status == 1) {
-                        newTask.mark();
-                    }
+                case "T":
+                    Todo newTodo = new Todo(task);
+                    tasks.add(newTodo);
+                    updateTaskSatus(newTodo, status);
+                    break;
                 }
             }
             taskReader.close();

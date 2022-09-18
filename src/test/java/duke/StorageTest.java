@@ -1,5 +1,8 @@
 package duke;
 
+import duke.storage.Storage;
+import duke.tasks.Task;
+
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
