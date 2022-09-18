@@ -28,6 +28,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             scene.getStylesheets().add(getClass().getResource("/view/style.css").toExternalForm());
             stage.setScene(scene);
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setJarvis(jarvis);
             fxmlLoader.<MainWindow>getController().setStage(stage);
             stage.show();
