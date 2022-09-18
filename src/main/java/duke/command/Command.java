@@ -195,15 +195,15 @@ public abstract class Command {
             if (taskType == Task.TaskType.TODO) {
                 Task task = Task.of(Task.TaskType.TODO, toDo);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.TODO, task, String.valueOf(tasks.getNumOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.TODO, task, String.valueOf(tasks.getNumberOfTasks()));
             } else if (taskType == Task.TaskType.DEADLINE) {
                 Task task = Task.of(Task.TaskType.DEADLINE, toDo + " /by " + date);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.DEADLINE, task, String.valueOf(tasks.getNumOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.DEADLINE, task, String.valueOf(tasks.getNumberOfTasks()));
             } else if (taskType == Task.TaskType.EVENT) {
                 Task task = Task.of(Task.TaskType.EVENT, toDo + " /at " + date);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(ActionKeywords.EVENT, task, String.valueOf(tasks.getNumOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.EVENT, task, String.valueOf(tasks.getNumberOfTasks()));
             } else {
                 return null;
             }
@@ -240,7 +240,7 @@ public abstract class Command {
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 Task task = tasks.removeTask(location);
-                return ui.sendAndReturnMessage(ActionKeywords.DELETE, task, String.valueOf(tasks.getNumOfTasks()));
+                return ui.sendAndReturnMessage(ActionKeywords.DELETE, task, String.valueOf(tasks.getNumberOfTasks()));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
             }
@@ -345,10 +345,10 @@ public abstract class Command {
             try {
                 if (isCompleted) {
                     Task task = tasks.markTaskAsCompleted(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, String.valueOf(tasks.getNumOfTasks()));
+                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, String.valueOf(tasks.getNumberOfTasks()));
                 } else {
                     Task task = tasks.markTaskAsIncomplete(location);
-                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, String.valueOf(tasks.getNumOfTasks()));
+                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, String.valueOf(tasks.getNumberOfTasks()));
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
@@ -378,7 +378,7 @@ public abstract class Command {
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String message = tasks.craftTaskString();
-            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.getNumOfTasks()), message);
+            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.getNumberOfTasks()), message);
         }
     }
 
@@ -404,7 +404,7 @@ public abstract class Command {
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String message = tasks.craftRemindersString();
             return ui.sendAndReturnMessage(ActionKeywords.REMIND, null,
-                    String.valueOf(tasks.getNumOfMatchingTaskType(Task.TaskType.DEADLINE)), message);
+                    String.valueOf(tasks.getNumberOfMatchingTasks(Task.TaskType.DEADLINE)), message);
         }
     }
 

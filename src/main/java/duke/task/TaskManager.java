@@ -26,14 +26,14 @@ public class TaskManager {
     /**
      * Represents an array list of tasks.
      */
-    private final ArrayList<Task> arr;
+    private final ArrayList<Task> tasks;
 
     /**
      * Constructor for Task Manager.
      * @param fw File writer.
      */
     public TaskManager(FileWriter fw) {
-        this.arr = new ArrayList<>(100);
+        this.tasks = new ArrayList<>(100);
         this.fw = fw;
     }
 
@@ -42,10 +42,10 @@ public class TaskManager {
      * @return String formatting of tasks in the task list.
      */
     public String craftTaskString() {
-        int length = arr.size();
+        int length = tasks.size();
         String result = "";
         for (int x = 0; x < length; x++) {
-            Task task = arr.get(x);
+            Task task = tasks.get(x);
             if (task == null) {
                 break;
             } else {
@@ -65,7 +65,7 @@ public class TaskManager {
      * @return String formatting of tasks in the task list.
      */
     public String findAndCraftTaskList(String s) {
-        List<Task> filteredList = arr.stream()
+        List<Task> filteredList = tasks.stream()
                 .filter(x -> x.containString(s))
                 .collect(Collectors.toList());
         return convertListToFormattedString(filteredList);
@@ -73,13 +73,13 @@ public class TaskManager {
 
     /**
      * Converts a List of Tasks to a formatted String message.
-     * @param filteredList List containing Task objects.
+     * @param list List containing Task objects.
      * @return String message.
      */
-    private String convertListToFormattedString(List<Task> filteredList) {
+    private String convertListToFormattedString(List<Task> list) {
         int counter = 1;
         String result = "";
-        for (Task task : filteredList) {
+        for (Task task : list) {
             if (counter == 1) {
                 result += counter + "." + task;
             } else {
@@ -95,10 +95,10 @@ public class TaskManager {
      * @return String representing the message.
      */
     public String craftTextMessageForFile() {
-        int length = arr.size();
+        int length = tasks.size();
         String result = "";
         for (int x = 0; x < length; x++) {
-            Task task = arr.get(x);
+            Task task = tasks.get(x);
             if (task == null) {
                 break;
             } else {
@@ -118,7 +118,7 @@ public class TaskManager {
      * @return String representing the message.
      */
     public String craftRemindersString() {
-        List<Task> filteredList = arr.stream()
+        List<Task> filteredList = tasks.stream()
                 .filter(x -> x.getTaskType() == Task.TaskType.DEADLINE)
                 .filter(x -> !x.checkIfCompleted())
                 .collect(Collectors.toList());
@@ -130,7 +130,7 @@ public class TaskManager {
      * @param task Given task.
      */
     public void addTask(Task task) {
-        arr.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -140,8 +140,8 @@ public class TaskManager {
      */
     public Task removeTask(int location) {
         assert location >= 0 : "the task number should not be negative";
-        Task task = arr.get(location);
-        arr.remove(location);
+        Task task = tasks.get(location);
+        tasks.remove(location);
         return task;
     }
 
@@ -149,8 +149,8 @@ public class TaskManager {
      * Represents the number of task is the task list.
      * @return Number of tasks in task list.
      */
-    public int getNumOfTasks() {
-        return arr.size();
+    public int getNumberOfTasks() {
+        return tasks.size();
     }
 
     /**
@@ -158,8 +158,8 @@ public class TaskManager {
      * @param type Task type.
      * @return Number of tasks.
      */
-    public int getNumOfMatchingTaskType(Task.TaskType type) {
-        return (int) arr.stream()
+    public int getNumberOfMatchingTasks(Task.TaskType type) {
+        return (int) tasks.stream()
                 .filter(x -> x.getTaskType() == type)
                 .count();
     }
@@ -171,7 +171,7 @@ public class TaskManager {
      */
     public Task markTaskAsCompleted(int location) {
         assert location >= 0 : "the task number should not be negative";
-        Task task = arr.get(location);
+        Task task = tasks.get(location);
         task.markComplete();
         return task;
     }
@@ -183,7 +183,7 @@ public class TaskManager {
      */
     public Task markTaskAsIncomplete(int location) {
         assert location >= 0 : "the task number should not be negative";
-        Task task = arr.get(location);
+        Task task = tasks.get(location);
         task.markIncomplete();
         return task;
     }

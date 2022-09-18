@@ -48,17 +48,15 @@ public class Ui {
      * Gets interface's greeting message.
      */
     public String getWelcomeMessage() {
-        String msg = formatMessage("Hello! I'm Duke\n"
+        return formatMessage("Hello! I'm Duke\n"
                 + "     What can I do for you?");
-        return msg;
     }
 
     /**
      * Gets interface's bye message.
      */
     public String getByeMessage() {
-        String msg = formatMessage("Bye. Hope to see you again soon!");
-        return msg;
+        return formatMessage("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -102,18 +100,16 @@ public class Ui {
         case DEADLINE:
         case TODO:
         case EVENT: {
-            String msg = formatMessage("Got it. I've added this task:\n"
+            return formatMessage("Got it. I've added this task:\n"
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
-            return msg;
         }
         case DELETE: {
-            String msg = formatMessage("Noted. I've removed the task:\n"
+            return formatMessage("Noted. I've removed the task:\n"
                     + INDENTATION + EXTRA_INDENTATION + task + "\n"
                     + INDENTATION + "Now you have " + numOfTasks
                     + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
-            return msg;
         }
         case LIST: {
             String msg;
@@ -126,14 +122,12 @@ public class Ui {
             return msg;
         }
         case MARK: {
-            String msg = formatMessage("Nice! I've marked this task as done:\n"
+            return formatMessage("Nice! I've marked this task as done:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
-            return msg;
         }
         case UNMARK: {
-            String msg = formatMessage("OK, I've marked this task as not done yet:\n"
+            return formatMessage("OK, I've marked this task as not done yet:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
-            return msg;
         }
         case FIND: {
             String msg;

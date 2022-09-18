@@ -56,7 +56,7 @@ public abstract class Task {
      *
      * @return String representation of status.
      */
-    public String checkBox() {
+    public String getCheckBox() {
         return this.isCompleted ? "[X]" : "[ ]";
     }
 
@@ -86,7 +86,7 @@ public abstract class Task {
      *
      * @return String representation of status.
      */
-    public String completionStatusForFile() {
+    public String getCompletionStatusForFile() {
         return this.isCompleted ? "1" : "0";
     }
 
@@ -135,7 +135,7 @@ public abstract class Task {
          * @return String representation of work type.
          */
         @Override
-        public String workTypeBox() {
+        public String getWorkTypeBox() {
             return "[T]";
         }
 
@@ -146,7 +146,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + toDo;
+            return this.getWorkTypeBox() + this.getCheckBox() + " " + toDo;
         }
 
         /**
@@ -156,7 +156,7 @@ public abstract class Task {
          */
         @Override
         public String constructTextFileMessage() {
-            return craftStringForFile(new String[]{"T", completionStatusForFile(), this.toDo});
+            return craftStringForFile(new String[]{"T", getCompletionStatusForFile(), this.toDo});
         }
 
         /**
@@ -212,7 +212,7 @@ public abstract class Task {
          * @return String representation of work type.
          */
         @Override
-        public String workTypeBox() {
+        public String getWorkTypeBox() {
             return "[D]";
         }
 
@@ -223,7 +223,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + toDo + " (by: " + date + ")";
+            return this.getWorkTypeBox() + this.getCheckBox() + " " + toDo + " (by: " + date + ")";
         }
 
         /**
@@ -234,7 +234,7 @@ public abstract class Task {
         @Override
         public String constructTextFileMessage() {
             return craftStringForFile(new String[]
-                {"D", completionStatusForFile(), this.toDo, String.valueOf(this.date)});
+                {"D", getCompletionStatusForFile(), this.toDo, String.valueOf(this.date)});
         }
 
         /**
@@ -290,7 +290,7 @@ public abstract class Task {
          * @return String representation of work type.
          */
         @Override
-        public String workTypeBox() {
+        public String getWorkTypeBox() {
             return "[E]";
         }
 
@@ -301,7 +301,7 @@ public abstract class Task {
          */
         @Override
         public String toString() {
-            return this.workTypeBox() + this.checkBox() + " " + toDo + " (at: " + date + ")";
+            return this.getWorkTypeBox() + this.getCheckBox() + " " + toDo + " (at: " + date + ")";
         }
 
         /**
@@ -312,7 +312,7 @@ public abstract class Task {
         @Override
         public String constructTextFileMessage() {
             return craftStringForFile(new String[]
-                {"E", completionStatusForFile(), this.toDo, String.valueOf(this.date)});
+                {"E", getCompletionStatusForFile(), this.toDo, String.valueOf(this.date)});
         }
 
         /**
@@ -340,7 +340,7 @@ public abstract class Task {
      *
      * @return String representation of the work type.
      */
-    abstract String workTypeBox();
+    abstract String getWorkTypeBox();
 
     /**
      * Crafts message to be added into text file.

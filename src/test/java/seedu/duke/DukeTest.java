@@ -1,5 +1,6 @@
 package seedu.duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +46,7 @@ public class DukeTest {
      */
     @Test
     public void taskContainsTest() {
-        assertEquals(Task.of(Task.TaskType.TODO, "ACHIEVE SUCCESS").containString("SU"), true);
+        assertTrue(Task.of(Task.TaskType.TODO, "ACHIEVE SUCCESS").containString("SU"));
     }
 
 }
