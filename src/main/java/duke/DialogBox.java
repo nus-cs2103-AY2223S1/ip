@@ -1,8 +1,8 @@
 package duke;
 
+
 import java.io.IOException;
 import java.util.Collections;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 /**
  * An example of a custom control using FXML.
@@ -23,8 +25,9 @@ import javafx.scene.shape.Circle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
     @FXML
-    private Label dialog;
+    private StackPane dialogBubble;
     @FXML
     private ImageView displayPicture;
 
@@ -37,10 +40,28 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        dialog.setText(text);
-        dialog.setMinHeight(Region.USE_PREF_SIZE);
+        configureDialogBubble(text);
+        configureDisplayPicture(img);
+    }
+    private void configureDisplayPicture(Image img) {
+        displayPicture.setClip(new Circle(50, 50, 44));
         displayPicture.setImage(img);
+    }
+    private void configureDialogBubble(String txt) {
+        Rectangle box = new Rectangle();
+        box.setArcHeight(20);
+        box.setArcWidth(20);
+        box.setFill(Color.GHOSTWHITE);
+
+        Label text = new Label(txt);
+        text.setFont(new Font("Wingdings",11.5));
+        text.setPadding(new Insets(10));
+
+        box.heightProperty().bind(text.heightProperty());
+        box.widthProperty().bind(text.widthProperty());
+
+        dialogBubble.getChildren().addAll(box, text);
+        dialogBubble.setMinHeight(Region.USE_PREF_SIZE);
     }
 
     /**
@@ -55,15 +76,11 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.displayPicture.setClip(new Circle(50, 50, 43));
-        db.setBackground(new Background(new BackgroundFill(Color.AZURE, CornerRadii.EMPTY, Insets.EMPTY)));
         return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.displayPicture.setClip(new Circle(48, 43, 42.75));
-        db.setBackground(new Background(new BackgroundFill(Color.LIGHTSALMON, CornerRadii.EMPTY, Insets.EMPTY)));
         db.flip();
         return db;
     }

@@ -6,7 +6,7 @@ package duke;
 public class Ui {
 
     public static String start() {
-        return "Hello! I'm Duke\n" + "What can I do for you?\n";
+        return "Hi! I'm Olaf and i like warm hugs.\n" + "What can I do for you?\n";
     }
 
     public static String end() {
