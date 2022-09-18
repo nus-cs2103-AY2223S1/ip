@@ -4,8 +4,6 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 
-import java.util.Objects;
-
 /**
  * Represents the main entry point of the Duke application.
  */
