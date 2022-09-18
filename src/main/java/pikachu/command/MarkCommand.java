@@ -1,10 +1,6 @@
 package pikachu.command;
 
-import pikachu.Pikachu;
-import pikachu.PikachuException;
-import pikachu.Storage;
-import pikachu.TaskList;
-import pikachu.Ui;
+import pikachu.*;
 import pikachu.task.Task;
 
 /**
@@ -44,6 +40,15 @@ public class MarkCommand extends Command {
             storage.save(tasks.getTaskList());
             return "Pi-ka(Done): " + task;
         }
+    }
+
+    /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return HAPPY.
+     */
+    @Override
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.HAPPY;
     }
 
     /**

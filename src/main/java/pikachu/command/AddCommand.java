@@ -3,10 +3,7 @@ package pikachu.command;
 import java.time.LocalDate;
 import java.util.List;
 
-import pikachu.PikachuException;
-import pikachu.Storage;
-import pikachu.TaskList;
-import pikachu.Ui;
+import pikachu.*;
 import pikachu.task.Deadline;
 import pikachu.task.Event;
 import pikachu.task.Task;
@@ -99,6 +96,15 @@ public class AddCommand extends Command {
      */
     public boolean isExit() {
         return false;
+    }
+
+    /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return OK.
+     */
+    @Override
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.OK;
     }
 
     /**

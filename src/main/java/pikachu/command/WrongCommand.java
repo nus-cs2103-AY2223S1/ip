@@ -5,14 +5,9 @@ import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
 
-/**
- * Represents command that exits the task manager Pikachu. A <code>ExitCommand</code> object corresponds to
- * an instruction to exit task manager Pikachu e.g., <code>bye</code>.
- */
-public class ExitCommand extends Command {
-
+public class WrongCommand extends Command {
     /**
-     * Quits the task manager Pikachu.
+     * Deals with unidentified messages for the task manager Pikachu.
      *
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
@@ -20,16 +15,16 @@ public class ExitCommand extends Command {
      * @return Pikachu's reply.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.sayBye();
+        return "Pi?";
     }
 
     /**
      * Returns PikaChu's emotion after receiving the task.
-     * @return CRY.
+     * @return CONFUSED.
      */
     @Override
     public PikachuEmotion getEmotion() {
-        return PikachuEmotion.CRY;
+        return PikachuEmotion.CONFUSED;
     }
 
     /**
@@ -37,6 +32,6 @@ public class ExitCommand extends Command {
      * @return true, exit.
      */
     public boolean isExit() {
-        return true;
+        return false;
     }
 }

@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -41,6 +43,32 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(DialogBox.getPikachuDialog(pikachu.sayHi(), pikachuImage));
     }
 
+    public void setPikachuImage(PikachuEmotion emotion) {
+        switch (emotion) {
+        case CRY:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/cry.jpg"));
+            break;
+        case CONFUSED:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/confused.jpeg"));
+            break;
+        case OK:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/ok.jpg"));
+            break;
+        case SAD:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/sad.jpeg"));
+            break;
+        case YEA:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/yea.jpg"));
+            break;
+        case PLAY:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/play.jpg"));
+            break;
+        case HAPPY:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/happy.jpeg"));
+            break;
+        }
+    }
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
@@ -52,6 +80,8 @@ public class MainWindow extends AnchorPane {
         }
         String input = userInput.getText();
         String response = pikachu.getResponse(input);
+        PikachuEmotion emotion = pikachu.getEmotion();
+        this.setPikachuImage(emotion);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getPikachuDialog(response, pikachuImage)

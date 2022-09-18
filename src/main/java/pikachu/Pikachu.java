@@ -26,6 +26,8 @@ public class Pikachu extends Application {
     private TaskList tasks;
     private final Ui ui;
 
+    private PikachuEmotion emotion;
+
     private boolean isExit = false;
 
     /**
@@ -71,11 +73,16 @@ public class Pikachu extends Application {
     String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            emotion = c.getEmotion();
             isExit = c.isExit();
             return c.execute(tasks, ui, storage);
         } catch (PikachuException e) {
             return e.getMessage();
         }
+    }
+
+    PikachuEmotion getEmotion() {
+        return emotion;
     }
 
     /**

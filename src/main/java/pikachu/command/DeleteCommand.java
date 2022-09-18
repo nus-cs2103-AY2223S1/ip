@@ -1,10 +1,6 @@
 package pikachu.command;
 
-import pikachu.Pikachu;
-import pikachu.PikachuException;
-import pikachu.Storage;
-import pikachu.TaskList;
-import pikachu.Ui;
+import pikachu.*;
 import pikachu.task.Task;
 
 /**
@@ -45,6 +41,15 @@ public class DeleteCommand extends Command {
             return "Pi-ka(Removed): " + task + '\n' + "Pikaaaaa: " + tasks.getTaskList().size()
                     + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
         }
+    }
+
+    /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return OK.
+     */
+    @Override
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.OK;
     }
 
     /**

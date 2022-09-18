@@ -1,5 +1,6 @@
 package pikachu.command;
 
+import pikachu.PikachuEmotion;
 import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
@@ -35,6 +36,15 @@ public class ListCommand extends Command {
         }
         output.deleteCharAt(output.length() - 1);
         return String.valueOf(output);
+    }
+
+    /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return OK.
+     */
+    @Override
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.PLAY;
     }
 
     /**

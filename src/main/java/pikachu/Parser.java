@@ -8,6 +8,7 @@ import pikachu.command.FindCommand;
 import pikachu.command.ListCommand;
 import pikachu.command.MarkCommand;
 import pikachu.command.UnmarkCommand;
+import pikachu.command.WrongCommand;
 
 /**
  * Represents a parser to find the command for the input. A <code>Parser</code> object corresponds to
@@ -23,7 +24,7 @@ public class Parser {
      * @return command related to user input.
      * @throws IllegalArgumentException If cannot find the corresponding command.
      */
-    public static Command parse(String fullCommand) throws PikachuException {
+    public static Command parse(String fullCommand) {
         if (fullCommand.equals("bye")) {
             return new ExitCommand();
         } else if (fullCommand.equals("list")) {
@@ -41,7 +42,7 @@ public class Parser {
         } else if (fullCommand.startsWith("find ")) {
             return new FindCommand(fullCommand);
         }
-        throw new PikachuException("Pi?");
+        return new WrongCommand();
     }
 
 

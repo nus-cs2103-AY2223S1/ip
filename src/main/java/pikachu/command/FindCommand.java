@@ -3,6 +3,7 @@ package pikachu.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import pikachu.PikachuEmotion;
 import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
@@ -53,6 +54,15 @@ public class FindCommand extends Command {
             return String.valueOf(output);
         }
 
+    }
+
+    /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return YEA.
+     */
+    @Override
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.YEA;
     }
 
     /**
