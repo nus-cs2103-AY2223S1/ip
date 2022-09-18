@@ -70,7 +70,7 @@ public class Duke {
             return manage.deleteTask(taskIndex);
 
         } else if (input.startsWith("del")) {
-            int taskIndex = Integer.parseInt(input.substring(2)) - 1;
+            int taskIndex = Integer.parseInt(input.substring(4)) - 1;
             database.save();
             return manage.deleteTask(taskIndex);
 
