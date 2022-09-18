@@ -93,7 +93,7 @@ public class Ui {
      * Prints when no matching tasks to the inputted date
      */
     public void notFound() {
-        System.out.println("No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy");
+        System.out.println("No tasks on this date, check you format! --> yyyy-mm-dd");
     }
 
     /**
