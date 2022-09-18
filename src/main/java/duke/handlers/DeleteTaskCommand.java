@@ -1,16 +1,18 @@
 package duke.handlers;
 
+import duke.exceptions.DukeException;
+import duke.models.DukeResponse;
 import duke.models.TaskList;
 
 public class DeleteTaskCommand implements DukeCommand {
-    public String run (TaskList taskList, String content) {
+    public DukeResponse run (TaskList taskList, String content) throws DukeException {
         try {
             int taskNum = Integer.parseInt(content);
-            return "Task deleted:\n" + taskList.deleteTask(taskNum - 1);
+            return new DukeResponse("Task deleted:\n" + taskList.deleteTask(taskNum - 1));
         } catch (NumberFormatException e) {
-            return "Task index is not a number!\n";
+            throw new DukeException("Task index is not a number!\n");
         } catch (IndexOutOfBoundsException e) {
-            return "Task index out of bounds!\n";
+            throw new DukeException("Task index out of bounds!\n");
         }
     }
 }

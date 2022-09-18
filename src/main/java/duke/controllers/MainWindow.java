@@ -1,6 +1,7 @@
 package duke.controllers;
 
 import duke.Duke;
+import duke.models.DukeResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainWindow extends AnchorPane {
     @FXML
@@ -41,11 +43,16 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
-        String dukeText = duke.getResponse(userInput.getText());
+        DukeResponse dukeResponse = duke.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
-                DialogBox.getDukeDialog(dukeText, dukeImage)
+                DialogBox.getDukeDialog(dukeResponse.getContent(), dukeImage)
         );
         userInput.clear();
+
+        if (dukeResponse.isExit()) {
+            Stage stage = (Stage) dialogContainer.getScene().getWindow();
+            stage.close();
+        }
     }
 }

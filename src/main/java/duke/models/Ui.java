@@ -17,18 +17,23 @@ public class Ui {
     /**
      * Prints greeting messages to the user when the app starts.
      */
-    public void greet() {
-        System.out.println("Hello from\n" + logo);
-        System.out.print("Tell me what you need\n");
+    public String greet() {
+        String greetings = "Hello from\n" + logo + "Tell me what you need\n";
+        System.out.println(greetings);
+        return greetings;
     }
 
     /**
      * Prints goodbye message to the user when the user shuts down the app.
      */
-    public void exit() {
-        System.out.print("Goodbye!");
+    public String exit() {
+        System.out.println("Goodbye!");
+        return "Goodbye!";
     }
 
+    public String formatError(String errorMessage) {
+        return "OOPS! " + errorMessage;
+    }
     /**
      * Formats the error messages.
      *
@@ -36,7 +41,7 @@ public class Ui {
      */
     public void showError(String errorMessage) {
         System.out.println(separator);
-        System.out.println("OOPS! " + errorMessage);
+        System.out.println(formatError(errorMessage));
         System.out.println(separator);
     }
 

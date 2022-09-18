@@ -90,23 +90,23 @@ public class Storage {
      * Saves tasks to disk.
      *
      * @param tasks The TaskList to be converted to strings and saved to disk.
+     * @return the number of tasks saved to disk.
      * @throws DukeException If and I/O error occurs.
      */
-    public static void saveTaskToDisk(TaskList tasks) throws DukeException{
+    public static int saveTaskToDisk(TaskList tasks) throws DukeException{
         try {
             FileWriter out = new FileWriter(TASK_FILE_PATH);
             tasks.forEach((task) -> {
                 try {
                     out.write(task.formatForSave() + "\n");
                 } catch (IOException e) {
-                    // TODO: Add error handling
-                    System.out.println("An error occurred.");
+                    e.printStackTrace();
                 }
             });
             out.close();
+            return tasks.size();
         } catch (IOException e) {
-            // TODO: Add error handling
-            System.out.println("An error occurred.");
+            throw new DukeException("Failed to save tasks to disk!");
         }
     }
 }

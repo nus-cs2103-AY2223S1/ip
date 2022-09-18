@@ -16,6 +16,8 @@ public class DukeCommandMap {
         commandMap.put("delete", new DeleteTaskCommand());
         commandMap.put("find", new FindTaskCommand());
         commandMap.put("revent", new AddRecurringEventCommand());
+        commandMap.put("save", new SaveCommand());
+        commandMap.put("bye", new ExitCommand());
     }
 
     public DukeCommand getCommand(String keyword) throws DukeException {

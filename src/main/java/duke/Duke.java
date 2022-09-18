@@ -2,10 +2,7 @@ package duke;
 
 import duke.exceptions.DukeException;
 import duke.handlers.DukeCommand;
-import duke.models.Parser;
-import duke.models.Storage;
-import duke.models.TaskList;
-import duke.models.Ui;
+import duke.models.*;
 
 import java.util.Scanner;
 
@@ -22,16 +19,13 @@ public class Duke {
         }
     }
 
-    public String getResponse(String userInput) {
+    public DukeResponse getResponse(String userInput) {
         try {
             DukeCommand command = parser.parseCommand(userInput);
-            String result = command.run(taskList, parser.parseContent(userInput));
-            ui.showResponse(result);
-            return result;
+            return command.run(taskList, parser.parseContent(userInput));
         } catch (DukeException e) {
             assert e.getMessage() == null : "No Duke Exception message.";
-            ui.showError(e.getMessage());
-            return e.getMessage();
+            return new DukeResponse(ui.formatError(e.getMessage()));
         }
     }
 
@@ -39,12 +33,12 @@ public class Duke {
         ui.greet();
 
         String userInput = sc.nextLine();
-
-        while (!(userInput.equals("Bye") || userInput.equals("bye"))) {
+        DukeResponse response = new DukeResponse(null, false);
+        while (response.isExit()) {
             try {
                 DukeCommand command = parser.parseCommand(userInput);
-                String result = command.run(taskList, parser.parseContent(userInput));
-                ui.showResponse(result);
+                response = command.run(taskList, parser.parseContent(userInput));
+                ui.showResponse(response.getContent());
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }

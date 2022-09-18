@@ -1,17 +1,19 @@
 package duke.handlers;
 
+import duke.exceptions.DukeException;
+import duke.models.DukeResponse;
 import duke.models.TaskList;
 
 public class MarkAsUndoneCommand implements DukeCommand {
-    public String run (TaskList taskList, String content) {
+    public DukeResponse run (TaskList taskList, String content) throws DukeException {
         try {
             int taskNum = Integer.parseInt(content);
             taskList.get(taskNum - 1).markAsUndone();
-            return "This task is not done yet:\n" + taskList.get(taskNum - 1);
+            return new DukeResponse("This task is not done yet:\n" + taskList.get(taskNum - 1));
         } catch (NumberFormatException e) {
-            return "Task index is not a number!";
+            throw new DukeException("Task index is not a number!\n");
         } catch (IndexOutOfBoundsException e) {
-            return "Task index out of bounds!";
+            throw new DukeException("Task index out of bounds!");
         }
     }
 }
