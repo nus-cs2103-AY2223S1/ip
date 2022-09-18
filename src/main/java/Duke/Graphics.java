@@ -147,14 +147,7 @@ public class Graphics {
         return "Error loading file from specified path, creating new list";
     }
 
-    public String undo() {
-        String response = "";
-        response += "____________________________________\n" ;
-        response += "Got it! I have reverted the most recent changes!\n";
-        response += "____________________________________" ;
-        return response;
 
-    }
 
 
 }
