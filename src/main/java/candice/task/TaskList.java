@@ -13,11 +13,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * Represents a list of tasks that is created by parsing the text file located in the Storage object.
- * If no text file is located or read, an empty list is created instead.
+ * Represents a list of tasks that is associated to a Storage object.
+ * The list of tasks can be updated by parsing the text file in the Storage object.
  */
 public class TaskList {
-    /** The storage object that will be used for parsing to create the task array list */
+    /** The storage object that will be used for parsing to update the task array list */
     private final Storage storage;
     /** The array task list used to store the tasks */
     private final ArrayList<Task> taskArrayList = new ArrayList<>();
@@ -33,8 +33,7 @@ public class TaskList {
     }
 
     /**
-     * Parses the task list text using the Storage object in this instance of TaskList to add tasks to the task list in
-     * this instance of TaskList.
+     * Parses the task list text using the Storage object to add tasks to the task list.
      */
     public void parseTaskListText() {
         try {
@@ -154,7 +153,7 @@ public class TaskList {
      * Marks the task corresponding to the task number given as unfinished.
      *
      * @param taskNumber The number of the task to be marked as unfinished.
-     * @return The task that was marked as finished.
+     * @return The task that was marked as unfinished.
      * @throws IllegalArgumentException If the task number does not exist within this task list.
      */
     public Task unmarkTask(int taskNumber) throws IllegalArgumentException {

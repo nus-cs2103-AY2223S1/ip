@@ -2,7 +2,7 @@ package candice.exception;
 
 /**
  * Abstraction for exceptions that are thrown when the date inputted for a task, specifically for deadlines and events,
- * does not follow the format of a LocalDate or does not exist.
+ * does not follow the format or does not exist.
  */
 public class InvalidDateException extends Exception {
     /**

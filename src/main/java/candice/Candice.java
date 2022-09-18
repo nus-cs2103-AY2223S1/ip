@@ -16,8 +16,6 @@ import java.lang.IllegalArgumentException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import java.util.Scanner;
-
 /**
  * Represents a program that helps to track tasks using a task list.
  * The program allows for different types of tasks to be added, tasks to be deleted or marked as finished/unfinished
@@ -76,9 +74,12 @@ public class Candice {
     }
 
     /**
-     * Runs the programme, allowing users to input a command to add, edit and delete tasks to and from a task list.
+     * Executes the command inputted and returns the response corresponding to the command executed.
+     *
+     * @param input The command inputted.
+     * @return The response to the command.
      */
-    public String run(String input) {
+    public String execute(String input) {
         try {
             Command command = Parser.parse(input);
             return command.resolve(taskList);

@@ -32,6 +32,8 @@ public class Parser {
      */
     private static Command.TimedTaskCommand parseTimedTaskCommand(CommandType taskType, String taskDescription)
             throws EmptyTimingException, InvalidDateException, InvalidFormattingException, InvalidTimeException {
+        assert taskType == CommandType.DEADLINE || taskType == CommandType.EVENT;
+
         String[] splitTaskAndTimestamp = taskDescription.split(" /", 2);
 
         if (splitTaskAndTimestamp.length == 2) {
@@ -118,11 +120,13 @@ public class Parser {
             if (taskType == CommandType.DEADLINE) {
                 return parseDeadlineTime(taskName, taskDate, splitDateAndTime[1]);
             } else {
+                assert taskType == CommandType.EVENT;
                 return parseEventTime(taskName, taskDate, splitDateAndTime[1]);
             }
         } else if (taskType == CommandType.DEADLINE) { // No time was provided
             return new Command.DeadlineCommand(taskName, taskDate, null);
         } else { // No time was provided and taskType is event
+            assert taskType == CommandType.EVENT;
             return new Command.EventCommand(taskName, taskDate, null, null);
         }
     }

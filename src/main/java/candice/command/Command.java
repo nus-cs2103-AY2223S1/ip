@@ -51,7 +51,8 @@ public abstract class Command {
         public String resolve(TaskList taskList) {
             if (this.commandType == CommandType.LIST) {
                 return Ui.getMessageForList(taskList);
-            } else { // command type is bye
+            } else {
+                assert this.commandType == CommandType.BYE : "Invalid command type used for SingleWordCommand";
                 return Ui.getMessageForShuttingDown();
             }
         }
@@ -91,7 +92,8 @@ public abstract class Command {
                 Task newTask = new Task.ToDo(commandDescription);
                 taskList.addTask(newTask);
                 return Ui.getMessageForAddTask(newTask, taskList);
-            } else { // Command type is find
+            } else {
+                assert this.commandType == CommandType.FIND : "Invalid command type used for NonTimedCommand";
                 return Ui.getMessageForFind(taskList, commandDescription);
             }
         }
@@ -134,7 +136,8 @@ public abstract class Command {
             } else if (this.commandType == CommandType.MARK) {
                 Task selectedTask = taskList.markTask(this.taskNumber);
                 return Ui.getMessageForMarkTask(selectedTask);
-            } else { // commandType == UNMARK
+            } else {
+                assert this.commandType == CommandType.UNMARK : "Invalid command type used for NumberedCommand";
                 Task selectedTask = taskList.unmarkTask(this.taskNumber);
                 return Ui.getMessageForUnmarkTask(selectedTask);
             }
@@ -146,11 +149,11 @@ public abstract class Command {
      */
     public abstract static class TimedTaskCommand extends Command {
         /** The name of the task in the inputted command */
-        String taskName;
+        final String taskName;
         /** The date associated to the task in the inputted command */
-        LocalDate taskDate;
+        final LocalDate taskDate;
         /** The time associated to the task in the inputted command */
-        LocalTime taskTime;
+        final LocalTime taskTime;
 
         /**
          * Constructor for a command to add a task with a date associated to it.
@@ -202,7 +205,7 @@ public abstract class Command {
      * Encapsulates a command to add an event to the task list.
      */
     public static class EventCommand extends TimedTaskCommand { // event
-        /** The end time of the event to be created and added */
+        /** The end time of the event */
         private final LocalTime eventEndTime;
 
         /**
