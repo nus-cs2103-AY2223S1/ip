@@ -27,23 +27,12 @@ import java.util.HashMap;
  * has a PrintWriter to write to duke.txt
  */
 public class Storage {
-    private static final String FILE_PATH = "C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2/src/data/duke.txt";
-    private Scanner myReader;
-
+    // C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2/
+    private static final String FILE_PATH = "src/data/duke.txt";
     private Path myPath;
-    private PrintWriter writer;
     public Storage() {
         this.myPath = Paths.get(FILE_PATH);
-        try {
-            this.writer = new PrintWriter(FILE_PATH);
-        } catch (FileNotFoundException e) {
-            final String errorMessage = "Hi, u got error in storage file not exist";
-            System.out.println(errorMessage);
-            e.printStackTrace();
         }
-
-    }
-
     /**
      * Reads the files from duke.txt and stores them in TaskList
      * @param tasks tasks Arraylist from TaskList
@@ -52,35 +41,34 @@ public class Storage {
      */
     public TaskList readDuke(List<Task> tasks, int curr) {
         try {
-                List<String> userInput = Files.readAllLines(myPath);
-                for (String line : userInput) {
-                    String[] userInputArray = line.split(" \\| "); //special chara
-                    Task task;
-                    boolean done = userInputArray[1].equals("1");
-                    switch (userInputArray[0]) {
-                        case "T":
-                            task = new ToDo(userInputArray[2], done, "");
-                            curr += 1;
-                            System.out.println("here");
-                            tasks.add(curr, task);
-                            break;
-                        case "E":
-                            task = new Event(userInputArray[2], done, dateReader(userInputArray[3]));
-                            curr += 1;
-                            tasks.add(curr, task);
-                            break;
-                        case "D":
-                            task = new Deadline(userInputArray[2], done, dateReader(userInputArray[3]));
-                            curr += 1;
-                            System.out.println("here");
-                            tasks.add(curr, task);
-                            break;
-                        case "":
-                            break; //edge case
-                    }
+            List<String> userInput = Files.readAllLines(myPath);
+            for (String line : userInput) {
+                String[] userInputArray = line.split(" \\| "); //special chara
+                Task task;
+                boolean done = userInputArray[1].equals("1");
+                switch (userInputArray[0]) {
+                    case "T":
+                        task = new ToDo(userInputArray[2], done, "");
+                        curr += 1;
+                        System.out.println("here");
+                        tasks.add(curr, task);
+                        break;
+                    case "E":
+                        task = new Event(userInputArray[2], done, dateReader(userInputArray[3]));
+                        curr += 1;
+                        tasks.add(curr, task);
+                        break;
+                    case "D":
+                        task = new Deadline(userInputArray[2], done, dateReader(userInputArray[3]));
+                        curr += 1;
+                        System.out.println("here");
+                        tasks.add(curr, task);
+                        break;
+                    case "":
+                        break; //edge case
                 }
+            }
             //myReader.close();
-            writer.print("");
             return new TaskList(tasks, curr, "");
         } catch (Exception e) {
             return new TaskList(tasks, curr, "Hello, I cannot real your files.");
@@ -93,10 +81,18 @@ public class Storage {
      * @param curr the no of tasks in TaskList
      */
     public void writerToDuke(List<Task> tasks, int curr) {
-        for (int i = 0; i < curr; i++) {
-            writer.println(tasks.get(i).toText());
+        try {
+            PrintWriter writer = new PrintWriter(FILE_PATH);
+            for (int i = 0; i < curr; i++) {
+                writer.println(tasks.get(i).toText());
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            final String errorMessage = "Hi, u got error in storage file not exist";
+            System.out.println(errorMessage);
+            e.printStackTrace();
         }
-        writer.close();
+
     }
 
     public static String dateReader(String str) {

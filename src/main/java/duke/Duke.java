@@ -38,13 +38,26 @@ public class Duke extends Application {
     private static final Parser parser = new Parser();
     private static final Ui ui = new Ui();
     private static final Storage storage = new Storage();
-    private TaskList taskList = new TaskList();;
+    private TaskList taskList = new TaskList();
 
+    public Duke() {
+        //file creation
+        try {
+            //file reading
+            String fileCreated;
+            fileCreated = Storage.createFiles();
+            System.out.println(fileCreated);
+        } catch (Exception e) {
+            String fileErrorString = ui.fileErrorPrint();
+            System.out.println(fileErrorString);
+        }
+        taskList = storage.readDuke(taskList.getTasks(), taskList.getCurr());
+    }
+
+    public void start(Stage stage) {
     /**
      * the main body of the code
      */
-    public void start(Stage stage) {
-
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -92,20 +105,6 @@ public class Duke extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
-
-
-        //file creation
-        try {
-            String fileCreated;
-            fileCreated = Storage.createFiles();
-            System.out.println(fileCreated);
-        } catch (Exception e) {
-            String fileErrorString = ui.fileErrorPrint();
-            System.out.println(fileErrorString);
-        }
-
-        //file reading
-        taskList = storage.readDuke(taskList.getTasks(), taskList.getCurr());
 
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
