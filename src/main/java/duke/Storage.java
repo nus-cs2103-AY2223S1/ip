@@ -1,9 +1,6 @@
 package duke;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ import duke.items.ToDo;
  * Object to handle storing and loading of user's list of tasks.
  */
 public class Storage {
-    private String filePath = "/src/main/data/items.json";
+    private String filePath = "/src/main/resources/saves/items.json";
 
     /**
      * Creates an object to store & load user's items.
@@ -46,6 +43,13 @@ public class Storage {
             itemsJson.forEach(obj -> this.parseJsonToItem((JSONObject) obj, storedItems));
         } catch (FileNotFoundException e) {
             System.out.println("Save File does not exist, starting with a new list.");
+            try {
+                File file = new File(this.filePath);
+                file.createNewFile();
+                return storedItems;
+            } catch (IOException io) {
+                System.out.println("Error creating new save file");
+            }
         } catch (IOException e) {
             System.out.println("Error whilst opening file, please try again later.");
         } catch (ParseException e) {
