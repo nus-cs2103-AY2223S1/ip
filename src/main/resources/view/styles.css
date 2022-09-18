@@ -1,0 +1,23 @@
+.container {
+    -fx-font: 13 arial;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10;
+}
+
+.text {
+    -fx-line-spacing: 5px
+}
+
+.displayPicture {
+    -fx-effect: dropshadow(gaussian, grey, 3, 0, 0, 0);
+    -fx-stroke-width: 1;
+}
+
+.dialogContainer {
+    -fx-background-image: url("../images/paw.png");
+    -fx-background-size: contain;
+}
