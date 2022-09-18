@@ -33,7 +33,7 @@ family today!
 ## Getting Started
 
 1. Ensure you have Java `11` installed in your computer.
-2. Download the latest `duke.jar` from [here](releases/tag/v0.2).
+2. Download the latest `duke.jar` from [here](https://github.com/cxyterence/ip/releases/tag/v0.2).
 3. Copy the file to the folder you want to use as the _home folder_ for GustavoBot.
 4. Open up your command prompt/terminal and navigate to the _home folder_.
 5. Run the file by typing in the command `java -jar duke.jar` and pressing Enter. You can also double click the file to run it. The app should appear in a few seconds.
