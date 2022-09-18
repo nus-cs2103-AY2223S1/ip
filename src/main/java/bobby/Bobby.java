@@ -32,15 +32,12 @@ public class Bobby {
      * @param taskList
      * @param storage
      */
-    public Bobby(Parser parser, Ui ui, TaskList taskList, Storage storage) {
+    protected Bobby(Parser parser, Ui ui, TaskList taskList, Storage storage) {
         this.parser = parser;
         this.ui = ui;
         this.taskList = taskList;
         this.storage = storage;
     }
-
-
-
     public String getResponse(String input) {
         String response = parser.executeInput(this.ui, input, this.storage, this.taskList);
         return response;

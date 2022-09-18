@@ -3,17 +3,32 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event class
+ */
 public class Event extends Task {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    /**
+     * Constructor for Event
+     * @param description task description
+     * @param startTime task's start time
+     * @param endTime task's end time
+     */
     public Event(String description, LocalDateTime startTime, LocalDateTime endTime) {
         super(description);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-
+    /**
+     * Constructor for Event
+     * @param description task description
+     * @param isDone task's status
+     * @param startTime task's start time
+     * @param endTime task's end time
+     */
     public Event(String description, Boolean isDone, LocalDateTime startTime, LocalDateTime endTime) {
         super(description, isDone);
         this.startTime = startTime;

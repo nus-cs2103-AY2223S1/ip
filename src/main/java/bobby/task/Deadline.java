@@ -2,13 +2,28 @@ package bobby.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline class
+ */
 public class Deadline extends Task {
     private LocalDateTime deadline;
+
+    /**
+     * Constructor for deadline
+     * @param description task description
+     * @param deadline task's deadline
+     */
     public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
     }
 
+    /**
+     * Constructor for deadline
+     * @param description task description
+     * @param isDone task's status
+     * @param deadline task's deadline
+     */
     public Deadline(String description, Boolean isDone, LocalDateTime deadline) {
         super(description, isDone);
         this.deadline = deadline;
