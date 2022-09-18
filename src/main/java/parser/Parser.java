@@ -1,12 +1,12 @@
-package Parser;
+package parser;
 
-import Exception.DukeException;
-import Task.Deadline;
-import Task.Task;
-import Task.ToDo;
-import Task.Event;
-import TaskList.TaskList;
-import UI.Ui;
+import exception.DukeException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+import tasklist.TaskList;
+import ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

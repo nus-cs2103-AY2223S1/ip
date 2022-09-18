@@ -1,10 +1,10 @@
 package Duke.Storage;
 
 import Duke.Exception.DukeException;
-import Duke.Task.Deadline;
-import Duke.Task.Task;
-import Duke.Task.ToDo;
-import Duke.Task.Event;
+import task.Event;
+import task.Deadline;
+import task.Task;
+import task.ToDo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

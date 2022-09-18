@@ -1,7 +1,7 @@
 package Duke.Storage;
 
 import org.junit.jupiter.api.Test;
-import Duke.Task.Task;
+import task.Task;
 import Duke.Exception.DukeException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,7 +1,7 @@
-package TaskList;
+package tasklist;
 
-import Exception.DukeException;
-import Task.Task;
+import exception.DukeException;
+import task.Task;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Task;
+package task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,11 +12,6 @@ public class Deadline extends Task {
     private static final String SHORTHAND = "D";
 
     private LocalDateTime by;
-
-    Deadline(String description, String by) {
-        super(description, SHORTHAND);
-        this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
-    }
 
     public Deadline(String description, LocalDateTime by) {
         super(description, SHORTHAND);

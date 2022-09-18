@@ -1,11 +1,11 @@
-package Storage;
+package storage;
 
-import Exception.DukeException;
-import Task.Deadline;
-import Task.Task;
-import Task.ToDo;
-import Task.Event;
-import TaskList.TaskList;
+import exception.DukeException;
+import task.Deadline;
+import task.Task;
+import task.ToDo;
+import task.Event;
+import tasklist.TaskList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -47,9 +47,9 @@ public class Storage {
                 if (!fileCreated) {
                     throw DukeException.createStorageFileException();
                 }
-            }
-            // Else read from Duke.txt and convert text to .
-            else {
+
+                // Else read from Duke.txt and convert text to .
+            } else {
                 Scanner sc = new Scanner(f);
                 while (sc.hasNext()) {
                     Task newTask = loadTask(sc.nextLine());
