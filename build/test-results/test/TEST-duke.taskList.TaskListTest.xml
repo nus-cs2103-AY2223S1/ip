@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="duke.taskList.TaskListTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-12T09:34:33" hostname="LAPTOP-Q59MTK9C" time="0.02">
+<testsuite name="duke.taskList.TaskListTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2022-09-18T14:59:03" hostname="LAPTOP-Q59MTK9C" time="0.063">
   <properties/>
-  <testcase name="eventTask()" classname="duke.taskList.TaskListTest" time="0.02"/>
-  <system-out><![CDATA[Got it. I've added this task:
-[T][ ]  Anime convention /by 27/11/2022 0800
-Now you have 1 tasks in the list.
-]]></system-out>
+  <testcase name="deadlineTask()" classname="duke.taskList.TaskListTest" time="0.03"/>
+  <testcase name="listTasks()" classname="duke.taskList.TaskListTest" time="0.002"/>
+  <testcase name="addCurr()" classname="duke.taskList.TaskListTest" time="0.006"/>
+  <testcase name="thingsTask()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="getCurr()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="eventTask()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="markTask()" classname="duke.taskList.TaskListTest" time="0.002"/>
+  <testcase name="findTasks()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="removeCurr()" classname="duke.taskList.TaskListTest" time="0.0"/>
+  <testcase name="deleteTask()" classname="duke.taskList.TaskListTest" time="0.003"/>
+  <testcase name="unmarkTask()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="getTasks()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <testcase name="toDoTask()" classname="duke.taskList.TaskListTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
