@@ -1,5 +1,5 @@
 title: "Duke"
-theme: minima
+theme: jekyll-theme-minimal
 
 header_pages:
   - README.md
