@@ -1,7 +1,7 @@
 package zeus.exception;
 
 /**
- * Class that inherits from Exception to represent exceptions specific to Duke.
+ * Class that inherits from Exception to represent exceptions specific to Zeus.
  */
 public class ZeusException extends Exception {
     /**

@@ -5,7 +5,7 @@ import zeus.command.Command;
 import zeus.exception.ZeusException;
 
 /**
- * Chatbot class that helps a person to keep track of various things.
+ * Runs the application.
  */
 public class Zeus {
 
