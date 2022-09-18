@@ -49,7 +49,7 @@ public class GuiUi {
         String s = "";
         for (int i = 0; i < list.size(); i++) {
             int index = i + 1;
-            s = "" + index + "." + list.get(i).toString();
+            s += "" + index + "." + list.get(i).toString() + '\n';
         }
         return t + "\n" + s;
     }
@@ -85,7 +85,6 @@ public class GuiUi {
         Task todo = new Todo(input.substring(5));
         taskList.add(todo);
         return s + todo.toString();
-        //ui.printSummary(taskList.size());
     }
 
     /**
@@ -101,7 +100,6 @@ public class GuiUi {
         Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
         taskList.add(dl);
         return s + dl.toString();
-        //ui.printSummary(taskList.size());
     }
 
     /**
@@ -118,7 +116,6 @@ public class GuiUi {
         Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
         taskList.add(event);
         return s + '\n' + event.toString();
-        //ui.printSummary(taskList.size());
     }
 
     /**
@@ -197,13 +194,13 @@ public class GuiUi {
      * @return task with tag
      */
     public String tagTask(String input) {
-        String s = "Your task is tagged:\n";
         int index = Integer.parseInt(input.substring(4, 5))- 1;
         Task task = taskList.get(index);
+        String s = "Your task " + task.toString() + " is tagged as: ";
         task.tagged();
         String[] parts = input.split(" ", 3);
         task.setTag(parts[2]);
-        return  s + task.toString() + " " + parts[2];
+        return  s + parts[2];
     }
 
     /**
@@ -219,7 +216,7 @@ public class GuiUi {
         if (task.isTagged()) {
             String s = task.toString() + " ";
             s += task.getTag();
-            return "Your task is tagged:\n" + s;
+            return "Your task is tagged as:\n" + s;
         } else {
             return "The task is not tagged";
         }
@@ -270,4 +267,5 @@ public class GuiUi {
     public String enterText() {
        return "Sorry, please enter text again :(";
     }
+
 }

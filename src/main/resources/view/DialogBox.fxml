@@ -6,15 +6,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #7876cc#7876cc; -fx-border-radius: 15; -fx-padding: 10;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="151.0" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #7876cc#7876cc; -fx-border-radius: 30; -fx-background-radius: 30;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" style="-fx-background-color: #fff;" text="Label" textAlignment="CENTER" textFill="#7876cc" wrapText="true">
+        <Label fx:id="dialog" minHeight="-Infinity" style="-fx-background-color: #fff; -fx-background-radius: 10;" text="Label" textFill="#7876cc" wrapText="true">
          <font>
-            <Font name="Blanket Outline" size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </padding></Label>
+            <Font name="Blanket Outline" size="12.0" />
+         </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>

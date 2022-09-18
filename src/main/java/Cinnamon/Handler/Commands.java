@@ -163,7 +163,7 @@ public class Commands {
     public void tagTask(String input) {
         int index = Integer.parseInt(input.substring(4, 5)) - 1;
         Task task = taskList.get(index);
-        System.out.println("Your task: " + task + " is tagged as:");
+        System.out.println("Your task " + task + " is tagged as:");
         task.tagged();
         String[] parts = input.split(" ", 3);
         task.setTag(parts[2]);
