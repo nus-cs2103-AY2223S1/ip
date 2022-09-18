@@ -19,7 +19,7 @@ public class TaskList {
     private int size;
 
     /**
-     * Constructs the TaskList
+     * Constructs the TaskList.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -27,8 +27,8 @@ public class TaskList {
     }
 
     /**
-     * Constructs the TaskList with previous inputs
-     * @param dataList Previous input data
+     * Constructs the TaskList with previous inputs.
+     * @param dataList Previous input data.
      */
     public TaskList(ArrayList<String> dataList) {
         this.tasks = new ArrayList<>();
@@ -47,7 +47,7 @@ public class TaskList {
     }
 
     /**
-     * Saves the TaskList
+     * Saves the TaskList.
      * @return ArrayList of the input that has been saved.
      */
     public ArrayList<String> saveTasks() {
@@ -62,7 +62,7 @@ public class TaskList {
      * Marks a task.
      *
      * @param in Input of the user.
-     * @return message for user
+     * @return Message for user.
      */
     public String markTask(String in) {
         char n = in.charAt(5);
@@ -80,7 +80,7 @@ public class TaskList {
      * Unmarks a task.
      *
      * @param in Input of the user.
-     * @return message for user
+     * @return Message for user.
      */
     public String unmarkTask(String in) {
         char n = in.charAt(7);
@@ -97,7 +97,7 @@ public class TaskList {
     /**
      * Lists the inputs of the user.
      *
-     * @return message for user
+     * @return Message for user.
      */
     public String list() {
         int count = 1;
@@ -119,7 +119,7 @@ public class TaskList {
      * Deletes a task.
      *
      * @param in Input of the user.
-     * @return message for user
+     * @return Message for user.
      */
     public String delete(String in) {
         char n = in.charAt(7);
@@ -138,7 +138,7 @@ public class TaskList {
      * Returns a message for deadline input.
      *
      * @param in Input of the user.
-     * @return message for user
+     * @return Message for user.
      * @throws DukeException An exception unique to duke.Duke.
      */
     public String deadline(String in) throws DukeException {
@@ -154,7 +154,7 @@ public class TaskList {
      * Adds a deadline event to the list.
      *
      * @param deadLine Input of the user.
-     * @return message for user.
+     * @return Message for user.
      */
     public String addDeadline(String deadLine) {
         String[] aStr = deadLine.split("/by ", 2);
@@ -190,7 +190,7 @@ public class TaskList {
      * Adds an event task to the list.
      *
      * @param event Input of the user.
-     * @return Message for the user
+     * @return Message for the user.
      */
     public String addEvent(String event) {
         String[] aStr = event.split("/at ", 2);
@@ -230,10 +230,10 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks in list
-     * @param in Input of the user
-     * @return message for user
-     * @throws DukeException If there is an error in the input
+     * Finds tasks in list.
+     * @param in Input of the user.
+     * @return Message for user.
+     * @throws DukeException If there is an error in the input.
      */
     public String find(String in) throws DukeException {
         String toBeFound = in.replaceFirst("find", "");
@@ -254,6 +254,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Tags a task in the list.
+     *
+     * @param in Input of the user.
+     * @return Message for the user.
+     * @throws DukeException If there is an error in the input.
+     */
     public String tag(String in) throws DukeException {
         String tag = in.replaceFirst("tag", "");
         if (tag.trim().isEmpty()) {
@@ -263,6 +270,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a tag to a task.
+     * @param tag Input of user.
+     * @return Message for user.
+     */
     public String addTag(String tag) {
         char n = tag.charAt(0);
         int number = Character.getNumericValue(n) - 1;
@@ -278,6 +290,13 @@ public class TaskList {
         return message;
     }
 
+    /**
+     * Lists the tags for a task.
+     *
+     * @param in Input of user.
+     * @return Message for user.
+     * @throws DukeException If there is an error in the input.
+     */
     public String listTag(String in) throws DukeException {
         char n = in.charAt(8);
         int number = Character.getNumericValue(n) - 1;
