@@ -2,7 +2,6 @@ package duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,11 +13,9 @@ import duke.task.Event;
 import duke.tasklist.TaskList;
 
 class TaskListTest {
-    private static final File FILE = new File(Storage.FILE_PATH);
     private final TaskList taskList = new TaskList();
-
     /**
-     *
+     * Before each test, add an event to the task list.
      */
     @BeforeEach
     void addEventTask() {

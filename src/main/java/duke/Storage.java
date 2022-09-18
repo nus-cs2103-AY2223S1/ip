@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -22,34 +23,48 @@ public class Storage {
      */
     public static final String PREVIOUS_TASKS_FILE_PATH = "tasksOld.txt";
 
-    /**
-     * Returns a {@code Scanner} to allow the client to read the file containing the current commands.
-     *
-     * @return A {@code Scanner}
-     * @throws FileNotFoundException if the file does not exist
-     */
-    public Scanner getScannerForTasksFile() throws FileNotFoundException {
-        File tasksFile = new File(Storage.FILE_PATH);
-        if (tasksFile.exists()) {
-            return new Scanner(tasksFile);
+    private Optional<Scanner> getScannerForAFile(String filePath) {
+        File tasksFile = new File(filePath);
+        if (!tasksFile.exists()) {
+            return Optional.empty();
         }
-        throw new FileNotFoundException();
+        try {
+            return Optional.of(new Scanner(tasksFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     /**
-     * Returns a {@code Scanner} to allow the client to read the file containing the tasks before
+     * Returns a {@code Optional&lt;Scanner&gt;} to allow the client to read the file containing the current commands.
+     *
+     * @return A {@code Optional&lt;Scanner&gt;}
+     */
+    public Optional<Scanner> getScannerForTasksFile() {
+        return getScannerForAFile(Storage.FILE_PATH);
+    }
+
+    /**
+     * Returns a {@code Optional&lt;Scanner&gt;} to allow the client to read the file containing the tasks before
      * the last command.
      *
-     * @return A {@code Scanner}
-     * @throws FileNotFoundException if the file does not exist
+     * @return A {@code Optional&lt;Scanner&gt;}
      */
-    public Scanner getScannerForPreviousTasksFile() throws FileNotFoundException {
-        File tasksFile = new File(Storage.PREVIOUS_TASKS_FILE_PATH);
-        if (tasksFile.exists()) {
-            return new Scanner(tasksFile);
-        }
-        throw new FileNotFoundException();
+    public Optional<Scanner> getScannerForPreviousTasksFile() {
+        return getScannerForAFile(Storage.PREVIOUS_TASKS_FILE_PATH);
     }
+
+    /**
+     * Checks if the current tasks file exists.
+     *
+     * @return A {@code boolean}
+     */
+    public boolean isCurrentTasksFilePresent() {
+        Path currentTasksFile = Paths.get(Storage.FILE_PATH);
+        return Files.exists(currentTasksFile);
+    }
+
     /**
      * Writes a {@code String} representation of the tasks to disk
      *
@@ -59,7 +74,6 @@ public class Storage {
         Path currentTasksFile = Paths.get(Storage.FILE_PATH);
         Path previousTasksFile = Paths.get(Storage.PREVIOUS_TASKS_FILE_PATH);
         boolean hasTasksFile = Files.exists(currentTasksFile);
-
         try {
             saveToPreviousTasksFile(previousTasksFile, hasTasksFile);
             Files.writeString(currentTasksFile, stringToWrite);
