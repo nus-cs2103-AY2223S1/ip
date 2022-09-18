@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "mykoba.Koba"
 }
 
 checkstyle {
@@ -51,7 +51,7 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "koba"
     archiveClassifier = null
 }
 

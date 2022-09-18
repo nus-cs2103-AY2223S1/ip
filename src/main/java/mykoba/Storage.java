@@ -68,7 +68,7 @@ public class Storage {
             }
             reader.close();
         } catch (IOException e) {
-            System.out.print("Invalid Path for storage file");
+            System.out.print("No save file discovered, creating save file....");
         }
     }
 
@@ -85,7 +85,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.print("Invalid Path for storage file");
+            System.out.print("No save file discovered, creating save file....");
         }
     }
 
