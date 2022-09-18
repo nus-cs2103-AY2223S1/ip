@@ -1,6 +1,10 @@
 package pikachu.command;
 
-import pikachu.*;
+import pikachu.PikachuEmotion;
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.TaskList;
+import pikachu.Ui;
 
 /**
  * Represents abstract command. A <code>Command</code> object corresponds to

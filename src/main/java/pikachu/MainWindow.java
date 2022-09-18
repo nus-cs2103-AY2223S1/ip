@@ -1,17 +1,19 @@
 package pikachu;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -30,10 +32,14 @@ public class MainWindow extends AnchorPane {
 
     private Pikachu pikachu;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/squirtle/happy.jpeg"));
     private Image pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
 
-    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
+    private final Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
+
+    /**
+     * Initialise the main window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -77,6 +83,8 @@ public class MainWindow extends AnchorPane {
         case HAPPY:
             pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/happy.jpeg"));
             break;
+        default:
+            pikachuImage = new Image(this.getClass().getResourceAsStream("/images/pikachu/a_bit_happy.jpg"));
         }
     }
 
@@ -101,7 +109,7 @@ public class MainWindow extends AnchorPane {
     }
 
     @FXML
-    private void closeButtonAction(){
+    private void closeButtonAction() {
         // get a handle to the stage
         Stage stage = (Stage) closeButton.getScene().getWindow();
         // do what you have to do

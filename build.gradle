@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "pikachu.Main"
+    mainClassName = "pikachu.Launcher"
 }
 
 shadowJar {

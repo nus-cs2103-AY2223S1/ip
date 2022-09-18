@@ -1,7 +1,9 @@
 package pikachu;
 
+/**
+ * Possible emotions for pikachu
+ */
 public enum PikachuEmotion {
-    A_BIT_HAPPY,
     CONFUSED,
     CRY,
     HAPPY,

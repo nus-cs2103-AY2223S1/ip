@@ -1,6 +1,11 @@
 package pikachu.command;
 
-import pikachu.*;
+import pikachu.Pikachu;
+import pikachu.PikachuEmotion;
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.TaskList;
+import pikachu.Ui;
 import pikachu.task.Task;
 
 /**

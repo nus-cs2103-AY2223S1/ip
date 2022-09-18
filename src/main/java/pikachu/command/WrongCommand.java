@@ -5,6 +5,10 @@ import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
 
+/**
+ * Represents command that is invalid. A <code>WrongCommand</code> object corresponds to
+ * an instruction that is invalid.
+ */
 public class WrongCommand extends Command {
     /**
      * Deals with unidentified messages for the task manager Pikachu.
