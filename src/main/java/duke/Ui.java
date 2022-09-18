@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -52,7 +54,7 @@ public class Ui {
      * @param task The Task that was marked
      */
     public String printMarkTask(String task) {
-        return "Nice! I've marked this task as done:" + task;
+        return "Nice! I've marked this task as done:\n" + task;
     }
 
     /**
@@ -61,7 +63,7 @@ public class Ui {
      * @param task The Task that was unmarked
      */
     public String printUnmarkTask(String task) {
-        return "OK, I've marked this task as not done yet:" + task;
+        return "OK, I've marked this task as not done yet:\n" + task;
     }
 
     /**
@@ -84,6 +86,14 @@ public class Ui {
 
     public String printSearchedList(String searchedList) {
         return "Here are the matching tasks in your list:" + "\n" + searchedList;
+    }
+
+    public String printEditNote(int taskIndex, String editedNote) {
+        return String.format("Okay! edited task %d's note to be: %s", taskIndex + 1, editedNote);
+    }
+
+    public String printDeleteNote(int taskIndex) {
+        return String.format("Okay! Deleted task %d's note.", taskIndex + 1);
     }
 
     public String printByeCommand() {

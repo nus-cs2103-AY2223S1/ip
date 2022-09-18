@@ -12,6 +12,7 @@ import java.time.LocalDate;
  */
 public class DeadlineCommand extends Command {
     private String description;
+    private String note;
     private LocalDate by;
 
     /**
@@ -26,6 +27,19 @@ public class DeadlineCommand extends Command {
     }
 
     /**
+     * Public constructor for a DeadlineCommand.
+     *
+     * @param description The description of the Deadline
+     * @param by When the Deadline is due
+     * @param note An optional note of the Deadline
+     */
+    public DeadlineCommand(String description, LocalDate by, String note) {
+        this.description = description;
+        this.by = by;
+        this.note = note;
+    }
+
+    /**
      * Executes the command by creating a new Deadline and adding it to the current TaskList.
      *
      * @param taskList A list of tasks
@@ -33,6 +47,6 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui) {
-        return ui.printAddTask(taskList.addDeadline(this.description, this.by), taskList.size());
+        return ui.printAddTask(taskList.addDeadline(this.description, this.by, this.note), taskList.size());
     }
 }

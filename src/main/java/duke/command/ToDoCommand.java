@@ -11,6 +11,7 @@ import duke.Ui;
  */
 public class ToDoCommand extends Command {
     private String description;
+    private String note;
 
     /**
      * Public constructor for a ToDoCommand.
@@ -22,6 +23,17 @@ public class ToDoCommand extends Command {
     }
 
     /**
+     * Public constructor for a ToDoCommand.
+     *
+     * @param description the Description of the Todo
+     * @param note Optional note of the Todo
+     */
+    public ToDoCommand(String description, String note) {
+        this.description = description;
+        this.note = note;
+    }
+
+    /**
      * Executes the ToDoCommand by creating a new Todo and adding it to the TaskList.
      *
      * @param taskList A list of tasks
@@ -29,6 +41,6 @@ public class ToDoCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui) {
-        return ui.printAddTask(taskList.addToDo(this.description), taskList.size());
+        return ui.printAddTask(taskList.addToDo(this.description, this.note), taskList.size());
     }
 }

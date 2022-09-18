@@ -79,8 +79,8 @@ public class TaskList {
      * @param description The description of the ToDo
      * @return The String representation of the newly added ToDo
      */
-    public String addToDo(String description) {
-        ToDo task = new ToDo(description);
+    public String addToDo(String description, String note) {
+        ToDo task = new ToDo(description, note);
         this.addToTasks(task);
         return task.toString();
     }
@@ -89,11 +89,12 @@ public class TaskList {
      * Creates a new Deadline and adds it to the TaskList.
      *
      * @param description The description of the Deadline
-     * @param by The Date on which the Deadline is due
+     * @param by          The Date on which the Deadline is due
+     * @param note
      * @return The String representation of the newly added Deadline
      */
-    public String addDeadline(String description, LocalDate by) {
-        Deadline task = new Deadline(description, by);
+    public String addDeadline(String description, LocalDate by, String note) {
+        Deadline task = new Deadline(description, by, note);
         this.addToTasks(task);
         return task.toString();
     }
@@ -105,8 +106,8 @@ public class TaskList {
      * @param at The date and time of the Event
      * @return The String representation of the newly added Event
      */
-    public String addEvent(String description, LocalDate at) {
-        Event task = new Event(description, at);
+    public String addEvent(String description, LocalDate at, String note) {
+        Event task = new Event(description, at, note);
         this.addToTasks(task);
         return task.toString();
     }
@@ -135,6 +136,14 @@ public class TaskList {
             }
         }
         return result;
+    }
+
+    public void editNote(int index, String newNote) {
+        tasks.get(index).editNote(newNote);
+    }
+
+    public void deleteNote(int index) {
+        tasks.get(index).deleteNote();
     }
 
     /**

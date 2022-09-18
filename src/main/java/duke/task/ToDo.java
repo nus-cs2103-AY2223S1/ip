@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Class which inherits the Task class for a ToDo
  *
@@ -15,6 +17,16 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+    }
+
+    /**
+     * Public constructor which also takes in an optional note about the ToDo.
+     *
+     * @param description The description of the deadline
+     * @param note An optional note about the Deadline
+     */
+    public ToDo(String description, String note) {
+        super(description, note);
     }
 
     @Override

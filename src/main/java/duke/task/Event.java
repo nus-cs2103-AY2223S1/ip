@@ -22,6 +22,18 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Public constructor which also takes in an optional note about the Event.
+     *
+     * @param description The description of the deadline
+     * @param at When the Deadline is due
+     * @param note An optional note about the Deadline
+     */
+    public Event(String description, LocalDate at, String note) {
+        super(description, note);
+        this.at = at;
+    }
+
     @Override
     public String stringifyTask() {
         return String.format("%s | %s | %s", "E", super.stringifyTask(), this.at);
@@ -34,6 +46,12 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.at);
+        if (this.getNote() == null) {
+            return String.format("[E][%s] %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.at);
+        } else {
+            assert this.getNote() != null : "This task should have a note";
+            return String.format("[D][%s] %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.at)
+                    + "\n" + String.format("       - Notes: %s", this.getNote());
+        }
     }
 }

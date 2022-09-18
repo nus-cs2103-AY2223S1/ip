@@ -10,6 +10,7 @@ import java.time.LocalDate;
  */
 public abstract class Task {
     private String description;
+    private String note;
     private boolean isDone;
 
     /**
@@ -19,6 +20,18 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
+        this.isDone = false;
+    }
+
+    /**
+     * Public constructor for a Task.
+     *
+     * @param description The description of the Task
+     * @param note The optional note about the Task
+     */
+    public Task(String description, String note) {
+        this.description = description;
+        this.note = note;
         this.isDone = false;
     }
 
@@ -95,12 +108,45 @@ public abstract class Task {
     }
 
     /**
+     * Adds the given note to the Task.
+     *
+     * @param note The note to be added
+     */
+    public void editNote(String note) {
+        this.note = note;
+    }
+
+
+    public void deleteNote() {
+        this.note = null;
+    }
+
+    /**
+     * Returns the note of the Task.
+     *
+     * @return note
+     */
+    public String getNote() {
+        return this.note;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
      * Returns the String representation of the Task.
      *
      * @return the String representation of the Task
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        if (this.note == null) {
+            return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        } else {
+            assert this.note != null : "This task should have a note";
+            return String.format("[%s] %s", this.getStatusIcon(), this.description) + "\n"
+                    + String.format("       - Notes: %s", this.note);
+        }
     }
 }

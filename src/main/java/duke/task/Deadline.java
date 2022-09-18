@@ -22,6 +22,18 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Public constructor which also takes in an optional note about the Deadline.
+     *
+     * @param description The description of the deadline
+     * @param by When the Deadline is due
+     * @param note An optional note about the Deadline
+     */
+    public Deadline(String description, LocalDate by, String note) {
+        super(description, note);
+        this.by = by;
+    }
+
     private String printDate() {
         return String.format("%s %d %d",
                 this.by.getMonth().toString().substring(0, 3),
@@ -41,6 +53,12 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.printDate());
+        if (this.getNote() == null) {
+            return String.format("[D][%s] %s (by: %s)", this.getStatusIcon(), this.getDescription(), this.printDate());
+        } else {
+            assert this.getNote() != null : "This task should have a note";
+            return String.format("[D][%s] %s (by: %s)", this.getStatusIcon(), this.getDescription(), this.printDate())
+                    + "\n" + String.format("       - Notes: %s", this.getNote());
+        }
     }
 }
