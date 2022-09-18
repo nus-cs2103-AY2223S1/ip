@@ -32,7 +32,7 @@ public class MainWindow extends AnchorPane {
     public MainWindow() {
     }
 
-    //@@ RusselDash332 - reused
+    //@@ RusselDash332 JordanChua-reused
     // Reused a snippet of the code to initialise the welcome message
     /**
      * Method to be run when initialising the chat bot

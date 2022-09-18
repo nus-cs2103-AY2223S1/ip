@@ -87,7 +87,7 @@ public class Storage {
             taskReader.close();
         } catch (FileNotFoundException e) {
             try {
-                //@@ ryanlml - reused
+                //@@ryanlml JordanChua - reused
                 // Reused a snippet of the code to create duke.txt and its parent folders
                 //if we cannot find the file we simply create a new file
                 // along with the parent directories to the file
