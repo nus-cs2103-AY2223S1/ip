@@ -1,12 +1,11 @@
-
 # Michael Todo-list Bot
 Michael is a F1-themed todo list bot following the open source Duke project template. Michael only heeds your command if your first name is Max and last name is Verstappen
 
 ![masi](https://user-images.githubusercontent.com/46512542/190847321-dd88dac3-afc7-45d8-a044-e909748aadb4.jpeg)
 
 # Michael User Guide
-### Features
-Adding and Deleting Tasks
+## Features
+### Adding and Deleting Tasks
 
 Add 3 types of tasks to your list. The 3 types include: `event`, `todo` and `deadline`
 
@@ -130,6 +129,19 @@ Noted my lord. I've removed this task:
  [T][] homework
 Now you have 3 tasks in the list.
 ```
+
+### `bye` - Say bye to Michael
+Format: `bye`
+
+Example of usage:
+
+`bye`
+
+Expected outcome:
+```
+Bye my lord, hope to see you again soon!
+```
+App will close 3 seconds after that.
 
 ### Easter Eggs
 Supported commands: `lewis`, `max`, `toto`, `king`
