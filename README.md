@@ -1,24 +1,13 @@
-# Duke project template
+[![CI Status](https://github.com/teekaytai/ip/workflows/Java%20CI/badge.svg)](https://github.com/teekaytai/ip/actions)
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+# Scottie
+Scottie is a GUI-based desktop application that can help you manage your tasks. It is built using JavaFX and tested using JUnit. Code quality is enforced using CheckStyle. Continuous Integration has also been set up using GitHub Actions to automate testing.
 
-## Setting up in Intellij
+The application also features a fully functional CLI that is mainly used for additional automated testing using input redirection. The test scripts and test inputs are located in the `text-ui-test` folder.
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+The latest `scottie.jar` can be downloaded from [here](https://github.com/teekaytai/ip/releases). You can view the user guide for instructions on how to set up and use this application [here](https://teekaytai.github.io/ip/).
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+![](docs/Ui.png)
+
+## Acknowledgements
+This application is a greenfield Java project built from the ground up using the template provided [here](https://github.com/nus-cs2103-AY2223S1/ip).
