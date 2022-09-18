@@ -8,7 +8,7 @@ import KKBot.tasklist.exceptions.InvalidTaskException;
 import KKBot.tasks.Task;
 
 /**
- * TaskList class to assist KKBot in storing tasks as a list.
+ * TaskList class to assist KKBot.KKBot in storing tasks as a list.
  * Uses an arrayList and stores a list of Task objects.
  *
  * @author AkkFiros
@@ -20,14 +20,22 @@ public class TaskList {
     /**
      * Constructor for TaskList
      *
-     * @param tasks a list of tasks that KKBot takes in
+     * @param tasks a list of tasks that KKBot.KKBot takes in
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
     /**
-     * Method to retrieve the number of tasks stored by KKBot
+     * Alternative constructor for TaskList when previous task list
+     * can't be loaded OR when there is no previous task list to load.
+     */
+    public TaskList() {
+        tasks = new ArrayList<>();
+    }
+
+    /**
+     * Method to retrieve the number of tasks stored by KKBot.KKBot
      *
      * @return the number of tasks stored.
      */

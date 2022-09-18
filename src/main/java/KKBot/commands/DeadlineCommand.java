@@ -7,7 +7,7 @@ import KKBot.tasklist.TaskList;
 import KKBot.ui.Ui;
 
 /**
- * Class representing the command for KKBot when user inputs a deadline task
+ * Class representing the command for KKBot.KKBot when user inputs a deadline task
  *
  * @author AkkFiros
  */
@@ -30,11 +30,11 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Returns a set of actions done by KKBot when user inputs "deadline".
-     * @param tasks the list of tasks stored by KKBot
+     * Returns a set of actions done by KKBot.KKBot when user inputs "deadline".
+     * @param tasks the list of tasks stored by KKBot.KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
-     * @return the related messages after a deadline task is added to KKBot
+     * @return the related messages after a deadline task is added to KKBot.KKBot
      * @throws StorageException if there is an error reading from/writing to hard drive
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws StorageException {

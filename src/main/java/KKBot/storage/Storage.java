@@ -21,7 +21,7 @@ import KKBot.tasks.ToDo;
 import KKBot.tasklist.TaskList;
 
 /**
- * Storage class to store KKBot's Task List onto the hard drive.
+ * Storage class to store KKBot.KKBot's Task List onto the hard drive.
  *
  * @author AkkFiros
  */

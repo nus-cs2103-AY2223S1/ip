@@ -28,8 +28,8 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Returns a command for KKBot when user inputs "unmark".
-     * @param tasks the list of tasks stored by KKBot
+     * Returns a command for KKBot.KKBot when user inputs "unmark".
+     * @param tasks the list of tasks stored by KKBot.KKBot
      * @param ui the ui object that governs what response is returned to the user
      * @param storage the storage object to save tasks to hard drive
      * @return the message shown when a task is marked as incomplete

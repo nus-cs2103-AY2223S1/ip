@@ -1,6 +1,7 @@
 package KKBot.ui;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,18 +10,21 @@ import KKBot.tasklist.TaskList;
 
 /**
  * Ui class that includes all text-based visual elements
- * for KKBot.
+ * for KKBot.KKBot.
  * Only used for welcome message.
  *
  * @author AkkFiros
  */
 
 public class Ui {
+    private final Scanner sc;
 
     /**
-     * Empty constructor for Ui class
+     * Constructor for Ui class
      */
-    public Ui() {}
+    public Ui() {
+        this.sc = new Scanner(System.in);
+    }
 
     private static String DIVIDER = "____________________________________________________________\n";
 
@@ -32,15 +36,15 @@ public class Ui {
             + "|  |\\  \\  |  |\\  \\ | |__|  |\n"
             + "|__| \\__\\ |__| \\__\\|______/\n";
 
-    private static String WELCOMEMESSAGE = "Hello! I'm KKBot! \n"
+    private static String WELCOME_MESSAGE = "Hello! I'm KKBot.KKBot! \n"
             + "What can I do for you?\n";
 
     /**
-     * Method to print welcome message whenever KKBot is initialised.
+     * Method to print welcome message whenever KKBot.KKBot is initialised.
      * @return welcome message
      */
     public String showWelcome() {
-        return DIVIDER + LOGO + WELCOMEMESSAGE + DIVIDER;
+        return DIVIDER + LOGO + WELCOME_MESSAGE + DIVIDER;
     }
 
     /**
@@ -48,7 +52,24 @@ public class Ui {
      * @return closer message
      */
     public String showCloser() {
-        return DIVIDER + "KKBot signing off. Goodbye!\n" + DIVIDER;
+        return DIVIDER + "KKBot.KKBot signing off. Goodbye!\n" + DIVIDER;
+    }
+
+    /**
+     * Method to print out a message.
+     * @param message message to be printed out
+     * @return the printed out message
+     */
+    public String show(String message) {
+        return message;
+    }
+
+    /**
+     * Method to read a user input
+     * @return the user input as a string
+     */
+    public String readInput() {
+        return sc.nextLine();
     }
 
     /**
@@ -103,8 +124,8 @@ public class Ui {
     }
 
     /**
-     * Returns a string representation of the list of all the tasks stored in KKBot.
-     * @param tasks the list of tasks stored in KKBot
+     * Returns a string representation of the list of all the tasks stored in KKBot.KKBot.
+     * @param tasks the list of tasks stored in KKBot.KKBot
      * @return the string representation of all tasks on the list
      */
     public String showAllTasks(TaskList tasks) {

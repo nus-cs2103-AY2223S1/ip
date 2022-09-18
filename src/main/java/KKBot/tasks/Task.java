@@ -1,7 +1,7 @@
 package KKBot.tasks;
 
 /**
- * Tasks are added by the user for KKBot to store and keep track of.
+ * Tasks are added by the user for KKBot.KKBot to store and keep track of.
  *
  * @author AkkFiros
  */
@@ -50,7 +50,7 @@ public abstract class Task {
     }
 
     /**
-     * toString method for a task when KKBot is listing out stored tasks
+     * toString method for a task when KKBot.KKBot is listing out stored tasks
      * @return string representation of a task stored.
      */
     @Override

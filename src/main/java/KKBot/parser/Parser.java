@@ -19,7 +19,7 @@ import KKBot.parser.exceptions.InvalidCommandException;
 import KKBot.parser.exceptions.InvalidDateException;
 
 /**
- * Parser class to process user input for KKBot
+ * Parser class to process user input for KKBot.KKBot
  *
  * @author AkkFiros
  */
@@ -32,9 +32,9 @@ public class Parser {
     private static final String DATE_FORMAT = "yyyy-mm-dd";
 
     /**
-     * Parse method to determine the command to pass to KKBot.
+     * Parse method to determine the command to pass to KKBot.KKBot.
      * @param input the user input
-     * @return the command to pass to KKBot
+     * @return the command to pass to KKBot.KKBot
      * @throws KKBotException when the user input is erroneous
      */
     public static Command initialParse(String input) throws KKBotException {
