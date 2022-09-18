@@ -4,7 +4,8 @@ Bobby is your friendly crewmate that will help you
 to keep track of your tasks!
 With Bobby, you will never forget another task again!
 
-![This is a screenshot of the UI](https://github.com/ruihan00/ip/blob/master/docs/Ui.png?raw=true)
+![This is a screenshot of the UI](https://github.com/ruihan00/ip/blob/master/docs/Ui.png?raw=true | width=200)
+
 ## Features
 
 ### Managing Task
