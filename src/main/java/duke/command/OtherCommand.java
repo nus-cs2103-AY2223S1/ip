@@ -27,14 +27,18 @@ public class OtherCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage, CommandType c) throws DukeException {
-        switch (c) {
-        case GET:
-            return (taskList.getASpecificDay(fullCommand));
-        case FIND:
-            return (taskList.find(fullCommand));
-        case LIST:
-            return (taskList.listAllTask());
-        default:
+        try {
+            switch (c) {
+            case GET:
+                return (taskList.getASpecificDay(fullCommand));
+            case FIND:
+                return (taskList.find(fullCommand));
+            case LIST:
+                return (taskList.listAllTask());
+            default:
+                throw new DukeException("Sorry, something went wrong when executing this command.");
+            }
+        } catch (Exception e) {
             throw new DukeException("Sorry, something went wrong when executing this command.");
         }
     }
