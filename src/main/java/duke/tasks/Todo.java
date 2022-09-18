@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ public class Todo extends Task{
      * @return String to save to our stored data
      */
     @Override
-    String writeToFile() {
+    public String writeToFile() {
         return "T|" + super.writeToFile();
     }
 

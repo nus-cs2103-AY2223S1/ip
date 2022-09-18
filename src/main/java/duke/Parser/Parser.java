@@ -1,4 +1,7 @@
-package duke;
+package duke.parser;
+
+import duke.DukeException;
+import duke.tasks.TaskList;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +19,7 @@ public class Parser {
      * @return command type
      * @throws DukeException if todo command has no description or the command is not meaningful
      */
-    static String getCommandType(String input) throws DukeException {
+    public static String getCommandType(String input) throws DukeException {
         if (input.equals("bye")) {
             return "EXIT";
         } else if (input.equals("list")) {
@@ -26,7 +29,7 @@ public class Parser {
         } else if (input.startsWith("delete")) {
             return "DELETE";
         } else if (input.replaceAll(" ", "").equals("todo")) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         } else if (input.startsWith("todo") | input.startsWith("deadline") | input.startsWith("event")) {
             return "ADD";
         } else if (input.equals("upcoming tasks")) {
@@ -48,7 +51,7 @@ public class Parser {
      * @return integer array containing task index
      */
 
-    static int[] parseUpdateCommand(String command) {
+    public static int[] parseUpdateCommand(String command) {
         String[] parsedCommand = command.split("\\s+");
         if (command.startsWith("mark")) {
             return new int[]{1, Integer.valueOf(parsedCommand[1])};
@@ -61,7 +64,7 @@ public class Parser {
      * @param deleteCommand
      * @return task index
      */
-    static int getDeleteNum(String deleteCommand) {
+    public static int getDeleteNum(String deleteCommand) {
         String[] parsedCommand = deleteCommand.split("\\s+");
 
         //Here we introduce an assertion to ensure that the second part of the delete
@@ -79,7 +82,7 @@ public class Parser {
      * @return LocalDateTime of event/deadline
      * @throws DukeException if date and time is not formatted correctly
      */
-    static LocalDateTime parseDateTime(String command) throws DukeException{
+    public static LocalDateTime parseDateTime(String command) throws DukeException{
         try {
             // Splits the date and time into a String array
             String dateTime = command.substring(command.indexOf("/") + 1);
@@ -104,7 +107,7 @@ public class Parser {
      * @param tasks
      * @throws DukeException if keyword cannot be found in our task list
      */
-    static String parseFindCommand(String command, TaskList tasks) throws DukeException{
+    public static String parseFindCommand(String command, TaskList tasks) throws DukeException{
         try {
             String keyword = command.substring(5);
             return tasks.findTasks(keyword);
@@ -121,7 +124,7 @@ public class Parser {
      * @return deadlines/events to indicate what to sort
      * @throws DukeException if keyword is not an accepted word
      */
-    static String parseSortCommand(String command) throws DukeException {
+    public static String parseSortCommand(String command) throws DukeException {
         String sortKeyword = command.substring(5);
         if (sortKeyword.equals("deadlines") || sortKeyword.equals("events")) {
             return sortKeyword;

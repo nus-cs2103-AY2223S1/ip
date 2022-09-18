@@ -1,9 +1,19 @@
-package duke;
+package duke.storage;
+
+import duke.DukeException;
+import duke.tasks.Event;
+import duke.tasks.Deadline;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+import duke.tasks.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,11 +31,11 @@ import java.util.Scanner;
 public class Storage {
     private String pathFile;
 
-    Storage(String pathFile) {
+    public Storage(String pathFile) {
         this.pathFile = pathFile;
     }
 
-    List<Task> load() throws DukeException {
+    public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<Task>();
         try {
             File taskFile = new File(pathFile);
@@ -36,7 +46,7 @@ public class Storage {
                 String[] parts = data.split("\\|");
 
                 //we then assign variables to each part of our input
-                // The task type specifies the class it belongs to
+                //The task type specifies the class it belongs to
                 //Status tells us if the task is done or not
                 String taskType = parts[0];
                 int status = Integer.valueOf(parts[1]);
@@ -89,9 +99,24 @@ public class Storage {
                 }
             }
             taskReader.close();
-            return tasks;
         } catch (FileNotFoundException e) {
-            throw new DukeException("File Not Found!");
+            try {
+                //@@ ryanlml - reused
+                // Reused a snippet of the code to create duke.txt and its parent folders
+                //if we cannot find the file we simply create a new file
+                // along with the parent directories to the file
+                File taskFile = new File("./data/duke.txt");
+                if (!taskFile.exists()) {
+                    Files.createDirectories(Paths.get("./data/duke.txt").getParent());
+                    taskFile.createNewFile();
+                }
+            } catch (IOException ex) {
+                //Print the error if the new file cannot be created in the specific filepath
+                System.out.println("File cannot be created!");
+                ex.printStackTrace();
+            }
+        } finally {
+            return tasks;
         }
     }
 
@@ -101,7 +126,7 @@ public class Storage {
      * @param tasks updated task list
      * @throws DukeException if file cannot be written to
      */
-    void save(TaskList tasks) throws DukeException {
+    public void save(TaskList tasks) throws DukeException {
         try {
             PrintWriter prw = new PrintWriter(new File(pathFile));
             for (Task task : tasks.getTasks()) {

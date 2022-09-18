@@ -1,4 +1,6 @@
-package duke;
+package duke.tasks;
+
+import duke.DukeException;
 
 import java.time.LocalDateTime;
 
@@ -11,8 +13,8 @@ import java.util.Collections;
  *  Has operations to update the status of our tasks or add/delete them
  */
 public class TaskList {
-    private int numOfTasks;
-    private static List<Task> tasks;
+    protected int numOfTasks;
+    protected List<Task> tasks;
     private final String INDENT = "    ";
 
     public TaskList() {
@@ -25,11 +27,11 @@ public class TaskList {
         this.tasks = taskList;
     }
 
-    List<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    String add(Task task) {
+    public String add(Task task) {
         String response = "";
 
         //update our taskList and numOfTasks
@@ -44,7 +46,7 @@ public class TaskList {
         return response;
     }
 
-    String delete(int taskIndex) {
+    public String delete(int taskIndex) {
         String response = "";
 
         //First update the number of tasks left
@@ -61,7 +63,7 @@ public class TaskList {
         return response;
     }
 
-    String mark(int taskIndex) {
+    public String mark(int taskIndex) {
         String markStatement = INDENT + "Nice! I've marked this task as done:";
 
         Task task = tasks.get(taskIndex - 1);
@@ -70,7 +72,7 @@ public class TaskList {
         return  markStatement + "\n      " + task;
     }
 
-    String unmark(int taskIndex) {
+    public String unmark(int taskIndex) {
         String unmarkStatement = INDENT + "Ok, I've marked this task as not done yet:";
 
         Task task = tasks.get(taskIndex - 1);
@@ -79,7 +81,7 @@ public class TaskList {
         return unmarkStatement + "\n       " + task;
     }
 
-    String printTasks() {
+    public String printTasks() {
         String taskList = "Here are your tasks: \n";
         for (int j = 0; j < numOfTasks; j++) {
             int taskNum = j + 1;
@@ -92,7 +94,7 @@ public class TaskList {
      * Prints deadlines sorted in chronological order
      * @return Deadlines sorted in chronological order
      */
-    String printSortedDeadlines() {
+    public String printSortedDeadlines() {
         String taskList = "Here are your deadlines in chronological order:\n";
 
         //we initalise a list of deadlines and go through all our tasks
@@ -116,7 +118,7 @@ public class TaskList {
      * Prints events sorted in chronological order
      * @return events sorted in chronological order
      */
-    String printSortedEvents() {
+    public String printSortedEvents() {
         String taskList = "Here are your events in chronological order:\n";
 
         //we initalise a list of event and go through all our tasks
@@ -142,7 +144,7 @@ public class TaskList {
      * @param keyword input user is trying to find
      * @throws DukeException if none of our tasks description contains the keyword
      */
-    String findTasks(String keyword) throws DukeException{
+    public String findTasks(String keyword) throws DukeException{
         // initiate a boolean variable to check if the keyword exists in our task list
         String response = "";
         boolean isFindable = false;
@@ -166,7 +168,7 @@ public class TaskList {
      * @return tasks due within 1 week from now
      */
 
-    String printUpcomingTasks() {
+    public String printUpcomingTasks() {
         String taskList = "";
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks) {

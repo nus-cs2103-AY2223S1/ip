@@ -1,51 +1,27 @@
 package duke;
 
+import duke.storage.Storage;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.TaskList;
+import duke.tasks.Todo;
+import duke.UI.Ui;
+import duke.parser.Parser;
+
 import java.time.LocalDateTime;
-
-import javafx.application.Application;
-
-
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javafx.stage.Stage;
-
-import javax.swing.*;
 
 /**
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
-
 public class Duke  {
     private Storage storage;
     private TaskList tasks;
     private static Ui ui;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showError(e);
-            tasks = new TaskList();
-        }
-    }
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("./src/main/data/duke.txt");
+        storage = new Storage("./data/duke.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -64,7 +40,7 @@ public class Duke  {
     /**
      * Shows welcome message in GUI when the chat bot is started
      */
-    static String showWelcomeGUI() {
+    public static String showWelcomeGUI() {
         return ui.showWelcome() + "\n" + ui.showCommands();
     }
 
@@ -75,7 +51,7 @@ public class Duke  {
         String response = "";
         boolean isExit = false;
 
-        // Use assertion to ensure that Duke is properly intialized
+        // Use assertion to ensure that Duke is properly initialized
         assert ui.showWelcome() == "Hello! I'm Duke" + "\n" + "What can I do for you?"
                 :"UI is not initialized!";
 
@@ -90,7 +66,11 @@ public class Duke  {
                 break;
 
             case "PRINT":
-                response += tasks.printTasks();
+                if (tasks.getTasks().size() != 0) {
+                    response += tasks.printTasks();
+                } else {
+                    throw new DukeException("There is currently no tasks!");
+                }
                 break;
 
             case "UPDATE":
@@ -137,12 +117,9 @@ public class Duke  {
                 break;
 
             default:
-                if (tasks.getTasks().size() != 0) {
-                    response += tasks.printUpcomingTasks();
-                } else {
-                    throw new DukeException("There is currently no tasks!");
-                }
+                response += tasks.printUpcomingTasks();
             }
+
             storage.save(tasks);
             return response;
         } catch (DukeException e) {

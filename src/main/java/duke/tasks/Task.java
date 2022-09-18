@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,14 +32,14 @@ public class Task {
     /**
      * Updates boolean isDone depending on the status of the task
      */
-    void mark() {
+    public void mark() {
         this.isDone = true;
     }
 
     /**
      * Updates boolean isDone depending on the status of the task
      */
-    void unmark() {
+    public void unmark() {
         this.isDone = false;
     }
 
@@ -47,7 +47,7 @@ public class Task {
      *
      * @return String to save to our stored data
      */
-    String writeToFile() {
+    public String writeToFile() {
         int status = isDone ? 1 : 0;
         return status + "|" + this.name;
     }

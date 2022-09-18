@@ -1,4 +1,4 @@
-package duke;
+package duke.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class Ui {
      *
      * @return welcome message
      */
-    String showWelcome() {
+    public String showWelcome() {
         return "Hello! I'm Duke! What can I do for you?";
     }
 
@@ -34,7 +34,7 @@ public class Ui {
      *
      * @return commands in bullet point
      */
-    String showCommands() {
+    public String showCommands() {
         String commandList = "List of commands possible:\n";
         for (String command : COMMANDS) {
             commandList += "-" +  command + "\n";
@@ -43,7 +43,7 @@ public class Ui {
     }
 
     
-    String showError(Exception e){
+    public String showError(Exception e){
         return e.getMessage();
     }
 

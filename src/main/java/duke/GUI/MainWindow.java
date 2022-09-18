@@ -1,4 +1,6 @@
-package duke;
+package duke.GUI;
+
+import duke.Duke;
 
 import javafx.fxml.FXML;
 
@@ -24,12 +26,14 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
+    public MainWindow() {
+    }
 
     //@@ RusselDash332 - reused
     // Reused a snippet of the code to initialise the welcome message
-
     /**
      * Method to be run when initialising the chat bot
      * Also displays the welcome message to show the list of possible commands

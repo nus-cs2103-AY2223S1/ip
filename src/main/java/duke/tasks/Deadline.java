@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +17,7 @@ public class Deadline extends Task  {
         this.deadline = deadline;
     }
 
-    LocalDateTime getTime() {
+    public LocalDateTime getTime() {
         return this.deadline;
     }
 
@@ -26,7 +26,7 @@ public class Deadline extends Task  {
      * @return String to save to our stored data
      */
     @Override
-    String writeToFile() {
+    public String writeToFile() {
         return "D|" + super.writeToFile() + "|by "
                 + deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
