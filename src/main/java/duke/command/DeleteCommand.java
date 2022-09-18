@@ -10,6 +10,10 @@ public class DeleteCommand extends Command {
 
     private String number;
 
+    /**
+     * Creates an instance of delete command.
+     * @param command task number based on task list
+     */
     public DeleteCommand(String command) {
         number = command;
     }
@@ -22,10 +26,11 @@ public class DeleteCommand extends Command {
             if (tasks.listSize() - 1 == 1) {
                 taskS = "task";
             }
+            String temp = tasks.showTask(index);
             tasks.delete(index);
             storage.delete(index);
-            return "Got it! Task " + index + " has been deleted from the list:\n  " + tasks.showTask(index)
-                    + "\nYou have a total of " + (tasks.listSize() - 1) + " " + taskS + " in the list.";
+            return "Got it! Task " + index + " has been deleted from the list:\n  " + temp
+                    + "\nYou have a total of " + (tasks.listSize()) + " " + taskS + " in the list.";
 
         } catch (NumberFormatException e) {
             return "You need to provide a task's index to delete!";

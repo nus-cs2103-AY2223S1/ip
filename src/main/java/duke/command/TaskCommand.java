@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.task.Deadline;
+import duke.task.DoAfter;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -34,6 +35,10 @@ public class TaskCommand extends Command {
             this.taskType = taskType;
             this.description = description;
             task = new Event(description);
+        } else if (taskType == "doafter") {
+            this.taskType = taskType;
+            this.description = description;
+            task = new DoAfter(description);
         }
         assert false : "Wrong task type";
     }

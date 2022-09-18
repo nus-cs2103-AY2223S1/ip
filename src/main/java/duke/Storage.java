@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.task.Deadline;
+import duke.task.DoAfter;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
@@ -76,6 +77,18 @@ public class Storage {
                     } else {
                         Event event = new Event(task);
                         taskList.add(event);
+                    }
+                } else if (line.contains("doafter")) {
+                    storage.add(line);
+                    String task = line.replace("doafter", "");
+                    if (task.contains(" | X")) {
+                        task = task.replace(" | X", "");
+                        DoAfter doAfter = new DoAfter(task);
+                        doAfter.markAsDone();
+                        taskList.add(doAfter);
+                    } else {
+                        DoAfter doAfter = new DoAfter(task);
+                        taskList.add(doAfter);
                     }
                 }
             }

@@ -5,7 +5,7 @@ package duke.command;
  */
 public class Parser {
 
-    private static final String[] acceptedCommands = { "todo", "deadline", "event", "list",
+    private static final String[] acceptedCommands = { "todo", "deadline", "event", "doafter", "list",
         "delete", "find", "mark", "unmark", "bye"};
 
     /**
@@ -25,20 +25,23 @@ public class Parser {
             String command = fullCommand.replaceFirst(acceptedCommands[2], "");
             return new TaskCommand(acceptedCommands[2], command);
         } else if (parts[0].contains(acceptedCommands[3])) {
-            return new ListCommand();
+            String command = fullCommand.replaceFirst(acceptedCommands[3], "");
+            return new TaskCommand(acceptedCommands[3], command);
         } else if (parts[0].contains(acceptedCommands[4])) {
+            return new ListCommand();
+        } else if (parts[0].contains(acceptedCommands[5])) {
             String command = fullCommand.replaceFirst("delete ", "");
             return new DeleteCommand(command);
-        } else if (parts[0].contains(acceptedCommands[5])) {
+        } else if (parts[0].contains(acceptedCommands[6])) {
             String command = fullCommand.replaceFirst("find ", "");
             return new FindCommand(command);
-        } else if (parts[0].contains(acceptedCommands[6]) && !parts[0].contains(acceptedCommands[7])) {
+        } else if (parts[0].contains(acceptedCommands[7]) && !parts[0].contains(acceptedCommands[8])) {
             String command = fullCommand.replaceFirst("mark ", "");
             return new MarkCommand(command);
-        } else if (parts[0].contains(acceptedCommands[7])) {
+        } else if (parts[0].contains(acceptedCommands[8])) {
             String command = fullCommand.replaceFirst("unmark ", "");
             return new UnmarkCommand(command);
-        } else if (parts[0].contains(acceptedCommands[8])) {
+        } else if (parts[0].contains(acceptedCommands[9])) {
             return new ExitCommand();
         }
         return new InvalidCommand();
