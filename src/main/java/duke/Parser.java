@@ -19,6 +19,7 @@ public class Parser {
      * @return The Command resulting from the input
      * @throws DukeException
      */
+    // Solution below adapted from https://github.com/dexter-sim/ip
     public static Command parseInput(String userInput) throws DukeException {
         String[] split = userInput.split(" ");
         if (userInput.equals("bye") && split.length == 1) {
@@ -129,6 +130,7 @@ public class Parser {
     }
 
     private static boolean isNumeric(String input) {
+        // Solution below adapted from https://github.com/dexter-sim/ip
         for (char c : input.toCharArray()) {
             if (c < 48 || c > 57) {
                 return false;

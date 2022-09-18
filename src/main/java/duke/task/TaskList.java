@@ -153,6 +153,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        // Solution below adapted from https://github.com/dexter-sim/ip
         String result = "";
         if (this.tasks.size() == 0) {
             return null;

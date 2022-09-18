@@ -141,6 +141,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
+        // Solution below adapted from https://github.com/dexter-sim/ip
         if (this.note == null) {
             return String.format("[%s] %s", this.getStatusIcon(), this.description);
         } else {
