@@ -4,6 +4,7 @@ package candice.command;
  * Enumeration of all the different types of commands that can be inputted.
  */
 public enum CommandType {
+    ADD,
     TODO,
     DEADLINE,
     EVENT,
@@ -12,5 +13,6 @@ public enum CommandType {
     UNMARK,
     DELETE,
     FIND,
+    UNDO,
     BYE
 }

@@ -5,7 +5,9 @@ import candice.exception.EmptyCommandDescriptionException;
 import candice.exception.EmptyTimingException;
 import candice.exception.InvalidDateException;
 import candice.exception.InvalidFormattingException;
+import candice.exception.InvalidMarkException;
 import candice.exception.InvalidTimeException;
+import candice.exception.InvalidUndoException;
 import candice.exception.UnknownCommandException;
 import candice.task.TaskList;
 
@@ -41,6 +43,8 @@ import java.nio.file.Paths;
  * "delete {task number}" to remove the task corresponding to the task number from the task list.
  *
  * "find {key word}" to find any tasks with a task name containing the keyword.
+ *
+ * "undo" to undo the last task that edited the task list.
  *
  * "bye" to exit the program.
  */
@@ -82,10 +86,10 @@ public class Candice {
     public String execute(String input) {
         try {
             Command command = Parser.parse(input);
-            return command.resolve(taskList);
+            return command.resolve(this.taskList);
         } catch (EmptyCommandDescriptionException | EmptyTimingException | IllegalArgumentException
-                | InvalidDateException | InvalidFormattingException | InvalidTimeException
-                | UnknownCommandException e) {
+                | InvalidDateException | InvalidFormattingException | InvalidMarkException | InvalidTimeException
+                | InvalidUndoException | UnknownCommandException e) {
             return e.getMessage();
         }
     }

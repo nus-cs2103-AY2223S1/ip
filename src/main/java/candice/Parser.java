@@ -230,6 +230,7 @@ public class Parser {
         switch (commandType) {
         case BYE:
         case LIST:
+        case UNDO:
             if (commandSplit.length == 2) { // Should only have "bye" or "list"
                 throw new UnknownCommandException();
             } else {

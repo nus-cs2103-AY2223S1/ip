@@ -1,5 +1,7 @@
 package candice.task;
 
+import candice.exception.InvalidMarkException;
+
 /**
  * Encapsulates all relevant information of a task, namely the type of task, whether they have been finished and the
  * name of the task.
@@ -19,12 +21,20 @@ public abstract class Task {
         this.taskName = taskName;
     }
 
-    public void setFinished() {
-        this.isFinished = true;
+    public void setFinished() throws InvalidMarkException {
+        if (this.isFinished) {
+            throw new InvalidMarkException("This task is already finished bro.");
+        } else {
+            this.isFinished = true;
+        }
     }
 
-    public void setUnfinished() {
-        this.isFinished = false;
+    public void setUnfinished() throws InvalidMarkException {
+        if (this.isFinished) {
+            this.isFinished = false;
+        } else {
+            throw new InvalidMarkException("This task haven't finish bro.");
+        }
     }
 
     /**

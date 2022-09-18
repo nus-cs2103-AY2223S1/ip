@@ -93,4 +93,13 @@ public class Ui {
         return "No problem fam. Here are the tasks that match the keyword:\n"
                 + taskList.findTasks(taskKeyword);
     }
+
+    /**
+     * Returns a message for when a command has been undone.
+     *
+     * @return The message reflecting that a command has been undone.
+     */
+    public static String getMessageForUndo() {
+        return "Don't anyhow type commands if you want me to undo it.";
+    }
 }

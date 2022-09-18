@@ -1,6 +1,8 @@
 package candice.task;
 
 import candice.Storage;
+import candice.command.CommandType;
+import candice.exception.InvalidMarkException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +23,44 @@ public class TaskList {
     private final Storage storage;
     /** The array task list used to store the tasks */
     private final ArrayList<Task> taskArrayList = new ArrayList<>();
+    /** UndoInformation object to encapsulate all the information needed for an undo command */
+    UndoInformation undoInformation = new UndoInformation(null, -1, null);
+
+    public class UndoInformation {
+        /** The command type of the latest command that can be undone */
+        private CommandType undoCommandType;
+        /** The number of the task that was marked, unmarked or deleted in the latest command */
+        private int taskNumber;
+        /** The task that was deleted from a delete command */
+        private Task deletedTask;
+
+        /**
+         * Constructor for an UndoInformation object that encapsulates all the information needed for an undo command.
+         *
+         * @param undoCommandType The type of command that was last inputted. Null if no command has been inputted.
+         * @param taskNumber The number of the task that was marked, unmarked or deleted. -1 if the command inputted was to
+         * insert a task.
+         * @param deletedTask The task that was deleted from a delete command. Null if the command inputted was not of type
+         * delete.
+         */
+        public UndoInformation(CommandType undoCommandType, int taskNumber, Task deletedTask) {
+            this.undoCommandType = undoCommandType;
+            this.taskNumber = taskNumber;
+            this.deletedTask = deletedTask;
+        }
+
+        public CommandType getUndoCommandType() {
+            return this.undoCommandType;
+        }
+
+        public int getTaskNumber() {
+            return this.taskNumber;
+        }
+
+        public Task getDeletedTask() {
+            return this.deletedTask;
+        }
+    }
 
     /**
      * Constructor for a TaskList object with an empty list of tasks that can be filled in by using the Storage object
@@ -30,6 +70,19 @@ public class TaskList {
      */
     public TaskList(Storage storage) {
         this.storage = storage;
+    }
+
+    public UndoInformation getUndoInformation() {
+        return this.undoInformation;
+    }
+
+    /**
+     * Returns the number of tasks inside the task list encapsulated by this TaskList object.
+     *
+     * @return The number of tasks inside the task list.
+     */
+    public int getLength() {
+        return this.taskArrayList.size();
     }
 
     /**
@@ -82,18 +135,10 @@ public class TaskList {
 
                 nextLine = reader.readLine();
             }
-        } catch (IOException e) {
+        } catch (IOException | InvalidMarkException e) {
             System.out.println(e);
         }
-    }
 
-    /**
-     * Returns the number of tasks inside the task list encapsulated by this TaskList object.
-     *
-     * @return The number of tasks inside the task list.
-     */
-    public int getLength() {
-        return this.taskArrayList.size();
     }
 
     /**
@@ -105,6 +150,7 @@ public class TaskList {
         taskArrayList.add(newTask);
         String taskDescription = newTask.getStorageDescription();
         this.storage.addTask(taskDescription);
+        this.undoInformation.undoCommandType = CommandType.ADD;
     }
 
     /**
@@ -113,7 +159,7 @@ public class TaskList {
      * @param taskNumber The task number to check.
      * @throws IllegalArgumentException If the task number does not exist within this task list.
      */
-    public void checkValidTaskNumber(int taskNumber) throws IllegalArgumentException {
+    private void checkValidTaskNumber(int taskNumber) throws IllegalArgumentException {
         if (taskNumber <= 0 || taskNumber > this.getLength()) {
             throw new IllegalArgumentException("The task number you put is wrong bro. The task must exist for " +
                     "you to delete it.");
@@ -131,6 +177,9 @@ public class TaskList {
         checkValidTaskNumber(taskNumber);
         Task removedTask = taskArrayList.remove(taskNumber - 1);
         updateStorage();
+        this.undoInformation.undoCommandType = CommandType.DELETE;
+        this.undoInformation.taskNumber = taskNumber;
+        this.undoInformation.deletedTask = removedTask;
         return removedTask;
     }
 
@@ -140,12 +189,15 @@ public class TaskList {
      * @param taskNumber The number of the task to be marked as finished.
      * @return The task that was marked as finished.
      * @throws IllegalArgumentException If the task number does not exist within this task list.
+     * @throws InvalidMarkException If the task being marked is already marked as finished.
      */
-    public Task markTask(int taskNumber) throws IllegalArgumentException {
+    public Task markTask(int taskNumber) throws IllegalArgumentException, InvalidMarkException {
         checkValidTaskNumber(taskNumber);
         Task selectedTask = taskArrayList.get(taskNumber - 1);
         selectedTask.setFinished();
         updateStorage();
+        this.undoInformation.undoCommandType = CommandType.MARK;
+        this.undoInformation.taskNumber = taskNumber;
         return selectedTask;
     }
 
@@ -156,11 +208,13 @@ public class TaskList {
      * @return The task that was marked as unfinished.
      * @throws IllegalArgumentException If the task number does not exist within this task list.
      */
-    public Task unmarkTask(int taskNumber) throws IllegalArgumentException {
+    public Task unmarkTask(int taskNumber) throws IllegalArgumentException, InvalidMarkException {
         checkValidTaskNumber(taskNumber);
         Task selectedTask = this.taskArrayList.get(taskNumber - 1);
         selectedTask.setUnfinished();
         updateStorage();
+        this.undoInformation.undoCommandType = CommandType.UNMARK;
+        this.undoInformation.taskNumber = taskNumber;
         return selectedTask;
     }
 
@@ -187,6 +241,17 @@ public class TaskList {
         return taskList.length() != 0
                ? taskList.substring(0, taskList.length() - 1) // to remove the last "\n"
                : taskList.toString();
+    }
+
+    /**
+     * Undoes a delete command by adding the task back at the appropriate position.
+     *
+     * @param deletedTask The task that was deleted due to the delete command.
+     * @param taskNumber The number corresponding to the task that was deleted.
+     */
+    public void undoDeleteTask(Task deletedTask, int taskNumber) {
+        taskArrayList.add(taskNumber - 1, deletedTask);
+        updateStorage();
     }
 
     /**

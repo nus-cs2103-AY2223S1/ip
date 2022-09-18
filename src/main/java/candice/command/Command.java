@@ -1,6 +1,8 @@
 package candice.command;
 
 import candice.Ui;
+import candice.exception.InvalidMarkException;
+import candice.exception.InvalidUndoException;
 import candice.task.Task;
 import candice.task.TaskList;
 import candice.task.TimedTask;
@@ -25,15 +27,16 @@ public abstract class Command {
         this.commandType = commandType;
     }
 
-    public abstract String resolve(TaskList taskList) throws IllegalArgumentException;
+    public abstract String resolve(TaskList taskList) throws IllegalArgumentException, InvalidUndoException,
+            InvalidMarkException;
 
     /**
-     * Encapsulates single word commands, specifically "bye" and "list".
+     * Encapsulates single word commands, specifically "bye", "list" and "undo".
      */
     public static class SingleWordCommand extends Command { // bye & list
         /**
-         * Constructor for SingleWordCommand objects to contain the type of the command inputted, specifically bye or
-         * list.
+         * Constructor for SingleWordCommand objects to contain the type of the command inputted, specifically bye, list
+         * or undo.
          *
          * @param commandType The type of the command inputted.
          */
@@ -41,16 +44,55 @@ public abstract class Command {
             super(commandType);
         }
 
+        private String resolveUndo(TaskList taskList, CommandType undoCommandType, int undoTaskNumber,
+                Task undoDeletedTask) throws InvalidUndoException {
+            if (undoCommandType == null) {
+                throw new InvalidUndoException();
+            } else {
+                try {
+                    switch (undoCommandType) {
+                    case ADD:
+                        taskList.deleteTask(taskList.getLength());
+                        break;
+                    case MARK:
+                        taskList.unmarkTask(undoTaskNumber);
+                        break;
+                    case UNMARK:
+                        taskList.markTask(undoTaskNumber);
+                        break;
+                    case DELETE:
+                        taskList.undoDeleteTask(undoDeletedTask, undoTaskNumber);
+                        break;
+                    }
+                } catch (InvalidMarkException e) {
+                    System.out.println(e);
+                    // should never reach here.
+                }
+
+                return Ui.getMessageForUndo();
+            }
+        }
+
         /**
-         * Returns the current tasks in the task list if the command inputted was "list" and the exit message otherwise.
+         * Returns the current tasks in the task list if the command inputted was "list" or the exit message if the
+         * command inputted was "bye".
+         * If the command inputted was "undo", undoes the latest command and prints a message reflecting that the
+         * latest command editing the task list was undone.
          *
          * @param taskList The task list associated with this instance of Candice.
          * @return The task list if the command type is list or exit message if the command type is bye.
          */
         @Override
-        public String resolve(TaskList taskList) {
+        public String resolve(TaskList taskList) throws InvalidUndoException {
             if (this.commandType == CommandType.LIST) {
                 return Ui.getMessageForList(taskList);
+            } else if (this.commandType == CommandType.UNDO) {
+                TaskList.UndoInformation undoInformation = taskList.getUndoInformation();
+                CommandType undoCommandType = undoInformation.getUndoCommandType();
+                int taskNumber = undoInformation.getTaskNumber();
+                Task deletedTask = undoInformation.getDeletedTask();
+
+                return resolveUndo(taskList, undoCommandType, taskNumber, deletedTask);
             } else {
                 assert this.commandType == CommandType.BYE : "Invalid command type used for SingleWordCommand";
                 return Ui.getMessageForShuttingDown();
@@ -129,7 +171,7 @@ public abstract class Command {
          * zero and below.
          */
         @Override
-        public String resolve(TaskList taskList) throws IllegalArgumentException {
+        public String resolve(TaskList taskList) throws IllegalArgumentException, InvalidMarkException {
             if (this.commandType == CommandType.DELETE) {
                 Task deletedTask = taskList.deleteTask(this.taskNumber);
                 return Ui.getMessageForDeleteTask(deletedTask, taskList);
@@ -195,7 +237,6 @@ public abstract class Command {
         @Override
         public String resolve(TaskList taskList) {
             Task newDeadline = new TimedTask.Deadline(this.taskName, this.taskDate, this.taskTime);
-
             taskList.addTask(newDeadline);
             return Ui.getMessageForAddTask(newDeadline, taskList);
         }
@@ -230,7 +271,6 @@ public abstract class Command {
         @Override
         public String resolve(TaskList taskList) {
             Task newEvent = new TimedTask.Event(this.taskName, this.taskDate, this.taskTime, this.eventEndTime);
-
             taskList.addTask(newEvent);
             return Ui.getMessageForAddTask(newEvent, taskList);
         }
