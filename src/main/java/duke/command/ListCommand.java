@@ -10,6 +10,7 @@ public class ListCommand extends Command {
     public ListCommand() {}
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
+        assert(ui != null);
         return ui.showList(taskList);
     };
 

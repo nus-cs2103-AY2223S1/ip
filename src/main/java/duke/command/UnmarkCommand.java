@@ -14,6 +14,7 @@ public class UnmarkCommand extends Command{
     }
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
+        assert(taskList != null);
         boolean isSuccess = taskList.unmarkDone(this.taskName);
         return ui.showUnmarkMessage(isSuccess, this.taskName);
     };

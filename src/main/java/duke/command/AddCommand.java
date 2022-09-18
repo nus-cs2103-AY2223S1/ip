@@ -29,6 +29,7 @@ public class AddCommand extends Command {
             throw new DukeException("the description of a task cannot be empty.");
         }
         taskList.addTask(task);
+        assert(ui != null);
         return ui.showTaskAddedMessage(task, taskList.getTaskListSize());
     }
 

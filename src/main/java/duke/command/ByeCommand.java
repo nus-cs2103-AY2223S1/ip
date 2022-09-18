@@ -9,6 +9,7 @@ public class ByeCommand extends Command {
 
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
         storage.writeItems(taskList.getTaskList());
+        assert(ui != null);
         return ui.showByeMessage();
     };
 

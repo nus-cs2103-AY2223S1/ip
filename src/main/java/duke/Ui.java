@@ -33,7 +33,7 @@ public class Ui {
         String s = "";
         for (int i = 0; i < ls.size(); i++) {
             int index = i + 1;
-            s += index + "." + ls.get(i).toString() + "\n";
+            s += index + ". " + ls.get(i).toString() + "\n";
         }
         return s;
     }
