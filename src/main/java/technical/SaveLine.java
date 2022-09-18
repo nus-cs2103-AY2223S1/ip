@@ -10,7 +10,7 @@ import javafx.util.Pair;
  */
 public class SaveLine {
     private String infoType;
-    private ArrayList<Pair<String, String>> keyValuePairs;
+    private final ArrayList<Pair<String, String>> keyValuePairs;
 
     /**
      * Constructs a SaveLine from variadic arguments.
@@ -19,6 +19,7 @@ public class SaveLine {
      * @param nameData The details of the data.
      */
     public SaveLine(String infoType, String ... nameData) {
+        assert(nameData.length % 2 == 0);
         this.infoType = infoType;
         this.keyValuePairs = new ArrayList<>();
         for (int i = 0; i < nameData.length; i += 2) {
@@ -88,19 +89,19 @@ public class SaveLine {
             ++right;
         }
         String infoType = line.substring(left, right);
-        left = right;
+        // left = right;
         // read the data
         ArrayList<Pair<String, String>> typeData = new ArrayList<>();
         while (right < line.length()) {
             // space
             ++right;
-            left = right;
+            // left = right;
             // read the type
             while (line.charAt(right) != ' ') {
                 ++right;
             }
             String type = line.substring(left, right);
-            left = right;
+            // left = right;
             // space
             ++right;
             left = right;
@@ -109,7 +110,7 @@ public class SaveLine {
                 ++right;
             }
             int amount = Integer.parseInt(line.substring(left, right));
-            left = right;
+            // left = right;
             // space
             ++right;
             left = right;
