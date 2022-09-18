@@ -21,31 +21,33 @@ public class Duke {
         this.storage = new Storage(this.tasks, this.ui, this.storage);
     }
 
+    /**
+     * Keeps the running of the scanning for userinputs in a loop so as to allow the chatbot to funciton
+     */
     public void run() {
         Scanner userInput = new Scanner(System.in);
         ui.greeting();
-            while (!isEnd) {
-                try {
-                    Command nextCommand = parser.parse(userInput.nextLine());
-                    nextCommand.execute(this.tasks, this.ui, this.storage);
-                    this.isEnd = nextCommand.isEnd();
-                } catch (DukeException e) {
-                    ui.errorMessage(e);
-                }
+        while (!isEnd) {
+            try {
+                Command nextCommand = parser.parse(userInput.nextLine());
+                nextCommand.execute(this.tasks, this.ui, this.storage);
+                this.isEnd = nextCommand.isEnd();
+            } catch (DukeException e) {
+                ui.errorMessage(e);
             }
-        try {
-            this.storage.cleanUp();
-        } catch (DukeException e) {
-            ui.errorEnd();
         }
         userInput.close();
-        ui.bye();
     }
 
     public void end() {
         this.isEnd = true;
     }
          
+    
+    /** 
+     * main function to start the chatbot when file is ran
+     * @param args
+     */
     public static void main(String[] args) {
         Duke bot = new Duke();
         bot.run();

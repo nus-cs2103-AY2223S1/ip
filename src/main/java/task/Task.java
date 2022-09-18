@@ -48,14 +48,26 @@ public class Task {
         this.isEmpty = false;
     }
 
+    
+    /** 
+     * @return Task
+     */
     public static Task empty() {
         return new Task();
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean isEmpty() {
         return this.isEmpty;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getDescription() {
         return this.description;
     }
@@ -68,6 +80,10 @@ public class Task {
         this.isDone = false;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String log() {
         int binIsDone;
         if (this.isDone) {
@@ -87,6 +103,12 @@ public class Task {
         }
     }
 
+    
+    /** 
+     * @param date
+     * @return LocalDate
+     * @throws InvalidDateExceptiontry
+     */
     public LocalDate convert(String date) throws InvalidDateException { //assumes format is in d/M/yyyy
         try {
             LocalDate currentDate = LocalDate.now();
@@ -100,6 +122,10 @@ public class Task {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         char mark;

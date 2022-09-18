@@ -29,6 +29,13 @@ public class Storage {
         this.storage = storage;
     }
     
+    
+    /** 
+     * loadLog loads the tasks stored in the log file into the curren tasklist, 
+     * throws DukeExceptions if theres issues with the format of the log file or file address is invalid
+     * @return TaskList
+     * @throws DukeException
+     */
     public TaskList loadLog() throws DukeException{
         try {
             Parser parser = new Parser();
@@ -57,8 +64,12 @@ public class Storage {
         }
     }
 
+    
+    /** 
+     * @throws DukeException
+     */
     public void cleanUp() throws DukeException {
-        if (existingTasks.size() == 0) {
+        if (existingTasks.getSize() == 0) {
             this.sendNoTasksMessage();
         }
         try {
@@ -76,6 +87,10 @@ public class Storage {
         }
     }
 
+    
+    /** 
+     * @param numOfTasks
+     */
     public void sendEndMessage(int numOfTasks) {
         this.ui.chat(String.format("Saved %d tasks to log file\n", numOfTasks));
     }

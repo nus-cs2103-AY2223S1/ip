@@ -28,6 +28,12 @@ public class Ui {
 
     }
 
+    
+    /** 
+     * Shows a list of the tasks the chatbot holds to the user in tasklist index order, 
+     * indicates the task type, done or not done, task description and task date
+     * @param tasks
+     */
     public void list(TaskList tasks, boolean isFind) {
         if (isFind) {
             this.chat(MESSAGE_FIND + tasks.toString());
@@ -36,10 +42,21 @@ public class Ui {
         }
     }
 
+    
+    /** 
+     * Shows the new task that was added to the user, indicates the task type, task description and task date
+     * @param newTask
+     */
     public void add(Task newTask) {
         this.chat(String.format("%s%s", addMessage, newTask));
     }
 
+    
+    /** 
+     * Shows the task that was deleted to the user, indicates the task type, task description and task date
+     * @param pos
+     * @throws DukeException
+     */
     public void delete(int pos) throws DukeException{
         try {
             this.chat(String.format("%s%s", deleteMessage, this.tasks.get(pos)));
@@ -48,6 +65,12 @@ public class Ui {
         }
     }
 
+    
+    /** 
+     * Shows the task that was marked done to the user, indicates the task type, done or not done, task description and task date
+     * @param pos
+     * @throws DukeException
+     */
     public void mark(int pos) throws DukeException {
         try {
             this.chat(markMessage + this.tasks.get(pos));
@@ -56,6 +79,12 @@ public class Ui {
         }
     }
 
+    
+    /** 
+     * Shows the task that was marked not done to the user, indicates the task type, done or not done, task description and task date
+     * @param pos
+     * @throws DukeException
+     */
     public void unmark(int pos) throws DukeException {
         try {
             this.chat(unmarkMessage + tasks.get(pos));
@@ -64,6 +93,11 @@ public class Ui {
         }
     }
 
+    
+    /** 
+     * Shows the error messages from exceptions
+     * @param e
+     */
     public void errorMessage(DukeException e) {
         this.chat(e.getLocalizedMessage());
     }
@@ -76,6 +110,10 @@ public class Ui {
         this.chat("Bye bye! :D");
     }
 
+    
+    /** 
+     * @param message
+     */
     public void chat(String message) {
         System.out.println(UI_LINE_SPACING + "\n" + message + "\n" + UI_LINE_SPACING);
     }
