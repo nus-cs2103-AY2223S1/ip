@@ -1,4 +1,5 @@
 package duke.logic;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileWriter;
@@ -6,9 +7,12 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-public class TaskListTest {
-    private static Storage storage = new Storage("./test/tasklisttest.txt");
+public class StorageTest {
+    private static Storage storage = new Storage("./test/storagetest.txt");
+    private static Storage emptyStorage = new Storage("./test/empty.txt");
     static {
+        emptyStorage.clear();
+        storage.clear();
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(storage.getHistory());
@@ -25,10 +29,11 @@ public class TaskListTest {
     }
 
     @Test
-    public void retrieve() {
-        TaskList taskList = new TaskList(storage);
+    public void retrieveFromStorage() {
+        TaskList taskList = new TaskList(emptyStorage);
+
         try {
-            taskList.retrieveFromStorage();
+            this.storage.retrieveFromStorage(taskList);
         } catch (IOException e) {
             throw new RuntimeException();
         }
