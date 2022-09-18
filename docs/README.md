@@ -12,9 +12,9 @@ Description of the feature.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `Keyword` - Describe command
 
-Describe the action and its outcome.
+Describe the command and its outcome.
 
 Example of usage: 
 
