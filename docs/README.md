@@ -117,6 +117,7 @@ Format: `bye`
 
 
 ## Command Summary
+
 | Action      | Format, Examples |
 | ----------- | ----------- |
 | help      | `help` |
