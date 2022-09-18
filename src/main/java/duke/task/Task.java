@@ -1,12 +1,19 @@
 package duke.task;
 import java.time.LocalDate;
 
+/**
+ * Class which manages tasks.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
     protected String type;
     protected LocalDate dateAndTime;
 
+    /**
+     * Creates an instance of task.
+     * @param desc description of task
+     */
     public Task(String desc) {
         this.description = desc;
         this.isDone = false;

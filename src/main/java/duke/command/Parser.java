@@ -1,10 +1,18 @@
 package duke.command;
 
+/**
+ * Class which manages parsing of user input.
+ */
 public class Parser {
 
     private static final String[] acceptedCommands = { "todo", "deadline", "event", "list",
-            "delete", "find", "mark", "unmark", "bye"};
+        "delete", "find", "mark", "unmark", "bye"};
 
+    /**
+     * Parses the user input.
+     * @param fullCommand user input
+     * @return a command class based on the user input
+     */
     public static Command parse(String fullCommand) {
         String[] parts = fullCommand.split(" ");
         if (parts[0].contains(acceptedCommands[0])) {
@@ -21,7 +29,7 @@ public class Parser {
         } else if (parts[0].contains(acceptedCommands[4])) {
             String command = fullCommand.replaceFirst("delete ", "");
             return new DeleteCommand(command);
-        }  else if (parts[0].contains(acceptedCommands[5])) {
+        } else if (parts[0].contains(acceptedCommands[5])) {
             String command = fullCommand.replaceFirst("find ", "");
             return new FindCommand(command);
         } else if (parts[0].contains(acceptedCommands[6]) && !parts[0].contains(acceptedCommands[7])) {

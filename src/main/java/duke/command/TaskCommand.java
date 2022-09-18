@@ -2,14 +2,26 @@ package duke.command;
 
 import duke.Storage;
 import duke.Ui;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
+/**
+ * Class which manages Tasks.
+ */
 public class TaskCommand extends Command {
 
     private String taskType;
     private String description;
     private Task task;
 
+    /**
+     * Creates an instance of a task command.
+     * @param taskType type of task
+     * @param description description of task
+     */
     public TaskCommand(String taskType, String description) {
         if (taskType == "todo") {
             this.taskType = taskType;
@@ -38,8 +50,8 @@ public class TaskCommand extends Command {
                 if (tasks.listSize() == 1) {
                     taskS = "task";
                 }
-                ui.showMessage("I've added this task to the list:\n  " + task.getTask() +
-                        "\nYou have a total of " + tasks.listSize() + " " + taskS + " in the list.");
+                ui.showMessage("I've added this task to the list:\n  " + task.getTask()
+                        + "\nYou have a total of " + tasks.listSize() + " " + taskS + " in the list.");
             } catch (NullPointerException e) {
                 ui.showError("You've given me an invalid task description!");
             }

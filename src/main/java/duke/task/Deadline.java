@@ -2,12 +2,19 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Class which manages tasks of type deadline.
+ */
 public class Deadline extends Task {
 
+    /**
+     * Creates an instance of deadline task.
+     * @param desc description of task
+     */
     public Deadline(String desc) {
         super(desc);
 
-        String parts[] = desc.split("/by ");
+        String[] parts = desc.split("/by ");
         super.description = parts[0];
         super.isDone = false;
         super.type = "D";
@@ -16,7 +23,9 @@ public class Deadline extends Task {
             String dateInString = parts[1];
             DateFormatter newDate = new DateFormatter(dateInString);
             super.dateAndTime = newDate.formattedDate();
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

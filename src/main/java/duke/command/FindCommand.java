@@ -4,11 +4,18 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which handles finding tasks.
+ */
 public class FindCommand extends Command {
 
     private String keyword;
     private StringBuilder output;
 
+    /**
+     * Creates an instance of find command.
+     * @param keyword word to search for in tasks
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
         output = new StringBuilder("Here are the matching tasks in your list:");

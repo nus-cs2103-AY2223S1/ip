@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which handles deleting tasks.
+ */
 public class DeleteCommand extends Command {
 
     private String number;

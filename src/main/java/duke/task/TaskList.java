@@ -2,6 +2,9 @@ package duke.task;
 
 import java.util.ArrayList;
 
+/**
+ * Class which manages the task list.
+ */
 public class TaskList {
 
     private ArrayList<Task> taskList;
@@ -38,6 +41,10 @@ public class TaskList {
         return taskList.size();
     }
 
+    /**
+     * Displays the task list.
+     * @return list of tasks
+     */
     public String showTaskList() {
         if (taskList.size() == 0) {
             return "You have no tasks currently!";

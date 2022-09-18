@@ -1,18 +1,30 @@
 package duke;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.io.*;
-import java.util.ArrayList;
-
+/**
+ * Stores data.
+ */
 public class Storage {
 
     private String filePath;
     private ArrayList<String> storage;
 
+    /**
+     * Creates an instance of Storage to store data.
+     * @param filePath path of file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         storage = new ArrayList<>();
@@ -68,8 +80,9 @@ public class Storage {
                 }
             }
             reader.close();
-        } catch (IOException e) {}
-
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         return taskList;
     }
 
@@ -79,9 +92,9 @@ public class Storage {
      */
     public void mark(int index) {
         if (!storage.get(index - 1).contains(" | X")) {
-                String temp = storage.get(index - 1) + " | X";
-                storage.remove(index - 1);
-                storage.add(index - 1, temp);
+            String temp = storage.get(index - 1) + " | X";
+            storage.remove(index - 1);
+            storage.add(index - 1, temp);
         }
     }
 

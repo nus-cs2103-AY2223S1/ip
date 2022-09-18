@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which manages invalid commands.
+ */
 public class InvalidCommand extends Command {
 
     @Override

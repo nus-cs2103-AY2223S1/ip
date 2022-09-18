@@ -1,6 +1,9 @@
 package duke;
 import java.util.Scanner;
 
+/**
+ * Handles the user input.
+ */
 public class Ui {
 
     private final String logo = " ____        _        \n"
@@ -10,6 +13,9 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private Scanner sc;
 
+    /**
+     * Creates an instance of the user input.
+     */
     public Ui() {
         sc = new Scanner(System.in);
     }

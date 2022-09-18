@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which manages unmarking tasks.
+ */
 public class UnmarkCommand extends Command {
 
     private String number;

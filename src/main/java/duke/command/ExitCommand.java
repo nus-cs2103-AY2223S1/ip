@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which handles closing the program.
+ */
 public class ExitCommand extends Command {
 
     @Override

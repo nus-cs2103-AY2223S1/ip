@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
 
+/**
+ * Class which manages listing all tasks.
+ */
 public class ListCommand extends Command {
 
     @Override
