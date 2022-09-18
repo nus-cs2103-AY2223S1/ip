@@ -26,9 +26,9 @@ import duke.javafx.DialogBox;
  */
 public class Duke extends Application {
     // Chatbot stuff
-    private UI ui;
-    private TaskList taskList;
-    private Parser parser;
+    private final UI ui;
+    private final TaskList taskList;
+    private final Parser parser;
 
     // Java FX Stuff
     private Stage stage;
@@ -46,7 +46,7 @@ public class Duke extends Application {
 
     public Duke() {
         this.ui = new UI();
-        this.taskList = new TaskList(ui);
+        this.taskList = new TaskList();
         this.parser = new Parser();
     }
 
