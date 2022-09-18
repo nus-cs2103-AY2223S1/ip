@@ -1,4 +1,4 @@
-#User Guide
+# User Guide
 
 Duke program is a Desktop app for recording a list of tasks to do via Command Line Interface (CLI) with the aid of
 Graphical User Interface (GUI).
@@ -19,7 +19,7 @@ Graphical User Interface (GUI).
 - [Summary](http://shawnchew.github.io/ip/#)
 ---
 
-##Quick start
+## Quick start
 1. Ensure you have Java `11` or above install in your Computer.
 2. Download the latest duke.jar from [here]().
 3. Copy the file to the folder you want to use as the home folder for your Duke.
@@ -36,21 +36,21 @@ Graphical User Interface (GUI).
 6. Refer to [Features]() below for details of each command.
 ---
 
-##Features
+## Features
 > Notes about command format:
 > - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 
-###Listing all tasks: `list`
+### Listing all tasks: `list`
 Lists all tasks on the list of tasks.
 Format: `list`
 
-###Adding a task: `todo`
+### Adding a task: `todo`
 Adds a todo task to the list of tasks.
 Format: `todo TASK`
 Examples:
 - `todo homework`
 
-###Adding a task with deadline: `deadline`
+### Adding a task with deadline: `deadline`
 Adds a task with deadline to the list of tasks.
 Format: `deadline TASK /by DEADLINE`
 - When `DEADLINE` is given in the format of yyyy-mm-dd, it will be translated to
@@ -59,7 +59,7 @@ Format: `deadline TASK /by DEADLINE`
 Examples:
 - `deadline return book /by Sunday`
 
-###Adding an event: `event`
+### Adding an event: `event`
 Adds an event to the list of tasks.
 Format: `event TASK /at DATE`
 - When `DATE` is given in the format of yyyy-mm-dd, it will be translated to
@@ -68,7 +68,7 @@ Format: `event TASK /at DATE`
 Examples:
 - `event project meeting /at Mon 2-4pm`
 
-###Deleting a task: `delete`
+### Deleting a task: `delete`
 Deletes the specified task from the current list of tasks.
 Format: `delete INDEX`
 - Deletes the task at the specified INDEX.
@@ -78,7 +78,7 @@ Format: `delete INDEX`
 Examples:
 - `list` followed by `delete 3` deletes the 3rd task on the list.
 
-###Marking a task: `mark`
+### Marking a task: `mark`
 Marks the specified task from the current list of tasks.
 Format: `mark INDEX`
 - Marks the task at the specified INDEX.
@@ -87,7 +87,7 @@ Format: `mark INDEX`
 Examples:
 - `mark 5`
 
-###Unmarking a task: `unmark`
+### Unmarking a task: `unmark`
 Unmarks the specified task from the current list of tasks.
 Format: `unmark INDEX`
 - Unmarks the task at the specified INDEX.
@@ -96,7 +96,7 @@ Format: `unmark INDEX`
 Examples:
 - `unmark 5`
 
-###Setting a priority level for task: `priority`
+### Setting a priority level for task: `priority`
 Sets the priority level for the specified task.
 Format: `priority INDEX LEVEL`
 - Set priority level for the specified INDEX.
@@ -106,23 +106,23 @@ Format: `priority INDEX LEVEL`
 Examples:
 - `priority 2 high`
 
-###Finding a task: `find`
+### Finding a task: `find`
 Finds all task in the list which contains the specified word.
 Format: `find WORD`
 
 Examples:
 - `find book`
 
-###Terminating the program: `bye`
+### Terminating the program: `bye`
 Saves the current list and ends the program.
 Format: `bye`
 
 ---
 
-##FAQ
+## FAQ
 No Questions yet.
 
-##Command summary
+## Command summary
 | Action   | Format, Examples                                                        |
 |----------|-------------------------------------------------------------------------|
 | list     | `list`                                                                  |
