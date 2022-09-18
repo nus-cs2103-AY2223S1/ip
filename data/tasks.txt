@@ -1,4 +1,4 @@
-T | 0 | play read | URGENT
+T | 1 | play read | URGENT
 E | 0 | shit | today | HIGH
 T | 0 | play book | MEDIUM
 T | 0 | read book | LOW
