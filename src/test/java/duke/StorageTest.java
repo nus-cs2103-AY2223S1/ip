@@ -69,6 +69,7 @@ class StorageTest {
             while (scanner.hasNextLine()) {
                 stringReadFromFile.append(scanner.nextLine()).append("\n");
             }
+            scanner.close();
             assertEquals(stringReadFromFile.toString(), currentTasksString);
         }
 
@@ -87,6 +88,7 @@ class StorageTest {
             while (scanner.hasNextLine()) {
                 stringReadFromFile.append(scanner.nextLine()).append("\n");
             }
+            scanner.close();
             assertEquals(stringReadFromFile.toString(), previousTasksString);
         }
     }

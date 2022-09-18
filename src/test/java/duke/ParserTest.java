@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,9 +23,10 @@ class ParserTest {
 
     /**
      * Delete any generated files
+     * @throws IOException if an exception occurs
      */
     @BeforeAll
-    static void clean() {
+    static void clean() throws IOException {
         ParserTest.deleteStorageFiles();
     }
 
@@ -34,9 +38,10 @@ class ParserTest {
     class NoPreviousUserData {
         /**
          * Delete all generated files
+         * @throws IOException if an exception occurs
          */
         @AfterAll
-        void tearDown() {
+        void tearDown() throws IOException {
             ParserTest.deleteStorageFiles();
         }
         /**
@@ -109,9 +114,10 @@ class ParserTest {
     class UserDataExists {
         /**
          * Deletes the file that was created.
+         * @throws IOException if an exception occurs
          */
         @AfterAll
-        void tearDown() {
+        void tearDown() throws IOException {
             ParserTest.deleteStorageFiles();
         }
 
@@ -246,15 +252,12 @@ class ParserTest {
 
     /**
      * Delete generated files
+     * @throws IOException if an exception occurs
      */
-    public static void deleteStorageFiles() {
-        final File file = new File(Storage.FILE_PATH);
-        final File file2 = new File(Storage.PREVIOUS_TASKS_FILE_PATH);
-        if (file.exists() && !file.delete()) {
-            throw new RuntimeException("Could not delete current tasks file");
-        }
-        if (file2.exists() && !file2.delete()) {
-            throw new RuntimeException("Could not delete previous tasks file");
-        }
+    public static void deleteStorageFiles() throws IOException {
+        final Path file = Paths.get(Storage.FILE_PATH);
+        final Path file2 = Paths.get(Storage.PREVIOUS_TASKS_FILE_PATH);
+        Files.deleteIfExists(file);
+        Files.deleteIfExists(file2);
     }
 }
