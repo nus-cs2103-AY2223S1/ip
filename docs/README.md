@@ -31,9 +31,7 @@ Example of usage:
 
 Expected outcome:
 
-Adds a todo task with the task name being "learn how to play the guitar".
-
-Also displays how many tasks are currently inside the task list.
+Adds a todo task with the task name being "learn how to play the guitar" and displays how many tasks are currently inside the task list.
 
 ```
 I gotchu fam. Your task has been added:
@@ -45,24 +43,21 @@ You have 1 task(s). Stop procrastinating bro.
 
 Adding tasks that have a deadline:`deadline {name of the task} /by {date of the deadline} {optional: time of the deadline}`
 
-The date of the deadline should be written in the form of DD/MM/YYYY.
+- The date of the deadline should be written in the form of DD/MM/YYYY.
 
-Adding the time of the deadline is optional. Times should be written in the 24-hour format (1000)
+- Adding the time of the deadline is optional. Times should be written in the 24-hour format (1000).
 
 Example of usage: 
 
 `deadline math assignment /by 23/3/2022`
 
-
 `deadline math assignment /by 23/3/2022 1000`
 
 Expected outcome:
 
-Adds a deadline task with the task name being "math assignment" and deadline being 23/3/2022.
+Adds a deadline task with the task name being "math assignment" and deadline being 23/3/2022. Also displays how many tasks are currently inside the task list.
 
-If a time was inputted, the time of the deadline will also be displayed, specifically 10:00.
-
-Also displays how many tasks are currently inside the task list.
+- If a time was inputted, the time of the deadline will also be displayed, specifically 10:00.
 
 ```
 I gotchu fam. Your task has been added:
