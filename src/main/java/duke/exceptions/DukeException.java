@@ -22,7 +22,7 @@ public class DukeException extends RuntimeException {
      */
     @Override
     public String getMessage() {
-        return "Sorry something wrong happened!\n\n" + this.MESSAGE;
+        return "Squeak!\n" + this.MESSAGE + "\n";
     }
     
 }

@@ -1,7 +1,9 @@
 package duke.command;
 
+import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeInvalidParameterException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
 
 /**
@@ -9,15 +11,21 @@ import duke.task.TaskList;
  */
 public class UnmarkCommand implements Command{
 
-    private final int TO_UN_MARK;
+    private final int to_unmark;
 
     /**
      * Constructs an UnmarkCommand.
      *
-     * @param TO_UN_MARK Index of the task to be unmarked in Duke's TaskList.
+     * @param inputs Array of command parsed by parser.
      */
-    public UnmarkCommand(int TO_UN_MARK) {
-        this.TO_UN_MARK = TO_UN_MARK;
+    public UnmarkCommand(String[] inputs) {
+        try {
+            this.to_unmark = Integer.parseInt(inputs[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeBadFormatException("unmark <integer>");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeMissingParameterException("unmark <integer>", "target to unmark");
+        }
     }
 
     /**
@@ -25,15 +33,11 @@ public class UnmarkCommand implements Command{
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.
+     * @throws DukeIndexRangeException Exception when target to mark does not exist.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeInvalidParameterException {
-        String res;
-        try {
-            res = tasks.unmark(TO_UN_MARK);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeInvalidParameterException("target to unmark does not exist!");
-        }
+    public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
+        String res = tasks.unmark(to_unmark);
         storage.refresh(tasks);
         return res;
     }

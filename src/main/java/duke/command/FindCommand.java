@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -13,10 +14,14 @@ public class FindCommand implements Command {
     /**
      * Constructs a FindCommand.
      *
-     * @param toFind String to match with.
+     * @param inputs Array of command parsed by parser.
      */
-    public FindCommand(String toFind) {
-        this.toFind = toFind;
+    public FindCommand(String[] inputs) {
+        try {
+            this.toFind = inputs[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeMissingParameterException("find <word>", "word to find");
+        }
     }
 
     /**

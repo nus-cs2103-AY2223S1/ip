@@ -1,8 +1,8 @@
 package duke.task;
 
 import duke.Parser;
+import duke.exceptions.DukeDateFormatException;
 import duke.exceptions.DukeException;
-import duke.exceptions.DukeInvalidDateException;
 
 /**
  * An abstract class representing the Tasks included in Duke.
@@ -57,28 +57,31 @@ public abstract class Task {
         return index + ". " + this.toString();
     }
 
+    /**
+     * Creates a new task of a given type.
+     *
+     * @param commandType Command which indicates the type of task to be created.
+     * @param inputs Array of String from parsing the inputs.
+     * @return Task of the type given by command.
+     */
     public static Task createTask(String commandType, String[] inputs) {
         Task task;
-        try {
-            switch(commandType) {
-            case "TODO":
-                task = new ToDo(Parser.getDescription(inputs, null), false);
-                break;
-            case "DEADLINE":
-                task = new Deadline(Parser.getDescription(inputs, "/by"),
-                        false,
-                        Parser.getTime(inputs, "/by"));
-                break;
-            case "EVENT":
-                task = new Event(Parser.getDescription(inputs, "/at"),
-                        false,
-                        Parser.getTime(inputs, "/at"));
-                break;
-            default:
-                throw new DukeException("RATATATAT I don't get what you are saying! :-(");
-            }
-        } catch (NumberFormatException e) {
-            throw new DukeInvalidDateException();
+        switch(commandType) {
+        case "TODO":
+            task = new ToDo(Parser.getDescription(inputs, null), false);
+            break;
+        case "DEADLINE":
+            task = new Deadline(Parser.getDescription(inputs, "/by"),
+                    false,
+                    Parser.getDate(inputs, "/by"));
+            break;
+        case "EVENT":
+            task = new Event(Parser.getDescription(inputs, "/at"),
+                    false,
+                    Parser.getDate(inputs, "/at"));
+            break;
+        default:
+            throw new DukeException("I don't get what you are saying!");
         }
         return task;
     }

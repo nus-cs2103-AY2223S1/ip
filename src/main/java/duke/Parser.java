@@ -1,9 +1,13 @@
 package duke;
 
 import duke.command.*;
+import duke.exceptions.DukeDateFormatException;
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeMissingParameterException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 
 /**
  * A parser class which parses the user input to make it understandable to the duke program.
@@ -31,16 +35,16 @@ public class Parser {
             res = new ListCommand();
             break;
         case "MARK":
-            res = new MarkCommand(Integer.parseInt(inputs[1]) - 1);
+            res = new MarkCommand(inputs);
             break;
         case "UNMARK":
-            res = new UnmarkCommand(Integer.parseInt(inputs[1]) - 1);
+            res = new UnmarkCommand(inputs);
             break;
         case "DELETE":
-            res = new DeleteCommand(Integer.parseInt(inputs[1]) - 1);
+            res = new DeleteCommand(inputs);
             break;
         case "FIND":
-            res = new FindCommand(inputs[1]);
+            res = new FindCommand(inputs);
             break;
         case "TAG":
             res = new TagCommand(inputs);
@@ -59,17 +63,23 @@ public class Parser {
      * @return String containing the description of the task.
      */
     public static String getDescription(String[] inputs, String escape) {
-        String description;
+        String description = null;
+        
         try {
             description = inputs[1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Descriptions cannot be empty!");
+            if (escape == null) {
+                throw new DukeMissingParameterException("todo <description>", "description");
+            } else if (escape.equals("/by")) {
+                throw new DukeMissingParameterException("deadline <description> /by <date>", "description");
+            } else if (escape.equals("/at")) {
+                throw new DukeMissingParameterException("event <description> /at <date>", "description");
+            }
         }
 
         if (escape == null) {
             return description;
         }
-
         return description.split(" " + escape + " ")[0];
     }
 
@@ -80,16 +90,27 @@ public class Parser {
      * @param escape Escape character i.e. "/by" and "/at".
      * @return a LocalDate.
      */
-    public static LocalDate getTime(String[] inputs, String escape) {
-        String date;
+    public static LocalDate getDate(String[] inputs, String escape) {
+        String date = null;
+        LocalDate res = null;
+
         try {
             String[] parameters = inputs[1].split(" " + escape + " ");
             date = parameters[1];
+            res = LocalDate.parse(date);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Dates cannot be empty!");
+            if (escape.equals("/at")) {
+                throw new DukeMissingParameterException("event <description> /at <date>", "<date>");
+            }
+            if (escape.equals("/by")) {
+                throw new DukeMissingParameterException("deadline <description> /by <date>", "<date>");
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeDateFormatException(date);
         }
-        assert date != null;
-        return LocalDate.parse(date);
+
+        assert res != null;
+        return res;
     }
 
 }

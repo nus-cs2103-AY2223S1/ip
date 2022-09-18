@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import duke.command.Command;
-import duke.command.AddCommand;
 import java.time.LocalDate;
 
 public class ParserTest {
@@ -13,11 +11,11 @@ public class ParserTest {
     @Test
     public void getTimeTest(){
         String[] input = new String[] {"deadline", "description /by 2000-01-01"};
-        LocalDate test = Parser.getTime(input, "/by");
+        LocalDate test = Parser.getDate(input, "/by");
         assertEquals(test, LocalDate.parse("2000-01-01"));
 
         input = new String[] {"event", "description /at 2022-12-12"};
-        test = Parser.getTime(input, "/at");
+        test = Parser.getDate(input, "/at");
         assertEquals(test, LocalDate.parse("2022-12-12"));
     }
 

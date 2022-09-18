@@ -1,7 +1,9 @@
 package duke.command;
 
+import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeInvalidParameterException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
 
 /**
@@ -9,15 +11,21 @@ import duke.task.TaskList;
  */
 public class DeleteCommand implements Command{
 
-    private final int TO_DELETE;
+    private final int to_delete;
 
     /**
      * Constructs a DeleteCommand.
      *
-     * @param TO_DELETE Index of the task to be deleted in Duke's TaskList.
+     * @param inputs Array of command parsed by parser.
      */
-    public DeleteCommand(int TO_DELETE) {
-        this.TO_DELETE = TO_DELETE;
+    public DeleteCommand(String[] inputs) {
+        try {
+            this.to_delete = Integer.parseInt(inputs[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeBadFormatException("delete <integer>");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeMissingParameterException("delete <integer>", "target to delete");
+        }
     }
 
     /**
@@ -25,10 +33,11 @@ public class DeleteCommand implements Command{
      *
      * @param tasks TaskList which contains all the tasks Duke currently has
      * @param storage Storage created when starting Duke.
+     * @throws DukeIndexRangeException Exception when target to mark does not exist.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeInvalidParameterException {
-        String res = tasks.delete(TO_DELETE);
+    public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
+        String res = tasks.delete(to_delete);
         storage.refresh(tasks);
         return res;
     }

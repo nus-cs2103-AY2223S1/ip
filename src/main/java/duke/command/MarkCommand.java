@@ -1,22 +1,33 @@
 package duke.command;
 
+import duke.Duke;
+import duke.exceptions.DukeBadFormatException;
+import duke.exceptions.DukeMissingParameterException;
 import duke.storage.Storage;
-import duke.exceptions.DukeInvalidParameterException;
+import duke.exceptions.DukeIndexRangeException;
 import duke.task.TaskList;
+
+import java.lang.reflect.Array;
 
 /**
  * Represents the command for marking a task in Duke's TaskList.
  */
 public class MarkCommand implements Command{
-    private final int TO_MARK;
+    private final int to_mark;
 
     /**
      * Constructs a MarkCommand.
      *
-     * @param TO_MARK Index of the task to be marked in Duke's TaskList.
+     * @param inputs Array of command parsed by parser.
      */
-    public MarkCommand(int TO_MARK) {
-        this.TO_MARK = TO_MARK;
+    public MarkCommand(String[] inputs) {
+        try {
+            this.to_mark = Integer.parseInt(inputs[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeBadFormatException("mark <integer>");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeMissingParameterException("mark <integer>", "target to mark");
+        }
     }
 
     /**
@@ -24,17 +35,12 @@ public class MarkCommand implements Command{
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
      * @param storage Storage created when starting Duke.
+     * @throws DukeIndexRangeException Exception when target to mark does not exist.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeInvalidParameterException {
-        String res;
-        try {
-            res = tasks.mark(TO_MARK);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeInvalidParameterException("target to mark does not exist!");
-        }
+    public String execute(TaskList tasks, Storage storage) throws DukeIndexRangeException {
+        String res = tasks.mark(to_mark);
         storage.refresh(tasks);
-
         return res;
     }
 }

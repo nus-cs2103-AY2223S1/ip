@@ -46,8 +46,6 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             res = c.execute(tasks, storage);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Invalid parameters (require Integer) for the command!");
         } catch (DukeException e) {
             res = e.getMessage();
         }
