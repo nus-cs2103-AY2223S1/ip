@@ -125,7 +125,7 @@ public class Storage {
             aliases.put("rm", "delete");
             aliases.put("t", "todo");
             aliases.put("d", "deadline");
-            aliases.put("e", "deadline");
+            aliases.put("e", "event");
         }
 
         return aliases;
