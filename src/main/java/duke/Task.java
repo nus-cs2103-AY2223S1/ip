@@ -113,11 +113,12 @@ public class Task {
         return this.date.toString().equals(date);
     }
 
-    private String timeToString(LocalTime lt) {
-        if (lt != null) {
-            return " " + lt;
+    public void updateDate(String date) throws DukeException {
+        try {
+            this.date = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("please input a valid date in YYYY-MM-DD");
         }
-        return "";
     }
 
 }

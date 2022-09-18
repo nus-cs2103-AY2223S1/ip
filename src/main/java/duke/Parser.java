@@ -8,6 +8,7 @@ import duke.command.AddCommand;
 import duke.command.DeleteCommand;
 import duke.command.ScheduleCommand;
 import duke.command.FindCommand;
+import duke.command.SnoozeCommand;
 
 /*
 Makes sense of user command
@@ -38,6 +39,8 @@ public class Parser {
                 return new ScheduleCommand(getDate(userInput));
             case "find":
                 return new FindCommand(splitUserInput[1]);
+            case "snooze":
+                return new SnoozeCommand(getTaskName(userInput), getDate(userInput));
             case "todo":
                 return new AddCommand(getTaskName(userInput), splitUserInput[0]);
             case "deadline":

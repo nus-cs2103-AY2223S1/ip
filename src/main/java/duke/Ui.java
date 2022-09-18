@@ -52,8 +52,8 @@ public class Ui {
         return " I have found these tasks that contain \"" + keyword + "\"\n" + makeList(ls);
     }
 
-    public String showDoNotKnowMessage() {
-        return "sorry I do not know what this means :((\n";
+    public String showSnoozeMessage(Task task) {
+        return "yay! your task has been snoozed:\n" + task;
     }
 
     public String showTaskAddedMessage(Task task, int numberOfTasks) {
