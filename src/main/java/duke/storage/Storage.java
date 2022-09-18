@@ -53,34 +53,25 @@ public class Storage {
         }
     }
 
-    private Event makeEvent(String markIndex, String description, String at) {
+    private Event makeEvent(String markStatus, String description, String at) {
         Event newEvent = new Event(description, at);
-        if (markIndex.equals("1")) {
-            newEvent.markAsDone();
-            return newEvent;
-        }
+        newEvent.setMarkBasedOnSimpleStatus(markStatus);
         return newEvent;
     }
 
-    private Deadline makeDeadline(String markIndex, String description, String by) throws DukeException {
+    private Deadline makeDeadline(String markStatus, String description, String by) throws DukeException {
         try {
             Deadline newDeadline = new Deadline(description, LocalDate.parse(by));
-            if (markIndex.strip().equals("1")) {
-                newDeadline.markAsDone();
-                return newDeadline;
-            }
+            newDeadline.setMarkBasedOnSimpleStatus(markStatus);
             return newDeadline;
         } catch (java.time.format.DateTimeParseException e) {
             throw new DukeException(Message.FILE_READ_ERROR);
         }
     }
 
-    private ToDo makeToDo(String markIndex, String description) {
+    private ToDo makeToDo(String markStatus, String description) {
         ToDo newToDo = new ToDo(description);
-        if (markIndex.strip().equals("1")) {
-            newToDo.markAsDone();
-            return newToDo;
-        }
+        newToDo.setMarkBasedOnSimpleStatus(markStatus);
         return newToDo;
     }
 
@@ -88,15 +79,18 @@ public class Storage {
         Task newTask;
         try {
             String[] taskSegments = taskString.split("\\|");
-            switch (taskSegments[0].strip()) {
+            String taskIdentifier = taskSegments[0].strip();
+            String taskMarkStatus = taskSegments[1].strip();
+            String taskDescription = taskSegments[2].strip();
+            switch (taskIdentifier) {
             case "E":
-                newTask = makeEvent(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
+                newTask = makeEvent(taskMarkStatus, taskDescription, taskSegments[3].strip());
                 break;
             case "D":
-                newTask = makeDeadline(taskSegments[1].strip(), taskSegments[2].strip(), taskSegments[3].strip());
+                newTask = makeDeadline(taskMarkStatus, taskDescription, taskSegments[3].strip());
                 break;
             case "T":
-                newTask = makeToDo(taskSegments[1].strip(), taskSegments[2].strip());
+                newTask = makeToDo(taskMarkStatus, taskDescription);
                 break;
             default:
                 throw new DukeException(Message.FILE_READ_ERROR);
