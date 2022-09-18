@@ -1,9 +1,9 @@
 package duke.command;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 
@@ -60,11 +60,8 @@ public class ParserTest {
 
     @Test
     public void parseDate_validDate_success() {
-        try {
-            assertEquals(Parser.parseDate("2022-05-05"), LocalDate.parse("2022-05-05"));
-        } catch (DukeException exception) {
-            fail("Valid dates should not throw DukeExceptions.");
-        }
+        LocalDate result = assertDoesNotThrow(() -> LocalDate.parse("2022-05-05"));
+        assertEquals(result, LocalDate.parse("2022-05-05"));
     }
 
     @Test
