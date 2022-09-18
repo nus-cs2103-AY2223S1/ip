@@ -80,7 +80,7 @@ public abstract class Task {
     }
 
     public boolean contains(String keyword) {
-        return this.description.contains(keyword);
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
     }
 
     @Override
