@@ -147,7 +147,7 @@ public class TaskList {
      */
     public void loadTasks(Parser parser) {
         String tasks = store.getPreviousText();
-        if (tasks != null && tasks.length() <= 0) {
+        if (tasks == null) {
             return;
         }
         String[] taskSplit = tasks.split("\n");
