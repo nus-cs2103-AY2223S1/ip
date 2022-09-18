@@ -125,8 +125,8 @@ public class Ui {
      * @return string of available commands.
      */
     public String help() {
-        String todo = "\n\t1. todo <todo name>  : add new todo";
-        String event = "\n\t2. event <event name> /at <event time> : add new event";
+        String todo = "\n\t1. todo <name>  : add new todo";
+        String event = "\n\t2. event <name> /at <time> : add new event";
         String deadline = "\n\t3. deadline <name> /by <time> : add new deadline";
         String list = "\n\t4. list : list all current tasks";
         String delete = "\n\t5. delete <task number> : delete task";
@@ -135,7 +135,7 @@ public class Ui {
         String find = "\n\t8. find <keyword> : find task with keyword";
         String help = "\n\t9. help : get all available commands";
 
-        return String.format("These are the commands you can use, try them!%s%s%s%s%s%s%s%s%s", todo,
+        return String.format("These are the commands you can use, try them!\n%s%s%s%s%s%s%s%s%s", todo,
         event, deadline, list, delete, mark, unmark, find, help);
     }
 }

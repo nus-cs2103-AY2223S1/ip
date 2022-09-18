@@ -4,13 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.9976931348623157E308" maxWidth="1.9976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <Label fx:id="dialog" maxHeight="1.7976931348623157E308" text="Label" wrapText="true" style="-fx-padding: 0 15 10 10;"/>
-    <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-  </children>
-  <padding>
-    <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
-  </padding>
+<fx:root alignment="TOP_RIGHT" fillHeight="false" maxHeight="500.0" maxWidth="1.7976931348623157E308" prefWidth="400.0" style="-fx-background-color: transparent;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <TextFlow>
+         <HBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </HBox.margin>
+         <children>
+              <Label fx:id="dialog" alignment="TOP_LEFT" maxHeight="480.0" style="-fx-background-color: #F8F8F8; -fx-background-radius: 5;" text="Label" textFill="#021020" wrapText="true">
+                  <padding>
+                      <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+                  </padding>
+               <font>
+                  <Font name="Gill Sans MT" size="12.0" />
+               </font>
+              </Label>
+         </children>
+      </TextFlow>
+        <ImageView fx:id="displayPicture" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
 </fx:root>

@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
     private Iana iana;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-    private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/cat.jpg"));
+    private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/Iana.jpg"));
 
     /**
      * Initialize main window.
@@ -62,7 +62,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void welcome() {
         dialogContainer.getChildren().addAll(
-            DialogBox.getIanaDialog(iana.getHi() + "\n\n" + iana.getHelp(), ianaImage)
+            DialogBox.getIanaDialog(iana.getHi() + "\n\nP.S. " + iana.getHelp(), ianaImage)
         );
         userInput.clear();
     }
