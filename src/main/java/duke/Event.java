@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Event, which is a Task with time.
@@ -15,9 +16,13 @@ public class Event extends Task {
      * @param description Description of the Event.
      * @param time Time of the Event.
      */
-    public Event(String description, String time) {
+    public Event(String description, String time) throws DukeException {
         super(description);
-        this.time = LocalDate.parse(time);
+        try {
+            this.time = LocalDate.parse(time);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Incorrect date format!");
+        }
         type = 'E';
     }
 
@@ -28,7 +33,7 @@ public class Event extends Task {
      * @param isDone Boolean to set the Event as done or not done.
      * @param time Time of the Event.
      */
-    public Event(String description, boolean isDone, String time) {
+    public Event(String description, boolean isDone, String time) throws DukeException {
         this(description, time);
         this.isDone = isDone;
     }

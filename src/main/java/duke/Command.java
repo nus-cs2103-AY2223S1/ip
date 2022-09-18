@@ -9,5 +9,5 @@ public abstract class Command {
      *
      * @param duke Duke instance to run the Command at.
      */
-    public abstract void run(Duke duke);
+    public abstract void run(Duke duke) throws DukeException;
 }

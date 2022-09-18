@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
      * @param duke Duke instance to run the Command at.
      */
     @Override
-    public void run(Duke duke) {
+    public void run(Duke duke) throws DukeException {
         duke.deleteTask(index);
     }
 }

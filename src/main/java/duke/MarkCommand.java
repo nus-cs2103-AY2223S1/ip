@@ -24,7 +24,7 @@ public class MarkCommand extends Command {
      * @param duke Duke instance to run the MarkCommand at.
      */
     @Override
-    public void run(Duke duke) {
+    public void run(Duke duke) throws DukeException {
         duke.markTask(index, isDone);
     }
 }

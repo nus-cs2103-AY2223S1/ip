@@ -25,7 +25,7 @@ public class Storage {
      *
      * @return TaskList from the data in the Storage file.
      */
-    public TaskList load() {
+    public TaskList load() throws DukeException {
         File file = new File(path);
         TaskList tasks = new TaskList();
         Scanner sc;
@@ -46,13 +46,13 @@ public class Storage {
      *
      * @param tasks TaskList which represents the current Duke data.
      */
-    public void save(TaskList tasks) {
+    public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter("./duke.txt");
             fw.write(tasks.toData());
             fw.close();
         } catch (IOException e) {
-
+            throw new DukeException("Save unsuccessful!");
         }
     }
 }
