@@ -38,7 +38,6 @@ public class Deadline extends Task {
     public Deadline(String input, String by, boolean isDone) {
         super(isDone);
         this.description = input;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
             this.by = LocalDateTime.parse(by);
         } catch (DateTimeParseException e) {

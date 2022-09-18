@@ -11,7 +11,6 @@ public class Jarvis {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    static TaskList taskList1;
     private Storage storage;
     private TaskList taskList;
     private Parser parser;
@@ -32,10 +31,6 @@ public class Jarvis {
         parser = new Parser(taskList);
     }
 
-//    public void run() {
-//        ui.run();
-//    }
-
     public String getResponse(String input) {
         return this.parser.parse(input);
     }
@@ -44,12 +39,4 @@ public class Jarvis {
         return parser.getByeStatus();
     }
 
-
-//    public static void main(String[] args) {
-//
-//        Jarvis jarvis = new Jarvis("data/task_list.txt");
-//        jarvis.run();
-//        // branch Level 8
-//
-//    }
 }

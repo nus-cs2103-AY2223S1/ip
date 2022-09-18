@@ -42,7 +42,8 @@ public class TaskList {
                     ? new Event(input, isDone)
                     : new Deadline(input, isDone);
         } catch (DateTimeParseException e) {
-            return "Wrong time format";
+            return "Wrong time format\n"
+                    + "Correct format: yyyy-mm-dd hh:mm";
         }
         int originalSize = taskList.size();
         taskList.add(task);
@@ -53,7 +54,6 @@ public class TaskList {
                 + task
                 + "\n" + "Now you have " + taskList.size() + " tasks in the list";
         return msg;
-        //++firstEmptyIndex;
     }
 
     /**

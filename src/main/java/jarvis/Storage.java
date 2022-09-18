@@ -15,8 +15,6 @@ import java.util.Scanner;
  * with database
  */
 public class Storage {
-    static File dir = new File("data");
-    static File taskListFile = new File(dir, "task_list.txt");
     private File dataFile;
 
     public Storage(String file_path) {
