@@ -53,13 +53,7 @@ Example of usage:
 
 Expected outcome:
 
-"finalise ip" will be added to the tasklist.
-
-```
-Got it. I've added this todo task:
- [T][ ] finalise ip
-Now you have 1 tasks in the list.
-```
+![image](https://user-images.githubusercontent.com/97339748/190917787-9783b9df-4e8b-458f-b167-34337fc92d71.png)
 
 ### `deadline` - The dealine feature will be activated.
 
