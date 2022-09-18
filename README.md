@@ -31,18 +31,18 @@ and **Rem Taskhelper** will help you keep track of them!
 
 ## *Summary of Commands*
 
-|         Command         |                    Description                    |
-|:-----------------------:|:-------------------------------------------------:|
-|     [list](#`list`)     |             Displays task checklist.              |
-|     [todo](#`todo`)     |      Adds a todo task to the task checklist.      |
-| [deadline](#`deadline`) |    Adds a deadline task to the task checklist.    |
-|    [event](#`event`)    |     Adds an event task to the task checklist.     |
-|     [mark](#`mark`)     |  Marks given task numbers/all tasks as complete.  |
-|   [unmark](#`unmark`)   | Marks given task numbers/all tasks as incomplete. |
-|   [delete](#`delete`)   |       Deletes given task numbers/all tasks.       |
-|     [find](#`find`)     | Displays tasks in task checklist matching input.  |
-|    [clear](#`clear`)    |            Clears the window outputs.             |
-|      [bye](#`bye`)      |       Saves tasks and exits Rem Taskhelper.       |
+|                    Command                     |                    Description                    |
+|:----------------------------------------------:|:-------------------------------------------------:|
+|    [list](#list---displays-your-checklist)     |             Displays task checklist.              |
+|        [todo](#todo---adds-a-todo-task)        |      Adds a todo task to the task checklist.      |
+|  [deadline](#deadline---adds-a-deadline-task)  |    Adds a deadline task to the task checklist.    |
+|      [event](#event---adds-an-event-task)      |     Adds an event task to the task checklist.     |
+|    [mark](#mark---marks-a-task-as-complete)    |  Marks given task numbers/all tasks as complete.  |
+| [unmark](#unmark---marks-a-task-as-incomplete) | Marks given task numbers/all tasks as incomplete. |
+|       [delete](#delete---deletes-a-task)       |       Deletes given task numbers/all tasks.       |
+|        [find](#find---finds-your-tasks)        | Displays tasks in task checklist matching input.  |
+|  [clear](#clear---clears-the-window-outputs)   |            Clears the window outputs.             |
+|       [bye](#bye---saves-and-exits-rem)        |       Saves tasks and exits Rem Taskhelper.       |
 
 ## *Usage*
 
@@ -139,7 +139,7 @@ would **OVERWRITE** your previous checklist.
 
 <h3 align="center">Command Prompt Illustration</h3>
 <p align="center">
-    <img src="docs/CmdPrompt.png" alt="Command Prompt Illustration">
+    <img src="CmdPrompt.png" alt="Command Prompt Illustration">
 </p>
 
 ## *Examples of Usage*
