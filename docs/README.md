@@ -8,7 +8,8 @@
 1. Ensure you have Java ```11``` or above installed on your computer.
 2. Download the latest ```duke.jar``` from [here](https://github.com/Nephelite/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for Duke.
-4. Double-click ```duke.jar``` to start it.
+4. Double-click ```duke.jar``` to start it (Windows). Alternatively, if on MacOS or Linux, run ```java -jar duke.jar```</br>
+in the terminal. You can use this command to open duke.jar in Windows as well.
 5. Enter a command in the command box at the bottom of the opened window to execute it.
 6. Refer to the Features below for details of each command.
 
