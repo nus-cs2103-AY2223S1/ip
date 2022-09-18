@@ -64,4 +64,22 @@ public class Event extends Task {
         String body = this.description + " (at: " + date + ")";
         return head + body;
     }
+
+    /**
+     * Compare this event with other task
+     * Events has higher priority than todos(-1) and lower than deadlines(1)
+     * Compare among events by their time. Earlier time has higher priority
+     * @param task2 the other task to be compared with
+     * @return The priority -1, 0 or 1 as specified above
+     */
+    @Override
+    public int compareTo(Task task2) {
+        if (task2 instanceof Todo) {
+            return -1;
+        } else if (task2 instanceof Deadline) {
+            return 1;
+        }
+        Event _task2 = (Event) task2;
+        return this.at.compareTo(_task2.at);
+    }
 }

@@ -68,4 +68,23 @@ public class Deadline extends Task {
         String body = this.description + " (by: " + date + ")";
         return head + body;
     }
+
+
+    /**
+     * Compare the priority of this deadline with other tasks
+     * Deadlines have higher priority than events and todos,
+     * in this case we return -1
+     * Compare among deadlines by their time. Earlier time has higher priority
+     *
+     * @param task2 the other task to be compared with
+     * @return The priority -1, 0 or 1 as specified above
+     */
+    @Override
+    public int compareTo(Task task2) {
+        if (task2 instanceof Todo || task2 instanceof Event) {
+            return -1;
+        }
+        Deadline _task2 = (Deadline) task2;
+        return this.by.compareTo(_task2.by);
+    }
 }

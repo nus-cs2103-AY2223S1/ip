@@ -8,6 +8,7 @@ import jarvis.task.Todo;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Stores the task list when the program is running
@@ -49,7 +50,8 @@ public class TaskList {
         taskList.add(task);
         assert taskList.size() == originalSize + 1 : "Task list size should increase"
                 + "by 1 after adding";
-        storage.saveAddedTask(task);
+        Collections.sort(taskList);
+        storage.saveTaskList(this);
         String msg = "Got it. I've added this task:\n" + "  "
                 + task
                 + "\n" + "Now you have " + taskList.size() + " tasks in the list";
@@ -103,6 +105,7 @@ public class TaskList {
         taskList.remove(index);
         assert taskList.size() == originalSize - 1 : "Task list length should decrease"
                 + "by 1 after deletion";
+        Collections.sort(taskList);
         storage.saveTaskList(this);
         return msg;
     }

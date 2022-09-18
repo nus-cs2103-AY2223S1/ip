@@ -35,4 +35,20 @@ public class Todo extends Task {
         String head = "[T]" + "[" + this.getStatusIcon() + "] ";
         return head + this.description;
     }
+
+    /**
+     * Compare this todo with other tasks
+     * Todos have lower priority than deadlines and events(1)
+     * Compare among events by the alphabetical order of
+     * their description
+     * @param task2 the other task to be compared with
+     * @return The priority -1, 0 or 1 as specified above
+     */
+    @Override
+    public int compareTo(Task task2) {
+        if (task2 instanceof Event || task2 instanceof Deadline) {
+            return 1;
+        }
+        return this.description.compareTo(task2.description);
+    }
 }
