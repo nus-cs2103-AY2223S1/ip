@@ -1,4 +1,3 @@
-D | 0 | test | May 22 2022 | URGENT
-E | 0 | festival | 24/06/2022 | HIGH
-T | 0 | play | MEDIUM
-T | 0 | read a book | LOW
+T | 0 | read book | MEDIUM
+T | 1 | buy a book | LOW
+T | 0 | read book medium | LOW
