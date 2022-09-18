@@ -63,10 +63,10 @@ public class Deadline extends Task {
 
     @Override
     public boolean equals(Object rhs) {
-        if (rhs instanceof Deadline) {
-            Deadline rhsDeadline = (Deadline) rhs;
-            return toData().equals(rhsDeadline.toData());
+        if (!(rhs instanceof Deadline)) {
+            return false;
         }
-        return false;
+        Deadline rhsDeadline = (Deadline) rhs;
+        return toData().equals(rhsDeadline.toData());
     }
 }

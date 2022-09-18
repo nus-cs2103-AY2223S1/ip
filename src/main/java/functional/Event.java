@@ -76,10 +76,10 @@ public class Event extends Task {
      */
     @Override
     public boolean equals(Object rhs) {
-        if (rhs instanceof Event) {
-            Event rhsDeadline = (Event) rhs;
-            return toData().equals(rhsDeadline.toData());
+        if (!(rhs instanceof Event)) {
+            return false;
         }
-        return false;
+        Event rhsDeadline = (Event) rhs;
+        return toData().equals(rhsDeadline.toData());
     }
 }

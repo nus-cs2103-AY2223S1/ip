@@ -13,7 +13,6 @@ import technical.TaskList;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-
     private final Duke duke = new Duke();
 
     @Override

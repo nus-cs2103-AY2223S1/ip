@@ -75,49 +75,52 @@ public class SaveLine {
     }
 
     /**
+     * Returns a substring from a given string that starts at a given point
+     * and ends when the end of the string is reached, the last character
+     * matches a given stopper, or enough characters are read.
+     *
+     * @param s the string.
+     * @param from the starting index to read from.
+     * @param lim the maximum number of characters read.
+     * @param stop the stopping character.
+     * @return the substring requested.
+     */
+    private static String readUntil(String s, int from, int lim, char stop) {
+        assert(from <= s.length());
+        int to = from;
+        while (to < s.length() && s.charAt(to) != stop && to - from < lim) {
+            ++to;
+        }
+        return s.substring(from, to);
+    }
+
+    /**
      * Parses a line of information from a save file to this class.
      *
      * @param line The String of information from a save file.
      * @return A SaveLine with the information from the given String.
      */
     public static SaveLine of(String line) {
-        System.out.println("reading" + line);
-        int left = 0;
         int right = 0;
         // read the information type
-        while (right < line.length() && line.charAt(right) != ' ') {
-            ++right;
-        }
-        String infoType = line.substring(left, right);
-        // left = right;
+        String infoType = readUntil(line, right, Integer.MAX_VALUE, ' ');
+        right += infoType.length() + 1;
         // read the data
         ArrayList<Pair<String, String>> typeData = new ArrayList<>();
         while (right < line.length()) {
-            // space
-            ++right;
-            // left = right;
             // read the type
             while (line.charAt(right) != ' ') {
                 ++right;
             }
-            String type = line.substring(left, right);
-            // left = right;
-            // space
-            ++right;
-            left = right;
+            String type = readUntil(line, right, Integer.MAX_VALUE, ' ');
+            right += type.length() + 1;
             // read the amount of data
-            while (line.charAt(right) != ' ') {
-                ++right;
-            }
-            int amount = Integer.parseInt(line.substring(left, right));
-            // left = right;
-            // space
-            ++right;
-            left = right;
+            String amountString = readUntil(line, right, Integer.MAX_VALUE, ' ');
+            int amount = Integer.parseInt(amountString);
+            right += amountString.length() + 1;
             // read data
-            right += amount;
-            String data = line.substring(left, right);
-            left = right;
+            String data = readUntil(line, right, amount, '\0');
+            right += data.length() + 1;
             // conclude type data pair
             typeData.add(new Pair<>(type, data));
         }
