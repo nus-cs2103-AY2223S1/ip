@@ -103,4 +103,19 @@ public abstract class Task {
         char doneFlag = isDone ? 'X' : ' ';
         return String.format("[%c] %s", doneFlag, description);
     }
+
+    /**
+     * Returns if two tasks are equal.
+     *
+     * @return Boolean of whether two tasks are equal.
+     */
+    @Override
+    public boolean equals(Object otherObject) {
+        if (!(otherObject instanceof Task)) {
+            return false;
+        }
+        Task otherTask = (Task) otherObject;
+        return description.equals(otherTask.description)
+                && isDone == otherTask.isDone;
+    }
 }
