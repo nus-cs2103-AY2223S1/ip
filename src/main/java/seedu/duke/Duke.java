@@ -1,10 +1,7 @@
 package seedu.duke;
 
-import javafx.application.Platform;
-
 public class Duke {
     private static Storage save;
-    private static Ui ui;
     private static Parser parser;
 
     /**
