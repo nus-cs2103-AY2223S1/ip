@@ -43,7 +43,7 @@ public class DeadlineCommand extends Command {
      * Executes the command by creating a new Deadline and adding it to the current TaskList.
      *
      * @param taskList A list of tasks
-     * @param ui A ui responsible for printing output to the user
+     * @param ui An ui responsible for printing output to the user
      */
     @Override
     public String execute(TaskList taskList, Ui ui) {
