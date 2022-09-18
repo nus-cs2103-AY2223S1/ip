@@ -1,0 +1,7 @@
+todo borrow book
+list
+event project meeting /at Mon 2-4pm
+list
+mark 2
+list
+bye

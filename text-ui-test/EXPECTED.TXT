@@ -1,7 +1,40 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+------------------------------------------------------
+You used to call me on my cellphone
+DRAKE DRAKE DRAKE DRAKE DRAKE
+DRAKE DRAKE DRAKE DRAKE DRAKE
+DRAKE DRAKE DRAKE DRAKE DRAKE
+DRAKE DRAKE DRAKE DRAKE DRAKE
+DRAKE DRAKE DRAKE DRAKE DRAKE
+!@#$%^&*()-+!@#$%^&*()`~`!@#$
+drake.Drake's (me) the kind of guy to help you out uwu
+Go ahead, make that hotline bling
+------------------------------------------------------
+------------------------------------------------------
+I've added this task:
+[T][ ] borrow book
+You now have 1 tasks in the list
+------------------------------------------------------
+------------------------------------------------------
+Here are the tasks in your list:
+1. [T][ ] borrow book
+------------------------------------------------------
+------------------------------------------------------
+I've added this task:
+[E][ ] project meeting  (at:  Mon 2-4pm)
+You now have 2 tasks in the list
+------------------------------------------------------
+------------------------------------------------------
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [E][ ] project meeting  (at:  Mon 2-4pm)
+------------------------------------------------------
+------------------------------------------------------
+I've marked this task as done!
+[E][X] project meeting  (at:  Mon 2-4pm)
+------------------------------------------------------
+------------------------------------------------------
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [E][X] project meeting  (at:  Mon 2-4pm)
+------------------------------------------------------
+I'm down for you always. See you <3
