@@ -22,12 +22,10 @@ public class Duke {
 
     public static void main(String[] args) {
         Application.launch(Launcher.class,args);
-
     }
 
 
     public String getResponse(String input) {
-
         return Parser.startParse(input);
     }
 }

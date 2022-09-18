@@ -49,14 +49,8 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
-
-        //dialog.setPadding(new Insets(20,20,20,20));
-
-
         displayPicture.setFitHeight(150);
         displayPicture.setFitWidth(110);
-
-
     }
 
     /**
