@@ -53,7 +53,7 @@ public class DialogBox extends HBox {
         displayPicture.preserveRatioProperty();
     }
     private void configureDialogBubble(String txt) {
-        Rectangle box = new Rectangle(300,100);
+        Rectangle box = new Rectangle();
         box.setArcHeight(20);
         box.setArcWidth(20);
         box.setFill(Color.GHOSTWHITE);

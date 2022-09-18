@@ -88,6 +88,7 @@ public class TaskList {
         }
         return sb.toString();
     }
+
     /**
      * Checks if the string is in the arraylist.
      * @param keyword Keyword used to search for tasks.
