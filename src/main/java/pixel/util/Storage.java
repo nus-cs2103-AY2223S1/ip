@@ -1,8 +1,15 @@
 package pixel.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 import java.util.ArrayList;
-import java.util.Objects;
 
 import pixel.Pixel;
 import pixel.task.Deadline;
@@ -127,86 +134,6 @@ public class Storage {
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true));
         bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
-    }
-
-    /**
-     * Adds all tasks from external file to the array list of tasks
-     *
-     * @param filePath filepath of file to refer to
-     * @throws IOException when the filePath is invalid
-     */
-    public static void readTasksFromFile(String filePath) {
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = reader.readLine()) != null) { // reader will continuously read the next line
-                Task savedTask = lineToTask(line);
-                INPUT_TASKS.add(savedTask);
-            }
-            reader.close();
-        } catch (IOException e) {
-            if (e instanceof FileNotFoundException) {
-                File tempFile = new File("./data/pixel", "pixel.txt");
-            } else {
-                //e.printStackTrace();
-            }
-        } catch (InvalidTextDataFormatException e) {
-            //e.printStackTrace();
-        }
-    }
-
-    /**
-     * Converts a task saved in the text file in string format into a Task object
-     *
-     * @param lineFromDocument every line from the text file, where
-     *                         the details of the task are saved
-     * @return a new Task converted from the String
-     * @throws InvalidTextDataFormatException when the text file to be read from
-     * has data in invalid format
-     */
-    private static Task lineToTask(String lineFromDocument) throws InvalidTextDataFormatException {
-        String[] componentsOfTask = lineFromDocument.strip().split(" ;; ");
-        String type = componentsOfTask[0];
-        String status = componentsOfTask[1];
-        String description = componentsOfTask[2];
-        String commandWord = componentsOfTask[3];
-        String due = componentsOfTask[4];
-
-        switch (type) {
-            case "T": {
-                Task formattedTask = new ToDo(description, due, commandWord);
-                if (status.equals("Done")) {
-                    formattedTask.markAsDone();
-                } else {
-                    formattedTask.markAsNotDone();
-                }
-                return formattedTask;
-            }
-            case "D": {
-                Task formattedTask = new Deadline(description, due, commandWord);
-                if (status.equals("Done")) {
-                    formattedTask.markAsDone();
-                } else {
-                    formattedTask.markAsNotDone();
-                }
-                return formattedTask;
-            }
-
-            case "E": {
-                Task formattedTask = new Event(description, due, commandWord);
-                if (status.equals("Done")) {
-                    formattedTask.markAsDone();
-                } else {
-                    formattedTask.markAsNotDone();
-                }
-                return formattedTask;
-            }
-
-            default: {
-                throw new InvalidTextDataFormatException("Type of task in database is invalid!");
-            }
-        }
     }
 
 }

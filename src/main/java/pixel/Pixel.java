@@ -1,7 +1,9 @@
 package pixel;
 
+import java.io.IOException;
 import java.util.Scanner;
 
+import pixel.util.InvalidTextDataFormatException;
 import pixel.util.Parser;
 import pixel.util.Storage;
 
@@ -16,8 +18,10 @@ public class Pixel {
 
     public Pixel(String filePath) {
         this.parser = new Parser(filePath);
-        Storage.readTasksFromFile(filePath);
-        Pixel.taskCount = Storage.INPUT_TASKS.size();
+    }
+
+    public static void resetTaskCount(int newCount) {
+        taskCount = newCount;
     }
 
     public static int getTaskCount() {

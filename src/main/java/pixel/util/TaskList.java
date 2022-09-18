@@ -48,6 +48,7 @@ public class TaskList {
         return output;
     }
 
+    // This method creates a new pixel.txt file automatically if no such file exists
     public String handleNewTask(String userInput, Parser.TaskType type) throws IOException, DuplicateEntryException {
 
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
