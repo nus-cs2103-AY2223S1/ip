@@ -43,7 +43,7 @@ public class DialogBox extends HBox {
 
         dialog.setTranslateX(-5.0);
         dialog.setText(text);
-        dialog.setMinWidth(Region.USE_PREF_SIZE);
+        dialog.setMinWidth(Region.USE_COMPUTED_SIZE);
         dialog.setMinHeight(Region.USE_PREF_SIZE);
         dialog.setTextFill(Color.web("#000000"));
         dialog.setBackground(new Background(new BackgroundFill(Color.web("#a9a9a9"),
