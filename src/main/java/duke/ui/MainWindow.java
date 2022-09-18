@@ -1,21 +1,29 @@
 package duke.ui;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import duke.Duke;
 import duke.dukeexception.DukeException;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow extends AnchorPane implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private StackPane stackPane;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -30,8 +38,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        stackPane.setPrefSize(anchorPane.getPrefWidth(), anchorPane.getPrefHeight()); //didn't work
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -65,4 +74,5 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+
 }
