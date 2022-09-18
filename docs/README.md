@@ -1,7 +1,8 @@
 # Duke User Guide
 
-Duke is a desktop app to help keep track of all your tasks! It's purposed for users who prefer typing to clicking 
-as it makes use of a Command Line Interface (CLI).
+Duke is a desktop app to help keep track of all your tasks! It's purposed for users who prefer typing 
+as it makes use of a Command Line Interface (CLI) for user inputs. Information output is displayed on a Graphical User 
+Interface (GUI).
 
 ## Features 
 
