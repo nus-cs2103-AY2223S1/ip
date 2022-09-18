@@ -74,7 +74,7 @@ Now you have 3 tasks in the list.
 <br><br>
 
 ### List all tasks: `list`
-Lists out all tasks in a descending priority. Tasks with highest priority will be at the top while tasks with lowest will be at the bottom of the task list.
+Lists out all tasks in a descending priority. Tasks with highest priority will be at the top while tasks with the lowest priority will be at the bottom of the task list.
 
 Command: `list`
 
@@ -92,7 +92,7 @@ Marks a task in the list as done.
 
 Command: `mark {index}`
 
-Example: `mark 1 marks the task at index 1 of the list`
+Example: `mark 1` marks the task at index 1 of the list.
 
 Expected outcome:
 ```
@@ -106,7 +106,7 @@ Marks a task in the list as not done.
 
 Command: `unmark {index}`
 
-Example: `unmark 1` unmark the task at index 1 of the list <br> <br>
+Example: `unmark 1` unmark the task at index 1 of the list.
 
 Expected outcome:
 ```
