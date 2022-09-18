@@ -50,7 +50,7 @@ public class Event extends Task {
             return String.format("[E][%s] %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.at);
         } else {
             assert this.getNote() != null : "This task should have a note";
-            return String.format("[D][%s] %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.at)
+            return String.format("[E][%s] %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.at)
                     + "\n" + String.format("       - Notes: %s", this.getNote());
         }
     }
