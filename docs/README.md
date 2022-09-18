@@ -180,7 +180,7 @@ Your task: [T][ ] shopping is tagged as:
 
 ### Find Task
 
-## by task name 
+#### by task name 
 
 Example of usage: 
 
@@ -193,7 +193,7 @@ Here are the matching tasks:
 1.[T][ ] shopping
 ```
 
-## by task date
+#### by task date
 
 Example of usage: 
 
@@ -206,8 +206,7 @@ Here are the matching tasks:
 1.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
 ```
 
-
-## by tag
+#### by tag
 
 Example of usage: 
 
@@ -221,7 +220,6 @@ Here are the matching tasks:
 ```
 
 ### Bye
-
 
 Example of usage: 
 
