@@ -36,6 +36,7 @@ public class TaskCommand extends Command {
             this.description = description;
             task = new Event(description);
         }
+        assert false : "Wrong task type";
     }
 
     @Override
