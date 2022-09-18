@@ -118,6 +118,7 @@ Format: `bye`
 
 ## Command Summary
 
+
 | Action      | Format, Examples |
 | ----------- | ----------- |
 | help      | `help` |
@@ -130,6 +131,7 @@ Format: `bye`
 | delete | `delete <index>` eg. `delete 1` |
 | find      | `find <keyword>` eg. `find homework` |
 | bye | `bye`        |
+
 
 ## Product Screenshot
 ![Ui](Ui.png)
