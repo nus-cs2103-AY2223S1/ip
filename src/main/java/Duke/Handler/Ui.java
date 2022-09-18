@@ -1,5 +1,5 @@
 package Duke.Handler;
-import Duke.Data.Storage;
+import Duke.Storage.Storage;
 import Duke.Tasks.Task;
 import java.util.ArrayList;
 
@@ -143,5 +143,9 @@ public class Ui {
      */
     public void deleteTask() {
         System.out.println("Noted. I've removed this task:");
+    }
+
+    public void tag() {
+        System.out.println("Yay, you have successfully tagged your task!");
     }
 }

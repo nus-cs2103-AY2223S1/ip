@@ -53,6 +53,8 @@ public class Parser {
             ui.bye();
         case "dateFilter":
             commands.searchDate(input);
+        case "tag":
+            commands.tagTask(input);
         }
     }
 }

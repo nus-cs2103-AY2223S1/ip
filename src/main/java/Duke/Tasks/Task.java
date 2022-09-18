@@ -7,6 +7,8 @@ public class Task {
 
     protected final String name;
     protected boolean isDone;
+    protected boolean isTagged;
+    protected String tag;
 
     /**
      * Constructor of task
@@ -16,6 +18,8 @@ public class Task {
     public Task(String name) {
         this.name = name;
         this.isDone = false;
+        this.isTagged = false;
+        this.tag = "";
     }
 
     /**
@@ -33,9 +37,45 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Sets task as tagged
+     */
+    public void tagged() {
+        this.isTagged = true;
+    }
 
     /**
-     * format task stored in file
+     * Sets task as untagged
+     */
+    public void unTag() {
+        this.isTagged = false;
+    }
+
+    /**
+     * Tags task
+     *
+     * @param tag tag added to the task
+     */
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    /**
+     * Returns the tag of the task
+     *
+     * @return string of the task's tag
+     */
+    public String getTag() {
+        return this.tag;
+    }
+
+    public boolean isTagged() {
+        return isTagged;
+    }
+
+
+    /**
+     * formats task stored in file
      *
      * @return string of desired format
      */

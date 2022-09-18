@@ -1,4 +1,4 @@
-package Duke.Data;
+package Duke.Storage;
 import Duke.Exception.DukeException;
 import Duke.Tasks.Deadline;
 import Duke.Tasks.TaskList;

@@ -29,7 +29,7 @@ public class Commands {
     }
 
     /**
-     * Mark a task as done using the task index
+     * Marks a task as done using the task index
      *
      * @param input read task index
      */
@@ -42,11 +42,11 @@ public class Commands {
     }
 
     /**
-     * Mark a task as not done using the task index
+     * Marks a task as not done using the task index
      *
      * @param input read task index
      */
-    public void unmark (String input) {
+    public void unmark(String input) {
         ui.unmarkedMes();
         int j = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(j);
@@ -75,8 +75,8 @@ public class Commands {
     public void deadline(String input) {
         ui.addTask();
         String[] parts = input.split(" ");
-        String date = parts[parts.length-2];
-        String time = parts[parts.length-1];
+        String date = parts[parts.length - 2];
+        String time = parts[parts.length - 1];
         Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
         taskList.add(dl);
         System.out.println(dl);
@@ -91,9 +91,9 @@ public class Commands {
     public void event(String input) {
         ui.addTask();
         String[] parts = input.split(" ");
-        String at = parts[parts.length-3];
-        String date = parts[parts.length-2];
-        String time = parts[parts.length-1];
+        String at = parts[parts.length - 3];
+        String date = parts[parts.length - 2];
+        String time = parts[parts.length - 1];
         Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
         taskList.add(event);
         System.out.println(event);
@@ -101,7 +101,7 @@ public class Commands {
     }
 
     /**
-     * Remove a task from list
+     * Removes a task from list
      *
      * @param input read task index
      */
@@ -115,16 +115,16 @@ public class Commands {
     }
 
     /**
-     * Search for task that matches the date inputted
+     * Searches for task that matches the date inputted
      *
      * @param input read date
      */
     public void searchDate(String input) {
         String[] parts = input.split(" ", 2);
         ArrayList<Task> matched = new ArrayList<>();
-        for(Task t: taskList.listTasks()) {
+        for (Task t : taskList.listTasks()) {
             String str = t.toString();
-            if(str.contains(parts[1])) {
+            if (str.contains(parts[1])) {
                 matched.add(t);
             }
         }
@@ -136,14 +136,14 @@ public class Commands {
     }
 
     /**
-     * Search for task that matches the name inputted
+     * Searches for task that matches the name inputted
      *
      * @param input read name
      */
     public void searchName(String input) {
         String[] parts = input.split(" ", 2);
         ArrayList<Task> matched = new ArrayList<>();
-        for(Task t: taskList.listTasks()) {
+        for (Task t : taskList.listTasks()) {
             String str = t.toString();
             if (str.contains(parts[1])) {
                 matched.add(t);
@@ -151,6 +151,48 @@ public class Commands {
         }
         if (matched.isEmpty()) {
             ui.nameNotFound();
+        } else {
+            ui.printMatchedTasks(matched);
+        }
+    }
+
+    public void tagTask(String input) {
+        int index = Integer.parseInt(input.substring(4, 5)) - 1;
+        Task task = taskList.get(index);
+        System.out.println(task);
+        task.tagged();
+        String[] parts = input.split(" ", 3);
+        task.setTag(parts[2]);
+        System.out.println(task.getTag());
+    }
+
+    public void printTaskTag(String input) {
+        // input format = print tag 1(index)
+        int index = Integer.parseInt(input.substring(10)) - 1;
+        Task task = taskList.get(index);
+        if (task.isTagged()) {
+            System.out.print("Your task is tagged as %d \n" + task.getTag());
+            System.out.println(task);
+        } else {
+            System.out.println("The task is not tagged");
+        }
+    }
+
+    /**
+     * Searches the task list and prints tasks of matching tag
+     *
+     * @param input command by user
+     */
+    public void searchTag(String input) {
+        String s = "";
+        ArrayList<Task> matched = new ArrayList<>();
+        for (Task t : taskList.listTasks()) {
+            if (t.getTag().equals(input)) {
+                matched.add(t);
+            }
+        }
+        if (matched.isEmpty()) {
+            System.out.println("No matching task of given tag");
         } else {
             ui.printMatchedTasks(matched);
         }

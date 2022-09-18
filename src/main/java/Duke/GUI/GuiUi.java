@@ -62,7 +62,7 @@ public class GuiUi {
     }
 
     /**
-     * Mark a task as not done using the task index
+     * Marks a task as not done using the task index
      *
      * @param input read task index
      */
@@ -75,7 +75,7 @@ public class GuiUi {
     }
 
     /**
-     * Add a task to list and print the task out
+     * Adds a task to list and print the task out
      *
      * @param input read name of task
      */
@@ -88,7 +88,7 @@ public class GuiUi {
     }
 
     /**
-     * Add a deadline task to list and print the task out
+     * Adds a deadline task to list and print the task out
      *
      * @param input read name, time and date of task
      */
@@ -104,7 +104,7 @@ public class GuiUi {
     }
 
     /**
-     * Add an event task to list and print the task out
+     * Adds an event task to list and print the task out
      *
      * @param input read name, time and date of task
      */
@@ -121,7 +121,7 @@ public class GuiUi {
     }
 
     /**
-     * Remove a task from list
+     * Removes a task from list
      *
      * @param input read task index
      */
@@ -135,7 +135,7 @@ public class GuiUi {
     }
 
     /**
-     * Search for task that matches the date inputted
+     * Searches for task that matches the date inputted
      *
      * @param input read date
      */
@@ -162,7 +162,7 @@ public class GuiUi {
     }
 
     /**
-     * Search for task that matches the name inputted
+     * Searches for task that matches the name inputted
      *
      * @param input read name
      */
@@ -178,6 +178,68 @@ public class GuiUi {
         }
         if (matched.isEmpty()) {
             s = "No matching task of matching name";
+            return s;
+        } else {
+            String t = "Here are the matching tasks:\n";
+            for (int i = 0; i < matched.size(); i++) {
+                int index = i + 1;
+                s = "" + index + "." + matched.get(i).toString();
+            }
+            return t + s;
+        }
+    }
+
+    /**
+     * Tags a task
+     *
+     * @param input by user
+     * @return task with tag
+     */
+    public String tagTask(String input) {
+        String s = "Your task is tagged:\n";
+        int index = Integer.parseInt(input.substring(4, 5))- 1;
+        Task task = taskList.get(index);
+        task.tagged();
+        String[] parts = input.split(" ", 3);
+        task.setTag(parts[2]);
+        return  s + task.toString() + " " + parts[2];
+    }
+
+    /**
+     * Prints a task with its tag
+     *
+     * @param input by user
+     * @return task with tag
+     */
+    public String printTaskTag(String input) {
+        // input format = print tag 1(index)
+        int index = Integer.parseInt(input.substring(10)) - 1;
+        Task task = taskList.get(index);
+        if (task.isTagged()) {
+            String s = task.toString() + " ";
+            s += task.getTag();
+            return "Your task is tagged:\n" + s;
+        } else {
+            return "The task is not tagged";
+        }
+    }
+
+    /**
+     * Searches the task list and return tasks of matching tag
+     *
+     * @param input command by user
+     * @return matching tasks
+     */
+    public String searchTag(String input) {
+        String s = "";
+        ArrayList<Task> matched = new ArrayList<>();
+        for (Task t : taskList.listTasks()) {
+            if (t.getTag().equals(input)) {
+                matched.add(t);
+            }
+        }
+        if (matched.isEmpty()) {
+            s = "No matching task of given tag";
             return s;
         } else {
             String t = "Here are the matching tasks:\n";

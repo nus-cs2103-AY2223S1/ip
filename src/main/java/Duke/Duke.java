@@ -1,6 +1,6 @@
 package Duke;
 import java.util.Scanner;
-import Duke.Data.Storage;
+import Duke.Storage.Storage;
 import Duke.Exception.DukeException;
 import Duke.GUI.DialogBox;
 import Duke.GUI.GuiUi;
@@ -212,7 +212,14 @@ public class Duke extends Application {
             response = guiUi.displayDelete(input);
         } else if (input.startsWith("find")) {
             response = guiUi.displaySearchName(input);
+        } else if (input.startsWith("tag")) {
+            response = guiUi.tagTask(input);
+        } else if (input.startsWith("print tag")) {
+            response = guiUi.printTaskTag(input);
+        } else if (input.startsWith("#")) {
+            response = guiUi.searchTag(input);
         } else {
+            //starts with dateFilter
             response = guiUi.displaySearchDate(input);
         }
         return response;
