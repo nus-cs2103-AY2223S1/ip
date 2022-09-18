@@ -72,3 +72,33 @@ You have 3 task(s). Stop procrastinating bro.
 ```
 
 ### `event`
+
+Adding events that occur on a certain date and during a time frame:`event {name of the event} /at {date of the event} {optional: start time of the event - end time of the event}`
+
+- The date of the event should be written in the form of DD/MM/YYYY.
+
+- Adding the time frame of the event is optional. Times should be written in the 24-hour format (1000).
+
+Example of usage: 
+
+`event birthday celebration /at 23/3/2022`
+
+`event birthday celebration /at 23/3/2022 1000-1200`
+
+Expected outcome:
+
+Adds an event with the event name being "birthday celebration" and event date being 23/3/2022. Also displays how many tasks are currently inside the task list.
+
+- If a time frame was inputted, the start and end time of the event will also be displayed, specifically 10:00-12:00.
+
+```
+I gotchu fam. Your task has been added:
+[E][ ] birthday celebration (at: 23 Mar 2022)
+You have 4 task(s). Stop procrastinating bro.
+```
+
+```
+I gotchu fam. Your task has been added:
+[E][ ] birthday celebration (at: 23 Mar 2022 10:00-12:00)
+You have 5 task(s). Stop procrastinating bro.
+```
