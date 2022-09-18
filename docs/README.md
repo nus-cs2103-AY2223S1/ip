@@ -2,7 +2,7 @@
 
 DukeManage is a desktop application for managing your daily tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DukeManage can get your contact management tasks done faster than traditional GUI apps.
 
-![alt text](https://github.com/dr-arrgghh/ip/blob/master/docs/Ui.png)
+![alt text](https://dr-arrgghh.github.io/ip/Ui.png)
 
 ## Features
 
