@@ -34,6 +34,7 @@ Example of usage:
 `todo wake up`
 
 Expected outcome:
+
 ![img.png](img.png)
 
 Description of the outcome:
@@ -51,6 +52,7 @@ Example of usage:
 `deadline submit work /by tonight`
 
 Expected outcome:
+
 ![img_1.png](img_1.png)
 
 Description of the outcome:
@@ -63,6 +65,7 @@ Example of usage:
 `deadline submit paper /by 2022-09-18 1923`
 
 Expected outcome:
+
 ![img_2.png](img_2.png)
 
 Description of the outcome:
@@ -79,6 +82,7 @@ Example of usage:
 `event sleep /at tonight`
 
 Expected outcome:
+
 ![img_3.png](img_3.png)
 
 Description of the outcome:
@@ -91,6 +95,7 @@ Example of usage:
 `event wake up /at 2022-09-19 0700`
 
 Expected outcome:
+
 ![img_4.png](img_4.png)
 
 Description of the outcome:
@@ -108,6 +113,7 @@ Example of usage:
 `list`
 
 Expected outcome:
+
 ![img_5.png](img_5.png)
 
 Description of the outcome:
@@ -127,6 +133,7 @@ Example of usage:
 `mark 2`
 
 Expected outcome:
+
 ![img_6.png](img_6.png)
 
 Description of the outcome:
@@ -143,6 +150,7 @@ Example of usage:
 `unmark 2`
 
 Expected outcome:
+
 ![img_7.png](img_7.png)
 
 Description of the outcome:
@@ -159,6 +167,7 @@ Example of usage:
 `delete 3`
 
 Expected outcome:
+
 ![img_8.png](img_8.png)
 
 Description of the outcome:
@@ -177,6 +186,7 @@ Example of usage:
 `find wake`
 
 Expected outcome:
+
 ![img_9.png](img_9.png)
 
 Description of the outcome:
@@ -194,6 +204,7 @@ Example of usage:
 `help`
 
 Expected outcome:
+
 ![img_10.png](img_10.png)
 
 Description of the outcome:
@@ -210,6 +221,7 @@ Example of usage:
 `bye`
 
 Expected outcome:
+
 ![img_11.png](img_11.png)
 
 Description of the outcome:
