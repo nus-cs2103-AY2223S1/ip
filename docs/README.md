@@ -18,7 +18,6 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 
 ## Summary of Commands
 |Function                 |Command                                                    |
-|-------------------------|-----------------------------------------------------------|
 |add a todo               |**todo**     DESCRIPTION                                   |
 |add a deadline           |**deadline** DESCRIPTION **/by** DATE_AND_TIME_IN_ISO_FORMAT|
 |add a event              |**event**    DESCRIPTION **/at** DURATION                  |
