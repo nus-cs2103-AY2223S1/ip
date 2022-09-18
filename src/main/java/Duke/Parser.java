@@ -1,15 +1,6 @@
 package Duke;
 
-import Duke.commands.ByeCommands;
-import Duke.commands.Command;
-import Duke.commands.DeadlineCommands;
-import Duke.commands.DeleteCommands;
-import Duke.commands.EventCommands;
-import Duke.commands.FindCommands;
-import Duke.commands.ListCommands;
-import Duke.commands.MarkCommands;
-import Duke.commands.TodoCommands;
-import Duke.commands.UnmarkCommands;
+import Duke.commands.*;
 
 public class Parser {
 
@@ -44,6 +35,8 @@ public class Parser {
                 return new ByeCommands();
             case "find":
                 return new FindCommands(input);
+            case "detect duplicate" :
+                return new DetectDuplicateCommands();
             default:
                 throw new DukeException("Unknown commands has been thrown.");
         }
