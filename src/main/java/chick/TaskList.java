@@ -39,6 +39,7 @@ public class TaskList {
         }
         tasks.add(task);
         taskSet.add(task.toStorageString());
+        saveTasks();
         return ui.printMessage("Added:\n    "
                 + task
                 + "\n    Total "
@@ -58,6 +59,8 @@ public class TaskList {
             throw new ChickException("proper index pls");
         }
         Task t = tasks.remove(id);
+        taskSet.remove(t.toStorageString());
+        saveTasks();
         return ui.printMessage("Removed:\n    "
                 + t
                 + "\n    Total "
@@ -77,7 +80,10 @@ public class TaskList {
             throw new ChickException("proper index pls");
         }
         Task t = tasks.get(id);
-        t.setAsDone();
+        boolean statusChanged = t.setAsDone();
+        if (statusChanged) {
+            saveTasks();
+        }
         return ui.printMessage("Marked:\n    " + t);
     }
 
@@ -93,7 +99,10 @@ public class TaskList {
             throw new ChickException("proper index pls");
         }
         Task t = tasks.get(id);
-        t.setAsUndone();
+        boolean statusChanged = t.setAsUndone();
+        if (statusChanged) {
+            saveTasks();
+        }
         return ui.printMessage("Unmarked:\n    " + t);
     }
 
@@ -130,10 +139,10 @@ public class TaskList {
      * @return Response string from Duke Bot.
      */
     public String generateList() {
-        String messageList = "";
+        StringBuilder messageList = new StringBuilder();
         int taskCount = 1;
         for (Task t: tasks) {
-            messageList += "\n    " + taskCount++ + ". " + t;
+            messageList.append("\n    ").append(taskCount++).append(". ").append(t);
         }
         return ui.printMessage("Here:" + messageList);
     }
@@ -161,16 +170,15 @@ public class TaskList {
     }
 
     /**
-     * Saves task from current TaskList.
+     * Saves tasks from current TaskList.
      * Tasks are saved using an instance of Storage.
-     *
-     * @return Response string from Duke Bot.
      */
-    public String saveTasks() {
+    public void saveTasks() {
+        StringBuilder storageString = new StringBuilder();
         for (Task t : tasks) {
-            store.writeText(t.toStorageString(), true);
+            storageString.append(t.toStorageString());
+            storageString.append("\n");
         }
-        store.closeWriter();
-        return ui.printMessage("bye");
+        store.saveText(storageString.toString());
     }
 }

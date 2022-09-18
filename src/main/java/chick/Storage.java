@@ -1,5 +1,6 @@
 package chick;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -10,7 +11,6 @@ import java.nio.file.Path;
  */
 public class Storage {
 
-    private FileWriter fileWriter;
     private String previousText;
 
     /**
@@ -19,7 +19,6 @@ public class Storage {
      * Calling the constructor will:
      * 1. Create a data folder if it doesn't already exist.
      * 2. Load text at data/duke.txt if it exists.
-     * 3. Erases file at data/duke.txt if it exists to write next save file.
      */
     public Storage() {
         File dataFolder = new File("data");
@@ -35,11 +34,6 @@ public class Storage {
                 System.out.println("Unable to read storage file: " + e);
             }
         }
-        try {
-            fileWriter = new FileWriter("data/chick.txt");
-        } catch (java.io.IOException e) {
-            System.out.println("Unable to write storage file: " + e);
-        }
     }
 
     /**
@@ -54,28 +48,16 @@ public class Storage {
     /**
      * Writes a string to save file of Duke Bot.
      *
-     * @param text String to be written to save file.
-     * @param nextLine Boolean, if true newline character will be written after string is written.
+     * @param storageString String to be written to save file.
      */
-    public void writeText(String text, boolean nextLine) {
+    public void saveText(String storageString) {
         try {
-            fileWriter.write(text);
-            if (nextLine) {
-                fileWriter.write("\n");
-            }
+            assert new File("data/chick.txt").exists();
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data/chick.txt"));
+            bufferedWriter.write(storageString);
+            bufferedWriter.close();
         } catch (java.io.IOException e) {
             System.out.println("Failed to write text to save file: " + e);
-        }
-    }
-
-    /**
-     * Closes FileWriter instance for writing save file.
-     */
-    public void closeWriter() {
-        try {
-            fileWriter.close();
-        } catch (java.io.IOException e) {
-            System.out.println("Failed to close save file: " + e);
         }
     }
 }

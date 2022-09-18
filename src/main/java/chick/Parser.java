@@ -166,9 +166,9 @@ public class Parser {
     public String parseOne(String command) throws ChickException {
         parseErrorCount = 0;
         if (command.startsWith("bye")) {
-            String response = tasks.saveTasks();
+            tasks.saveTasks();
             chick.terminate();
-            return response;
+            return "bye";
         } else if (command.startsWith("list")) {
             return tasks.generateList();
         } else if (command.startsWith("help")) {
