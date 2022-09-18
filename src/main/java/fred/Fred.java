@@ -1,5 +1,7 @@
 package fred;
 
+import java.net.URI;
+
 import commands.Command;
 import exception.FredException;
 import parser.Parser;
@@ -17,17 +19,21 @@ public class Fred {
     private TaskList tasks;
     private Ui ui;
 
+    private String welcomeMessage;
+
     /**
      * Create a new Fred object
      * @param filePath filepath to data file which stores Fred's data
      */
-    public Fred(String filePath) {
+    public Fred(URI filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        welcomeMessage = "Hello! I'm Fred! What can I do for you?";
         try {
             tasks = new TaskList(storage.load());
+            welcomeMessage = "Data file loaded.\n" + welcomeMessage;
         } catch (FredException e) {
-            ui.showLoadingError();
+            welcomeMessage = e.getMessage() + welcomeMessage;
             tasks = new TaskList();
         }
     }
@@ -47,11 +53,19 @@ public class Fred {
             }
 
             String message = ui.getMessage();
-            assert(!message.isBlank());
+            assert(!message.isBlank());;
 
             return message;
         } catch (FredException e) {
             return e.getMessage();
         }
+    }
+
+    /**
+     * Return Fred's welcome message.
+     * @return Returns a string containing Fred's welcome message.
+     */
+    public String getWelcomeMessage() {
+        return welcomeMessage;
     }
 }

@@ -9,13 +9,6 @@ public class Ui {
     protected String fredMessage;
 
     /**
-     * Show loading error from start of chat bot.
-     */
-    public void showLoadingError() {
-        System.out.println("Loading error!");
-    }
-
-    /**
      * Store message that Fred is supposed to show to the user.
      * @param message
      */

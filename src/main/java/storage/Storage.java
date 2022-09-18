@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,9 +23,9 @@ import ui.Ui;
  */
 public class Storage {
 
-    protected String filePath;
+    protected URI filePath;
 
-    public Storage(String filepath) {
+    public Storage(URI filepath) {
         this.filePath = filepath;
     }
 
@@ -40,12 +41,13 @@ public class Storage {
             File f = new File(filePath);
 
             if (!f.exists()) {
+                new File(f.getParent()).mkdir();
                 f.createNewFile();
                 ui.storeMessage("No data file exists. New data file has been created.\n");
             }
             assert (f.exists());
 
-            FileWriter fileWriter = new FileWriter(filePath);
+            FileWriter fileWriter = new FileWriter(f);
 
             for (int i = 0; i < taskList.size(); i++) {
                 Task task = taskList.get(i);
@@ -63,6 +65,7 @@ public class Storage {
      * @throws FredException
      */
     public ArrayList<Task> load() throws FredException {
+
         try {
             ArrayList<Task> taskList = new ArrayList<>();
             File file = new File(filePath);
@@ -80,14 +83,14 @@ public class Storage {
                     loadDeadline(taskList, entry);
                 } else {
                     assert(!(firstLetter == 'T') && !(firstLetter == 'T') && !(firstLetter == 'T'));
-                    throw new FredException("Loading... Data file entry is wrong!");
+                    throw new FredException("Loading... Data file is corrupted!\n");
                 }
             }
             scanner.close();
             return taskList;
 
         } catch (FileNotFoundException e) {
-            throw new FredException("Loading Error!");
+            throw new FredException("Data file fred.txt not found!\n");
         }
     }
 

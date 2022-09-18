@@ -1,6 +1,8 @@
 package fred;
 
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Fred fred = new Fred("data/fred.txt");
+    private URI filePath = Path.of("data", "fred.txt").toUri();
+    private Fred fred = new Fred(filePath);
 
     @Override
     public void start(Stage stage) {
