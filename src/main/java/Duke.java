@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -46,6 +47,8 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
 
+
+
             // Print out goodbye message and exits the program
             if (command == CommandWord.BYE) {
                 exitJukebox();
@@ -64,19 +67,66 @@ public class Duke {
                 continue;
             }
 
-            // Add a new task based on the given keyword
-            if (command == CommandWord.TODO || command == CommandWord.DEADLINE || command == CommandWord.EVENT) {
-                try {
-                    addNewTask(command, inputWordsSplit[1]);
-                    continue;
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Hmm... looks like you don't have a description for this task :( Please try again!\n");
-                }
-            }
-
             // Deletes a task from the task list
             if (command == CommandWord.DELETE) {
                 deleteTask(inputWordsSplit);
+            }
+
+            // Resolving description of task to contents
+            String contents = new String();
+            // Checking for invalid description
+            try {
+                contents = inputWordsSplit[1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Hmm... You forgot to indicate your task description!");
+            }
+
+            switch (command) {
+            case TODO: {
+                try {
+                    contents = inputWordsSplit[1];
+                    Task newTask = new Todo(contents);
+                    taskList.add(newTask);
+                    System.out.println("Okay!\n" + "Added: " + newTask + "\n");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                } finally {
+                    break;
+                }
+            }
+
+            case DEADLINE: {
+                String[] split = contents.split(" /by ");
+                try {
+                    LocalDateTime dateTime = DateTime.parseDate(split[1]);
+                    String taskDescription = split[0];
+                    Task newTask = new Deadline(taskDescription, dateTime);
+                    taskList.add(newTask);
+                    System.out.println("Okay!\n" + "Added: " + newTask + "\n");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Please indicate the date & time of this deadline using /by !");
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                } finally {
+                    break;
+                }
+            }
+
+            case EVENT: {
+                String[] split = contents.split(" /at ");
+                try {
+                    LocalDateTime dateTime = DateTime.parseDate(split[1]);
+                    String taskDescription = split[0];
+                    Task newTask = new Event(taskDescription, dateTime);
+                    taskList.add(newTask);
+                    System.out.println("Okay!\n" + "Added: " + newTask + "\n");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Please indicate the date & time of this event using /at !");
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                } finally {
+                    break;
+                }
+            }
             }
         }
     }
@@ -105,14 +155,6 @@ public class Duke {
         }
 
         /**
-         * Prints the current number of tasks in the task list.
-         * @param taskList Input task list
-         */
-        private static void printCurrentTasks (ArrayList <Task> taskList) {
-            System.out.println(String.format("And... that makes %d task(s) in your list! :)", taskList.size()));
-        }
-
-        /**
          * Marks or unmarks the task.
          * @param command Input command word
          * @param inputWordsSplit String array of the command word with the task number
@@ -131,24 +173,6 @@ public class Duke {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Please indicate a valid task number! :)\n");
             }
-        }
-
-        /**
-         * Handles the adding of the 3 different kinds of tasks.
-         * @param command Input command word
-         * @param contents Input task name
-         */
-        private static void addNewTask(CommandWord command, String contents){
-            Task newTask;
-            if (command == CommandWord.TODO) {
-                newTask = new Todo(contents);
-            } else if (command == CommandWord.DEADLINE) {
-                newTask = new Deadline(contents);
-            } else {
-                newTask = new Event(contents);
-            }
-            taskList.add(newTask);
-            System.out.println("Okay!\n" + "Added: " + newTask + "\n");
         }
 
         /**
