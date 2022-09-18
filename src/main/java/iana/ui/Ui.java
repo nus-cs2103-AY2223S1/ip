@@ -119,6 +119,11 @@ public class Ui {
         return this.sc.nextLine();
     }
 
+    /**
+     * Gives available commands for user to input.
+     * 
+     * @return string of available commands.
+     */
     public String help() {
         String todo = "\n\t1. todo <todo name>  : add new todo";
         String event = "\n\t2. event <event name> /at <event time> : add new event";

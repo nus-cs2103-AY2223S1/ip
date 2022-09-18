@@ -14,6 +14,9 @@ public class Iana {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Iana class to initialise Iana app.
+     */
     public Iana() {
         tasks = new TaskList();
         ui = new Ui();
@@ -39,10 +42,20 @@ public class Iana {
         }
     }
 
+    /**
+     * Get a welcome message from Iana.
+     * 
+     * @return the welcome message.
+     */
     public String getHi() {
         return ui.sayHi();
     }
 
+    /**
+     * Get help for app usage from Iana.
+     * 
+     * @return string of available commands to input.
+     */
     public String getHelp() {
         return ui.help();
     }

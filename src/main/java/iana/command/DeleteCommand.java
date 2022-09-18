@@ -20,9 +20,6 @@ public class DeleteCommand extends Command {
         this.taskNum = taskNum;
     }
 
-    /**
-     * Runs the command to delete task.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException {
         try {
@@ -36,9 +33,6 @@ public class DeleteCommand extends Command {
         }
     }
 
-    /**
-     * Returns false.
-     */
     @Override
     public boolean isExit() {
         return false;

@@ -18,18 +18,12 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
-    /**
-     * Gets task list containing tasks containing specified keyword.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) {
         TaskList list = tasks.findKeyword(this.keyword);
         return ui.list(list);
     }
 
-    /**
-     * Returns false as command is not exit.
-     */
     @Override
     public boolean isExit() {
         return false;

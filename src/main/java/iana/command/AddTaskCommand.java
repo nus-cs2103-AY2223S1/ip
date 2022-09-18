@@ -20,9 +20,6 @@ public class AddTaskCommand extends Command {
         this.taskInput = taskInput;
     }
 
-    /**
-     * Runs the command to try to add a new task.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException {
         Task newTask = Task.of(this.taskInput, false);
@@ -30,9 +27,6 @@ public class AddTaskCommand extends Command {
         return ui.sayTaskAdded(newTask);
     }
 
-    /**
-     * Returns false since command is not an exit command.
-     */
     @Override
     public boolean isExit() {
         return false;

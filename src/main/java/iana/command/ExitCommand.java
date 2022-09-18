@@ -10,18 +10,12 @@ import iana.ui.Ui;
  */
 public class ExitCommand extends Command {
 
-    /**
-     * Runs the command to exit the program.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException{
         Storage.store(tasks);
         return ui.sayBye();
     }
 
-    /**
-     * Returns true as command is exit command.
-     */
     @Override
     public boolean isExit() {
         return true;

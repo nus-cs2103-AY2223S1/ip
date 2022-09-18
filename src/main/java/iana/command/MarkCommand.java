@@ -19,9 +19,6 @@ public class MarkCommand extends Command {
         this.taskNum = taskNum;
     }
 
-    /**
-     * Runs command to mark task.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException {
         try {
@@ -34,9 +31,6 @@ public class MarkCommand extends Command {
         }
     }
 
-    /**
-     * Returns false as command is not an exit command.
-     */
     @Override
     public boolean isExit() {
         return false;

@@ -19,9 +19,6 @@ public class UnmarkCommand extends Command {
         this.taskNum = taskNum;
     }
 
-    /**
-     * Runs command to unmark a task.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException {
         try {
@@ -33,9 +30,6 @@ public class UnmarkCommand extends Command {
         }
     }
 
-    /**
-     * Returns false as command is not an exit command.
-     */
     @Override
     public boolean isExit() {
         return false;
