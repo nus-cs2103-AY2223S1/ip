@@ -1,3 +1,11 @@
+package KKBot.commands;
+
+import KKBot.storage.Storage;
+import KKBot.storage.exceptions.StorageException;
+import KKBot.tasks.Deadline;
+import KKBot.tasklist.TaskList;
+import KKBot.ui.Ui;
+
 /**
  * Class representing the command for KKBot when user inputs a deadline task
  *

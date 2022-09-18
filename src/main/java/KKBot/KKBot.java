@@ -1,7 +1,12 @@
-import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
+package KKBot;
+
+import KKBot.commands.Command;
+import KKBot.exceptions.KKBotException;
+import KKBot.parser.Parser;
+import KKBot.storage.Storage;
+import KKBot.storage.exceptions.StorageException;
+import KKBot.tasklist.TaskList;
+import KKBot.ui.Ui;
 
 /**
  * KKBot is a chatbot that helps keep track of your to-do list!

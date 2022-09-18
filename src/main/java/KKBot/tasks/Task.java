@@ -1,3 +1,5 @@
+package KKBot.tasks;
+
 /**
  * Tasks are added by the user for KKBot to store and keep track of.
  *

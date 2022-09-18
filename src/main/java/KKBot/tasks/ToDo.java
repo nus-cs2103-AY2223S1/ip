@@ -1,3 +1,5 @@
+package KKBot.tasks;
+
 /**
  * ToDos are task objects that only have a description.
  *

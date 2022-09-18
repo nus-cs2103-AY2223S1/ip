@@ -1,3 +1,9 @@
+package KKBot.commands;
+
+import KKBot.storage.Storage;
+import KKBot.tasklist.TaskList;
+import KKBot.ui.Ui;
+
 /**
  * Class representing the exit command for KKBot when user inputs 'bye'
  *

@@ -1,3 +1,7 @@
+package KKBot.parser.exceptions;
+
+import KKBot.exceptions.KKBotException;
+
 /**
  * An exception thrown when user-input date is erroneous.
  *

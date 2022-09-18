@@ -1,3 +1,7 @@
+package KKBot.tasks;
+
+import KKBot.parser.Parser;
+
 /**
  * Events are tasks that have a description, a start and end time.
  *

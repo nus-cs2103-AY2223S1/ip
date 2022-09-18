@@ -1,3 +1,5 @@
+package KKBot.exceptions;
+
 /**
  * KKBotException class to encompass exceptions thrown by KKBot.
  *

@@ -1,3 +1,7 @@
+package KKBot.tasks;
+
+import KKBot.parser.Parser;
+
 /**
  * Deadlines are tasks that have a description and must be done by a certain time.
  *

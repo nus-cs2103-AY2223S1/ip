@@ -1,6 +1,11 @@
+package KKBot.tasklist;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import KKBot.tasklist.exceptions.InvalidTaskException;
+import KKBot.tasks.Task;
 
 /**
  * TaskList class to assist KKBot in storing tasks as a list.

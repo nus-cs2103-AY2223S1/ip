@@ -1,3 +1,7 @@
+package KKBot.parser.exceptions;
+
+import KKBot.exceptions.KKBotException;
+
 /**
  * An exception thrown when user inputs an invalid command.
  *

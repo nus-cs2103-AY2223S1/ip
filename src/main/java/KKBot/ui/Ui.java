@@ -1,3 +1,12 @@
+package KKBot.ui;
+
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import KKBot.tasks.Task;
+import KKBot.tasklist.TaskList;
+
 /**
  * Ui class that includes all text-based visual elements
  * for KKBot.

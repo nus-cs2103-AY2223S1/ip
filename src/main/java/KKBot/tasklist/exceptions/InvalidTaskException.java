@@ -1,3 +1,7 @@
+package KKBot.tasklist.exceptions;
+
+import KKBot.exceptions.KKBotException;
+
 /**
  * An exception thrown when user tries to access a task that does not exist.
  *
