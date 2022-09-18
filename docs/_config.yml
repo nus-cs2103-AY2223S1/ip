@@ -1,0 +1,10 @@
+title: "AB-3"
+theme: minima
+
+header_pages:
+  - README.md
+
+markdown: kramdown
+
+repository: "Eclipse-Dominator/ip"
+github_icon: "images/github-icon.png"
