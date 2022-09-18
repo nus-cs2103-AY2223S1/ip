@@ -37,7 +37,7 @@ public class AddCommand extends Command {
      * @param duke Duke instance to run the AddCommand at.
      */
     @Override
-    public void run(Duke duke) {
+    public void run(Duke duke) throws DukeException {
         Task task;
         switch (type) {
         case 'T':

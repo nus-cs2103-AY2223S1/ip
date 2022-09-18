@@ -27,7 +27,7 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
     /**
-     *
+     * Initializes the MainWindow.
      */
     @FXML
     public void initialize() {
@@ -35,9 +35,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     * Sets the associated Duke instance.
      *
-     *
-     * @param d
+     * @param d Duke instance to be associated.
      */
     public void setDuke(Duke d) {
         duke = d;

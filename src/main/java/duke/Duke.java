@@ -3,7 +3,6 @@ package duke;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -16,9 +15,9 @@ import javafx.stage.Stage;
  * Represents Duke, a Personal Assistant Chatterbot that helps a person to keep track of various things.
  */
 public class Duke extends Application {
-    private final Storage storage = new Storage("./duke.txt");
-    private final TaskList tasks = storage.load();
-    private final Ui ui = new Ui();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
     private boolean isActive = true;
 
     private ScrollPane scrollPane;
@@ -30,17 +29,16 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
     /**
-     * Start the Duke Chatterbot.
+     * Constructor of Duke.
      */
-    public void startDuke() {
-        ui.greet();
-        while (isActive) {
-            String input = ui.read();
-            Command command = Parser.parseInput(input);
-            command.run(this);
-            storage.save(tasks);
-        } // System.out.println(e.getMessage());
-        ui.close();
+    public Duke() {
+        try {
+            storage = new Storage("./duke.txt");
+            tasks = storage.load();
+            ui = new Ui();
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -48,9 +46,12 @@ public class Duke extends Application {
      *
      * @param task Task to add.
      */
-    public void addTask(Task task) { // error if description is empty
+    public void addTask(Task task) throws DukeException { // error if description is empty
         assert tasks != null;
         assert task != null;
+        if (task.description.isBlank()) {
+            throw new DukeException("Task description is empty!");
+        }
         tasks.add(task);
         ui.addTask(task);
         ui.infoCount(tasks.size());
@@ -70,10 +71,10 @@ public class Duke extends Application {
      * @param index Index of Task to mark.
      * @param isDone Boolean to mark the Task as done or not done.
      */
-    public void markTask(int index, boolean isDone) {
+    public void markTask(int index, boolean isDone) throws DukeException {
         assert tasks != null;
         if (index < 0 || index >= tasks.size()) {
-            return; // throw new duke.DukeException("Index out of bound!");
+            throw new DukeException("Index out of bound!");
         }
         Task task = tasks.get(index);
         assert task != null;
@@ -91,10 +92,10 @@ public class Duke extends Application {
      *
      * @param index Index of Task to delete.
      */
-    public void deleteTask(int index) {
+    public void deleteTask(int index) throws DukeException {
         assert tasks != null;
         if (index < 0 || index >= tasks.size()) {
-            return; // throw new duke.DukeException("Index out of bound!");
+            throw new DukeException("Index out of bound!");
         }
         Task task = tasks.remove(index);
         assert task != null;
@@ -121,12 +122,13 @@ public class Duke extends Application {
     public void exit() {
         assert isActive;
         isActive = false;
+        ui.close();
     }
 
     /**
+     * Starts the Duke GUI.
      *
-     *
-     * @param stage
+     * @param stage Stage to show the GUI elements.
      */
     @Override
     public void start(Stage stage) {
@@ -198,21 +200,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
@@ -227,22 +214,20 @@ public class Duke extends Application {
     }
 
     /**
+     * Takes user input and returns Duke's response to the input.
      *
+     * @param input User input.
+     * @return Duke's response to the input.
      */
     protected String getResponse(String input) {
         assert input != null;
-        Command command = Parser.parseInput(input);
-        command.run(this);
-        storage.save(tasks);
+        try {
+            Command command = Parser.parseInput(input);
+            command.run(this);
+            storage.save(tasks);
+        } catch (DukeException e) {
+            ui.print(e.getMessage());
+        }
         return ui.collect();
-    }
-
-    /**
-     *
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        new Duke().startDuke();
     }
 }

@@ -1,20 +1,23 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+
+
 
 public class DeadlineTest {
     @Test
-    public void toStringTest() {
+    public void toStringTest() throws DukeException {
         assertEquals("[D][ ] Deadline (by: Dec 16 2022)",
                 new Deadline("Deadline", "2022-12-16").toString());
     }
 
     @Test
-    public void deadlineTest() {
+    public void deadlineTest() throws DukeException {
         assertEquals("Sep 16 2022", new Deadline("Deadline", "2022-09-16").deadline
                 .format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
