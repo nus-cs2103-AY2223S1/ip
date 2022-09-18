@@ -47,7 +47,7 @@ public abstract class Task {
     public String getStorageDescription() {
         String finishedStatus = this.isFinished ? "finished" : "unfinished";
         return finishedStatus + ", " + this.taskName + "\n";
-    };
+    }
 
     /**
      * Represents a Task object that does not have any date or time associated with it, namely a todo task.
