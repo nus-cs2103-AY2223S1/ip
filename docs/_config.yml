@@ -1,9 +1,6 @@
 title: "Duke"
 theme: minima
 
-header_pages:
-  - README.md
-
 markdown: kramdown
 
 repository: "Eclipse-Dominator/ip"
