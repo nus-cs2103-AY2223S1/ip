@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.nio.file.*;
 
@@ -71,20 +72,26 @@ public class SaveLoad {
             Task task = null;
 
             switch (taskType) {
-            case "T":
+            case "T": {
                 task = new Todo(taskDescription);
                 break;
+            }
 
-            case "E":
-                task = new Event(taskDescription);
-                task.setTime(taskProperties[3]);
-                break;
-
-            case "D":
-                task = new Deadline(taskDescription);
-                task.setDeadline(taskProperties[3]);
+            case "E": {
+                String taskDateTime = taskProperties[3];
+                LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
+                task = new Event(taskDescription, dateTime);
                 break;
             }
+
+            case "D": {
+                String taskDateTime = taskProperties[3];
+                LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
+                task = new Deadline(taskDescription, dateTime);
+                break;
+            }
+            }
+
             if (taskDone.equals("X") && task != null) {
                 task.mark();
             }

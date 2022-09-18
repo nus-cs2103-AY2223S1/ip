@@ -41,7 +41,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatus(), name);
+        return String.format("[%s] %s ", getStatus(), name);
     }
 
     public String changeFormat() {

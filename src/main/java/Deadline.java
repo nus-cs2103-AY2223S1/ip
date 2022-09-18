@@ -1,19 +1,15 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
-    private String deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructor for the Deadline task.
      * @param name Input name of the task.
      */
-    public Deadline(String name) {
+    public Deadline(String name, LocalDateTime dateTime) {
         super(name);
-        String[] split = name.split(" /by ");
-        this.name = split[0];
-        this.deadline = split.length < 2 ? "You didn't add a deadline!" : split[1];
-    }
-
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+        this.deadline = dateTime;
     }
 
     /**
@@ -22,11 +18,11 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)", getStatus(), name, deadline);
+        return "[D]" + super.toString() + String.format("(by: %s)", DateTime.printDate(deadline));
     }
 
     @Override
     public String changeFormat() {
-        return String.format("D | %s | %s | %s", getStatus(), name, this.deadline);
+        return String.format("D | %s | %s | %s", getStatus(), name, DateTime.changeFormat(this.deadline));
     }
 }
