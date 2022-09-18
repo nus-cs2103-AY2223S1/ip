@@ -22,7 +22,8 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[T][%s] %s (Priority: %s)", super.getStatusIcon(), super.toString(), super.getPriorityLevel());
+        return String.format("[T][%s] %s (Priority: %s)", super.getStatusIcon(),
+                super.toString(), super.getPriorityLevel());
     }
 
     /**

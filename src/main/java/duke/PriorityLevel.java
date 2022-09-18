@@ -1,8 +1,13 @@
 package duke;
 
-
+/**
+ * Encapsulates a PriorityLevel.
+ */
 public class PriorityLevel {
 
+    /**
+     * Creates a Priority enum.
+     */
     public enum Priority {
         URGENT,
         HIGH,
@@ -10,7 +15,10 @@ public class PriorityLevel {
         LOW
     }
 
-
+    /**
+     * Returns the Enum representation of the task is stored in a file.
+     * @return Enum of the task.
+     */
     public static Priority getPriorityString(String level) {
         switch (level.toUpperCase()) {
         case "URGENT":

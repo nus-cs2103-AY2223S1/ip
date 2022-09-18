@@ -88,7 +88,12 @@ public class TaskList {
         }
         return sb.toString();
     }
-
+    /**
+     * Checks if the string is in the arraylist.
+     * @param keyword Keyword used to search for tasks.
+     * @param i index of the string
+     * @return boolean of whether the word is found.
+     */
     public boolean isFound(String keyword, int i) {
         return this.arrayList.get(i).description.toLowerCase()
                 .contains(keyword.toLowerCase());

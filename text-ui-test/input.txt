@@ -1,6 +1,6 @@
 todo borrow book
-todo exercise
-todo read book
+todo exercise /p HIGH
+todo read book /p URGENT
 deadline return book /by Aug 20th
 event project meeting /at Aug 24th 9-11pm
 mark 1

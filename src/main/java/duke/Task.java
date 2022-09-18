@@ -36,12 +36,6 @@ public abstract class Task {
         return this.level.toString();
     }
 
-
-    public String changeTaskPriority(PriorityLevel.Priority level) {
-        this.level = level;
-        return String.format("Got it! I've set this task as priority level %s", level.toString());
-    }
-
     /**
      * Changes the status of task to be done.
      */
@@ -60,7 +54,6 @@ public abstract class Task {
 
     /**
      * Returns the String representation of the Task.
-     *
      * @return String representation of the Task.
      */
     @Override

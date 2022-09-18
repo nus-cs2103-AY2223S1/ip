@@ -9,7 +9,7 @@ public class TodoTest {
     public void toStringTest() {
         Todo temp1 = new Todo("", false , PriorityLevel.Priority.HIGH);
 
-        assertEquals("[T][ ] (Priority: HIGH)", temp1.toString());
+        assertEquals("[T][ ]  (Priority: HIGH)", temp1.toString());
 
         Todo temp2 = new Todo("read book", false, PriorityLevel.Priority.HIGH);
 

@@ -124,7 +124,8 @@ public class Parser {
             prioritySplit.add("LOW");
         }
 
-        Todo tmpTask = new Todo(prioritySplit.get(0).trim(), false, PriorityLevel.getPriorityString(prioritySplit.get(1)));
+        Todo tmpTask = new Todo(prioritySplit.get(0), false,
+                PriorityLevel.getPriorityString(prioritySplit.get(1)));
         String toDoMessage = this.taskList.addTask(tmpTask);
         this.storage.save(this.taskList);
         return toDoMessage;
@@ -151,11 +152,14 @@ public class Parser {
             if (prioritySplit.size() <= 1) {
                 prioritySplit.add("LOW");
             }
-            LocalDate tempDate = LocalDate.parse(prioritySplit.get(0), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate, PriorityLevel.getPriorityString(prioritySplit.get(1)));
-            String DeadlineMessage = this.taskList.addTask(tmpTask);
+            LocalDate tempDate = LocalDate.parse(prioritySplit.get(0),
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate,
+                    PriorityLevel.getPriorityString(prioritySplit.get(1)));
+            String deadlineMessage = this.taskList.addTask(tmpTask);
+
             this.storage.save(this.taskList);
-            return DeadlineMessage;
+            return deadlineMessage;
         } catch (DateTimeParseException e) {
             throw new DukeException("Please change Date format to dd/mm/yyyy");
         }
@@ -180,12 +184,13 @@ public class Parser {
             prioritySplit.add("LOW");
         }
 
-        Event tmpTask = new Event(tempSplit[0], false, prioritySplit.get(0), PriorityLevel.getPriorityString(prioritySplit.get(1)));
-        String EventMessage = this.taskList.addTask(tmpTask);
+        Event tmpTask = new Event(tempSplit[0], false, prioritySplit.get(0),
+                PriorityLevel.getPriorityString(prioritySplit.get(1)));
+        String eventMessage = this.taskList.addTask(tmpTask);
         this.storage.save(this.taskList);
-        return EventMessage;
+        return eventMessage;
 
-}
+    }
     /**
      * Parses the delete command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
@@ -224,24 +229,38 @@ public class Parser {
         return (command.isBlank() || command.isEmpty());
     }
 
+    /**
+     * Checks if it is a valid index.
+     * @param index String representation of the index.
+     * @return A boolean value of the validity of the index.
+     */
     public boolean isInValidIndex(String index) {
-        if(!isEmptyString(index)) {
+        if (!isEmptyString(index)) {
             return Integer.parseInt(index) <= 0 || Integer.parseInt(index) > this.taskList.size();
         }
         return true;
     }
 
+    /**
+     * Trims and makes the command case-insensitive.
+     * @param cmd String representation of the command.
+     * @return A string  representing the command that has been trimmed and made case-insensitive.
+     */
     public ArrayList<String> inSensitiveTrimmedCommand(String cmd) {
         String[] regularCmd = cmd.split(" ");
         ArrayList<String> temp = new ArrayList<>();
-        for (int i =0; i < regularCmd.length; i++) {
-            if(!regularCmd[i].isEmpty()) {
+        for (int i = 0; i < regularCmd.length; i++) {
+            if (!regularCmd[i].isEmpty()) {
                 temp.add(regularCmd[i].trim().toLowerCase());
             }
         }
         return temp;
     }
-
+    /**
+     * Converts an arraylist of strings into a string array.
+     * @param cmd ArrayList of String of the command.
+     * @return A string array representing the command.
+     */
     public String[] getSubCmd(ArrayList<String> cmd) {
         List<String> subTemp = cmd.subList(1, cmd.size());
         String[] subCmd = new String[subTemp.size()];
