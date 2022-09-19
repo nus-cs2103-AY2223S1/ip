@@ -45,6 +45,8 @@ public class Parser {
                 return new UnmarkCommand(parseNum(commands[1]));
             case "help":
                 return new HelpCommand();
+            case "find":
+                return new FindCommand(commands[1]);
             default:
                 throw new DorisException("Eh what are you talking can speak properly or not");
         }

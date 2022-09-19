@@ -44,6 +44,7 @@ public class Ui {
                 "\n event <task> /at <yyyy-MM-dd hh:mm AM/PM> | Add an event you need to go for la" +
                 "\n mark <index of task> | Mark the task as done la" +
                 "\n unmark <index of task> | Mark the task as not done la" +
+                "\n find <text to find> | Find any tasks that contains that text la" +
                 "\n bye | Stop using the bot la");
     }
 
@@ -96,5 +97,14 @@ public class Ui {
 
     public String readCommand() {
         return sc.nextLine();
+    }
+
+    public void showFound(String tasks) {
+        if (tasks.equals("")) {
+            System.out.println("Eh don't have anything like that leh try again");
+        } else {
+            System.out.println("Eh I managed to find these tasks hurry go do");
+            System.out.println(tasks);
+        }
     }
 }

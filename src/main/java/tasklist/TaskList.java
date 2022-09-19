@@ -61,4 +61,16 @@ public class TaskList {
             System.out.println(i + 1 + ". " + tasks.get(i));
         }
     }
+
+    public String find(String query) {
+        String result = "";
+        int index = 1;
+        for (int i = 0; i < size(); i++) {
+            Task curr = tasks.get(i);
+            if ((curr.getDescription().toLowerCase()).contains(query)) {
+                result += index++ + ". " + curr + "\n";
+            }
+        }
+        return result;
+    }
 }
