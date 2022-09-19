@@ -1,3 +1,1 @@
-deadline,hw /by 2022-09-01
-todo,walk dog
-todo,buy bread
+deadline,homework  /by Sep 1 2022todo,walk cattodo,buy breaddeadline,return book  /by Oct 10 2022event,meeting  /at Oct 11 2022

@@ -42,7 +42,7 @@ public class TaskList {
             int slashChar = input.indexOf("/");
 
             if (slashChar == -1) {
-                throw new DukeException("oops, looks like you're missing the command to tell me the deadline");
+                throw new DukeException("oops, your command seems to be invalid");
             }
             assert slashChar > 0;
             String taskDesc = input.substring(0, slashChar);
@@ -116,6 +116,20 @@ public class TaskList {
             }
         }
         return ui.showFoundTasks(taskNo, relevantTasks);
+    }
+
+    public String updateTask(String taskNo, String taskType, String taskDesc, Ui ui, Storage storage) {
+        int taskNoToUpdate = Integer.valueOf(taskNo) - 1;
+        try {
+            addTask(taskType, taskDesc);
+            Task updatedTask = getRecentTask();
+            this.taskArr.remove(updatedTask);
+            this.taskArr.set(taskNoToUpdate, updatedTask);
+            storage.updateTask(this.taskArr);
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
+        }
+        return ui.showUpdatedTask();
     }
 
     /**

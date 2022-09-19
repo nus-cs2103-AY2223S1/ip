@@ -25,6 +25,10 @@ public class EditCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        if (this.keyword.equals("update")) {
+            String[] splitInput = this.input.split(" ", 3);
+            return tasks.updateTask(splitInput[0], splitInput[1], splitInput[2], ui, storage);
+        }
         return tasks.markTask(this.keyword, this.input, ui);
     }
 

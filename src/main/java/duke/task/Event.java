@@ -11,6 +11,11 @@ public class Event extends Task{
     }
 
     @Override
+    public String convertToFile() {
+        return "event," + this.description + " /at " + this.on;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.on + ")";
     }
