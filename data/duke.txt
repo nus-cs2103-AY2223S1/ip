@@ -1,0 +1,3 @@
+|T|| ||0| read book
+|E||X||0| party (at: 5pm)
+|D|| ||1| project (by: 2022-03-04)
