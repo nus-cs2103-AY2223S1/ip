@@ -1,4 +1,4 @@
-package pony;
+package pony.javafx;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -18,7 +18,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 /**
  * An example of a custom control using FXML.
@@ -78,7 +77,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Returns the doemon chat bot dialog box.
+     * Returns the pony chat bot dialog box.
      *
      * @param text Text to be displayed
      * @param img Image to be displayed

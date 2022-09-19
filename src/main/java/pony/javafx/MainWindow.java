@@ -1,4 +1,4 @@
-package pony;
+package pony.javafx;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import pony.Pony;
+import pony.Ui;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -24,12 +26,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    /** Instance of doemon being used */
+    /** Instance of Pony being used */
     private Pony pony;
 
     /** Image of the user avatar */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/girl.png"));
-    /** Image of the doemon chat bot avatar */
+    /** Image of the Pony chat-bot avatar */
     private Image ponyImage = new Image(this.getClass().getResourceAsStream("/images/pony.png"));
 
     /**
@@ -43,9 +45,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Sets the doemon field.
+     * Sets the Pony field.
      *
-     * @param p Doemon instance.
+     * @param p Pony instance.
      */
     public void setPony(Pony p) {
         pony = p;
@@ -53,7 +55,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Creates two dialog boxes, one echoing user input and the
-     * other containing Doemon's reply and then appends them to
+     * other containing Pony's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML

@@ -1,11 +1,16 @@
 package pony.task;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TodoTest {
+/**
+ * Test for ToDo task.
+ */
+public class ToDoTest {
 
+    /**
+     * Test if a todo task is correctly created.
+     */
     @Test
     public void createTaskTest() {
         ToDo task = new ToDo("Math Homework");

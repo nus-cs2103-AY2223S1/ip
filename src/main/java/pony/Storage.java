@@ -1,6 +1,9 @@
 package pony;
 
-import pony.task.*;
+import pony.task.Deadline;
+import pony.task.Event;
+import pony.task.Task;
+import pony.task.ToDo;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,18 +75,18 @@ public class Storage {
         String[] strArr = taskDetail.split(" \\Q|\\E ", 4);
         Task newTask = null;
         switch (strArr[0]) {
-            case "T":
-                newTask = new ToDo(strArr[2]);
-                tasks.add(newTask);
-                break;
-            case "D":
-                newTask = new Deadline(strArr[2], strArr[3]);
-                tasks.add(newTask);
-                break;
-            case "E":
-                newTask = new Event(strArr[2], strArr[3]);
-                tasks.add(newTask);
-                break;
+        case "T":
+            newTask = new ToDo(strArr[2]);
+            tasks.add(newTask);
+            break;
+        case "D":
+            newTask = new Deadline(strArr[2], strArr[3]);
+            tasks.add(newTask);
+            break;
+        case "E":
+            newTask = new Event(strArr[2], strArr[3]);
+            tasks.add(newTask);
+            break;
         }
         if (strArr[1].equals("1")) {
             newTask.markAsDone();

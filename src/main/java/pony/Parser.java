@@ -1,12 +1,22 @@
 package pony;
 
-import pony.command.*;
+import pony.command.AddDeadlineCommand;
+import pony.command.AddEventCommand;
+import pony.command.AddToDoCommand;
+import pony.command.Command;
+import pony.command.DeleteCommand;
+import pony.command.ExitCommand;
+import pony.command.FindCommand;
+import pony.command.InvalidCommand;
+import pony.command.ListCommand;
+import pony.command.MarkCommand;
+import pony.command.UnmarkCommand;
+
 
 /**
  * A parser class to parse command inputs.
  */
 public class Parser {
-    public Parser() {};
 
     /**
      * Parse the full command given by user.
@@ -26,26 +36,26 @@ public class Parser {
         }
 
         switch (commandType) {
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(commandDetails);
-            case "unmark":
-                return new UnmarkCommand(commandDetails);
-            case "delete":
-                return new DeleteCommand(commandDetails);
-            case "todo":
-                return new AddToDoCommand(commandDetails);
-            case "deadline":
-                return new AddDeadlineCommand(commandDetails);
-            case "event":
-                return new AddEventCommand(commandDetails);
-            case "find":
-                return new FindCommand(commandDetails);
-            default:
-                return new InvalidCommand();
+        case "bye":
+            return new ExitCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(commandDetails);
+        case "unmark":
+            return new UnmarkCommand(commandDetails);
+        case "delete":
+            return new DeleteCommand(commandDetails);
+        case "todo":
+            return new AddToDoCommand(commandDetails);
+        case "deadline":
+            return new AddDeadlineCommand(commandDetails);
+        case "event":
+            return new AddEventCommand(commandDetails);
+        case "find":
+            return new FindCommand(commandDetails);
+        default:
+            return new InvalidCommand();
         }
     }
 

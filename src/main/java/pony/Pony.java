@@ -2,6 +2,9 @@ package pony;
 
 import pony.command.Command;
 
+/**
+ * Pony contains the main logic for the task management program.
+ */
 public class Pony {
 
     private Storage storage;
@@ -19,6 +22,12 @@ public class Pony {
         tasks = new TaskList(storage.loadTaskList());
     }
 
+    /**
+     * Executes a command from a string and return the response.
+     *
+     * @param command Command detail input by user.
+     * @return Response from the program.
+     */
     public String runCommand(String command) {
         Command c = Parser.parseCommand(command);
         String message = c.execute(tasks, storage, ui);

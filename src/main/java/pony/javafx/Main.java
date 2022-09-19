@@ -1,4 +1,4 @@
-package pony;
+package pony.javafx;
 
 import java.io.IOException;
 
@@ -7,9 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import pony.Pony;
 
 /**
- * A GUI for Doemon using FXML.
+ * A GUI for Pony using FXML.
  */
 public class Main extends Application {
     /** The file path of the file where tasks will be saved to. */

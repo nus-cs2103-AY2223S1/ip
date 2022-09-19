@@ -1,4 +1,4 @@
-package pony;
+package pony.javafx;
 import javafx.application.Application;
 
 /**
