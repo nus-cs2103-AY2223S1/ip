@@ -32,6 +32,7 @@ public class Parser {
                 throw new DukeException("You did not state a task number!");
             }
             int taskNum = Integer.parseInt(inputArray[1]) - 1;
+            assert taskNum > -1 : "The task number should be a valid number (starting from 1)";
             response = tl.markTask(taskNum);
             break;
         case "UNMARK":
@@ -39,6 +40,7 @@ public class Parser {
                 throw new DukeException("You did not state a task number!");
             }
             taskNum = Integer.parseInt(inputArray[1]) - 1;
+            assert taskNum > -1 : "The task number should be a valid number (starting from 1)";
             response = tl.unmarkTask(taskNum);
             break;
         case "TODO":
@@ -71,6 +73,7 @@ public class Parser {
                 throw new DukeException("You did not state a task number!");
             }
             taskNum = Integer.parseInt(inputArray[1]) - 1;
+            assert taskNum > -1 : "The task number should be a valid number (starting from 1)";
             response = tl.deleteTask(taskNum);
             break;
         case "BYE":
