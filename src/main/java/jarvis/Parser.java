@@ -125,6 +125,8 @@ public class Parser {
         tasks.getList().remove(toDelete);
         String deleteResponse = "Noted. I have removed this task:\n ";
         String output = deleteResponse + deleteTask.toString();
+        Task.minusCount();
+        output = output + "\nNow you have " + Task.getCount() + " tasks in the list.";
         return output;
     }
 
@@ -134,8 +136,8 @@ public class Parser {
             throw new JarvisException("The description of a todo cannot be empty");
         }
         tasks.getList().add(new ToDo(description));
-        String output = ("Got it. I've added this task:\n " + tasks.getList().get(Task.getCount() - 1)
-                + "\nNow you have " + (Task.getCount()) + " tasks in the list.");
+        String output = ("Got it. I've added this task:\n " + tasks.getList().get(tasks.getList().size() - 1)
+                + "\nNow you have " + (tasks.getList().size()) + " tasks in the list.");
         return output;
     }
 
@@ -144,8 +146,8 @@ public class Parser {
         String description = input.substring(9, divisor - 1);
         String date = input.substring(divisor + 4);
         tasks.getList().add(new Deadline(description, date));
-        String output = ("Got it. I've added this task:\n " + tasks.getList().get(Task.getCount() - 1)
-                + "\nNow you have " + (Task.getCount()) + " tasks in the list.");
+        String output = ("Got it. I've added this task:\n " + tasks.getList().get(tasks.getList().size() - 1)
+                + "\nNow you have " + (tasks.getList().size()) + " tasks in the list.");
         return output;
     }
 
@@ -154,8 +156,8 @@ public class Parser {
         String description = input.substring(6, divisor - 1);
         String date = input.substring(divisor + 4);
         tasks.getList().add(new Event(description, date));
-        String output = ("Got it. I've added this task:\n " + tasks.getList().get(Task.getCount() - 1)
-                + "\nNow you have " + (Task.getCount()) + " tasks in the list.");
+        String output = ("Got it. I've added this task:\n " + tasks.getList().get(tasks.getList().size() - 1)
+                + "\nNow you have " + (tasks.getList().size()) + " tasks in the list.");
         return output;
     }
 

@@ -61,4 +61,8 @@ public abstract class Task {
     public static int getCount() {
         return count;
     }
+
+    public static void minusCount() {
+        count--;
+    }
 }
