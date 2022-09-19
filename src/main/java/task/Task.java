@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 import exception.InvalidDateException;
 
 public class Task {
+    private final String MESSAGE_ERROR_PAST_DATE = "Date should be a future date, not one in the past";
+    private final String MESSAGE_ERROR_WRONG_FORMAT = "Date is formatted wrongly";
+
     protected DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     protected DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("E, d MMM yyyy");
     protected String type;
@@ -125,11 +128,11 @@ public class Task {
             LocalDate currentDate = LocalDate.now();
             LocalDate taskDate = LocalDate.parse(date, inputDateFormatter);
             if (taskDate.isBefore(currentDate)) {
-                throw new InvalidDateException("Date should be a future date, not one in the past");
+                throw new InvalidDateException(MESSAGE_ERROR_PAST_DATE);
             }
             return taskDate;
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("Date is formatted wrongly");
+            throw new InvalidDateException(MESSAGE_ERROR_WRONG_FORMAT);
         }
     }
 

@@ -15,16 +15,19 @@ import exception.InvalidCommandException;
 
 public class Parser {
 
-    private static final String COMMAND_FIND = "find"; 
-    private static final String COMMAND_LOAD = "load"; 
-    private static final String COMMAND_LIST = "list";
-    private static final String COMMAND_BYE = "bye";
-    private static final String COMMAND_DELETE = "delete";
-    private static final String COMMAND_TODO = "todo";
-    private static final String COMMAND_DEADLINE = "deadline";
-    private static final String COMMAND_EVENT = "event";
-    private static final String COMMAND_MARK = "mark";
-    private static final String COMMAND_UNMARK = "unmark";
+    private final String MESSAGE_ERROR_UNNECESSARY_ARG = "Argument given for command not needing argument";
+    private final String MESSAGE_ERROR_INVALID_COMMAND = "Command entered is invalid";
+
+    private final String COMMAND_FIND = "find"; 
+    private final String COMMAND_LOAD = "load"; 
+    private final String COMMAND_LIST = "list";
+    private final String COMMAND_BYE = "bye";
+    private final String COMMAND_DELETE = "delete";
+    private final String COMMAND_TODO = "todo";
+    private final String COMMAND_DEADLINE = "deadline";
+    private final String COMMAND_EVENT = "event";
+    private final String COMMAND_MARK = "mark";
+    private final String COMMAND_UNMARK = "unmark";
 
     public Parser() {
         ;
@@ -60,7 +63,7 @@ public class Parser {
             return new LoadCommand();
         case COMMAND_LIST:
             if (!commandArgs.equals("")) {
-                throw new InvalidCommandException("Argument given for command not needing argument");
+                throw new InvalidCommandException(MESSAGE_ERROR_UNNECESSARY_ARG);
             }
             return new ListCommand();
         case COMMAND_BYE:
@@ -89,7 +92,7 @@ public class Parser {
         case COMMAND_DELETE:
             return new DeleteCommand(commandArgs);
         default:
-            throw new InvalidCommandException("Command entered is invalid");
+            throw new InvalidCommandException(MESSAGE_ERROR_INVALID_COMMAND);
         }
     }
 

@@ -20,6 +20,8 @@ import task.Task;
 
 public class Storage {
 
+    private final String MESSAGE_ERROR_FILEPATH = "File path specified does not exist";
+    private final String MESSAGE_ERROR_FILESAVE = "Error in saving Tasks";
     private final String LOG_FILE_DIRECTORY = "./resources"; //log files must be in resources directory
     private String logFileAddress = "./resources/dukeLog.txt"; //default file address
 
@@ -91,7 +93,7 @@ public class Storage {
     public int loadLog(String newPath) throws MeowerException{
         String fullPath = this.LOG_FILE_DIRECTORY + "/" + newPath;
         if (!this.verifyPath(fullPath)) {
-            throw new MeowerFileAddressInvalidException("File path specified does not exist");
+            throw new MeowerFileAddressInvalidException(MESSAGE_ERROR_FILEPATH);
         }
         this.logFileAddress = fullPath;
         return this.loadLog();
@@ -127,7 +129,7 @@ public class Storage {
             return numOfTasks;
         }
         catch (IOException e) {
-            throw new MeowerIOException("Error in saving Tasks\n");
+            throw new MeowerIOException(MESSAGE_ERROR_FILESAVE);
         }
     }
 
