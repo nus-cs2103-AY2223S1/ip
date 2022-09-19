@@ -115,8 +115,10 @@ public class DukeTest extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to the user based on the user input.
+     *
+     * @param input The user input.
+     * @return The string containing the response to the input.
      */
     private String getResponse(String input) {
         assert !input.isBlank();

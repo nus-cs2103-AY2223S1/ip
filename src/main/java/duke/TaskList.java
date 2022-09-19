@@ -2,7 +2,6 @@ package duke;
 
 import duke.task.*;
 
-import java.security.KeyPair;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -77,7 +76,7 @@ public class TaskList {
         Integer taskNo = Integer.valueOf(input) - 1;
         assert taskNo > -1;
         Task taskToRemove = this.taskArr.get(taskNo);
-        this.taskArr.remove(getTask(taskNo));
+        this.taskArr.remove(taskToRemove);
         return ui.showDeletingTask(taskToRemove.toString());
     }
 
