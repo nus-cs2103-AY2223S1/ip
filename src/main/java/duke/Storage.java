@@ -1,21 +1,23 @@
+package duke;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.util.LinkedList;
 
-public class FrenIO {
+public class Storage {
     private static final String currentDir = System.getProperty("user.dir");
-    private static final Path savedDataPath = Paths.get(FrenIO.currentDir, "/data");
-    private static final Path dataFilePath = Paths.get(FrenIO.savedDataPath.toString(), "duke.txt");
+    private static final Path savedDataPath = Paths.get(Storage.currentDir, "/data");
+    private static final Path dataFilePath = Paths.get(Storage.savedDataPath.toString(), "duke.txt");
     private static final String filePath = currentDir + "/data/duke.txt";
 
     public static void createDataFolder() {
-        boolean directoryExists = Files.exists(FrenIO.savedDataPath);
+        boolean directoryExists = Files.exists(Storage.savedDataPath);
 
         if (!directoryExists) {
             try {
-                Files.createDirectory(FrenIO.savedDataPath);
+                Files.createDirectory(Storage.savedDataPath);
             } catch (IOException ex) {
                 System.out.println("IOException in creating data folder!");
             }
@@ -23,11 +25,11 @@ public class FrenIO {
     }
 
     public static void createDataFile() {
-        boolean dataFileExists = Files.exists(FrenIO.dataFilePath);
+        boolean dataFileExists = Files.exists(Storage.dataFilePath);
 
         if(!dataFileExists) {
             try {
-                Files.createFile(FrenIO.dataFilePath);
+                Files.createFile(Storage.dataFilePath);
             } catch (IOException ex) {
                 System.out.println("IOException in creating data file!");
             }
@@ -39,7 +41,7 @@ public class FrenIO {
         BufferedWriter bufferedWriter = null;
 
         try {
-            fileWriter = new FileWriter(FrenIO.filePath, false);
+            fileWriter = new FileWriter(Storage.filePath, false);
             bufferedWriter = new BufferedWriter(fileWriter);
 
             for (int i = 0; i < tasks.size(); i++) {
@@ -60,11 +62,11 @@ public class FrenIO {
         }
     }
 
-    public static LinkedList<Task> initializeData() throws DukeException {
-        LinkedList<Task> tasks = new LinkedList<>();
+    public static TaskList initializeData() throws DukeException {
+        TaskList tasks = new TaskList();
 
         try {
-            FileReader fileReader = new FileReader(FrenIO.filePath);
+            FileReader fileReader = new FileReader(Storage.filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String entry = bufferedReader.readLine();
 

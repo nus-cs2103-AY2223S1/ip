@@ -1,77 +1,82 @@
+package duke;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Duke extends Chatbot {
-    private static final String GREETING = "Hi friend! How may I help you?";
-    private static final String FAREWELL = "See you soon, friend!";
-    private LinkedList<Task> tasks = new LinkedList<>();
+    //private LinkedList<Task> tasks = new LinkedList<>();
+    private TaskList tasks = new TaskList();
 
     public static void main(String[] args) {
-        FrenIO.createDataFolder();
-        FrenIO.createDataFile();
+        new Duke().run();
+    }
+
+    public void run() {
+        Storage.createDataFolder();
+        Storage.createDataFile();
         Duke duke = new Duke();
 
         try {
-            duke.tasks = FrenIO.initializeData();
+            duke.tasks = Storage.initializeData();
         } catch (DukeException ex) {
             System.out.println("Error in initializing data!");
         }
 
-        duke.sayHello();
+        Ui.sayHello();
 
         while(true) {
             String action = duke.listen();
 
-            if (KeywordChecker.containsExactKeyword(action)) {
+            if (Parser.containsExactKeyword(action)) {
                 switch (action) {
-                    case KeywordChecker.EXACT_KEYWORD_BYE:
-                        duke.sayGoodbye();
+                    case Parser.EXACT_KEYWORD_BYE:
+                        Ui.sayGoodbye();
                         break;
-                    case KeywordChecker.EXACT_KEYWORD_LIST:
+                    case Parser.EXACT_KEYWORD_LIST:
                         duke.listTasks(duke);
                         break;
                 }
 
-                if (action.equals(KeywordChecker.EXACT_KEYWORD_BYE)) {
+                if (action.equals(Parser.EXACT_KEYWORD_BYE)) {
                     break;
                 }
-            } else if (KeywordChecker.containsMarkKeyword(action)) {
+            } else if (Parser.containsMarkKeyword(action)) {
                 try {
-                    int id = KeywordChecker.getSpecifier(action);
+                    int id = Parser.getSpecifier(action);
 
                     if (id > duke.tasks.size() || id < 1) {
                         throw new DukeException("Out of bounds index!");
                     }
 
-                    switch (KeywordChecker.getNonexactKeyword(action)) {
-                        case KeywordChecker.MARK_KEYWORD_MARK:
+                    switch (Parser.getNonexactKeyword(action)) {
+                        case Parser.MARK_KEYWORD_MARK:
                             duke.markTask(duke, id);
                             break;
-                        case KeywordChecker.MARK_KEYWORD_UNMARK:
+                        case Parser.MARK_KEYWORD_UNMARK:
                             duke.unmarkTask(duke, id);
                             break;
-                        case KeywordChecker.MARK_KEYWORD_DELETE:
+                        case Parser.MARK_KEYWORD_DELETE:
                             duke.deleteTask(duke, id);
                             break;
                     }
 
-                    FrenIO.updateData(duke.tasks);
+                    Storage.updateData(duke.tasks);
                 } catch (DukeException ex) {
-                    duke.echo("Index is out of bounds!");
+                    Ui.echo("Index is out of bounds!");
                 }
-            } else if (KeywordChecker.containsTaskKeyword(action)) {
+            } else if (Parser.containsTaskKeyword(action)) {
                 try {
-                    switch (KeywordChecker.getNonexactKeyword(action)) {
-                        case KeywordChecker.TASK_KEYWORD_TODO:
+                    switch (Parser.getNonexactKeyword(action)) {
+                        case Parser.TASK_KEYWORD_TODO:
                             duke.tasks.add(new Todo(action));
                             break;
-                        case KeywordChecker.TASK_KEYWORD_DEADLINE:
+                        case Parser.TASK_KEYWORD_DEADLINE:
                             if (!action.contains(Deadline.DELIMITER)) {
                                 throw new DukeException("Missing Deadline delimiter!");
                             }
                             duke.tasks.add(new Deadline(action));
                             break;
-                        case KeywordChecker.TASK_KEYWORD_EVENT:
+                        case Parser.TASK_KEYWORD_EVENT:
                             if (!action.contains(Event.DELIMITER)) {
                                 throw new DukeException("Missing Event delimiter!");
                             }
@@ -79,31 +84,27 @@ public class Duke extends Chatbot {
                             break;
                     }
 
-                    FrenIO.updateData(duke.tasks);
+                    Storage.updateData(duke.tasks);
 
-                    duke.echo("Added task:" +
+                    Ui.echo("Added task:" +
                             duke.tasks.getLast().printTask());
                 } catch (DukeException ex) {
-                    duke.echo("Incorrect use of " + KeywordChecker.getNonexactKeyword(action));
+                    Ui.echo("Incorrect use of " + Parser.getNonexactKeyword(action));
                 }
             } else {
-                duke.echo("I can't understand. Please enter a proper command, friend!");
+                Ui.echo("I can't understand. Please enter a proper command, friend!");
             }
         }
     }
 
     public void listTasks(Duke interaction) {
-        interaction.tasks.forEach(
-                task -> { System.out.println(String.format("%d.%s",
-                        tasks.indexOf(task) + 1,
-                        task.printTask()));
-                });
+        this.tasks.listAllTasks();
     }
 
     public void markTask(Duke interaction, int id) {
         Task task = interaction.tasks.get(id - 1);
         task.markAsDone();
-        interaction.echo(String.format("Task %d: [%s] marked as done!",
+        Ui.echo(String.format("Task %d: [%s] marked as done!",
                 id,
                 task.getDescription()));
     }
@@ -111,7 +112,7 @@ public class Duke extends Chatbot {
     public void unmarkTask(Duke interaction, int id) {
         Task task  = interaction.tasks.get(id - 1);
         task.markAsNotDone();
-        interaction.echo(String.format("Task %d [%s] marked as not done!",
+        Ui.echo(String.format("Task %d [%s] marked as not done!",
                 id,
                 task.getDescription()));
     }
@@ -119,24 +120,9 @@ public class Duke extends Chatbot {
     public void deleteTask(Duke interaction, int id) {
         Task task = interaction.tasks.get(id - 1);
         interaction.tasks.remove(task);
-        interaction.echo(String.format("Task %d [%s] removed.",
+        Ui.echo(String.format("Task %d [%s] removed.",
                 id,
                 task.getDescription()));
-    }
-
-    @Override
-    public void echo(String message) {
-        System.out.println(message);
-    }
-
-    @Override
-    public void sayHello() {
-        System.out.println(Duke.GREETING);
-    }
-
-    @Override
-    public void sayGoodbye() {
-        System.out.println(Duke.FAREWELL);
     }
 
     @Override

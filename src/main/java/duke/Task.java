@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -46,7 +48,7 @@ public class Task {
 
         switch (type) {
             case 'T':
-                task = (T) new Todo(String.format("%s%s", KeywordChecker.TASK_KEYWORD_TODO, dataStr));
+                task = (T) new Todo(String.format("%s%s", Parser.TASK_KEYWORD_TODO, dataStr));
                 break;
             case 'D':
                 String deadlineStr = dataStr.substring(0, dataStr.length() - 1);
@@ -57,7 +59,7 @@ public class Task {
                 LocalDate date = LocalDate.parse(dateStr, formatter);
                 dateStr = date.toString();
                 String fullStr = frontStr + Deadline.DELIMITER + dateStr;
-                task = (T) new Deadline(String.format("%s%s", KeywordChecker.TASK_KEYWORD_DEADLINE, fullStr));
+                task = (T) new Deadline(String.format("%s%s", Parser.TASK_KEYWORD_DEADLINE, fullStr));
                 break;
             case 'E':
                 String eventStr = dataStr.substring(0, dataStr.length() - 1);
@@ -68,7 +70,7 @@ public class Task {
                 LocalDate dateE = LocalDate.parse(dateStrE, formatterE);
                 dateStrE = dateE.toString();
                 String fullStrE = frontStrE + Event.DELIMITER + dateStrE;
-                task = (T) new Event(String.format("%s%s", KeywordChecker.TASK_KEYWORD_EVENT, fullStrE));
+                task = (T) new Event(String.format("%s%s", Parser.TASK_KEYWORD_EVENT, fullStrE));
                 break;
         }
 
