@@ -11,7 +11,6 @@ import duke.ui.BotUI;
  * ,and it provides the skeletal implementation of all user command.
  * Every user command should be the child-class of this abstract class.
  */
-
 public abstract class Command {
 
     private final String command;

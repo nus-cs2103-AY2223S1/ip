@@ -8,13 +8,12 @@ import duke.command.UnknownCommand;
  * Responsible in storing anomaly status and command that detected anomaly.
  * The attributes are mutable.
  */
-
 public class AnomaliesManager {
     private final Command[] previousCommand;
     private final boolean[] isRaised;
 
     /**
-     * Constructs AnomaliesManager object
+     * Constructs AnomaliesManager object.
      */
     public AnomaliesManager() {
         this.previousCommand = new Command[]{new UnknownCommand("No Question is raised by Anomalies yet!")};

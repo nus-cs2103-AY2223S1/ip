@@ -11,9 +11,9 @@ import duke.ui.BotUI;
 public class CancelCommand extends Command {
 
     /**
-     * Constructs AddCommand object
+     * Constructs AddCommand object.
      *
-     * @param command command of the user input
+     * @param command command of the user input.
      */
     public CancelCommand(String command) {
         super(command);
@@ -22,10 +22,10 @@ public class CancelCommand extends Command {
     /**
      * Returns a String to inform user about the cancellation of the previous command.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList Stores the list of tasks.
      * @param ui       Object that responsible in returning necessary formatted String
-     *                 to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *                 to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
@@ -35,9 +35,9 @@ public class CancelCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -48,7 +48,8 @@ public class CancelCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to CancelCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

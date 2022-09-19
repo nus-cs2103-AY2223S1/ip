@@ -23,7 +23,6 @@ import duke.task.ToDo;
  * Deals with the saving and loading of TaskList data.
  * Contains two read and write static method to perform saving and loading operation.
  */
-
 public class FileManager {
 
     private static final String home = System.getProperty("user.dir");

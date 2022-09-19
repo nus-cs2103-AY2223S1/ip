@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
  * Represents a Deadline task.
  * Contains LocalDateTime information.
  */
-
 public class Deadline extends Task {
     private final LocalDateTime time;
 
@@ -18,7 +17,7 @@ public class Deadline extends Task {
      * Allows the program to change isDone status and LocalDateTime of Events.
      *
      * @param detail String of detail extracted from user's raw input.
-     * @param isDone true/false of the task's done status.
+     * @param isDone True/False of the task's done status.
      * @param time LocalDateTime of the Deadlines object.
      */
     public Deadline(String detail, boolean isDone, LocalDateTime time) {

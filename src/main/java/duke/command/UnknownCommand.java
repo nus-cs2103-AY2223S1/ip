@@ -13,9 +13,9 @@ public class UnknownCommand extends Command {
     private final boolean isQuestionRaised;
 
     /**
-     * Constructs UnknownCommand object
+     * Constructs UnknownCommand object.
      *
-     * @param command command of the user input
+     * @param command Command of the user input.
      */
     public UnknownCommand(String command) {
         super(command);
@@ -23,10 +23,10 @@ public class UnknownCommand extends Command {
     }
 
     /**
-     * Constructs UnknownCommand object
+     * Constructs UnknownCommand object.
      *
-     * @param command command of the user input
-     * @param isPreviousAnomalies a boolean value to check whether the unknown command is after anomaly raised.
+     * @param command command of the user input.
+     * @param isPreviousAnomalies A boolean value to check whether the unknown command is after anomaly raised.
      */
     public UnknownCommand(String command, boolean isPreviousAnomalies) {
         super(command);
@@ -36,10 +36,10 @@ public class UnknownCommand extends Command {
     /**
      * Returns string to inform user unknown input is key-in.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList Stores the list of tasks.
      * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *           to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
@@ -53,9 +53,9 @@ public class UnknownCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -66,7 +66,8 @@ public class UnknownCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to UnknownCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

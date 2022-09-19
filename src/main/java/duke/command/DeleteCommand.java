@@ -14,10 +14,10 @@ public class DeleteCommand extends Command {
     private final String detail;
 
     /**
-     * Constructs DeleteCommand object
+     * Constructs DeleteCommand object.
      *
-     * @param command command of the user input
-     * @param detail detail of the user input as String type Integer
+     * @param command Command of the user input.
+     * @param detail Detail of the user input as String type Integer.
      */
     public DeleteCommand(String command, String detail) {
         super(command);
@@ -25,14 +25,14 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes Task from the TaskList
+     * Deletes Task from the TaskList.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList Stores the list of tasks.
      * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *           to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
-     * @throws DukeException - thrown when NumberFormatException or IndexOutOfBoundsException is
+     * @throws DukeException - Thrown when NumberFormatException or IndexOutOfBoundsException is
      *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
      */
     @Override
@@ -50,9 +50,9 @@ public class DeleteCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -63,7 +63,8 @@ public class DeleteCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to DeleteCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

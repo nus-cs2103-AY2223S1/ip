@@ -17,7 +17,7 @@ public class Event extends Task {
      * Allows the program to change isDone status and LocalDateTime of Events.
      *
      * @param detail String of detail extracted from user's raw input.
-     * @param isDone true/false of the task's done status.
+     * @param isDone True/False of the task's done status.
      * @param time LocalDateTime of the Events object.
      */
     public Event(String detail, boolean isDone, LocalDateTime time) {

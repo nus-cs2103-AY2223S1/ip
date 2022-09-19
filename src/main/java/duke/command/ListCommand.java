@@ -12,19 +12,20 @@ import duke.ui.BotUI;
 public class ListCommand extends Command {
 
     /**
-     * Constructs ListCommand object
+     * Constructs ListCommand object.
      *
-     * @param command command of the user input
+     * @param command Command of the user input.
      */
     public ListCommand(String command) {
         super(command);
     }
     /**
      * Returns list of Tasks in the TaskList.
-     * @param taskList stores the list of tasks
+     *
+     * @param taskList Stores the list of tasks.
      * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *           to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of number-formatted tasks through BotUI object.
      */
     @Override
@@ -34,9 +35,9 @@ public class ListCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -47,7 +48,8 @@ public class ListCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to ListCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

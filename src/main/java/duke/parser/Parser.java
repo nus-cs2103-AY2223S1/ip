@@ -25,7 +25,6 @@ import duke.ui.BotUI;
  * Deals with making sense of the user input.
  * Contains methods that return Command for execution in Duke class and extracting information from user's raw input.
  */
-
 public class Parser {
 
     private static final BotUI UI = new BotUI();
@@ -64,9 +63,9 @@ public class Parser {
     /**
      * Returns different type of Command according to the user raw input.
      *
-     * @param rawInput user's raw input.
+     * @param rawInput User's raw input.
      * @return Command to be executed in Duke class.
-     * @throws DukeException - thrown if user command is invalid.
+     * @throws DukeException - Thrown if user command is invalid.
      */
     public static Command parse(String rawInput, AnomaliesManager anomaliesManager) throws DukeException {
         try {
@@ -106,9 +105,9 @@ public class Parser {
     /**
      * Returns LocalDateTime for Event and Deadline tasks.
      *
-     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800)
+     * @param filteredInput User's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800).
      * @return LocalDateTime of the filtered input.
-     * @throws DukeException - thrown if the date/time format is invalid (e.g. 2022-08-251800) which
+     * @throws DukeException - Thrown if the date/time format is invalid (e.g. 2022-08-251800) which
      *                       cause DateTimeException and IndexOutOfBoundsException during the process.
      */
     public static LocalDateTime extractDateTime(String filteredInput, String detailDateSplitter) throws DukeException {
@@ -135,8 +134,8 @@ public class Parser {
     /**
      * Returns detail for Events and Deadlines tasks.
      *
-     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800).
-     * @param detailDateSplitter detail and date splitter of Event and Deadline tasks ("/by" or "/at).
+     * @param filteredInput User's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800).
+     * @param detailDateSplitter Detail and date splitter of Event and Deadline tasks ("/by" or "/at).
      * @return String of task's detail.
      */
     public static String extractDetail(String filteredInput, String detailDateSplitter) {
@@ -148,9 +147,9 @@ public class Parser {
     /**
      * Returns LocalDateTime converted from the tasks wrote in previous running of duke.
      *
-     * @param timeString date/time String stored in the .txt file.
+     * @param timeString Date/Time String stored in the .txt file.
      * @return LocalDateTime of the stored String in the .txt file.
-     * @see duke.storage.FileManager for the usage of this method.
+     * @see duke.storage.FileManager For the usage of this method.
      */
     public static LocalDateTime convertTime(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);

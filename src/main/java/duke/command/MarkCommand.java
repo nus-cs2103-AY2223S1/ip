@@ -8,17 +8,16 @@ import duke.ui.BotUI;
 
 /**
  * Represents a marking command of task. A <code>DeleteCommand</code> object stores
- * the details of the task as a String type Integer. eg. "1"
- *
+ * the details of the task as a String type Integer. eg. "1".
  */
 public class MarkCommand extends Command {
     private final String detail;
 
     /**
-     * Constructs MarkCommand object
+     * Constructs MarkCommand object.
      *
-     * @param command command of the user input
-     * @param detail detail of the user input as String type Integer
+     * @param command Command of the user input.
+     * @param detail Detail of the user input as String type Integer.
      */
     public MarkCommand(String command, String detail) {
         super(command);
@@ -26,14 +25,14 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks or Un-marks Tasks from the TaskList
+     * Marks or Un-marks Tasks from the TaskList.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList Stores the list of tasks.
      * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *           to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
-     * @throws DukeException - thrown when NumberFormatException or IndexOutOfBoundsException is
+     * @throws DukeException - Thrown when NumberFormatException or IndexOutOfBoundsException is
      *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
      */
     @Override
@@ -53,9 +52,9 @@ public class MarkCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -66,7 +65,8 @@ public class MarkCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to MarkCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

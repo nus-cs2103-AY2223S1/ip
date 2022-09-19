@@ -11,9 +11,9 @@ import duke.ui.BotUI;
 public class ExitCommand extends Command {
 
     /**
-     * Constructs ExitCommand object
+     * Constructs ExitCommand object.
      *
-     * @param command command of the user input
+     * @param command Command of the user input.
      */
     public ExitCommand(String command) {
         super(command);
@@ -21,10 +21,10 @@ public class ExitCommand extends Command {
     /**
      * Returns the "bye" message through BotUI object.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList Stores the list of tasks.
      * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
-     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
+     *           to print on the user interface.
+     * @param anomaliesManager Responsible to handle anomaly and store command with anomalies.
      * @return String of "bye" response through BotUI object.
      */
     @Override
@@ -34,9 +34,9 @@ public class ExitCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return The true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -47,7 +47,8 @@ public class ExitCommand extends Command {
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
      * Provides flexibility to ExitCommand class for future anomaly checking.
-     * @return the same object.
+     *
+     * @return The same object.
      * @see AddCommand class.
      */
     @Override

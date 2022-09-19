@@ -17,9 +17,8 @@ import duke.ui.BotUI;
 
 /**
  * Represents an adding command of task. A <code>AddCommand</code> object stores
- * the details of the task BEFORE filtering/extracting the date e.g. (someEvent /at 2022-01-05 1900)
+ * the details of the task BEFORE filtering/extracting the date e.g. (someEvent /at 2022-01-05 1900).
  */
-
 public class AddCommand extends Command {
 
     private static final int MIN_HOUR_DIFFERENCE = 4;
@@ -27,10 +26,10 @@ public class AddCommand extends Command {
     private final boolean isAnomalyResolved;
 
     /**
-     * Constructs AddCommand object
+     * Constructs AddCommand object.
      *
-     * @param command command of the user input
-     * @param detail detail of the user input AFTER command is filtered
+     * @param command command of the user input.
+     * @param detail detail of the user input AFTER command is filtered.
      */
     public AddCommand(String command, String detail) {
         super(command);
@@ -97,13 +96,13 @@ public class AddCommand extends Command {
     /**
      * Adds Task into the TaskList. Anomaly will be checked before adding task into taskList.
      *
-     * @param taskList stores the list of tasks
+     * @param taskList stores the list of tasks.
      * @param ui       Object that responsible in returning necessary formatted String
-     *                 to print on the user interface
+     *                 to print on the user interface.
      * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
      * @throws DukeException - thrown from Parser.extractDateTime methods.
-     * @see Parser - the details of the extractDateTime method throw DukeException
+     * @see Parser - the details of the extractDateTime method throw DukeException.
      */
     @Override
     public String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) throws DukeException {
@@ -144,9 +143,9 @@ public class AddCommand extends Command {
 
     /**
      * Returns the true/false of the command exit status that
-     * will cause duke stop running
+     * will allow user to stop using Duke.
      *
-     * @return the true/false of the command exit status
+     * @return the true/false of the command exit status.
      */
     @Override
     public boolean isExit() {
@@ -157,6 +156,7 @@ public class AddCommand extends Command {
      * Returns the new AddCommand after anomaly has been approved by user.
      * The new AddCommand object stores a true boolean attribute in anomalyResolved.
      * Check Anomaly steps will be skipped in execute method.
+     *
      * @return new AddCommand object with anomalyResolved set to true.
      */
     @Override

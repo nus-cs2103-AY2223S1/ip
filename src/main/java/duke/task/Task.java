@@ -16,7 +16,7 @@ public abstract class Task {
     /**
      * Constructor of Task class.
      * Calls by its child-classes.
-     * Initialises isDone attribute as false. (Undone)
+     * Initialises isDone attribute as false(Undone).
      *
      * @param detail String of detail extracted from user's raw input.
      */
@@ -31,7 +31,7 @@ public abstract class Task {
      * Allows the changes of done/undone status of task.
      *
      * @param detail String of detail extracted from user's raw input.
-     * @param isDone true/false of the task's done status.
+     * @param isDone True/False of the task's done status.
      */
     Task(String detail, boolean isDone) {
         this.detail = detail;

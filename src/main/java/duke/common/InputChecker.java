@@ -6,7 +6,6 @@ import duke.ui.BotUI;
 /**
  * Responsible in the initial checks of Adding tasks' input
  * is in the correct format.
- *
  */
 public class InputChecker {
     private static final int DETAIL_DATE_SPLITTER_LENGTH = 3;
@@ -45,7 +44,7 @@ public class InputChecker {
      * Event/Deadline tasks: Checks the details and date are exists in the raw user input with correct format.
      *
      * @param rawInput String of the user rawInput.
-     * @throws DukeException - thrown when the format is invalid.
+     * @throws DukeException - Thrown when the format is invalid.
      */
     public static void checkInput(String rawInput) throws DukeException {
         String trimmedInput = rawInput.trim();

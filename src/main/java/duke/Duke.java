@@ -60,10 +60,10 @@ public class Duke {
     }
 
     /**
-     * Returns the response of the bot according to user input in GUI
+     * Returns the response of the bot according to user input in GUI.
      *
      * @param input String of user raw input in GUI.
-     * @return String of the resulting bot response from the GUI input
+     * @return String of the resulting bot response from the GUI input.
      */
     public String getResponse(String input) {
         try {
