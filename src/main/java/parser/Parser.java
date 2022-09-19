@@ -43,9 +43,15 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "mark":
+            if (description.length() == 0) {
+                throw new DukeException("The index to mark done cannot be empty.");
+            }
             return new MarkCommand(description);
         case "del":
         case "delete":
+            if (description.length() == 0) {
+                throw new DukeException("The index of deletion cannot be empty.");
+            }
             return new DeleteCommand(description);
         case "t":
         case "todo":
