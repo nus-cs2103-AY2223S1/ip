@@ -14,9 +14,9 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline task
      * @param description description of a task that the user inputs
-     * @param by the cut-off time for user to complete the task
+     * @param date the cut-off time for user to complete the task
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String date) {
         super(description);
         this.date = date;
     }
@@ -41,8 +41,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Retrieves the cut off time of a deadline task
-     * @return the cut off time of a task
+     * Retrieves the cut-off time of a deadline task
+     * @return the cut-off time of a task
      */
     @Override
     public String getDate() {

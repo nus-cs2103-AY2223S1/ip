@@ -29,12 +29,12 @@ public class Parser {
     private enum MissingDetails {
         TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE, DATE, KEYWORD
     }
-    private static final String DATE_FORMAT = "yyyy-mm-dd";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     /**
      * Parse method to determine the command to pass to kkbot.kkbot.
      * @param input the user input
-     * @return the command to pass to kkbot.kkbot
+     * @return the command to pass to KKBot
      * @throws KKBotException when the user input is erroneous
      */
     public static Command initialParse(String input) throws KKBotException {
@@ -119,7 +119,7 @@ public class Parser {
         } else {
             splitDescription = description.split(EventCommand.DATE_INPUT, 2);
         }
-        checkInputLength(splitDescription, MissingDetails.DESCRIPTION_AND_DATE);
+        checkInputLength(splitDescription, MissingDetails.DATE);
         assert splitDescription.length == 2 : INVALID_INPUT;
         String date = splitDescription[1].trim();
         checkDateFormat(date);
@@ -190,6 +190,6 @@ public class Parser {
      */
     public static String parseDate(String date) {
         LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
-        return localDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return localDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
     }
 }

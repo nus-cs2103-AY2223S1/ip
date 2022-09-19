@@ -34,14 +34,15 @@ public class Ui {
             + "|  |\\  \\  |  |\\  \\ | |__|  |\n"
             + "|__| \\__\\ |__| \\__\\|______/\n";
 
-    private static String WELCOME_MESSAGE = "Hello! I'm kkbot.kkbot! \n"
+    private static String WELCOME_MESSAGE = "Hello! I'm KKBot! \n"
             + "What can I do for you?\n";
 
     /**
-     * Method to print welcome message whenever kkbot.kkbot is initialised.
+     * Method to print welcome message whenever KKBot is initialised.
      * @return welcome message
      */
     public String showWelcome() {
+        System.out.println(DIVIDER + LOGO + WELCOME_MESSAGE + DIVIDER);
         return DIVIDER + LOGO + WELCOME_MESSAGE + DIVIDER;
     }
 
@@ -50,7 +51,8 @@ public class Ui {
      * @return closer message
      */
     public String showCloser() {
-        return DIVIDER + "kkbot.kkbot signing off. Goodbye!\n" + DIVIDER;
+        System.out.println(DIVIDER + "KKBot signing off. Goodbye!\n" + DIVIDER);
+        return DIVIDER + "KKBot signing off. Goodbye!\n" + DIVIDER;
     }
 
     /**
@@ -59,6 +61,7 @@ public class Ui {
      * @return the printed out message
      */
     public String show(String message) {
+        System.out.println(message);
         return message;
     }
 
@@ -76,6 +79,7 @@ public class Ui {
      * @return the message that the task has been added
      */
     public String showTaskAddition(Task task) {
+        System.out.println(DIVIDER + "Got it! Task added:\n " + task + "\n" + DIVIDER);
         return DIVIDER + "Got it! Task added:\n " + task + "\n" + DIVIDER;
     }
 
@@ -85,6 +89,7 @@ public class Ui {
      * @return the message that the task has been removed
      */
     public String showTaskDeletion(Task task) {
+        System.out.println(DIVIDER + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER);
         return DIVIDER + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER;
     }
 
@@ -94,6 +99,7 @@ public class Ui {
      * @return the message that the task has been marked as done
      */
     public String showTaskDone(Task task) {
+        System.out.println(DIVIDER + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER);
         return DIVIDER + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER;
     }
 
@@ -103,6 +109,7 @@ public class Ui {
      * @return the message that the task has been marked as not done
      */
     public String showTaskUndone(Task task) {
+        System.out.println(DIVIDER + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n " + task + "\n" + DIVIDER);
         return DIVIDER + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n " + task + "\n" + DIVIDER;
     }
 
@@ -113,23 +120,27 @@ public class Ui {
      */
     public String showNumberOfTasks(int count) {
         if (count < 0) {
+            System.out.println(DIVIDER + "Don't break the 4th wall! You can't have a negative number of tasks!" + DIVIDER);
             return DIVIDER + "Don't break the 4th wall! You can't have a negative number of tasks!" + DIVIDER;
         }
         if (count == 0) {
+            System.out.println(DIVIDER + "Woohoo! You don't have any tasks!" + DIVIDER);
             return DIVIDER + "Woohoo! You don't have any tasks!" + DIVIDER;
         }
-        return DIVIDER + String.format("\n\nYou have %d task(s)!", count) + DIVIDER;
+        System.out.println(DIVIDER + String.format("\nYou have %d task(s)!", count) + "\n" + DIVIDER);
+        return DIVIDER + String.format("\n\nYou have %d task(s)!", count) + "\n" +  DIVIDER;
     }
 
     /**
-     * Returns a string representation of the list of all the tasks stored in kkbot.kkbot.
-     * @param tasks the list of tasks stored in kkbot.kkbot
+     * Returns a string representation of the list of all the tasks stored in KKBot.
+     * @param tasks the list of tasks stored in KKBot
      * @return the string representation of all tasks on the list
      */
     public String showAllTasks(TaskList tasks) {
         int numOfTasks = tasks.getNumberOfTasks();
         if (numOfTasks == 0) {
-            return DIVIDER + "Woohoo! You don't have any tasks!" + DIVIDER;
+            System.out.println(DIVIDER + "Woohoo! You don't have any tasks!" + "\n" + DIVIDER);
+            return DIVIDER + "Woohoo! You don't have any tasks!" + "\n" + DIVIDER;
         }
 
         StringBuilder fullList = new StringBuilder("Here's your list of tasks:\n");
@@ -138,6 +149,7 @@ public class Ui {
             Task task = tasks.getTask(i);
             fullList.append(String.format("%d.%s\n", index, task));
         }
+        System.out.print(fullList.toString());
         return fullList.toString();
     }
 
@@ -149,6 +161,7 @@ public class Ui {
      */
     public String showMatches(List<Task> matches) {
         if (matches.size() == 0) {
+            System.out.println("No matches found!");
             return "No matches found!";
         }
 
@@ -158,6 +171,7 @@ public class Ui {
             sb.append(String.format("%d.%s\n", serialNumber, task));
             serialNumber++;
         }
+        System.out.println(sb.toString());
         return sb.toString();
     }
 }

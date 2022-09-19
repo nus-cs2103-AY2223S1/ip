@@ -22,6 +22,7 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        System.exit(0);
         return ui.showCloser();
     }
 }

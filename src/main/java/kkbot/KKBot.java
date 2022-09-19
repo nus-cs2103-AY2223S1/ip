@@ -18,27 +18,26 @@ public class KKBot {
     private Ui ui;
 
     public KKBot() {
-        this.ui = new Ui();
-        this.storage = new Storage();
+        ui = new Ui();
+        storage = new Storage();
         try {
-            this.tasks = new TaskList(this.storage.load());
+            tasks = new TaskList(this.storage.load());
         } catch (KKBotException e) {
-            this.ui.show(e.getMessage());
-            this.tasks = new TaskList();
+            ui.show(e.getMessage());
+            tasks = new TaskList();
         }
     }
 
     public void run() {
-        this.ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
+        ui.showWelcome();
+        while (true) {
             try {
-                String input = this.ui.readInput();
+                String input = ui.readInput();
                 Command command = Parser.initialParse(input);
-                command.execute(this.tasks, this.ui, this.storage);
-                this.storage.save(this.tasks);
+                command.execute(tasks, ui, storage);
+                storage.save(tasks);
             } catch (KKBotException e) {
-                this.ui.show(e.getMessage());
+                ui.show(e.getMessage());
             }
         }
     }

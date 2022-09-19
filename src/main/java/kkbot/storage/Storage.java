@@ -21,7 +21,7 @@ import kkbot.tasks.ToDo;
 import kkbot.tasklist.TaskList;
 
 /**
- * Storage class to store kkbot.kkbot's Task List onto the hard drive.
+ * Storage class to store KKBot's Task List onto the hard drive.
  *
  * @author AkkFiros
  */
@@ -142,7 +142,7 @@ public class Storage {
         String status = task.getStatusIcon();
         String description = task.getDescription();
         String date = task.getDate();
-        return String.format("%s, %s, %s, %s", type, status, description, date)
+        return String.format("%s;%s;%s;%s", type, status, description, date)
                 + System.lineSeparator();
     }
 }
