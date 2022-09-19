@@ -4,7 +4,7 @@ package jarvis.task;
  *  Represents a ToDo which is a subclass of Task.
  *
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * Returns a new Todo Object with the given description.

@@ -1,12 +1,15 @@
 package jarvis;
-import jarvis.task.TaskList;
-import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import jarvis.task.TaskList;
+
 public class StorageTest {
-    Storage s = new Storage("src/test/data/testTaskList.txt");
+    private Storage s = new Storage("src/test/data/testTaskList.txt");
 
     @Test
     public void load_normalInput_loadCorrectly() throws IOException {

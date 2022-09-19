@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
  *  Represents a Deadline which is a subclass of Task.
  *
  */
-public class Deadline extends Task{
-    public LocalDate by;
+public class Deadline extends Task {
+    private LocalDate by;
 
     /**
      * Returns a new Deadline Object with the given description and date.
@@ -29,5 +29,9 @@ public class Deadline extends Task{
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+    }
+
+    public LocalDate getBy() {
+        return by;
     }
 }
