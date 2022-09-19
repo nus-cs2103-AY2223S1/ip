@@ -86,7 +86,7 @@ public class Parser {
         String keyPhrase = split[0];
         String parsedInput = String.join(" ", Arrays.copyOfRange(split, 1, split.length)).trim();
         switch (keyPhrase) {
-        case "list":
+        case "list": case "ls":
             return parseList(parsedInput);
         case "bye":
             return parseBye(parsedInput);
@@ -96,13 +96,13 @@ public class Parser {
             return parseMark(parsedInput);
         case "unmark":
             return parseUnmark(parsedInput);
-        case "delete":
+        case "delete": case "del": case "rm":
             return parseDelete(parsedInput);
-        case "todo":
+        case "todo": case "t":
             return parseToDo(parsedInput);
-        case "deadline":
+        case "deadline": case "d":
             return parseDeadline(parsedInput);
-        case "event":
+        case "event": case "e":
             return parseEvent(parsedInput);
         default:
             throw new DukeException(ERROR_MESSAGE);
