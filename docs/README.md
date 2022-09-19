@@ -2,28 +2,124 @@
 
 ## Features 
 
-### Feature-ABC
+### Task management
 
-Description of the feature.
+View, add, and mark tasks as complete. 
 
-### Feature-XYZ
-
-Description of the feature.
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+### `list` - show tasks
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`list`
 
 Expected outcome:
 
-Description of the outcome.
+```
+1. ...
+2. ...
+```
+
+
+### `t` - add todo task
+
+Example of usage: 
 
 ```
-expected output
+t {todo name}
+t walk dog
+```
+
+Expected outcome:
+
+```
+[T][] walk dog
+```
+
+
+### `event` - add event task
+
+Example of usage: 
+
+```
+event {event name} /at {date}
+event gina's wedding /at 2022-09-19
+```
+
+Expected outcome:
+
+```
+[E][] gina's wedding (at: 2022-09-19)
+```
+
+
+### `deadline` - add deadline task
+
+Example of usage: 
+
+```
+deadline {deadline name} /by {date}
+deadline chem assignment /by 2022-09-19
+```
+
+Expected outcome:
+
+```
+[D][] chem assignment (by: 2022-09-19)
+```
+
+
+### `mark` - mark task as completed
+
+Example of usage: 
+
+```
+mark {task number}
+mark 1
+```
+
+Get task number using `list`.
+
+Expected outcome:
+
+```
+[T][X] walk dog
+```
+
+
+### `unmark` - mark task as not completed
+
+Example of usage: 
+
+```
+unmark {task number}
+unmark 1
+```
+
+Get task number using `list`.
+
+Expected outcome:
+
+```
+[T][] walk dog
+```
+
+
+### `delete` - remove task from list
+
+Example of usage: 
+
+```
+delete {task number}
+delete 1
+```
+
+Get task number using `list`.
+
+Expected outcome:
+
+```
+Now you have 4 tasks in the list.
 ```
