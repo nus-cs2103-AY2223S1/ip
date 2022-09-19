@@ -2,6 +2,7 @@
 
 Koba is a desktop app for managing tasks and deadlines via a Graphical User Interface (GUI) in the form of a chat bot.
 
+* [Quick Start](https://github.com/therealdaofu/ip/blob/master/docs/README.md#quick-start)
 * [Summary of commands](https://github.com/therealdaofu/ip/blob/master/docs/README.md#summary-of-commands)
 * Features:
   * [add a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
@@ -15,6 +16,21 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
   * [display help page](https://github.com/therealdaofu/ip/blob/master/docs/README.md#get-help-page-help)
   * [exit the app](https://github.com/therealdaofu/ip/blob/master/docs/README.md#exit-from-the-app-bye)
   * [saving](https://github.com/therealdaofu/ip/blob/master/docs/README.md#saving-the-data)
+
+
+## Quick Start
+1. Ensure you have Java `11` or above installed on your Computer.
+
+2. Download the latest `duke.jar` from [here](https://github.com/therealdaofu/ip/releases/tag/A-Release).
+
+3. You can now choose to keep the jar file in a specified folder you wish to use for your app.
+
+4. Open your command terminal of choice.
+
+5. Navigate to the directory where your app is located, ie. D:\school stuff\interesting things\koba app
+
+6. run the command: `java jar- joba.jar` 
+
 
 ## Summary of Commands
 Function                 | Command                                                    
@@ -64,7 +80,7 @@ Example of usage:
 deadline assignment 1 /by 2022-08-15T23:59
 ```
 Adds a new deadline, assignment 1, due on Aug 8th, 2022 at 23:59hrs.
-<img src="./image/add-deadline.png"/>
+<img src="./image/add deadline.PNG"/>
 
 
 ### Add a event: `event`
@@ -78,7 +94,7 @@ event birthday party /at Friday 5-8pm
 ```
 Adds a new event, birthday party at Friday, 5-8pm
 
-<img src="./image/add-event.png"/>
+<img src="./image/add event.PNG"/>
 
 
 
@@ -98,7 +114,7 @@ Example of usage:
 mark 2
 ```
 Mark the task at index 2 as complete.
-<img src="./image/mark.png"/>
+<img src="./image/mark.PNG"/>
 
 
 ### Unmark a task: `unmark`
@@ -116,7 +132,7 @@ Example of usage:
 ```
 unmark 1
 ```
-<img src="./image/unmark.png"/>
+<img src="./image/unmark.PNG"/>
 
 
 
@@ -134,7 +150,7 @@ Example of usage:
 ```
 delete 3
 ```
-<img src="./image/delete.png"/>
+<img src="./image/delete.PNG"/>
 
 
 
@@ -142,7 +158,7 @@ delete 3
 Shows a list of all stored tasks in the app.
 
 Format: `list`
-<img src="./image/list.png"/>
+<img src="./image/list.PNG"/>
 
 
 ### Find tasks by a keyword: `find`
@@ -159,14 +175,14 @@ Example of usage:
 find assignment
 ```
 This will return all tasks containing 'assignment' in their description.
-<img src="./image/find.png"/>
+<img src="./image/find.PNG"/>
 
 
 ### Get help page: `help`
 Returns a list of all valid commands and their format in the app.
 
 Format: `help`
-<img src="./image/help.png"/>
+<img src="./image/help.PNG"/>
 
 
 ### Exit from the app: `bye`
