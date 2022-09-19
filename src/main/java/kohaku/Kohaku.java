@@ -11,7 +11,7 @@ import kohaku.ui.TextUi;
 import javafx.application.Application;
 import java.util.Scanner;
 
-public class Dave2 {
+public class Kohaku {
 
     private static TaskList tasks = new TaskList();
 

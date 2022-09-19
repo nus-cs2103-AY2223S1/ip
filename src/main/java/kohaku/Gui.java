@@ -57,7 +57,7 @@ public class Gui extends AnchorPane {
         try{
             Pair<String, String> inputData = Parser.splitInputIntoCommand(input);
             Command command = Parser.dispatch(
-                    inputData.getHead(), inputData.getTail(), Dave2.getTasks()
+                    inputData.getHead(), inputData.getTail(), Kohaku.getTasks()
             );
             String result  = command.execute();
             return result;

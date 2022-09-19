@@ -43,11 +43,11 @@ test {
 }
 
 application {
-    mainClassName = "Dave2"
+    mainClassName = "kohaku.Kohaku"
 }
 
 shadowJar {
-    archiveBaseName = "Dave2"
+    archiveBaseName = "Kohaku"
     archiveClassifier = null
 }
 
