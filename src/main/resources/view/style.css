@@ -1,0 +1,17 @@
+.bot {
+    -fx-background-color: teal;
+}
+
+.user {
+    -fx-background-color: #0098b4;
+}
+
+
+#dialog {
+    -fx-text-fill: white;
+    -fx-padding:10 10 10 10;
+    -fx-border-width:1;
+    -fx-border-color:black;
+    -fx-border-radius:12px;
+    -fx-background-radius:12px;
+}
