@@ -1,3 +1,6 @@
+#class file
+*.class
+
 # IDEA files
 /.idea/
 /out/
