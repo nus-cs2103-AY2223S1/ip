@@ -1,3 +1,4 @@
 todo,buy milk
-deadline,homework  /by Oct 10 2022
-event,meeting  /at Sep 20 2022
+deadline,homework  /by Sep 20 2022
+todo,walk dog
+event,meeting at school /at 2022-09-21
