@@ -11,6 +11,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Event extends Task {
     protected LocalDate at;
+    private static String printFormat = "MMM d yyyy";
+    private static String saveFormat = "yyyy-MM-dd";
 
     /**
      * Event Constructor
@@ -36,7 +38,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + this.at.format(DateTimeFormatter.ofPattern(printFormat)) + ")";
     }
 
     /**
@@ -46,6 +48,6 @@ public class Event extends Task {
     @Override
     public String toSave() {
         return "E | " + (this.isDone ? "1 | " : "0 | ") + this.getDescription() +
-                " | " + this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\n";
+                " | " + this.at.format(DateTimeFormatter.ofPattern(saveFormat)) + "\n";
     }
 }

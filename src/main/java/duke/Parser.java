@@ -21,7 +21,7 @@ public class Parser {
     }
 
     /**
-     * Add corresponding tasks inputted by user to the list of tasks.
+     * Adds tasks inputted by user to the task list.
      */
     public String parser(String input) {
         String[] inputArr = input.split(" ");

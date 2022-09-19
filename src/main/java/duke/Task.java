@@ -61,7 +61,7 @@ public class Task {
     }
 
     /**
-     * A dummy function for subclasses to override
+     * Saves a task in a txt file
      * @return Empty string.
      */
     public String toSave() {
