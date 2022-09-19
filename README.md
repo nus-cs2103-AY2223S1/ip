@@ -39,7 +39,7 @@ public class Main {
 
 ---
 
-#####Creating a To-Do Task
+##### Creating a To-Do Task
 Command: todo [task]
 
 Example: todo drink milk
