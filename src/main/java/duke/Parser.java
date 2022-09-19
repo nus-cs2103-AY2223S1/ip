@@ -50,6 +50,10 @@ public class Parser {
             case "find":
                 return processFind(userInput);
 
+            case "help":
+                return processHelp(userInput);
+
+
             default:
                 throw new DukeException("Unrecognized command.");
             }
@@ -153,6 +157,14 @@ public class Parser {
             throw new DukeException("Missing task keyword to find.");
         } else {
             return new FindCommand(userInput[1].trim());
+        }
+    }
+
+    private static Command processHelp(String[] userInput) throws DukeException {
+        if (userInput.length > 1) {
+            throw new DukeException("Unrecognized command.");
+        } else {
+            return new HelpCommand();
         }
     }
 }
