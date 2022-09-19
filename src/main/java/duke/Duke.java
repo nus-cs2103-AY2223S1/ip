@@ -83,7 +83,7 @@ public class Duke {
                 response = DeleteHandler.getResponse(list, fullCommand[1]);
                 break;
             default:
-                response = "Unknown Command!";
+                response = "Unknown Command, please try again.";
                 break;
             }
             System.out.print(list);
@@ -91,7 +91,7 @@ public class Duke {
         } catch (DukeException dukeException) {
             response = (dukeException.getMessage());
         } catch (ArrayIndexOutOfBoundsException exception) {
-            response = "Invalid command format, please try again.";
+            response = "Invalid Command format, please try again.";
         }
         return response;
     }
