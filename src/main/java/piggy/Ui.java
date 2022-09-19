@@ -2,6 +2,7 @@ package piggy;
 
 import piggy.task.Task;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -121,5 +122,16 @@ class Ui {
      */
     String getDukeException(DukeException err) {
         return err.toString();
+    }
+
+    /**
+     * Get the schedule of a task list.
+     *
+     * @param tasks The list of tasks due on the date sorted in chronological order
+     * @param date The date for the schedule.
+     * @return the schedule
+     */
+    String getSchedule(List<Task> tasks, LocalDate date) {
+        return "Here are the tasks scheduled for " + date.toString() + "\n" + getTasks(tasks);
     }
 }
