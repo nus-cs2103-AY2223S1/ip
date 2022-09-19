@@ -64,6 +64,10 @@ public class Parser {
                 return duke.sayBye();
             }
 
+            case "help": {
+                return duke.sendHelp();
+            }
+
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means.");
             }

@@ -66,4 +66,27 @@ public class Ui {
         return builder.toString();
     }
 
+    public String printHelp() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Here is the list of commands available for use:");
+        builder.append("\n\t");
+        builder.append("todo : Add a ToDo type task to the list.");
+        builder.append("\n\t");
+        builder.append("deadline : Add a Deadline type task to the list.");
+        builder.append("\n\t");
+        builder.append("event : Add a Event type task to the list.");
+        builder.append("\n\t");
+        builder.append("list : Display the current list of tasks.");
+        builder.append("\n\t");
+        builder.append("mark : Mark the task as done.");
+        builder.append("\n\t");
+        builder.append("unmark : Mark the task as not done yet.");
+        builder.append("\n\t");
+        builder.append("delete : Remove a task from the list.");
+        builder.append("\n\t");
+        builder.append("find : Find task(s) with the specified keyword.");
+        builder.append("\n\t");
+        builder.append("bye : Exit the program.");
+        return builder.toString();
+    }
 }
