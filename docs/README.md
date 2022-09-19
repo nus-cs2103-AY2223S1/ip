@@ -21,7 +21,7 @@ Duke supports 3 types of tasks:
 
 ``` event <description> /at <YYYY-MM-DD> ``` - Adds an **event** with the given date to the list of tasks
 
-![This is an image](/images/todo_deadline_ss.png)
+![This is an image](/src/main/resources/images/todo_deadline_ss.png)
 
 ### Tasks can be added with a note.
 Adding ```/note``` allows you to add the task, **with an accompanying note**, to the list.
