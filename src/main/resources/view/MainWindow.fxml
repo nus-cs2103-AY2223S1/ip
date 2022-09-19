@@ -8,11 +8,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kkbot.ui.MainWindow">
     <children>
-        <TextField fx:id="userInput" layoutY="758.0" onAction="#handleUserInput" prefHeight="50.0" prefWidth="379.0" AnchorPane.bottomAnchor="1.0" />
-        <Button fx:id="sendButton" layoutX="379.0" layoutY="758.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="50.0" prefWidth="86.0" text="Send" />
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="757.0" prefWidth="450.0" vvalue="1.0">
+        <TextField fx:id="userInput" layoutY="760.0" onAction="#handleUserInput" prefHeight="40.0" prefWidth="380.0" AnchorPane.bottomAnchor="1.0" />
+        <Button fx:id="sendButton" layoutX="380.0" layoutY="760.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="40.0" prefWidth="70.0" text="Send" />
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="760.0" prefWidth="450.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="752.0" prefWidth="438.0" />
+                <VBox fx:id="dialogContainer" prefHeight="760.0" prefWidth="440.0" />
             </content>
         </ScrollPane>
     </children>
