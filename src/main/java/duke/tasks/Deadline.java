@@ -7,14 +7,14 @@ import duke.services.Parser;
  */
 public class Deadline extends Task {
 
-    /** The deadline */
+    /** Format: d MMM yyyy, h:mma */
     private String deadline;
 
     /**
      * Constructs a new Deadline with the given description and deadline
      *
-     * @param description The task description
-     * @param deadline The task deadline
+     * @param description The description
+     * @param deadline The deadline
      */
     public Deadline(String description, String deadline) {
         super(description, 'D');

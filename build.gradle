@@ -9,6 +9,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+run {
+    enableAssertions = true
+}
+
 group 'org.example'
 version '0.1'
 mainClassName = 'duke.gui.Launcher'

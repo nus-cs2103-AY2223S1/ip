@@ -41,6 +41,7 @@ public class Storage {
             Task task;
             while (line != null) {
                 //format of savedata lines: [typeSymbol][1 or 0] [desc] [flag] [timing]
+                assert !line.isEmpty(): "Savedata lines must be non-empty";
                 words = Arrays.stream(line.split(" ")).toArray(String[]::new);
                 if (line.charAt(0) == 'T') {
                     task = new Todo(Parser.getDescription(words, null));
@@ -72,6 +73,9 @@ public class Storage {
         Duke.setReply(new String[] {
             "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"}
         );
+        /**Ui.sayLines(new String[] {
+            "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"
+        });*/
     }
 
     /**
@@ -97,7 +101,7 @@ public class Storage {
                 }
                 bf.write(lineBuilder.toString());
                 bf.newLine();
-                lineBuilder = new StringBuilder();
+                lineBuilder.setLength(0);
             }
             bf.close();
         }

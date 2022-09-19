@@ -67,6 +67,7 @@ public class Duke {
                 setReply(new String[]{e.getMessage()});
             }
         }
+        assert !getReply().isEmpty(): "Reply can't be empty";
         return getReply();
     }
 

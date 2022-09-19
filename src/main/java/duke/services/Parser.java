@@ -50,7 +50,7 @@ public class Parser {
             throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
-        return descBuilder.substring(0, descBuilder.length() - 1); //remove last whitespace
+        return descBuilder.deleteCharAt(descBuilder.length() - 1).toString(); //remove last whitespace
     }
 
     /**

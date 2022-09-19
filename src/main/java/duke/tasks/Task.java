@@ -1,14 +1,14 @@
 package duke.tasks;
 
 /**
- * Tasks that can be marked as done or not done
+ * Tasks for keeping track of
  */
 public abstract class Task {
 
-    /** Description of what this task entails */
+    /** Describes what this task entails */
     protected String description;
 
-    /** A symbol indicating what kind of task this is */
+    /** Indicates what kind of task this is */
     protected final char typeSymbol;
 
     /** Is this task done? */
