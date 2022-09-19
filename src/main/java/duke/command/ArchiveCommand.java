@@ -9,7 +9,7 @@ import duke.Ui;
 /**
  * Archives the task(s) specified by the user via index in the list or with the all command.
  */
-public class ArchiveCommand extends Command{
+public class ArchiveCommand extends Command {
 
     private String input;
     private TaskList archiveTasks;
@@ -18,6 +18,7 @@ public class ArchiveCommand extends Command{
 
     /**
      * Creates the archive command with the input.
+     *
      * @param input Command line input from the user specifying task(s) to archive.
      */
     public ArchiveCommand(String input) {
@@ -27,8 +28,9 @@ public class ArchiveCommand extends Command{
 
     /**
      * Excecutes the archive of the task or tasks specified by the user.
-     * @param tasks List of tasks.
-     * @param ui User interface for duke.
+     *
+     * @param tasks   List of tasks.
+     * @param ui      User interface for duke.
      * @param storage Storage information for tasks.
      * @return String output to be displayed by duke.
      * @throws DukeException
@@ -41,10 +43,8 @@ public class ArchiveCommand extends Command{
 
         if (this.input.equalsIgnoreCase("list")) {
             return this.listArchiveTasks();
-        }
-
-        else if (this.input.equalsIgnoreCase("all")) {
-            for(int i = 0; i < tasks.getCount(); i++) {
+        } else if (this.input.equalsIgnoreCase("all")) {
+            for (int i = 0; i < tasks.getCount(); i++) {
                 archiveTasks.add(tasks.get(0));
             }
             tasks.clear();
@@ -54,7 +54,7 @@ public class ArchiveCommand extends Command{
             archiveStorage.write(archiveTasks);
             return toReturn.toString();
 
-        } else if (this.input.matches(intRegex)){
+        } else if (this.input.matches(intRegex)) {
             int index = Integer.parseInt(this.input);
             if (index > tasks.getCount()) {
                 throw new DukeException("This index does not exist and can't be archived! " +
@@ -68,9 +68,7 @@ public class ArchiveCommand extends Command{
                 archiveStorage.write(archiveTasks);
                 return toReturn.toString();
             }
-        }
-
-        else {
+        } else {
             throw new DukeException("Oops! Seems like this archive command does not exist!\n " +
                     "Try 'archive all' or 'archive (index of item to archive)' instead!\n");
         }
@@ -90,6 +88,7 @@ public class ArchiveCommand extends Command{
     public void setArchiveTasks(TaskList archiveTasks) {
         this.archiveTasks = archiveTasks;
     }
+
     @Override
     public void setArchiveStorage(Storage archiveStorage) {
         this.archiveStorage = archiveStorage;
@@ -106,9 +105,8 @@ public class ArchiveCommand extends Command{
         for (int i = 0; i < archiveTasks.getCount(); i++) {
             if (archiveTasks.get(i) == null) {
                 break;
-            }
-            else {
-                toReturn.append((i+1) + ". " + archiveTasks.get(i).toString() + "\n");
+            } else {
+                toReturn.append((i + 1) + ". " + archiveTasks.get(i).toString() + "\n");
             }
         }
         return toReturn.toString();
