@@ -1,4 +1,0 @@
-E | 1 | k | 6
-E | 0 | h | lol
-D | 0 | hw | 2022-11-11
-E | 1 | eeee | eeee
