@@ -1,9 +1,14 @@
 package command;
 
 import storage.Storage;
-import tasklist.TaskList;
+import task.TaskList;
 import ui.Ui;
 
+/**
+ * Encapsulates a user instruction to display list of saved tasks.
+ *
+ * @author Marcus Low
+ */
 public class ListCommand extends Command {
 
     @Override

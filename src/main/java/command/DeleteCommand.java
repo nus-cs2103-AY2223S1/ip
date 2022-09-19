@@ -4,13 +4,23 @@ import storage.Storage;
 
 import exception.DorisException;
 
-import tasklist.*;
+import task.*;
 
 import ui.Ui;
 
+/**
+ * Encapsulates a user instruction to delete a saved task.
+ *
+ * @author Marcus Low
+ */
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Constructs a delete command to remove a task from a list.
+     *
+     * @param num Index of task in the task list.
+     */
     public DeleteCommand(int index) {
         this.index = index - 1;
     }

@@ -1,17 +1,40 @@
 package parser;
 
-import command.*;
+import command.AddCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.UnmarkCommand;
 
 import exception.DorisException;
 
 import java.time.format.DateTimeParseException;
 
-import tasklist.*;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Parses the user commands.
+ *
+ * @author Marcus Low
+ */
 public class Parser {
+    /**
+     * Parses the user commands.
+     *
+     * @param command Command to be parsed.
+     * @return A command to be executed.
+     * @throws DorisException
+     */
     public static Command parse(String command) throws DorisException {
         String[] commands = command.split(" ", 2);
         DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
@@ -50,6 +73,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses lines from the data.txt file and converts them into tasks.
+     * Stores the tasks into a task list.
+     *
+     * @param task Line from the text file to be parsed.
+     * @return A Task instance.
+     * @throws DorisException
+     */
     public static Task parseSaved(String task) throws DorisException {
         String[] commands = task.split(" \\| ");
         DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
@@ -65,6 +96,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if input string is a valid integer.
+     * If so, converts it into an integer.
+     *
+     * @param numString String to be converted into an integer.
+     * @return The integer represented by the string.
+     * @throws DorisException
+     */
     public static int parseNum(String numString) throws DorisException {
         int num;
         try {
@@ -78,6 +117,15 @@ public class Parser {
         return num;
     }
 
+    /**
+     * Checks if input string is a date in the correct format.
+     * If so, converts it into a LocalDateTime instance.
+     *
+     * @param dateTime String to be converted into a LocalDateTime instance.
+     * @param DF DateTimeFormat used to check.
+     * @return A LocalDateTime instance in the format specified by DF.
+     * @throws DorisException
+     */
     public static LocalDateTime parseDateTime(String dateTime, DateTimeFormatter DF) throws DorisException {
         try {
             return LocalDateTime.parse(dateTime, DF);

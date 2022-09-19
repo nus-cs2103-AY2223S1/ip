@@ -2,11 +2,15 @@ package command;
 
 import storage.Storage;
 
-import tasklist.TaskList;
+import task.TaskList;
 
 import ui.Ui;
 
-
+/**
+ * Encapsulates a user instruction to exit the bot.
+ *
+ * @author Marcus Low
+ */
 public class ExitCommand extends Command {
 
     @Override

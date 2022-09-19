@@ -2,7 +2,7 @@ package parser;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import tasklist.*;
+import task.*;
 import exception.DorisException;
 
 import java.time.LocalDateTime;

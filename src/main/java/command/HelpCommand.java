@@ -2,10 +2,15 @@ package command;
 
 import storage.Storage;
 
-import tasklist.TaskList;
+import task.TaskList;
 
 import ui.Ui;
 
+/**
+ * Encapsulates a user instruction to display list of possible instructions.
+ *
+ * @author Marcus Low
+ */
 public class HelpCommand extends Command {
 
     @Override

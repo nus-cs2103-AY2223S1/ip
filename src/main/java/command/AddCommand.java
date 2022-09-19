@@ -6,17 +6,34 @@ import storage.Storage;
 
 import exception.DorisException;
 
-import tasklist.*;
+import task.*;
 
 import ui.Ui;
 
+/**
+ * Encapsulates a user instruction to create a new task.
+ *
+ * @author Marcus Low
+ */
 public class AddCommand extends Command {
     private Task task;
 
+    /**
+     * Constructs a new command to create a new Todo task.
+     *
+     * @param description Description of the task
+     */
     public AddCommand(String description) {
         this.task = new Todo(description, false);
     }
 
+    /**
+     * Constructs a new command to create a new Deadline or Event task.
+     *
+     * @param type Whether the task is a Deadline or Event task
+     * @param description Description of the task
+     * @param time When is the task is due or happening
+     */
     public AddCommand(String type, String description, LocalDateTime time) {
         switch (type) {
             case "deadline":
