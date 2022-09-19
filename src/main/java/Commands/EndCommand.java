@@ -10,7 +10,7 @@ import java.util.TimerTask;
 public class EndCommand extends Command{
 
     private TaskList tasks;
-    private static final SaveHandler SAVE_STATE = new SaveHandler();
+    private SaveHandler SAVE_SATE = new SaveHandler();
 
     /**
      * Ends the current session of Dave 2.
@@ -27,9 +27,10 @@ public class EndCommand extends Command{
      * @return The string representation of the result of the command.
      */
     @Override
-    public String execute() throws DaveException {
-        SAVE_STATE.save(tasks);
-
+    public String execute() {
+    
+        SAVE_STATE.save();
+        
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -37,6 +38,6 @@ public class EndCommand extends Command{
             }
         }, 1000L);
 
-        return "Bye. Hope to see you again soon!";
+        return "See you soon Akiha-sama!";
     }
 }

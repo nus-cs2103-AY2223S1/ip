@@ -30,14 +30,14 @@ public class RemoveTaskCommand extends Command {
     public RemoveTaskCommand(TaskList tasks, String input) throws DaveException {
         try {
             if (input.equals("")) {
-                throw new DaveException("( ; ω ; ) Oh nyo!!! Please tell me which task to remove!");
+                throw new DaveException("Oh no!!! Please tell me which task to remove!");
             }
             this.index = Integer.parseInt(input);
             this.tasks = tasks;
         } catch (NumberFormatException e) {
             throw new DaveException(
                     String.format(
-                            "( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
+                            "Oh no!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
                     )
             );
         }
@@ -54,7 +54,7 @@ public class RemoveTaskCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new DaveException(
                     String.format(
-                            "( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
+                            "Oh no!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
                     )
             );
         } catch (DaveNoTasksException de) {

@@ -9,7 +9,7 @@ public class AddTodoCommand extends Command {
     private ToDo task;
 
     /**
-     * Initialises a add ToDo command with a provided tasklist and
+     * Initialises an add ToDo command with a provided tasklist and
      * task to be added.
      *
      * @param tasks Tasklist for the task to added into
@@ -21,7 +21,7 @@ public class AddTodoCommand extends Command {
     }
 
     /**
-     * Initialises a add ToDo command with a provided tasklist and
+     * Initialises an add ToDo command with a provided tasklist and
      * a String representation of the task to be added.
      *
      * @param tasks Tasklist for the task to added into

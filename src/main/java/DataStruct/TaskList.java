@@ -19,7 +19,7 @@ public class TaskList implements Serializable {
     public String add(Task task) {
         tasks.add(task);
         return String.format(
-                "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
+                "Got it, master!. I've added this task:\n  %s\nNow you have %d tasks in the list.",
                 task, tasks.size());
     }
 
@@ -34,7 +34,7 @@ public class TaskList implements Serializable {
             throw new DaveNoTasksException();
         } else {
             Task task = tasks.remove(index - 1);
-            return String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
+            return String.format("Got it, master! I've removed this task:\n  %s\nNow you have %d tasks in the list.",
                     task, tasks.size());
         }
     }
@@ -53,8 +53,14 @@ public class TaskList implements Serializable {
         }
     }
 
+    /**
+     * Gives a list of tasks that contains the keyword.
+     *
+     * @param keyword keyword to look for in the task list
+     * @return list of tasks that contains the keyword
+     */
     public String findTasks(String keyword) {
-        StringBuilder result = new StringBuilder("Here are the matching tasks in your list: \n");
+        StringBuilder result = new StringBuilder("Here are the tasks that you are looking for! \n");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             if (task.contains(keyword)) {
@@ -73,13 +79,21 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
+    /**
+     * Appends a tasklist to the end of the current tasklist.
+     *
+     * @param tasks tasklist to be appended to the current tasklist
+     */
+    public void append(TaskList tasks) {
+        this.tasks.addAll(tasks.tasks);
+    }
+
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
+        StringBuilder result = new StringBuilder("Here are your tasks, master!\n");
         for (int i = 0; i < tasks.size(); i++) {
             result.append(String.format("%d. %s \n", i + 1, tasks.get(i)));
         }
         return result.toString();
     }
-
 }

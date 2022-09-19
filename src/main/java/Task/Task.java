@@ -42,7 +42,7 @@ public abstract class Task implements Serializable {
      */
     public String markdone() {
         this.done = true;
-        return "Nice! I've marked this task as done:\n" + this;
+        return "Yatta~ Congrats master, you've completed this task!\n" + this;
     }
 
      public boolean contains(String keyword) {
@@ -56,6 +56,6 @@ public abstract class Task implements Serializable {
      */
     public String unmarkdone() {
         this.done = false;
-        return "OK, I've marked this task as not done yet:\n" + this;
+        return "All the best for this task, master!\n" + this;
     }
 }
