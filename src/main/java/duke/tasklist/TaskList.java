@@ -52,13 +52,28 @@ public class TaskList implements Serializable {
     public String handleItem(String instruction, int itemNum) throws InvalidItemException {
 
         if (itemNum >= 0 && itemNum < this.getListLength()) {
-            if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
-                ListObject currItem = tasksList.get(itemNum);
-                assert currItem != null;
-                currItem.switchStatus();
-                return currItem.toString();
+            ListObject currItem = tasksList.get(itemNum);
+            if (instruction.equals("UNMARK")) {
+                switch (currItem.getStatus()) {
+                case 1:
+                    assert currItem != null;
+                    currItem.switchStatus();
+                    return currItem.toString();
+
+               default:
+                    return "\n Oh I had forgotten...'tis already so!";
+                }
+            } else if (instruction.equals("MARK")){
+                switch (currItem.getStatus()) {
+                case 0:
+                    assert currItem != null;
+                    currItem.switchStatus();
+                    return currItem.toString();
+
+                default:
+                    return "\n Oh I had forgotten...'tis already so!";
+                }
             } else if (instruction.equals("DELETE")) {
-                ListObject currItem = tasksList.get(itemNum);
                 assert currItem != null;
                 tasksList.remove(itemNum);
                 return currItem.toString();

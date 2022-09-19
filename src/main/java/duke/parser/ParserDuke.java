@@ -36,7 +36,7 @@ public class ParserDuke {
     private static final String FIND_CMD = "find";
     private static final String HELP_CMD = "help";
     private static final String SORT_CMD = "sort";
-    private static final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
+    private static final String FILE_PATH = "../DukeTasks.txt";
     private final String command;
 
     /**
