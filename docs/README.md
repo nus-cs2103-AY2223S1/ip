@@ -1,8 +1,16 @@
 #https://github.com/24Donovan24/ip/blob/master/docs/README.md
 #@@24Donovan24 
+
 #Adapted @@24Donovan24 features portion
+
 #Adapted @@24Donovan24 usage portion -Rewrite and reused some
+
 #Used the above user guide for reference in helping me craft a better one
+
+#i will try to rewrite this if i have time later
+
+#for i will have to thank @@24Donovan24 for helping me craft a rough one
+
 
 # User Guide
 Here is Duke, a friendly task manager robot!
