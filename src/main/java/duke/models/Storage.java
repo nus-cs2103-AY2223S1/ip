@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class Storage {
     private static final String TASK_DIRECTORY_NAME = "src/main/data/";
     private static final String TASK_FILE_NAME = "tasklist.txt";
-    private static final String RECURRING_RULE_FILE_NAME = "recurring_task_list.txt";
     private static final String TASK_FILE_PATH = TASK_DIRECTORY_NAME + TASK_FILE_NAME;
 
     /**

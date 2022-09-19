@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import duke.controllers.MainWindow;
 import javafx.application.Application;
