@@ -37,7 +37,7 @@ Example of usage:
 Expected outcome:
 
 Description of the outcome.<br/>
-<img src="screenshots/todo.png" width="200px">
+<img src="screenshots/todo.png" width="300px">
 
 ```
 expected output

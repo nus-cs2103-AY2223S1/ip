@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
 public class Event extends Task {
 
     private LocalDateTime at;
+    private LocalDateTime end = null;
 
     /**
      * Construct a event from users' input
@@ -21,23 +22,31 @@ public class Event extends Task {
         super(isDone);
         String[] strArr = input.split("/at");
         this.description = strArr[0].trim();
+        String[] startNEnd = strArr[1].trim().split("~");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
-            this.at = LocalDateTime.parse(strArr[1].trim(), formatter);
+            this.at = LocalDateTime.parse(startNEnd[0].trim(), formatter);
+            if (startNEnd.length > 1) {
+                this.end = LocalDateTime.parse(startNEnd[1].trim(), formatter);
+            }
         } catch (DateTimeParseException e) {
-            System.out.println("Wrong date format");
+            //System.out.println("Wrong date format");
             throw e;
         }
     }
 
-    public Event(String input, String at, boolean isDone) {
+    public Event(String input, String times, boolean isDone) {
         super(isDone);
         this.description = input;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String[] startNEnd = times.split("~");
         try {
-            this.at = LocalDateTime.parse(at);
+            this.at = LocalDateTime.parse(startNEnd[0].trim());
+            if (startNEnd.length > 1) {
+                this.end = LocalDateTime.parse(startNEnd[1].trim());
+            }
         } catch (DateTimeParseException e) {
-            System.out.println("Wrong date format");
+            //System.out.println("Wrong date format");
             throw e;
         }
     }
@@ -54,14 +63,23 @@ public class Event extends Task {
     @Override
     public String toDataForm() {
         String done = this.isDone ? "1" : "0";
-        return "E|" + done + "|" + this.description + "|" + this.at + "\n";
+        String endTime = this.end == null
+                ? ""
+                : "~" + this.end ;
+        return "E|" + done + "|" + this.description + "|" + this.at + endTime + "\n";
     }
 
     @Override
     public String toString() {
-        String date  = this.at.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        String start  = this.at.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
         String head = "[E][" + this.getStatusIcon() + "] ";
-        String body = this.description + " (at: " + date + ")";
+        String body;
+        if (this.end == null) {
+            body = this.description + " (at: " + start + ")";
+        } else {
+            String end = this.end.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
+            body = this.description + " (from: " + start + " to: " + end + ")";
+        }
         return head + body;
     }
 

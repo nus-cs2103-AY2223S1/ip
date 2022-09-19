@@ -25,6 +25,10 @@ public class Parser {
     private static final String DELETE_NO_INDEX = "You should specify the index of task to delete";
     private static final String FIND_NO_KEYWORD = "OOPS!!! Please enter a keyword for searching.";
     private static final String INVALID_COMMAND_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String HELP_MESSAGE = "[Jarvis Command Summary]:\n"
+            + "todo {description}\nevent {description} /at {date and time}\n"
+            + "deadline {description} /by {date and time}\n(Date and time format: yyyy-mm-dd hh-mm)\n"
+            + "list\nmark/unmark {index}\ndelete {index}";
 
     private boolean isBye = false;
 
@@ -86,11 +90,16 @@ public class Parser {
                     return FIND_NO_KEYWORD;
                 }
                 return taskList.find(input.substring(5));
+            } else if (input.startsWith("help")) {
+                return HELP_MESSAGE;
             } else {
                 return INVALID_COMMAND_MESSAGE;
             }
         } catch (IOException e) {
             return "Error when trying to add task: " + e;
+        } catch (NumberFormatException e) {
+            //Exception caused by non-numerical in index
+            return "Please enter index to mark/unmark/delete instead of name :)";
         }
     }
 

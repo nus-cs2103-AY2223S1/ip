@@ -27,7 +27,8 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    private final String GREETING_MESSAGE = "Hello! This is Jarvis :D. \nHow can I help you?";
+    private final String GREETING_MESSAGE = "Hello! This is Jarvis :D. \nHow can I help you?\n"
+            + "Enter \"help\" for command summary";
 
     @FXML
     public void initialize() {
