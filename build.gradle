@@ -44,12 +44,12 @@ test {
 }
 
 application {
-    mainClassName = "doemon.Doemon"
+    mainClassName = "doemon.Launcher"
 }
 
 shadowJar {
     archiveBaseName = "doemon"
-    archiveClassifier = "v0.2"
+    archiveClassifier = "v0.3"
 }
 
 checkstyle {

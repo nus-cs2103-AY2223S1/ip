@@ -28,7 +28,7 @@ public class MainWindow extends AnchorPane {
 
     /** Image of the user avatar */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/nota.png"));
-    /** Image of the doemon chat bot avatar */
+    /** Image of the doemon chatbot avatar */
     private Image doemonImage = new Image(this.getClass().getResourceAsStream("/images/doemon.png"));
 
     /**

@@ -180,7 +180,7 @@ public class Parser {
      * @return A boolean indicating if the string is a find.
      */
     private static boolean isFindCommand(String command) {
-        return command.equals("find");
+        return command.equals("find") || command.equals("f");
     }
 
     /**

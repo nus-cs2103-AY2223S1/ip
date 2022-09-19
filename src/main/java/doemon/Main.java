@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     /** The file path of the file where tasks will be saved to. */
-    private static final String TASK_FILE_PATH = "./data/duke.txt";
+    private static final String TASK_FILE_PATH = "./data/doemon.txt";
     private Doemon doemon = new Doemon(TASK_FILE_PATH);
 
     /**

@@ -80,9 +80,10 @@ public class Response {
         assert task != null : "Task should not be null";
         return String.format(
                 "Alright! I have recorded this task on my bread:\n"
-                + "  %s\nYou now have %d task(s) recorded on my bread.",
+                + "  %s\nYou now have %d task%s recorded on my bread.",
                 task.toString(),
-                numTasks);
+                numTasks,
+                numTasks == 1 ? "" : "s");
     }
 
     /**
@@ -93,7 +94,7 @@ public class Response {
      */
     public String markTaskString(Task task) {
         assert task != null : "Task should not be null";
-        return String.format("Yay! This task is now marked as done:\n %s", task);
+        return String.format("Yay! This task is now marked as done:\n  %s", task);
     }
 
     /**
@@ -118,7 +119,10 @@ public class Response {
         assert task != null : "Task should not be null";
         assert numTasks >= 0 : "Number of tasks should be non-negative";
         return String.format("I used a knife to slice off this task from my bread:\n  %s"
-                + "\nThere are %d items left on my bread.", task, numTasks);
+                + "\nThere's %d item%s left on my bread.",
+                task,
+                numTasks,
+                numTasks == 1 ? "" : "s");
     }
 
     /**

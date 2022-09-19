@@ -8,8 +8,8 @@
 
   -fx-text-overrun: clip;
   -fx-text-fill: black;
-  -fx-font-family: "Garamond", serif;
-  -fx-font-size: 15;
+  -fx-font-family: "Helvetica", sans-serif;
+  -fx-font-size: 13;
 }
 
 .scroll-pane .viewport {
