@@ -51,6 +51,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws JarvisException {
         String input = userInput.getText();
         String response = jarvis.getResponse(input);
+        assert userImage != null;
+        assert jarvisImage != null;
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, jarvisImage)
