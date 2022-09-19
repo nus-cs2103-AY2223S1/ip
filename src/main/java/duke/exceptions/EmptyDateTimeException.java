@@ -4,7 +4,7 @@ package duke.exceptions;
  * Represents an EmptyDateTimeException class which is inherited from the Exception class and
  * occurs when the user enters an empty date or time argument
  */
-public class EmptyDateTimeException extends Exception{
+public class EmptyDateTimeException extends Exception {
 
     /**
      * Constructs an EmptyDateTimeException with standard message

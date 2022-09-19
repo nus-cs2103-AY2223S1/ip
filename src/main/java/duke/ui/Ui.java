@@ -1,7 +1,6 @@
 package duke.ui;
 
 import duke.parser.ParserDuke;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -38,8 +37,8 @@ public class Ui {
             if (!userMsg.equals(END_CMD)) {
                 reply = userMsg + "\n";
             } else {
-                reply = "Ah! And so we part here today." +
-                        "\n We may yet meet again...Farewell, my friend!";
+                reply = "Ah! And so we part here today."
+                        + "\n We may yet meet again...Farewell, my friend!";
             }
             System.out.println(reply);
             return reply;
@@ -77,6 +76,7 @@ public class Ui {
 
     /**
      * Returns an appropriate message for the user command
+     *
      * @param userMsg String representing user command
      * @return String representing Duke's response
      */

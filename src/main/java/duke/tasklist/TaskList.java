@@ -6,7 +6,6 @@ import duke.listobjects.ListObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,22 +51,22 @@ public class TaskList implements Serializable {
      */
     public String handleItem(String instruction, int itemNum) throws InvalidItemException {
 
-        if (itemNum >=0 && itemNum < this.getListLength()) {
-        if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
-            ListObject currItem = tasksList.get(itemNum);
-            assert currItem != null;
-            currItem.switchStatus();
-            return currItem.toString();
-        } else if (instruction.equals("DELETE")) {
-            ListObject currItem = tasksList.get(itemNum);
-            assert currItem != null;
-            tasksList.remove(itemNum);
-            return currItem.toString();
+        if (itemNum >= 0 && itemNum < this.getListLength()) {
+            if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
+                ListObject currItem = tasksList.get(itemNum);
+                assert currItem != null;
+                currItem.switchStatus();
+                return currItem.toString();
+            } else if (instruction.equals("DELETE")) {
+                ListObject currItem = tasksList.get(itemNum);
+                assert currItem != null;
+                tasksList.remove(itemNum);
+                return currItem.toString();
+            } else {
+                return "Oh dear! I was thinking of my sweet Duchess Anne...\n"
+                        + "What was it that you asked me?";
+            }
         } else {
-            return "Oh dear! I was thinking of my sweet Duchess Anne...\n" +
-                    "What was it that you asked me?";
-        }
-    } else {
             throw new InvalidItemException();
         }
 
@@ -93,13 +92,11 @@ public class TaskList implements Serializable {
         }
     }
 
+    /**
+     * Sorts the list based on natural comparison order of list objects
+     */
     public void sortList() {
-        Collections.sort(tasksList, new Comparator<ListObject>() {
-            @Override
-            public int compare(ListObject o1, ListObject o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        Collections.sort(tasksList, (o1, o2) -> o1.compareTo(o2));
     }
 
 
@@ -121,7 +118,14 @@ public class TaskList implements Serializable {
         return this.tasksList;
     }
 
-    public String findByKeyword(String target) throws InvalidItemException{
+    /**
+     * Finds all list items containing search keyword in their task description
+     *
+     * @param target String representing keyword to search for
+     * @return String representing list containing only items whose task descriptions contain keyword
+     * @throws InvalidItemException if there is no item in the list with the keyword in its description
+     */
+    public String findByKeyword(String target) throws InvalidItemException {
         Stream<ListObject> filteredOptions = tasksList.stream().filter(x -> x.hasWord(target));
         assert filteredOptions != null;
         List<ListObject> eligibleTasks = filteredOptions.collect(Collectors.toList());
@@ -144,7 +148,7 @@ public class TaskList implements Serializable {
     public String toString() {
         String str = "";
         for (int i = 0; i < this.tasksList.size(); i++) {
-            str = str + (i+1) + ". " + tasksList.get(i).toString() + "\n";
+            str = str + (i + 1) + ". " + tasksList.get(i).toString() + "\n";
         }
         return str;
     }

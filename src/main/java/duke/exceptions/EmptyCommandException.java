@@ -4,7 +4,7 @@ package duke.exceptions;
  * Represents an EmptyCommandException class which is inherited from the Exception class and
  * occurs when the user enters an empty command
  */
-public class EmptyCommandException extends Exception{
+public class EmptyCommandException extends Exception {
 
     /**
      * Constructs an EmptyCommandException with standard message

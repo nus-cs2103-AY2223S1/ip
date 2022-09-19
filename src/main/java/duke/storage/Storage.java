@@ -3,11 +3,18 @@ package duke.storage;
 import duke.listobjects.ListObject;
 import duke.tasklist.TaskList;
 
-import java.io.*;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
- * Represents Storage class responsible for editing and saving user's task list information in a file and reading from saved file
+ * Represents Storage class responsible for editing and saving user's task list information
+ * in a file and reading from saved file
  */
 public class Storage {
     private static TaskList tasksStored;
@@ -47,7 +54,7 @@ public class Storage {
             inList.setTasks(allIn);
             in.close();
         } catch (EOFException e) {
-
+            System.out.println("Nothing here yet...");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {

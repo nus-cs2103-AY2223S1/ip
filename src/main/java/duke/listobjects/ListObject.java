@@ -9,15 +9,9 @@ import java.time.format.DateTimeFormatter;
  * Class to store list items with task and status of completion
  */
 public class ListObject implements Serializable, Comparable<ListObject> {
-    String time;
     private final String task;
+    private String time;
     private int status;
-
-    public enum Type{
-        TODO,
-        EVENT,
-        DEADLINE
-    }
 
     /**
      * Constructs a ListObject with given task description and status
@@ -42,7 +36,6 @@ public class ListObject implements Serializable, Comparable<ListObject> {
         this.time = time;
         this.status = status;
     }
-
 
     /**
      * Returns task description
@@ -75,7 +68,6 @@ public class ListObject implements Serializable, Comparable<ListObject> {
         }
     }
 
-
     /**
      * Switches the status of completion of task
      */
@@ -106,48 +98,48 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     public String formatDateTime(Type type) {
 
 
-            String txt = this.time;
-            String[] words = txt.split(" ");
-            String date = words[0];
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        String txt = this.time;
+        String[] words = txt.split(" ");
+        String date = words[0];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
 
-            switch (type) {
+        switch (type) {
 
-                case EVENT:
-                    String start = words[1];
-                    String end = words[2];
+        case EVENT:
+            String start = words[1];
+            String end = words[2];
 
-                    //format date of form yyyy-MM-dd
-                    LocalDate eventDate = LocalDate.parse(date, formatter);
-                    String eventDateNew = eventDate.format(formatNew);
+            //format date of form yyyy-MM-dd
+            LocalDate eventDate = LocalDate.parse(date, formatter);
+            String eventDateNew = eventDate.format(formatNew);
 
-                    //format time of form HH:mm (24h clock)
-                    LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ISO_LOCAL_TIME);
-                    String timeStart = startTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
-                    LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ISO_LOCAL_TIME);
-                    String timeEnd = endTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+            //format time of form HH:mm (24h clock)
+            LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ISO_LOCAL_TIME);
+            String timeStart = startTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+            LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ISO_LOCAL_TIME);
+            String timeEnd = endTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
 
-                    return " (on: " + eventDateNew + " from: " + timeStart + " to: " + timeEnd + ")";
+            return " (on: " + eventDateNew + " from: " + timeStart + " to: " + timeEnd + ")";
 
-                case DEADLINE:
-                    String time = words[1];
+        case DEADLINE:
+            String time = words[1];
 
-                    //format date of form yyyy-MM-dd
-                    LocalDate deadline = LocalDate.parse(date, formatter);
-                    String dateNew = deadline.format(formatNew);
+            //format date of form yyyy-MM-dd
+            LocalDate deadline = LocalDate.parse(date, formatter);
+            String dateNew = deadline.format(formatNew);
 
-                    //format time of form HH:mm (24h clock)
-                    LocalTime deadlineTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-                    String timeNew = deadlineTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+            //format time of form HH:mm (24h clock)
+            LocalTime deadlineTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
+            String timeNew = deadlineTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
 
-                    return " (by: " + dateNew + " at " + timeNew + ")";
+            return " (by: " + dateNew + " at " + timeNew + ")";
 
-                default:
-                    return "Are you sure you have recorded the time?";
+        default:
+            return "Are you sure you have recorded the time?";
 
-            }
+        }
     }
 
     /**
@@ -173,7 +165,6 @@ public class ListObject implements Serializable, Comparable<ListObject> {
         }
     }
 
-
     /**
      * Returns String representation of the ListObject
      *
@@ -182,6 +173,16 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     @Override
     public String toString() {
         return this.showStatusIndicator() + this.getTask();
+    }
+
+
+    /**
+     * Represents different types of tasks in ListObject
+     */
+    public enum Type {
+        TODO,
+        EVENT,
+        DEADLINE
     }
 
 }

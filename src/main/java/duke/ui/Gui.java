@@ -25,18 +25,19 @@ import javafx.stage.Stage;
  */
 public class Gui extends Application {
 
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private final Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
-    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
 
     /**
      * Starts the GUI with the scene set onto the stage
+     *
      * @param stage the primary stage for this application, onto which
-     * the application scene can be set
+     *              the application scene can be set
      */
     @Override
     public void start(Stage stage) {
@@ -122,6 +123,7 @@ public class Gui extends Application {
 
     /**
      * Returns Duke's response to user command
+     *
      * @param input String representing user command
      * @return String response to the user command
      */
@@ -132,6 +134,7 @@ public class Gui extends Application {
 
     /**
      * Returns Label containing text to be displayed
+     *
      * @param text String to be used in the Dialogue Label
      * @return Label containing dialogue
      */
@@ -151,7 +154,8 @@ public class Gui extends Application {
 
         /**
          * Constructs a DialogBox with a given Label or text and image
-         * @param l Label with text to be displayed
+         *
+         * @param l  Label with text to be displayed
          * @param iv ImageView of speaker's image
          */
         public DialogBox(Label l, ImageView iv) {
@@ -168,7 +172,8 @@ public class Gui extends Application {
 
         /**
          * Returns DialogBox of Duke with the label and image in the correct orientation
-         * @param l Label with text to be displayed
+         *
+         * @param l  Label with text to be displayed
          * @param iv ImageView of speaker's image
          * @return DialogBox with given label and image in appropriate orientation
          */
@@ -181,7 +186,8 @@ public class Gui extends Application {
 
         /**
          * Returns DialogBox of User with the label and image in the correct orientation
-         * @param l Label with text to be displayed
+         *
+         * @param l  Label with text to be displayed
          * @param iv ImageView of speaker's image
          * @return DialogBox with given label and image in appropriate orientation
          */
