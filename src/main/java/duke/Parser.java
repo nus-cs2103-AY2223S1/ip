@@ -1,7 +1,5 @@
 package duke;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * Represents a Parser to parse the input and return an Object corresponding to it.
  */
@@ -11,11 +9,12 @@ public class Parser {
      *
      * @param input Data input from Storage.
      * @return Task corresponding to the data input from Storage.
+     * @throws DukeException If storage data can not be parsed.
      */
     public static Task parseStorageTask(String input) throws DukeException {
         String[] inputParts = input.split(", ");
         String type = inputParts[0];
-        boolean isDone = inputParts[1] == "X";
+        boolean isDone = inputParts[1].equals("X");
         String description = inputParts[2];
         switch (type) {
         case "T":
@@ -25,7 +24,7 @@ public class Parser {
         case "E":
             return new Event(description, isDone, inputParts[3]);
         default:
-            return new Task(""); // error
+            throw new DukeException("Load unsuccessful!");
         }
     }
 
@@ -34,6 +33,7 @@ public class Parser {
      *
      * @param input Text input from user.
      * @return Command corresponding to the user input.
+     * @throws DukeException If user input is not recognized or has incorrect syntax.
      */
     public static Command parseInput(String input) throws DukeException {
         try {

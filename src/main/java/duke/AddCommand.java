@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 /**
  * Represents a Command to add a task to Duke, either a ToDo, a Deadline, or an Event.
  */
@@ -35,6 +37,7 @@ public class AddCommand extends Command {
      * Run the AddCommand, add a Task to Duke.
      *
      * @param duke Duke instance to run the AddCommand at.
+     * @throws DukeException If the type does not exist in Duke.
      */
     @Override
     public void run(Duke duke) throws DukeException {
@@ -50,8 +53,23 @@ public class AddCommand extends Command {
             task = new Event(description, detail);
             break;
         default:
-            task = new Task(""); // error
+            throw new DukeException("");
         }
         duke.addTask(task);
+    }
+
+    /**
+     * Checks equality to another Object.
+     *
+     * @param o Other Object.
+     * @return true if equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        AddCommand that = (AddCommand) o;
+        return type == that.type && Objects.equals(description, that.description) && Objects.equals(detail, that.detail);
     }
 }

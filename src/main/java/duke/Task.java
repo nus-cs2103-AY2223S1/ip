@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 /**
  * Represents a Task with description, boolean to set the Task as done or not done, and type (ToDo = 'T',
  * Deadline = 'D', Event = 'E').
@@ -69,6 +71,24 @@ public class Task {
      * @return String representation of the Task for Storage.
      */
     public String toData() {
-        return String.format("%c, %c, %s", type,  getStatusIcon(), description);
+        return String.format("%c, %c, %s", type, getStatusIcon(), description);
+    }
+
+    /**
+     * Checks equality to another Object.
+     *
+     * @param o Other Object.
+     * @return true if equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Task task = (Task) o;
+        return isDone == task.isDone && type == task.type && Objects.equals(description, task.description);
     }
 }

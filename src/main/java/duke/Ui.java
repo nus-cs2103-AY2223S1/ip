@@ -8,8 +8,8 @@ import java.util.Scanner;
  * Represents the UI component of Duke.
  */
 public class Ui {
-    private Scanner sc = new Scanner(System.in);
-    private String output = "";
+    protected Scanner sc = new Scanner(System.in);
+    protected String output = "";
 
     /**
      * Prints a String to the UI.

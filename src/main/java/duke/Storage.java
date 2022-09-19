@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Represents a Storage to load and save the data of Duke.
  */
 public class Storage {
-    private String path;
+    protected String path;
 
     /**
      * Constructor of Storage with path name to the Storage file.
@@ -24,6 +24,7 @@ public class Storage {
      * Returns a TaskList which results from loading the data in the Storage file.
      *
      * @return TaskList from the data in the Storage file.
+     * @throws DukeException If storage data can not be parsed.
      */
     public TaskList load() throws DukeException {
         File file = new File(path);
@@ -45,6 +46,7 @@ public class Storage {
      * Saves the current Duke data to the Storage file.
      *
      * @param tasks TaskList which represents the current Duke data.
+     * @throws DukeException If save is unsuccessful.
      */
     public void save(TaskList tasks) throws DukeException {
         try {

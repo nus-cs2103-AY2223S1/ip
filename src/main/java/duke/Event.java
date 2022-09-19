@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 /**
  * Represents an Event, which is a Task with time.
@@ -15,6 +16,7 @@ public class Event extends Task {
      *
      * @param description Description of the Event.
      * @param time Time of the Event.
+     * @throws DukeException If date format is incorrect.
      */
     public Event(String description, String time) throws DukeException {
         super(description);
@@ -32,6 +34,7 @@ public class Event extends Task {
      * @param description Description of the Event.
      * @param isDone Boolean to set the Event as done or not done.
      * @param time Time of the Event.
+     * @throws DukeException If date format is incorrect.
      */
     public Event(String description, boolean isDone, String time) throws DukeException {
         this(description, time);
@@ -57,5 +60,20 @@ public class Event extends Task {
     @Override
     public String toData() {
         return super.toData() + ", " + time;
+    }
+
+    /**
+     * Checks equality to another Object.
+     *
+     * @param o Other Object.
+     * @return true if equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        Event event = (Event) o;
+        return Objects.equals(time, event.time);
     }
 }

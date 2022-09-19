@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 /**
  * Represents a Command to find tasks in Duke that matches a certain keyword.
  */
@@ -24,4 +26,20 @@ public class FindCommand extends Command {
     public void run(Duke duke) {
         duke.findTasks(keyword);
     }
+
+    /**
+     * Checks equality to another Object.
+     *
+     * @param o Other Object.
+     * @return true if equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        FindCommand that = (FindCommand) o;
+        return Objects.equals(keyword, that.keyword);
+    }
+
 }

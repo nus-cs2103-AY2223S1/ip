@@ -18,10 +18,10 @@ import java.util.ArrayList;
  * Represents Duke, a Personal Assistant Chatterbot that helps a person to keep track of various things.
  */
 public class Duke extends Application {
-    private Storage storage;
-    private TaskList tasks;
-    private Ui ui;
-    private boolean isActive = true;
+    protected Storage storage;
+    protected TaskList tasks;
+    protected Ui ui;
+    protected boolean isActive = true;
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -48,8 +48,9 @@ public class Duke extends Application {
      * Add a Task to Duke.
      *
      * @param task Task to add.
+     * @throws DukeException If task description is empty.
      */
-    public void addTask(Task task) throws DukeException { // error if description is empty
+    public void addTask(Task task) throws DukeException {
         assert tasks != null;
         assert task != null;
         if (task.description.isBlank()) {
@@ -73,6 +74,7 @@ public class Duke extends Application {
      *
      * @param index Index of Task to mark.
      * @param isDone Boolean to mark the Task as done or not done.
+     * @throws DukeException If index is out of bound.
      */
     public void markTask(int index, boolean isDone) throws DukeException {
         assert tasks != null;
@@ -94,6 +96,7 @@ public class Duke extends Application {
      * Delete a Task.
      *
      * @param index Index of Task to delete.
+     * @throws DukeException If index is out of bound.
      */
     public void deleteTask(int index) throws DukeException {
         assert tasks != null;
@@ -154,18 +157,22 @@ public class Duke extends Application {
     }
 
     /**
+     * Clears tasks in Duke and the storage.
+     *
+     * @throws DukeException If tasks in Duke or storage can not be cleared.
+     */
+    public void clear() throws DukeException {
+        tasks.clear();
+        storage.save(tasks);
+    }
+
+    /**
      * Starts the Duke GUI.
      *
      * @param stage Stage to show the GUI elements.
      */
     @Override
     public void start(Stage stage) {
-        /* Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage. */
-
         // Step 1. Setting up required components
 
         // The container for the content of the chat to scroll.
