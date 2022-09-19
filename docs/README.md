@@ -45,6 +45,15 @@ Expected outcome:
 ```
 Added a deadline: [D][ ] do assignment (by: Aug 08 2022)
 ```
+### `revent <description> /at <StartDate> /end <EndDate>` - Add a recurring event
+Currently, the recurring event will be fixed to have a weekly interval.
+
+#### Expected behaviour
+The next recurring event will only be added automatically if you mark the last event as done.
+It will not be deleted if you mark the last event as undone afterwards.
+Note that you should **avoid deleting** any of the recurring event because it may affect the recurrence rule.
+
+
 ### `mark <index>` - Mark a task as done
 ### `unmark <index>` - Mark a task as undone
 ### `list` - List all tasks
