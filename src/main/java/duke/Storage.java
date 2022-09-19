@@ -16,19 +16,21 @@ public class Storage {
         this.listOfAllTasks = new File(listOfTasks);
     }
 
+    //Solution adapted from https://github.com/24Donovan24/ip/tree/d036dd6c7e3bdaace325d1a365de12c676f55340
+
     public ArrayList<Task> load() throws IOException, DukeException{
         ArrayList<Task> list = new ArrayList<>();
         Scanner sc = null;
-        try {
-            if (!listOfAllTasks.exists()) {
-                System.out.println("No existing file! Let me create a new one for you.");
-                try {
-                    listOfAllTasks.getParentFile().mkdirs();
-                    listOfAllTasks.createNewFile();
-                } catch (IOException e) {
-                    System.out.println("I encountered a problem!");
-                }
+        if (!listOfAllTasks.exists()) {
+            System.out.println("No existing file! Let me create a new one for you.");
+            try {
+                listOfAllTasks.getParentFile().mkdirs();
+                listOfAllTasks.createNewFile();
+            } catch (IOException e) {
+                System.out.println("I encountered a problem!");
             }
+        }
+        try {
             sc = new Scanner(listOfAllTasks);
         } catch (FileNotFoundException e) {
             throw new DukeException("I cannot read your file");
