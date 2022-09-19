@@ -8,9 +8,9 @@ Doris can help you manage your task and get your s**t together!
 <br/><br/>
 
 # Get started with Doris ️
-1. Download `doris-v1.0.jar` from this [page](https://github.com/marcuslowhuiyu/ip/releases/tag/A-Release)
+1. Download `doris-v0.2.jar` from this [page](https://github.com/marcuslowhuiyu/ip/releases/tag/A-Release)
 2. Navigate to the directory containing the `jar` file in terminal
-3. Run `java -jar doris-v1.0.jar`
+3. Run `java -jar doris-v0.2.jar`
 4. Tell Doris what you need to do
 5. Say `bye` to Doris, and she'll remember what you need to do!
 
