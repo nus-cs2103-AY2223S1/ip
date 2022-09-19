@@ -21,11 +21,11 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Storage storage, Ui ui) {
         String message = "";
         try {
-            String description = Parser.parseFindDetails(commandDetails);
+            String description = Parser.parseFindDetails(commandDetails).toLowerCase();
             ArrayList<Task> result = new ArrayList<>();
             for (int i = 0; i < tasks.sizeOf(); i++) {
                 Task task = tasks.getTask(i);
-                if (task.toString().contains(description)) {
+                if (task.toString().toLowerCase().contains(description)) {
                     result.add(task);
                 }
             }
