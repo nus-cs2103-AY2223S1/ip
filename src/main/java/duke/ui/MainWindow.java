@@ -23,7 +23,6 @@ public class MainWindow extends AnchorPane implements Ui {
     private Button sendButton;
 
     private Duke duke;
-    private Parser parser = new Parser();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));

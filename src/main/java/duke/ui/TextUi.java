@@ -2,13 +2,10 @@ package duke.ui;
 
 import java.util.Scanner;
 
-import duke.parser.Parser;
-
 public class TextUi implements Ui {
     private static final String DIVIDER = "____________________________________________________________\n";
 
     private Scanner scanner = new Scanner(System.in);
-    private Parser parser = new Parser();
 
     public void showWelcome() {
         showLine();

@@ -23,7 +23,7 @@ public class TaskList {
     }
 
     public Task deleteTask(int idx) {
-        return tasks.remove(idx - 1);
+        return tasks.remove(idx);
     }
 
     public void updateStorage() {
