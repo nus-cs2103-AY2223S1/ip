@@ -1,7 +1,11 @@
 package jarvis;
 
-import jarvis.task.*;
 import jarvis.exception.JarvisException;
+import jarvis.task.TaskList;
+import jarvis.task.Deadline;
+import jarvis.task.ToDo;
+import jarvis.task.Event;
+import jarvis.task.Task;
 
 public class Parser {
     
