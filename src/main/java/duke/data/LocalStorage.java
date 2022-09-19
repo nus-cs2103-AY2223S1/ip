@@ -82,7 +82,10 @@ public class LocalStorage {
                 String taskDone = m.group(3);
                 String taskName = m.group(4);
                 String taskDate = m.group(5);
-                FormattedDate formattedTaskDate = new FormattedDate(taskDate);
+                FormattedDate formattedTaskDate = null;
+                if (taskDate != null) {
+                    formattedTaskDate = new FormattedDate(taskDate);
+                }
                 switch (taskType) {
                 case "T":
                     taskList.add(new Todo(taskName, taskDone.equalsIgnoreCase("X")));
