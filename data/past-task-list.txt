@@ -1,1 +1,3 @@
-D;X;iP;2022-09-19
+T;X;2103 iP; 
+E; ;PDT recert;2022-09-21
+A;X;midterms revision;2022-09-22

@@ -8,6 +8,7 @@ import kkbot.commands.ByeCommand;
 import kkbot.commands.Command;
 import kkbot.commands.DeadlineCommand;
 import kkbot.commands.DeleteCommand;
+import kkbot.commands.DoAfterCommand;
 import kkbot.commands.EventCommand;
 import kkbot.commands.ListCommand;
 import kkbot.commands.MarkCommand;
@@ -43,17 +44,23 @@ public class Parser {
         switch (inputCommand) {
             case ByeCommand.KEYWORD:
                 return new ByeCommand();
+
             case ListCommand.KEYWORD:
                 return new ListCommand();
+
             case MarkCommand.KEYWORD:
             case UnmarkCommand.KEYWORD:
             case DeleteCommand.KEYWORD:
                 return parseForIndex(splitInput, inputCommand);
+
             case ToDoCommand.KEYWORD:
                 return parseForToDo(splitInput);
+
             case DeadlineCommand.KEYWORD:
+            case DoAfterCommand.KEYWORD:
             case EventCommand.KEYWORD:
                 return parseForDate(splitInput, inputCommand);
+
             default:
                 throw new InvalidCommandException();
         }
@@ -101,8 +108,8 @@ public class Parser {
     /**
      * Method to parse user-input for tasks that involve a date
      * @param splitInput array of input components after initial parse
-     * @param type Either a deadline or event type task
-     * @return the command to create a Deadline or Event task
+     * @param type Either a deadline, event or doafter type task
+     * @return the command to create a Deadline, Event or DoAfter task
      * @throws InvalidArgumentException when user input is invalid
      * @throws InvalidDateException when user input date is invalid
      */
@@ -111,22 +118,25 @@ public class Parser {
         checkInputLength(splitInput, MissingDetails.DESCRIPTION_AND_DATE);
         assert splitInput.length == 2 : INVALID_INPUT;
         String description = splitInput[1];
-        boolean isDeadline = type.equals("deadline");
         String[] splitDescription;
-        if (isDeadline) {
+        if (type.equals("deadline")) {
             splitDescription = description.split(DeadlineCommand.DATE_INPUT, 2);
-        } else {
+        } else if (type.equals("event")) {
             splitDescription = description.split(EventCommand.DATE_INPUT, 2);
+        } else {
+            splitDescription = description.split(DoAfterCommand.DATE_INPUT, 2);
         }
         checkInputLength(splitDescription, MissingDetails.DATE);
         assert splitDescription.length == 2 : INVALID_INPUT;
         String date = splitDescription[1].trim();
         checkDateFormat(date);
         String taskDescription = splitDescription[0].trim();
-        if (isDeadline) {
+        if (type.equals("deadline")) {
             return new DeadlineCommand(taskDescription, date);
-        } else {
+        } else if (type.equals("event")) {
             return new EventCommand(taskDescription, date);
+        } else {
+            return new DoAfterCommand(taskDescription, date);
         }
     }
 
