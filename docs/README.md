@@ -27,6 +27,11 @@ You can look up your tasks easily with `find` command
 ### Resizable UI
 You can stretch the window vertically to view more message in the same screen
 
+### Sorting and Priority
+- In the task list, the tasks are grouped in three types
+- __Events__ and __deadlines__ are sorted by time
+- __Todos__ are sorted by alphabetical order
+
 ## Usage
 
 _Note: The arguments in the commands below are all required by default, unless specified as optional_
