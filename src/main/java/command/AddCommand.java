@@ -35,6 +35,7 @@ public class AddCommand extends Command {
      * @param time When is the task is due or happening
      */
     public AddCommand(String type, String description, LocalDateTime time) {
+        assert type == "deadline" || type == "event";
         if (type == "deadline") {
             this.task = new Deadline(description, false, time);
         } else {

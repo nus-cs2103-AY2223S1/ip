@@ -31,22 +31,6 @@ public class Doris {
         tasks = new TaskList(storage.load());
     }
 
-    /**
-     * Runs the chatbot.
-     */
-    public void run() {
-
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                Command command = Parser.parse(ui.readCommand());
-                command.execute(tasks, ui, storage);
-                isExit = command.isExit();
-            } catch (DorisException e) {
-                ui.showError(e);
-            }
-        }
-    }
     public String getWelcomeMessage() {
         return ui.showWelcome();
     }
