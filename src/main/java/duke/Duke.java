@@ -42,30 +42,6 @@ public class Duke {
         this(DEFAULT_FILE_PATH);
     }
 
-    /*
-     * Run method for Duke program. This takes in the user's input and executes
-     * the appropriate command by parsing and executing the input.
-     * If input is invalid, an error message is printed instead and user is prompted
-     * to give another input.
-     */
-    public void run() {
-        ui.print(ui.showWelcome());
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.print(ui.showLine()); // show the divider line ("_______")
-                Command c = Parser.parseCommand(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.print(ui.showError(e));
-            } finally {
-                ui.print(ui.showLine());
-            }
-        }
-    }
-
     public String getResponse(String userInput) {
         String response = "";
         try {
@@ -75,13 +51,5 @@ public class Duke {
             response = e.getMessage();
         }
         return response;
-    }
-
-    /*
-     * Main method for Duke program. This initialises Duke with the file path and
-     * runs the program.
-     */
-    public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
     }
 }
