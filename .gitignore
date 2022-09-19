@@ -20,3 +20,6 @@ text-ui-test/EXPECTED-UNIX.TXT
 src/main/java/*.class
 lib/junit-4.13.2.jar
 lib/hamcrest-core-1.3.jar
+
+# executable jar
+build/libs/*.jar

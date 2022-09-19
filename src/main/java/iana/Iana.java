@@ -11,9 +11,13 @@ import iana.ui.Ui;
  * Represents the command line interface Iana used to manage tasks.
  */
 public class Iana {
+
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Iana class to initialise Iana app.
+     */
     public Iana() {
         tasks = new TaskList();
         ui = new Ui();
@@ -26,9 +30,9 @@ public class Iana {
 
     /**
      * Get response from Iana given user input.
-     * 
+     *
      * @param input the user input to be responded to.
-     * @return a String of Iana's response.
+     * @return IANA's response.
      */
     public String getResponse(String input) {
         try {
@@ -40,8 +44,26 @@ public class Iana {
     }
 
     /**
+     * Get a welcome message from Iana.
+     *
+     * @return the welcome message.
+     */
+    public String getHi() {
+        return ui.sayHi();
+    }
+
+    /**
+     * Get help for app usage from Iana.
+     *
+     * @return string of available commands to input.
+     */
+    public String getHelp() {
+        return ui.help();
+    }
+
+    /**
      * Checks if user input is an exit command.
-     * 
+     *
      * @param input the user input.
      * @return true if user input is exit command.
      */

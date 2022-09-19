@@ -1,9 +1,10 @@
 package iana.utils;
 
-import iana.exception.IanaException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import iana.exception.IanaException;
 
 /**
  * Utility to convert tasks' date time format into a standardized format.
@@ -37,7 +38,7 @@ public class DateTime {
         LocalDateTime timeOutput;
 
         try {
-             timeOutput = LocalDateTime.parse(timeInput, INPUT_FORMAT_1);
+            timeOutput = LocalDateTime.parse(timeInput, INPUT_FORMAT_1);
         } catch (DateTimeParseException e) {
             throw new IanaException("Wrong date time format!!");
         }

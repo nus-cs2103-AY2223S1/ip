@@ -10,8 +10,10 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
+
 
 /**
  * Stores tasks and their relevant information.
@@ -19,6 +21,11 @@ import iana.tasks.TaskList;
 public class Storage {
     private static final String FILE_STRING = "data/DataStorage.txt";
 
+    /**
+     * Initialise a storage space to store tasks.
+     * 
+     * @throws IanaException if file cannot store tasks.
+     */
     private static void initialise() throws IanaException {
         try {
             Path filePath = Paths.get(Storage.FILE_STRING);
@@ -48,6 +55,7 @@ public class Storage {
         assert file.exists() : "File does not exist.";
 
         try {
+            initialise();
             FileInputStream fileIn = new FileInputStream(Storage.FILE_STRING);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             taskList = (TaskList) in.readObject();

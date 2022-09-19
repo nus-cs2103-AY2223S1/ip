@@ -1,4 +1,5 @@
 package iana.ui.controller;
+
 import iana.Iana;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,7 +25,7 @@ public class MainWindow extends AnchorPane {
     private Iana iana;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-    private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/cat.jpg"));
+    private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/Iana.jpg"));
 
     /**
      * Initialize main window.
@@ -42,7 +43,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing iana's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Iana's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -52,6 +53,17 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),
             DialogBox.getIanaDialog(response, ianaImage)
+        );
+        userInput.clear();
+    }
+
+    /**
+     * Creates a dialog box containing Iana's welcome message to user.
+     */
+    @FXML
+    public void welcome() {
+        dialogContainer.getChildren().addAll(
+            DialogBox.getIanaDialog(iana.getHi() + "\n\nP.S. " + iana.getHelp(), ianaImage)
         );
         userInput.clear();
     }

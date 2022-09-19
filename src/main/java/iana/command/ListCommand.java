@@ -8,17 +8,11 @@ import iana.ui.Ui;
  */
 public class ListCommand extends Command {
     
-    /**
-     * Runs command to list out all current tasks.
-     */
     @Override
     public String execute(TaskList tasks, Ui ui) {
         return ui.list(tasks);
     }
 
-    /**
-     * Returns false as command is not an exit command.
-     */
     @Override
     public boolean isExit() {
         return false;

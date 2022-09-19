@@ -1,16 +1,30 @@
 package iana.tasks;
 
-import iana.exception.IanaException;
-import iana.tasks.Task;
 import java.io.Serializable;
+
+import iana.exception.IanaException;
 
 /**
  * Task class to represent the tasks to be added into task list.
  */
 public class Task implements Serializable {
+
     protected final String task;
     protected final String taskType;
     private boolean isCompleted;
+
+    /**
+     * Task to be created.
+     * 
+     * @param task full user input of task description.
+     * @param taskType type of task to be created.
+     * @param isCompleted whether task is completed.
+     */
+    protected Task(String task, String taskType, boolean isCompleted) {
+        this.task = task;
+        this.taskType = taskType;
+        this.isCompleted = isCompleted;
+    }
 
     /**
      * Factory method to create a new task.
@@ -27,22 +41,22 @@ public class Task implements Serializable {
         String[] taskArray;
         try {
             switch(TaskType.valueOf(startText)) {
-                case todo:
+            case todo:
                 taskArray = check(textArr, "todo");
                 Todo newTodo = new Todo(taskArray[0], isCompleted);
                 return newTodo;
                     
-                case event:
+            case event:
                 taskArray = check(textArr, "event");
                 Event newEvent = new Event(taskArray[0], taskArray[1], isCompleted);
                 return newEvent;
 
-                case deadline:
+            case deadline:
                 taskArray = check(textArr, "deadline");
                 Deadline newDeadline = new Deadline(taskArray[0], taskArray[1], isCompleted);
                 return newDeadline;
 
-                default:
+            default:
                 throw new IanaException("Invalid tasks!");
             } 
         } catch (IllegalArgumentException e) {
@@ -66,43 +80,30 @@ public class Task implements Serializable {
         String[] taskArray = {};
 
         switch(TaskType.valueOf(taskType)) {
-            case event:
+        case event:
             taskArray = textArray[1].split("/at ", 2);
             if (taskArray.length <= 1) {
                 throw new IanaException("Try again with the format EVENT <event> /at <event time> !! :-)");
             }
             break;
             
-            case deadline:
+        case deadline:
             taskArray = textArray[1].split("/by ", 2);
             if (taskArray.length <= 1) {
                 throw new IanaException("Use the format <deadline> /by <deadline time> to create a deadline!! :D");
             }
             break;
             
-            case todo:
+        case todo:
             String[] temp = {textArray[1]};
             taskArray = temp;
             break;
 
-            default:
+        default:
             throw new IanaException("Sorry, this is an invalid task type!! D-:");
         }
 
         return taskArray;
-    }
-
-    /**
-     * Task to be created.
-     * 
-     * @param task full user input of task description.
-     * @param taskType type of task to be created.
-     * @param isCompleted whether task is completed.
-     */
-    protected Task(String task, String taskType, boolean isCompleted) {
-        this.task = task;
-        this.taskType = taskType;
-        this.isCompleted = isCompleted;
     }
     
     /**

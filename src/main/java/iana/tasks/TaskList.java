@@ -1,9 +1,9 @@
 package iana.tasks;
 
-import iana.exception.IanaException;
-import iana.tasks.TaskList;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import iana.exception.IanaException;
 
 /**
  * Represents the list that contains and manage all the current tasks.
@@ -88,7 +88,7 @@ public class TaskList implements Serializable {
     public TaskList findKeyword(String keyword) {
         TaskList list = new TaskList();
         for (Task task : this.taskList) {
-            if (!task.containsKeyword(keyword)) {
+            if (task.containsKeyword(keyword)) {
                 list.add(task);
             }
         }

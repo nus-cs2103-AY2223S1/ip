@@ -43,11 +43,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "iana.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "iana"
     archiveClassifier = null
 }
 
@@ -56,5 +56,5 @@ run {
 }
 
 checkstyle {
-    toolVersion = '10.3'
+    toolVersion = '10.2'
 }

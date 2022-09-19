@@ -1,5 +1,6 @@
 package iana.command;
 
+import iana.exception.IanaException;
 import iana.tasks.TaskList;
 import iana.ui.Ui;
 
@@ -7,7 +8,8 @@ import iana.ui.Ui;
  * Command to mark a task in the task list as incomplete.
  */
 public class UnmarkCommand extends Command {
-    public String taskNum;
+
+    private String taskNum;
 
     /**
      * Constructor for UnmarkCommand class.
@@ -18,24 +20,17 @@ public class UnmarkCommand extends Command {
         this.taskNum = taskNum;
     }
 
-    /**
-     * Runs command to unmark a task.
-     */
     @Override
-    public String execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) throws IanaException {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             tasks.unmark(taskNumber);
-            String unmarkedMsg = "Task unmarked! Remember to mark it once completed! ^_^\n";
-            return ui.say(String.format("%s\t   %s", unmarkedMsg, tasks.printTaskString(taskNumber)));
+            return ui.sayTaskUnmarked(tasks.printTaskString(taskNumber));
         } catch (ArrayIndexOutOfBoundsException e) {
-            return ui.say(e.getMessage());
+            throw new IanaException("Hey, this task does not exist!! >:C");
         }
     }
 
-    /**
-     * Returns false as command is not an exit command.
-     */
     @Override
     public boolean isExit() {
         return false;

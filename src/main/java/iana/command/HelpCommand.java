@@ -1,23 +1,21 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.storage.Storage;
 import iana.tasks.TaskList;
 import iana.ui.Ui;
 
 /**
- * Command that exits the program.
+ * Command that shows all available commands.
  */
-public class ExitCommand extends Command {
-
+public class HelpCommand extends Command {
+    
     @Override
     public String execute(TaskList tasks, Ui ui) throws IanaException {
-        Storage.store(tasks);
-        return ui.sayBye();
+        return ui.help();
     }
 
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 }
