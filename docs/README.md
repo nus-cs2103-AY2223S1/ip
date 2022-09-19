@@ -12,7 +12,7 @@ MyDuke is a **desktop app that helps users keep track of their tasks, optimised 
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` installed in your Computer.
 
 2. Download the latest `duke.jar` from [here](https://github.com/turretDive/ip/releases).
 
