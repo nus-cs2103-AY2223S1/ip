@@ -1,7 +1,7 @@
-package task;
+package duke.task;
 
 /**
- * Represents a task in Duke
+ * Represents a task in duke.Duke
  */
 public abstract class Task {
     /** Description of the task. */
@@ -47,19 +47,21 @@ public abstract class Task {
     /**
      * marks that a task is done and prints a line to indicate that the task is done
      */
-    public void mark() {
+    public String mark() {
         this.isDone = true;
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(this);
+        return "Nice! I've marked this task as done:\n" + this;
     }
 
     /**
      * marks that a task is not done and prints a line to indicate that the task is not done yet
      */
-    public void unmark() {
+    public String unmark() {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(this);
+        return "OK, I've marked this task as not done yet:\n" + this;
     }
 
     /**

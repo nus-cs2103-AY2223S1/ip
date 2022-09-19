@@ -1,4 +1,4 @@
-package task;
+package duke.task;
 
 /**
  * todo is a Task that needs to be done without a specific date/time.
