@@ -5,25 +5,25 @@ Welcome to Duke! Duke manages your tasks and frees your mind of having to rememb
 ![UI](Ui.png)
 
 ## Features 
-### [Add tasks](https://github.com/yilinzyl/ip/edit/master/docs/README.md#todo-description---add-a-todo-task)
+### [Add tasks](https://yilinzyl.github.io/ip/#todo-description---add-a-todo-task)
 Add Todo, Deadline or Event to Duke.
 
-### [List tasks](https://github.com/yilinzyl/ip/edit/master/docs/README.md#list---list-all-tasks)
+### [List tasks](https://yilinzyl.github.io/ip/#list---list-all-tasks)
 View all tasks that you have added.
 
-### [Mark task](https://github.com/yilinzyl/ip/edit/master/docs/README.md#mark-index---mark-task-as-completed)
+### [Mark task](https://yilinzyl.github.io/ip/#mark-index---mark-task-as-completed)
 Mark a task as done when completed, or unmark it.
 
-### [Delete task](https://github.com/yilinzyl/ip/edit/master/docs/README.md#delete-index---delete-task)
+### [Delete task](https://yilinzyl.github.io/ip/#delete-index---delete-task)
 Delete a task when you no longer need it.
 
-### [Find task](https://github.com/yilinzyl/ip/edit/master/docs/README.md#find-keyword---find-tasks-matching-keyword)
+### [Find task](https://yilinzyl.github.io/ip/#find-keyword---find-tasks-matching-keyword)
 Find tasks that match your keyword
 
-### [Sort tasks](https://github.com/yilinzyl/ip/edit/master/docs/README.md#sort---sort-tasks)
+### [Sort tasks](https://yilinzyl.github.io/ip/#sort---sort-tasks)
 Sort deadline and/or events according to their dates
 
-### [Exit](https://github.com/yilinzyl/ip/edit/master/docs/README.md#bye---exit-duke)
+### [Exit](https://yilinzyl.github.io/ip/#bye---exit-duke)
 Not to worry, all data added are saved to the hard drive and will be automatically loaded the next time you use Duke!
 
 ## Usage
