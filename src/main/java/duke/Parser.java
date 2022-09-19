@@ -23,99 +23,135 @@ public class Parser {
         try {
             switch (userInput[0]) {
             case "bye":
-                if (userInput.length > 1) {
-                    throw new DukeException("Unrecognized command.");
-                } else {
-                    return new GoodbyeCommand();
-                }
+                return processGoodbye(userInput);
 
             case "list":
-                if (userInput.length > 1) {
-                    throw new DukeException("Unrecognized command.");
-                } else {
-                    return new ListCommand();
-                }
+                return processList(userInput);
 
             case "todo":
-                if (userInput.length < 2) {
-                    throw new DukeException("Missing todo description.");
-                } else {
-                    return new ToDoCommand(userInput[1].trim());
-                }
+                return processTodo(userInput);
 
             case "event":
-                if (userInput.length < 2) {
-                    throw new DukeException("Missing event description.");
-                } else {
-                    String[] tmp = userInput[1].trim().split("/at");
-                    if (tmp.length == 2) {
-                        return new EventCommand(
-                                tmp[0].trim(),
-                                LocalDateTime.parse(
-                                        tmp[1].trim(),
-                                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")));
-                    } else {
-                        throw new DukeException("Missing /at tag or date for event.");
-                    }
-                }
+                return processEvent(userInput);
 
             case "deadline":
-                if (userInput.length < 2) {
-                    throw new DukeException("Missing deadline description.");
-                } else {
-                    String[] tmp = userInput[1].trim().split("/by");
-                    if (tmp.length == 2) {
-                        return new DeadlineCommand(
-                                tmp[0].trim(),
-                                LocalDateTime.parse(
-                                        tmp[1].trim(),
-                                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")));
-
-                    } else {
-                        throw new DukeException("Missing /by tag or date for deadline.");
-                    }
-                }
+                return processDeadline(userInput);
 
             case "mark":
-                if (userInput.length < 2) {
-                    throw new DukeException("Missing task to mark.");
-                } else {
-                    int tmp = Integer.parseInt(userInput[1]);
-                    return new MarkCommand(tmp);
-                }
+                return processMark(userInput);
 
             case "unmark":
-                if (userInput.length < 2) {
-                    throw new DukeException("Missing task to unmark.");
-                } else {
-                    int tmp = Integer.parseInt(userInput[1]);
-                    return new UnmarkCommand(tmp);
-                }
+                return processUnmark(userInput);
 
-                case "delete":
-                    if (userInput.length < 2) {
-                    throw new DukeException("Missing task to delete.");
-                } else {
-                    int tmp = Integer.parseInt(userInput[1]);
-                    return new DeleteCommand(tmp);
-                }
+            case "delete":
+                return processDelete(userInput);
 
-                case "find":
-                    if (userInput.length < 2) {
-                        throw new DukeException("Missing task keyword to find.");
-                    } else {
-                        return new FindCommand(userInput[1].trim());
-                    }
+            case "find":
+                return processFind(userInput);
 
             default:
                 throw new DukeException("Unrecognized command.");
             }
+
         } catch (DateTimeParseException err) {
             throw new DukeException("Invalid date format. Type in \"yyyy-mm-dd HHmm\" format.");
         } catch (NumberFormatException err) {
             throw new DukeException("Wrong argument passed to mark/unmark. Type in a number.");
         } catch (DukeException err) {
             throw err;
+        }
+    }
+
+    private static Command processGoodbye(String[] userInput) throws DukeException {
+        if (userInput.length > 1) {
+            throw new DukeException("Unrecognized command.");
+        } else {
+            return new GoodbyeCommand();
+        }
+    }
+
+    private static Command processList(String[] userInput) throws DukeException {
+        if (userInput.length > 1) {
+            throw new DukeException("Unrecognized command.");
+        } else {
+            return new ListCommand();
+        }
+    }
+
+    private static Command processTodo(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing todo description.");
+        } else {
+            return new ToDoCommand(userInput[1].trim());
+        }
+    }
+
+    private static Command processEvent(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing event description.");
+        }
+
+        String[] tmp = userInput[1].trim().split("/at");
+        if (tmp.length < 2) {
+            throw new DukeException("Missing /at tag or date for event.");
+        }
+
+        return new EventCommand(
+                tmp[0].trim(),
+                LocalDateTime.parse(
+                        tmp[1].trim(),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")));
+    }
+
+    private static Command processDeadline(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing deadline description.");
+        }
+
+        String[] tmp = userInput[1].trim().split("/by");
+        if (tmp.length < 2) {
+            throw new DukeException("Missing /by tag or date for deadline.");
+        }
+
+        return new DeadlineCommand(
+                tmp[0].trim(),
+                LocalDateTime.parse(
+                        tmp[1].trim(),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")));
+    }
+
+    private static Command processMark(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing task to mark.");
+        } else {
+            int tmp = Integer.parseInt(userInput[1]);
+            return new MarkCommand(tmp);
+        }
+    }
+
+    private static Command processUnmark(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing task to unmark.");
+        } else {
+            int tmp = Integer.parseInt(userInput[1]);
+            return new UnmarkCommand(tmp);
+        }
+    }
+
+    private static Command processDelete(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing task to delete.");
+        } else {
+            int tmp = Integer.parseInt(userInput[1]);
+            return new DeleteCommand(tmp);
+        }
+    }
+
+    private static Command processFind(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException("Missing task keyword to find.");
+        } else {
+            return new FindCommand(userInput[1].trim());
         }
     }
 }
