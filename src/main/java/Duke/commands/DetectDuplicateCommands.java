@@ -23,7 +23,7 @@ public class DetectDuplicateCommands extends Command {
     public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
         int counter = 0;
         ArrayList<String> text = new ArrayList<>();
-        for (int i = 0; i < tasks.getTaskListSize(); i++) {
+        for (int i = 0; i < tasks.getTaskListSize() -1 ; i++) {
             for (int j = i + 1; j < tasks.getTaskListSize(); j++) {
                 if (tasks.getTask(i) == tasks.getTask(j)) {
                     text.add("There seems to be a duplicate task in your planner");
