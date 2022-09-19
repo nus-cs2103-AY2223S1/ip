@@ -1,0 +1,33 @@
+list
+todo Eat Cake
+deadline Finish CS2103 Quiz /by 2019-12-01
+event Touch the World /at 2019-12-02
+list
+mark 1
+mark 3
+unmark 2
+list
+unmark 1
+list
+delete 3
+list
+delete 3
+wow
+list 1234
+bye 1234
+mark 4
+mark -4
+unmark 4
+unmark -4
+mark one
+unmark one
+todo
+deadline
+event
+deadline desc
+event desc
+deadline desc /by onetwothree
+event desc /at onetwothree
+todo Fight Cake
+FIND Eat
+bye

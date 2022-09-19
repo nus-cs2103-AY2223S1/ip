@@ -1,7 +1,211 @@
+Poolsheen UI has loaded
+New Save File created
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+POOLSHEEN
+Type something in for Poolsheen to respond to you:
+---------------
+      Poolsheen thinks back... and remembers you said nothing :(
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Finish CS2103 Quiz
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Touch the World
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Dec 1 2019)
+      3. [E] [-] Touch the World (at: Dec 2 2019)
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are done with Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are done with Touch the World
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are not done with Finish CS2103 Quiz
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [X] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Dec 1 2019)
+      3. [E] [X] Touch the World (at: Dec 2 2019)
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are not done with Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Dec 1 2019)
+      3. [E] [X] Touch the World (at: Dec 2 2019)
+      meow *_*
+---------------
+---------------
+      Poolsheen has forgot: Touch the World and you now have 2 tasks left
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Dec 1 2019)
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: UnknownCommandException
+      Poolsheen thinks this command does not exist.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the bye command properly
+      Were you trying to enter 'list'?
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the bye command properly
+      Were you trying to enter 'bye'?
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: NumberFormatException
+      Poolsheen believes this command needs an integer.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: NumberFormatException
+      Poolsheen believes this command needs an integer.
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the todo command properly
+      The description of a todo cannot be empty
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the deadline command properly
+      Deadlines need a description and time
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the event command properly
+      Events need a description and time
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the deadline command properly
+      deadline commands need a '/by'
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the event command properly
+      event commands need an '/at'
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the Deadline command properly
+      Enter an appropriate date and time format
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the Event command properly
+      Enter an appropriate date and time format
+      Please try again!
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Fight Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [-] Eat Cake
+      meow *_*
+---------------
+---------------
+      Goodbye :(
+      meow *_*
+---------------
+MeoAww... See you next time :(
+THE POOLSHEEN PROGRAM HAS STOPPED RUNNING
