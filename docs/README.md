@@ -4,107 +4,200 @@ Duke Aemon Of Old is a free, simple-to-use organization tool that can help you f
 
 ## Features 
 
+### Feature-Greet Duke
+
+Greet Duke Aemon and learn his backstory.
+
+### Feature-Display All Commands
+
+View all commands, their corresponding arguments and functions.
+
 ### Feature-Add Todo
 
-Add a task with no deadline or time associated with it as a todo in your list. Upon addition, all tasks are marked as incomplete. 
+Add a todo-task not associated with a date or time as a todo to your list. Upon addition, all todos are marked as incomplete. 
 
-### Feature-Add Event
+### Feature-Add Event 
 
-Add an event along with it start and end timings to your list. Upon addition, all tasks are marked as unattended. 
+Add an event along with its date, start and end time to your list. Upon addition, all events are marked as unattended. 
 
 ### Feature-Add Deadline
 
-Add a task along with the deadline for its completion to your list. Upon addition, all tasks are marked as incomplete. 
+Add a deadline-task associated with a date and time for its completion to your list. Upon addition, all tasks are marked as incomplete. 
 
-### Feature-Delete Tasks
+### Feature-Delete Task
 
-Delete tasks from your list permanently.
+Delete a task from your list permanently.
 
-### Feature-Mark Complete
+### Feature-Mark A Task As Complete
 
-Mark tasks as complete and see it relfected in your list.
+Mark a task as complete and see it relfected in your list.
 
-### Feature-Mark Incomplete
+### Feature-Mark A Task As Incomplete
 
-Unmark tasks (or, mark them incomplete) and see it reflected in your list.
+Unmark a task (or, mark it incomplete) and see it reflected in your list.
 
 ### Feature-Sort List
 
-Sort your list based on tasks' deadline or time of occurence, if any and description otherwise.
+Sort your list based on tasks' deadline or time of occurence (if any) and description (in that order).
 
-### Feature-Search For Words
+### Feature-Find Tasks With Matching Descriptions
 
-Search for tasks in your list specifically by words they must contain in their description.
+Search for tasks in your list that contain the search keyword in their description and view a list with only such tasks in it.
 
 ### Feature-Display List
 
 See your list, along with number of items, task description, status and time (if any) displayed.
 
+### Feature-End Conversation
+
+End your current session with Duke (all changes to list are automatically saved). 
+
 ## Usage
 
-### `Keyword` - Describe action
+### `hello` - Describe action
 
-Add tasks as todos, events and deadlines by adding task description and time (if applicable)
+Introduces Duke Aemon and his story.
 
-Example of usage: 
+Example of usage:
+
+`hello`
+
+Expected outcome:
+
+Displays Duke Aemon's greeting.
+
+### `help` - Describe action
+
+Helps the user refer to all commands he can use.
+
+Example of usage:
+
+`help`
+
+Expected outcome:
+
+Displays a list of all commands and their usage.
+
+### `todo` - Describe action
+
+Adds a todo task with given task description to the stored list of tasks.
+
+Example of usage:
 
 `todo study`
-`event study\10-10-2022 1800 2000`
-`event CS2103 submission\10-10-2022`
 
 Expected outcome:
-Aemon indicates the item is added to the list and the new number of items in the list
 
-List all items
+Confirms addition of item to list and displays number of items on list.
 
-Example of usage: 
+### `event` - Describe action
 
-`list`
+Adds an event with given description, day and duration to the stored list of tasks.
+
+Example of usage:
+
+`event tutorial/2022-10-10 17:00 18:00`
+`event FinTech meeting/2022-12-10 11:00 18:00`
 
 Expected outcome:
-Aemon displays the whole list
 
-Delete tasks by specifying item number on list
+Confirms addition of item to list and displays number of items on list.
 
-Example of usage: 
+### `deadline` - Describe action
 
+Adds a task with given description, day and time of deadline to the stored list of tasks.
+
+Example of usage:
+
+`deadline iP project/2022-09-16 18:00`
+`deadline lab assignment/2022-05-16 09:00`
+
+Expected outcome:
+
+Confirms addition of item to list and displays number of items on list.
+
+### `delete` - Describe action
+
+Deletes the list object with given position in list.
+
+Example of usage:
+
+`delete 1`
 `delete 2`
 
 Expected outcome:
-Aemon indicates the item is deleted from the list and the new number of items in the list
 
-Mark item as complete by specifying its position on list
+Confirms deletion of chosen task and displays new number of tasks in list.
 
-Example of usage: 
+### `mark` - Describe action
+
+Marks task with given position on list as complete.
+
+Example of usage:
 
 `mark 3`
 
 Expected outcome:
-Aemon indicates the item is marked complete
 
-Mark item as incomplete(unmark item) by specifying its position on list
+Confirms marking the list as complete and displays the altered status of task.
 
-Example of usage: 
+### `unmark` - Describe action
 
-`unmark 3`
+Marks task with given position on list as incomplete.
 
-Expected outcome:
-Aemon indicates the item is marked incomplete
+Example of usage:
 
-Search for an item by a word in its description 
-
-Example of usage: 
-
-`search CS2103`
+`unmark 4`
 
 Expected outcome:
-Aemon displays a list of all the items with the word mentioned in their task descriptions
 
-Sort the items on the list
+Confirms marking the list as incomplete and displays the altered status of task.
 
-Example of usage: 
+### `sort` - Describe action
+
+Sorts the tasks in the list based on dates, time, and description in that order. 
+
+Example of usage:
 
 `sort`
 
 Expected outcome:
-Aemon displays a list sorted by deadlines and time (if any), and descriptions otherwise
+
+Displays the sorted list.
+
+### `find` - Describe action
+
+Finds and filters tasks in the list whose description contains the given keyword.
+
+Example of usage:
+
+`find study`
+`find CS2103`
+
+Expected outcome:
+
+Displays a list of all the items which have descriptions containing the keyword.
+
+### `list` - Describe action
+
+Lists all items in the list along with their status and type.
+
+Example of usage:
+
+`list`
+
+Expected outcome:
+
+Displays the list stored.
+
+### `bye` - Describe action
+
+Ends the current session with Duke Aemon.
+
+Example of usage:
+
+`bye`
+
+Expected outcome:
+
+Aemon confirms end of session and user exits the conversation.
