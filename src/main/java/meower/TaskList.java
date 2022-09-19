@@ -18,7 +18,7 @@ public class TaskList {
         this.size = 0;
     }
 
-    TaskList(TaskList taskList) {
+    public TaskList(TaskList taskList) {
         this.tasks = new ArrayList<Task>();
         this.tasks.addAll(taskList.tasks); //deep copy TaskList
         this.size = taskList.getSize();

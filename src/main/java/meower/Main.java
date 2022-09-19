@@ -13,16 +13,17 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Meower duke = new Meower();
+    private Meower meower = new Meower();
 
     @Override
     public void start(Stage stage) {
+        assert meower != null: "meower bot cannot be null";
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().setDuke(meower);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
