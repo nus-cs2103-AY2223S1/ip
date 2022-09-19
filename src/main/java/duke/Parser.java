@@ -1,7 +1,5 @@
 package duke;
 
-import duke.gui.Gui;
-
 import java.io.IOException;
 import java.util.Arrays;
 
