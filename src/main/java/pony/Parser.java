@@ -33,6 +33,8 @@ public class Parser {
                 return new AddDeadlineCommand(commandDetails);
             case "event":
                 return new AddEventCommand(commandDetails);
+            case "find":
+                return new FindCommand(commandDetails);
             default:
                 return new InvalidCommand();
         }
@@ -54,6 +56,15 @@ public class Parser {
             return commandDetails;
         }
     }
+
+    public static String parseFindDetails(String commandDetails) throws PonyException {
+        if (commandDetails == null) {
+            throw new PonyException(":( OOPS!!! Please provide the details!!");
+        } else {
+            return commandDetails;
+        }
+    }
+
 
     public static String[] parseDeadlineDetails(String commandDetails, String format) throws PonyException {
         if (commandDetails == null) {
