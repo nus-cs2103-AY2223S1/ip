@@ -56,7 +56,7 @@ public class Duke extends Chatbot {
                             duke.unmarkTask(duke, id);
                             break;
                         case Parser.MARK_KEYWORD_DELETE:
-                            duke.deleteTask(duke, id);
+                            duke.tasks.deleteTask(id);
                             break;
                     }
 
@@ -113,14 +113,6 @@ public class Duke extends Chatbot {
         Task task  = interaction.tasks.get(id - 1);
         task.markAsNotDone();
         Ui.echo(String.format("Task %d [%s] marked as not done!",
-                id,
-                task.getDescription()));
-    }
-
-    public void deleteTask(Duke interaction, int id) {
-        Task task = interaction.tasks.get(id - 1);
-        interaction.tasks.remove(task);
-        Ui.echo(String.format("Task %d [%s] removed.",
                 id,
                 task.getDescription()));
     }

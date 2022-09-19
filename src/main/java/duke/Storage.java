@@ -6,12 +6,18 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.util.LinkedList;
 
+/**
+ * The Storage class manages write and read operations into the data file "duke.txt".
+ */
 public class Storage {
     private static final String currentDir = System.getProperty("user.dir");
     private static final Path savedDataPath = Paths.get(Storage.currentDir, "/data");
     private static final Path dataFilePath = Paths.get(Storage.savedDataPath.toString(), "duke.txt");
     private static final String filePath = currentDir + "/data/duke.txt";
 
+    /**
+     * Creates the data folder if it does not exist.
+     */
     public static void createDataFolder() {
         boolean directoryExists = Files.exists(Storage.savedDataPath);
 
@@ -24,6 +30,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates the data file if it does not exist.
+     */
     public static void createDataFile() {
         boolean dataFileExists = Files.exists(Storage.dataFilePath);
 
@@ -36,7 +45,11 @@ public class Storage {
         }
     }
 
-    public static void updateData(LinkedList<Task> tasks) {
+    /**
+     * Updates the data of the data file with the current Tasks.
+     * @param tasks the current list of Tasks.
+     */
+    public static void updateData(TaskList tasks) {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
 
@@ -62,6 +75,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Initializes Duke with recorded Tasks from a previous session.
+     * @return the TaskList of previously recorded Tasks.
+     * @throws DukeException if there is no data or if unable to initialize the data.
+     */
     public static TaskList initializeData() throws DukeException {
         TaskList tasks = new TaskList();
 

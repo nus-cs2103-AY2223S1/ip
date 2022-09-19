@@ -3,6 +3,9 @@ package duke;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The Parser class handles the detection of all user commands.
+ */
 public class Parser {
     public static final String EXACT_KEYWORD_BYE = "bye";
     public static final String EXACT_KEYWORD_LIST = "list";
@@ -17,10 +20,20 @@ public class Parser {
                     Parser.EXACT_KEYWORD_LIST)
     );
 
+    /**
+     * Gets whether an exact keyword is present.
+     * @param userInput the user input.
+     * @return true if an exact keyword is present, false otherwise.
+     */
     public static Boolean containsExactKeyword(String userInput) {
         return Parser.listOfExactKeywords.contains(userInput);
     }
 
+    /**
+     * Gets whether a mark type keyword is present.
+     * @param userInput the user input.
+     * @return true if a mark type keyword if present, false otherwise.
+     */
     public static Boolean containsMarkKeyword(String userInput) {
         Boolean hasMarkKeyword = false;
 
@@ -35,6 +48,11 @@ public class Parser {
         return hasMarkKeyword;
     }
 
+    /**
+     * Gets whether a task type keyword is present.
+     * @param userInput the user input.
+     * @return true if a task type keyword is present, false otherwise.
+     */
     public static Boolean containsTaskKeyword(String userInput) {
         Boolean hasTaskKeyword = false;
 
@@ -49,6 +67,11 @@ public class Parser {
         return hasTaskKeyword;
     }
 
+    /**
+     * Gets the nonexact keyword present in the user input.
+     * @param userInput the user input.
+     * @return the nonexact keyword if present, an empty string otherwise.
+     */
     public static String getNonexactKeyword(String userInput) {
         String nonexactKeyword = "";
 
@@ -69,6 +92,12 @@ public class Parser {
         return nonexactKeyword;
     }
 
+    /**
+     * Gets the specifier following a nonexact keyword.
+     * e.g. In "mark 1", the specifier is '1'.
+     * @param userInput the user input.
+     * @return the relevant specifier.
+     */
     public static int getSpecifier(String userInput) {
         int specifier = -1;
 

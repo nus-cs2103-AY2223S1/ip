@@ -3,45 +3,87 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The Task class represents a task that the user wishes to record.
+ */
 public class Task {
     private Boolean isDone;
     private final String description;
 
+    /**
+     * Constructs an instance of Task.
+     * @param description description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.markAsNotDone();
     }
 
+    /**
+     * Marks the associated Task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the associated Task as not done.
+     */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
+    /**
+     * Retrieves the description of the Task.
+     * @return description of the Task.
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Retrieves the completion status of the Task.
+     * @return whether the Task is done or not done.
+     */
     public Boolean getStatus() {
         return this.isDone;
     }
 
+    /**
+     * Returns the record of the Task's description and completion status.
+     * @return the record of the Task.
+     */
     public String printTask() {
         return String.format("[%s] %s",
                 this.getStatus() ? "X" : " ",
                 this.getDescription());
     }
 
+    /**
+     * Retrieves a character representing the type of Task from a "record".
+     * @param entry the entry entered by the user to record a Task.
+     * @return the character representing the type of Task.
+     */
     public static char getTaskTypeChar(String entry) {
         return entry.charAt(1);
     }
 
+    /**
+     * Retrieves whether the "record" of a Task is marked or not.
+     * @param entry the entry entered by the user to record a Task.
+     * @return true if the Task is recorded as done, false otherwise.
+     */
     public static boolean isMarked(String entry) {
         return entry.charAt(4) == 'X';
     }
 
+    /**
+     * Obtain the appropriate Task instance from a user entry.
+     * @param entry the entry entered by the user to record a Task.
+     * @param type the character representing the type of Task.
+     * @return an appropriate instance of Task.
+     * @param <T> Task and its children.
+     */
     public static <T extends Task> Task parseEntry(String entry, char type) {
         T task = null;
         String dataStr = entry.substring(7);
