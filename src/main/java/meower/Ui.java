@@ -14,6 +14,7 @@ public class Ui {
     private final String MESSAGE_UNMARK = "Task has been marked not done:";
     private final String MESSAGE_ADD = "Task added: \n";
     private final String MESSAGE_DELETE = "Task deleted: \n";
+    private final String MESSAGE_ERROR_END = "Error in saving Tasks, progress from current session is not saved :(";
     
     public Ui(TaskList tasks) {
         this.tasks = tasks;
@@ -101,7 +102,7 @@ public class Ui {
     }
 
     public String errorEnd() {
-        return this.chat("Error in saving Tasks, progress from current session is not saved :(");
+        return this.chat(MESSAGE_ERROR_END);
     }
 
     public String load(int numOfTasks) {

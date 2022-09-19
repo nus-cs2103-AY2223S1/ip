@@ -48,6 +48,7 @@ public class TaskList {
      * @param newTask
      */
     public void add(Task newTask) {
+        assert newTask.isEmpty() == false: "Tasks added to tasklist should never be empty";
         this.tasks.add(newTask);
         this.size += 1;
     }

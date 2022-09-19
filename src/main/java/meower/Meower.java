@@ -31,6 +31,7 @@ public class Meower {
     public String getResponse(String input) {
         try {
             Command nextCommand = parser.parse(input);
+            assert this.tasks.getSize() >= 0: "tasklist size pointer should never be negative";
             return nextCommand.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
             return ui.errorMessage(e);

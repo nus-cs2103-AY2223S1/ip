@@ -40,6 +40,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        assert userImage != null: "userImage should not be null"; //both asserts idea taken from Marcus Ong Wee's code
+        assert dukeImage != null: "dukeImage should not be null";
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(

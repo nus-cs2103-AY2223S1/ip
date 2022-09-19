@@ -40,6 +40,8 @@ public class Storage {
      * @throws DukeException
      */
     public int loadLog() throws DukeException{
+        assert this.logFileAddress != null: "There must be a log file address at this point";
+        
         try {
             //initialise parser, file scanner and tasklist
             Parser parser = new Parser();
@@ -92,6 +94,8 @@ public class Storage {
      * @throws DukeException
      */
     public int cleanUp() throws DukeException {
+        assert this.logFileAddress != null: "There must be a log file address at this point";
+
         //if no tasks to be saved, exit with message
         if (existingTasks.getSize() == 0) {
             return 0;
