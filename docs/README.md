@@ -1,8 +1,17 @@
 # User Guide
 
-Duke Aemon Of Old is a free, simple-to-use organization tool that can help you find order in your day.
+
+Duke Aemon Of Old is a free, simple-to-use organization tool that can help you find order in your day. Aemon helps you add, delete and modify tasks, their deadlines and events. Your task list is automatically updated and saved by Aemon so that you can revisit the list anytime.
 
 ![This is an image](https://github.com/Aishwarya-Hariharan-Iyer/ip/blob/master/docs/Ui.png)
+
+- [Set up] (## Set Up)
+
+## Set Up
+
+1. Make sure your computer has Java 11 installed. 
+2. Navigate to the most recent release of the app on GitHub and download the .jar file available there.
+3. Run the file and start interacting with Aemon on the window that opens up!
 
 ## Features 
 
