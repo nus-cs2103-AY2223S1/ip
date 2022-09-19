@@ -18,6 +18,7 @@ public class Parser {
      * @throws DukeException Invalid user input
      */
     public static Command parse(String s) throws DukeException {
+        assert (s != null);
         String[] userInput = s.trim().split(" ", 2);
 
         try {
