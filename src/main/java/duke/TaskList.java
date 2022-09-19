@@ -42,34 +42,51 @@ public class TaskList {
      * @return the ui message on addition of the task
      */
     public String addToList(String taskName, Ui ui) {
+        if (taskName.matches("\\btodo\\s.*\\b")) {
+            assert taskName.length() >= 6 : "addToList function is not working for todo";
+            Task newTask = new ToDo(taskName.substring(5), false, 0);
+            tasks.add(newTask);
+            return ui.taskAddMsg(newTask, tasks.size());
+        }
+        if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
+            assert taskName.length() >= 13 : "addToList function is not working for event";
+            String des = taskName.substring(6, taskName.indexOf("/") - 1);
+            String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
+            Task newTask = new Event(des, false, at, 0);
+            tasks.add(newTask);
+            return ui.taskAddMsg(newTask, tasks.size());
+        }
+        if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
+            String des = taskName.substring(9, taskName.indexOf("/") - 1);
+            String by = taskName.substring(taskName.indexOf("/") + 4);
+            Task newTask = new Deadline(des, false, by, 0);
+            tasks.add(newTask);
+            return ui.taskAddMsg(newTask, tasks.size());
+        } else {
+            return handleException(taskName);
+        }
+    }
+
+    /**
+     * Handles exceptions where the user input does not match any of the task list commands.
+     *
+     * @param taskName description of the task to be added.
+     * @return the error message to show to the user.
+     */
+    public String handleException(String taskName) {
         try {
-            if (taskName.matches("\\btodo\\s.*\\b")) {
-                assert taskName.length() >= 6 : "addToList function is not working for todo";
-                Task newTask = new ToDo(taskName.substring(5), false, 0);
-                tasks.add(newTask);
-                return ui.taskAddMsg(newTask, tasks.size());
-            }
-            if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
-                assert taskName.length() >= 13 : "addToList function is not working for event";
-                String des = taskName.substring(6, taskName.indexOf("/") - 1);
-                String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
-                Task newTask = new Event(des, false, at, 0);
-                tasks.add(newTask);
-                return ui.taskAddMsg(newTask, tasks.size());
-            }
-            if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
-                String des = taskName.substring(9, taskName.indexOf("/") - 1);
-                String by = taskName.substring(taskName.indexOf("/") + 4);
-                Task newTask = new Deadline(des, false, by, 0);
-                tasks.add(newTask);
-                return ui.taskAddMsg(newTask, tasks.size());
-            }
             if (taskName.matches("\\btodo\\s+") || taskName.matches("\\btodo\\b")) {
                 throw new DukeException("Sorry please provide a task to be done!");
+            }
+            if (taskName.matches("\\bevent\\s.*\\b")) {
+                throw new DukeException("Sorry please provide the time of the event!");
+            }
+            if (taskName.matches("\\bdeadline\\s.*\\b")) {
+                throw new DukeException("Sorry please provide the date of the deadline!");
             } else {
                 throw new DukeException("I'm sorry, I don't know what that means!");
             }
-        } catch (Exception e) {
+        } catch (DukeException e) {
             String msg = e.getMessage();
             return msg;
         }
