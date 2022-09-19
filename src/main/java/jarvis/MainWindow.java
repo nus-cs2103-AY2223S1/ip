@@ -1,6 +1,7 @@
 package jarvis;
 
 import jarvis.exception.JarvisException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,6 +30,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Parser.introduction(), jarvisImage));
     }
 
     public void setJarvis(Jarvis j) {
@@ -47,6 +49,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, jarvisImage)
         );
+        if (response.equals("Goodbye, have a good day.")) {
+            Platform.exit();
+        }
         userInput.clear();
     }
 }
