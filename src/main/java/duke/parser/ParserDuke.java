@@ -328,8 +328,10 @@ public class ParserDuke {
             LocalDate dateFormat = LocalDate.parse(date, formatter);
             String timeBegin = dateTimes[1];
             LocalTime timeBeginFormat = LocalTime.parse(timeBegin, DateTimeFormatter.ISO_LOCAL_TIME);
-            String timeEnd = dateTimes[2];
-            LocalTime timeEndFormat = LocalTime.parse(timeEnd, DateTimeFormatter.ISO_LOCAL_TIME);
+            if(dateTimes.length==3) {
+                String timeEnd = dateTimes[2];
+                LocalTime timeEndFormat = LocalTime.parse(timeEnd, DateTimeFormatter.ISO_LOCAL_TIME);
+            }
         } catch (DateTimeParseException e) {
             throw new DateTimeFormatException();
         }
@@ -406,7 +408,7 @@ public class ParserDuke {
             reply = e.getMessage();
         } catch (Exception e) {
             reply = "Aemon went back to his crypt for a nap.\n"
-                    + "Please restart the program after deleting the DukeList.txt file.";
+                    + "Please restart the program after deleting the DukeList.txt file.\n";
         } finally {
             return reply;
         }
