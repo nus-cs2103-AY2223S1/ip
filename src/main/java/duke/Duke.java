@@ -15,10 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-/** A bot to help you to keep track of your tasks in a to-do list. */
 public class Duke extends Application {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -29,19 +26,11 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/DaDuke.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/Human.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/Zelk.png"));
 
-
-    public Duke(String filepath) {
-        ui = new Ui();
-        storage = new Storage(filepath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showError(e.getMessage());
-            tasks = new TaskList();
-        }
+    public static void main(String[] args) {
+        // ...
     }
 
     @Override
@@ -55,9 +44,6 @@ public class Duke extends Application {
             tasks = new TaskList();
         }
 
-        //Step 1. Setting up required components
-
-        //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -73,7 +59,6 @@ public class Duke extends Application {
         stage.setScene(scene);
         stage.show();
 
-        //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -88,7 +73,6 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -107,10 +91,8 @@ public class Duke extends Application {
 
         userInput.setOnAction((event) -> { handleUserInput();});
 
-        //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
-        // more code to be added here later
     }
 
     /**
@@ -128,10 +110,13 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to the user based on the user input.
+     *
+     * @param input The user input.
+     * @return The string containing the response to the input.
      */
     private String getResponse(String input) {
+        assert !input.isBlank();
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
@@ -139,29 +124,5 @@ public class Duke extends Application {
             return ui.showError(e.getMessage());
         }
     }
-
-    /**
-     * Starts up the bot.
-     * Allows user to interact with the bot and give commands, until the bot is given the command to deactivate.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String nextCommand = ui.readCommand();
-                Command c = Parser.parse(nextCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-        ui.showExit();
-    }
-
-
-    public static void main(String[] args) {
-        //new Duke("data/duke.txt").run();
-    }
 }
+

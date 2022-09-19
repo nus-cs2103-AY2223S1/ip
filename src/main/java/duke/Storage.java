@@ -96,7 +96,7 @@ public class Storage {
             FileWriter dukeWriter = new FileWriter(DUKEFILE_STR);
             String newList = "";
             for (int i = 0; i < taskList.size(); i++) {
-                newList = newList + taskList.get(i).convertToFile();
+                newList = newList + taskList.get(i).convertToFile() + "\n";
             }
             dukeWriter.write(newList);
             dukeWriter.close();

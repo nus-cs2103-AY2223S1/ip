@@ -1,1 +1,3 @@
-deadline,homework  /by Sep 1 2022todo,walk cattodo,buy breaddeadline,return book  /by Oct 10 2022event,meeting  /at Oct 11 2022
+todo,buy milk
+deadline,homework  /by Oct 10 2022
+event,meeting  /at Sep 20 2022
