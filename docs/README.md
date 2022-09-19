@@ -2,48 +2,17 @@
 
 ## Features
 
-<table>
-  <tr>
-    <th>Feature</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>[Todo](#adding-a-todo-todo)</td>
-    <td>Creates a new To-do Task</td>
-  </tr>
-  <tr>
-    <td>[Event](#creating-an-event-event)</td>
-    <td>Creates a new event that occurs </br>at a specific time</td>
-  </tr>
-  <tr>
-    <td>[Deadline](#creating-a-deadline-deadline)</td>
-    <td>Creates a new deadline that must be </br>completed by a specific time</td>
-  </tr>
-  <tr>
-    <td>[List](#list-all-tasks-list)</td>
-    <td>List out current tasks in Duke</td>
-  </tr>
-  <tr>
-    <td>[Mark](#mark-a-task-as-complete-mark)</td>
-    <td>Mark a task as completed</td>
-  </tr>
-  <tr>
-    <td>[Unmark](#mark-a-task-as-incomplete-unmark)</td>
-    <td>Mark a task as incomplete</td>
-  </tr>
-  <tr>
-    <td>[Delete](#delete-a-task-delete)</td>
-    <td>Delete a specified task from Duke</td>
-  </tr>
-  <tr>
-    <td>[Find](#finds-a-specific-task-find)</td>
-    <td>Searches for tasks by their description</td>
-  </tr>
-  <tr>
-    <td>[Help](#produce-help-message-help)</td>
-    <td>Produces a help message</td>
-  </tr>
-</table>
+| Feature                                     | Description                                                      |
+|---------------------------------------------|------------------------------------------------------------------|
+| [Todo](#creating-a-todo-todo)                 | Creates a new To-do Task                                         |
+| [Event](#creating-an-event-event)           | Creates a new event that occurs at a specific time               |
+| [Deadline](#creating-a-deadline-deadline)   | Creates a new deadline that must be completed by a specific time |
+| [List](#list-all-tasks-list)                | List out current tasks in Duke                                   |
+| [Mark](#mark-a-task-as-complete-mark)       | Mark a task as completed                                         |
+| [Unmark](#mark-a-task-as-incomplete-unmark) | Mark a task as incomplete                                        |
+| [Delete](#delete-a-task-delete)             | Delete a specified task from Duke                                |
+| [Find](#finds-a-specific-task-find)         | Searches for tasks by their description                          |
+| [Help](#produce-help-message-help)          | Produces a help message          
 
 ## Usage
 
