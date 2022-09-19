@@ -1,0 +1,11 @@
+todo clean room
+list
+event lecture /at 8am tomorrow
+list
+mark 1
+deadline lecture quiz /by today night
+list
+mark 2
+mark 3
+list
+bye

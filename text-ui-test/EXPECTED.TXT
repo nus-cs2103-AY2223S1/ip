@@ -1,7 +1,49 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
 
+
+    ,---,
+  .'  .' `\                       ,--,
+,---.'     \    ,---.    __  ,-.,--.'|
+|   |  .`\  |  '   ,'\ ,' ,'/ /||  |,      .--.--.
+:   : |  '  | /   /   |'  | |' |`--'_     /  /    '
+|   ' '  ;  :.   ; ,. :|  |   ,',' ,'|   |  :  /`./
+'   | ;  .  |'   | |: :'  :  /  '  | |   |  :  ;_
+|   | :  |  ''   | .; :|  | '   |  | :    \  \    `.
+'   : | /  ; |   :    |;  : |   '  : |__   `----.   \
+|   | '` ,/   \   \  / |  , ;   |  | '.'| /  /`--'  /
+;   :  .'      `----'   ---'    ;  :    ;'--'.     /
+|   ,.'                         |  ,   /   `--'---'
+'---'                            ---`-'
+
+Eh what you want?
+Eh must remember to do this ah:
+[T][ ] clean room
+You have 1 tasks leh better hurry up
+Eh faster go:
+1. [T][ ] clean room
+Oi remember to attend this ah:
+[E][ ] event lecture (at: 8am tomorrow)
+You have 2 tasks leh better hurry up
+Eh faster go:
+1. [T][ ] clean room
+2. [E][ ] event lecture (at: 8am tomorrow)
+Huh you sure you do already or not?
+Okay la I trust you I trust you
+What else you want?
+Eh this one due soon stop wasting time go do now:
+[D][ ] deadline lecture quiz (by: today night)
+You have 3 tasks leh better hurry up
+Eh faster go:
+1. [T][X] clean room
+2. [E][ ] event lecture (at: 8am tomorrow)
+3. [D][ ] deadline lecture quiz (by: today night)
+Huh you sure you do already or not?
+Okay la I trust you I trust you
+What else you want?
+Huh you sure you do already or not?
+Okay la I trust you I trust you
+What else you want?
+Eh faster go:
+1. [T][X] clean room
+2. [E][X] event lecture (at: 8am tomorrow)
+3. [D][X] deadline lecture quiz (by: today night)
+Bye you annoying sia don't want talk to you anymore
