@@ -1,7 +1,9 @@
 package piggy;
 
 import piggy.task.Task;
+import piggy.task.TaskWithDate;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,6 +61,7 @@ class TaskList implements Iterable<Task> {
         return tasks.size();
     }
 
+
     /**
      * Returns an Iterator over the tasks.
      *
@@ -86,5 +89,16 @@ class TaskList implements Iterable<Task> {
      */
     public List<Task> find(String keyword) {
         return tasks.stream().filter(task -> task.getDescription().contains(keyword)).collect(Collectors.toList());
+    }
+
+    public List<Task> getTasksForDate(LocalDate date) {
+        List<Task> res = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t instanceof TaskWithDate && ((TaskWithDate) t).getLocalDateTime().toLocalDate().isEqual(date)) {
+                res.add((TaskWithDate) t);
+            }
+        }
+        res.sort((t1, t2) -> ((TaskWithDate) t1).getLocalDateTime().compareTo(((TaskWithDate) t2).getLocalDateTime()));
+        return res;
     }
 }

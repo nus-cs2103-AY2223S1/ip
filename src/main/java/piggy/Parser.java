@@ -5,6 +5,8 @@ import piggy.task.Event;
 import piggy.task.Task;
 import piggy.task.Todo;
 
+import java.time.LocalDate;
+
 /**
  * Class that contains methods to help with parsing user commands.
  */
@@ -34,6 +36,9 @@ class Parser {
         } else if (command.matches("^find \\w+$")) {
             String keyword = command.substring(5);
             return ui.getTasksFound(taskList.find(keyword));
+        } else if (command.matches("^schedule \\d{4}-\\d{2}-\\d{2}$")) {
+            LocalDate date = LocalDate.parse(command.substring(9));
+            return ui.getSchedule(taskList.getTasksForDate(date), date);
         } else if (command.equals("bye")) {
             System.exit(0);
             return null;
