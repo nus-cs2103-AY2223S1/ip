@@ -94,7 +94,7 @@ Add an event task that you have to do at a specified date and time to Duke.<br>
 
 **Format:** `event DESCRIPTION /by DATE TIME`
 
-**Example of usage:** `event team meeting /at 2022-10-12 2000`
+**Example of usage:** `event team meeting /at 19-10-2022 2000`
 
 **Expected outcome:**
 

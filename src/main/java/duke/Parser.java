@@ -195,7 +195,6 @@ public final class Parser {
         if (args.length != 1) {
             sortType = args[1].split(" ", 2)[0];
             isAscending = !args[1].contains("/d");
-            System.out.println(sortType + (isAscending ? "asc" : "desc"));
         }
         return new SortTasksCommand(sortType, isAscending);
     }
