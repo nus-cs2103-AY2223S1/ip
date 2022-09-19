@@ -59,7 +59,11 @@ public class Parser {
                 String string = splitInput[1].trim();
                 return duke.find(string);
             }
-            
+
+            case "bye": {
+                return duke.sayBye();
+            }
+
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means.");
             }
