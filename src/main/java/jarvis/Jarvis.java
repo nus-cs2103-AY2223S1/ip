@@ -2,11 +2,14 @@ package jarvis;
 
 import jarvis.task.TaskList;
 import jarvis.exception.JarvisException;
+import javafx.application.Application;
 
 import java.io.IOException;
 
-public class Jarvis {
-    public static void main(String[] args) throws JarvisException {
+
+public class Jarvis{
+    static Parser parser;
+    public static void main(String[] args){
 
         String filePath = "data/taskList.txt";
 
@@ -18,22 +21,24 @@ public class Jarvis {
         } catch (IOException e) {
             tasks = new TaskList();
         }
+        parser = new Parser(tasks);
 
-        Parser parser = new Parser(tasks);
-
-        parser.introduction();
+        Application.launch(Main.class, args);
 
         try {
-            parser.readCommand();
-            try {
-                storage.write(tasks);
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
-            }
-            parser.farewell();
-        } catch (JarvisException e) {
-            System.out.println((e));
+            storage.write(tasks);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    String getResponse(String input) throws JarvisException {
+        return parser.readCommand(input);
+    }
+
 }
