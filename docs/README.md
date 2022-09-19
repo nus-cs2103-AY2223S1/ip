@@ -8,7 +8,7 @@ With Bobby, you will never forget another task again!
 
 <br/>
 
-## Table of contents
+## Table of Contents
 1. [Quick start](#quick-start-using-intellij)
 2. [Features](#features)
 3. [Adding a todo](#todo-description---creates-a-new-todo)
