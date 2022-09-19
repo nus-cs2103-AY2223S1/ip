@@ -274,7 +274,7 @@ public class Parser {
 
         } else {
             return "Your input is not recognised :(. It has to start with a command "
-                    + "(todo, deadline, event, mark, unmark, list, Bye)";
+                    + "(todo, deadline, event, mark, unmark, list, priority, find, delete, Bye)";
         }
     }
 }
