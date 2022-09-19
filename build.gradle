@@ -50,7 +50,7 @@ test {
 }
 
 application {
-    mainClassName = "ui.Launcher"
+    mainClassName = "main.Launcher"
 }
 
 shadowJar {

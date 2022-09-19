@@ -1,3 +1,3 @@
 T| |borrow book|chores,libr
-D| |return book|libr|2022-09-20 1200
+D| |return book|libr,twinkies|2022-09-20 1200
 E| |book discussion|friends|2022-09-21 1200
