@@ -1,0 +1,16 @@
+Here is a list of all the possible commands
+
+1)List
+Show all current task
+
+2)todo
+create todo object
+
+3)event
+create event object
+
+4)deadline
+create deadline object
+
+5)bye
+To exit

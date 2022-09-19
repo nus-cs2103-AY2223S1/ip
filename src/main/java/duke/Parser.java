@@ -219,6 +219,8 @@ public class Parser {
         String tobereturned = "";
         Scanner input = new Scanner(System.in);
         File log = new File("log.txt");
+        File help = new File("help.txt");
+        Scanner ReadHelpPage = new Scanner(help);
 
         int tasktobedone;
 
@@ -230,9 +232,10 @@ public class Parser {
             boolean Event_and_Deadline = (!(message.equals("event")) && !(message.equals("deadline")));
             boolean Delete_and_Bye = (!(message.equals("delete")) && !(message.equals("bye")));
             boolean Mark_and_Find =(!(message.equals("mark")) && !(message.equals("find")));
+            boolean HelpList = (!(message.equals("help")));
 
             //Make sure message is valid
-            if(List_and_ToDo && Event_and_Deadline && Delete_and_Bye && Mark_and_Find){
+            if(List_and_ToDo && Event_and_Deadline && Delete_and_Bye && Mark_and_Find && HelpList){
 //              throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-();");
                 tobereturned += "☹ OOPS!!! I'm sorry, but I don't know what that means :-();";
             }
@@ -429,9 +432,16 @@ public class Parser {
                 tobereturned += "Bye. Hope to see you again soon!";
                 Platform.exit();
                 System.exit(0);
-
             }
 
+            String Help = "help";
+            if (message.equals(Help)) {
+                while(ReadHelpPage.hasNextLine()){
+                    tobereturned += ReadHelpPage.nextLine();
+                    tobereturned += "\n";
+                }
+
+            }
         return tobereturned; //Returning message
 
     }

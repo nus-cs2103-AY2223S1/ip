@@ -33,6 +33,8 @@ public class Duke  {
     public Duke () throws IOException {
         Scanner input = new Scanner(System.in);
         File log = new File("log.txt");
+        File help = new File("help.txt");
+        help.createNewFile();
 
         if(log.exists()==false){
             //System.out.println("We had to make a new file.");
