@@ -1,3 +1,4 @@
+----------------------------------------
 Hello from
  ____        _        
 |  _ \ _   _| | _____ 
@@ -5,3 +6,120 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Wait, I'm not Duke
+I'm Yem, your personal assistant
+What can I do for you master?
+----------------------------------------
+----------------------------------------
+You have no tasks at the moment.
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [T][ ] wash clothes
+Now you have 1 task(s) in the list
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [D][ ] cs1101s mission grading (by: Sep 1 2022)
+Now you have 2 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][ ] cs1101s mission grading (by: Sep 1 2022)
+
+----------------------------------------
+----------------------------------------
+☹ OOPS!!! The description and time limit of deadline cannot be empty
+----------------------------------------
+----------------------------------------
+☹ OOPS!!! The time given is not a valid date. Try to represent the time in yyyy-mm-dd format.
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [E][ ] orbital splashdown (at: Aug 24 2022)
+Now you have 3 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][ ] cs1101s mission grading (by: Sep 1 2022)
+3. [E][ ] orbital splashdown (at: Aug 24 2022)
+
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [E][ ] cs1101s studio (at: Aug 29 2022)
+Now you have 4 task(s) in the list
+----------------------------------------
+----------------------------------------
+This task has been marked as done:
+ [T][X] wash clothes
+----------------------------------------
+----------------------------------------
+This task has been marked as done:
+ [D][X] cs1101s mission grading (by: Sep 1 2022)
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][X] wash clothes
+2. [D][X] cs1101s mission grading (by: Sep 1 2022)
+3. [E][ ] orbital splashdown (at: Aug 24 2022)
+4. [E][ ] cs1101s studio (at: Aug 29 2022)
+
+----------------------------------------
+----------------------------------------
+This task has been marked as not done yet:
+ [D][ ] cs1101s mission grading (by: Sep 1 2022)
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][X] wash clothes
+2. [D][ ] cs1101s mission grading (by: Sep 1 2022)
+3. [E][ ] orbital splashdown (at: Aug 24 2022)
+4. [E][ ] cs1101s studio (at: Aug 29 2022)
+
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list that match the keyword
+1. [D][ ] cs1101s mission grading (by: Sep 1 2022)
+2. [E][ ] cs1101s studio (at: Aug 29 2022)
+
+----------------------------------------
+----------------------------------------
+There are no task that match the keyword
+----------------------------------------
+----------------------------------------
+☹ OOPS!!! The time given is not a valid date. Try to represent the time in yyyy-mm-dd format.
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list that match the keyword
+1. [E][ ] orbital splashdown (at: Aug 24 2022)
+
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+ [T][X] wash clothes
+Now you have 3 task(s) in the list
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+ [D][ ] cs1101s mission grading (by: Sep 1 2022)
+Now you have 2 task(s) in the list
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+ [E][ ] orbital splashdown (at: Aug 24 2022)
+Now you have 1 task(s) in the list
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+ [E][ ] cs1101s studio (at: Aug 29 2022)
+Now you have 0 task(s) in the list
+----------------------------------------
+----------------------------------------
+You have no tasks at the moment.
+----------------------------------------
+----------------------------------------
+Bye. See you later master!
+----------------------------------------

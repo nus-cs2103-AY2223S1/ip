@@ -1,0 +1,24 @@
+list
+todo wash clothes
+deadline cs1101s mission grading /by 2022-09-01
+list
+deadline cs2100 lab
+event orbital splashdown /at tomorrow
+event orbital splashdown /at 2022-08-24
+list
+event cs1101s studio /at 2022-08-29
+mark 1
+mark 2
+list
+unmark 2
+list
+find cs1101s
+find cs2103t
+at tomorrow
+at 2022-08-24
+delete 1
+delete 1
+delete 1
+delete 1
+list
+bye
