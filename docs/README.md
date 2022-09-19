@@ -2,19 +2,21 @@
 
 ## Meet Baymax, your personalized task management bot!
 
-Baymax keeps tracks of all your day-to-day tasks, and also helps you to keep track of task completion,
+Baymax keeps tracks of all your day-to-day tasks, and helps you to keep track of task completion,
 assign priorities to tasks and also find your tasks from the list.
+
+![image](Ui.png)
 
 ## Features
 
-- [x] List all tasks.
-- [x] Add a ToDo task.
-- [x] Add an Event.
-- [x] Add a Deadline.
-- [x] Mark/unmark a task as done/ undone.
-- [x] Delete a task.
-- [x] Find a task by name.
-- [x] Assign priority to a task.
+- [x]  List all tasks.
+- [x]  Add a ToDo task.
+- [x]  Add an Event.
+- [x]  Add a Deadline.
+- [x]  Mark/unmark a task as done/ undone.
+- [x]  Delete a task.
+- [x]  Find a task by name.
+- [x]  Assign priority to a task.
 
 ## Usage
 
