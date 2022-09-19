@@ -59,7 +59,7 @@ public class Task {
      * @return
      */
     public String isDoneString() {
-        return done == true ? "1" : "0";
+        return this.done == true ? "1" : "0";
     }
 
     public String tagsString() {
@@ -82,6 +82,6 @@ public class Task {
      * @return
      */
     public String toMemoryString() {
-        return " | " + isDoneString() + " | " + content + " | " + tag.toMemoryString() + " | ";
+        return " | " + this.isDoneString() + " | " + content + " | " + tag.toMemoryString() + " | ";
     }
 }

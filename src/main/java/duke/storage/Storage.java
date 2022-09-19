@@ -75,7 +75,7 @@ public class Storage {
                         task = new Event(content, time);
                     }
                 }
-                if (splitTask[1].equals("1")) {
+                if (splitTask[1].trim().equals("1")) {
                     task.markDone();
                 }
                 tasks.add(task);
