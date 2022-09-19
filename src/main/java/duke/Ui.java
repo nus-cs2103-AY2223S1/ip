@@ -146,6 +146,12 @@ public class Ui {
         return text;
     }
 
+    /**
+     * Returns a sorted task list.
+     *
+     * @param taskList list to be sorted.
+     * @return sorted list in string form.
+     */
     public String sortedListString(TaskList taskList) {
 
         List<Task> resultList = new ArrayList<>();
@@ -170,7 +176,7 @@ public class Ui {
         resultList.addAll(deadlineList);
         resultList.addAll(todosList);
 
-        return "The following tasks are sorted by task type then date and time\n     "
+        return "The following tasks are sorted by task type then date and time\n"
                 + TaskList.convertListToString(resultList);
     }
 }
