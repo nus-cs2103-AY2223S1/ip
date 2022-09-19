@@ -4,7 +4,7 @@
 Tohno Mansion's loyal maid, Kohaku-chan, at your service! How can I help you today, master?
 
 <p align = "left">
-<img src= "kohaku.ui.png" width = "300">
+<img src= "Ui.png" width = "300">
 </p>
 
 ## Table of Content
