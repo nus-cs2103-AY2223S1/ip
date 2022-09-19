@@ -45,7 +45,7 @@ todo Read the Hobbit
 ```
 Adds a new todo, 'read the hobbit' to the app.
 
-<img src="./image/add-todo.png"/>
+<img src="./image/add todo.PNG"/>
 
 
 
