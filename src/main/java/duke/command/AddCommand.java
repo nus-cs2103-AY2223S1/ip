@@ -1,12 +1,9 @@
 package duke.command;
 
-import duke.exception.DukeEmptyDescriptionException;
-import duke.exception.DukeException;
+import duke.exception.*;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeInvalidDateException;
-import duke.exception.DukeInvalidTaskException;
 import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.ToDo;
@@ -121,7 +118,7 @@ public class AddCommand extends Command {
         try {
             return new Event(evnt[0], evnt[1]);
         } catch (Exception e) {
-            throw new DukeEmptyDescriptionException();
+            throw new DukeInvalidDateTimeException();
         }
     }
 }
