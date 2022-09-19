@@ -20,13 +20,16 @@ public class Ui {
      */
     public String helpMsg() {
         return "I'm capable of doing the following:\n\n"
-                + "To see what I can do:\nhelp\n\n"
-                + "To see all the tasks you've added:\nlist\n\n"
+                + "See what I can do:\nhelp\n\n"
+                + "See all the tasks you've added:\nlist\n\n"
                 + "Sort all the tasks by task type then by date and time:\nsort\n\n"
                 + "Add a ToDo task:\ntodo <your task>\n\n"
                 + "Add a Deadline task:\ndeadline <your deadline> /by <2022-01-28>\n\n"
                 + "Add an Event task:\nevent <your event> /at <2022-01-28> <2359>\n\n"
                 + "Filter task list according to keyword:\nfind <keyword>\n\n"
+                + "Mark a task as done:\nmark <index>\n\n"
+                + "Mark a task as undone:\nunmark <index>\n\n"
+                + "Delete a task:\ndelete <INDEX>\n\n"
                 + "Exit the program:\nbye";
     }
 
@@ -46,7 +49,7 @@ public class Ui {
      * @return strings representation of the lists.
      */
     public String taskListString(TaskList list) {
-        return "Here are the tasks in your list:\n     " + list.getAllTask();
+        return "Here are the tasks in your list:\n" + list.getAllTask();
     }
 
     /**
@@ -56,7 +59,7 @@ public class Ui {
      * @return a message to indicate a task is done.
      */
     public String taskMarkedMsgString(Task task) {
-        return "Nice! I've marked this task as done:\n     "
+        return "Nice! I've marked this task as done:\n"
                 + task;
     }
 
@@ -67,7 +70,7 @@ public class Ui {
      * @return a message to indicate the task is not done yet.
      */
     public String taskUnmarkedMsgString(Task task) {
-        return "OK, I've marked this task as not done yet:\n     "
+        return "OK, I've marked this task as not done yet:\n"
                 + task;
     }
 
@@ -79,9 +82,9 @@ public class Ui {
      * @return a messageto indicate a task is deleted from the task list.
      */
     public String deleteTaskMsgString(Task task, TaskList listOfTasks) {
-        return "Noted. I've removed this task:\n     "
+        return "Noted. I've removed this task:\n"
                 + task
-                + "\n     Now you have "
+                + "\nNow you have "
                 + listOfTasks.getListSize()
                 + " task(s) in the list.";
     }
@@ -94,9 +97,9 @@ public class Ui {
      * @return a message to indicate a task is added to the task list.
      */
     public String addTaskMsgString(Task task, TaskList listOfTasks) {
-        return "Got it, I've added this task:\n       "
+        return "Got it, I've added this task:\n"
                 + task.toString()
-                + "\n     Now you have "
+                + "\nNow you have "
                 + listOfTasks.getListSize()
                 + " task(s) in the list.";
     }
@@ -138,7 +141,7 @@ public class Ui {
      * @return filtered numbered task list with format.
      */
     public String printFilteredList(String filteredListString) {
-        String text = "Here are the matching tasks in your list:\n     "
+        String text = "Here are the matching tasks in your list:\n"
                 + filteredListString;
         return text;
     }

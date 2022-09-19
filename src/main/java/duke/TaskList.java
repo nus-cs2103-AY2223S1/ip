@@ -94,7 +94,7 @@ public class TaskList {
             if (i == resultList.size() - 1) {
                 text += i + 1 + ". " + resultList.get(i);
             } else {
-                text += i + 1 + ". " + resultList.get(i) + "\n     ";
+                text += i + 1 + ". " + resultList.get(i) + "\n";
             }
         }
 
