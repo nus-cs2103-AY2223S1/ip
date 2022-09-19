@@ -121,6 +121,7 @@ public class DukeTest extends Application {
      * @return The string containing the response to the input.
      */
     private String getResponse(String input) {
+        assert !input.isBlank();
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
