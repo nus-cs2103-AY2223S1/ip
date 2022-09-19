@@ -52,7 +52,7 @@ public class Parser {
             commandArgs = splitUserStatement[1].strip();
         }
 
-        //switch-case for command word
+        //switch-case for different command word
         switch(command) { //no breaks as all cases lead to return
         case COMMAND_FIND:
             return new FindCommand(commandArgs);

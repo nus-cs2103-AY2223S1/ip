@@ -35,9 +35,12 @@ public class ByeCommand extends Command {
      * @throws MeowerException
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
+        //if not a valid address, throw exception
         if (!this.verifyAddress(this.logFileAddress)) {
             throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
         }
+
+        //else, do cleanUp()
         try {
             if (this.logFileAddress.equals("")) {
                 return ui.bye(storage.cleanUp());
@@ -56,8 +59,11 @@ public class ByeCommand extends Command {
      */
 
     private boolean verifyAddress(String address) {
+        //pre-process address string
         String addressToCheck = address.strip();
         String[] addressSplit = addressToCheck.split(" ");
+
+        //verification
         if (addressSplit.length > 1) {
             return false;
         }
