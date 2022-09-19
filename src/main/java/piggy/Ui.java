@@ -9,121 +9,117 @@ import piggy.task.Task;
  * Manages the user-interaction UI.
  */
 class Ui {
-    private final Scanner sc;
 
     /**
-     * Creates a new UI object. Uses STDIN for input and STDOUT for output.
+     * Creates a new UI object.
      */
     Ui() {
-        sc = new Scanner(System.in);
     }
 
     /**
-     * Shows the welcome message on the output.
+     * Get the welcome message.
+     *
+     * @return the welcome message.
      */
-    void showWelcome() {
-        System.out.println("Hello! I'm Piggy");
-        System.out.println("What can I oink for you?");
-        System.out.println("Use the following format for datetime: yyyy-MM-dd HH:mm");
+    String getWelcome() {
+        return "Hello! I'm Piggy\n" + "What can I oink for you?\n" + "Use the following format for datetime: " +
+                "yyyy-MM-dd HH:mm\n";
     }
 
     /**
-     * Shows the bye message on the output and stops receiving user input.
+     * Gets the bye message to be shown upon exiting.
+     *
+     * @return the bye message.
      */
-    void showBye() {
-        System.out.println("Bye. Hope to oink you again soon!");
-        sc.close();
+    String getBye() {
+        return "Bye. Hope to oink you again soon!";
     }
 
     /**
-     * Shows the list of tasks on the output.
+     * Gets a message showing the list of tasks on the output.
      *
      * @param tasks The list of tasks to show.
+     * @return the list of tasks message.
      */
-    void showTaskList(List<Task> tasks) {
-        System.out.println("Here are the tasks in your list:");
-        showTasks(tasks);
+    String getTaskList(List<Task> tasks) {
+        return "Here are the tasks in your list:\n" + getTasks(tasks);
     }
 
-    private void showTasks(List<Task> tasks) {
+    private String getTasks(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d.%s\n", i + 1, tasks.get(i));
+            sb.append(String.format("%d.%s\n", i + 1, tasks.get(i)));
         }
+        return sb.toString();
     }
 
     /**
-     * Show that a task has been added along with the remaining tasks.
+     * Get a message showing a task has been added along with the remaining tasks.
      *
      * @param task             The added task to show.
      * @param noRemainingTasks The number of remaining tasks.
+     * @return the task added
      */
-    void showTaskAdded(Task task, int noRemainingTasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + noRemainingTasks + " tasks in the list.");
+    String getTaskAdded(Task task, int noRemainingTasks) {
+        return "Got it. I've added this task:\n" + "  " + task + "\n" + "Now you have " + noRemainingTasks + " " +
+                "tasks in the list.\n";
     }
 
     /**
-     * Show that a task has been removed along with the remaining tasks.
+     * Gets a message that a task has been removed along with the remaining tasks.
      *
      * @param task             The removed task to show.
      * @param noRemainingTasks The number of remaining tasks.
+     * @return the task removed message
      */
-    void showTaskRemoved(Task task, int noRemainingTasks) {
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + noRemainingTasks + " tasks in the list.");
+    String getTaskRemoved(Task task, int noRemainingTasks) {
+        return "Noted. I've removed this task: \n" + "  " + task + "Now you have " + noRemainingTasks + " tasks in" + " the list.\n";
     }
 
     /**
-     * Show that a task has been marked as done.
+     * Gets a message that a task has been marked as done.
      *
      * @param task The task that has been marked as done.
+     * @return The message that the task has been marked as done.
      */
-    void showMarkAsDone(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + task);
+    String getMarkAsDone(Task task) {
+        return "Nice! I've marked this task as done:" + task;
     }
 
     /**
-     * Show that a task has been marked as not done.
+     * Gets a message that a task has been marked as not done.
      *
      * @param task The task that has been marked as not done.
+     * @return The message that the task has been marked as not done.
      */
-    void showMarkAsNotDone(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + task);
+    String getMarkAsNotDone(Task task) {
+        return "OK, I've marked this task as not done yet:" + task;
     }
 
     /**
-     * Show the list of tasks found.
+     * Get the list of tasks found.
      *
      * @param tasks The list of tasks.
+     * @return The list of tasks found.
      */
-    void showTasksFound(List<Task> tasks) {
+    String getTasksFound(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
         if (tasks.size() == 0) {
-            System.out.println("No matching tasks found in your list.");
+            sb.append("No matching tasks found in your list.\n");
         } else {
-            System.out.println("Here are the matching tasks in your list:");
-            showTasks(tasks);
+            sb.append("Here are the matching tasks in your list:\n");
+            sb.append(getTasks(tasks));
         }
+        return sb.toString();
     }
 
     /**
-     * Shows a DukeException on the output.
+     * Gets a DukeException message.
      *
      * @param err The exception to show.
+     * @return the message
      */
-    void showDukeException(DukeException err) {
-        System.out.println(err);
-    }
-
-    /**
-     * Reads a command from the input.
-     *
-     * @return The command from the input.
-     */
-    String readCommand() {
-        return sc.nextLine();
+    String getDukeException(DukeException err) {
+        return err.toString();
     }
 }

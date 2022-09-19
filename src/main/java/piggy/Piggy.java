@@ -10,36 +10,22 @@ public class Piggy {
 
     /**
      * Creates a new Piggy application that reads and writes to a file
-     *
-     * @param filePath The path of the data file.
      */
-    public Piggy(String filePath) {
-        storage = new Storage(filePath);
+    public Piggy() {
+        storage = new Storage("./tasks.txt");
         taskList = new TaskList(storage.readTasks());
         ui = new Ui();
-    }
-
-    /**
-     * Runs the Piggy application.
-     */
-    public void run() {
         assert ui != null;
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            String command = ui.readCommand();
-            isExit = Parser.parse(command, ui, taskList);
-            storage.writeTasks(taskList);
-        }
-        ui.showBye();
+        assert storage != null;
     }
 
     /**
-     * Starts the entire application.
-     *
-     * @param args List of arguments to be passed to the application.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public static void main(String[] args) {
-        new Piggy("./tasks.txt").run();
+    String getResponse(String input) {
+        String res = Parser.parse(input, ui, taskList);
+        storage.writeTasks(taskList);
+        return res;
     }
 }
