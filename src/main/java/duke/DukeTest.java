@@ -119,6 +119,7 @@ public class DukeTest extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
+        assert !input.isBlank();
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
