@@ -177,12 +177,29 @@ public class Ui {
         return "Please retype the date in YYYY-MM-DD format.\n";
     }
 
+    /**
+     * Reply the users when the users type word instead of task number.
+     */
     String printWrongTypeInputException() {
         return "Please type TASK_NUMBER instead of word.\n";
     }
 
-
-
+    /**
+     * Reply the users when there is a reading file error at the start.
+     */
+    String printErrorInReading() {
+        return "There is an error in reading the data file.\n"
+                + "**Pls read the following carefully before restarting.**\n"
+                + "1. Please manually check that all the entries in the anya.txt in data folder is in the format of "
+                + "'TASK_NO:TASK_TYPE:TASK_STATUS:TASK_DESCRIPTION:TASK_DATE'.\n"
+                + "- For example, 1:D:X:return book:2022-06-13\n"
+                + "- For TASK_TYPE, D is for deadline, E for event and T for todo.\n"
+                + "- For TASK_STATUS, X is done, leave a blankspace if its not done.\n"
+                + "- FOR TASK_DATE, deadline and event must have a date in the format of YYYY MM DD and "
+                + "for todo, there is no date, put a X for TASK_DATE.\n"
+                + "2. After making the correct changes manually in the file, save it, exit the program.\n"
+                + "3. Finally, start Anya again.\n";
+    }
 
 
 }

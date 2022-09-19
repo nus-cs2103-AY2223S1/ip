@@ -2,6 +2,8 @@ package anya;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -15,6 +17,8 @@ public class Anya {
     private Ui ui;
     private Parser parser;
     private boolean hasReturnError;
+    private boolean hasLoadingError;
+    private String loadingError;
 
     /**
      * Create ChatBot.
@@ -24,7 +28,16 @@ public class Anya {
     public Anya(String filePath) throws Exception {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
-        this.tasks = new TaskList(storage.readFile());
+        this.hasLoadingError = false;
+        this.loadingError = "";
+        try {
+            this.tasks = new TaskList(storage.readFile());
+        } catch (AnyaException e) {
+            List<Task> dummyList = new ArrayList<Task>();
+            this.tasks = new TaskList(dummyList);
+            this.hasLoadingError = true;
+            this.loadingError = e.getMessage();
+        }
         this.parser = new Parser();
         this.hasReturnError = false;
     }
@@ -63,13 +76,22 @@ public class Anya {
             response = ui.printWrongTypeInputException();
             this.hasReturnError = true;
         }
-
-        storage.saveNewChanges(tasks);
+        if (this.hasLoadingError == false) {
+            storage.saveNewChanges(tasks);
+        }
         return response;
     }
 
     public boolean getHasReturnError() {
         return this.hasReturnError;
+    }
+
+    public boolean getHasLoadingError() {
+        return this.hasLoadingError;
+    }
+
+    public String getLoadingError() {
+        return this.loadingError;
     }
 
 }

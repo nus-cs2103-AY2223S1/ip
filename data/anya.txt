@@ -1,13 +1,13 @@
 1:D:X:return book:2022-06-13
 2:E: :wedding:2022-07-18
 3:D:X:book review:2022-11-24
-4:T: :go USS
+4:T: :go USS:X
 5:D: :finish assignment 2:2022-11-04
 6:E: :birthday party:2022-10-10
-7:T: :go Japan
+7:T: :go Japan:X
 8:D:X:finish hw 4:2022-11-11
-9:T: :learn how to make cake
+9:T: :learn how to make cake:X
 10:D:X:finish hw 3:2022-09-16
 11:D: :assignment 5:2022-12-13
-12:T: :learn dance
-13:D: :finish tp code:2022-11-11
+12:T:X:learn dance:X
+13:D:X:finish tp code:2022-11-11

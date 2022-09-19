@@ -25,14 +25,17 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(boolean isAnya, boolean hasError, String text, Image img) {
+    private DialogBox(boolean isAnya, boolean hasResponseError, boolean hasLoadingError, String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/AnyaDialogBox.fxml"));
             if (isAnya == false) {
                 fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/UserDialogBox.fxml"));
             }
-            if (hasError == true) {
+            if (hasResponseError == true) {
                 fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/ErrorDialogBox.fxml"));
+            }
+            if (hasLoadingError == true) {
+                fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/LoadingErrorDialogBox.fxml"));
             }
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
@@ -55,17 +58,23 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(false, false, text, img);
+        return new DialogBox(false, false, false, text, img);
     }
 
     public static DialogBox getAnyaDialog(String text, Image img) {
-        var db = new DialogBox(true, false, text, img);
+        var db = new DialogBox(true, false, false, text, img);
         db.flip();
         return db;
     }
 
     public static DialogBox getErrorDialog(String text, Image img) {
-        var db = new DialogBox(true, true, text, img);
+        var db = new DialogBox(true, true, false, text, img);
+        db.flip();
+        return db;
+    }
+
+    public static DialogBox getLoadingErrorDialog(String text, Image img) {
+        var db = new DialogBox(true, false, true, text, img);
         db.flip();
         return db;
     }

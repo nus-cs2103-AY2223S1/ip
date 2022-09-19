@@ -15,7 +15,7 @@ class ToDo extends Task {
     }
 
     public String write() {
-        return "T" + super.write();
+        return "T" + super.write() + ":X";
     }
 
 }

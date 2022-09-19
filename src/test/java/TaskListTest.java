@@ -20,22 +20,37 @@ public class TaskListTest {
         dummyList.add(new Event("violin trial lesson", "2022-12-11"));
         dummyList.add(new Deadline("finish hw 1", "2022-01-01"));
     }
+
     @Test
     public void constructorTest1() {
         addDummyTasks(dummyList1);
-        TaskList dummyTasks = new TaskList(dummyList1);
-        String actualOutput = dummyUi.printList(dummyTasks.getList());
-        String expectedOutput = dummyUi.printList(dummyList1);
-        assertEquals(expectedOutput, actualOutput);
+        try {
+            TaskList dummyTasks = new TaskList(dummyList1);
+            String actualOutput = dummyUi.printList(dummyTasks.getList());
+            String expectedOutput = dummyUi.printList(dummyList1);
+            assertEquals(expectedOutput, actualOutput);
+
+        } catch (AnyaException e) {
+            String actualOutput = e.getMessage();
+            String expectedOutput = dummyUi.printList(dummyList1);
+            assertEquals(expectedOutput, actualOutput);
+        }
     }
 
     @Test
-    public void constructorTest2() {
+    public void constructorTest2() throws AnyaException {
         dummyList1.clear();
-        TaskList dummyTasks = new TaskList(dummyList1);
-        String actualOutput = dummyUi.printList(dummyTasks.getList());
-        String expectedOutput = dummyUi.printList(dummyList1);
-        assertEquals(expectedOutput, actualOutput);
+        try {
+            TaskList dummyTasks = new TaskList(dummyList1);
+            String actualOutput = dummyUi.printList(dummyTasks.getList());
+            String expectedOutput = dummyUi.printList(dummyList1);
+            assertEquals(expectedOutput, actualOutput);
+
+        } catch (AnyaException e) {
+            String actualOutput = e.getMessage();
+            String expectedOutput = dummyUi.printList(dummyList1);
+            assertEquals(expectedOutput, actualOutput);
+        }
     }
 
     @Test
@@ -45,38 +60,62 @@ public class TaskListTest {
         addDummyTasks(dummyList1);
         List<Task> dummyList2 = new ArrayList<Task>();
         addDummyTasks(dummyList2);
-        TaskList dummyTasks = new TaskList(dummyList1);
-        dummyTasks.add(dummyTask);
-        String actualOutput = dummyUi.printList(dummyTasks.getList());
-        String expectedOutput = dummyUi.printList(dummyList2) + "6. " + dummyTask.toString() + "\n";
-        assertEquals(expectedOutput, actualOutput);
+        try {
+            TaskList dummyTasks = new TaskList(dummyList1);
+            dummyTasks.add(dummyTask);
+            String actualOutput = dummyUi.printList(dummyTasks.getList());
+            String expectedOutput = dummyUi.printList(dummyList2) + "6. " + dummyTask.toString() + "\n";
+            assertEquals(expectedOutput, actualOutput);
+
+        } catch (AnyaException e) {
+            String actualOutput = e.getMessage();
+            String expectedOutput = dummyUi.printList(dummyList2) + "6. " + dummyTask.toString() + "\n";
+            assertEquals(expectedOutput, actualOutput);
+        }
     }
 
     @Test
     public void findTaskWithKeywordTest() {
         dummyList1.clear();
         addDummyTasks(dummyList1);
-        TaskList dummyTasks = new TaskList(dummyList1);
-        String actualOutput = dummyUi.printMatchingList(dummyTasks.findTaskWithThisKeyword("violin"));
         List<Task> dummyList2 = new ArrayList<Task>();
         dummyList2.add(new ToDo("learn violin"));
         dummyList2.add(new Event("violin trial lesson", "2022-12-11"));
-        String expectedOutput = dummyUi.printMatchingList(dummyList2);
-        assertEquals(expectedOutput, actualOutput);
+
+        try {
+            TaskList dummyTasks = new TaskList(dummyList1);
+            String actualOutput = dummyUi.printMatchingList(dummyTasks.findTaskWithThisKeyword("violin"));
+            String expectedOutput = dummyUi.printMatchingList(dummyList2);
+            assertEquals(expectedOutput, actualOutput);
+
+        } catch (AnyaException e) {
+            String actualOutput = e.getMessage();
+            String expectedOutput = dummyUi.printMatchingList(dummyList2);
+            assertEquals(expectedOutput, actualOutput);
+        }
     }
 
     @Test
     public void getSortedDeadlinesListTest() {
         dummyList1.clear();
         addDummyTasks(dummyList1);
-        TaskList dummyTasks = new TaskList(dummyList1);
-        String actualOutput = dummyUi.printSortedDeadlineList(dummyTasks.getSortedDeadlinesList());
         List<Deadline> dummyList2 = new ArrayList<Deadline>();
         dummyList2.add(new Deadline("finish hw 1", "2022-01-01"));
         dummyList2.add(new Deadline("finish assignment 1", "2022-09-15"));
         dummyList2.add(new Deadline("finish assignment 2", "2022-09-20"));
-        String expectedOutput = dummyUi.printSortedDeadlineList(dummyList2);
-        assertEquals(expectedOutput, actualOutput);
+
+        try {
+            TaskList dummyTasks = new TaskList(dummyList1);
+            String actualOutput = dummyUi.printSortedDeadlineList(dummyTasks.getSortedDeadlinesList());
+            String expectedOutput = dummyUi.printSortedDeadlineList(dummyList2);
+            assertEquals(expectedOutput, actualOutput);
+
+        } catch (AnyaException e) {
+            String actualOutput = e.getMessage();
+            String expectedOutput = dummyUi.printSortedDeadlineList(dummyList2);
+            assertEquals(expectedOutput, actualOutput);
+        }
+
     }
 
 }

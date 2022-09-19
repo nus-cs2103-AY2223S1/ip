@@ -39,10 +39,17 @@ public class MainWindow extends AnchorPane {
 
     public void setAnya(Anya a) {
         anya = a;
-        String greet = a.start();
-        dialogContainer.getChildren().addAll(
-            DialogBox.getAnyaDialog(greet, anyaWelcomeImage)
-        );
+        if (anya.getHasLoadingError() == true) {
+            String errorMessage = anya.getLoadingError();
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getLoadingErrorDialog(errorMessage, anyaErrorImage)
+            );
+        } else {
+            String greet = a.start();
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getAnyaDialog(greet, anyaWelcomeImage)
+            );
+        }
     }
 
     /**

@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Storage {
 
     private String fileLocation;
+    private Ui ui;
 
     /**
      * Create storage with this filePath.
@@ -21,6 +22,7 @@ public class Storage {
      */
     Storage(String filePath) {
         this.fileLocation = filePath;
+        this.ui = new Ui();
     }
 
     /**
@@ -55,7 +57,7 @@ public class Storage {
      * @return taskList.
      * @throws Exception.
      */
-    List<Task> readFile() throws Exception {
+    List<Task> readFile() throws Exception, AnyaException {
         List<Task> existingTasks = new ArrayList<Task>();
 
         if (this.checkFile() == false) {
@@ -71,9 +73,13 @@ public class Storage {
         return existingTasks;
     }
 
-    private void readTask(String task, List<Task> existingTasks) {
+    private void readTask(String task, List<Task> existingTasks) throws AnyaException {
         String[] strarr = task.split(":");
-        boolean haveDate = strarr.length == 5;
+        if (strarr.length != 5) {
+            throw new AnyaException(ui.printErrorInReading());
+        }
+
+        boolean haveDate = !strarr[4].equals("X");
         String typeOfTask = strarr[1];
         assert typeOfTask != null : "typeOfTask should not be null";
         String statusOfTask = strarr[2];

@@ -21,7 +21,7 @@ public class TaskList {
      * Create a tasklist.
      * @param pastList
      */
-    TaskList(List<Task> pastList) {
+    TaskList(List<Task> pastList) throws AnyaException {
         this.list = pastList;
         this.noOfTasks = pastList.size();
         this.ui = new Ui();
