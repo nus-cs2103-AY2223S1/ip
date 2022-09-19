@@ -34,7 +34,7 @@ allowing the tracking of various types of tasks including events and deadlines.
 
 5. Type the command in the command box and press Send to execute it.
 
-6. Refer to the [Features](https://ciaoosuu.github.io/ip/#features) below for details of each command.
+6. Refer to the [Features](https://ciaoosuuu.github.io/ip/#features) below for details of each command.
 
 
 
