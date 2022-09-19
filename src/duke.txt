@@ -6,7 +6,7 @@ mark 2
 mark 3
 unmark 3
 deadline cs2103 lvl8 /by 25-08-2022 2359
-tag 2 yay
+tag 2 freeFood!
 tag 2 woohoo!
 event donut day /at 14-09-2022 1230
 mark 5
@@ -14,3 +14,5 @@ mark 3
 mark 6
 unmark 2
 deadline submit iP /by 19-09-2022 2359
+mark 6
+tag 6 finally!

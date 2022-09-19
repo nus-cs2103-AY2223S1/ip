@@ -27,7 +27,7 @@ public class Ui {
     }
 
     public String printAddedTag(Task task) {
-        return "Nice! I've tagged the task as per your request:\n" + task;
+        return "Nice! I've tagged the task as per your request:\n" + task + "\nKeep tagging fellow cat!";
     }
 
     /**

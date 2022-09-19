@@ -1,4 +1,4 @@
-# User Guide
+# Polite Duke User Guide
 
 ## Features 
 
