@@ -9,8 +9,18 @@ import duke.tasks.ToDo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a parser to extract information
+ * from user input
+ */
 public class Parser {
 
+    /**
+     * Parses the user input into various commands
+     *
+     * @param command a string representing the user input
+     * @return A command corresponding to the user input
+     */
     public static Command parse(String command) {
         String[] input = command.split(" ", 2);
 

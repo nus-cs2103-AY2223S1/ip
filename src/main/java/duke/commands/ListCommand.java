@@ -5,6 +5,9 @@ import duke.tasks.TaskList;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
+/**
+ * Represents the list of task in the task list
+ */
 public class ListCommand extends Command {
 
     @Override
