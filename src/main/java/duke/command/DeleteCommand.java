@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.dukeexception.UnknownCommandException;
 
 public class DeleteCommand extends Command {
     private int index;
@@ -25,9 +26,13 @@ public class DeleteCommand extends Command {
      * @return String to notify of deleted task.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.delete(this.index);
-        storage.overwriteData(tasks);
-        return ui.notifyDeleted(tasks.get(this.index));
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws UnknownCommandException {
+        try {
+            tasks.delete(this.index);
+            storage.overwriteData(tasks);
+            return ui.notifyDeleted(tasks.get(this.index));
+        } catch (Exception e) {
+            throw new UnknownCommandException();
+        }
     }
 }
