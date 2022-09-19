@@ -1,6 +1,6 @@
-# Duke project template
+# Duke, the Duke Bot
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is _Duke_, the Duke Bot.  Given below are instructions on how to use it.
 
 ## Setting up in Intellij
 
@@ -22,3 +22,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+## Acknowledgements
+User image: https://se-education.org/guides/tutorials/images/javafx/DaUser.png  
+Duke image: https://se-education.org/guides/tutorials/images/javafx/DaDuke.png 
