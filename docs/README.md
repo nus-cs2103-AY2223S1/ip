@@ -3,6 +3,7 @@
 ---
 
 Pikachu Task Manager is an application that aims to help you manage your task better!
+![Photo for Pikachu Chatbot](Ui.png "Pikachu Chatbot")
 
 ## Features 
 
@@ -37,6 +38,7 @@ Shows a message for successful addition.
 Pikapi(added): [T][ ] learn a new trick
 Pikaaaaa: 1 task
 ```
+![Todo Demo](images/todo.png "Todo Demo")
 ---
 ### `event` - Add a event task
 
@@ -50,8 +52,9 @@ Shows a message for successful addition.
 
 ```
 Pikapi(added): [E][ ] student fair (at: UTown)
-Pikaaaaa: 1 task
+Pikaaaaa: 2 tasks
 ```
+![Event Demo](images/event.png "Event Demo")
 ---
 ### `deadline` - Add a deadline task
 
@@ -64,9 +67,10 @@ Expected outcome:
 Shows a message for successful addition.
 
 ```
-Pikapi(added): [D][ ] quiz (by: 10 October 2022)
-Pikaaaaa: 1 task
+Pikapi(added): [D][ ] quiz (by: 27 September 2022)
+Pikaaaaa: 3 tasks
 ```
+![Deadline Demo](images/deadline.png "Deadline Demo")
 ---
 ### `mark` - Set task as done
 
@@ -83,6 +87,7 @@ Expected outcome:
 ```
 Pi-ka(Done): [T][X] learn a new trick
 ```
+![Mark Demo](images/mark.png "Mark Demo")
 ---
 ### `unmark` - Set task as undone
 
@@ -99,6 +104,7 @@ Expected outcome:
 ```
 Pi-ka(Done): [T][ ] learn a new trick
 ```
+![Unmark Demo](images/unmark.png "Unmark Demo")
 ---
 ### `delete` - Delete a task
 
@@ -114,8 +120,9 @@ Expected outcome:
 
 ```
 Pi-ka(Removed): [T][ ] learn a new trick
-Pikaaaaa: 0 task
+Pikaaaaa: 2 tasks
 ```
+![Delete Demo](images/delete.png "Delete Demo")
 ---
 ### `list` - Show status of all tasks
 
@@ -127,10 +134,10 @@ Expected outcome:
 
 ```
 PikaPika:
-1.[T][ ] learn a new trick
-2.[E][X] student fair (at: UTown)
-3.[D][ ] quiz (by: 10 October 2022)
+1.[E][ ] student fair (at: UTown)
+2.[D][ ] quiz (by: 10 October 2022)
 ```
+![List Demo](images/list.png "List Demo")
 ---
 ### `find` - Find tasks
 
@@ -145,8 +152,9 @@ Example of usage:
 Expected outcome:
 
 ```
-1.[D][ ] quiz (by: 10 October 2022)
+1.[D][ ] quiz (by: 27 September 2022)
 ```
+![Find Demo](images/find.png "Find Demo")
 ---
 ### `bye` - Exits the program
 
@@ -161,4 +169,5 @@ Pi-ka...(Say some last word to pikachu to comfort it!)
 ```
 Any words typed in after pikachu's replay will successfully exit the program.
 
+![Bye Demo](images/bye.png "Bye Demo")
 ---

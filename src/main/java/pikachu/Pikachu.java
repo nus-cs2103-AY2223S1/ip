@@ -29,20 +29,7 @@ public class Pikachu extends Application {
     private PikachuEmotion emotion;
 
     private boolean isExit = false;
-
-    /**
-     * Initialises Pikachu bot.
-     */
-    public Pikachu(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (Exception e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
-    }
+    private boolean isValidMessage = true;
 
     /**
      * Initialise Pikachu
@@ -73,16 +60,23 @@ public class Pikachu extends Application {
     String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            emotion = c.getEmotion();
             isExit = c.isExit();
+            emotion = c.getEmotion();
+            isValidMessage = true;
             return c.execute(tasks, ui, storage);
         } catch (PikachuException e) {
+            emotion = PikachuEmotion.SAD;
+            isValidMessage = false;
             return e.getMessage();
         }
     }
 
     PikachuEmotion getEmotion() {
         return emotion;
+    }
+
+    boolean getisValid() {
+        return isValidMessage;
     }
 
     /**

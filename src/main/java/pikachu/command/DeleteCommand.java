@@ -29,14 +29,18 @@ public class DeleteCommand extends Command {
      * @return Pikachu's reply.
      * @throws PikachuException If invalid format or the index of task out of range.
      */
+
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         boolean isValidNumber = Pikachu.isNumeric(input.substring(7));
-        boolean isWithinRange = Integer.parseInt(input.substring(7)) <= tasks.getTaskList().size()
-                && Integer.parseInt(input.substring(7)) > 0;
-        assert input.startsWith("delete ");
         if (!isValidNumber) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
-        } else if (!isWithinRange) {
+        }
+        boolean isWithinRange = Integer.parseInt(input.substring(7)) <= tasks.getTaskList().size()
+                && Integer.parseInt(input.substring(7)) > 0;
+
+        assert input.startsWith("delete ");
+
+        if (!isWithinRange) {
             throw new PikachuException("Pi-not within range-pi!");
         } else {
             int temp = Integer.parseInt(input.substring(7));
@@ -52,7 +56,6 @@ public class DeleteCommand extends Command {
      * Returns PikaChu's emotion after receiving the task.
      * @return OK.
      */
-    @Override
     public PikachuEmotion getEmotion() {
         return PikachuEmotion.OK;
     }

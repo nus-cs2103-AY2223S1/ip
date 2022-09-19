@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pikachu.PikachuEmotion;
+import pikachu.PikachuException;
 import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
@@ -28,7 +29,7 @@ public class FindCommand extends Command {
      * @param storage Storage space with functions that update and take out tasks.
      * @return Pikachu's reply.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         assert input.startsWith("find ");
 
         //Initialise variables
@@ -45,7 +46,7 @@ public class FindCommand extends Command {
 
         //Produce output
         if (result.isEmpty()) {
-            return "Pi...cannot find...";
+            throw new PikachuException("Pi...cannot find...");
         } else {
             for (Task task: result) {
                 output.append(result.indexOf(task) + 1).append('.').append(task).append('\n');

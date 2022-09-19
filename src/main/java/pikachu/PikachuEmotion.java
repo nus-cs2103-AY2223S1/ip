@@ -10,5 +10,6 @@ public enum PikachuEmotion {
     OK,
     PLAY,
     SAD,
-    YEA
+    YEA,
+    A_BIT_HAPPY
 }

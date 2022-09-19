@@ -47,7 +47,7 @@ public class AddCommand extends Command {
                 LocalDate date = LocalDate.parse(temp2[1]);
                 Deadline newDdl = new Deadline(temp2[0], date);
                 if (isDuplicate(newDdl, taskList)) {
-                    return "Duplicate task pi!";
+                    throw new PikachuException("Duplicate task pi!");
                 }
                 tasks.getTaskList().add(newDdl);
 
@@ -57,7 +57,7 @@ public class AddCommand extends Command {
                 tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
                         + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
             } catch (Exception e) {
-                throw new PikachuException("Need valid date format(yyyy-mm-dd) Pikaaaa");
+                throw new PikachuException("Need valid date format(yyyy-mm-dd) OR Duplicate task Pikaaaa");
             }
         } else if (isValidTodo) { //add as tasks
             Todo newTodo = new Todo(input.substring(5));
@@ -95,20 +95,19 @@ public class AddCommand extends Command {
     }
 
     /**
+     * Returns PikaChu's emotion after receiving the task.
+     * @return OK.
+     */
+    public PikachuEmotion getEmotion() {
+        return PikachuEmotion.OK;
+    }
+
+    /**
      * Returns whether this function performs an exit action on the task manager.
      * @return false, do not exit.
      */
     public boolean isExit() {
         return false;
-    }
-
-    /**
-     * Returns PikaChu's emotion after receiving the task.
-     * @return OK.
-     */
-    @Override
-    public PikachuEmotion getEmotion() {
-        return PikachuEmotion.OK;
     }
 
     /**

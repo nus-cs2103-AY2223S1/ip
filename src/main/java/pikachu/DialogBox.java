@@ -61,10 +61,15 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    public static DialogBox getPikachuDialog(String text, Image img) {
+    public static DialogBox getPikachuDialog(String text, Image img, boolean isValidMessage) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.dialog.setStyle("-fx-background-color: #8B5B5B; -fx-text-fill: white; -fx-background-radius: 10;");
+        if (isValidMessage) {
+            db.dialog.setStyle("-fx-background-color: #8B5B5B; -fx-text-fill: white; -fx-background-radius: 10;");
+        } else {
+            db.dialog.setStyle("-fx-background-color: #ee6b6e; -fx-text-fill: white; -fx-background-radius: 10;");
+        }
+
         return db;
     }
 }

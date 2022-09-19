@@ -31,12 +31,13 @@ public class UnmarkCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         boolean isValidNumber = Pikachu.isNumeric(input.substring(7));
+        if (!isValidNumber) {
+            throw new PikachuException("Pi-must be numbers behind-pi!");
+        }
         boolean isWithinRange = Integer.parseInt(input.substring(7)) <= tasks.getTaskList().size()
                 && Integer.parseInt(input.substring(7)) > 0;
         assert input.startsWith("unmark ");
-        if (!isValidNumber) {
-            throw new PikachuException("Pi-must be numbers behind-pi!");
-        } else if (!isWithinRange) {
+        if (!isWithinRange) {
             throw new PikachuException("Pi-not within range-pi!");
         } else {
             int temp = Integer.parseInt(input.substring(7));
@@ -53,7 +54,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public PikachuEmotion getEmotion() {
-        return PikachuEmotion.SAD;
+        return PikachuEmotion.A_BIT_HAPPY;
     }
 
     /**

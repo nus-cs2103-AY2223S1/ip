@@ -57,7 +57,7 @@ public class MainWindow extends AnchorPane {
 
     public void setPikachu(Pikachu d) {
         pikachu = d;
-        dialogContainer.getChildren().add(DialogBox.getPikachuDialog(pikachu.sayHi(), pikachuImage));
+        dialogContainer.getChildren().add(DialogBox.getPikachuDialog(pikachu.sayHi(), pikachuImage, true));
     }
 
     public void setPikachuImage(PikachuEmotion emotion) {
@@ -100,10 +100,14 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = pikachu.getResponse(input);
         PikachuEmotion emotion = pikachu.getEmotion();
+        boolean isValidMessage = pikachu.getisValid();;
         this.setPikachuImage(emotion);
+        if (!isValidMessage) {
+
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getPikachuDialog(response, pikachuImage)
+                DialogBox.getPikachuDialog(response, pikachuImage, isValidMessage)
         );
         userInput.clear();
     }
