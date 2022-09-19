@@ -24,7 +24,7 @@ public class Parser {
      * Lists the list of commands.
      */
     public static String mismatch() {
-        return Ui.reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
+        return Ui.reply("list of commands: list, mark, unmark, todo, deadline, event, delete, sort");
     }
 
     /**
@@ -40,7 +40,7 @@ public class Parser {
             return new Pair<>(Ui.bye(), false);
         }
         if (arguments[0].equals("list")) {
-            return new Pair<>(TaskList.list(), true);
+            return new Pair<>(TaskList.list(false), true);
         }
         if (arguments[0].equals("mark")) {
             return new Pair<>(TaskList.mark(arguments), true);
@@ -62,6 +62,9 @@ public class Parser {
         }
         if (arguments[0].equals("find")) {
             return new Pair<>(TaskList.find(arguments), true);
+        }
+        if (arguments[0].equals("sort")) {
+            return new Pair<>(TaskList.sort(), true);
         }
         return new Pair<>(mismatch(), true);
     }
