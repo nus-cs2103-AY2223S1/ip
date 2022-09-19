@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,12 +73,11 @@ public class HandleTaskTest {
         }
     }
 
-    // Unit tests
-    /*
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
-        .withResolverStyle(ResolverStyle.STRICT);
+    @Test
+    public void dateTimeFormatterWorking() {
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
+        .withResolverStyle(ResolverStyle.SMART);
     DateValidator validator = new DateValidatorUsingDateTimeFormatter(dateFormatter);
     assertTrue(validator.isValid("2019-02-28"));
     assertFalse(validator.isValid("2019-02-30"));
-    */
 }

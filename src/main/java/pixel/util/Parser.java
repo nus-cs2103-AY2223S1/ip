@@ -3,6 +3,8 @@ package pixel.util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import pixel.task.Task;
@@ -65,7 +67,7 @@ public class Parser {
                 return taskList.handleNewTask(strippedInput, TaskType.DEADLINE);
 
             } else if (lowerCaseStrippedInput.startsWith("event ")) {
-                return taskList.handleNewTask(strippedInput, TaskType.TODO);
+                return taskList.handleNewTask(strippedInput, TaskType.EVENT);
 
             } else if (lowerCaseStrippedInput.startsWith("mark ")) {
                 int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.MARK);
@@ -137,7 +139,6 @@ public class Parser {
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {
-
             if (e instanceof FileNotFoundException) {
                 File tempFile = new File("./data/pixel", "pixel.txt");
                 return ("Caught FileNotFound exception! \n"
@@ -151,6 +152,20 @@ public class Parser {
         } catch (DuplicateEntryException e) {
             return (e + "\n"
                 + "You may want to add a different task :) \n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
+
+        } catch (DateTimeParseException e) {
+            return ("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
+            + UserInterface.PROMPT_MESSAGE);
+
+        } catch (ParseException e) {
+            return ("Caught parse exception! \n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
+
+        } catch (Exception e) {
+            return ("Some other error occurred, please check you input :) \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
         }

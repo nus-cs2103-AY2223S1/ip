@@ -1,7 +1,16 @@
 package pixel.util;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 import pixel.Pixel;
 import pixel.task.Deadline;
@@ -14,7 +23,12 @@ import pixel.task.ToDo;
  */
 public class TaskList {
 
-    private final String filePath;
+    private String filePath;
+
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
+        .withResolverStyle(ResolverStyle.SMART);
+
+    private final DateValidator validator = new DateValidator(dateFormatter);
 
     public TaskList(String filePath) {
         this.filePath = filePath;
@@ -47,14 +61,60 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * converts input date&time from yyyy-MM-dd HHmm to MONTH dd yyyy hh:mm aa format
+     *
+     * @param due due date and time
+     * @return date and time in MONTH dd yyyy hh:mm aa format
+     */
+    private String processDateTime(String due) throws ParseException, IndexOutOfBoundsException {
+        String[] tempStringArray = due.strip().split(" ", 2);
+
+        String dueDate = tempStringArray[0];
+        String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
+
+        if (!validator.isValid(dueDate)) {
+            System.out.println("(Note: Due is not in yyyy-MM-dd(SPACE)HHmm format)");
+            return due;
+        }
+
+        LocalDate inputDue = LocalDate.parse(dueDate);
+        String year = String.valueOf(inputDue.getYear());
+        String month = String.valueOf(inputDue.getMonth());
+        String date = String.valueOf(inputDue.getDayOfMonth());
+
+        //time pattern of input date in 24 hour format -- HH for 24h, hh for 12h
+        DateFormat timeFormat = new SimpleDateFormat("HHmm");
+
+        //Date/time pattern of desired output date
+        DateFormat outputFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
+
+        if (!Objects.equals(dueTime, "")) {
+            Date oldTimeFormat = timeFormat.parse(dueTime);
+            String finalTimeFormat = outputFormat.format(oldTimeFormat);
+            return month + " " + date + " " + year + " " + finalTimeFormat;
+        }
+
+        return month + " " + date + " " + year;
+    }
+
     // This method creates a new pixel.txt file automatically if no such file exists
-    public String handleNewTask(String userInput, Parser.TaskType type) throws IOException, DuplicateEntryException {
+    public String handleNewTask(String userInput, Parser.TaskType type)
+        throws IOException, DuplicateEntryException, ParseException {
 
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
         String due = indexOfSlash == -1 ? "" : userInput.substring(indexOfSlash + 4);
-        int indexOfEndOfDescription = indexOfSlash == -1 ? userInput.length() : indexOfSlash;
+
+        try {
+            due = processDateTime(due);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IncorrectFormatException("Please ensure that you have entered "
+                + "both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
+        }
+
+        int indexOfEndOfDescription = (indexOfSlash == -1) ? userInput.length() : indexOfSlash;
         Task newTask;
         String commandWord = "";
 

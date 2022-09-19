@@ -27,11 +27,6 @@ public class Task {
     private final String description;
     private boolean isDone = false;
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
-        .withResolverStyle(ResolverStyle.SMART);
-
-    private final DateValidator validator = new DateValidator(dateFormatter);
-
     /**
      * Constructor for a new Task object -- will only be called through its subclasses
      *
@@ -41,62 +36,8 @@ public class Task {
      */
     public Task(String description, String due, String commandWord) {
         this.description = description;
-        this.due = processDateTime(due);
+        this.due = due;
         this.commandWord = commandWord;
-    }
-
-    /**
-     * converts input date&time from yyyy-MM-dd HHmm to MONTH dd yyyy hh:mm aa format
-     *
-     * @param due due date and time
-     * @return date and time in MONTH dd yyyy hh:mm aa format
-     */
-    private String processDateTime(String due) {
-        String[] tempStringArray = due.strip().split(" ", 2);
-
-        try {
-            String dueDate = tempStringArray[0];
-            String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
-
-            if (validator.isValid(dueDate)) {
-                LocalDate inputDue = LocalDate.parse(dueDate);
-                String year = String.valueOf(inputDue.getYear());
-                String month = String.valueOf(inputDue.getMonth());
-                String date = String.valueOf(inputDue.getDayOfMonth());
-
-                //time pattern of input date in 24 hour format -- HH for 24h, hh for 12h
-                DateFormat timeFormat = new SimpleDateFormat("HHmm");
-
-                //Date/time pattern of desired output date
-                DateFormat outputFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
-                Date oldTimeFormat = timeFormat.parse(dueTime);
-                String finalTimeFormat = outputFormat.format(oldTimeFormat);
-
-                return month + " " + date + " " + year + " " + finalTimeFormat;
-
-            } else {
-                System.out.println("(Note: Due is not in yyyy-MM-dd(SPACE)HHmm format)");
-                return due;
-            }
-
-        } catch (DateTimeParseException e) {
-            return ("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
-                + UserInterface.PROMPT_MESSAGE);
-
-        } catch (IndexOutOfBoundsException e) {
-            return ("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
-                + UserInterface.PROMPT_MESSAGE);
-
-        } catch (ParseException e) {
-            return ("Caught parse exception! \n"
-                + UserInterface.AFTER_INVALID_INPUT + "\n"
-                + UserInterface.PROMPT_MESSAGE);
-
-        } catch (Exception e) {
-            return ("Some other error occurred \n"
-                + UserInterface.AFTER_INVALID_INPUT + "\n"
-                + UserInterface.PROMPT_MESSAGE);
-        }
     }
 
     /**

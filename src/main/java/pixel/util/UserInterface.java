@@ -17,7 +17,7 @@ public class UserInterface {
     public static final String GREETING_MESSAGE = ("Hello! I'm Pixel! \r\n");
     public static final String PROMPT_MESSAGE = (
         "You can input the following commands \n"
-            + " todo/ event/ deadline + <task description> + /by or /at + <due> \n"
+            + " todo/ event/ deadline + <task description> + /by or /at + <due/ location> \n"
             + " ***date format for due has to be in <yyyy-MM-dd(SPACE)HHmm(24h)> format \n"
             + " list -- lists out all the tasks \n"
             + " mark <index of task in the list> -- to mark as done \n"
