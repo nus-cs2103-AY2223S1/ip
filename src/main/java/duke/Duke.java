@@ -20,6 +20,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = Parser.parseInput(storage, input, taskList);
+            assert command != null;
             return command.execute(storage, taskList, ui);
 //            return "duke.Duke heard: " + input;
         } catch (DukeException exception) {
