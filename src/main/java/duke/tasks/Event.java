@@ -7,13 +7,13 @@ import duke.services.Parser;
  */
 public class Event extends Task {
 
-    /** The time of occurrence */
+    /** The time of occurrence. Format: d MMM yyyy, h:mma */
     private String time;
 
     /**
      * Constructs a new Event with the given description and timing of occurrence
      *
-     * @param description The task description
+     * @param description The description
      * @param time The time of occurrence
      */
     public Event(String description, String time) {

@@ -13,8 +13,7 @@ public class Duke {
     public static String response;
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Receives user's inputs and responds to them until "bye" is entered
      */
     public static String getResponse(String input) {
         response = "";
@@ -50,6 +49,7 @@ public class Duke {
                 Ui.sayLines(new String[]{e.getMessage()});
             }
         }
+        assert !response.isEmpty(): "Response can't be empty";
         return response;
     }
 

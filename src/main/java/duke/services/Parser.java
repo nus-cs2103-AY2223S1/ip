@@ -5,56 +5,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.Scanner;
 
 /** Handles reading of user commands */
 public class Parser {
 
     /** Points to the current word being read in the current command */
     private static int currWordIndex = 0;
-
-    /**
-     * Receives user's inputs and responds to them until "bye" is entered
-     */
-    public static void handleUserInputs() {
-        Scanner inputScanner = new Scanner(System.in);
-        String[] words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
-        while (!(words.length == 1 && words[0].equals("bye"))) {
-            if (words.length > 0) {
-                try {
-                    if (words.length == 1 && words[0].equals("list")) {
-                        TaskList.listTasks(); //could put words.length == 1 cases all here
-                    } else if (words.length == 1 && words[0].equals("SAVE")) {
-                        Storage.wipeDataOnExit(false);
-                    } else if (words.length == 1 && words[0].equals("WIPE")) {
-                        Storage.wipeDataOnExit(true);
-                    } else if (words[0].equals("todo")) {
-                        TaskList.addTodo(words);
-                    } else if (words[0].equals("deadline")) {
-                        TaskList.addDeadline(words);
-                    } else if (words[0].equals("event")) {
-                        TaskList.addEvent(words);
-                    } else if (words[0].equals("mark")) {
-                        TaskList.markTaskAsDone(words);
-                    } else if (words[0].equals("unmark")) {
-                        TaskList.markTaskAsNotDone(words);
-                    } else if (words[0].equals("delete")) {
-                        TaskList.deleteTask(words);
-                    } else if (words[0].equals("find")) {
-                        TaskList.findTasksContainingKeyword(words);
-                    } else {
-                        Ui.sayLines(new String[]{"I'm sorry, I don't know what that means"});
-                    }
-                } catch (IllegalArgumentException e) {
-                    Ui.sayLines(new String[]{e.getMessage()});
-                }
-            }
-            words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
-        }
-        inputScanner.close();
-    }
 
     /**
      * Retrieves the description argument in the command
@@ -82,7 +39,7 @@ public class Parser {
             throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
-        return descBuilder.substring(0, descBuilder.length() - 1); //remove last whitespace
+        return descBuilder.deleteCharAt(descBuilder.length() - 1).toString(); //remove last whitespace
     }
 
     /**

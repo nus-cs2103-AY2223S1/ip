@@ -122,7 +122,7 @@ public class TaskList {
         }
         String keyword = words.length == 1 ? "" : keywordBuilder.deleteCharAt(keywordBuilder.length() - 1).toString();
 
-        ArrayList<String> matchingTasks = new ArrayList<String>();
+        ArrayList<String> matchingTasks = new ArrayList<>();
         matchingTasks.add("Here are the tasks containing the keyword \"" + keyword + "\" :");
         for (int i = 0; i < tasks.size(); ++i) {
             Task currTask = tasks.get(i);
