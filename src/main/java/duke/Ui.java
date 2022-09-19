@@ -97,6 +97,8 @@ public class Ui {
     }
 
     public String printByeCommand() {
+        scanner.close();
+        Main.closeApplication();
         return "Bye. Hope to see you again soon!";
     }
 }
