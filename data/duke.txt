@@ -1,3 +1,8 @@
 E | 0 | test 1 | 2022-10-10 1400
 E | 0 | test again | 2022-10-10 1500
 E | 0 | dfsd | 2020-10-10 1000
+D | 0 | adsfasd | 2022-10-10
+D | 0 | dfsdfs | 2022-10-11
+T | 0 | sdfsf
+T | 0 | dfsfda
+D | 0 | dsafsa | 2022-12-11

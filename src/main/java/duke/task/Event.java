@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Represents an event which is a task with date and time.
  */
-public class Event extends Task {
+public class Event extends Task implements Comparable<Event>{
 
     /** Date and time of the event */
     private LocalDateTime dateTime;
@@ -55,5 +55,10 @@ public class Event extends Task {
 
     public LocalDateTime getLocalDateTime() {
         return this.dateTime;
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        return getLocalDateTime().compareTo(o.getLocalDateTime());
     }
 }

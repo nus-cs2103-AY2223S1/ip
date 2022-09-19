@@ -39,6 +39,8 @@ public class Parser {
         String userInput = input.trim();
         if (userInput.equals("list")) {
             response = ui.taskListString(taskList);
+        } else if (userInput.equals("sort")) {
+            response = ui.sortedListString(taskList);
         } else if (containsOperationWord(userInput)) {
             response = executeCommand(userInput.trim());
         } else {
@@ -74,6 +76,8 @@ public class Parser {
             case "event":
                 executeEventCommand(userInput);
                 break;
+            default:
+                throw new ArrayIndexOutOfBoundsException();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return ui.showNoDescriptionError(userInput);

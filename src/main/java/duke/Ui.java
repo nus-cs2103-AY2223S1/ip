@@ -1,44 +1,33 @@
 package duke;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.ToDos;
+
+
+import java.util.*;
 
 /**
  * Deals with interactions with the user.
  */
 public class Ui {
 
-    private static final String INDENT = "     ";
-    private static final String LINE = "    _______________________________________________________";
-
-    /**
-     * Prints text with a specific format.
-     *
-     * @param text to be printed with format.
-     */
-    private void printWithFormat(String text) {
-        System.out.println(LINE
-                + "\n"
-                + INDENT
-                + text
-                + "\n"
-                + LINE);
-    }
-
     /**
      * Returns a welcome message with instructions on how to use Duke.
      *
      * @return a welcome message.
      */
-    public String welcomeMsg() {
-        String msg = "Hello! I'm Duke\n\n     "
-                + "I'm capable of doing the following:\n     "
-                + "   todo <your task>\n     "
-                + "   deadline <your deadline> /by <2022-01-02>\n     "
-                + "   event <your event> /at <2022-01-02> <2359>\n     "
-                + "   find <content>\n     "
-                + "   bye (to exit the program)\n\n     "
-                + "What can I do for you?";
-        return msg;
+    public String helpMsg() {
+        return "I'm capable of doing the following:\n\n"
+                + "To see what I can do:\nhelp\n\n"
+                + "To see all the tasks you've added:\nlist\n\n"
+                + "Sort all the tasks by task type then by date and time:\nsort\n\n"
+                + "Add a ToDo task:\ntodo <your task>\n\n"
+                + "Add a Deadline task:\ndeadline <your deadline> /by <2022-01-28>\n\n"
+                + "Add an Event task:\nevent <your event> /at <2022-01-28> <2359>\n\n"
+                + "Filter task list according to keyword:\nfind <keyword>\n\n"
+                + "Exit the program:\nbye";
     }
 
     /**
@@ -118,7 +107,7 @@ public class Ui {
      * @return string representation of loading error.
      */
     public String loadingErrorString() {
-        return"There is some problem loading your task(s) ☹";
+        return"There is some problem loading your task(s)";
     }
 
     /**
@@ -137,7 +126,7 @@ public class Ui {
      * @return a message to indicate missing decription.
      */
     public String showNoDescriptionError(String command) {
-       return "☹ OOPS!!! The description of a "
+       return "OOPS!!! The description of a "
                 + command
                 + " cannot be empty.";
     }
@@ -152,5 +141,33 @@ public class Ui {
         String text = "Here are the matching tasks in your list:\n     "
                 + filteredListString;
         return text;
+    }
+
+    public String sortedListString(TaskList taskList) {
+
+        List<Task> resultList = new ArrayList<>();
+        List<Event> eventList = new ArrayList<>();
+        List<ToDos> todosList = new ArrayList<>();
+        List<Deadline> deadlineList = new ArrayList<>();
+
+        for (int i = 1; i <= taskList.getListSize(); i++) {
+            Task task = taskList.getTask(i);
+            if (task instanceof Event) {
+                eventList.add((Event) task);
+            } else if (task instanceof  Deadline) {
+                deadlineList.add((Deadline) task);
+            } else {
+                todosList.add((ToDos) task);
+            }
+        }
+        Collections.sort(eventList);
+        Collections.sort(deadlineList);
+
+        resultList.addAll(eventList);
+        resultList.addAll(deadlineList);
+        resultList.addAll(todosList);
+
+        return "The following tasks are sorted by task type then date and time\n     "
+                + TaskList.convertListToString(resultList);
     }
 }

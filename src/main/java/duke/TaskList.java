@@ -59,7 +59,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a paragraph of numbered tasks in strings.
+     * Returns a paragraph of numbered tasks in strings in this list.
      *
      * @return numbered tasks in strings.
      */
@@ -83,7 +83,12 @@ public class TaskList {
         return convertListToString(resultList);
     }
 
-    private String convertListToString(List<Task> resultList) {
+    /**
+     * Returns a paragraph of numbered tasks in strings.
+     *
+     * @return numbered tasks in strings.
+     */
+    public static String convertListToString(List<Task> resultList) {
         String text = "";
         for (int i = 0; i < resultList.size(); i++) {
             if (i == resultList.size() - 1) {
@@ -95,4 +100,6 @@ public class TaskList {
 
         return text;
     }
+
+
 }
