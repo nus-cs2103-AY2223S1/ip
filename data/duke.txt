@@ -1,3 +1,2 @@
-D | 0 | submit iP | Sep 19 2022
 E | 0 | tP meeting | Sep 20 2022
-E | 0 | softball training | Sep 22 2022
+E | 0 | softball training | Oct 11 2022
