@@ -141,6 +141,7 @@ public class Parser {
                     + "     There is no pending task for you."
                     + "\n" + BREAK_LINE;
         } else {
+            assert tasks.getSize() > 0 : "The size of the task list should be larger than 0";
             String output = BREAK_LINE + "\n"
                     + "     Here are the tasks in your list:";
             for (int i = 0; i < tasks.getSize(); i++) {
