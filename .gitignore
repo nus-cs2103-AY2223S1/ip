@@ -14,4 +14,11 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
+/text-ui-test/EXPECTED.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+tasks.txt
+Wanya.jar
+SceneBuilder-18.0.0.msi
+src/main/resources/images/DaDuke.png
+src/main/resources/images/DaUser.png
+
