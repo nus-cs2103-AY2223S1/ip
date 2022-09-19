@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
+import storage.Storage;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -32,6 +33,7 @@ public class Parser {
 
     private final Ui ui;
     private final TaskList taskList;
+    private final Storage storage;
 
     private boolean isEnded = false;
 
@@ -40,10 +42,12 @@ public class Parser {
      *
      * @param ui Represents the user interface for Duke.
      * @param taskList Represents the object that stores Tasks for Duke.
+     * @param storage Represents the object that saves Tasks to the hard disk.
      */
-    public Parser(Ui ui, TaskList taskList) {
+    public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
+        this.storage = storage;
     }
 
     public boolean hasNext() {
@@ -84,8 +88,9 @@ public class Parser {
         }
     }
 
-    private String closeParser() {
+    private String closeParser() throws DukeException {
         this.isEnded = true;
+        storage.storeToFile(taskList);
         return this.ui.printGoodbye();
     }
 

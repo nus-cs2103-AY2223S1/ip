@@ -56,7 +56,7 @@ public class Duke extends Application {
             ui.printException(de);
             this.taskList = new TaskList();
         }
-        this.parser = new Parser(this.ui, this.taskList);
+        this.parser = new Parser(this.ui, this.taskList, this.storage);
     }
 
     @Override
