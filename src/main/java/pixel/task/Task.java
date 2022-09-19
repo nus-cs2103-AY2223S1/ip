@@ -1,18 +1,5 @@
 package pixel.task;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
-import java.util.Date;
-import java.util.Locale;
-
-import pixel.util.DateValidator;
-import pixel.util.UserInterface;
-
 /**
  * Represents a Task
  * Has three types, Event, Deadline and ToDo
@@ -55,6 +42,24 @@ public class Task {
     }
 
     /**
+     * Retrieves description of task
+     *
+     * @return Description string of task
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Retrieves status icon of task
+     *
+     * @return "X" if task is done, " " if otherwise
+     */
+    private String getStatusIcon() {
+        return (this.isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
      * Converts the task to desired format before written to file
      *
      * @return string representation of task to be saved to file
@@ -80,21 +85,13 @@ public class Task {
     }
 
     /**
-     * toString method
+     * toString method of Task
      *
      * @return String representation of the Task object
      */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    private String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
     }
 
 }

@@ -8,12 +8,6 @@ package pixel.util;
  */
 public class UserInterface {
 
-    private String oldDukeLogo = " ____        _        \n"
-        + "|  _ \\ _   _| | _____ \n"
-        + "| | | | | | | |/ / _ \\\n"
-        + "| |_| | |_| |   <  __/\n"
-        + "|____/ \\__,_|_|\\_\\___|\n";
-
     public static final String GREETING_MESSAGE = ("Hello! I'm Pixel! \r\n");
     public static final String PROMPT_MESSAGE = (
         "You can input the following commands \n"
@@ -34,4 +28,11 @@ public class UserInterface {
     public static final String FILE_DOES_NOT_EXIST = "File does not exist! Pixel has created a new file for you";
     public static final String FILE_TASKS_INVALID = "Oops! Seems like some of the tasks in the file "
         + "are not in the right format, do check the formatting!";
+
+    private String oldDukeLogo = " ____        _        \n"
+        + "|  _ \\ _   _| | _____ \n"
+        + "| | | | | | | |/ / _ \\\n"
+        + "| |_| | |_| |   <  __/\n"
+        + "|____/ \\__,_|_|\\_\\___|\n";
+
 }

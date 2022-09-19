@@ -17,39 +17,64 @@ public class Parser {
     private final TaskList taskList;
     private final String filePath;
 
+    /**
+     * Constructor for a new Parser object
+     *
+     * @param filePath path of file to save the tasks
+     */
     public Parser(String filePath) {
         this.filePath = filePath;
         this.taskList = new TaskList(filePath);
     }
 
+    /**
+     * The status of whether the task is marked
+     */
     private enum Marking {
         MARK,
         UNMARK
     }
 
+    /**
+     * The types of the task
+     */
     public enum TaskType {
         TODO,
         DEADLINE,
         EVENT
     }
 
+    /**
+     * Derives the index of the task in the list of tasks to mark/ unmark
+     *
+     * @param strippedInput user input stripped of front and trailing whitespace
+     * @param instruction Whether task should be marked or unmarked
+     * @return the index of the task in the list of tasks to mark/ unmark
+     * @throws IncorrectFormatException when instruction is neither mark or unmark
+     */
     private int getMarkOrUnmarkIndex(String strippedInput, Marking instruction) throws IncorrectFormatException {
         switch (instruction) {
-            case MARK: {
-                String indexString = strippedInput.substring(5).strip();
-                int indexToChange = Character.getNumericValue(indexString.charAt(0));
-                return indexToChange;
-            }
-            case UNMARK: {
-                String temp = strippedInput.substring(7).strip();
-                int indexToChange = Character.getNumericValue(temp.charAt(0));
-                return indexToChange;
-            }
-            default: //shouldn't reach here
-                throw new IncorrectFormatException("Not a case of mark or unmark!"); // programme breaks
+        case MARK: {
+            String indexString = strippedInput.substring(5).strip();
+            int indexToChange = Character.getNumericValue(indexString.charAt(0));
+            return indexToChange;
+        }
+        case UNMARK: {
+            String temp = strippedInput.substring(7).strip();
+            int indexToChange = Character.getNumericValue(temp.charAt(0));
+            return indexToChange;
+        }
+        default: //shouldn't reach here
+            throw new IncorrectFormatException("Not a case of mark or unmark!"); // programme breaks
         }
     }
 
+    /**
+     * Parses the user input and handles most of the exceptions encountered in the process
+     *
+     * @param userInput raw input of the user read from the textbox
+     * @return response from Pixel
+     */
     public String parse(String userInput) {
 
         String strippedInput = userInput.strip();
@@ -157,7 +182,7 @@ public class Parser {
 
         } catch (DateTimeParseException e) {
             return ("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
-            + UserInterface.PROMPT_MESSAGE);
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {
             return ("Caught parse exception! \n"
@@ -170,7 +195,9 @@ public class Parser {
                 + UserInterface.PROMPT_MESSAGE);
         }
 
-        throw new IncorrectFormatException("Oops! Make sure your code is in a valid format");
+        // Should not reach here
+        throw new IncorrectFormatException("Oops! Tell the developer "
+            + "that there's something wrong with the parse method");
     }
 
 }

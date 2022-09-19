@@ -22,7 +22,7 @@ public class Event extends Task {
     }
 
     /**
-     * toString method
+     * toString method of Event
      *
      * @return String representation of the Event object
      */

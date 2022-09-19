@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-
 import java.util.ArrayList;
 
 import pixel.Pixel;
@@ -22,6 +21,7 @@ public class Storage {
 
     /**
      * Constructor for a new Storage object
+     * Currently obsolete as the methods in this class are static
      */
     public Storage() {}
 
@@ -92,7 +92,8 @@ public class Storage {
                 // move everything up by 1
                 if (i == (originalInputListSize - 1)) {
                     Storage.INPUT_TASKS.remove(i);
-                    assert Storage.INPUT_TASKS.size() == (originalInputListSize - 1) : "Size of ArrayList of tasks did not decrease by 1 upon deletion";
+                    assert (Storage.INPUT_TASKS.size() == (originalInputListSize - 1))
+                        : "Size of ArrayList of tasks did not decrease by 1 upon deletion";
                 } else {
                     Storage.INPUT_TASKS.set(i, Storage.INPUT_TASKS.get(i + 1));
                 }
@@ -110,6 +111,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends all tasks in the array list to an external file
+     *
+     * @param filePath path of external file
+     * @throws IOException when the filePath is invalid
+     */
     public static void appendAllTasksToFile(String filePath) throws IOException {
         for (Task task : Storage.INPUT_TASKS) {
             Storage.appendTaskToFile(task, filePath);

@@ -22,7 +22,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * toString method
+     * toString method of Deadline
      *
      * @return String representation of the Deadline object
      */

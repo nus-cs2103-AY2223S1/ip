@@ -1,4 +1,4 @@
-package pixel.GUI;
+package pixel.gui;
 
 import java.io.IOException;
 
@@ -10,12 +10,15 @@ import javafx.stage.Stage;
 import pixel.Pixel;
 
 /**
- * A GUI for Duke using FXML.
+ * Main class for Pixel's GUI using FXML.
  */
 public class Main extends Application {
 
     private final Pixel pixel = new Pixel("./data/pixel.txt");
 
+    /**
+     * Launches the GUI for Pixel
+     */
     @Override
     public void start(Stage stage) {
         try {

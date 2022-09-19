@@ -30,10 +30,21 @@ public class TaskList {
 
     private final DateValidator validator = new DateValidator(dateFormatter);
 
+    /**
+     * Constructor for a new TaskList object
+     *
+     * @param filePath path of file to save the tasks
+     */
     public TaskList(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Checks whether a duplicate task in the array list
+     *
+     * @param newTask task created from latest user input
+     * @return whether a duplicate task exists in the array list
+     */
     private boolean findDuplicate(Task newTask) {
         for (Task task : Storage.INPUT_TASKS) {
             if (task.toString().equals(newTask.toString())) {
@@ -43,6 +54,11 @@ public class TaskList {
         return false;
     }
 
+    /**
+     * Lists out all the tasks in the array list
+     *
+     * @return a list of all the tasks recorded
+     */
     public static String listTasks() {
         String output = "Here are the tasks in your list: \n";
         for (int i = 0; i < Pixel.getTaskCount(); i++) {
@@ -52,8 +68,14 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Lists out all the tasks whose description contains the query string
+     *
+     * @param findResults an array list of results from the query
+     * @return A list of all the tasks whose description contains the query string
+     */
     public static String listFindResults(ArrayList<Task> findResults) {
-        String output ="Here are the matching tasks in your list: \n";
+        String output = "Here are the matching tasks in your list: \n";
         for (int i = 0; i < findResults.size(); i++) {
             Task currentTask = findResults.get(i);
             output += ((i + 1) + ". " + currentTask + "\n");
@@ -99,9 +121,18 @@ public class TaskList {
         return month + " " + date + " " + year;
     }
 
-    // This method creates a new pixel.txt file automatically if no such file exists
+    /**
+     * Creates a new task object, stores them in the array list and external text file
+     * Also creates a new pixel.txt file automatically if no such file exists
+     *
+     * @param userInput input of user
+     * @param type type of task to create
+     * @throws IOException
+     * @throws DuplicateEntryException
+     * @throws ParseException
+     */
     public String handleNewTask(String userInput, Parser.TaskType type)
-        throws IOException, DuplicateEntryException, ParseException {
+            throws IOException, DuplicateEntryException, ParseException {
 
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
@@ -130,19 +161,19 @@ public class TaskList {
         }
 
         switch (type) {
-            case TODO: {
+        case TODO: {
             String description = userInput.substring(5, indexOfEndOfDescription).strip();
             newTask = new ToDo(description, due, commandWord); // Stores user input
 
             break;
         }
-            case DEADLINE: { // deadline
+        case DEADLINE: { // deadline
             String description = userInput.substring(9, indexOfEndOfDescription).strip();
             newTask = new Deadline(description, due, commandWord); // Stores user input
 
             break;
         }
-            case EVENT: { // event
+        case EVENT: { // event
             String description = userInput.substring(6, indexOfEndOfDescription).strip();
             newTask = new Event(description, due, commandWord); // Stores user input
 
@@ -174,4 +205,5 @@ public class TaskList {
             + newTask + "\n"
             + "Now you have " + Pixel.getTaskCount() + " tasks in the list.");
     }
+
 }

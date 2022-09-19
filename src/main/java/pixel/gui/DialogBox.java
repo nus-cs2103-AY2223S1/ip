@@ -1,4 +1,4 @@
-package pixel.GUI;
+package pixel.gui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -49,10 +49,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a dialogue box with the input text and image
+     *
+     * @param img The image of the user
+     * @param text The input of the user
+     * @return a new dialogue box containing the user image and input
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a dialogue box with Pixel's response
+     *
+     * @param img The image of Pixel
+     * @param text The response of Pixel
+     * @return a new dialogue box containing the Pixel's image and output
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

@@ -22,7 +22,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * toString method
+     * toString method of ToDo
      *
      * @return String representation of the ToDo object
      */

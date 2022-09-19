@@ -1,6 +1,8 @@
 package pixel;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,7 +23,7 @@ public class ValidateDueDateTest {
     private final TaskList taskList = new TaskList(filePath);
 
     @Test
-    public void TestDateTimeFormatterWorking() {
+    public void testDateTimeFormatterWorking() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
             .withResolverStyle(ResolverStyle.SMART);
         DateValidator validator = new DateValidator(dateFormatter);

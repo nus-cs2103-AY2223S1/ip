@@ -1,4 +1,4 @@
-package pixel.GUI;
+package pixel.gui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,6 +40,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/aragorn.jpg"));
     private Image pixelImage = new Image(this.getClass().getResourceAsStream("/images/gundam.jpg"));
 
+    /**
+     * Initialises the GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -47,6 +50,9 @@ public class MainWindow extends AnchorPane {
         readTasksFromFile("./data/pixel.txt");
     }
 
+    /**
+     * Assigns an instance of the Pixel bot to the GUI.
+     */
     public void setPixel(Pixel pixel) {
         this.pixel = pixel;
     }
@@ -66,6 +72,9 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Creates a dialogue box for Pixel to deliver his welcome message.
+     */
     @FXML
     private void handleWelcomeMessage() {
         String initialMessage = UserInterface.GREETING_MESSAGE + "\n"
@@ -117,7 +126,7 @@ public class MainWindow extends AnchorPane {
      *                         the details of the task are saved
      * @return a new Task converted from the String
      * @throws InvalidTextDataFormatException when the text file to be read from
-     * has data in invalid format
+     *     has data in invalid format
      */
     private Task lineToTask(String lineFromDocument) throws InvalidTextDataFormatException {
         String[] componentsOfTask = lineFromDocument.strip().split(" ;;; ");
@@ -152,27 +161,34 @@ public class MainWindow extends AnchorPane {
         }
 
         switch (type.strip()) {
-            case "T": {
-                Task formattedTask = new ToDo(description, due, commandWord);
-                return checkFormatOfTask(formattedTask, status);
-            }
-            case "D": {
-                Task formattedTask = new Deadline(description, due, commandWord);
-                return checkFormatOfTask(formattedTask, status);
-            }
+        case "T": {
+            Task formattedTask = new ToDo(description, due, commandWord);
+            return checkFormatOfTaskStatus(formattedTask, status);
+        }
+        case "D": {
+            Task formattedTask = new Deadline(description, due, commandWord);
+            return checkFormatOfTaskStatus(formattedTask, status);
+        }
 
-            case "E": {
-                Task formattedTask = new Event(description, due, commandWord);
-                return checkFormatOfTask(formattedTask, status);
-            }
+        case "E": {
+            Task formattedTask = new Event(description, due, commandWord);
+            return checkFormatOfTaskStatus(formattedTask, status);
+        }
 
-            default: {
-                throw new InvalidTextDataFormatException("Type of task in database is invalid!");
-            }
+        default:
+            throw new InvalidTextDataFormatException("Type of task in database is invalid!");
         }
     }
 
-    private Task checkFormatOfTask(Task formattedTask, String status) {
+    /**
+     * Checks whether the status of a task in the text file is in "Done/ Not Done" format
+     *
+     * @param formattedTask task that is extracted from text file
+     * @param status status String from the text file
+     * @return the formattedTask marked as either done or not done according to status
+     * @throws InvalidTextDataFormatException the status is not in "Done/ Not Done" format
+     */
+    private Task checkFormatOfTaskStatus(Task formattedTask, String status) {
         if (status.strip().equals("Done")) {
             formattedTask.markAsDone();
         } else if (status.strip().equals("Not Done")) {
@@ -183,8 +199,15 @@ public class MainWindow extends AnchorPane {
         return formattedTask;
     }
 
+    /**
+     * Checks whether the command word of a task in the text file is in "by/ at" format
+     *
+     * @param commandWordFromText command word of task from text file
+     * @return the command word if it's in correct format
+     * @throws InvalidTextDataFormatException if command word is not in "by/ at" format
+     */
     private String handleCommandWord(String commandWordFromText) {
-        if ( (commandWordFromText.strip().equals("at")) || (commandWordFromText.strip().equals("by")) ) {
+        if ((commandWordFromText.strip().equals("at")) || (commandWordFromText.strip().equals("by"))) {
             return commandWordFromText;
         } else {
             throw new InvalidTextDataFormatException("Oops! Please ensure the command word in the text document "
