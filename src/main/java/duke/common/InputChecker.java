@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.ui.BotUI;
 
 /**
- * Responsible in the initial checks of Adding tasks' input
+ * Uses in the initial checks of Adding tasks' input
  * is in the correct format.
  */
 public class InputChecker {
