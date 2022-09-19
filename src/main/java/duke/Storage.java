@@ -66,8 +66,8 @@ public class Storage {
     public void saveFileData(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter("data/duke.txt");
-            for (Task task : tasks) {
-                String str = task.stringify();
+            for (int i = 0; i < tasks.size(); i++) {
+                String str = tasks.get(i).stringify();
                 fw.write(str + "\n");
             }
             fw.close();
