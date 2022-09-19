@@ -16,8 +16,8 @@ import duke.util.TaskList;
  */
 public class Duke {
     private static final String LOGO =
-            "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
-                    + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n" + "      Chatbot!\n";
+        "Welcome to\n" + " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n" + "      Chatbot!\n";
 
     private static final String INTRO = "Hey hey hey! I'm Duke\n" + "What can I do for you?";
 
@@ -48,9 +48,11 @@ public class Duke {
             c.execute(tasks, userInputOutput, dukeData);
         } catch (DukeException e) {
             userInputOutput.printError(e);
+            return true;
         } catch (IOException e) {
             userInputOutput.printError(e);
-            return true;
+            userInputOutput.printError(FATAL_EXIT);
+            return false;
         }
 
         return !c.isExit();
@@ -84,18 +86,7 @@ public class Duke {
      * @return returns an instance of Duke
      */
     public static Duke createApplication(DukeIo userIo) {
-        Storage dukeData;
-        TaskList tasks;
-        try {
-            dukeData = Storage.createStorage();
-            tasks = new TaskList(dukeData.readFile());
-        } catch (IOException e) {
-            userIo.printError(e);
-            userIo.printTask(FATAL_EXIT);
-            return null;
-        }
-
-        return new Duke(tasks, dukeData, userIo);
+        return createApplication(userIo, "");
     }
 
     /**
@@ -110,10 +101,10 @@ public class Duke {
         TaskList tasks;
         try {
             dukeData = Storage.createStorage(filePath);
-            tasks = new TaskList(dukeData.readFile());
+            tasks = new TaskList(dukeData.readFile(userIo));
         } catch (IOException e) {
             userIo.printError(e);
-            userIo.printTask(FATAL_EXIT);
+            userIo.printError(FATAL_EXIT);
             return null;
         }
 

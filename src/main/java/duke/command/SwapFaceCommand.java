@@ -6,9 +6,11 @@ import java.util.Random;
 import duke.exceptions.GuiOnlyException;
 import duke.exceptions.ImageDownloadFailedException;
 import duke.exceptions.OperatonIsStillRunningException;
+import duke.exceptions.UnknownCommandException;
 import duke.gui.GuiDataController;
 import duke.inputoutput.DukeGuiIo;
 import duke.inputoutput.DukeIo;
+import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
 import javafx.concurrent.Task;
@@ -17,13 +19,17 @@ import javafx.scene.image.Image;
 /**
  * Command to list out all the current tasks.
  */
-public class SwapFaceCommand implements Command {
+public class SwapFaceCommand extends NoParamCommand {
     private static final String RESPONSE = "I'm gonna replace us! We are not real after all! Goodbye!";
     private static final String SUCCESS = "Nice to meet you, I am duke.";
     private static final String ANIME_FAKE_IMAGE = "https://www.thiswaifudoesnotexist.net/example-%d.jpg";
     private static final String HUMAN_FAKE_IMAGE = "https://thispersondoesnotexist.com/image";
 
     private static boolean isRunning = false;
+
+    public SwapFaceCommand(ParsedData data) {
+        super(data);
+    }
 
     /**
      * {@inheritDoc} List command does not exit
@@ -35,10 +41,16 @@ public class SwapFaceCommand implements Command {
 
     /**
      * Prints out all the current tasks added.
+     *
+     * @throws GuiOnlyException when called via CLI mode
+     * @throws OperatonIsStillRunningException when another swap face command is running
+     * @throws UnknownCommandException when extra parameters is included
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage)
-            throws GuiOnlyException, OperatonIsStillRunningException {
+            throws GuiOnlyException, OperatonIsStillRunningException, UnknownCommandException {
+
+        checkSingleArgumentGuard();
         if (!(io instanceof DukeGuiIo)) {
             throw new GuiOnlyException();
         }

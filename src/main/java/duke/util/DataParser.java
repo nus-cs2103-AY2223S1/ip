@@ -71,9 +71,13 @@ public final class DataParser {
 
         switch (CommandSelector.getCs().getCommand(data.command)) {
         case BYE:
-            return new ByeCommand();
+            return new ByeCommand(data);
         case LIST:
-            return new ListCommand();
+            return new ListCommand(data);
+        case SWAP:
+            return new SwapFaceCommand(data);
+        case RESETALIAS:
+            return new ResetAliasCommand(data);
         case MARK:
             return new MarkCommand(data);
         case UNMARK:
@@ -94,10 +98,6 @@ public final class DataParser {
             return new AliasCommand(data);
         case DELETECOMMAND:
             return new DeleteAliasCommand(data);
-        case SWAP:
-            return new SwapFaceCommand();
-        case RESETALIAS:
-            return new ResetAliasCommand();
         case INVALID:
         default:
             return new InvalidCommand();

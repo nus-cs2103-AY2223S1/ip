@@ -104,6 +104,11 @@ public abstract class DukeAbstractIo implements DukeIo {
         printTask(String.format("🙄 OOPS!!! %s", e.getMessage()));
     }
 
+    @Override
+    public void printError(String msg) {
+        printError(new Exception(msg));
+    }
+
     protected boolean isBitFlag(int bitsValue, DukeCliSettings flagEnum) {
         return (bitsValue & flagEnum.value) == flagEnum.value;
     }

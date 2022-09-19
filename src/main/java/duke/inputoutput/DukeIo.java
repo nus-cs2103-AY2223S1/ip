@@ -45,6 +45,13 @@ public interface DukeIo {
     void printError(Exception e);
 
     /**
+     * Prints the message in the format of an exception
+     *
+     * @param msg message to print
+     */
+    void printError(String msg);
+
+    /**
      * Prints Text with selected features
      *
      * @param txt
