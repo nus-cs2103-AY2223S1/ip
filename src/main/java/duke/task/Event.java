@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.format.DateTimeFormatter;
+
+import duke.exception.DukeException;
 
 /** This class encapsulates a Event task that occurs at a date */
 public class Event extends Task {
@@ -10,6 +10,13 @@ public class Event extends Task {
     /** Event date of the task */
     private String date;
 
+    /**
+     * Initialises Event object.
+     * @param description
+     * @param at
+     * @param dateIsFormatted True if date has already been formatted.
+     * @throws DukeException
+     */
     public Event(String description, String at, boolean dateIsFormatted) throws DukeException {
         super(description);
         if (dateIsFormatted == true) {

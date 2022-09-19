@@ -4,6 +4,7 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/** Command that counts completed and uncompleted tasks */
 public class CountCommand extends Command {
 
     private boolean isCountCompletedTasks;

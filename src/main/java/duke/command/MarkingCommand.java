@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.data.Storage;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.IOException;
 
 /** Command that helps to mark or unmark tasks in the list */
 public class MarkingCommand extends Command {
@@ -16,6 +16,11 @@ public class MarkingCommand extends Command {
     /** ID of the task that needs to be mark or unmark */
     private int taskID;
 
+    /**
+     * Initialises the object and set wantsToMark and taskID.
+     * @param wantsToMark
+     * @param taskID
+     */
     public MarkingCommand(boolean wantsToMark, int taskID) {
         this.wantsToMark = wantsToMark;
         this.taskID = taskID;

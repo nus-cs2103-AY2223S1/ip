@@ -19,6 +19,11 @@ public class Storage {
 
     private File f;
 
+    /**
+     * Create new file if it does not exist.
+     * @param filepath
+     * @throws IOException
+     */
     public Storage(String filepath) throws IOException {
         try {
             f = new File(filepath);

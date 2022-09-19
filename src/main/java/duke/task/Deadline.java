@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.format.DateTimeFormatter;
+
+import duke.exception.DukeException;
 
 /** This class encapsulates a Deadline task that needs to be completed by a date */
 public class Deadline extends Task {
@@ -10,6 +10,14 @@ public class Deadline extends Task {
     /** Deadline date of the task */
     private String date;
 
+    /**
+     * Initialises Deadline object.
+     *
+     * @param description Task Description.
+     * @param by Date.
+     * @param dateIsFormatted True if date has been formatted.
+     * @throws DukeException
+     */
     public Deadline(String description, String by, boolean dateIsFormatted) throws DukeException {
         super(description);
         if (dateIsFormatted == true) {

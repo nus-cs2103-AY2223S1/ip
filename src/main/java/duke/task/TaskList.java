@@ -122,6 +122,12 @@ public class TaskList {
         return s.toString();
     }
 
+    /**
+     * Returns number of completed or uncompleted tasks.
+     *
+     * @param isCountCompleted True if user wants to count number of completed tasks.
+     * @return int.
+     */
     public int countTasks(boolean isCountCompleted) {
         int numOfTasks = 0;
         if (isCountCompleted) {

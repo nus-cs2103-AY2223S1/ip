@@ -1,11 +1,13 @@
 package duke.ui;
 
+import java.util.Scanner;
+
 import duke.exception.DukeException;
 import duke.task.Task;
 
-import java.util.Scanner;
-
-/** Deals with interactions with the user */
+/**
+ * Deals with interactions with the user
+ */
 public class Ui {
 
     private Scanner sc;
@@ -26,7 +28,7 @@ public class Ui {
     /**
      * Displays message to user, showing task has been removed.
      *
-     * @param t Task that has been removed.
+     * @param t    Task that has been removed.
      * @param size Size of taskList.
      */
     public String showRemovingTaskMessage(Task t, int size) {
@@ -38,7 +40,7 @@ public class Ui {
     /**
      * Displays message to user, showing task has been added.
      *
-     * @param t Task that has been added.
+     * @param t    Task that has been added.
      * @param size Size of taskList.
      */
     public String showAddingTaskMessage(Task t, int size) {
