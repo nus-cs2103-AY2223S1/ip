@@ -1,7 +1,5 @@
 package duke;
 
-import duke.gui.Gui;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -163,10 +161,10 @@ public class TaskList {
      */
     public String findTask(String keyword) {
         String response = null;
+        int numOfMatchingTasks = 0;
         if (this.tasks.size() == 0) { // List is empty
             response = "Your list is empty! Why not add a task to it first?";
         } else {
-            int numOfMatchingTasks = 0;
             response = "Here are the matching tasks in your list:\n";
             for (int i = 0; i < this.tasks.size(); i++) {
                 Task curTask = this.tasks.get(i);
@@ -175,9 +173,9 @@ public class TaskList {
                     response = response.concat((i + 1) + "." + curTask.toString() + "\n");
                 }
             }
-            if (numOfMatchingTasks == 0) {
-                response = "There is no matching task with your keyword";
-            }
+        }
+        if (numOfMatchingTasks == 0) {
+            response = "There is no matching task with your keyword";
         }
         return response;
     }
