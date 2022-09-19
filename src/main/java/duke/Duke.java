@@ -3,6 +3,7 @@ package duke;
 import duke.exceptions.DukeException;
 import duke.handlers.DukeCommand;
 import duke.models.*;
+import javafx.application.Application;
 
 import java.util.Scanner;
 
@@ -53,7 +54,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        new Duke().chat(sc);
+        if (args.length != 0) {
+            Scanner sc = new Scanner(System.in);
+            new Duke().chat(sc);
+        }
+        Application.launch(Main.class, args);
     }
 }
