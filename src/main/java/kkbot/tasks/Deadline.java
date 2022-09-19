@@ -3,7 +3,8 @@ package kkbot.tasks;
 import kkbot.parser.Parser;
 
 /**
- * Deadlines are tasks that have a description and must be done by a certain time.
+ * Deadlines are tasks that have a description
+ * and must be done by a certain time.
  *
  * @author AkkFiros
  */

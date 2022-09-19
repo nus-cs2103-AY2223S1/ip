@@ -8,7 +8,7 @@ import kkbot.tasklist.TaskList;
 import kkbot.ui.Ui;
 
 /**
- * kkbot.kkbot is a chatbot that helps keep track of your to-do list!
+ * KKBot is a chatbot that helps keep track of your to-do list!
  *
  * @author AkkFiros
  */

@@ -1,7 +1,7 @@
 package kkbot.exceptions;
 
 /**
- * KKBotException class to encompass exceptions thrown by kkbot.kkbot.
+ * KKBotException class to encompass exceptions thrown by KKBot.
  *
  * @author AkkFiros
  */

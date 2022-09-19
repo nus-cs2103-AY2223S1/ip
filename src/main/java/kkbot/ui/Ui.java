@@ -8,7 +8,7 @@ import kkbot.tasklist.TaskList;
 
 /**
  * Ui class that includes all text-based visual elements
- * for kkbot.kkbot.
+ * for KKBot.
  * Only used for welcome message.
  *
  * @author AkkFiros
@@ -42,7 +42,8 @@ public class Ui {
      * @return welcome message
      */
     public String showWelcome() {
-        System.out.println(DIVIDER + LOGO + WELCOME_MESSAGE + DIVIDER);
+        System.out.println(DIVIDER + LOGO
+                + WELCOME_MESSAGE + DIVIDER);
         return DIVIDER + LOGO + WELCOME_MESSAGE + DIVIDER;
     }
 
@@ -51,7 +52,8 @@ public class Ui {
      * @return closer message
      */
     public String showCloser() {
-        System.out.println(DIVIDER + "KKBot signing off. Goodbye!\n" + DIVIDER);
+        System.out.println(DIVIDER
+                + "KKBot signing off. Goodbye!\n" + DIVIDER);
         return DIVIDER + "KKBot signing off. Goodbye!\n" + DIVIDER;
     }
 
@@ -79,8 +81,10 @@ public class Ui {
      * @return the message that the task has been added
      */
     public String showTaskAddition(Task task) {
-        System.out.println(DIVIDER + "Got it! Task added:\n " + task + "\n" + DIVIDER);
-        return DIVIDER + "Got it! Task added:\n " + task + "\n" + DIVIDER;
+        System.out.println(DIVIDER
+                + "Got it! Task added:\n " + task + "\n" + DIVIDER);
+        return DIVIDER
+                + "Got it! Task added:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -89,8 +93,10 @@ public class Ui {
      * @return the message that the task has been removed
      */
     public String showTaskDeletion(Task task) {
-        System.out.println(DIVIDER + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER);
-        return DIVIDER + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER;
+        System.out.println(DIVIDER
+                + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER);
+        return DIVIDER
+                + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -99,8 +105,10 @@ public class Ui {
      * @return the message that the task has been marked as done
      */
     public String showTaskDone(Task task) {
-        System.out.println(DIVIDER + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER);
-        return DIVIDER + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER;
+        System.out.println(DIVIDER
+                + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER);
+        return DIVIDER
+                + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -109,8 +117,12 @@ public class Ui {
      * @return the message that the task has been marked as not done
      */
     public String showTaskUndone(Task task) {
-        System.out.println(DIVIDER + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n " + task + "\n" + DIVIDER);
-        return DIVIDER + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n " + task + "\n" + DIVIDER;
+        System.out.println(DIVIDER
+                + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
+                + task + "\n" + DIVIDER);
+        return DIVIDER
+                + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
+                + task + "\n" + DIVIDER;
     }
 
     /**
@@ -132,11 +144,16 @@ public class Ui {
     public String showAllTasks(TaskList tasks) {
         int numOfTasks = tasks.getNumberOfTasks();
         if (numOfTasks == 0) {
-            System.out.println(DIVIDER + "Woohoo! You don't have any tasks!" + "\n" + DIVIDER);
-            return DIVIDER + "Woohoo! You don't have any tasks!" + "\n" + DIVIDER;
+            System.out.println(DIVIDER
+                    + "Woohoo! You don't have any tasks!" + "\n"
+                    + DIVIDER);
+            return DIVIDER
+                    + "Woohoo! You don't have any tasks!" + "\n"
+                    + DIVIDER;
         }
 
-        StringBuilder fullList = new StringBuilder(DIVIDER + "\nHere's your list of tasks:\n");
+        StringBuilder fullList = new StringBuilder(DIVIDER
+                                                   + "\nHere's your list of tasks:\n");
         for (int i = 0; i < numOfTasks; i++) {
             int index = i + 1;
             Task task = tasks.getTask(i);

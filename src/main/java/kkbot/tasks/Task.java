@@ -1,7 +1,7 @@
 package kkbot.tasks;
 
 /**
- * Tasks are added by the user for kkbot.kkbot to store and keep track of.
+ * Tasks are added by the user for KKBot to store and keep track of.
  *
  * @author AkkFiros
  */
@@ -35,11 +35,16 @@ public abstract class Task {
     }
 
     /**
-     * Obtains and returns the icon representation of the completion status of the task
+     * Obtains and returns the icon representation
+     * of the completion status of the task
      * @return the icon representing the completion status of the task
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        if (isDone) {
+            return "X";
+        } else {
+            return " ";
+        }
     }
 
     /**
@@ -64,12 +69,13 @@ public abstract class Task {
     }
 
     /**
-     * toString method for a task when kkbot.kkbot is listing out stored tasks
+     * toString method for a task when KKBot is listing out stored tasks
      * @return string representation of a task stored.
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), description);
+        return String.format("[%s] %s",
+                getStatusIcon(), description);
     }
 
     /**

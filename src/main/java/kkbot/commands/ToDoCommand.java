@@ -11,7 +11,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class ToDoCommand extends Command {
     public static final String KEYWORD = "todo";
     private String description;
@@ -34,7 +33,8 @@ public class ToDoCommand extends Command {
      * @throws StorageException if there is an error reading from/writing to hard drive
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws StorageException {
+    public String execute(TaskList tasks, Ui ui, Storage storage)
+            throws StorageException {
         ToDo task = new ToDo(description);
         tasks.addTask(task);
         storage.save(tasks);

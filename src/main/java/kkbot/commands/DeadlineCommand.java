@@ -11,7 +11,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class DeadlineCommand extends Command {
     public static final String KEYWORD = "deadline";
     public static final String DATE_INPUT = " /by ";
@@ -37,7 +36,8 @@ public class DeadlineCommand extends Command {
      * @return the related messages after a deadline task is added to KKBot
      * @throws StorageException if there is an error reading from/writing to hard drive
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws StorageException {
+    public String execute(TaskList tasks, Ui ui, Storage storage)
+            throws StorageException {
         Deadline task = new Deadline(description, date);
         tasks.addTask(task);
         storage.save(tasks);

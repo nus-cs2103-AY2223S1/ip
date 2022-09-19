@@ -12,7 +12,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class MarkCommand extends Command {
     public static final String KEYWORD = "mark";
     private int index; // index number of the task in taskList

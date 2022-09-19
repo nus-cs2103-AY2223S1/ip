@@ -12,7 +12,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class DeleteCommand extends Command {
     public static final String KEYWORD = "delete";
     private int index; // index number of the task in taskList

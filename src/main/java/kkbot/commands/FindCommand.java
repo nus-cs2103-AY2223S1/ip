@@ -12,7 +12,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class FindCommand extends Command {
     public static final String KEYWORD = "find";
     private String[] phrases;

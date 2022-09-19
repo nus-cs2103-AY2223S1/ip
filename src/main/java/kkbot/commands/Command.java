@@ -11,7 +11,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public abstract class Command {
     /**
      * Method to execute an action after receiving a user input.
