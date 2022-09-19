@@ -4,14 +4,17 @@ package piggy.task;
  * Contains information for a task and allows for marking whether it is done.
  */
 public class Task {
-    /** The description of the task */
+    /**
+     * The description of the task
+     */
     String description;
-    /** Whether the task is done */
+    /**
+     * Whether the task is done
+     */
     boolean isDone;
 
     /**
-     * Creates a new Task with the given description.
-     * The task is marked as not done by default.
+     * Creates a new Task with the given description. The task is marked as not done by default.
      *
      * @param description The description of the task.
      */

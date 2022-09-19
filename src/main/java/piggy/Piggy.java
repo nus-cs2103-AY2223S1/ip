@@ -4,9 +4,9 @@ package piggy;
  * The main class for the Piggy application.
  */
 public class Piggy {
-    private Storage storage;
-    private TaskList taskList;
-    private Ui ui;
+    private final Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
 
     /**
      * Creates a new Piggy application that reads and writes to a file
@@ -20,8 +20,8 @@ public class Piggy {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * You should have your own function to generate a response to user input. Replace this stub with your completed
+     * method.
      */
     String getResponse(String input) {
         String res = Parser.parse(input, ui, taskList);

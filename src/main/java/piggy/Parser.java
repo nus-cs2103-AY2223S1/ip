@@ -31,7 +31,7 @@ class Parser {
         } else if (command.matches("^delete \\d+$")) {
             Task task = taskList.remove(Integer.parseInt(command.substring(7)) - 1);
             return ui.getTaskRemoved(task, taskList.size());
-        }else if (command.matches("^find \\w+$")) {
+        } else if (command.matches("^find \\w+$")) {
             String keyword = command.substring(5);
             return ui.getTasksFound(taskList.find(keyword));
         } else if (command.equals("bye")) {

@@ -6,8 +6,7 @@ package piggy.task;
 public class Event extends TaskWithDate {
 
     /**
-     * Creates a new Event with the given description and datetime.
-     * The Event is marked as not done by default.
+     * Creates a new Event with the given description and datetime. The Event is marked as not done by default.
      *
      * @param description The description of the event.
      * @param by The datetime of the event.

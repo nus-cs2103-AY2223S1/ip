@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image piggyImage = new Image(this.getClass().getResourceAsStream("/images/piggy.png"));
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -20,11 +22,7 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Piggy piggy;
-
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image piggyImage = new Image(this.getClass().getResourceAsStream("/images/piggy.png"));
 
     @FXML
     public void initialize() {
@@ -43,10 +41,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = piggy.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, piggyImage)
-        );
+        dialogContainer.getChildren()
+                .addAll(DialogBox.getUserDialog(input, userImage), DialogBox.getDukeDialog(response, piggyImage));
         userInput.clear();
     }
 }

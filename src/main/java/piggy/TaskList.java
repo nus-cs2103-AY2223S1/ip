@@ -1,17 +1,17 @@
 package piggy;
 
+import piggy.task.Task;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import piggy.task.Task;
-
 /**
  * Handles a list of tasks.
  */
 class TaskList implements Iterable<Task> {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     /**
      * Creates a new TaskList from a List of Tasks.
