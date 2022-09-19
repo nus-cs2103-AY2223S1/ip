@@ -56,8 +56,8 @@ Example of usage:
 Expected outcome:
 ```
 [T][X] Read book
-[D][ ] Return Book /by Monday 2pm
-[E][ ] Meeting /at Monday 2pm-4pm
+[D][ ] Return Book (by: Monday 2pm)
+[E][ ] Meeting (at: Monday 2pm-4pm)
 ```
 
 ### todo - Adds todo task to task list
@@ -77,7 +77,7 @@ Example of usage:
 
 Expected outcome:
 ```
-[D][ ] Return Book /by Monday 2pm
+[D][ ] Return Book (by: Monday 2pm)
 ```
 
 ### event - Adds Event task to task list
@@ -87,7 +87,7 @@ Example of usage:
 
 Expected outcome:
 ```
-[E][ ] Meeting /at Monday 2pm-4pm
+[E][ ] Meeting (at: Monday 2pm-4pm)
 ```
 
 ### mark - Marks task as done
@@ -118,18 +118,18 @@ Example of usage:
 Expected outcome:
 ```
 [T][X] Read book
-[D][ ] Return Book /by Monday 2pm
-[E][ ] Meeting /at Monday 2pm-4pm
+[D][ ] Return Book (by: Monday 2pm)
+[E][ ] Meeting (at: Monday 2pm-4pm)
 
 unmark 1
 
 [T][ ] Read book
-[D][ ] Return Book /by Monday 2pm
-[E][ ] Meeting /at Monday 2pm-4pm
+[D][ ] Return Book (by: Monday 2pm)
+[E][ ] Meeting (at: Monday 2pm-4pm)
 
 undo 
 
 [T][X] Read book
-[D][ ] Return Book /by Monday 2pm
-[E][ ] Meeting /at Monday 2pm-4pm
+[D][ ] Return Book (by: Monday 2pm)
+[E][ ] Meeting (at: Monday 2pm-4pm)
 ```
