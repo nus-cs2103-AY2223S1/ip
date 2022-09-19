@@ -14,70 +14,72 @@ public class Ui {
         this.sc = new Scanner(System.in);
     };
 
-    public void printWelcome() {
-        String message = "Hello! I'm pony.Pony" + "\n" + "What can I do for you?";
-        System.out.println(message);
+    public static String printWelcome() {
+        String message = "Hello! I'm Pony!!!!" + "\n" + "What can I do for you?";
+        return message;
     }
 
-    public void printLine() {
+    public String printLine() {
         String message = "==============================================";
-        System.out.println(message);
+        return message;
     }
     public String readCommand() {
         return this.sc.nextLine();
     }
 
-    public void printExit() {
+    public String printExit() {
         String message = "Bye. Hope to see you again soon!";
-        System.out.println(message);
+        return message;
     }
 
-    public void printMarkedTask(Task task) {
+    public String printMarkedTask(Task task) {
         String message = "Nice! I've marked this task as done:\n";
         message += task.toString();
-        System.out.println(message);
+        return message;
     }
 
-    public void printUnmarkedTask(Task task) {
+    public String printUnmarkedTask(Task task) {
         String message = "OK, I've marked this task as not done yet:\n";
         message += task.toString();
-        System.out.println(message);
+        return message;
     }
 
-    public void printDeletedTask(Task task, TaskList tasks) {
+    public String printDeletedTask(Task task, TaskList tasks) {
         String message = "Noted. I've removed this task:\n";
         message += task.toString() + "\n" + "Now you have " + tasks.getTasksCount() + " tasks in the list.";
-        System.out.println(message);
+        return message;
     }
 
-    public void printAddedTask(Task task, TaskList tasks) {
-        String message = "Got it. I've added this task: ";
+    public String printAddedTask(Task task, TaskList tasks) {
+        String message = "Got it. I've added this task:\n";
         message += task.toString() + "\n" + "Now you have " + tasks.getTasksCount() + " tasks in the list.";
-        System.out.println(message);
+        return message;
     }
 
-    public void printTaskList(TaskList tasks) {
+    public String printTaskList(TaskList tasks) {
+        String message = "";
         if (tasks.sizeOf() == 0) {
-            System.out.println("Nothing on the list!");
+            message = "Nothing on the list!";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            message = "Here are the tasks in your list:\n";
             for (int i = 0; i < tasks.sizeOf(); i++) {
                 int serialNumber = i + 1;
-                System.out.println(serialNumber + ". " + tasks.getTask(i).toString());
+                message += serialNumber + ". " + tasks.getTask(i).toString() + "\n";
             }
         }
-
+        return message;
     }
-    public void printFindResult(ArrayList<Task> tasks) {
+    public String printFindResult(ArrayList<Task> tasks) {
+        String message = "";
         if (tasks.size() == 0) {
-            System.out.println("No matching task!");
+            message = "No matching task!";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            message = "Here are the matching tasks in your list:\n";
             for (int i = 0; i < tasks.size(); i++) {
                 int serialNumber = i + 1;
-                System.out.println(serialNumber + ". " + tasks.get(i).toString());
+                message += serialNumber + ". " + tasks.get(i).toString() + "\n";
             }
         }
-
+        return message;
     }
 }

@@ -2,6 +2,7 @@ package pony;
 
 import pony.task.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -47,7 +48,10 @@ public class Storage {
             }
         } else {
             try {
-                System.out.println("");
+                File directory = new File("./data");
+                if (!directory.exists()) {
+                    directory.mkdir();
+                }
                 Files.createFile(taskListPath);
                 System.out.println("I created a file!");
             } catch (IOException | SecurityException e) {

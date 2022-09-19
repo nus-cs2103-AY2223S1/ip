@@ -17,7 +17,8 @@ public class ListCommand extends Command {
      * @param ui Ui that handles interaction with users.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
-        ui.printTaskList(tasks);
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = ui.printTaskList(tasks);
+        return message;
     }
 }

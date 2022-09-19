@@ -27,17 +27,19 @@ public class MarkCommand extends Command {
      * @param ui Ui that handles interaction with users.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = "";
         try {
             int taskIndex = Parser.parseTaskIndex(commandDetails);
             Task task = tasks.getTask(taskIndex - 1);
             task.markAsDone();
-            ui.printMarkedTask(task);
+            message = ui.printMarkedTask(task);
             storage.updateDisk(tasks);
         } catch (PonyException e) {
-            System.out.println(e.getMessage());
+            message = e.getMessage();
         } catch (NumberFormatException e) {
-            System.out.println(":( OOPS!!! Please provide the correct details!!");
+            message = ":( OOPS!!! Please provide the correct details!!";
         }
+        return message;
     }
 }

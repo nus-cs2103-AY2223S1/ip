@@ -35,19 +35,21 @@ public class AddDeadlineCommand extends Command {
      * @param ui Ui that handles interaction with users.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = "";
         try {
             String[] taskInfoArr = Parser.parseDeadlineDetails(commandDetails, format);
             String description = taskInfoArr[0];
             String timeInfo = taskInfoArr[1];
             Task newTask = new Deadline(description, timeInfo);
             tasks.addTask(newTask);
-            ui.printAddedTask(newTask, tasks);
+            message = ui.printAddedTask(newTask, tasks);
             storage.updateDisk(tasks);
         } catch (PonyException e) {
-            System.out.println(e.getMessage());
+            message = e.getMessage();
         } catch (DateTimeParseException e) {
-            System.out.println("Please follow this date format: yyyy-MM-dd HH:mm");
+            message = "Please follow this date format: yyyy-MM-dd HH:mm";
         }
+        return message;
     }
 }

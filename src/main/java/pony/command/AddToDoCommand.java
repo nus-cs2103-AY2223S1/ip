@@ -29,16 +29,18 @@ public class AddToDoCommand extends Command {
      * @param ui Ui that handles interaction with users.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = "";
         try {
             String description = Parser.parseTodoDetails(commandDetails);
             Task newTask = new ToDo(description);
             tasks.addTask(newTask);
-            ui.printAddedTask(newTask, tasks);
+            message = ui.printAddedTask(newTask, tasks);
             storage.updateDisk(tasks);
         } catch (PonyException e) {
-            System.out.println(e.getMessage());
+            message = e.getMessage();
         }
+        return message;
     }
 }
 

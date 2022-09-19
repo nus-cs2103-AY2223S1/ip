@@ -18,22 +18,10 @@ public class Pony {
         tasks = new TaskList(storage.loadTaskList());
     }
 
-    /**
-     * Runs the program.
-     */
-    public void run() {
-        ui.printWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            String fullCommand = ui.readCommand();
-            ui.printLine();
-            Command c = Parser.parseCommand(fullCommand);
-            c.execute(tasks, storage, ui);
-            isExit = c.isExit();
-        }
+    public String runCommand(String command) {
+        Command c = Parser.parseCommand(command);
+        String message = c.execute(tasks, storage, ui);
+        return message;
     }
 
-    public static void main(String[] args) {
-        new Pony("data/pony.txt").run();
-    }
 }

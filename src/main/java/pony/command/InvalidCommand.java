@@ -16,7 +16,8 @@ public class InvalidCommand extends Command {
      * @param storage Storage that handles memory files.
      * @param ui Ui that handles interaction with users.
      */
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
-        System.out.println(":( OOPS!!! I'm sorry, but I don't know what that means...");
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = ":( OOPS!!! I'm sorry, but I don't know what that means...";
+        return message;
     }
 }

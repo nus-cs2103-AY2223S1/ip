@@ -4,9 +4,8 @@ import pony.Parser;
 import pony.PonyException;
 import pony.Storage;
 import pony.Ui;
+import pony.TaskList;
 import pony.task.Task;
-import pony.task.TaskList;
-import pony.task.ToDo;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
+        String message = "";
         try {
             String description = Parser.parseFindDetails(commandDetails);
             ArrayList<Task> result = new ArrayList<>();
@@ -29,10 +29,11 @@ public class FindCommand extends Command {
                     result.add(task);
                 }
             }
-            ui.printFindResult(result);
+            message = ui.printFindResult(result);
         } catch (PonyException e) {
-            System.out.println(e.getMessage());
+            message = e.getMessage();
         }
+        return message;
     }
 }
 
