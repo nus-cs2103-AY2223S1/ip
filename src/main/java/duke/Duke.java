@@ -53,10 +53,6 @@ public class Duke extends Application {
     private static final String GREETING = "Hello! I'm duke.Duke\n"
             + "What can I do for you?\n";
 
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
     public void start(Stage stage) {
         // Solution below reused from https://se-education.org/guides/tutorials/javaFx.html
         //Step 1. Setting up required components
@@ -150,26 +146,6 @@ public class Duke extends Application {
         return textToAdd;
     }
 
-    /**
-     * Runs Duke by scanning and reading the input from the user and executing the Command.
-     */
-    public void run() {
-        System.out.println(LOGO);
-        System.out.println(GREETING);
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userInput = ui.read();
-                Command command = Parser.parseInput(userInput);
-                command.execute(this.tasks, this.ui);
-                isExit = command.getExit();
-            } catch (DukeException | IndexOutOfBoundsException e) {
-                System.out.println(e.getMessage());
-            } catch (DateTimeParseException e) {
-                System.out.println("Please format date in YYYY-MM-DD");
-            }
-        }
-    }
 
     /**
      * Iteration 2:
