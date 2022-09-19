@@ -72,7 +72,7 @@ public class Ui {
     public String printTaskCreated(Task task) {
         assert task != null: "Created task to be printed cannot be null";
         String taskStr = task.toString();
-        return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB, taskStr));
     }
 
     /**
@@ -108,7 +108,7 @@ public class Ui {
     public String printTaskDeleted(Task task) {
         assert task != null: "Deleted task to be printed cannot be null";
         String taskStr = task.toString();
-        return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB, taskStr));
     }
 
     /**

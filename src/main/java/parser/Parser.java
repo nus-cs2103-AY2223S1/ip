@@ -37,6 +37,13 @@ public class Parser {
 
     private boolean isEnded = false;
 
+    /**
+     * Initialises the Parser with a UI and TaskList.
+     *
+     * @param ui Represents the user interface for Duke.
+     * @param taskList Represents the object that stores Tasks for Duke.
+     * @param storage Represents the object that saves Tasks to the hard disk.
+     */
     public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
@@ -95,7 +102,7 @@ public class Parser {
     private String markTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.markTask(--index);
+            Task task = taskList.markTask(index);
             assert task != null : "task marked cannot be null";
             return ui.printTaskMarked(task);
         } catch (NumberFormatException e) {
@@ -109,10 +116,10 @@ public class Parser {
         try {
             assert indexStr != null: "IndexStr cannot be null";
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.unmarkTask(--index);
+            Task task = taskList.unmarkTask(index);
             assert task != null : "task unmarked cannot be null";
             return ui.printTaskUnmarked(task);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw DukeException.unmarkTaskException("Please input a valid number!");
         } catch (DukeException de) {
             throw DukeException.unmarkTaskException(de.toString());
@@ -216,7 +223,7 @@ public class Parser {
         try {
             assert indexStr != null: "IndexStr cannot be null";
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.deleteTask(--index);
+            Task task = taskList.deleteTask(index);
             assert task != null: "Task deleted cannot be null";
             return ui.printTaskDeleted(task);
         } catch (NumberFormatException e) {

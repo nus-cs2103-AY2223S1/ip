@@ -6,10 +6,10 @@ import java.util.Arrays;
  * Represents the information of the Tasks that the user wants to store.
  * Acts as the abstract class that ToDos, Deadlines, and Events extend from.
  */
-    public abstract class Task {
+public abstract class Task {
 
-    protected static String PRINT_TIME_FORMAT = "EE, dd MMM yyyy, HH:mm";
-    protected static String DEFAULT_TIME_FORMAT = "yyyy-MM-dd HHmm";
+    protected static final String PRINT_TIME_FORMAT = "EE, dd MMM yyyy, HH:mm";
+    protected static final String DEFAULT_TIME_FORMAT = "yyyy-MM-dd HHmm";
 
     private final String description;
     private boolean isDone = false;

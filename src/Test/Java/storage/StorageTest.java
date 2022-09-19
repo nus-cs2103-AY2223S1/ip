@@ -1,10 +1,10 @@
-package Duke.Storage;
-
-import org.junit.jupiter.api.Test;
-import task.Task;
-import Duke.Exception.DukeException;
+package storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import exception.DukeException;
+import org.junit.jupiter.api.Test;
+import task.Task;
 
 public class StorageTest {
     StorageStub storage = new StorageStub();

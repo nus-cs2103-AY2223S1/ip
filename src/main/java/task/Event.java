@@ -12,6 +12,12 @@ public class Event extends Task {
 
     private LocalDateTime at;
 
+    /**
+     * Initialises the Event with the given description and datetime.
+     *
+     * @param description The description of the Event.
+     * @param at The datetime of the Event.
+     */
     public Event(String description, LocalDateTime at) {
         super(description, SHORTHAND);
         assert at != null: "Timing for Events cannot be null";

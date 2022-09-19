@@ -37,13 +37,14 @@ public class TaskList {
     /**
      * Marks the Task at the given index to be completed, and returns the modified Task.
      *
-     * @param index The index of the Task in the taskList.
+     * @param index The index of the Task in the taskList as printed to User.
      * @return The Task that has been marked as complete.
      * @throws DukeException If the index provided is < 0 or greater than the size of the TaskList.
      */
     public Task markTask(int index) throws DukeException {
+        index--;
         if (index < 0 || index >= taskList.size()) {
-            throw DukeException.IndexOutOfBoundsException(index);
+            throw DukeException.indexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
         assert task != null: "Task to be marked cannot be null";
@@ -53,13 +54,14 @@ public class TaskList {
     /**
      * Marks the Task at the given index to be incomplete, and returns the modified Task.
      *
-     * @param index The index of the Task in the TaskList.
+     * @param index The index of the Task in the TaskList as printed to User.
      * @return The Task that has been marked as incomplete.
      * @throws DukeException If the index provided is < 0 or greater than the size of the TaskList.
      */
     public Task unmarkTask(int index) throws DukeException {
+        index--;
         if (index < 0 || index >= taskList.size()) {
-            throw DukeException.IndexOutOfBoundsException(index);
+            throw DukeException.indexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
         assert task != null: "Task to be unmarked cannot be null";
@@ -69,13 +71,14 @@ public class TaskList {
     /**
      * Marks the Task at the given index to be deleted, and returns the deleted Task.
      *
-     * @param index The index of the Task in the TaskList.
+     * @param index The index of the Task in the TaskList as printed to User.
      * @return The Task that has been deleted.
      * @throws DukeException If the index provided is < 0 or greater than the size of the TaskList.
      */
     public Task deleteTask(int index) throws DukeException {
+        index--;
         if (index < 0 || index >= taskList.size()) {
-            throw DukeException.IndexOutOfBoundsException(index);
+            throw DukeException.indexOutOfBoundsException(index);
         }
         Task task = taskList.remove(index);
         assert task != null: "Task that is removed cannot be null";
@@ -94,6 +97,12 @@ public class TaskList {
                                 .orElse("");
     }
 
+    /**
+     * Returns a list of Tasks that contain the given keyword in their description.
+     *
+     * @param keyword Given keyword by user to find Tasks.
+     * @return A list of Tasks that are related to the keyword.
+     */
     public Task[] findTasks(String keyword) {
         return taskList.stream()
                 .filter(x -> x.hasKeyword(keyword))

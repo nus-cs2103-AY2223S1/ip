@@ -13,6 +13,12 @@ public class Deadline extends Task {
 
     private LocalDateTime by;
 
+    /**
+     * Initialises the Deadline with the given description and datetime.
+     *
+     * @param description The description of the Deadline.
+     * @param by The datetime of the Deadline.
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description, SHORTHAND);
         assert by != null: "Timing for Deadlines cannot be null";

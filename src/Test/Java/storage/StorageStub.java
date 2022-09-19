@@ -1,14 +1,14 @@
-package Duke.Storage;
-
-import Duke.Exception.DukeException;
-import task.Event;
-import task.Deadline;
-import task.Task;
-import task.ToDo;
+package storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import exception.DukeException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
 
 public class StorageStub {
     public Task loadTask(String taskStr) throws DukeException {
@@ -20,21 +20,21 @@ public class StorageStub {
 
             Task newTask;
             switch (taskTypeStr) {
-                case "T":
-                    newTask = new ToDo(description);
-                    break;
-                case "D":
-                    String byStr = taskArray[3];
-                    LocalDateTime by = getDateTime(byStr);
-                    newTask = new Deadline(description, by);
-                    break;
-                case "E":
-                    String atStr = taskArray[3];
-                    LocalDateTime at = getDateTime(atStr);
-                    newTask = new Event(description, at);
-                    break;
-                default:
-                    throw DukeException.readRowFromFileException(taskStr);
+            case "T":
+                newTask = new ToDo(description);
+                break;
+            case "D":
+                String byStr = taskArray[3];
+                LocalDateTime by = getDateTime(byStr);
+                newTask = new Deadline(description, by);
+                break;
+            case "E":
+                String atStr = taskArray[3];
+                LocalDateTime at = getDateTime(atStr);
+                newTask = new Event(description, at);
+                break;
+            default:
+                throw DukeException.readRowFromFileException(taskStr);
             }
 
             boolean isDone = isDoneStr.equals("X");

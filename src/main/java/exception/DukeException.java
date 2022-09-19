@@ -123,7 +123,7 @@ public class DukeException extends Exception {
      * @param index The index that was provided.
      * @return DukeException.
      */
-    public static DukeException IndexOutOfBoundsException(int index) {
+    public static DukeException indexOutOfBoundsException(int index) {
         return new DukeException(
                 String.format("There is no task with index %d", index));
     }
