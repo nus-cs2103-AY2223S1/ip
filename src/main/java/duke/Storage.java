@@ -20,8 +20,24 @@ public class Storage {
 
     public final String filePath;
 
+    /**
+     * File to save/read from for tasks
+     * @param filePath directory of file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
+        File file = new File(filePath);
+        // @@author ryanlml-reused
+        // This small block of code is meant to create a new Storage file when a JAR file is
+        // newly created. (Originally the Storage file did not load properly)
+        try {
+            if (!file.exists()) {
+                Files.createDirectories(Paths.get(filePath).getParent());
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

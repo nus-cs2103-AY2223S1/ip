@@ -14,16 +14,16 @@ public class Duke {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+
     /**
      * Loads Duke up with the appropriate list of tasks
-     * @throws FileNotFoundException if the filePath is typed incorrectly
      */
-    public Duke() throws FileNotFoundException {
+    public Duke() {
         ui = new Ui();
         storage = new Storage("./src/duke.txt");
         try {
             tasks = new TaskList(storage.loadTasks());
-        } catch (FileNotFoundException de) {
+        } catch (FileNotFoundException fnfe) {
             ui.showLoadingError();
             tasks = new TaskList();
         }

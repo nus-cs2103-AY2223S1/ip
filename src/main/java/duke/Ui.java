@@ -1,7 +1,5 @@
 package duke;
 
-import java.io.FileNotFoundException;
-
 /**
  * Deals with interactions with the user
  *
@@ -74,9 +72,8 @@ public class Ui {
 
     /**
      * Just in case someone keys in the wrong filename...
-     * @exception FileNotFoundException if the file cannot be found
      */
-    public void showLoadingError() throws FileNotFoundException {
-        throw new FileNotFoundException("File cannot be found!");
+    public void showLoadingError() {
+        System.out.println("Cannot be loaded!");
     }
 }
