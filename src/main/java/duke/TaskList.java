@@ -155,7 +155,11 @@ public class TaskList {
     @Override
     public String toString() {
         String tasksString = "";
-        for (int i = 0; i < tasks.size(); i++) {
+        if (tasks.size() == 0) {
+            return tasksString;
+        }
+        tasksString += "1. " + tasks.get(0).toString();
+        for (int i = 1; i < tasks.size(); i++) {
             tasksString += "\n" + (i + 1) + ". " + tasks.get(i).toString();
         }
         return tasksString;

@@ -109,7 +109,7 @@ public class Parser {
     }
 
     private static void checkSeperatedBySpace(int commandLength, String input) throws DukeException {
-        boolean hasSpace = input.charAt(commandLength) != ' ';
+        boolean hasSpace = input.charAt(commandLength) == ' ';
         if (!hasSpace) {
             throw new DukeException("Command and keyword should be separated by a space.");
         }

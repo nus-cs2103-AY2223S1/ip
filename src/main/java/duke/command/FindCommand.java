@@ -27,7 +27,7 @@ public class FindCommand extends Command{
      */
     @Override
     public Response execute(TaskList tasks, Storage storage) {
-        String message = "Here are the matching tasks in your list:\n";
+        String message = "Here are the matching tasks in your list:";
         return new Response(message + tasks.find(keyword).toString(), false);
     }
 }
