@@ -1,6 +1,7 @@
 package command;
 
 import exception.DukeException;
+import exception.DukeFileAddressInvalidException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
@@ -12,8 +13,14 @@ import task.Task;
  */
 
 public class ByeCommand extends Command{
+
+    private String logFileAddress = "";
     
     public ByeCommand() {
+    }
+
+    public ByeCommand(String newAddress) {
+        this.logFileAddress = newAddress;
     }
 
     
@@ -36,13 +43,31 @@ public class ByeCommand extends Command{
      * @throws DukeException
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+        if (!this.verifyAddress(this.logFileAddress)) {
+            throw new DukeFileAddressInvalidException("User file address invalid, please check pathing");
+        }
         try {
-            storage.cleanUp();
+            if (this.logFileAddress.equals("")) {
+                storage.cleanUp();
+            } else {
+                storage.cleanUp(this.logFileAddress);
+            }
         } catch (DukeException e) {
             throw e;
         }
     }
 
+    private boolean verifyAddress(String address) {
+        String addressToCheck = address.strip();
+        String[] addressSplit = addressToCheck.split(" ");
+        if (addressSplit.length > 1) {
+            return false;
+        }
+        if (address.equals("")) {
+            return false;
+        }
+        return true;
+    }
     
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated

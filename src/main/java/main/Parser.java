@@ -55,7 +55,7 @@ public class Parser {
             return new FindCommand(commandArgs);
         case COMMAND_LOAD:
             if (!commandArgs.equals("")) {
-                throw new InvalidCommandException("Argument given for command not needing argument");
+                return new LoadCommand(commandArgs);
             }
             return new LoadCommand();
         case COMMAND_LIST:
@@ -65,7 +65,7 @@ public class Parser {
             return new ListCommand();
         case COMMAND_BYE:
             if (!commandArgs.equals("")) {
-                throw new InvalidCommandException("Argument given for command not needing argument");
+                return new ByeCommand(commandArgs);
             }
             return new ByeCommand();
         case COMMAND_TODO:

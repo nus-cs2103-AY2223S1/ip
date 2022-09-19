@@ -126,6 +126,11 @@ public class TaskList {
         return this.searchTasks;
     }
 
+    public void replace(TaskList newList) {
+        this.tasks = new ArrayList<Task>();
+        this.tasks.addAll(newList.tasks);
+    }
+
     /** 
      * Returns the list command format of the tasks in index order
      * @return String
