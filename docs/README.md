@@ -80,6 +80,7 @@ Example of usage:
 deadline assignment 1 /by 2022-08-15T23:59
 ```
 Adds a new deadline, assignment 1, due on Aug 8th, 2022 at 23:59hrs.
+
 <img src="./image/add deadline.PNG"/>
 
 
@@ -114,6 +115,7 @@ Example of usage:
 mark 2
 ```
 Mark the task at index 2 as complete.
+
 <img src="./image/mark.PNG"/>
 
 
@@ -132,6 +134,7 @@ Example of usage:
 ```
 unmark 1
 ```
+
 <img src="./image/unmark.PNG"/>
 
 
@@ -150,6 +153,7 @@ Example of usage:
 ```
 delete 3
 ```
+
 <img src="./image/delete.PNG"/>
 
 
@@ -158,6 +162,7 @@ delete 3
 Shows a list of all stored tasks in the app.
 
 Format: `list`
+
 <img src="./image/list.PNG"/>
 
 
@@ -175,6 +180,7 @@ Example of usage:
 find assignment
 ```
 This will return all tasks containing 'assignment' in their description.
+
 <img src="./image/find.PNG"/>
 
 
@@ -182,6 +188,7 @@ This will return all tasks containing 'assignment' in their description.
 Returns a list of all valid commands and their format in the app.
 
 Format: `help`
+
 <img src="./image/help.PNG"/>
 
 
