@@ -48,6 +48,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (at: " + this.getDate() + " " + this.getTime() + ")";
+        return "[E]" + super.toString() + " (at: " + this.getDate() + " " + this.getTime() + ")";
     }
 }

@@ -11,9 +11,6 @@ tag 2 woohoo!
 event donut day /at 14-09-2022 1230
 mark 5
 mark 3
-unmark 2
-mark 2
-untag 3
-delete 6
-
 mark 6
+unmark 2
+deadline submit iP /by 19-09-2022 2359
