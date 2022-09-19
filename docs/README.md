@@ -3,7 +3,10 @@
 ## Features 
 
 ### Manage Tasks
-Add, delete, mark, unmark, find and list all current tasks.
+Add, delete, mark, unmark, find and list all current and/or incomplete tasks.
+
+### Help
+Get help for what commands to use easily.
 
 ## Usage
 
@@ -133,6 +136,23 @@ Sure! These are the tasks left:
       4. [E][X] TASK_FOUR (by: TIME_FOUR)
 ```
 
+### `reminder` - List incomplete tasks
+List out all the current incomplete tasks in the task list.
+
+Example of usage:  
+`reminder`
+
+Expected outcome:  
+All incomplete tasks in the current task list will be shown with the correct task description, time, and completion, but not number.
+
+```
+Sure! These are the tasks left:
+      
+      1. [T][ ] TASK_ONE
+      2. [D][ ] TASK_TWO (by: TIME_TWO)
+      3. [E][ ] TASK_THREE (at: TIME_THREE)
+```
+
 ### `help` - Get all commands available
 Get the list of all commands available for user input.
 
@@ -153,8 +173,9 @@ These are the commands you can use, try them!
       6. mark <task number> : mark task as complete
       7. unmark <task number> : unmark task as complete
       8. find <keyword> : find task with keyword
-      9. help : get all available commands
-      10. bye : save all current tasks and leave app
+      9. reminder : get all incomplete tasks left
+      10. help : get all available commands
+      11. bye : save all current tasks and leave app
 ```
 
 ### `bye` - Save and quit app
