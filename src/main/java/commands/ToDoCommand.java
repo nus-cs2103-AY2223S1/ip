@@ -7,7 +7,7 @@ import data.ToDo;
  */
 public class ToDoCommand extends NewTaskCommand {
     /**
-     * Command to create a todo with title.
+     * Returns a new command to add todo with title.
      *
      * @param title Title of task
      */

@@ -9,7 +9,7 @@ import data.Deadline;
  */
 public class DeadlineCommand extends NewTaskCommand {
     /**
-     * Command to create a deadline with title and dateBy.
+     * Returns a new command to add deadline with title and dateBy.
      *
      * @param title  Title of task.
      * @param dateBy Deadline of task.

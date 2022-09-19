@@ -11,7 +11,7 @@ public abstract class NewTaskCommand extends Command {
     private final Task task;
 
     /**
-     * Command to add a new task to a list.
+     * Returns a new command to add task to a list.
      *
      * @param task New task to be added.
      */
