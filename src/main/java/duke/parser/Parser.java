@@ -30,7 +30,7 @@ public class Parser {
      */
     public static Command parse(String input) throws DukeException {
         ArrayList<String> words = new ArrayList<>(Arrays.asList(input.split(" ")));
-        String firstWord = words.remove(0);
+        String firstWord = words.remove(0).toLowerCase();
         switch (firstWord) {
         case "list":
             return new ListCommand(words);

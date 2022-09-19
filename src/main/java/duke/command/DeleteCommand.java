@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
             throw new DukeException("Please use 'delete all' or 'delete <task numbers>'. T^T");
         }
 
-        if (words.get(0).equals("all") && words.size() == 1) {
+        if (words.get(0).equalsIgnoreCase("all") && words.size() == 1) {
             output.append(DELETE_ALL_TASKS);
             tasklist.tasks.clear();
         } else {

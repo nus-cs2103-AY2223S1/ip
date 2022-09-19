@@ -62,7 +62,7 @@ public class MarkCommand extends Command {
         if (words.size() == 0) {
             throw new DukeException("Please use 'mark all' or 'mark <task numbers>'. T^T");
         }
-        if (words.get(0).equals("all") && words.size() == 1) {
+        if (words.get(0).equalsIgnoreCase("all") && words.size() == 1) {
             output.append(String.format(MARK_TASK, "all your tasks"));
             for (int i = 0; i < tasklist.tasks.size(); ++i) {
                 tasklist.tasks.get(i).markDone();
@@ -97,7 +97,7 @@ public class MarkCommand extends Command {
         if (words.size() == 0) {
             throw new DukeException("Please use 'unmark all' or 'unmark <task numbers>'. T^T");
         }
-        if (words.get(0).equals("all") && words.size() == 1) {
+        if (words.get(0).equalsIgnoreCase("all") && words.size() == 1) {
             output.append(String.format(UNMARK_TASK, "all your tasks"));
             for (int i = 0; i < tasklist.tasks.size(); ++i) {
                 tasklist.tasks.get(i).markUndone();
