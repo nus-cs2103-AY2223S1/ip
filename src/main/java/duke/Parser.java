@@ -76,6 +76,8 @@ public class Parser {
                     throw new DukeTaskException("Keyword to find cannot be empty");
                 }
                 return new Pair<>(Duke.Command.FIND, restWord);
+            case "hello":
+                return new Pair<>(Duke.Command.HELLO, restWord);
             default:
                 throw new DukeException("?? Unrecognised command");
                 //Fallthrough

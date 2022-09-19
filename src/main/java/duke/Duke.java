@@ -264,9 +264,12 @@ public class Duke extends Application {
             Task fixedDurationTask = tasklist.addFixedDurationTask(s);
             storage.save(tasklist);
             return ("added fixed duration task: " + fixedDurationTask.getName());
+            //fallthrough
         case FIND:
             return tasklist.findList(s);
             //fallthrough
+        case HELLO:
+             return "";
         }
         throw new DukeException("Command not recognised D:");
     }
@@ -291,6 +294,7 @@ public class Duke extends Application {
         DEADLINE,
         EVENT,
         FIND,
-        FIXEDDURATIONTASK
+        FIXEDDURATIONTASK,
+        HELLO
     }
 }
