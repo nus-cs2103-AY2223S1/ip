@@ -16,11 +16,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Represents a class to store the task list in a text file.
+ */
 public class Storage {
 
     private final File DATA_DIRECTORY = new File("/data");
     private final File DATA_FILEPATH = new File("data/duke.txt");
 
+    /**
+     * Constructs a storage to store the text file
+     *
+     * @throws IOException if there is an error in creating the file
+     */
     public Storage() {
         if(!DATA_DIRECTORY.exists()) {
             DATA_DIRECTORY.mkdir();
@@ -33,6 +41,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Retrives the task stored in the text file
+     * @returns a list of task stored in an arraylist.
+     */
     public ArrayList<Task> convertToTaskList() {
 
         ArrayList<Task> taskList = new ArrayList<Task>();
@@ -70,6 +82,11 @@ public class Storage {
 
     }
 
+    /**
+     * Stores the task in task list in a text file
+     * @param taskList the list of tasks in the tasklist array .
+     * @throws IOException when there is an error while writing to the text file.
+     */
     public void saveTaskList(TaskList taskList) {
 
         try {

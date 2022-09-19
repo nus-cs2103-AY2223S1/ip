@@ -8,12 +8,20 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Adds a task to the tasklist.
+ */
 public class AddCommand extends Command {
 
     protected Task task;
     private final String MESSAGE = "\tGot it. I just added the " +
             "task: ";
 
+    /**
+     * Constructs an add command
+     *
+     * @param task the task to be added
+     */
     public AddCommand(Task task) {
         this.task = task;
     }

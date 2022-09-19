@@ -7,6 +7,9 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Exits the program execution
+ */
 public class ExitCommand extends Command {
 
 

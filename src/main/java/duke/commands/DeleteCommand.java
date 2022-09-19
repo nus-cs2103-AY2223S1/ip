@@ -7,11 +7,19 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Deletes a command from the tasklist.
+ */
 public class DeleteCommand extends Command {
 
     protected int index;
     private final String MESSAGE = "\tNoted. I've remove this task: ";
 
+    /**
+     * Constructs a delete command
+     *
+     * @param index index of the task to be deleted
+     */
     public DeleteCommand(int index) {
         this.index = index;
     }
