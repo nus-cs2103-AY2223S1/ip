@@ -59,7 +59,7 @@ jar {
 
 shadowJar {
     archiveBaseName = "AhDuke"
-    archiveVersion = "v1.2"
+    archiveVersion = "v0.2"
     archiveClassifier = null
 }
 
