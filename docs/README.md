@@ -2,6 +2,8 @@
 
 Duke Aemon Of Old is a free, simple-to-use organization tool that can help you find order in your day.
 
+![This is an image](https://github.com/Aishwarya-Hariharan-Iyer/ip/blob/master/docs/Ui.png)
+
 ## Features 
 
 ### Feature-Greet Duke
