@@ -241,16 +241,16 @@ Now you have 0 task in the list.
 ```
 
 
-
+---
 ##Command Summary
 
-|  Command   | Format                                       |                   Example                    |
-|:----------:|:---------------------------------------------|:--------------------------------------------:|
-|   `mark`   | `mark` \[order index]                        |                   `mark` 1                   |
-|  `unmark`  | `unmark` \[order index]                      |                  `unmark` 2                  |
-|  `delete`  | `delete` \[order index]                      |                  `delete` 3                  |
-|   `find`   | `find` \[keyword]                            |                `find` project                |
-|   `todo`   | `todo` \[description]                        |               `todo` homework                |
-|  `event`   | `event` \[description /at more description ] |        `event` Party /at my place 3pm        |
+|  Command   | Format                                       | Example                                      |
+|:----------:|:---------------------------------------------|:---------------------------------------------|
+|   `mark`   | `mark` \[order index]                        | `mark` 1                                     |
+|  `unmark`  | `unmark` \[order index]                      | `unmark` 2                                   |
+|  `delete`  | `delete` \[order index]                      | `delete` 3                                   |
+|   `find`   | `find` \[keyword]                            | `find` project                               |
+|   `todo`   | `todo` \[description]                        | `todo` homework                              |
+|  `event`   | `event` \[description /at more description ] | `event` Party /at my place 3pm               |
 | `deadline` | `deadline`\[description /by yyyy-MM-dd]      | `deadline` Project Submission /by 2021-07-24 |
-| `... all`  | `delete all`,`mark all`, `unmark all`        |    `delete all`,`mark all`, `unmark all`     |
+| `... all`  | `delete all`,`mark all`, `unmark all`        | `delete all`,`mark all`, `unmark all`        |
