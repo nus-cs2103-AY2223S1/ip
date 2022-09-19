@@ -103,6 +103,8 @@ public class TaskList {
 
     /**
      * List down all the tasks in the task list.
+     *
+     * @return String containing all the tasks in the task list.
      */
     public String list() {
         String result = "";
