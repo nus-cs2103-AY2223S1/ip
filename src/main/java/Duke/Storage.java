@@ -30,7 +30,9 @@ public class Storage {
      * creates a new file if it does not.
      */
     public File load() throws IOException {
-        File f = new File(filepath);
+        File f = new File("data/" + filepath);
+        File dir = new File("data");
+        dir.mkdir();
         f.createNewFile();
         return f;
     }

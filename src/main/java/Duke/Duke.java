@@ -72,12 +72,13 @@ public class Duke extends Application {
      */
     public Duke() {
         ui = new Ui();
-        storage = new Storage("data/duke.txt");
+        storage = new Storage("duke.txt");
         parser = new Parser();
         try {
             tasks = new TaskList(storage.load());
         } catch (IOException e) {
-            ui.showErrorReadingMessage();
+            System.out.println(ui.showErrorReadingMessage());
+            System.exit(0);
         }
     }
 
@@ -159,7 +160,6 @@ public class Duke extends Application {
                     DialogBox.getDukeDialog(dukeText, duke)
             );
         }
-
         userInput.clear();
     }
 
