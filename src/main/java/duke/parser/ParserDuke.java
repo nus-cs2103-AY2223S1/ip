@@ -298,7 +298,7 @@ public class ParserDuke {
                 + "7. `mark [ITEM_ID]` - mark an item, as identified by its position on the list, as complete\n"
                 + "8. `unmark [ITEM_ID]` - mark an item, as identified by its position on the list, as incomplete\n"
                 + "9. `delete [ITEM_ID]` - delete an item, as identified by its position on the list, from the list\n"
-                + "10. `find [KEYWORD]` - find items containing a keyword in their task descriptions"
+                + "10. `find [KEYWORD]` - find items containing a keyword in their task descriptions\n"
                 + "11. `sort` - sort all items on the list based on their deadlines and task descriptions\n"
                 + "12. `bye` - end the conversation with me. This automatically saves the current state of the list.\n";
         return comment + helpList;
