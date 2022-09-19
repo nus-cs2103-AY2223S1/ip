@@ -1,5 +1,4 @@
 D | 0 | 2103 thingy | Sep 2 2022
-D | 0 | submit es2660 | Sep 1 2022
-E | 0 | meeting | Aug 31 2022
-E | 0 | block event | Sep 10 2022
-T | 0 | training
+E | 0 | meeting | Sep 15 2022
+E | 1 | block event | Sep 10 2022
+E | 1 | 2103 tutorial | Sep 15 2022

@@ -19,6 +19,7 @@ public class Task {
     public String toSave() {
         return (this.isDone ? " | 1 | " : " | 0 | ");
     }
+
     public String getStatusIcon() {
         return (isDone? "X": " ");
     }

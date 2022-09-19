@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static duke.services.Ui.dukePrint;
 
 public class Storage {
+    public static final String DIR_PATH = "./data";
     public static final String FILE_PATH = "./data/duke.txt";
 
     /**
@@ -36,7 +37,7 @@ public class Storage {
     public TaskList load() {
         try {
             TaskList taskList = new TaskList();
-            File file = new File(FILE_PATH);
+            File file = new File(DIR_PATH);
             if (!file.exists()) {
                 file.mkdirs();
             }
@@ -45,23 +46,23 @@ public class Storage {
             while ((nextLine = reader.readLine()) != null) {
                 try {
                     String[] lineElem = nextLine.split("\\| ");
-                    if (lineElem[0].equals("T ")) {
+                    if (lineElem[0].trim().equals("T")) {
                         taskList.add(new Todo(lineElem[2]));
-                        if (lineElem[2].equals("1")) {
+                        if (lineElem[2].trim().equals("1")) {
                             taskList.get(taskList.size() - 1).setDone();
                         } else {
                             taskList.get(taskList.size() - 1).setUndone();
                         }
-                    } else if (lineElem[0].equals("D ")) {
+                    } else if (lineElem[0].trim().equals("D")) {
                         taskList.add(new Deadline(lineElem[2], lineElem[3]));
-                        if (lineElem[1].equals(" 1 ")) {
+                        if (lineElem[1].trim().equals("1")) {
                             taskList.get(taskList.size() - 1).setDone();
                         } else {
                             taskList.get(taskList.size() - 1).setUndone();
                         }
-                    } else if (lineElem[0].equals("E ")) {
+                    } else if (lineElem[0].trim().equals("E")) {
                         taskList.add(new Event(lineElem[2], lineElem[3]));
-                        if (lineElem[1].equals(" 1 ")) {
+                        if (lineElem[1].trim().equals("1")) {
                             taskList.get(taskList.size() - 1).setDone();
                         } else {
                             taskList.get(taskList.size() - 1).setUndone();

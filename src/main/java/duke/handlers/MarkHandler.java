@@ -16,6 +16,11 @@ public class MarkHandler {
         try {
             Task task = taskList.get(taskNo - 1);
             task.setDone();
+            StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
+            for (int i = 1; i <= taskList.size(); i++) {
+                Task task1 = taskList.get(i - 1);
+                response.append(i).append(". ").append(task1.toString()).append("\n");
+            }
             return ("Nice! I've marked this task as done:\n"
                     + "[" + task.getStatusIcon() + "] " + task.getTaskName());
         } catch (IndexOutOfBoundsException e) {
