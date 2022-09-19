@@ -11,7 +11,7 @@ Duke is a **desktop chatbot** that will help you **remember your tasks** so that
 ## Quick start
 
 1. Ensure that you have Java `11` installed in your computer.
-2. Download the latest `duke.jar` from [here](https://github.com/Kang-Quan/ip/releases/download/A-Release/duke.jar).
+2. Download the latest `duke.jar` from [here](https://github.com/Kang-Quan/ip/releases/download/A-Release2/duke.jar).
 3. Copy the jar file to an empty folder you want to use as the home folder for Duke.
 4. Open a command window in that folder.
 5. Run the command `java -jar duke.jar`.
