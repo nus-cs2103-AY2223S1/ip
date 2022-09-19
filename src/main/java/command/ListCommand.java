@@ -1,8 +1,8 @@
 package command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import meower.Storage;
+import meower.TaskList;
+import meower.Ui;
 import task.Task;
 
 public class ListCommand extends Command {

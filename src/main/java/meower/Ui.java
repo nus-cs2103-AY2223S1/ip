@@ -1,4 +1,4 @@
-package duke;
+package meower;
 
 import exception.DukeException;
 import exception.TaskListOutOfBoundsException;
@@ -7,8 +7,6 @@ import task.Task;
 public class Ui {
 
     private TaskList tasks;
-
-    private final String UI_LINE_SPACING = "----------------------------------------";
     private final String MESSAGE_GREETING = "Hello! I'm Duke  \n" + "What can I do for you?";
     private final String MESSAGE_FIND = "Tasks found:\n";
     private final String MESSAGE_LOG_ERROR = "File pathing for log file is facing issues, tasks not saved\n";
@@ -119,6 +117,6 @@ public class Ui {
      * @param message
      */
     public String chat(String message) {
-        return(UI_LINE_SPACING + "\n" + message + "\n" + UI_LINE_SPACING);
+        return(message);
     }
 }

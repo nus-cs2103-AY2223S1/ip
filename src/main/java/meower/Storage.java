@@ -1,4 +1,4 @@
-package duke;
+package meower;
 
 import java.io.File;
 import java.io.FileNotFoundException;

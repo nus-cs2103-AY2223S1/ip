@@ -2,8 +2,8 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
-import duke.TaskList;
 import exception.DukeException;
+import meower.TaskList;
 import task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

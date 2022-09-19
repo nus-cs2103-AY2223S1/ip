@@ -1,4 +1,4 @@
-package duke;
+package meower;
 
 enum CommandType {
     LOAD("load"),
