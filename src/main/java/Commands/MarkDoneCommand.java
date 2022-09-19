@@ -43,6 +43,6 @@ public class MarkDoneCommand extends Command{
      */
     @Override
     public String execute() {
-        return this.task.markdone();
+        return this.task.markDone();
     }
 }

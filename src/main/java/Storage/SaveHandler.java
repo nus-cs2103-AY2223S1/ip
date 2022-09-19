@@ -16,7 +16,7 @@ public class SaveHandler {
 
     private final String SAVE_FILE_DIR = CURR_DIR + "/save.txt";
 
-    private static final File SAVE_FILE = new File(SAVE_FILE_DIR);
+    private final File SAVE_FILE = new File(SAVE_FILE_DIR);
 
     protected void initFile(File file) throws DaveException {
         try {

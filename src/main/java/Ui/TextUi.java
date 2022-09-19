@@ -2,13 +2,13 @@ package Ui;
 
 public class TextUi {
 
-    private static final String line = "____________________________________________________________\n";
+    private static final String LINE = "____________________________________________________________\n";
 
     public static String buildOutput(String output) {
-        StringBuilder printable = new StringBuilder(line);
+        StringBuilder printable = new StringBuilder(LINE);
         printable.append(output);
         printable.append("\n");
-        printable.append(line);
+        printable.append(LINE);
         return printable.toString();
     }
 

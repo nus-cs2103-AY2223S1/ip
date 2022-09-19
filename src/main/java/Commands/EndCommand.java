@@ -10,7 +10,7 @@ import java.util.TimerTask;
 public class EndCommand extends Command{
 
     private TaskList tasks;
-    private SaveHandler SAVE_SATE = new SaveHandler();
+    private SaveHandler SAVE_STATE = new SaveHandler();
 
     /**
      * Ends the current session of Dave 2.
@@ -27,9 +27,9 @@ public class EndCommand extends Command{
      * @return The string representation of the result of the command.
      */
     @Override
-    public String execute() {
+    public String execute() throws DaveException {
     
-        SAVE_STATE.save();
+        SAVE_STATE.save(tasks);
         
         new Timer().schedule(new TimerTask() {
             @Override
