@@ -36,4 +36,14 @@ public class Deadline extends Task {
         output += "D" + SEPARATOR + taskStatus + SEPARATOR + this.description + SEPARATOR + this.timeInfo + "\n";
         return output;
     }
+
+    @Override
+    public boolean equals(Object task) {
+        if (task instanceof Deadline) {
+            Deadline d = (Deadline) task;
+            return this.toString().equals(d.toString());
+        } else {
+            return false;
+        }
+    }
 }

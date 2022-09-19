@@ -23,4 +23,14 @@ public class ToDo extends Task {
         output += "T" + SEPARATOR + taskStatus + SEPARATOR + this.description + "\n";
         return output;
     }
+
+    @Override
+    public boolean equals(Object task) {
+        if (task instanceof ToDo) {
+            ToDo d = (ToDo) task;
+            return this.toString().equals(d.toString());
+        } else {
+            return false;
+        }
+    }
 }

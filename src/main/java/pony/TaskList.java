@@ -12,7 +12,10 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task) throws PonyException {
+        if (tasks.contains(task)) {
+            throw new PonyException("You have already recorded this task!!");
+        }
         this.tasks.add(task);
     }
 

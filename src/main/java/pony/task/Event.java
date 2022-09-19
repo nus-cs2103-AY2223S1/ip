@@ -34,4 +34,14 @@ public class Event extends Task {
         output += "D" + SEPARATOR + taskStatus + SEPARATOR + this.description + SEPARATOR + this.timeInfo + "\n";
         return output;
     }
+
+    @Override
+    public boolean equals(Object task) {
+        if (task instanceof Event) {
+            Event d = (Event) task;
+            return this.toString().equals(d.toString());
+        } else {
+            return false;
+        }
+    }
 }

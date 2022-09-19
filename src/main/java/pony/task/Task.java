@@ -45,6 +45,7 @@ public abstract class Task {
     }
 
     public abstract String saveToDisk();
-
+    @Override
+    public abstract boolean equals(Object o);
     //...
 }
