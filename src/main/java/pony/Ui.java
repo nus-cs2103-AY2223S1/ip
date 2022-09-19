@@ -2,6 +2,7 @@ package pony;
 
 import pony.task.Task;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -63,6 +64,18 @@ public class Ui {
             for (int i = 0; i < tasks.sizeOf(); i++) {
                 int serialNumber = i + 1;
                 System.out.println(serialNumber + ". " + tasks.getTask(i).toString());
+            }
+        }
+
+    }
+    public void printFindResult(ArrayList<Task> tasks) {
+        if (tasks.size() == 0) {
+            System.out.println("No matching task!");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                int serialNumber = i + 1;
+                System.out.println(serialNumber + ". " + tasks.get(i).toString());
             }
         }
 

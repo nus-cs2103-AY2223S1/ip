@@ -42,6 +42,8 @@ public class Parser {
                 return new AddDeadlineCommand(commandDetails);
             case "event":
                 return new AddEventCommand(commandDetails);
+            case "find":
+                return new FindCommand(commandDetails);
             default:
                 return new InvalidCommand();
         }
@@ -116,6 +118,21 @@ public class Parser {
                 throw new PonyException(":( OOPS!!! Please provide the details in the following format: " + format);
             }
             return taskInfoArr;
+        }
+    }
+
+    /**
+     * Parse a Find command.
+     *
+     * @param commandDetails Command given by user.
+     * @return Tasks found according to keyword.
+     * @throws PonyException User did not provide any detail.
+     */
+    public static String parseFindDetails(String commandDetails) throws PonyException {
+        if (commandDetails == null) {
+            throw new PonyException(":( OOPS!!! Please provide the details!!");
+        } else {
+            return commandDetails;
         }
     }
 
