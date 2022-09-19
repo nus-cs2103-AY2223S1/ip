@@ -60,6 +60,7 @@ public class TaskList {
      * @return Task
      */
     public Task getTask(int i) {
+        assert (i > 0);
         return db.get(i - OFF_BY_ONE);
     }
 
@@ -68,6 +69,7 @@ public class TaskList {
      * @param userInput Input task number
      */
     public void mark(int userInput) {
+        assert (userInput > 0 && userInput <= db.size());
         Task tmp = db.get(userInput - OFF_BY_ONE);
         tmp.setDone();
     }
@@ -77,6 +79,7 @@ public class TaskList {
      * @param userInput Input task number
      */
     public void unmark(int userInput) {
+        assert (userInput > 0 && userInput <= db.size());
         Task tmp = db.get(userInput - OFF_BY_ONE);
         tmp.setUndone();
     }
@@ -119,6 +122,7 @@ public class TaskList {
      * @return Deleted task
      */
     public Task delete(int userInput) {
+        assert (userInput > 0 && userInput <= db.size());
         return db.remove(userInput - OFF_BY_ONE);
     }
 
