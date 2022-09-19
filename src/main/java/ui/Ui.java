@@ -14,7 +14,7 @@ import tasklist.TaskList;
 public class Ui {
     private static final String TAB = "    ";
     private static final String LINE = String
-            .format("%s%s", TAB, "____________________________________________________________");
+            .format("%s%s", TAB, "______________________________________________________");
     private static final String WELCOME_MESSAGE = String
             .format("Hello! I'm Duke\n%s What can I do for you?", TAB);
     private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
@@ -59,6 +59,7 @@ public class Ui {
      * @return String Error message dialogue to be read by user.
      */
     public String printException(Exception e) {
+        assert e != null: "Exception to be printed cannot be null";
         return prettyPrint(String.format("%s: %s", ERROR_PREFIX, e.toString()));
     }
 
@@ -69,6 +70,7 @@ public class Ui {
      * @return String Task created dialogue to be read by user.
      */
     public String printTaskCreated(Task task) {
+        assert task != null: "Created task to be printed cannot be null";
         String taskStr = task.toString();
         return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB, taskStr));
     }
@@ -80,6 +82,7 @@ public class Ui {
      * @return String Task marked dialogue to be read by user.
      */
     public String printTaskMarked(Task task) {
+        assert task != null: "Marked task to be printed cannot be null";
         String taskStr = task.toString();
         return prettyPrint(String.format("%s\n%s %s", MARK_MESSAGE, TAB, taskStr));
     }
@@ -91,6 +94,7 @@ public class Ui {
      * @return String Task unmarked dialogue to be read by user.
      */
     public String printTaskUnmarked(Task task) {
+        assert task != null: "Unmarked task to be printed cannot be null";
         String taskStr = task.toString();
         return prettyPrint(String.format("%s\n%s %s", UNMARK_MESSAGE, TAB, taskStr));
     }
@@ -102,6 +106,7 @@ public class Ui {
      * @return String Task deleted dialogue to be read by user.
      */
     public String printTaskDeleted(Task task) {
+        assert task != null: "Deleted task to be printed cannot be null";
         String taskStr = task.toString();
         return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB, taskStr));
     }
@@ -113,6 +118,7 @@ public class Ui {
      * @return String List of all Tasks dialogue to be read by user.
      */
     public String printAll(TaskList taskList) {
+        assert taskList != null: "TaskList to be printed cannot be null";
         List<Task> taskArrayList = taskList.getTaskList();
         if (taskArrayList.size() <= 0) {
             return prettyPrint(EMPTY_TASKLIST_MESSAGE);
@@ -132,6 +138,7 @@ public class Ui {
      * @return String List of all tasks that match keyword dialogue to be read by user.
      */
     public String printFoundTasks(Task[] foundTasks) {
+        assert foundTasks != null: "List of found tasks to be printed cannot be null";
         if (foundTasks.length <= 0) {
             return prettyPrint(NOT_FOUND_MESSAGE);
         }
@@ -143,6 +150,7 @@ public class Ui {
     }
 
     private String prettyPrint(String printable) {
+        assert printable != null: "String to be printed cannot be null";
         return String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
     }
 

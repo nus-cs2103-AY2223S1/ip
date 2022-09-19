@@ -17,6 +17,7 @@ public class TaskList {
     }
 
     public TaskList(List<Task> taskList) {
+        assert taskList != null: "taskList cannot be null";
         this.taskList = taskList;
     }
 
@@ -46,6 +47,7 @@ public class TaskList {
             throw DukeException.indexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
+        assert task != null: "Task to be marked cannot be null";
         task.markAsDone();
         return task;
     }
@@ -62,6 +64,7 @@ public class TaskList {
             throw DukeException.indexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
+        assert task != null: "Task to be unmarked cannot be null";
         task.markAsUndone();
         return task;
     }
@@ -77,7 +80,9 @@ public class TaskList {
         if (index < 0 || index >= taskList.size()) {
             throw DukeException.indexOutOfBoundsException(index);
         }
-        return taskList.remove(index);
+        Task task = taskList.remove(index);
+        assert task != null: "Task that is removed cannot be null";
+        return task;
     }
 
     /**

@@ -59,6 +59,7 @@ public class Parser {
      */
     public String handleNext(String input) {
         try {
+            assert input != null;
             String inputCmd = getNext(input);
             String inputRem = getNextLine(input).strip();
             switch (inputCmd) {
@@ -102,6 +103,7 @@ public class Parser {
         try {
             int index = Integer.parseInt(indexStr);
             Task task = taskList.markTask(index);
+            assert task != null : "task marked cannot be null";
             return ui.printTaskMarked(task);
         } catch (NumberFormatException e) {
             throw DukeException.markTaskException("Please input a valid number!");
@@ -112,8 +114,10 @@ public class Parser {
 
     private String unmarkTask(String indexStr) throws DukeException {
         try {
+            assert indexStr != null: "IndexStr cannot be null";
             int index = Integer.parseInt(indexStr);
             Task task = taskList.unmarkTask(index);
+            assert task != null : "task unmarked cannot be null";
             return ui.printTaskUnmarked(task);
         } catch (NumberFormatException e) {
             throw DukeException.unmarkTaskException("Please input a valid number!");
@@ -124,6 +128,7 @@ public class Parser {
 
     private String createAndAddTodo(String str) throws DukeException {
         try {
+            assert str != null: "Description for creating ToDo cannot be null";
             String description = getValidDescription(str, TODO_SEPARATOR);
             Task newTodo = new ToDo(description);
             return addTask(newTodo);
@@ -134,6 +139,7 @@ public class Parser {
 
     private String createAndAddDeadline(String str) throws DukeException {
         try {
+            assert str != null: "Description for creating Deadline cannot be null";
             String description = getValidDescription(str, DEADLINE_SEPARATOR);
             LocalDateTime by = getValidDateTime(str, DEADLINE_SEPARATOR);
             Task newDeadline = new Deadline(description, by);
@@ -145,6 +151,7 @@ public class Parser {
 
     private String createAndAddEvent(String str) throws DukeException {
         try {
+            assert str != null: "Description for creating Event cannot be null";
             String description = getValidDescription(str, EVENT_SEPARATOR);
             LocalDateTime at = getValidDateTime(str, EVENT_SEPARATOR);
             Task newEvent = new Event(description, at);
@@ -155,6 +162,7 @@ public class Parser {
     }
 
     private String getValidDescription(String str, String separator) throws DukeException {
+        assert str != null: "Should not be getting description from string that is null";
         String description = getFirstToken(str, separator);
         if (description.equals("")) {
             throw DukeException.taskDescriptionException("No description provided");
@@ -163,6 +171,7 @@ public class Parser {
     }
 
     private LocalDateTime getValidDateTime(String str, String separator) throws DukeException {
+        assert str != null: "Should not be getting datetime from string that is null";
         String datetimeStr = getSecondToken(str, separator);
         if (datetimeStr.equals("")) {
             throw DukeException.taskDateTimeException("No date time provided");
@@ -177,11 +186,13 @@ public class Parser {
     }
 
     private String getFirstToken(String str, String separator) throws DukeException {
+        assert str != null: "String to be tokenized should not be null";
         String[] tokens = tokenize(str, separator);
         return tokens[0].strip();
     }
 
     private String getSecondToken(String str, String separator) throws DukeException {
+        assert str != null: "String to be tokenized should not be null";
         String[] tokens = tokenize(str, separator);
         if (tokens.length < 2) {
             throw DukeException.dateTimeTokenException();
@@ -190,6 +201,7 @@ public class Parser {
     }
 
     private String[] tokenize(String str, String separator) throws DukeException {
+        assert str != null: "String to be tokenized should not be null";
         str = str.strip();
         if (str.equals("")) {
             throw DukeException.taskDescriptionException("No input");
@@ -202,14 +214,17 @@ public class Parser {
     }
 
     private String addTask(Task task) throws DukeException {
+        assert task != null: "Task to be added cannot be null";
         taskList.addTask(task);
         return ui.printTaskCreated(task);
     }
 
     private String deleteTask(String indexStr) throws DukeException {
         try {
+            assert indexStr != null: "IndexStr cannot be null";
             int index = Integer.parseInt(indexStr);
             Task task = taskList.deleteTask(index);
+            assert task != null: "Task deleted cannot be null";
             return ui.printTaskDeleted(task);
         } catch (NumberFormatException e) {
             throw DukeException.deleteTaskException("Please input a valid number!");
@@ -219,14 +234,17 @@ public class Parser {
     }
 
     private String[] splitInput(String input) {
+        assert input != null: "String input to be split cannot be null";
         return input.split(" ", 2);
     }
 
     private String getNext(String input) {
+        assert input != null: "String input to be split cannot be null";
         return splitInput(input)[0];
     }
 
     private String getNextLine(String input) {
+        assert input != null: "String input to be split cannot be null";
         String[] splitInput = splitInput(input);
         if (splitInput.length < 2) {
             return "";
@@ -236,8 +254,10 @@ public class Parser {
 
     private String findTasks(String keyword) throws DukeException {
         try {
+            assert keyword != null: "Keyword to find task cannot be null";
             String validKeyword = getValidKeyword(keyword);
             Task[] foundTasks = taskList.findTasks(validKeyword);
+            assert foundTasks != null: "Found tasks cannot be null";
             return ui.printFoundTasks(foundTasks);
         } catch (DukeException de) {
             throw DukeException.findTaskException(de.toString());
@@ -245,6 +265,7 @@ public class Parser {
     }
 
     private String getValidKeyword(String keyword) throws DukeException {
+        assert keyword != null: "Keyword to find task cannot be null";
         keyword = keyword.strip();
         if (keyword.equals("")) {
             throw DukeException.keywordException("No keyword provided");

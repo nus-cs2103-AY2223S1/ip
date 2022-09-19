@@ -39,6 +39,7 @@ public class Storage {
             // Creates the output List
             List<Task> taskList = new ArrayList<>();
 
+            assert this.filePath != null: "Filepath cannot be null";
             File f = new File(this.filePath);
 
             // Create Duke.txt if it doesn't exist.
@@ -66,6 +67,7 @@ public class Storage {
 
     private Task loadTask(String taskStr) throws DukeException {
         try {
+            assert taskStr != null: "String to load task cannot be null";
             String[] tokens = tokenize(taskStr);
             String taskTypeStr = getTaskTypeStr(tokens);
             boolean isDone = getIsDone(tokens);
@@ -118,6 +120,7 @@ public class Storage {
 
     private LocalDateTime getDateTime(String datetimeStr) throws DukeException {
         try {
+            assert datetimeStr != null: "String to read datetime from cannot be null";
             return LocalDateTime.parse(
                     datetimeStr,
                     DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
@@ -158,6 +161,7 @@ public class Storage {
      */
     public void storeToFile(TaskList taskList) throws DukeException {
         try {
+            assert taskList != null: "TaskList to be stored cannot be null";
             FileWriter fw = new FileWriter(this.filePath);
             fw.write(taskList.getStorageString());
             fw.close();
