@@ -1,0 +1,20 @@
+deadline eat book /by 2022-06-20 18:00
+mark 5
+delete 1
+deadline CS2103T /by 2022-06-18 16:30
+event birthday party /at 2022-05-19 17:30
+unmark 2
+list
+delete 1
+delete 1
+delete 1
+delete 1
+delete 1
+delete 1
+todo read book
+deadline return book /by 2022-06-20 18:00
+mark 2
+deadline join sports club /by 2022-06-21 15:00
+mark 3
+deadline lunch /by 2022-06-21 15:00
+bye

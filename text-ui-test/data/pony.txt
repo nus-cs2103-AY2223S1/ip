@@ -1,0 +1,4 @@
+T | 0 | read book
+D | 1 | return book | 2022-06-20 18:00
+D | 1 | join sports club | 2022-06-21 15:00
+D | 0 | lunch | 2022-06-21 15:00
