@@ -157,14 +157,14 @@ These are the commands you can use, try them!
       10. bye : save all current tasks and leave app
 ```
 
-### `bye` - Save current task list
-Save all current tasks and information.
+### `bye` - Save and quit app
+Save all current tasks and information and quit the application.
 
 Example of usage:  
 `bye`
 
 Expected outcome:  
-All current tasks will be saved, and a goodbye message will appear.
+All current tasks will be saved and a goodbye message should appear before app closes.
 
 ```
 See you next time, goodbye! :P
