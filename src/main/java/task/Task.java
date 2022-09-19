@@ -50,6 +50,7 @@ public class Task {
 
     
     /** 
+     * returns an empty task
      * @return Task
      */
     public static Task empty() {
@@ -58,6 +59,7 @@ public class Task {
 
     
     /** 
+     * checks if task is empty, returns true if empty and false if not
      * @return boolean
      */
     public boolean isEmpty() {
@@ -66,22 +68,30 @@ public class Task {
 
     
     /** 
+     * returns description of task
      * @return String
      */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * marks the task done
+     */
     public void mark() {
         this.isDone = true;
     }
 
+    /**
+     * marks the task not done
+     */
     public void unmark() {
         this.isDone = false;
     }
 
     
     /** 
+     * returns the log file format String to save this task to the log file
      * @return String
      */
     public String log() {
@@ -105,9 +115,10 @@ public class Task {
 
     
     /** 
-     * @param date
+     * converts dates of specified format to LocalDate type
+     * @param date String representation of a date
      * @return LocalDate
-     * @throws InvalidDateExceptiontry
+     * @throws InvalidDateException thrown when an invalid or non-date format is given 
      */
     public LocalDate convert(String date) throws InvalidDateException { //assumes format is in d/M/yyyy
         try {
@@ -124,6 +135,7 @@ public class Task {
 
     
     /** 
+     * returns the string representation of tasks
      * @return String
      */
     @Override

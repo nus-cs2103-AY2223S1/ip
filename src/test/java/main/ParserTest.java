@@ -2,7 +2,7 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
-import exception.DukeException;
+import exception.MeowerException;
 import exception.InvalidCommandException;
 import meower.Parser;
 
@@ -16,7 +16,7 @@ public class ParserTest {
             assertEquals(p.parse("todo run").getTask().getDescription(), "run");
         } catch (InvalidCommandException e) {
             return;
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             return;
         }
     }

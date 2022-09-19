@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import command.Command;
-import exception.DukeException;
-import exception.DukeFileAddressInvalidException;
-import exception.DukeFileNotFoundException;
-import exception.DukeIOException;
+import exception.MeowerException;
+import exception.MeowerFileAddressInvalidException;
+import exception.MeowerFileNotFoundException;
+import exception.MeowerIOException;
 import exception.InvalidCommandException;
 import task.Task;
 
@@ -37,9 +37,9 @@ public class Storage {
      * loadLog loads the tasks stored in the log file into the current tasklist, 
      * throws DukeExceptions if theres issues with the format of the log file or file address is invalid
      * @return TaskList
-     * @throws DukeException
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public int loadLog() throws DukeException{
+    public int loadLog() throws MeowerException{
         assert this.logFileAddress != null: "There must be a log file address at this point";
         
         try {
@@ -77,23 +77,31 @@ public class Storage {
         } catch (InvalidCommandException e) {
             throw e;
         } catch (FileNotFoundException e) {
-            throw new DukeFileNotFoundException(e.getLocalizedMessage());
+            throw new MeowerFileNotFoundException(e.getLocalizedMessage());
         }
     }
 
-    public int loadLog(String newPath) throws DukeException{
+    
+    /** 
+     * Overloaded constructor for case where user defines a new file address
+     * @param newPath String representation of user defined new file path
+     * @return int
+     * @throws MeowerException Main Meower chatbot Exception
+     */
+    public int loadLog(String newPath) throws MeowerException{
         String fullPath = this.LOG_FILE_DIRECTORY + "/" + newPath;
         if (!this.verifyPath(fullPath)) {
-            throw new DukeFileAddressInvalidException("File path specified does not exist");
+            throw new MeowerFileAddressInvalidException("File path specified does not exist");
         }
         this.logFileAddress = fullPath;
         return this.loadLog();
     }
     
     /** 
-     * @throws DukeException
+     * Saves the tasks in the tasklist into a logfile given by a pre-loaded file address
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public int cleanUp() throws DukeException {
+    public int cleanUp() throws MeowerException {
         assert this.logFileAddress != null: "There must be a log file address at this point";
 
         //if no tasks to be saved, exit with message
@@ -119,20 +127,26 @@ public class Storage {
             return numOfTasks;
         }
         catch (IOException e) {
-            throw new DukeIOException("Error in saving Tasks\n");
+            throw new MeowerIOException("Error in saving Tasks\n");
         }
     }
 
     /**
-     * 
+     * Overloaded constructor that allows for a new user defined file path
      * @param newFileName
-     * @throws DukeException
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public int cleanUp(String newFileName) throws DukeException{
+    public int cleanUp(String newFileName) throws MeowerException{
         logFileAddress = this.LOG_FILE_DIRECTORY + "/" + newFileName;
         return this.cleanUp();
     }
 
+    
+    /** 
+     * Verifies if the path already exists
+     * @param fullPath file path to be verified
+     * @return boolean
+     */
     private boolean verifyPath(String fullPath) {
         Path fullPathToCheck = Paths.get(fullPath);
         if (Files.exists(fullPathToCheck)) {
@@ -142,6 +156,9 @@ public class Storage {
         }
     }
 
+    /**
+     * creates directories along the file path saved in the log file address property
+     */
     private void createDirectory() {
         String directoriesPath = this.removeFilePath(this.logFileAddress);
         Path dirPath = Paths.get(directoriesPath);
@@ -155,6 +172,12 @@ public class Storage {
         }
     }
 
+    
+    /** 
+     * Removes the directories in the file path, leaving only the file name
+     * @param fullPath file path to a file
+     * @return String
+     */
     private String removeFilePath(String fullPath) {
         return fullPath.substring(0, fullPath.lastIndexOf("/") + 1);
     }
@@ -169,9 +192,4 @@ public class Storage {
     public void sendNoTasksMessage() {
         this.ui.chat("No tasks saved to log file \n");
     }
-
-    public void sendLoadMessage(int numOfTasks) {
-        this.ui.chat(String.format("Loaded %d tasks", numOfTasks));
-    }
-
 }

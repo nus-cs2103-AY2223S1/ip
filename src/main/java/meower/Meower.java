@@ -1,7 +1,7 @@
 package meower;
 
 import command.Command;
-import exception.DukeException;
+import exception.MeowerException;
 public class Meower {
 
     private TaskList tasks;
@@ -23,17 +23,23 @@ public class Meower {
         try {
             Command nextCommand = parser.parse(userInput);
             return nextCommand.execute(this.tasks, this.ui, this.storage);
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             return ui.errorMessage(e);
         }
     }
 
+    
+    /** 
+     * Generates the reponse to a given userinput
+     * @param input String representation of the userinput
+     * @return String
+     */
     public String getResponse(String input) {
         try {
             Command nextCommand = parser.parse(input);
             assert this.tasks.getSize() >= 0: "tasklist size pointer should never be negative";
             return nextCommand.execute(this.tasks, this.ui, this.storage);
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             return ui.errorMessage(e);
         }
     }

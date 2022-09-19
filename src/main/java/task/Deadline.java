@@ -1,4 +1,5 @@
 package task;
+
 import java.time.LocalDate;
 
 import exception.InvalidDateException;
@@ -32,6 +33,7 @@ public class Deadline extends Task{
 
     
     /** 
+     * returns string representation of deadline task
      * @return String
      */
     @Override

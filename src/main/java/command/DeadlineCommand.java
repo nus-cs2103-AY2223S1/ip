@@ -1,6 +1,6 @@
 package command;
 
-import exception.DukeException;
+import exception.MeowerException;
 import exception.InvalidDateException;
 import exception.MissingArgumentException;
 import meower.Storage;
@@ -32,32 +32,21 @@ public class DeadlineCommand extends Command {
     public String getDescription() {
         return this.description;
     }
-
-    
-    /** 
-     * Checks if command will cause chatbot to end.
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return false;
-    }
-
     
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments,
      *  in this case adds the deadline task described by the user into the tasklist
-     * @param tasks
-     * @param ui
-     * @param storage
-     * @throws DukeException
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
         try {
             Task newDeadline = this.getTask();
             tasks.add(newDeadline);
             return ui.add(newDeadline);
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             throw e;
         }
     }
@@ -66,16 +55,16 @@ public class DeadlineCommand extends Command {
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated
      * @return Task
-     * @throws DukeException
+     * @throws MeowerException Main Meower chatbot Exception
      */
     @Override
-    public Task getTask() throws DukeException {
+    public Task getTask() throws MeowerException {
         try {
             return new Deadline(description, date);
         } catch (MissingArgumentException e) {
-            throw new DukeException(e.getLocalizedMessage());
+            throw new MeowerException(e.getLocalizedMessage());
         } catch (InvalidDateException e) {
-            throw new DukeException(e.getLocalizedMessage());
+            throw new MeowerException(e.getLocalizedMessage());
         }
     }
     

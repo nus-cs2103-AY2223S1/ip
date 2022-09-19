@@ -33,9 +33,9 @@ public class Parser {
     
     /** 
      * Parses a given userinput into the respective commands, throws InvalidCommandException when user gives invalid commands
-     * @param userCommand
+     * @param userCommand the command inputted by the user
      * @return Command
-     * @throws InvalidCommandException
+     * @throws InvalidCommandException thrown when an invalid command is inputted by the user
      */
     public Command parse(String userCommand) throws InvalidCommandException {
 
@@ -77,7 +77,7 @@ public class Parser {
             String deadlineDate = deadlineArgs[1].strip();  
             return new DeadlineCommand(deadlineDescription, deadlineDate);
         case COMMAND_EVENT:
-        //process arguments to pass into Command constructor
+            //process arguments to pass into Command constructor
             String[] eventArgs = parseCommandArgs("/at",commandArgs); 
             String eventDescription = eventArgs[0];
             String eventDate = eventArgs[1].strip();          
@@ -96,8 +96,8 @@ public class Parser {
     
     /** 
      * Parses the arguments of the user inputted commands
-     * @param delimiter
-     * @param args
+     * @param delimiter the String that will be used to split the given arguments
+     * @param args String representation of user inputted arguments
      * @return String[]
      */
     public String[] parseCommandArgs(String delimiter, String args) {

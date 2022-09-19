@@ -33,6 +33,7 @@ public class Event extends Task{
 
     
     /** 
+     * returns string representation of event task
      * @return String
      */
     @Override

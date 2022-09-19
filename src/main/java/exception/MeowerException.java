@@ -3,9 +3,9 @@ package exception;
 /**
  * Main exception class from which all custom chatbot exceptions will extend from
  */
-public class DukeException extends Exception{
+public class MeowerException extends Exception{
     
-    public DukeException(String message) {
+    public MeowerException(String message) {
         super(message);
     }
 }
