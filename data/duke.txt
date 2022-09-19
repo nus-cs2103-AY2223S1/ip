@@ -1,4 +1,3 @@
-D | 0 | 2103 thingy | Sep 2 2022
-E | 0 | meeting | Sep 15 2022
-E | 1 | block event | Sep 10 2022
-E | 1 | 2103 tutorial | Sep 15 2022
+D | 0 | submit iP | Sep 19 2022
+E | 0 | tP meeting | Sep 20 2022
+E | 0 | softball training | Sep 22 2022
