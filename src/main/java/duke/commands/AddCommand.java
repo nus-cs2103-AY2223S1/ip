@@ -35,6 +35,10 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        // Detect duplicate task and prevents it from being added to the list
+        if (tasks.contains(task)) {
+            throw new DukeException("Oops! The task cannot be added as it already exists in your list.");
+        }
         tasks.add(task);
         storage.saveList(tasks);
         return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list.";

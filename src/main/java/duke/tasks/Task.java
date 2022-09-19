@@ -76,4 +76,17 @@ public abstract class Task {
     public String save() {
         return "shouldn't be saved";
     }
+
+    /*
+     * Returns true if the task is equal to the other task. A task is equal to
+     * another task if they have the same description.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            Task other = (Task) obj;
+            return this.description.equals(other.description);
+        }
+        return false;
+    }
 }

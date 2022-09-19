@@ -22,7 +22,6 @@ public class Duke {
      * @param filePath The path of the file to be read and written to.
      */
     public Duke(String filePath) {
-
         try {
             this.ui = new Ui();
             this.storage = new Storage(filePath);
@@ -33,6 +32,9 @@ public class Duke {
         } catch (IOException e) {
             ui.print(e.getMessage());
         }
+        assert (this.tasks != null);
+        assert (this.storage != null);
+        assert (this.ui != null);
     }
 
     /*
@@ -50,6 +52,7 @@ public class Duke {
         } catch (DukeException e) {
             response = e.getMessage();
         }
+        assert (response != null);
         return response;
     }
 }

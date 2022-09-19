@@ -54,6 +54,7 @@ public class Storage {
             } else {
                 System.out.println("File opened: " + path.toFile().getName());
             }
+            assert (path.toFile().exists());
         } catch (IOException e) {
             throw new DukeException("Unable to create file.");
         }
@@ -105,6 +106,7 @@ public class Storage {
     public void saveList(TaskList list) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(filePath, false);
+            assert (fileWriter != null);
             // Save to file
             for (Task task : list.getList()) {
                 fileWriter.write(task.save() + "\n");

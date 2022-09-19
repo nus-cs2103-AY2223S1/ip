@@ -1,6 +1,8 @@
 package duke.tasks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 /*
  * Represents a list of tasks.
@@ -95,5 +97,12 @@ public class TaskList {
             result += "\t" + (i + 1) + ". " + list.get(i) + "\n";
         }
         return result;
+    }
+
+    /*
+     * Determines if the list contains the specified task.
+     */
+    public boolean contains(Task task) {
+        return Arrays.stream(list.toArray()).anyMatch(task::equals);
     }
 }
