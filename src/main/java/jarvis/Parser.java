@@ -19,7 +19,7 @@ public class Parser {
     private static final String EVENT_EMPTY_DESCRIPTION = "OOPS!!! The description of a event cannot be empty.";
     private static final String DEADLINE_EMPTY_DESCRIPTION = "OOPS!!! The description of a deadline cannot be empty.";
     private static final String EVENT_FORMAT = "OOPS!!! The event should have a time.\n" +
-            "e.g. event {name} /at {time}";
+            "e.g. event {name} /at {startTime}(~{endTime})(optional)";
     private static final String DEADLINE_FORMAT = "OOPS!!! The deadline should have a due date.\n"
             + "e.g. deadline {name} /by {time}";
     private static final String DELETE_NO_INDEX = "You should specify the index of task to delete";
