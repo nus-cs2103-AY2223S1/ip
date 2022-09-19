@@ -137,6 +137,7 @@ public class TaskList {
     }
 
     public String find(String keyword) {
+        //Use stream
         Task[] searchResult = taskList.stream().filter(task -> task.match(keyword)).toArray(Task[]::new);
         if (searchResult.length == 0) {
             return "There's no matching task";
