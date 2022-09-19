@@ -15,27 +15,28 @@ class Parser {
      * @param command The command to parse.
      * @param ui The ui to use for displaying the responses.
      * @param taskList A list of existing tasks.
-     * @return true if the command is to exit, false otherwise.
+     * @return the resulting message to display
      */
-    static boolean parse(String command, Ui ui, TaskList taskList) {
+    static String parse(String command, Ui ui, TaskList taskList) {
         if (command.equals("list")) {
-            ui.showTaskList(taskList.toList());
+            return ui.getTaskList(taskList.toList());
         } else if (command.matches("^mark \\d+$")) {
             Task task = taskList.get(Integer.parseInt(command.substring(5)) - 1);
             task.markDone();
-            ui.showMarkAsDone(task);
+            return ui.getMarkAsDone(task);
         } else if (command.matches("^unmark \\d+$")) {
             Task task = taskList.get(Integer.parseInt(command.substring(7)) - 1);
             task.markNotDone();
-            ui.showMarkAsNotDone(task);
+            return ui.getMarkAsNotDone(task);
         } else if (command.matches("^delete \\d+$")) {
             Task task = taskList.remove(Integer.parseInt(command.substring(7)) - 1);
-            ui.showTaskRemoved(task, taskList.size());
+            return ui.getTaskRemoved(task, taskList.size());
         }else if (command.matches("^find \\w+$")) {
             String keyword = command.substring(5);
-            ui.showTasksFound(taskList.find(keyword));
+            return ui.getTasksFound(taskList.find(keyword));
         } else if (command.equals("bye")) {
-            return true;
+            System.exit(0);
+            return null;
         } else {
             Task task;
             try {
@@ -64,11 +65,10 @@ class Parser {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
                 taskList.add(task);
-                ui.showTaskAdded(task, taskList.size());
+                return ui.getTaskAdded(task, taskList.size());
             } catch (DukeException err) {
-                ui.showDukeException(err);
+                return ui.getDukeException(err);
             }
         }
-        return false;
     }
 }
