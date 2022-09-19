@@ -23,6 +23,8 @@ public class Ui {
 
     /**
      * Show the welcome message to the user.
+     *
+     * @return Welcome message for the user.
      */
     public String showWelcome() {
         return "Eh what you want? \nYou need help just say";
@@ -30,6 +32,8 @@ public class Ui {
 
     /**
      * Show the list of commands available.
+     *
+     * @return String containing all the commands available.
      */
     public String showCommands() {
         return "Eh I can do these things la trust me I'm a woman in STEM"
@@ -48,6 +52,7 @@ public class Ui {
      *
      * @param tasks List of tasks stored.
      * @param task Task added.
+     * @return String showing successful addition of Todo task.
      */
     public String showAddTodo(TaskList tasks, Task task) {
         return "Eh remember to do this ah:\n" + task.getDescription()
@@ -59,6 +64,7 @@ public class Ui {
      *
      * @param tasks List of tasks stored.
      * @param task Task added.
+     * @return String showing successful addition of Deadline task.
      */
     public String showAddDeadline(TaskList tasks, Task task) {
         return "Eh this one due soon stop wasting time go do now:\n" + task.getDescription()
@@ -70,6 +76,7 @@ public class Ui {
      *
      * @param tasks List of tasks stored.
      * @param task Task added.
+     * @return String showing successful addition of Event task.
      */
     public String showAddEvent(TaskList tasks, Task task) {
         return "Oi remember to attend this ah:\n" + task.getDescription()
@@ -78,6 +85,8 @@ public class Ui {
 
     /**
      * Shows the user the farewell message and ends the chatbot.
+     *
+     * @return Farewell message to the user.
      */
     public String showBye() {
         sc.close();
@@ -88,7 +97,7 @@ public class Ui {
      * Shows the user an error.
      *
      * @param e An error to be shown.
-     * @return
+     * @return The error message in string format.
      */
     public String showError(DorisException e) {
         return e.toString();
@@ -99,6 +108,7 @@ public class Ui {
      *
      * @param tasks List of tasks.
      * @param task Task that was removed from the task list.
+     * @return String showing successful deletion of a task.
      */
     public String showDeleted(TaskList tasks, Task task) {
         return "Eh you don't want do this just say la:\n" + task.getDescription()
@@ -109,6 +119,7 @@ public class Ui {
      * Shows the user a list of task to be done.
      *
      * @param tasks The task list storing the list of tasks to be done.
+     * @return A string containing all the tasks in the task list.
      */
     public String showList(TaskList tasks) {
         return "Eh faster go do these:\n" + tasks.list();
@@ -118,6 +129,7 @@ public class Ui {
      * Shows the user a confirmation that a task is marked as done.
      *
      * @param task Task to be marked as done.
+     * @return String showing successful marking of a task as done.
      */
 
     public String showMark(Task task) {
@@ -128,6 +140,7 @@ public class Ui {
      * Shows the user a confirmation that a task is marked as not done.
      *
      * @param task Task to be marked as not done.
+     * @return String showing successful marking of a task as done.
      */
     public String showUnmark(Task task) {
         return "Eh don't laze leh go do go do " + task.getDescription();
@@ -146,6 +159,7 @@ public class Ui {
      * Shows the user a list of tasks that match their query.
      *
      * @param tasks The list of tasks that match the query.
+     * @return String containing list of all tasks that match the query.
      */
     public String showFound(String tasks) {
         if (tasks.equals("")) {
