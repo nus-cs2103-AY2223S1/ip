@@ -41,7 +41,7 @@ public class Storage {
             Task task;
             while (line != null) {
                 //format of savedata lines: [typeSymbol][1 or 0] [desc] [flag] [timing]
-                assert !line.isEmpty(): "Savedata lines must be non-empty";
+                assert !line.isEmpty() : "Savedata lines must be non-empty";
                 words = Arrays.stream(line.split(" ")).toArray(String[]::new);
                 if (line.charAt(0) == 'T') {
                     task = new Todo(Parser.getDescription(words, null));
