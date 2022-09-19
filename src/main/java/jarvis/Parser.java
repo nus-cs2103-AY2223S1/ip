@@ -26,8 +26,8 @@ public class Parser {
     private static final String FIND_NO_KEYWORD = "OOPS!!! Please enter a keyword for searching.";
     private static final String INVALID_COMMAND_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String HELP_MESSAGE = "[Jarvis Command Summary]:\n"
-            + "todo {description}\nevent {name} /at {startTime}(~{endTime})(optional)\n"
-            + "deadline {description} /by {date and time}\n(Date and time format: yyyy-mm-dd hh-mm)\n"
+            + "todo {description}\n\nevent {name} /at {startTime}(~{endTime})(optional)\n\n"
+            + "deadline {description} /by {date and time}\n\n(Date and time format: yyyy-mm-dd hh-mm)\n\n"
             + "list\nmark/unmark {index}\ndelete {index}";
 
     private boolean isBye = false;
