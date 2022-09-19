@@ -1,4 +1,4 @@
-package jarvis.GUI;
+package jarvis.gui;
 
 import jarvis.Jarvis;
 import jarvis.Parser;

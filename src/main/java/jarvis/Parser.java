@@ -167,30 +167,30 @@ public class Parser {
         return input.equals("list");
     }
     private static boolean equalsFind(String input) {
-        return input.length() > 4 && input.substring(0,4).equals("find");
+        return input.length() > 4 && input.substring(0, 4).equals("find");
     }
 
     private static boolean equalsMark(String input) {
-        return input.length() > 4 && input.substring(0,4).equals("mark");
+        return input.length() > 4 && input.substring(0, 4).equals("mark");
     }
 
     private static boolean equalsUnmark(String input) {
-        return input.length() > 6 && input.substring(0,6).equals("unmark");
+        return input.length() > 6 && input.substring(0, 6).equals("unmark");
     }
 
     private static boolean equalsDelete(String input) {
-        return input.length() > 6 && input.substring(0,6).equals("delete");
+        return input.length() > 6 && input.substring(0, 6).equals("delete");
     }
 
     private static boolean equalsToDo(String input) {
-        return input.length() > 3 && input.substring(0,4).equals("todo");
+        return input.length() > 3 && input.substring(0, 4).equals("todo");
     }
 
     private static boolean equalsDeadline(String input) {
-        return input.length() > 8 && input.substring(0,8).equals("deadline");
+        return input.length() > 8 && input.substring(0, 8).equals("deadline");
     }
 
     private static boolean equalsEvent(String input) {
-        return input.length() > 7 && input.substring(0,5).equals("event");
+        return input.length() > 7 && input.substring(0, 5).equals("event");
     }
 }
