@@ -5,6 +5,7 @@ to keep track of your tasks!
 With Bobby, you will never forget another task again!
 
 ![This is a screenshot of the UI](https://github.com/ruihan00/ip/blob/master/docs/Ui.png?raw=true)
+<br/>
 
 ##Table of contents
 1. [Quick start](#quick-start-using-intellij)
