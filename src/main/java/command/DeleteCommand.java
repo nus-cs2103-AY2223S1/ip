@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructs a delete command to remove a task from a list.
      *
-     * @param num Index of task in the task list.
+     * @param index Index of task in the task list.
      */
     public DeleteCommand(int index) {
         this.index = index - 1;

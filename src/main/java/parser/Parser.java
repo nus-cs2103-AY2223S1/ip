@@ -4,6 +4,7 @@ import command.AddCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.ExitCommand;
+import command.FindCommand;
 import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
@@ -33,7 +34,7 @@ public class Parser {
      *
      * @param command Command to be parsed.
      * @return A command to be executed.
-     * @throws DorisException
+     * @throws DorisException If the command does not match the syntax.
      */
     public static Command parse(String command) throws DorisException {
         String[] commands = command.split(" ", 2);
@@ -68,6 +69,8 @@ public class Parser {
             return new UnmarkCommand(parseNum(commands[1]));
         case "help":
             return new HelpCommand();
+        case "find":
+            return new FindCommand(commands[1]);
         default:
             throw new DorisException("Eh what are you talking can speak properly or not");
         }
@@ -79,7 +82,7 @@ public class Parser {
      *
      * @param task Line from the text file to be parsed.
      * @return A Task instance.
-     * @throws DorisException
+     * @throws DorisException If there is an issue with reading the file.
      */
     public static Task parseSaved(String task) throws DorisException {
         String[] commands = task.split(" \\| ");
@@ -102,7 +105,7 @@ public class Parser {
      *
      * @param numString String to be converted into an integer.
      * @return The integer represented by the string.
-     * @throws DorisException
+     * @throws DorisException If the index is out of range or it is not a number.
      */
     public static int parseNum(String numString) throws DorisException {
         int num;
@@ -124,7 +127,7 @@ public class Parser {
      * @param dateTime String to be converted into a LocalDateTime instance.
      * @param DF DateTimeFormat used to check.
      * @return A LocalDateTime instance in the format specified by DF.
-     * @throws DorisException
+     * @throws DorisException If the date format is wrong.
      */
     public static LocalDateTime parseDateTime(String dateTime, DateTimeFormatter DF) throws DorisException {
         try {

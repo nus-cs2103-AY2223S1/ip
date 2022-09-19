@@ -34,7 +34,7 @@ public class Storage {
      * If the local file does not exist, create it.
      *
      * @return The task list storing the list of tasks.
-     * @throws DorisException
+     * @throws DorisException If there is an issue loading the file.
      */
     public ArrayList<Task> load() throws DorisException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -58,7 +58,7 @@ public class Storage {
      * Writes the task list to the local file.
      *
      * @param tasks The task list to be saved to the local file.
-     * @throws DorisException
+     * @throws DorisException If there is an issue saving the file.
      */
     public void save(TaskList tasks) throws DorisException {
         try {
