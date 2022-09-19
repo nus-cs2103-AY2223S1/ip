@@ -1,7 +1,9 @@
 # Ah Duke User Guide
 
 Welcome to Ah Duke, the Singaporean Task Managing Bot!
-To start download the jar file and run the AhDukeApp.
+To start,
+1. Download the jar file
+2. Run the AhDukeApp by opening your command line interface and typing `java -jar` AhDuke.jar or its location.
 
 ## Adding tasks:
 
