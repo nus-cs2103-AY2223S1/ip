@@ -14,11 +14,13 @@ public class Event extends Task {
 
     public Event(String description, LocalDateTime at) {
         super(description, SHORTHAND);
+        assert at != null: "Timing for Events cannot be null";
         this.at = at;
     }
 
     Event(String description, String at) {
         super(description, SHORTHAND);
+        assert at != null: "Timing for Events cannot be null";
         this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
     }
 
