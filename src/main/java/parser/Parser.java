@@ -16,37 +16,37 @@ public class Parser {
         String[] commands = command.split(" ", 2);
         DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         switch (commands[0]) {
-            case "todo":
-                if (command.length() <= 5) {
-                    throw new DorisException("Oi don't anyhow type must enter a task to do leh");
-                }
-                return new AddCommand(commands[1]);
-            case "deadline":
-                if (command.length() <= 9) {
-                    throw new DorisException("Oi don't anyhow type must enter a task to do leh");
-                }
-                String[] description = commands[1].split(" /by ");
-                return new AddCommand("deadline", description[0], parseDateTime(description[1], DF));
-            case "event":
-                if (command.length() <= 6) {
-                    throw new DorisException("Oi don't anyhow type must enter a task to do leh");
-                }
-                description = commands[1].split(" /at ");
-                return new AddCommand("event", description[0], parseDateTime(description[1], DF));
-            case "list":
-                return new ListCommand();
-            case "bye":
-                return new ExitCommand();
-            case "delete":
-                return new DeleteCommand(parseNum(commands[1]));
-            case "mark":
-                return new MarkCommand(parseNum(commands[1]));
-            case "unmark":
-                return new UnmarkCommand(parseNum(commands[1]));
-            case "help":
-                return new HelpCommand();
-            default:
-                throw new DorisException("Eh what are you talking can speak properly or not");
+        case "todo":
+            if (command.length() <= 5) {
+                throw new DorisException("Oi don't anyhow type must enter a task to do leh");
+            }
+            return new AddCommand(commands[1]);
+        case "deadline":
+            if (command.length() <= 9) {
+                throw new DorisException("Oi don't anyhow type must enter a task to do leh");
+            }
+            String[] description = commands[1].split(" /by ");
+            return new AddCommand("deadline", description[0], parseDateTime(description[1], DF));
+        case "event":
+            if (command.length() <= 6) {
+                throw new DorisException("Oi don't anyhow type must enter a task to do leh");
+            }
+            description = commands[1].split(" /at ");
+            return new AddCommand("event", description[0], parseDateTime(description[1], DF));
+        case "list":
+            return new ListCommand();
+        case "bye":
+            return new ExitCommand();
+        case "delete":
+            return new DeleteCommand(parseNum(commands[1]));
+        case "mark":
+            return new MarkCommand(parseNum(commands[1]));
+        case "unmark":
+            return new UnmarkCommand(parseNum(commands[1]));
+        case "help":
+            return new HelpCommand();
+        default:
+            throw new DorisException("Eh what are you talking can speak properly or not");
         }
     }
 
