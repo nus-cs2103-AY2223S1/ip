@@ -2,6 +2,7 @@
 **Neo** is a _GUI based application_ for managing all your tasks!
 
 ## Index
+
 - [GUI](#GUI)
 - [GettingStarted](#GettingStarted)
 - [Features](#Features)
