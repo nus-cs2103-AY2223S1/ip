@@ -28,9 +28,9 @@ public class MainWindow extends AnchorPane {
     private Pony pony;
 
     /** Image of the user avatar */
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/nota.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/girl.png"));
     /** Image of the doemon chat bot avatar */
-    private Image doemonImage = new Image(this.getClass().getResourceAsStream("/images/doemon.png"));
+    private Image ponyImage = new Image(this.getClass().getResourceAsStream("/images/pony.png"));
 
     /**
      * Initializes the main window.
@@ -39,7 +39,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getPonyDialog(Ui.printWelcome(), doemonImage));
+                DialogBox.getPonyDialog(Ui.printWelcome(), ponyImage));
     }
 
     /**
@@ -62,13 +62,17 @@ public class MainWindow extends AnchorPane {
         String output = pony.runCommand(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getPonyDialog(output, doemonImage)
+                DialogBox.getPonyDialog(output, ponyImage)
         );
         userInput.clear();
+        //@@author ciaoosuuu-reused
+        //Reused from https://github.com/KSHan29/ip/blob/master/src/main/java/duke/javafx/MainWindow.java
+        //with minor modifications
         if (input.split(" ")[0].equals("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(2));
             delay.setOnFinished((event) -> Platform.exit());
             delay.play();
         }
+        //@@author
     }
 }

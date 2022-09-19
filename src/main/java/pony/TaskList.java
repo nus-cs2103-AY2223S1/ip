@@ -14,7 +14,7 @@ public class TaskList {
 
     public void addTask(Task task) throws PonyException {
         if (tasks.contains(task)) {
-            throw new PonyException("You have already recorded this task!!");
+            throw new PonyException("My friend, you have already recorded this task!! So forgetful!");
         }
         this.tasks.add(task);
     }
@@ -33,7 +33,7 @@ public class TaskList {
     public Task getTask(int index) throws PonyException {
         // Check if index is valid
         if (index < 0 || index >= sizeOf()) {
-            throw new PonyException("Task index invalid!!");
+            throw new PonyException("My friend, I can't find this task number!!");
         }
         assert index < sizeOf() && index >= 0 : "Task index should be valid";
         return tasks.get(index);

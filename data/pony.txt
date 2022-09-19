@@ -1,4 +1,5 @@
-D | 0 | supernova | 2022-06-23 16:00
-D | 0 | homework | 2022-12-06 18:00
 D | 1 | dinner date | 2022-07-29 17:44
 T | 1 | homework
+T | 0 | homework
+T | 0 | 
+D | 0 | homework | 2022-06-30 18:33
