@@ -1,4 +1,4 @@
-# User Guide to us Duke
+# User Guide to use Duke
 
 ## What is Duke?
 
