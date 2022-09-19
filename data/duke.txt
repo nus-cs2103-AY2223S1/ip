@@ -1,0 +1,3 @@
+todo,buy milk
+deadline,homework  /by Oct 10 2022
+event,meeting  /at Sep 20 2022
