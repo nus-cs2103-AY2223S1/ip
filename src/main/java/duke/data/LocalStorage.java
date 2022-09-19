@@ -1,26 +1,27 @@
 package duke.data;
 
-import duke.Duke;
-import duke.exceptions.DukeException;
-import duke.models.*;
-import duke.utils.Interval;
-import duke.utils.IntervalUtil;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static duke.services.Ui.dukePrint;
+import duke.exceptions.DukeException;
+import duke.models.*;
+import duke.utils.Interval;
+import duke.utils.IntervalUtil;
 
+/**
+ * Storage class that loads and writes to local storage ./data/duke.txt
+ */
 public class LocalStorage {
     private static final String DIR_PATH = "./data";
     private static final String FILE_PATH = "./data/duke.txt";
-    private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(D|W|M| )\\]\\[(X| )\\] (.*?)(?: \\(.*: (.*)\\))?$");
+    private static final Pattern TASK_REGEX = Pattern.compile(
+            "^\\[(T|D|E)\\]\\[(D|W|M| )\\]\\[(X| )\\] (.*?)(?: \\(.*: (.*)\\))?$");
 
     /**
      * Writes a list of tasks into a .txt file as specified by FILE_PATH.
-     * @param tasklist: The ArrayList of tasks to be written.
+     * @param tasklist The ArrayList of tasks to be written.
      **/
     public void write(ArrayList<Task> tasklist) {
         try {
@@ -57,7 +58,6 @@ public class LocalStorage {
             BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
             return loadTasks(reader);
         } catch (IOException ex) {
-            dukePrint(String.format("File (%s) not found! Starting from empty ArrayListTask.", FILE_PATH));
             return new TaskList();
         }
     }
@@ -65,15 +65,15 @@ public class LocalStorage {
     /**
      * Loads Tasks from a BufferedReader into a TaskList.
      *
+     * @param reader BufferedReader containing tasks in individual lines.
      * @return TaskList: TaskList generated from the Tasks in the BufferedReader.
-     * @param reader: BufferedReader containing tasks in individual lines.
      **/
     private TaskList loadTasks(BufferedReader reader) throws IOException {
         String line;
         int lineNumber = 1;
         TaskList taskList = new TaskList();
 
-        while((line = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             try {
                 Matcher m = TASK_REGEX.matcher(line);
                 m.find();
@@ -93,6 +93,8 @@ public class LocalStorage {
                     Interval interval = IntervalUtil.getInterval(taskInterval);
                     taskList.add(new Event(taskName, taskDone.equalsIgnoreCase("X"), taskDate, interval));
                     break;
+                default:
+                    throw new DukeException("Unknown Task type parsed from duke.txt");
                 }
                 lineNumber++;
             } catch (IllegalStateException | DukeException ex) {

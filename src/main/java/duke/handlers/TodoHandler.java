@@ -5,16 +5,17 @@ import duke.models.Task;
 import duke.models.TaskList;
 import duke.models.Todo;
 
-import static duke.services.Ui.dukePrint;
-
+/**
+ * A handler class for Todo Commands.
+ */
 public class TodoHandler {
     /**
      * Handles the Todo Duke command.
      * Adds a Todo into the provided list containing description provided in input.
      *
+     * @param list TaskList to add a todo in.
+     * @param input Todo Description.
      * @return Response of the executed Todo Command.
-     * @param list: TaskList to add a todo in.
-     * @param input: Todo Description.
      **/
     public static String getResponse(TaskList list, String input) throws DukeException {
         if (input.length() == 0) {

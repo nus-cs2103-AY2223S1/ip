@@ -1,24 +1,26 @@
 package duke.handlers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.exceptions.DukeException;
 import duke.models.*;
 import duke.utils.Interval;
 import duke.utils.IntervalUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/**
+ * A handler class for Event commands.
+ */
 public class EventHandler {
-
     private static final Pattern RECURRING_EVENT = Pattern.compile("^(.+?(?=\\/at))\\/at(.+?(?=\\/r))\\/r(.+)");
 
     /**
      * Handles the EVENT Duke command.
      * Adds an Event into the provided list containing description and at date provided in input.
      *
+     * @param list TaskList to add the Event in.
+     * @param input Event description and date.
      * @return Response of the executed EVENT Command.
-     * @param list: TaskList to add the Event in.
-     * @param input: Event description and date.
      **/
     public static String getResponse(TaskList list, String input) throws DukeException {
         if (input.contains("/r")) {
@@ -31,9 +33,9 @@ public class EventHandler {
     /**
      * Creates a non-recurring event from user input.
      *
+     * @param list TaskList to add the Event in.
+     * @param input Event description and date.
      * @return Response of non-recurring event.
-     * @param list: TaskList to add the Event in.
-     * @param input: Event description and date.
      **/
     public static String createNonRecurringEvent(TaskList list, String input) throws DukeException {
         String[] eventInputs = input.split(" /at ", 2);
@@ -49,9 +51,9 @@ public class EventHandler {
     /**
      * Creates a recurring event from user input.
      *
+     * @param list TaskList to add the Event in.
+     * @param input Event description and date.
      * @return Response of recurring event.
-     * @param list: TaskList to add the Event in.
-     * @param input: Event description and date.
      **/
     public static String createRecurringEvent(TaskList list, String input) throws DukeException {
         System.out.println(input);

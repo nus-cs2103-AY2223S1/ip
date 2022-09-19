@@ -1,28 +1,28 @@
 package duke.handlers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.exceptions.DukeException;
-import duke.models.Deadline;
 import duke.models.Deadline;
 import duke.models.Task;
 import duke.models.TaskList;
 import duke.utils.Interval;
 import duke.utils.IntervalUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static duke.services.Ui.dukePrint;
-
+/**
+ * A handler class for Deadline commands.
+ */
 public class DeadlineHandler {
     private static final Pattern RECURRING_DEADLINE = Pattern.compile("^(.+?(?=\\/by))\\/by(.+?(?=\\/r))\\/r(.+)");
 
     /**
      * Handles the DEADLINE Duke command.
-     * Adds an Deadline into the provided list containing description and at date provided in input.
+     * Adds a Deadline into the provided list containing description and at date provided in input.
      *
+     * @param list TaskList to add the Deadline in.
+     * @param input Deadline description and date.
      * @return Response of the executed Deadline Command.
-     * @param list: TaskList to add the Deadline in.
-     * @param input: Deadline description and date.
      **/
     public static String getResponse(TaskList list, String input) throws DukeException {
         if (input.contains("/r")) {
@@ -35,9 +35,9 @@ public class DeadlineHandler {
     /**
      * Creates a non-recurring Deadline from user input.
      *
+     * @param list TaskList to add the Deadline in.
+     * @param input Deadline description and date.
      * @return Response of non-recurring Deadline.
-     * @param list: TaskList to add the Deadline in.
-     * @param input: Deadline description and date.
      **/
     public static String createNonRecurringDeadline(TaskList list, String input) throws DukeException {
         String[] deadlineInputs = input.split(" /by ", 2);
@@ -53,9 +53,9 @@ public class DeadlineHandler {
     /**
      * Creates a recurring Deadline from user input.
      *
+     * @param list TaskList to add the Deadline in.
+     * @param input Deadline description and date.
      * @return Response of recurring Deadline.
-     * @param list: TaskList to add the Deadline in.
-     * @param input: Deadline description and date.
      **/
     public static String createRecurringDeadline(TaskList list, String input) throws DukeException {
         System.out.println(input);
@@ -63,11 +63,11 @@ public class DeadlineHandler {
         if (m.find()) {
             String deadlineDescription = m.group(1).trim();
             System.out.println(deadlineDescription);
-            String DeadlineDate = m.group(2).trim();
-            Interval DeadlineInterval = IntervalUtil.getInterval(m.group(3).trim());
-            Task newTask = new Deadline(deadlineDescription, false, DeadlineDate, DeadlineInterval);
+            String deadlineDate = m.group(2).trim();
+            Interval deadlineInterval = IntervalUtil.getInterval(m.group(3).trim());
+            Task newTask = new Deadline(deadlineDescription, false, deadlineDate, deadlineInterval);
             list.add(newTask);
-            return (String.format("Recurring Deadline every %s added!", DeadlineInterval.toString()));
+            return (String.format("Recurring Deadline every %s added!", deadlineInterval.toString()));
         } else {
             return ("No match with Deadline format, please try again.");
         }

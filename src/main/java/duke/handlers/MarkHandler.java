@@ -6,14 +6,17 @@ import duke.models.Task;
 import duke.models.TaskList;
 import duke.utils.Interval;
 
+/**
+ * A handler class for Mark Commands.
+ */
 public class MarkHandler {
     /**
      * Handles the MARK Duke command.
      * Marks a Task as done from the provided list based on position index provided in input.
      *
+     * @param list TaskList containing the Tasks to mark.
+     * @param input Task number to mark as done, in String format.
      * @return Response of the executed MARK Command.
-     * @param list: TaskList containing the Tasks to mark.
-     * @param input: Task number to mark as done, in String format.
      **/
     public static String getResponse(TaskList list, String input) {
         int taskNum = Integer.parseInt(input) - 1;
@@ -32,10 +35,21 @@ public class MarkHandler {
         }
     }
 
+    /**
+     * Marks a non-recurring Task as complete.
+     *
+     * @param task Task to be marked complete.
+     */
     public static void markNonRecurringTask(Task task) {
         task.markAsDone();
     }
 
+    /**
+     * Marks a recurring Task as complete, and adds subsequent recurring Task.
+     *
+     * @param list TaskList to add the next recurring task to.
+     * @param task Recurring task to marked complete.
+     */
     public static void markRecurringTask(TaskList list, Task task) {
         String description = task.getDescription();
         Interval interval = task.getInterval();

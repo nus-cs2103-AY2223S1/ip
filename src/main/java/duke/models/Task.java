@@ -2,22 +2,43 @@ package duke.models;
 
 import duke.utils.Interval;
 
+/**
+ * A class representing a Task.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
     protected boolean isRecurring = false;
     protected Interval recurringInterval = Interval.None;
 
+    /**
+     * Task Constructor.
+     *
+     * @param description Task description.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Task Constructor.
+     *
+     * @param description Task description.
+     * @param isDone Completion status.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
 
+    /**
+     * Task Constructor.
+     *
+     * @param description Task description.
+     * @param isDone Completion status.
+     * @param interval Interval at which the task recurs.
+     */
     public Task(String description, boolean isDone, Interval interval) {
         this.description = description;
         this.isDone = isDone;

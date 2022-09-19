@@ -1,29 +1,22 @@
 package duke;
 
-import duke.exceptions.DukeException;
 import duke.data.LocalStorage;
+import duke.exceptions.DukeException;
 import duke.handlers.*;
 import duke.models.*;
 import duke.services.Parser;
 import duke.utils.Commands;
-
-import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import java.util.Scanner;
-import static duke.services.Ui.dukePrint;
 
-public class Duke{
+/**
+ * Main class that encompasses Duke's control flow.
+ */
+public class Duke {
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -50,8 +43,8 @@ public class Duke{
     /**
      * Gets the next Response for the current Duke instance.
      *
+     * @param input User input for Duke.
      * @return Duke's next response.
-     * @param input: User input for Duke.
      */
     public String getResponse(String input) {
         list = storage.load();

@@ -3,16 +3,17 @@ package duke.handlers;
 import duke.models.Task;
 import duke.models.TaskList;
 
-import static duke.services.Ui.dukePrint;
-
+/**
+ * A handler class for Unmark Commands.
+ */
 public class UnmarkHandler {
     /**
      * Handles the UNMARK Duke command.
      * Unmarks a Task as done from the provided list based on position index provided in input.
      *
+     * @param list TaskList containing the Tasks to unmark.
+     * @param input Task number to unmark as done, in String format.
      * @return Response of the executed UNMARK Command.
-     * @param list: TaskList containing the Tasks to unmark.
-     * @param input: Task number to unmark as done, in String format.
      **/
     public static String getResponse(TaskList list, String input) {
         int taskNum = Integer.parseInt(input) - 1;

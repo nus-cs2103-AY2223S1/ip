@@ -1,7 +1,9 @@
 package duke.models;
 
+/**
+ * A class representing a Todo task.
+ */
 public class Todo extends Task {
-
     public Todo(String description) {
         super(description);
     }
