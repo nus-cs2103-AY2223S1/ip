@@ -47,25 +47,6 @@ Returns list of tasks.
 ...
 ```
 
-### `list` - List Tasks
-
-Lists all the tasks in your task list.
-
-Example of usage:
-
-`list`
-
-Expected outcome:
-
-Returns list of tasks. The first label corresponds to the type of task (E for Event, D for Deadline, T for Todo) 
-and the second indicates if the task is done (X for done).
-
-```
-1.[E][] cs2101 team meeting (Sep 20 2022 19:00)
-2.[T][X] clean room
-...
-```
-
 ### `todo` - Add Todo
 
 Adds a new Todo task into the task list.
