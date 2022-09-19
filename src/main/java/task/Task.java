@@ -16,6 +16,7 @@ import java.util.Arrays;
     private final String shorthand;
 
     Task(String description, String shorthand) {
+        assert description != null: "Description for task cannot be null";
         this.description = description;
         this.shorthand = shorthand;
     }
@@ -54,6 +55,7 @@ import java.util.Arrays;
      * @return The String that represents the Task to be printed.
      */
     public boolean hasKeyword(String keyword) {
+        assert keyword != null: "Keyword to search cannot be null";
         String[] words = getUniqueKeywords();
         return Arrays.asList(words).contains(keyword);
     }

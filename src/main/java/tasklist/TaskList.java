@@ -17,6 +17,7 @@ public class TaskList {
     }
 
     public TaskList(List<Task> taskList) {
+        assert taskList != null: "taskList cannot be null";
         this.taskList = taskList;
     }
 
@@ -45,6 +46,7 @@ public class TaskList {
             throw DukeException.IndexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
+        assert task != null: "Task to be marked cannot be null";
         task.markAsDone();
         return task;
     }
@@ -60,6 +62,7 @@ public class TaskList {
             throw DukeException.IndexOutOfBoundsException(index);
         }
         Task task = taskList.get(index);
+        assert task != null: "Task to be unmarked cannot be null";
         task.markAsUndone();
         return task;
     }
@@ -70,11 +73,13 @@ public class TaskList {
      * @return The Task that has been deleted.
      * @throws DukeException If the index provided is < 0 or greater than the size of the TaskList.
      */
-    public Task deleteTask(int index) throws DukeException{
+    public Task deleteTask(int index) throws DukeException {
         if (index < 0 || index >= taskList.size()) {
             throw DukeException.IndexOutOfBoundsException(index);
         }
-        return taskList.remove(index);
+        Task task = taskList.remove(index);
+        assert task != null: "Task that is removed cannot be null";
+        return task;
     }
 
     /**
