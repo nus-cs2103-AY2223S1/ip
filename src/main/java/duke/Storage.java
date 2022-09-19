@@ -1,7 +1,10 @@
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
+package duke;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,9 +24,10 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public static void loadFileData(ArrayList<Task> tasks) throws DukeException {
+    public TaskList loadFileData() throws DukeException {
+        TaskList tasks = new TaskList();
         try {
-            File file = new File("data/duke.txt");
+            File file = new File(this.filePath);
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String[] split = sc.nextLine().split("##");
@@ -55,10 +59,11 @@ public class Storage {
         } catch (DateTimeParseException e) {
             throw new DukeException("Unable to parse dates in file.");
         }
+        return tasks;
     }
 
 
-    public static void saveFileData(ArrayList<Task> tasks) throws DukeException {
+    public void saveFileData(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter("data/duke.txt");
             for (Task task : tasks) {

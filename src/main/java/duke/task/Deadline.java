@@ -1,4 +1,4 @@
-package task;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private final LocalDate by;
 
+
     /**
      * Constructor for a deadline that takes in the task description and the deadline
      * @param description the specifics of the task
@@ -17,6 +18,7 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
+
     }
 
     /**
@@ -34,6 +36,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s(by: %s)", super.toString(), this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+//        return String.format("[D]%s(by: %s)", super.toString(), this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        return String.format("[D]%s(by: %s)", super.toString(),
+                this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
     }
 }
