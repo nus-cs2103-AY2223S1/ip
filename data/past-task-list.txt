@@ -1,2 +1,3 @@
-T;X;thank Asher; 
-D; ;iP;2022-09-19
+T; ;thank Asher; 
+D;X;iP;2022-09-19
+T; ;clean toilet; 
