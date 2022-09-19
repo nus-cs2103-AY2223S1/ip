@@ -100,10 +100,21 @@ class Duke extends Chatbot {
                 } catch (DukeException ex) {
                     Ui.echo("Incorrect use of " + Parser.getNonexactKeyword(action));
                 }
+            } else if (Parser.containsFindKeyword(action)) {
+                duke.listMatchingTasks(action);
             } else {
                 Ui.echo("I can't understand. Please enter a proper command, friend!");
             }
         }
+    }
+
+    /**
+     * List matching tasks according to user search.
+     *
+     * @param userInput the user input.
+     */
+    public void listMatchingTasks(String userInput) {
+        this.tasks.printMatchingTasks(Parser.getTermTofind(userInput));
     }
 
     /**

@@ -9,6 +9,20 @@ import java.util.LinkedList;
 class TaskList extends LinkedList {
     private LinkedList<Task> tasks = new LinkedList<>();
 
+    public void printMatchingTasks(String termTofind) {
+        System.out.println("The following matching tasks are found:");
+
+        this.tasks.forEach(
+                task -> {
+                    if (task.getDescription().contains(termTofind)) {
+                        System.out.println(String.format("%d.%s",
+                                tasks.indexOf(task) + 1,
+                                task.printTask()));
+                    }
+                }
+        );
+    }
+
     /**
      * Retrieves the size of the TaskList.
      *

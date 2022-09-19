@@ -15,6 +15,7 @@ class Parser {
     public static final String TASK_KEYWORD_DEADLINE = "deadline ";
     public static final String TASK_KEYWORD_EVENT = "event ";
     public static final String MARK_KEYWORD_DELETE = "delete ";
+    public static final String FIND_KEYWORD = "find ";
     private static final LinkedList<String> listOfExactKeywords = new LinkedList<>(
             List.of(Parser.EXACT_KEYWORD_BYE,
                     Parser.EXACT_KEYWORD_LIST)
@@ -71,6 +72,26 @@ class Parser {
     }
 
     /**
+     * Gets the term the user is finding with the find keyword.
+     *
+     * @param userInput the user input.
+     * @return the term to find.
+     */
+    public static String getTermTofind(String userInput) {
+        return userInput.substring(5);
+    }
+
+    /**
+     * Gets whether the keyword find is present.
+     *
+     * @param userInput the user input.
+     * @return true if the keyword find is present, false otherwise.
+     */
+    public static boolean containsFindKeyword(String userInput) {
+        return userInput.startsWith(Parser.FIND_KEYWORD);
+    }
+
+    /**
      * Gets the nonexact keyword present in the user input.
      *
      * @param userInput the user input.
@@ -91,6 +112,8 @@ class Parser {
             nonexactKeyword = Parser.TASK_KEYWORD_DEADLINE;
         } else if (userInput.startsWith(Parser.TASK_KEYWORD_EVENT)) {
             nonexactKeyword = Parser.TASK_KEYWORD_EVENT;
+        } else if (userInput.startsWith(Parser.FIND_KEYWORD)) {
+            nonexactKeyword = Parser.FIND_KEYWORD;
         }
 
         return nonexactKeyword;

@@ -1,4 +1,4 @@
 [T][X] have a drink
 [E][X] wake up (at: Oct 28 2022)
-[D][ ] cs2103 (by: Sep 19 2022)
+[D][X] cs2103 (by: Sep 19 2022)
 [D][ ] cs2103 ip (by: Sep 19 2022)
