@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     private Boolean isDone;
     private final String description;
@@ -48,12 +51,24 @@ public class Task {
             case 'D':
                 String deadlineStr = dataStr.substring(0, dataStr.length() - 1);
                 deadlineStr = deadlineStr.replace("(by:", "/by");
-                task = (T) new Deadline(String.format("%s%s",KeywordChecker.TASK_KEYWORD_DEADLINE, deadlineStr));
+                String frontStr = deadlineStr.split(Deadline.DELIMITER)[0];
+                String dateStr = deadlineStr.split(Deadline.DELIMITER)[1];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                LocalDate date = LocalDate.parse(dateStr, formatter);
+                dateStr = date.toString();
+                String fullStr = frontStr + Deadline.DELIMITER + dateStr;
+                task = (T) new Deadline(String.format("%s%s", KeywordChecker.TASK_KEYWORD_DEADLINE, fullStr));
                 break;
             case 'E':
                 String eventStr = dataStr.substring(0, dataStr.length() - 1);
                 eventStr = eventStr.replace("(at:", "/at");
-                task = (T) new Event(String.format("%s%s", KeywordChecker.TASK_KEYWORD_EVENT, eventStr));
+                String frontStrE = eventStr.split(Event.DELIMITER)[0];
+                String dateStrE = eventStr.split(Event.DELIMITER)[1];
+                DateTimeFormatter formatterE = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                LocalDate dateE = LocalDate.parse(dateStrE, formatterE);
+                dateStrE = dateE.toString();
+                String fullStrE = frontStrE + Event.DELIMITER + dateStrE;
+                task = (T) new Event(String.format("%s%s", KeywordChecker.TASK_KEYWORD_EVENT, fullStrE));
                 break;
         }
 
