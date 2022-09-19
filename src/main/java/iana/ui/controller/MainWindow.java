@@ -1,6 +1,7 @@
 package iana.ui.controller;
 
 import iana.Iana;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -50,11 +51,15 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = iana.getResponse(input);
+        boolean isExitCommand = iana.isExitCommand(input);
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),
             DialogBox.getIanaDialog(response, ianaImage)
         );
         userInput.clear();
+        if (isExitCommand) {
+            Platform.exit();
+        }
     }
 
     /**
