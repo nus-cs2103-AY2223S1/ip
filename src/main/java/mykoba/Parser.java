@@ -37,10 +37,13 @@ public class Parser {
 
         switch (command) {
         case "bye":
+            checkEmptyDescription(description);
             return new ExitCommand();
         case "list":
+            checkEmptyDescription(description);
             return new ListCommand();
         case "help":
+            checkEmptyDescription(description);
             return new HelpCommand();
         case "mark":
             return getMarkCommand(description);
@@ -107,5 +110,11 @@ public class Parser {
             throw new KobaException("The date cannot be empty!");
         }
         return new AddCommand(new Event(task, false, date));
+    }
+
+    private static void checkEmptyDescription(String description) throws KobaException {
+        if (!description.equals("")) {
+            throw new KobaException("Do not add additional words after the command!");
+        }
     }
 }

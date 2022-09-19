@@ -19,7 +19,7 @@ import task.ToDo;
 public class Storage {
     //this is the physical file saving the items
     private File storageFile;
-    private final String FILE_NAME = "./src/main/data/storage.txt";
+    private final String FILE_NAME = "data/storage.txt";
 
     /**
      * Constructs a storage object.
@@ -91,8 +91,10 @@ public class Storage {
 
     private File createSaveFile() throws IOException {
         File newFile = new File(FILE_NAME);
-        boolean success = newFile.createNewFile();
-        assert success == true;
+        File parentFile = newFile.getParentFile();
+        parentFile.mkdirs();
+        boolean isCreated = newFile.createNewFile();
+        assert isCreated == true;
         return newFile;
     }
 }
