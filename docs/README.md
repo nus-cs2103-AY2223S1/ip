@@ -34,11 +34,22 @@ Tasks can be sorted chronologically or alphabetically in an ascending or descend
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo buy gift`.
 
+  * Parameters in square brackets are optional.
+    e.g. `sort [SORT_TYPE] [SORT_ORDER]` can be used as `sort`, `sort time` or `sort time /d`.
+
 * When the parameter is `DATE` or `TIME`, it should be inputted as follows:<br>
     * `DATE` - Date in day-month-year format, e.g. `19-10-2022`
     * `TIME` - Time in 24hr format, e.g. `2359`
 
 * `TASK_NUMBER` refers to the index of the task as given by the `list` command.
+
+* `SORT_TYPE` can be either:
+  * `a`, `alphabet`, or `alphabetically` to sort by description alphabetically
+  * `t`, `time`, `chronologically`, or any other string to sort by time chronologically.
+
+* `SORT_ORDER` can be either:
+  * `/d` to sort in descending order
+  * `/a` or any other string to sort in ascending order
 
 ### `todo` - Adding a todo task
 
