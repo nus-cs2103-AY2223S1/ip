@@ -37,7 +37,7 @@ public class Duke  {
         help.createNewFile();
 
         if(log.exists()==false){
-            //System.out.println("We had to make a new file.");
+            //System.out.println("We had to make a new file."-Remove for now);
             log.createNewFile();
         }
 
