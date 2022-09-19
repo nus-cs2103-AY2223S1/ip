@@ -30,12 +30,27 @@ Example of usage:
 
 Expected outcome:
 
+```
 1. \[T\]\[ \] Take out trash
 1. \[D\]\[ \] Make a user guide for the iP for CS2103T (by 2022/9/4 at
-15:16:17)
+   15:16:17)
 1. \[E\]\[X\] The entire year of 2023 (from 2023/1/1 at 00:00:00 to 2023/12/31
-at 23:59:59)
+   at 23:59:59)
+```
+
+
+### `sort` - Sorts and lists your tasks
+
+The command will simply sort and list all your tasks (todos, deadlines, and events).
+
+Example of usage:
+
+`sort`
+
+Expected outcome:
 
 ```
-expected output
+1. \[T\]\[ \] Take out trash
+2. \[D\]\[ \] Make a user guide for the iP for CS2103T (by 2022/9/4 at 15:16:17)
+3. \[E\]\[X\] The entire year of 2023 (from 2023/1/1 at 00:00:00 to 2023/12/31 at 23:59:59)
 ```
