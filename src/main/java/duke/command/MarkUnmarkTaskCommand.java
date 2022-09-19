@@ -28,7 +28,9 @@ public class MarkUnmarkTaskCommand extends Command {
         } catch (DukeException e) {
             e.printStackTrace();
         }
-        String response = isDone ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
+        String response = isDone
+                ? "Nice! I've marked this task as done:"
+                : "OK, I've marked this task as not done yet:";
         return String.format("%s\n %s", response, tasks.get(index));
     }
 }
