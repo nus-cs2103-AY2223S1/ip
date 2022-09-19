@@ -21,6 +21,10 @@ public class ListCommand extends Command{
         this.tasks = tasks;
     }
 
+    /**
+     * Executes the command.
+     * @return The string representation of the result of the command.
+     */
     @Override
     public String execute() {
         return this.tasks.toString();

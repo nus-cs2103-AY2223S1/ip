@@ -18,6 +18,8 @@ public class Parser {
 
     public static Command dispatch(String command, String args, TaskList tasks) throws DaveException {
         switch (command) {
+        case "hi":
+            return new GreetCommand();
         case "bye":
             return new EndCommand(tasks, args);
         case "list":
@@ -36,8 +38,12 @@ public class Parser {
             return new RemoveTaskCommand(tasks, args);
         case "find":
             return new FindTasksCommand(tasks, args);
+        case "archive":
+            return new ArchiveCommand(tasks, args);
+        case "load":
+            return new LoadCommand(tasks, args);
         default:
-            throw new DaveException("(｡╯︵╰｡) OOPS!!! I'm sowwy, but I don't know what that means ｡･ﾟﾟ*(>д<)*ﾟﾟ･｡");
+            throw new DaveException("I'm sowwy, but I don't know what that means! ;~;");
         }
     }
     public static Pair<String, String> splitInputIntoCommand(String input) {
@@ -55,13 +61,13 @@ public class Parser {
 
     public static Pair<String, LocalDateTime> parseTask(String input) throws DaveException {
         if (input.equals("")) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");
+            throw new DaveException("Oh no!!! The description of an event cannot be empty!");
         }
         String[] args = input.split("/at |/by ");
         if (args.length > 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Too many timings given, Dave's brain is fried!");
+            throw new DaveException("Oh no!!! Too many timings given, Kohaku's brain is fried ;~;");
         } else if (args.length < 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Please provide a timing for the event!");
+            throw new DaveException("Oh no!!! Please provide a timing for the event!");
         }
 
         assert args.length == 2 : "Number of args to a Task command should always be 2";
@@ -77,7 +83,7 @@ public class Parser {
                 dateTime = LocalDateTime.parse(dateStr, dashFormat);
             }
         } catch (DateTimeParseException e) {
-            throw new DaveException("Please input a valid date!");
+            throw new DaveException("Please input a valid date! >~<");
         }
 
         return new Pair<>(task, dateTime);

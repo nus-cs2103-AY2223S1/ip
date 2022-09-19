@@ -14,7 +14,7 @@ public class EndCommand extends Command{
 
     @Override
     public String execute() {
-            return "Bye. Hope to see you again soon!";
+            return "See you soon Akiha-sama!";
     }
 
     @Override
