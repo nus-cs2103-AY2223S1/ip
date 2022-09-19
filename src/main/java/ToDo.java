@@ -10,9 +10,9 @@ class ToDo extends Task {
     }
 
     @Override
-    public String toFileString() {
+    public String fileString() {
 
-        return "T" + super.toFileString();
+        return "T" + super.fileString();
     }
 
     @Override

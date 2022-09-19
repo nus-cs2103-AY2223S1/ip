@@ -6,25 +6,23 @@ class Event extends Task {
 
     private LocalDateTime eventTime;
 
-    Event(String description, String eventTime) {
+    Event(String description, LocalDateTime eventTime) {
 
         super(description, false);
-        this.eventTime = LocalDateTime.parse(eventTime,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.eventTime = eventTime;
     }
 
-    Event(String description, boolean isDone, String eventTime) {
+    Event(String description, boolean isDone, LocalDateTime eventTime) {
 
         super(description, isDone);
-        this.eventTime = LocalDateTime.parse(eventTime,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.eventTime = eventTime;
 
     }
 
     @Override
-    public String toFileString() {
+    public String fileString() {
 
-        return "E" + super.toFileString();
+        return "E" + super.fileString();
     }
 
     @Override

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class DeleteCommand extends Command {
 
     protected int index;
@@ -10,7 +12,11 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         Task task = taskList.deleteTask(index);
-        storage.saveTaskList(taskList);
+        try {
+            storage.saveTaskList(taskList);
+        } catch (IOException e) {
+            System.out.println("Error while saving the text");
+        }
         String text = MESSAGE + "\n\t" + task.toString() +
                 "\n" + taskList.displayNumTasks();
     }

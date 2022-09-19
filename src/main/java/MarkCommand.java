@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class MarkCommand extends Command {
 
     protected int index;
@@ -11,7 +13,11 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markTask(index);
-        storage.saveTaskList(taskList);
+        try {
+            storage.saveTaskList(taskList);
+        } catch (IOException e) {
+            System.out.println("Error while saving the text");
+        }
         String text = MESSAGE + "\n " + taskList.getTaskString(index);
         ui.displayMessage(text);
     }

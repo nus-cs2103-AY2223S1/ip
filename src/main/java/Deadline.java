@@ -4,27 +4,25 @@ import java.time.format.DateTimeFormatter;
 
 class Deadline extends Task {
 
-    private LocalDateTime completeBy;
+    protected LocalDateTime completeBy;
 
-    Deadline(String description, String completeBy) {
+    Deadline(String description, LocalDateTime completeBy) {
         super(description, false);
-        this.completeBy = LocalDateTime.parse(completeBy,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.completeBy = completeBy;
     }
 
-    Deadline(String description, boolean isDone, String completeBy) {
+    Deadline(String description, boolean isDone, LocalDateTime completeBy) {
 
         super(description, isDone);
 
-        this.completeBy = LocalDateTime.parse(completeBy,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.completeBy = completeBy;
 
     }
 
     @Override
-    public String toFileString() {
+    public String fileString() {
 
-        return "D" + super.toFileString();
+        return "D" + super.fileString();
     }
 
     @Override

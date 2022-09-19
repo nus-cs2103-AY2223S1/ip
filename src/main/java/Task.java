@@ -18,13 +18,17 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void done(boolean done) {
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDone(boolean done) {
 
         this.isDone = done;
     }
 
 
-    public String toFileString() {
+    public String fileString() {
 
         return " | " + (this.isDone ? 1 : 0) + " | " +
                 this.description;

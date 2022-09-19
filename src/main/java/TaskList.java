@@ -26,23 +26,39 @@ public class TaskList {
         this.taskList.get(index).setDone(false);
     }
 
-    public void deleteTask(int index) {
-        this.taskList.remove(index);
+    public Task deleteTask(int index) {
+        return this.taskList.remove(index);
     }
 
-    public void printTasks() {
+    public String taskListString() {
+
+        String text = "";
 
         if (this.taskList.size() == 0) {
 
-            System.out.println("You currently have no tasks");
+            return "You currently have no tasks";
         } else {
 
             for (int i = 0; i < this.taskList.size(); i++) {
 
-                System.out.println("\t" + (i + 1) + ". " + this.taskList.get(i));
+                text += "\t" + (i + 1) + ". " +
+                        this.taskList.get(i).toString() + "\n";
             }
         }
+        return text;
+    }
 
+    public String taskListFileString() {
+
+        String text = "";
+        for (Task task : this.taskList) {
+            text += task.fileString();
+        }
+        return text;
+    }
+
+    public String getTaskString(int index) {
+        return this.taskList.get(index).toString();
     }
 
 }

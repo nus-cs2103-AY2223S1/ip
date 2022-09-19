@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Duke {
 
+
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
@@ -25,8 +26,8 @@ public class Duke {
 
 			try {
 				quit = chatBot.executeCommand(sc.nextLine());
-			} catch (ChatBotException e) {
-				chatBot.echo(e.getMessage());
+			} catch (DukeException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 
