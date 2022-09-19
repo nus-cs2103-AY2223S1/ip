@@ -1,5 +1,7 @@
 package technical;
 
+import functional.Task;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -104,5 +106,15 @@ public class SaveFile {
      */
     public static ArrayList<SaveLine> getFileData() {
         return fileData;
+    }
+
+    /**
+     * Forces fileData to follow taskList.
+     */
+    public static void updateFileData() {
+        fileData = new ArrayList<>();
+        for (Task i : TaskList.taskList) {
+            fileData.add(i.toData());
+        }
     }
 }

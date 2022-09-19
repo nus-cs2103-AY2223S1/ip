@@ -12,7 +12,7 @@ import technical.SaveLine;
 public class Deadline extends Task {
     private static final String DEADLINE_INFOTYPE = "deadline";
     private static final String DEADLINE_DEADLINE_LABEL = "deadline";
-    protected LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Construct functional.Task with a fixed name.
@@ -32,8 +32,10 @@ public class Deadline extends Task {
      */
     public Deadline(SaveLine line) {
         super(line);
+        System.out.println(line.getValue(DEADLINE_DEADLINE_LABEL));
         deadline = LocalDateTime
-            .parse(line.getValue(DEADLINE_DEADLINE_LABEL), DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
+            .parse(line.getValue(DEADLINE_DEADLINE_LABEL),
+            DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
     }
 
     /**
@@ -43,7 +45,8 @@ public class Deadline extends Task {
      */
     public String toString() {
         return String.format("[D]%s (by %s)", super.toString(),
-            deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+            deadline.format(DateTimeFormatter
+            .ofPattern("d MMM yyyy 'at' HH:mm:ss")));
     }
 
     /**
@@ -57,7 +60,8 @@ public class Deadline extends Task {
         SaveLine ret = super.toData();
         ret.setInfoType(DEADLINE_INFOTYPE);
         ret.addKeyValue(DEADLINE_DEADLINE_LABEL,
-            deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+            deadline.format(DateTimeFormatter
+            .ofPattern("d MMM yyyy 'at' HH:mm:ss")));
         return ret;
     }
 
@@ -68,5 +72,10 @@ public class Deadline extends Task {
         }
         Deadline rhsDeadline = (Deadline) rhs;
         return toData().equals(rhsDeadline.toData());
+    }
+
+    @Override
+    public LocalDateTime getTime() {
+        return deadline;
     }
 }

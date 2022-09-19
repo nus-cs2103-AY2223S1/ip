@@ -13,8 +13,8 @@ public class Event extends Task {
     private static final String EVENT_INFOTYPE = "event";
     private static final String EVENT_START_TIME_LABEL = "startTime";
     private static final String EVENT_END_TIME_LABEL = "endTime";
-    protected LocalDateTime startTime;
-    protected LocalDateTime endTime;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
     /**
      * Construct functional.Task with a fixed name.
      *
@@ -81,5 +81,16 @@ public class Event extends Task {
         }
         Event rhsDeadline = (Event) rhs;
         return toData().equals(rhsDeadline.toData());
+    }
+
+    /**
+     * Returns the important time of the event. If the event has started, this
+     * value is the end of the event. Otherwise, it's the start of the event.
+     *
+     * @return The important time of the event.
+     */
+    @Override
+    public LocalDateTime getTime() {
+        return startTime.compareTo(LocalDateTime.now()) < 0 ? endTime : startTime;
     }
 }

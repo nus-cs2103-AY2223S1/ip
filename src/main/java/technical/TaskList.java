@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import functional.Deadline;
 import functional.Event;
@@ -18,10 +19,11 @@ import ui.Ui;
  * @author Nicholas Patrick
  */
 public class TaskList {
-    private static final ArrayList<Task> taskList = new ArrayList<>();
+    protected static final ArrayList<Task> taskList = new ArrayList<>();
 
     /**
      * Loads tasks from the save file.
+     *
      * @throws IOException if it, for any reason, fails to load the file
      */
     public static void loadFromSaveFile() throws IOException {
@@ -43,13 +45,17 @@ public class TaskList {
     }
     /**
      * Lists the todo list.
+     *
+     * @param sorted Whether the reply should mention that the list is sorted.
+     * @return The string to reply the command with.
      */
-    public static String list() {
+    public static String list(boolean sorted) {
         if (taskList.isEmpty()) {
             return Ui.reply("You have no tasks in your list.");
         }
         String[] toReply = new String[taskList.size() + 1];
-        toReply[0] = "Here are the tasks in your list.";
+        toReply[0] = "Here are the tasks in your list"
+            + (sorted ? ", sorted by time." : ".");
         for (int i = 0; i < taskList.size(); ++i) {
             toReply[i + 1] = String.format("%d. %s", i + 1, taskList.get(i));
         }
@@ -58,6 +64,8 @@ public class TaskList {
 
     /**
      * Reply to be made after just adding a task.
+     *
+     * @return The string to reply the command with.
      */
     public static String justAddedComment() {
         return Ui.reply(new String[] {"Successfully added the following task",
@@ -66,6 +74,13 @@ public class TaskList {
             taskList.size())});
     }
 
+    /**
+     * Separates a tokenised message after every key in the message.
+     *
+     * @param arguments The tokenised message.
+     * @param keys The keys to be found in the message.
+     * @return A String array of split message chunks.
+     */
     private static String[] readFlags(String[] arguments, String ... keys) {
         StringBuilder[] flagged = new StringBuilder[keys.length];
         for (int i = 0; i < flagged.length; ++i) {
@@ -89,6 +104,7 @@ public class TaskList {
      * Append a Todo to the todoList.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String todo(String[] arguments) throws IOException {
         String[] flagged = readFlags(arguments);
@@ -105,6 +121,7 @@ public class TaskList {
      * Append a Deadline to the todoList.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String deadline(String[] arguments) throws IOException {
         String[] flagged = readFlags(arguments, "/by");
@@ -132,6 +149,7 @@ public class TaskList {
      * Append an Event to the todoList.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String event(String[] arguments) throws IOException {
         String[] flagged = readFlags(arguments, "/from", "/to");
@@ -166,6 +184,7 @@ public class TaskList {
      * with the appropriate message.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String mark(String[] arguments) throws IOException {
         if (taskList.isEmpty()) {
@@ -198,6 +217,7 @@ public class TaskList {
      * reply with the appropriate message.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String unmark(String[] arguments) throws IOException {
         if (taskList.isEmpty()) {
@@ -229,6 +249,7 @@ public class TaskList {
      * Deletes a task.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String delete(String[] arguments) {
         if (taskList.isEmpty()) {
@@ -262,6 +283,7 @@ public class TaskList {
      * Finds all tasks with the searched phrase and lists them.
      *
      * @param arguments The command arguments.
+     * @return The string to reply the command with.
      */
     public static String find(String[] arguments) {
         if (taskList.isEmpty()) {
@@ -282,5 +304,20 @@ public class TaskList {
             toReply[i] = toReplyArrayList.get(i);
         }
         return Ui.reply(toReply);
+    }
+
+    /**
+     * Sorts the tasks by time.
+     *
+     * @return The string to reply the command with.
+     */
+    public static String sort() throws IOException {
+        if (taskList.isEmpty()) {
+            return Ui.reply("You have no tasks in your list.");
+        }
+        taskList.sort(Comparator.comparing(Task::getTime));
+        SaveFile.updateFileData();
+        SaveFile.saveFile();
+        return list(true);
     }
 }

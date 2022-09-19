@@ -1,5 +1,7 @@
 package functional;
 
+import java.time.LocalDateTime;
+
 import technical.SaveLine;
 
 /**
@@ -95,4 +97,6 @@ public abstract class Task {
     public SaveLine toData() {
         return new SaveLine(TASK_INFOTYPE, TASK_NAME_LABEL, name, TASK_IS_DONE_LABEL, isDone ? "1" : "0");
     }
+
+    public abstract LocalDateTime getTime();
 }

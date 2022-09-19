@@ -1,5 +1,8 @@
 package functional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import technical.SaveLine;
 
 /**
@@ -62,5 +65,11 @@ public class Todo extends Task {
         }
         Todo rhsDeadline = (Todo) rhs;
         return toData().equals(rhsDeadline.toData());
+    }
+
+    @Override
+    public LocalDateTime getTime() {
+        return LocalDateTime.parse("1970/1/3 0:0:0",
+            DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
     }
 }

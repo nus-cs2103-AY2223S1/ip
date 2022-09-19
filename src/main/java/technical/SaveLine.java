@@ -109,9 +109,6 @@ public class SaveLine {
         ArrayList<Pair<String, String>> typeData = new ArrayList<>();
         while (right < line.length()) {
             // read the type
-            while (line.charAt(right) != ' ') {
-                ++right;
-            }
             String type = readUntil(line, right, Integer.MAX_VALUE, ' ');
             right += type.length() + 1;
             // read the amount of data
