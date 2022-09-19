@@ -2,6 +2,7 @@
 
 Koba is a desktop app for managing tasks and deadlines via a Graphical User Interface (GUI) in the form of a chat bot.
 
+* [Quick Start](https://github.com/therealdaofu/ip/blob/master/docs/README.md#quick-start)
 * [Summary of commands](https://github.com/therealdaofu/ip/blob/master/docs/README.md#summary-of-commands)
 * Features:
   * [add a todo](https://github.com/therealdaofu/ip/blob/master/docs/README.md#add-a-todo-todo)
@@ -16,19 +17,34 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
   * [exit the app](https://github.com/therealdaofu/ip/blob/master/docs/README.md#exit-from-the-app-bye)
   * [saving](https://github.com/therealdaofu/ip/blob/master/docs/README.md#saving-the-data)
 
+
+## Quick Start
+1. Ensure you have Java `11` or above installed on your Computer.
+
+2. Download the latest `koba.jar` from [here](https://github.com/therealdaofu/ip/releases/tag/A-Release).
+
+3. You can now choose to keep the jar file in a specified folder you wish to use for your app.
+
+4. Open your command terminal of choice.
+
+5. Navigate to the directory where your app is located, ie. D:\school stuff\interesting things\koba app
+
+6. run the command: `java jar- joba.jar` 
+
+
 ## Summary of Commands
-Function                 | Command                                                    
--------------------------|------------------------------------------------------------
-add a todo               | **todo**     DESCRIPTION                                   
-add a deadline           | **deadline** DESCRIPTION **/by** DATE_AND_TIME_IN_ISO_FORMAT
-add a event              | **event**    DESCRIPTION **/at** DURATION                  
-mark a task as completed | **mark**     INDEX                                         
-mark a task as incomplete| **unmark**   INDEX                                         
-deletes a task           | **delete**   INDEX                                         
-list all tasks           | **list**                                                   
-find tasks with a keyword| **find**     KEYWORD                                       
-display help page        | **help**                                                   
-exit the app             | **bye**                                                    
+Function | Command                                                    
+---------|---------
+`add a todo` | `todo <DESCRIPTION>`                                  
+`add a deadline` | `deadline <DESCRIPTION> /by <DATE_AND_TIME_IN_ISO_FORMAT>`
+`add a event` | `event <DESCRIPTION> /at <DURATION>`                  
+`mark a task as completed` | `mark <INDEX>`                                         
+`mark a task as incomplete` | `unmark <INDEX>`                                         
+`deletes a task` | `delete <INDEX>`                                         
+`list all tasks` | `list`                                                   
+`find tasks with a keyword` | `find <KEYWORD>`                                       
+`display help page` | `help`                                                   
+`exit the app` | `bye`                                                    
 
 
 ## Features
@@ -45,10 +61,7 @@ todo Read the Hobbit
 ```
 Adds a new todo, 'read the hobbit' to the app.
 
-```
-todo Sign up for gym
-```
-Adds a new todo, 'Sign up for gym' to the app.
+<img src="./image/add todo.PNG"/>
 
 
 
@@ -68,11 +81,7 @@ deadline assignment 1 /by 2022-08-15T23:59
 ```
 Adds a new deadline, assignment 1, due on Aug 8th, 2022 at 23:59hrs.
 
-```
-deadline critical reflection 1A /by 2022-09-01T08:00
-```
-Adds a new deadline, critical reflection 1A, due on Sep 1th, 2022, at 08:00hrs.
-
+<img src="./image/add deadline.PNG"/>
 
 
 ### Add a event: `event`
@@ -86,10 +95,7 @@ event birthday party /at Friday 5-8pm
 ```
 Adds a new event, birthday party at Friday, 5-8pm
 
-```
-event team meeting /at 27/8/22 at 8-10am
-```
-Adds a new event, team meeting on 27th Aug 2022, at 8-10am.
+<img src="./image/add event.PNG"/>
 
 
 
@@ -110,6 +116,7 @@ mark 2
 ```
 Mark the task at index 2 as complete.
 
+<img src="./image/mark.PNG"/>
 
 
 ### Unmark a task: `unmark`
@@ -127,7 +134,8 @@ Example of usage:
 ```
 unmark 1
 ```
-Marks the task at index 1 as incomplete.
+
+<img src="./image/unmark.PNG"/>
 
 
 
@@ -145,7 +153,8 @@ Example of usage:
 ```
 delete 3
 ```
-Deletes the task at index 3.
+
+<img src="./image/delete.PNG"/>
 
 
 
@@ -154,6 +163,7 @@ Shows a list of all stored tasks in the app.
 
 Format: `list`
 
+<img src="./image/list.PNG"/>
 
 
 ### Find tasks by a keyword: `find`
@@ -171,6 +181,7 @@ find assignment
 ```
 This will return all tasks containing 'assignment' in their description.
 
+<img src="./image/find.PNG"/>
 
 
 ### Get help page: `help`
@@ -178,6 +189,7 @@ Returns a list of all valid commands and their format in the app.
 
 Format: `help`
 
+<img src="./image/help.PNG"/>
 
 
 ### Exit from the app: `bye`
