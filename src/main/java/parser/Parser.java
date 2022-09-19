@@ -1,5 +1,9 @@
 package parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import exception.DukeException;
 import task.Deadline;
 import task.Event;
@@ -7,10 +11,6 @@ import task.Task;
 import task.ToDo;
 import tasklist.TaskList;
 import ui.Ui;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents the object that converts user input into commands and tasks.
@@ -35,6 +35,12 @@ public class Parser {
 
     private boolean isEnded = false;
 
+    /**
+     * Initialises the Parser with a UI and TaskList.
+     *
+     * @param ui Represents the user interface for Duke.
+     * @param taskList Represents the object that stores Tasks for Duke.
+     */
     public Parser(Ui ui, TaskList taskList) {
         this.ui = ui;
         this.taskList = taskList;
@@ -90,7 +96,7 @@ public class Parser {
     private String markTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.markTask(--index);
+            Task task = taskList.markTask(index);
             return ui.printTaskMarked(task);
         } catch (NumberFormatException e) {
             throw DukeException.markTaskException("Please input a valid number!");
@@ -102,9 +108,9 @@ public class Parser {
     private String unmarkTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.unmarkTask(--index);
+            Task task = taskList.unmarkTask(index);
             return ui.printTaskUnmarked(task);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw DukeException.unmarkTaskException("Please input a valid number!");
         } catch (DukeException de) {
             throw DukeException.unmarkTaskException(de.toString());
@@ -198,7 +204,7 @@ public class Parser {
     private String deleteTask(String indexStr) throws DukeException {
         try {
             int index = Integer.parseInt(indexStr);
-            Task task = taskList.deleteTask(--index);
+            Task task = taskList.deleteTask(index);
             return ui.printTaskDeleted(task);
         } catch (NumberFormatException e) {
             throw DukeException.deleteTaskException("Please input a valid number!");

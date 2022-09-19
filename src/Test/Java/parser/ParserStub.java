@@ -1,6 +1,6 @@
-package Duke.Parser;
+package parser;
 
-import Duke.Exception.DukeException;
+import exception.DukeException;
 
 public class ParserStub {
     public String[] tokenize(String str, String separator) throws DukeException {

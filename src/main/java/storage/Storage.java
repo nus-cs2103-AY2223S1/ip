@@ -1,12 +1,5 @@
 package storage;
 
-import exception.DukeException;
-import task.Deadline;
-import task.Task;
-import task.ToDo;
-import task.Event;
-import tasklist.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +9,13 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import exception.DukeException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+import tasklist.TaskList;
 
 /**
  * Represents the long term Storage that application stores data in.
@@ -66,42 +66,54 @@ public class Storage {
 
     private Task loadTask(String taskStr) throws DukeException {
         try {
-            String[] taskArray = taskStr.split("\\|");
-            String taskTypeStr = taskArray[0];
-            String isDoneStr = taskArray[1];
-            String description = taskArray[2];
+            String[] tokens = tokenize(taskStr);
+            String taskTypeStr = getTaskTypeStr(tokens);
+            boolean isDone = getIsDone(tokens);
+            String description = getDescription(tokens);
 
-            Task newTask;
             switch (taskTypeStr) {
             case "T":
-                newTask = new ToDo(description);
-                break;
+                return loadTodo(description, isDone);
             case "D":
-                String byStr = taskArray[3];
-                LocalDateTime by = getDateTime(byStr);
-                newTask = new Deadline(description, by);
-                break;
+                LocalDateTime deadlineDateTime = getDateTime(tokens);
+                return loadDeadline(description, deadlineDateTime, isDone);
             case "E":
-                String atStr = taskArray[3];
-                LocalDateTime at = getDateTime(atStr);
-                newTask = new Event(description, at);
-                break;
+                LocalDateTime eventDateTime = getDateTime(tokens);
+                return loadEvent(description, eventDateTime, isDone);
             default:
                 throw DukeException.readRowFromFileException(taskStr);
             }
-
-            boolean isDone = isDoneStr.equals("X");
-            if (isDone) {
-                newTask.markAsDone();
-            }
-
-            return newTask;
         } catch (DukeException de) {
             throw DukeException.readRowFromFileException(
                     String.format("%s - %s", taskStr, de));
         } catch (Exception e) {
             throw DukeException.readRowFromFileException(taskStr);
         }
+    }
+
+    private String[] tokenize(String taskStr) throws DukeException {
+        if (taskStr.contains("|")) {
+            throw new DukeException("Task String does not contain the separator.");
+        }
+        return taskStr.split("\\|");
+    }
+
+    private String getTaskTypeStr(String[] tokens) throws DukeException {
+        return tokens[0];
+    }
+
+    private boolean getIsDone(String[] tokens) throws DukeException {
+        String isDoneStr = tokens[1];
+        return isDoneStr.equals("X");
+    }
+
+    private String getDescription(String[] tokens) throws DukeException {
+        return tokens[2];
+    }
+
+    private LocalDateTime getDateTime(String[] tokens) throws DukeException {
+        String datetimeStr = tokens[3];
+        return getDateTime(datetimeStr);
     }
 
     private LocalDateTime getDateTime(String datetimeStr) throws DukeException {
@@ -112,6 +124,30 @@ public class Storage {
         } catch (DateTimeParseException | IllegalArgumentException e) {
             throw DukeException.taskDateTimeException("Date time should be in the format yyyy-MM-dd HHmm!");
         }
+    }
+
+    private Task loadTodo(String description, boolean isDone) throws DukeException {
+        Task newTodo = new ToDo(description);
+        if (isDone) {
+            newTodo.markAsDone();
+        }
+        return newTodo;
+    }
+
+    private Task loadDeadline(String description, LocalDateTime datetime, boolean isDone) throws DukeException {
+        Task newDeadline = new Deadline(description, datetime);
+        if (isDone) {
+            newDeadline.markAsDone();
+        }
+        return newDeadline;
+    }
+
+    private Task loadEvent(String description, LocalDateTime datetime, boolean isDone) throws DukeException {
+        Task newEvent = new Event(description, datetime);
+        if (isDone) {
+            newEvent.markAsDone();
+        }
+        return newEvent;
     }
 
     /**

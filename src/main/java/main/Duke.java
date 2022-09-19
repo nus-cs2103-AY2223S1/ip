@@ -13,11 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import parser.Parser;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.Ui;
-import parser.Parser;
-
 
 /**
  * The launcher for the Duke application.
@@ -36,10 +35,18 @@ public class Duke extends Application {
     private final Ui ui;
     private final Parser parser;
 
+    /**
+     * Initialise Duke with default filepath.
+     */
     public Duke() {
         this("Duke.txt");
     }
 
+    /**
+     * Initialise Duke with a given filepath.
+     *
+     * @param filePath Path to where the data for Duke should be stored and retrieved.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);

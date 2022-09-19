@@ -1,11 +1,11 @@
 package ui;
 
-import task.Task;
-import tasklist.TaskList;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import task.Task;
+import tasklist.TaskList;
 
 /**
  * Represents the interface that the user interacts with.
@@ -68,7 +68,7 @@ public class Ui {
      */
     public String printTaskCreated(Task task) {
         String taskStr = task.toString();
-        return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", CREATE_MESSAGE, TAB, taskStr));
     }
 
     /**
@@ -101,7 +101,7 @@ public class Ui {
      */
     public String printTaskDeleted(Task task) {
         String taskStr = task.toString();
-        return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB,  taskStr));
+        return prettyPrint(String.format("%s\n%s %s", DELETE_MESSAGE, TAB, taskStr));
     }
 
     /**
