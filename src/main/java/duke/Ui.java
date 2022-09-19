@@ -57,7 +57,20 @@ public class Ui {
     }
 
     public String help() {
-        return "Welcome to Duke! Duke is a CLI application designed to help you with tracking your tasks.\n" +
-                "To view our user guide, please proceed to this link here: https://charleslimjh.github.io/ip/";
+        return String.join("\n",
+                "Welcome to Duke!",
+                "Duke is a CLI application designed to help you with tracking your tasks.\n",
+                "List of possible commands:",
+                "1. help -> displays this help command",
+                "2. list -> list current tasks recorded in Duke",
+                "3. add todo <desc> -> create a new ToDo",
+                "4. add event <desc> /at <yyyy-mm-dd HHMM> -> create a new Event",
+                "5. add deadline <desc> /by <yyyy-mm-dd HHMM> -> create a new Deadline",
+                "6. mark <task number> -> mark task as completed",
+                "7. unmark <task number> -> mark task as incomplete",
+                "8. delete <task number> -> delete specified task",
+                "9. find <search term> -> searches all tasks whose description matches search\n",
+                "To view our user guide, please proceed to this link here: https://charleslimjh.github.io/ip/"
+        );
     }
 }
