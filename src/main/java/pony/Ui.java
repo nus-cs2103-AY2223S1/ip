@@ -102,7 +102,7 @@ public class Ui {
         if (tasks.sizeOf() == 0) {
             message = "There is nothing on the list!";
         } else {
-            message = "Let's look the tasks in your list:\n";
+            message = "Let's look at the tasks in your list:\n";
             for (int i = 0; i < tasks.sizeOf(); i++) {
                 int serialNumber = i + 1;
                 message += serialNumber + ". " + tasks.getTask(i).toString() + "\n";

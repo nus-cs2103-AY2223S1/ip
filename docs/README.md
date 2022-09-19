@@ -1,7 +1,7 @@
 # User Guide
 
-Duke is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI). Duke provides flexibility by
+Pony is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI). Pony provides flexibility by
 allowing the tracking of various types of tasks including events and deadlines.
 
 - [Quick start](https://ciaoosuuu.github.io/ip/#quick-start)
@@ -53,7 +53,6 @@ Adds a todo.
 Format: `todo TASK_DESCRIPTION`
 
 Examples:
-- `todo CS2103T tutorial`
 - `todo watch movie`
 
 Expected outcome:
@@ -61,7 +60,7 @@ Expected outcome:
 Todo added to task list when valid description given.
 
 ```
-Got it. I've added this task:
+Got it my friend. I've added this task:
 [T][ ] TASK_DESCRIPTION
 Now you have X tasks in the list.
 ```
@@ -69,31 +68,29 @@ Now you have X tasks in the list.
 #### Adding a deadline: `deadline`
 Adds a deadline.
 
-Format: `deadline TASK_DESCRIPTION /by YYYY-MM-DD`
+Format: `deadline TASK_DESCRIPTION /by YYYY-MM-DD HH:mm`
 
 Examples:
 
-- `deadline return book /by 2022-09-20`
-- `deadline submit CS2102 assignment /by 2022-09-17`
+- `deadline return book /by 2022-09-20 16:00`
 
 Expected outcome:
 
 Deadline added to task list when valid description and date given.
 
 ```
-Got it. I've added this task:
-[D][ ] TASK_DESCRIPTION (by: MMM DD YYYY)
+Got it my friend. I've added this task:
+[D][ ] TASK_DESCRIPTION (by: MMM DD YYYY HH:mm)
 Now you have X tasks in the list.
 ```
 #### Adding an event: `event`
 Adds an event.
 
-Format: `event TASK_DESCRIPTION /at YYYY-MM-DD`
+Format: `event TASK_DESCRIPTION /at YYYY-MM-DD HH:mm`
 
 Examples:
 
-- `event NUS internship day /at 2022-10-30`
-- `event NUS Supernova /at 2022-09-22`
+- `event NUS Supernova /at 2022-09-22 16:00`
 
 Expected outcome:
 
@@ -101,7 +98,7 @@ Event added to task list when valid description and date given.
 
 ```
 Got it. I've added this task:
-[E][ ] TASK_DESCRIPTION (at: MMM DD YYYY)
+[E][ ] TASK_DESCRIPTION (at: MMM DD YYYY HH:mm)
 Now you have X tasks in the list.
 ```
 
@@ -113,7 +110,7 @@ Format: `list`
 Expected outcome:
 
 ```
-Here are the tasks in your list:
+Let's look at the tasks in your list:
 1. ...
 2. ...
 ```
@@ -134,7 +131,7 @@ Expected outcome:
 Deletes a task when valid index is given.
 
 ```
-Noted. I've removed this task:
+Alright my friend, I've removed this task:
 [X][ ] TASK_DESCRIPTION
 Now you have X tasks in the list.
 ```
@@ -143,17 +140,16 @@ Now you have X tasks in the list.
 Display tasks where the description matches given keywords.
 
 Format: `find KEYWORD`
-- Search is case-sensitive. e.g. `homework` will not match with `Homework`
-- Partial keywords can be used as well. e.g. `work` will match with `homework`
+- Search is not case-sensitive. e.g. `homework` will still match with `Homework`
+- Partial keywords cannot be used.
 
 Examples:
-- `find homework` returns a list of all tasks with description containing the keyword `homework`
-- `find NUS concert` returns a list of all tasks with description containing the keyword `NUS concert`
+- `find Homework` returns a list of all tasks with description containing the keyword `homework`
 
 Expected outcome:
 
 ```
-Here are the matching tasks in your list:
+Alright, Here's what pony found!
 1. ...
 2. ...
 ```
@@ -173,7 +169,7 @@ Expected outcome:
 Marks a task as completed when valid index is given.
 
 ```
-Nice! I've marked this task as done:
+Well done, my friend! I've marked this task as done:
 [X][X] TASK_DESCRIPTION
 ```
 
@@ -192,7 +188,7 @@ Expected outcome:
 Marks a task as incomplete when valid index is given.
 
 ```
-OK, I've marked this task as not done yet:
+My friend, I've marked this task as not done yet:
 [X][ ] TASK_DESCRIPTION
 ```
 
@@ -206,7 +202,8 @@ Expected outcome:
 Prints goodbye message and exits the program.
 
 ```
-Bye. Hope to see you again soon!
+Bye friend. Hope to see you again soon!
+...
 ```
 
 
@@ -215,8 +212,8 @@ Bye. Hope to see you again soon!
 **Action** | **Format, Examples**
 --- | ---
 todo | `todo TASK_DESCRIPTION` <br> e.g. `todo watch movie`
-deadline | `deadline TASK_DESCRIPTION /by YYYY-MM-DD` <br> e.g. `deadline CS2101 Assignment /by 2022-09-15`
-event | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br> e.g. `event NUS Supernova /at 2022-09-01`
+deadline | `deadline TASK_DESCRIPTION /by YYYY-MM-DD HH:mm` <br> e.g. `deadline CS2101 Assignment /by 2022-09-15 16:00`
+event | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br> e.g. `event NUS Supernova /at 2022-09-01 18:00`
 list | `list`
 delete | `delete INDEX` <br> e.g. `delete 1`
 find | `find KEYWORD` <br> e.g. `find test`
