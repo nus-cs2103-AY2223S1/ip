@@ -1,21 +1,26 @@
 @ECHO OFF
+pushd %~dp0
 
-REM create bin directory if it doesn't exist
-if not exist ..\bin mkdir ..\bin
-
-REM delete output from previous run
-if exist ACTUAL.TXT del ACTUAL.TXT
-
-REM compile the code into the bin folder
-javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
+cd ..
+call gradlew clean shadowJar
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
 )
-REM no error here, errorlevel == 0
 
-REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ..\bin Duke < input.txt > ACTUAL.TXT
+cd build\libs
+for /f "tokens=*" %%a in (
+    'dir /b *.jar'
+) do (
+    set jarloc=%%a
+)
+
+cd ..\..\text-ui-test
+
+REM delete data folder from previous run
+if exist data rmdir /s /q data
+
+java -jar ..\build\libs\%jarloc% -cli < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT
