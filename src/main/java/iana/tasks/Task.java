@@ -122,8 +122,8 @@ public class Task implements Serializable {
      * @return true if task contains keyword.
      */
     public boolean containsKeyword(String keyword) {
-        String key = keyword.trim();
-        return this.task.contains(key);
+        String key = keyword.trim().toLowerCase();
+        return this.task.toLowerCase().contains(key);
     }
  
     /**
