@@ -3,9 +3,9 @@
 
 ## Index
 - [GUI](#GUI)
-- [Getting Started](#GettingStarted)
+- [GettingStarted](#GettingStarted)
 - [Features](#Features)
-- [Command summary](#CommandSummary)
+- [CommandSummary](#CommandSummary)
 
 ## GUI
 <img src= "Ui.png">
@@ -187,6 +187,9 @@ Expected outcome:
 ```
 [D][X] return book  (by: Apr 04 2022) priority: high
 ```
+
+### bye
+Execution terminated.
 
 ## CommandSummary
 
