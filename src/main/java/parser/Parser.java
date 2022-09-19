@@ -1,16 +1,17 @@
 package parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import exception.DukeException;
+import storage.Storage;
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.ToDo;
 import tasklist.TaskList;
 import ui.Ui;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents the object that converts user input into commands and tasks.
@@ -32,12 +33,14 @@ public class Parser {
 
     private final Ui ui;
     private final TaskList taskList;
+    private final Storage storage;
 
     private boolean isEnded = false;
 
-    public Parser(Ui ui, TaskList taskList) {
+    public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
+        this.storage = storage;
     }
 
     public boolean hasNext() {
@@ -79,8 +82,9 @@ public class Parser {
         }
     }
 
-    private String closeParser() {
+    private String closeParser() throws DukeException {
         this.isEnded = true;
+        storage.storeToFile(taskList);
         return this.ui.printGoodbye();
     }
 

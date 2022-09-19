@@ -1,10 +1,10 @@
 package tasklist;
 
-import exception.DukeException;
-import task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import exception.DukeException;
+import task.Task;
 
 /**
  * Represents the short term storage for user created Tasks.
@@ -88,22 +88,15 @@ public class TaskList {
      * @return The String representing all the Tasks in the TaskList.
      */
     public String getStorageString() {
-        StringBuilder out = new StringBuilder();
-        for (Task task : taskList) {
-            out.append(task.getStorageString());
-            out.append("\n");
-        }
-        return out.toString();
+        return taskList.stream()
+                .map(Task::getStorageString)
+                        .reduce((x, y) -> x + "\n" + y)
+                                .orElse("");
     }
 
     public Task[] findTasks(String keyword) {
-        List<Task> foundTasks = new ArrayList<>();
-        for (Task task : taskList) {
-            boolean hasKeyword = task.hasKeyword(keyword);
-            if (hasKeyword) {
-                foundTasks.add(task);
-            }
-        }
-        return foundTasks.toArray(new Task[0]);
+        return taskList.stream()
+                .filter(x -> x.hasKeyword(keyword))
+                        .toArray(Task[]::new);
     }
 }
