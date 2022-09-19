@@ -38,17 +38,17 @@ public class EventCommands extends Executor {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
-        ArrayList<String> text = new ArrayList<>();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         Matcher match = eventPattern.matcher(description);
         if (!match.matches()) {
             throw new DukeException("No event time was given, try again");
         }
-        text.add("I've added this task:");
+        String line1 = "I've added this task:";
         Task addedTask = tasks.addTask(new Event(match.group("taskName"), match.group("at")));
-        text.add(addedTask.toString());
+        String line2 = addedTask.toString();
         storage.addTask(addedTask);
-        text.addAll(super.execute(tasks, ui, storage));
-       return text;
+        String line3 = super.execute(tasks, ui, storage);
+        String reply = line1 + "\n" + line2 + "\n" + line3;
+        return reply;
     }
 }

@@ -25,6 +25,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private Duke duke;
+
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -38,18 +40,14 @@ public class MainWindow extends AnchorPane {
     }
 
     @FXML
-    public void initialize() throws IOException {
-
+    public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        List<String> messages = new ArrayList<>(ui.chatBox(ui.showLogo()));
-
-        taskList = new TaskList(storage.fileToList());
-        storage = new Storage();
-
-        for (String message : messages) {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(message, dukeImage));
-        }
     }
+
+    public void setDuke(Duke d) {
+        duke = d;
+    }
+
 
 
 
@@ -57,29 +55,18 @@ public class MainWindow extends AnchorPane {
          * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
          * the dialog container.
          */
-        @FXML
-        private void handleUserInput() throws DukeException, IOException {
-            String input = userInput.getText();
-            Command command = Parser.parse(input);
-            List<String> reply = command.execute(taskList, ui, storage);
-            dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
-            List<String> text = new ArrayList<>();
-            for (String line : reply) {
-                text.add(line);
-                if (text.size() >= 5) {
-                    dialogContainer.getChildren().add(
-                            DialogBox.getDukeDialog(String.join("\n", text), dukeImage));
-                    text.clear();
-                }
-            }
-            if (text.size() > 0) {
-                dialogContainer.getChildren().add(
-                        DialogBox.getDukeDialog(String.join("\n", text), dukeImage));
-            }
-
-            userInput.clear();
-        }
+    @FXML
+    private void handleUserInput() throws DukeException, IOException {
+        String input = userInput.getText();
+        String response = duke.getResponse(input);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(response, dukeImage)
+        );
+        userInput.clear();
+    }
 }
+
 
 
 

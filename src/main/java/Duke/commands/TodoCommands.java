@@ -38,13 +38,13 @@ public class TodoCommands extends Executor {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
-        ArrayList<String> text = new ArrayList<>();
-        text.add("I've added this task:");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        String line1 = "I've added this task:";
         Task addedTask = tasks.addTask(new Todo(description));
-        text.add(addedTask.toString());
+        String line2 = addedTask.toString();
         storage.addTask(addedTask);
-        text.addAll(super.execute(tasks, ui, storage));
-        return text;
+        String line3 = super.execute(tasks, ui, storage);
+        String reply = line1 + "\n" + line2 + "\n" + line3;
+        return reply;
     }
 }

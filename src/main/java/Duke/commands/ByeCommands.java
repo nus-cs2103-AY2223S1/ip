@@ -10,8 +10,9 @@ import java.io.IOException;
 public class ByeCommands extends Command {
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        return List.of(ui.printBye());
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        String message = ui.printBye();
+        return message;
     }
 
     @Override

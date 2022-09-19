@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 public class DeadlineCommands extends Executor {
 
+    private String input;
+
     private final static Pattern deadlinePattern = Pattern.compile("(?<taskName>.*) /by (?<by>.*)");
 
     /**
@@ -38,16 +40,16 @@ public class DeadlineCommands extends Executor {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
-        ArrayList<String> text = new ArrayList<>();
-        Matcher match = deadlinePattern.matcher(description);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        Matcher match = deadlinePattern.matcher(input);
         if (!match.matches()) {
             throw new DukeException("No deadline was given, try again");
         }
-        text.add("I've added this task:");
+        String line1 = "I've added this task:";
         Task addedTask = tasks.addTask(new Deadline(match.group("taskName"), match.group("by")));
-        text.add(addedTask.toString());
-        text.addAll(super.execute(tasks, ui, storage));
-        return text;
+        String line2 = addedTask.toString();
+        String line3 = super.execute(tasks, ui, storage);
+        String reply = line1 + "\n" + line2 + "\n" + line3;
+        return reply;
     }
 }

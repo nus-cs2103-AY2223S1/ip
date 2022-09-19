@@ -9,8 +9,10 @@ import java.io.IOException;
 
 public class DeleteCommands extends TaskCommands {
 
-    public DeleteCommands(String fullInput) throws DukeException {
-        super(fullInput);
+    private String input;
+
+    public DeleteCommands(String input) throws DukeException {
+        super(input);
     }
 
     /**
@@ -24,13 +26,13 @@ public class DeleteCommands extends TaskCommands {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            ArrayList<String> text = new ArrayList<>();
-            text.add("I've removed this task: ");
-            text.add(tasks.getTaskToString(taskNumber));
+            String line1 = "I've removed this task: ";
+            String line2 = tasks.getTaskToString(taskNumber);
             tasks.removeTask(taskNumber);
-            return text;
+            String reply = line1 + line2;
+            return reply;
         } else {
             throw new DukeException("This task does not exists");
         }

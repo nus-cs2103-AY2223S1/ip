@@ -23,17 +23,17 @@ public class FindCommands extends Command {
     }
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        ArrayList<String> text = new ArrayList<>();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
         TaskList matches = tasks.filter(Keywords);
 
-        text.add(String.format("Here are the matching tasks \"%s\":",
-                String.join("\", \"", Keywords)));
+        String line1 = String.format("Here are the matching tasks \"%s\":",
+                String.join("\", \"", Keywords));
 
         for (int i = 1; matches.isValidTaskNumber(i); i++) {
-            text.add(String.format("%d. %s", i + 1, matches.getTaskToString(i)));
+            String line2 = String.format("%d. %s", i + 1, matches.getTaskToString(i));
+            line1 += line2;
         }
-        return text;
+        return line1;
 
     }
 

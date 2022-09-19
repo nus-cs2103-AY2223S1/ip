@@ -29,14 +29,14 @@ public class MarkCommands extends TaskCommands {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            ArrayList<String> text = new ArrayList<>();
-            text.add("I've marked this task as done!");
+            String line1 = "I've marked this task as done!";
             tasks.markAsDone(taskNumber);
             storage.updateTask(taskNumber, Constants.MARK);
-            text.add(tasks.getTaskToString(taskNumber));
-            return text;
+            String line2 = tasks.getTaskToString(taskNumber);
+            String reply = line1 + line2;
+            return reply;
         } else {
             throw new DukeException("This task does not exist.");
         }

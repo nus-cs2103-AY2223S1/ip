@@ -32,14 +32,14 @@ public class UnmarkCommands extends TaskCommands {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            ArrayList<String> text = new ArrayList<>();
-            text.add("I've marked this task as not done (yet ;))");
+            String line1 = "I've marked this task as not done (yet ;))";
             tasks.markAsNotDone(taskNumber);
             storage.updateTask(taskNumber, Constants.UNMARK);
-            text.add(tasks.getTaskToString(taskNumber));
-            return text;
+            String line2 = tasks.getTaskToString(taskNumber);
+            String reply = line1 + line2;
+            return reply;
         } else {
             throw new DukeException("tasks.Task does not exist.");
         }

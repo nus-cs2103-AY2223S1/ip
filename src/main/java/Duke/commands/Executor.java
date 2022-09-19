@@ -33,7 +33,7 @@ public abstract class Executor extends Command {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        return List.of(tasks.getSizeToString());
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        return tasks.getSizeToString();
     }
 }

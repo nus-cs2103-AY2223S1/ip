@@ -23,12 +23,12 @@ public class ListCommands extends Command {
      */
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
-        ArrayList<String> text = new ArrayList<>();
-        text.add("Here are the tasks in your list:");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        String line1 = "Here are the tasks in your list:";
         for (int i = 1; tasks.isValidTaskNumber(i); i++) {
-            text.add(i + ". " + tasks.getTaskToString(i));
+            String line2 = i + ". " + tasks.getTaskToString(i);
+            line1 +=  "\n" + line2;
         }
-        return text;
+        return line1;
     }
 }

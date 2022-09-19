@@ -13,8 +13,8 @@ public abstract class TaskCommands extends Command {
     protected final int taskNumber;
 
 
-    public TaskCommands(String fullInput) throws DukeException {
-        String[] commands = fullInput.split(" ");
+    public TaskCommands(String input) throws DukeException {
+        String[] commands = input.split(" ");
         try {
             taskNumber = Integer.parseInt(commands[1]);
         } catch (NumberFormatException e) {
@@ -23,11 +23,10 @@ public abstract class TaskCommands extends Command {
     }
 
     @Override
-    public List<String> execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            ArrayList<String> text = new ArrayList<>();
-            text.add(tasks.getTaskToString(taskNumber));
-            return text;
+            String line1 = tasks.getTaskToString(taskNumber);
+            return line1;
         } else {
             throw new DukeException("No such task exist.");
         }

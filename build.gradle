@@ -8,11 +8,6 @@ repositories {
     mavenCentral()
 }
 
-test {
-    useJUnitPlatform()
-}
-
-
 
 dependencies {
 
@@ -61,5 +56,4 @@ shadowJar {
 
 run {
     standardInput = System.in
-    enableAssertions = true
 }
