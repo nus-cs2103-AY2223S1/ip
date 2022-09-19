@@ -19,8 +19,8 @@ public class Duke {
         isActive = true;
         Storage.loadData();
         Ui.setReply(new String[] {
-                "Hello! I'm Duke",
-                "What can I do for you?",
+            "Hello! I'm Duke",
+            "What can I do for you?",
         });
     }
 
@@ -57,6 +57,8 @@ public class Duke {
                     TaskList.deleteTask(words);
                 } else if (words[0].equals("find")) {
                     TaskList.findTasksContainingKeyword(words);
+                } else if (words[0].equals("sort")) {
+                    TaskList.sortByTimeAsc();
                 } else {
                     Ui.setReply(new String[]{"I'm sorry, I don't know that command"});
                 }
@@ -64,7 +66,7 @@ public class Duke {
                 Ui.setReply(new String[]{e.getMessage()});
             }
         }
-        assert !Ui.getReply().isEmpty(): "Reply can't be empty";
+        assert !Ui.getReply().isEmpty() : "Reply can't be empty";
         return Ui.getReply();
     }
 
@@ -78,7 +80,7 @@ public class Duke {
     public static void deactivate() throws IOException {
         Storage.saveData();
         Ui.setReply(new String[] {
-                "Bye. Hope to see you again soon!",
+            "Bye. Hope to see you again soon!",
         });
         isActive = false;
     }

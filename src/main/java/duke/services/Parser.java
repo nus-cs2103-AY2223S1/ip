@@ -34,19 +34,19 @@ public class Parser {
     public static String getDescription(String[] words, String stop) {
         currWordIndex = 1;
         StringBuilder descBuilder = new StringBuilder();
-        boolean emptyDesc = true;
+        boolean descIsEmpty = true;
 
         while (currWordIndex < words.length && !words[currWordIndex].equals(stop)) {
             if (words[currWordIndex].isEmpty()) {
                 descBuilder.append(" ");
             } else {
                 descBuilder.append(words[currWordIndex]).append(" ");
-                emptyDesc = false;
+                descIsEmpty = false;
             }
             ++currWordIndex;
         }
 
-        if (emptyDesc) {
+        if (descIsEmpty) {
             throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
@@ -80,19 +80,45 @@ public class Parser {
     }
 
     /**
+     * Converts the date into a LocalDate
+     * @param date The date to convert
+     * @param format The date format
+     * @return The date as a LocalDate
+     * @throws IllegalArgumentException If format is incorrect
+     */
+    public static LocalDate convertToLocalDate(String date, String format) {
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern(format)
+                .toFormatter(Locale.getDefault());
+        return LocalDate.parse(date, formatter);
+    }
+
+    /**
      * Converts the date to a new format
      * @param date The date to reformat
      * @param inFormat The current format
      * @param outFormat The new format
      * @return The reformatted date
-     * @throws IllegalArgumentException If date has incorrect format
+     * @throws IllegalArgumentException If format is incorrect
      */
     public static String reformatDate(String date, String inFormat, String outFormat) {
+        return convertToLocalDate(date, inFormat)
+                .format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+    }
+
+    /**
+     * Converts the datetime into a LocalDateTime
+     * @param dateTime The datetime to convert
+     * @param format The datetime format
+     * @return The datetime as a LocalDateTime
+     * @throws IllegalArgumentException If format is incorrect
+     */
+    public static LocalDateTime convertToLocalDateTime(String dateTime, String format) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendPattern(inFormat)
+                .parseCaseInsensitive()
+                .appendPattern(format)
                 .toFormatter(Locale.getDefault());
-        LocalDate ld = LocalDate.parse(date, formatter);
-        return ld.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+        return LocalDateTime.parse(dateTime, formatter);
     }
 
     /**
@@ -104,12 +130,8 @@ public class Parser {
      * @throws IllegalArgumentException If datetime has incorrect format
      */
     public static String reformatDateTime(String dateTime, String inFormat, String outFormat) {
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .appendPattern(inFormat)
-                .toFormatter(Locale.getDefault());
-        LocalDateTime ldt = LocalDateTime.parse(dateTime, formatter);
-        return ldt.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+        return convertToLocalDateTime(dateTime, inFormat)
+                .format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
     }
 
     /**

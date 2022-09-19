@@ -98,14 +98,20 @@ public class TaskList {
 
     /**
      * Lists out information on all tasks stored
+     *
+     * @param initialMessage The statement before the list of tasks
      */
-    public static void listTasks() {
+    public static void listTasks(String initialMessage) {
         String[] taskDescriptions = new String[getTasks().size() + 1];
-        taskDescriptions[0] = "Here are the tasks in your list:";
+        taskDescriptions[0] = initialMessage;
         for (int i = 1; i < taskDescriptions.length; ++i) {
             taskDescriptions[i] = "  " + i + ". " + tasks.get(i - 1);
         }
         Ui.setReply(taskDescriptions);
+    }
+
+    public static void listTasks() {
+        listTasks("Here are the tasks in your list:");
     }
 
     /**
@@ -128,5 +134,41 @@ public class TaskList {
             }
         }
         Ui.setReply(matchingTasks.toArray(String[]::new));
+    }
+
+    /**
+     * Sorts tasks sorted in ascending order of datetime and detail,
+     * e.g. tasks without any time are always first.
+     */
+    public static void sortByTimeAsc() {
+        tasks.sort((task1, task2) -> {
+            if (task1 instanceof Todo) {
+                return -1;
+            } else if (task2 instanceof Todo) {
+                return 1;
+            }
+            String time1 = (task1 instanceof Event) ? ((Event) task1).getEnteredTime()
+                    : ((Deadline) task1).getEnteredDeadline();
+            String time2 = (task2 instanceof Event) ? ((Event) task2).getEnteredTime()
+                    : ((Deadline) task2).getEnteredDeadline();
+            String dateFormat = "d/M/yyyy";
+            String dateTimeFormat = "d/M/yyyy h:mma";
+
+            if (time1.contains(" ")) {
+                if (!time2.contains(" ")) {
+                    return 1;
+                }
+                return (Parser.convertToLocalDateTime(time1, dateTimeFormat))
+                        .compareTo(Parser.convertToLocalDateTime(time2, dateTimeFormat));
+            } else {
+                if (time2.contains(" ")) {
+                    return -1;
+                }
+                return (Parser.convertToLocalDate(time1, dateFormat))
+                        .compareTo(Parser.convertToLocalDate(time2, dateFormat));
+            }
+        });
+
+        listTasks("Ok, here are your tasks:");
     }
 }

@@ -1,5 +1,9 @@
 package duke.gui;
 
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.services.Duke;
 import duke.services.Ui;
 import javafx.application.Platform;
@@ -10,10 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -37,6 +37,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
         Duke.activate();
+        //Show Duke's greeting
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.getReply(), dukeImage));
     }
 
