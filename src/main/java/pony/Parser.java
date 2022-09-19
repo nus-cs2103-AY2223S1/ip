@@ -84,7 +84,7 @@ public class Parser {
      * @throws PonyException User did not provide any details.
      */
     public static String parseTodoDetails(String commandDetails) throws PonyException {
-        if (commandDetails == null) {
+        if (commandDetails == null || commandDetails.isBlank()) {
             throw new PonyException(":( OOPS!!! Please provide the details!!");
         } else {
             return commandDetails;
