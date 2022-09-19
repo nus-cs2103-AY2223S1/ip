@@ -19,14 +19,6 @@ public class Ui {
         return message;
     }
 
-    public String printLine() {
-        String message = "==============================================";
-        return message;
-    }
-    public String readCommand() {
-        return this.sc.nextLine();
-    }
-
     public String printExit() {
         String message = "Bye. Hope to see you again soon!";
         return message;
