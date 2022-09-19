@@ -1,7 +1,11 @@
 package duke;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -20,14 +24,22 @@ import duke.items.ToDo;
  * Object to handle storing and loading of user's list of tasks.
  */
 public class Storage {
-    private String filePath = "/src/main/resources/saves/items.json";
+    private Path filePath;
 
     /**
      * Creates an object to store & load user's items.
      */
     public Storage() {
         String currDir = System.getProperty("user.dir");
-        this.filePath = Paths.get(currDir + this.filePath).toString();
+        this.filePath = Paths.get(currDir, "/src/main/resources/saves/items.json");
+    }
+
+    private void createDir(Path dir) throws IOException {
+        Path parentDir = dir.getParent();
+        if (!Files.exists(parentDir)) {
+            createDir(parentDir);
+        }
+        Files.createDirectory(dir);
     }
 
     /**
@@ -38,10 +50,13 @@ public class Storage {
         JSONArray itemsJson;
         ArrayList<Item> storedItems = new ArrayList<>(100);
 
-        if (!Files.exists(Paths.get(this.filePath))) {
+        if (!Files.exists(this.filePath)) {
             try {
-                File file = new File(this.filePath);
-                file.createNewFile();
+                Path dir = filePath.getParent();
+                if (!Files.exists(dir)) {
+                    createDir(dir);
+                }
+                Files.createFile(filePath);
                 return storedItems;
             } catch (IOException io) {
                 System.out.println("Error creating new save file");
@@ -49,9 +64,9 @@ public class Storage {
         }
 
         // Assert that the file just created / already there exists
-        assert Files.exists(Paths.get(this.filePath));
+        assert Files.exists(this.filePath);
 
-        try (FileReader reader = new FileReader(this.filePath)) {
+        try (FileReader reader = new FileReader(String.valueOf(this.filePath))) {
             JSONParser parser = new JSONParser();
             itemsJson = (JSONArray) parser.parse(reader);
             itemsJson.forEach(obj -> this.parseJsonToItem((JSONObject) obj, storedItems));
@@ -91,12 +106,12 @@ public class Storage {
     /**
      * Function to save items from an Arraylist into file.
      * @param storedItems ArrayList of items from the user to be stored.
-     * @return
+     * @return Whether the items have been saved successfully or not.
      */
     protected boolean saveItems(ArrayList<Item> storedItems) {
         JSONArray jsonArray = new JSONArray();
         storedItems.forEach(item -> this.parseItemToJson(item, jsonArray));
-        try (FileWriter fileWriter = new FileWriter(this.filePath)) {
+        try (FileWriter fileWriter = new FileWriter(String.valueOf(this.filePath))) {
             fileWriter.write(jsonArray.toJSONString());
         } catch (IOException e) {
             System.out.println("Error Writing to File.");

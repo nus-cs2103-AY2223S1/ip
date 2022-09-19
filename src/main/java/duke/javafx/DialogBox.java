@@ -8,20 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * Box to display profile picture and text of naruto / user.
+ */
 public class DialogBox extends HBox {
 
     private Label text;
     private ImageView displayPicture;
-
-    public static DialogBox getUserDialog(Label l, ImageView iv) {
-        return new DialogBox(l, iv);
-    }
-
-    public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        var db = new DialogBox(l, iv);
-        db.flip();
-        return db;
-    }
 
     private DialogBox(Label l, ImageView iv) {
         text = l;
@@ -36,6 +29,28 @@ public class DialogBox extends HBox {
     }
 
     /**
+     * Creates the javafx representation of the user's input
+     * @param l Text the user input.
+     * @param iv User's profile picture.
+     * @return A HBox with profile picture on the right and text on the left.
+     */
+    public static DialogBox getUserDialog(Label l, ImageView iv) {
+        return new DialogBox(l, iv);
+    }
+
+    /**
+     * Creates the javafx representation of naruto's response.
+     * @param l Text naruto responds with.
+     * @param iv Naruto's profile picture.
+     * @return A HBox with profile picture on the left and text on the right.
+     */
+    public static DialogBox getDukeDialog(Label l, ImageView iv) {
+        var db = new DialogBox(l, iv);
+        db.flip();
+        return db;
+    }
+
+    /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
@@ -44,6 +59,4 @@ public class DialogBox extends HBox {
         FXCollections.reverse(tmp);
         this.getChildren().setAll(tmp);
     }
-
-
 }

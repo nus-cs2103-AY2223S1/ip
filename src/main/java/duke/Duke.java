@@ -2,6 +2,8 @@ package duke;
 
 import java.util.Objects;
 
+import duke.commands.Command;
+import duke.javafx.DialogBox;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,10 +17,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
-import duke.commands.Command;
-import duke.javafx.DialogBox;
-
 
 
 /**
@@ -38,12 +36,14 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
     private AnchorPane mainLayout;
-    private final Image userPhoto
-            = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/randomJonin.png")));
-    private final Image narutoPhoto
-            = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/naruto.png")));
+    private final Image userPhoto =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/randomJonin.png")));
+    private final Image narutoPhoto =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/naruto.png")));
 
-
+    /**
+     * Creates an instance of Duke.
+     */
     public Duke() {
         this.ui = new UI();
         this.taskList = new TaskList();
@@ -69,7 +69,6 @@ public class Duke extends Application {
 
         this.stage.setScene(scene);
         this.stage.show();
-//        ui.printWelcomeMessage();
     }
 
     private ScrollPane setUpScrollPane() {
@@ -177,13 +176,5 @@ public class Duke extends Application {
     private void handleCloseRequest(WindowEvent windowEvent) {
         this.taskList.destructor();
         this.stage.close();
-    }
-
-    /**
-     * Run the chatbot.
-     * @param args This is useless.
-     */
-    public static void main(String[] args) {
-        Application.launch(Duke.class, args);
     }
 }
