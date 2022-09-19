@@ -57,7 +57,7 @@ public final class Parser {
      * @throws DukeException when the string to be parsed is invalid.
      */
     public static Command parseCommand(String input) throws DukeException {
-        String[] args = input.split(" ", 2);
+        String[] args = input.stripLeading().split(" ", 2);
         CommandType commandType = CommandType.fromString(args[0].toUpperCase());
 
         if (commandType == null) {
@@ -120,16 +120,17 @@ public final class Parser {
             throw new DukeException("Wrong number of arguments.");
         }
         try {
-            String description = args[1].substring(0, args[1].indexOf(" /by "));
+            String[] split = args[1].split(" /by ", 2);
+            String description = split[0];
             if (description.isBlank()) {
                 throw new DukeException("Invalid argument: Description cannot be blank.");
             }
-            String deadline = args[1].substring(args[1].indexOf(" /by ") + 5);
-            if (deadline.length() == 0) {
+            String deadline = split[1];
+            if (deadline.isEmpty()) {
                 throw new DukeException("Invalid argument: Deadline cannot be empty.");
             }
             return new AddTaskCommand(new DeadlineTask(description, Parser.parseDateTime(deadline), false));
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Invalid argument: Use /by flag to specify the deadline of the task");
         }
     }
@@ -139,15 +140,16 @@ public final class Parser {
             throw new DukeException("Wrong number of arguments.");
         }
         try {
-            String description = args[1].substring(0, args[1].indexOf(" /at "));
+            String[] split = args[1].split(" /at ", 2);
+            String description = split[0];
             if (description.isBlank()) {
                 throw new DukeException("Invalid argument: Description cannot be blank.");
             }
-            String time = args[1].substring(args[1].indexOf(" /at ") + 5);
-            if (time.length() == 0) {
+            String timeAt = split[1];
+            if (timeAt.isEmpty()) {
                 throw new DukeException("Invalid argument: Event time cannot be empty.");
             }
-            return new AddTaskCommand(new EventTask(description, Parser.parseDateTime(time), false));
+            return new AddTaskCommand(new EventTask(description, Parser.parseDateTime(timeAt), false));
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("Invalid argument: Use /at flag to specify the date and time of the event.");
         }
