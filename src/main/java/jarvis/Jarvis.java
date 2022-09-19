@@ -2,8 +2,8 @@ package jarvis;
 
 import java.io.IOException;
 
-import jarvis.gui.Main;
 import jarvis.exception.JarvisException;
+import jarvis.gui.Main;
 import jarvis.task.TaskList;
 import javafx.application.Application;
 
