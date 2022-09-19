@@ -50,11 +50,11 @@ public class Storage {
      */
     public void save(TaskList tasks) throws DukeException {
         try {
-            FileWriter fw = new FileWriter("./duke.txt");
+            FileWriter fw = new FileWriter(path);
             fw.write(tasks.toData());
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Save unsuccessful!");
+            throw new DukeException("Save unsuccessful! " + e.getMessage());
         }
     }
 }
