@@ -1,24 +1,43 @@
 package Commands;
 
 import DataStruct.TaskList;
+import DaveExceptions.DaveException;
+import Storage.SaveHandler;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class EndCommand extends Command{
 
     private TaskList tasks;
-    private String args;
+    private SaveHandler SAVE_SATE = new SaveHandler();
 
-    public EndCommand(TaskList tasks, String keyword) {
+    /**
+     * Ends the current session of Dave 2.
+     *
+     * @param tasks Tasklist to be saved before ending the session.
+     * @param args dummy parameter to ensure EndCommand fits the specifications of Command
+     */
+    public EndCommand(TaskList tasks, String args) {
         this.tasks = tasks;
-        this.args = keyword;
     }
 
+    /**
+     * Executes the command.
+     * @return The string representation of the result of the command.
+     */
     @Override
     public String execute() {
-            return "See you soon Akiha-sama!";
-    }
+    
+        SAVE_STATE.save();
+        
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 1000L);
 
-    @Override
-    public boolean getIsRunning() {
-        return false;
+        return "See you soon Akiha-sama!";
     }
 }

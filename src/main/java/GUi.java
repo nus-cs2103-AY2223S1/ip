@@ -63,14 +63,6 @@ public class GUi extends AnchorPane {
                     inputData.getHead(), inputData.getTail(), Dave2.getTasks()
             );
             String result  = command.execute();
-            if (!command.getIsRunning()) {
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        System.exit(0);
-                    }
-                }, 1000L);
-            }
             return result;
         } catch (DaveException e) {
             return e.toString();

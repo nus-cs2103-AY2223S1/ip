@@ -5,17 +5,16 @@ import Parser.Parser;
 import Storage.SaveHandler;
 import Ui.TextUi;
 
+import javafx.application.Application;
 import java.util.Scanner;
 
 public class Dave2 {
 
     private static TaskList tasks = new TaskList();
 
-    private static final SaveHandler saveState = new SaveHandler();
+    private static final SaveHandler SAVE_STATE = new SaveHandler();
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    private static boolean isRunning = true;
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
      * Gets the Dave 2's current task list.
@@ -31,27 +30,29 @@ public class Dave2 {
      * Original point of entry to Dave 2 when using CLI.
      * Deprecated after adding GUI.
      */
+    public static void runDaveCLI() throws DaveException {
+        String logo = " ____                     _____\n"
+                + "|  _ \\ _____ _   _ __    /___  \\\n"
+                + "| | | |  _  | |/ / _ \\      /  /\n"
+                + "| |_| | |_| |   <  __/     /  /_\n"
+                + "|____/ \\__,_|__/ \\___|    /_____|\n";
+        TextUi.print("Hello, I'm\n" + logo + "\nHow can I help ùwú?\n");
+
+        while (true) {
+            Pair<String, String> inputData = Parser.splitInputIntoCommand(SCANNER.nextLine());
+            Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), tasks);
+            String result  = command.execute();
+            TextUi.print(result);
+        }
+
+    }
+
     public static void main(String[] args) {
         try {
-            saveState.init();
-            tasks = saveState.load();
+            SAVE_STATE.init();
+            tasks = SAVE_STATE.load();
 
-            String logo = " ____                     _____\n"
-                    + "|  _ \\ _____ _   _ __    /___  \\\n"
-                    + "| | | |  _  | |/ / _ \\      /  /\n"
-                    + "| |_| | |_| |   <  __/     /  /_\n"
-                    + "|____/ \\__,_|__/ \\___|    /_____|\n";
-            TextUi.print("Hello, I'm\n" + logo + "\nHow can I help ùwú?\n");
-
-            while (isRunning) {
-                Pair<String, String> inputData = Parser.splitInputIntoCommand(scanner.nextLine());
-                Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), tasks);
-                String result  = command.execute();
-                isRunning = command.getIsRunning();
-                TextUi.print(result);
-            }
-
-            saveState.save(tasks);
+            Application.launch(Main.class, args);
 
         } catch (DaveException e) {
             TextUi.print(e.toString());
