@@ -3,7 +3,7 @@ package duke.handlers;
 import duke.exceptions.DukeException;
 import duke.models.DukeResponse;
 import duke.models.Event;
-import duke.models.EventParser;
+import duke.parser.EventParser;
 import duke.models.TaskList;
 
 /**

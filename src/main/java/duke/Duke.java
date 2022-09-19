@@ -3,6 +3,9 @@ package duke;
 import duke.exceptions.DukeException;
 import duke.handlers.DukeCommand;
 import duke.models.*;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.utils.Ui;
 import javafx.application.Application;
 
 import java.util.Scanner;

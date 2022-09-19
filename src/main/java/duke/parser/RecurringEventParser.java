@@ -1,6 +1,7 @@
-package duke.models;
+package duke.parser;
 
 import duke.exceptions.DukeException;
+import duke.models.RecurringEvent;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

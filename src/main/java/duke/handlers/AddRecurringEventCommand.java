@@ -2,7 +2,7 @@ package duke.handlers;
 
 import duke.exceptions.DukeException;
 import duke.models.DukeResponse;
-import duke.models.RecurringEventParser;
+import duke.parser.RecurringEventParser;
 import duke.models.RecurringEvent;
 import duke.models.TaskList;
 

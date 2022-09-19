@@ -1,4 +1,4 @@
-package duke.models;
+package duke.utils;
 
 /**
  * The Ui class contains methods for formatting messages displayed to the user.

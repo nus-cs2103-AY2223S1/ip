@@ -2,7 +2,7 @@ package duke.handlers;
 
 import duke.exceptions.DukeException;
 import duke.models.DukeResponse;
-import duke.models.Storage;
+import duke.storage.Storage;
 import duke.models.TaskList;
 
 /**

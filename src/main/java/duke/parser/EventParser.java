@@ -1,6 +1,7 @@
-package duke.models;
+package duke.parser;
 
 import duke.exceptions.DukeException;
+import duke.models.Event;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

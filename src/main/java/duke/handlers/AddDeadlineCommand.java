@@ -2,7 +2,7 @@ package duke.handlers;
 
 import duke.exceptions.DukeException;
 import duke.models.Deadline;
-import duke.models.DeadlineParser;
+import duke.parser.DeadlineParser;
 import duke.models.DukeResponse;
 import duke.models.TaskList;
 

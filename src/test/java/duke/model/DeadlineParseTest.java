@@ -1,6 +1,6 @@
 package duke.model;
 import duke.models.Deadline;
-import duke.models.DeadlineParser;
+import duke.parser.DeadlineParser;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

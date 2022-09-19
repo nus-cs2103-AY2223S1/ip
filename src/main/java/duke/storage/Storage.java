@@ -1,6 +1,7 @@
-package duke.models;
+package duke.storage;
 
 import duke.exceptions.DukeException;
+import duke.models.*;
 
 import java.io.File;
 import java.io.FileWriter;

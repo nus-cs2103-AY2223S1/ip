@@ -1,4 +1,4 @@
-package duke.models;
+package duke.parser;
 
 import duke.exceptions.DukeException;
 import duke.handlers.DukeCommand;
