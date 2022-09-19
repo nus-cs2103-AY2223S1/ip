@@ -2,7 +2,11 @@ package pony.task;
 
 public class ToDo extends Task {
 
-
+    /**
+     * Constructor for ToDo.
+     *
+     * @param description Task description.
+     */
     public ToDo(String description) {
         super(description);
     }

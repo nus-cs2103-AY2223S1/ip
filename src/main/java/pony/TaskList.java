@@ -1,6 +1,7 @@
-package pony.task;
+package pony;
 
 import pony.PonyException;
+import pony.task.Task;
 
 import java.util.ArrayList;
 

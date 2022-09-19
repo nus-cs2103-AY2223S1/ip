@@ -7,6 +7,13 @@ public class Event extends Task {
     private String timeInfo;
     private LocalDateTime time;
 
+    /**
+     * Constructor for Event.
+     *
+     * @param description Task description.
+     * @param timeInfo Time the task is happening.
+     * @throws DateTimeParseException timeInfo input not following the correct format.
+     */
     public Event(String description, String timeInfo) throws DateTimeParseException {
         super(description);
         this.timeInfo = timeInfo;

@@ -3,12 +3,18 @@ package pony.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-
 public class Deadline extends Task {
 
     private String timeInfo;
     private LocalDateTime time;
 
+    /**
+     * Constructor for Deadline.
+     *
+     * @param description Task description.
+     * @param timeInfo Time the task is due.
+     * @throws DateTimeParseException timeInfo input not following the correct format.
+     */
     public Deadline(String description, String timeInfo) throws DateTimeParseException {
         super(description);
         this.timeInfo = timeInfo;

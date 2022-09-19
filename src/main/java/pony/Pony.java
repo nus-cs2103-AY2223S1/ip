@@ -1,7 +1,6 @@
 package pony;
 
 import pony.command.Command;
-import pony.task.TaskList;
 
 public class Pony {
 
@@ -9,12 +8,19 @@ public class Pony {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Pony.
+     * @param filePath File path of the memory file.
+     */
     public Pony(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.loadTaskList());
     }
 
+    /**
+     * Runs the program.
+     */
     public void run() {
         ui.printWelcome();
         boolean isExit = false;

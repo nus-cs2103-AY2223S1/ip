@@ -1,9 +1,12 @@
 package pony;
 
 import pony.task.Task;
-import pony.task.TaskList;
 
 import java.util.Scanner;
+
+/**
+ * A UI class handling all user interaction.
+ */
 public class Ui {
     Scanner sc;
     public Ui() {

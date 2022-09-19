@@ -2,14 +2,30 @@ package pony.command;
 
 import pony.*;
 import pony.task.Task;
-import pony.task.TaskList;
+import pony.TaskList;
 
+/**
+ * Command for marking a task.
+ */
 public class MarkCommand extends Command {
     private String commandDetails;
+
+    /**
+     * Constructor for MarkCommand.
+     *
+     * @param commandDetails Details for the command.
+     */
     public MarkCommand(String commandDetails) {
         this.commandDetails = commandDetails;
     }
 
+    /**
+     * Executes a Mark command.
+     *
+     * @param tasks TaskList that stores Tasks.
+     * @param storage Storage that handles memory files.
+     * @param ui Ui that handles interaction with users.
+     */
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         try {

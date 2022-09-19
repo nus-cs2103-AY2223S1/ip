@@ -10,15 +10,27 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Storage handles all the interaction with the memory.
+ */
 public class Storage {
     private Path taskListPath = null;
     private String fileName;
 
+    /**
+     * Constructor for Storage.
+     * @param fileName Description of the path to the memory file.
+     */
     public Storage(String fileName) {
         this.fileName = fileName;
         this.taskListPath = Paths.get(fileName);
     }
 
+    /**
+     * Loads the list of tasks loaded from memory into the program.
+     *
+     * @return An ArrayList of Tasks.
+     */
     public ArrayList<Task> loadTaskList() {
         // Check if file exist
         ArrayList<Task> tasks = new ArrayList<>();
@@ -28,7 +40,6 @@ public class Storage {
                 List<String> taskList = Files.readAllLines(taskListPath);
                 for (int i = 0; i < taskList.size(); i++) {
                     String taskDetail = taskList.get(i);
-                    //TODO
                     processTaskDetail(taskDetail, tasks);
                 }
             } catch (IOException | SecurityException e) {
@@ -47,6 +58,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Process task details and turn it into a task.
+     *
+     * @param taskDetail Task details.
+     * @param tasks An ArrayList to store all the tasks.
+     */
     private void processTaskDetail(String taskDetail, ArrayList<Task> tasks) {
         String[] strArr = taskDetail.split(" \\Q|\\E ", 4);
         Task newTask = null;
@@ -69,6 +86,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the memory with an updated task list.
+     * @param tasks Task list with updated details.
+     */
     public void updateDisk(TaskList tasks) {
         String data = "";
         ArrayList<Task> taskArr = tasks.getAllTasks();
