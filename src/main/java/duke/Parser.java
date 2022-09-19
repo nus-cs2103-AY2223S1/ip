@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 import command.ByeCommand;
 import command.Command;
@@ -26,7 +26,7 @@ public class Parser {
     private static final String COMMAND_MARK = "mark";
     private static final String COMMAND_UNMARK = "unmark";
 
-    Parser() {
+    public Parser() {
         ;
     }
 

@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class TaskList {
     private TaskList searchTasks;
     private int size;
 
-    TaskList() {
+    public TaskList() {
         this.tasks = new ArrayList<Task>();
         this.size = 0;
     }

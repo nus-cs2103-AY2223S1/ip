@@ -1,15 +1,15 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.InvalidDateException;
 import exception.MissingArgumentException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Event;
 import task.Task;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     private String description;
     private String duration;
@@ -48,11 +48,11 @@ public class EventCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task newEvent = this.getTask();
             tasks.add(newEvent);
-            ui.add(newEvent);
+            return ui.add(newEvent);
         } catch (DukeException e) {
             throw e;
         }
@@ -65,7 +65,7 @@ public class EventCommand extends Command{
      * @throws DukeException
      */
     @Override
-    public Task getTask() throws DukeException{
+    public Task getTask() throws DukeException {
         try {
             return new Event(description, duration);
         } catch (MissingArgumentException e) {

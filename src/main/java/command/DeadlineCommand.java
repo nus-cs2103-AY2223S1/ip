@@ -1,11 +1,11 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.InvalidDateException;
 import exception.MissingArgumentException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Deadline;
 import task.Task;
 
@@ -52,11 +52,11 @@ public class DeadlineCommand extends Command {
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task newDeadline = this.getTask();
             tasks.add(newDeadline);
-            ui.add(newDeadline);
+            return ui.add(newDeadline);
         } catch (DukeException e) {
             throw e;
         }
@@ -69,7 +69,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public Task getTask() throws DukeException{
+    public Task getTask() throws DukeException {
         try {
             return new Deadline(description, date);
         } catch (MissingArgumentException e) {

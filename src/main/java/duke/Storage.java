@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +39,7 @@ public class Storage {
      * @return TaskList
      * @throws DukeException
      */
-    public void loadLog() throws DukeException{
+    public int loadLog() throws DukeException{
         try {
             //initialise parser, file scanner and tasklist
             Parser parser = new Parser();
@@ -71,7 +71,7 @@ public class Storage {
 
             //return the new tasklist to be used
             this.existingTasks.replace(newTaskList);
-            this.sendLoadMessage(numOfTasks);
+            return numOfTasks;
         } catch (InvalidCommandException e) {
             throw e;
         } catch (FileNotFoundException e) {
@@ -79,23 +79,22 @@ public class Storage {
         }
     }
 
-    public void loadLog(String newPath) throws DukeException{
+    public int loadLog(String newPath) throws DukeException{
         String fullPath = this.LOG_FILE_DIRECTORY + "/" + newPath;
         if (!this.verifyPath(fullPath)) {
             throw new DukeFileAddressInvalidException("File path specified does not exist");
         }
         this.logFileAddress = fullPath;
-        this.loadLog();
+        return this.loadLog();
     }
     
     /** 
      * @throws DukeException
      */
-    public void cleanUp() throws DukeException {
+    public int cleanUp() throws DukeException {
         //if no tasks to be saved, exit with message
         if (existingTasks.getSize() == 0) {
-            this.sendNoTasksMessage();
-            return;
+            return 0;
         }
         try {
             //Verify filepath exists
@@ -113,7 +112,7 @@ public class Storage {
 
             //close file writer and show message to user
             fileWriter.close();
-            this.sendEndMessage(numOfTasks);
+            return numOfTasks;
         }
         catch (IOException e) {
             throw new DukeIOException("Error in saving Tasks\n");
@@ -125,9 +124,9 @@ public class Storage {
      * @param newFileName
      * @throws DukeException
      */
-    public void cleanUp(String newFileName) throws DukeException{
+    public int cleanUp(String newFileName) throws DukeException{
         logFileAddress = this.LOG_FILE_DIRECTORY + "/" + newFileName;
-        this.cleanUp();
+        return this.cleanUp();
     }
 
     private boolean verifyPath(String fullPath) {

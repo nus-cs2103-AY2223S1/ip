@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 enum CommandType {
     LOAD("load"),

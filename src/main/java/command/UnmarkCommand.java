@@ -1,10 +1,10 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.TaskListOutOfBoundsException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Task;
 
 public class UnmarkCommand extends Command{
@@ -35,10 +35,10 @@ public class UnmarkCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.unmark(this.pos);
-            ui.unmark(this.pos);
+            return ui.unmark(this.pos);
         } catch (TaskListOutOfBoundsException e) {
             throw new DukeException(e.getLocalizedMessage());
         }

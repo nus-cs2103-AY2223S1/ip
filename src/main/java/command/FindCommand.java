@@ -1,8 +1,8 @@
 package command;
 
-import main.Storage;
-import main.TaskList;
-import main.Ui;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import task.Task;
 
 public class FindCommand extends Command{
@@ -19,8 +19,8 @@ public class FindCommand extends Command{
         return false;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.list(tasks.search(keyword), true);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.list(tasks.search(keyword), true);
     }
 
     @Override

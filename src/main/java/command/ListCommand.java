@@ -1,8 +1,8 @@
 package command;
 
-import main.Storage;
-import main.TaskList;
-import main.Ui;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import task.Task;
 
 public class ListCommand extends Command {
@@ -29,9 +29,8 @@ public class ListCommand extends Command {
      * @param ui
      * @param storage
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.list(tasks, false);
-
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.list(tasks, false);
     }
 
     

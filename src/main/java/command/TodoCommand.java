@@ -1,10 +1,10 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.MissingArgumentException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Task;
 import task.ToDo;
 
@@ -45,11 +45,11 @@ public class TodoCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
         try {
             Task newEvent = this.getTask();
             tasks.add(newEvent);
-            ui.add(newEvent);
+            return ui.add(newEvent);
         } catch (DukeException e) {
             throw e;
         }

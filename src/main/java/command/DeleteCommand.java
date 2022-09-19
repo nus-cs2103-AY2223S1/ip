@@ -1,10 +1,10 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.TaskListOutOfBoundsException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Task;
 
 /**
@@ -37,10 +37,10 @@ public class DeleteCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
-        try { 
-            ui.delete(this.pos);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+        try {   
             tasks.delete(this.pos);
+            return ui.delete(this.pos);
         } catch (TaskListOutOfBoundsException e) {
             throw new DukeException(e.getLocalizedMessage());
         }

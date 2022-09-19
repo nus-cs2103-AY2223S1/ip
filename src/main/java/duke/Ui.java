@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 import exception.DukeException;
 import exception.TaskListOutOfBoundsException;
@@ -12,21 +12,21 @@ public class Ui {
     private final String MESSAGE_GREETING = "Hello! I'm Duke  \n" + "What can I do for you?";
     private final String MESSAGE_FIND = "Tasks found:\n";
     private final String MESSAGE_LOG_ERROR = "File pathing for log file is facing issues, tasks not saved\n";
-    private final String markMessage = "Task has been marked done:";
-    private final String unmarkMessage = "Task has been marked not done:";
-    private final String addMessage = "Task added: \n";
-    private final String deleteMessage = "Task deleted: \n";
+    private final String MESSAGE_MARK = "Task has been marked done:";
+    private final String MESSAGE_UNMARK = "Task has been marked not done:";
+    private final String MESSAGE_ADD = "Task added: \n";
+    private final String MESSAGE_DELETE = "Task deleted: \n";
     
     public Ui(TaskList tasks) {
         this.tasks = tasks;
     }
 
-    public void greeting() {
-        this.chat(this.MESSAGE_GREETING);
+    public String greeting() {
+        return this.chat(this.MESSAGE_GREETING);
     }
 
-    public void logFileError() {
-        this.chat(MESSAGE_LOG_ERROR);
+    public String logFileError() {
+        return this.chat(MESSAGE_LOG_ERROR);
     }
     
     /** 
@@ -34,11 +34,11 @@ public class Ui {
      * indicates the task type, done or not done, task description and task date
      * @param tasks
      */
-    public void list(TaskList tasks, boolean isFind) {
+    public String list(TaskList tasks, boolean isFind) {
         if (isFind) {
-            this.chat(MESSAGE_FIND + tasks.toString());
+            return this.chat(MESSAGE_FIND + tasks.toString());
         } else {
-            this.chat(tasks.toString());
+            return this.chat(tasks.toString());
         }
     }
 
@@ -47,8 +47,8 @@ public class Ui {
      * Shows the new task that was added to the user, indicates the task type, task description and task date
      * @param newTask
      */
-    public void add(Task newTask) {
-        this.chat(String.format("%s%s", addMessage, newTask));
+    public String add(Task newTask) {
+        return this.chat(String.format("%s%s", MESSAGE_ADD, newTask));
     }
 
     
@@ -57,9 +57,9 @@ public class Ui {
      * @param pos
      * @throws DukeException
      */
-    public void delete(int pos) throws DukeException{
+    public String delete(int pos) throws DukeException{
         try {
-            this.chat(String.format("%s%s", deleteMessage, this.tasks.get(pos)));
+            return this.chat(String.format("%s%s", MESSAGE_DELETE, this.tasks.get(pos)));
         } catch (TaskListOutOfBoundsException e) {
             throw new DukeException(e.getLocalizedMessage());
         }
@@ -71,9 +71,9 @@ public class Ui {
      * @param pos
      * @throws DukeException
      */
-    public void mark(int pos) throws DukeException {
+    public String mark(int pos) throws DukeException {
         try {
-            this.chat(markMessage + this.tasks.get(pos));
+            return this.chat(MESSAGE_MARK + this.tasks.get(pos));
         } catch (TaskListOutOfBoundsException e) {
             throw new DukeException(e.getLocalizedMessage());
         }
@@ -85,9 +85,9 @@ public class Ui {
      * @param pos
      * @throws DukeException
      */
-    public void unmark(int pos) throws DukeException {
+    public String unmark(int pos) throws DukeException {
         try {
-            this.chat(unmarkMessage + tasks.get(pos));
+            return this.chat(MESSAGE_UNMARK + tasks.get(pos));
         } catch (TaskListOutOfBoundsException e) {
             throw new DukeException(e.getLocalizedMessage());
         }
@@ -98,23 +98,27 @@ public class Ui {
      * Shows the error messages from exceptions
      * @param e
      */
-    public void errorMessage(DukeException e) {
-        this.chat(e.getLocalizedMessage());
+    public String errorMessage(DukeException e) {
+        return this.chat(e.getLocalizedMessage());
     }
 
-    public void errorEnd() {
-        this.chat("Error in saving Tasks, progress from current session is not saved :(");
+    public String errorEnd() {
+        return this.chat("Error in saving Tasks, progress from current session is not saved :(");
     }
 
-    public void bye() {
-        this.chat("Bye bye! :D");
+    public String load(int numOfTasks) {
+        return this.chat(String.format("Loaded %d tasks. \nHave a productive day!", numOfTasks));
+    }
+
+    public String bye(int numOfTasks) {
+        return this.chat(String.format("Saved %d tasks. \nBye bye! :D", numOfTasks));
     }
 
     
     /** 
      * @param message
      */
-    public void chat(String message) {
-        System.out.println(UI_LINE_SPACING + "\n" + message + "\n" + UI_LINE_SPACING);
+    public String chat(String message) {
+        return(UI_LINE_SPACING + "\n" + message + "\n" + UI_LINE_SPACING);
     }
 }

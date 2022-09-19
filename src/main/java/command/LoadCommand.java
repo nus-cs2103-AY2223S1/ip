@@ -1,14 +1,9 @@
 package command;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
-import exception.DukeFileAddressInvalidException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Task;
 
 public class LoadCommand extends Command{
@@ -41,12 +36,12 @@ public class LoadCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
         try {
             if (this.logFileAddress.equals("")) {
-                storage.loadLog();
+                return ui.load(storage.loadLog());
             } else {
-                storage.loadLog(this.logFileAddress);
+                return ui.load(storage.loadLog(this.logFileAddress));
             }
         } catch (DukeException e) {
             throw e;

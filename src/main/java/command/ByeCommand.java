@@ -1,10 +1,10 @@
 package command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import exception.DukeException;
 import exception.DukeFileAddressInvalidException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
 import task.Task;
 
 /**
@@ -12,9 +12,10 @@ import task.Task;
  * @extends Command
  */
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
 
     private String logFileAddress = "";
+    private Ui ui;
     
     public ByeCommand() {
     }
@@ -42,15 +43,15 @@ public class ByeCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (!this.verifyAddress(this.logFileAddress)) {
             throw new DukeFileAddressInvalidException("User file address invalid, please check pathing");
         }
         try {
             if (this.logFileAddress.equals("")) {
-                storage.cleanUp();
+                return ui.bye(storage.cleanUp());
             } else {
-                storage.cleanUp(this.logFileAddress);
+                return ui.bye(storage.cleanUp(this.logFileAddress));
             }
         } catch (DukeException e) {
             throw e;
