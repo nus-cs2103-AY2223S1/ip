@@ -1,6 +1,6 @@
 # Pikachu Task Manager ϞϞ(๑⚈ ․̫ ⚈๑)∩ 🟡
 
-> "Pokémon Can Evolve Into Better Versions Of Themselves. And Now - So Can You." 
+> "Pokémon Can Evolve Into Better Versions Of Themselves. And Now - So Can You."
 > - Detective Pikachu
 
 With Pikachu Task Manager, you can become a better version of yourself through managing your tasks better and never going to miss any deadlines! (*PIKA!*)
@@ -11,11 +11,11 @@ With Pikachu Task Manager, you can become a better version of yourself through m
 * Deadline
 
 All you need to do is,
-2. Download pikachu.jar from [here](https://github.com/optionalemon/ip/releases/tag/A-Release)
+1. Download pikachu.jar from [here](https://github.com/optionalemon/ip/releases/tag/A-Release)
 2. Double click or type <code> java -jar pikachu.jar</code> in the terminal within the directory that contains the .jar file
 3. Read User Guide [here](https://optionalemon.github.io/ip/)
-3. Add in your tasks
-4. Pikachu will be there to help (*Pikapi!*)
+4. Add in your tasks
+5. Pikachu will be there to help (*Pikapi!*)
 
 If you are a fan of Pokémon:
 - [ ] Yes, I love it!
