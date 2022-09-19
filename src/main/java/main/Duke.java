@@ -221,6 +221,6 @@ public class Duke extends Application {
     }
 
     public static void main(String[] args) {
-        new Duke(args[0]).run();
+        new Duke("Duke.txt").run();
     }
 }
