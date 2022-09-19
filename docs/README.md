@@ -1,10 +1,10 @@
-#User Guide
+# User Guide
 
-##Duke
+## Duke
 
 > “Your mind is for having ideas, not holding them.” – David Allen
 
-###Overview
+### Overview
 Duke frees your mind of having to remember things you need to do. It's,
 
 - text-based
@@ -19,36 +19,19 @@ All you need to do is,
 4. let it manage your tasks for you :+1:
 And it is FREE!
 
-###Features:
+### Features:
 
  - [x] Managing tasks
  - [x] Managing deadlines
  - [x] Reminders ~~(coming soon)~~
 
-If you are a Java programmer, you can use it to practice Java too. Here's the `main` method:
 
-```java
-    public static void main(String[] args) throws IOException {
-        Storage storage = new Storage();
-        TaskList tasks = storage.loadFile();
-        Parser parser = new Parser(tasks, storage);
-        UI ui = new UI();
-        ui.welcomeUser();
-        String input = ui.readInput();  // Read user input
-        while (!input.equals("bye")) {
-            parser.parse(input);
-            input = ui.readInput(); // Read next user input
-        }
-        ui.sayBye();
-    }
-```
+### Usage
 
-###Usage
-
-####Commands
+#### Commands
 
 - `todo DESCRIPTION`: Add todo task
-- `deadline DESCRIPTION /by DEADLINE': Add deadline task
+- `deadline DESCRIPTION /by DEADLINE`: Add deadline task
 - `event DESCRIPTION /at TIME`: Add event task
 - `list`: List all tasks
 - `mark INDEX`: Mark task as done
