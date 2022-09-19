@@ -1,6 +1,8 @@
 package duke.gui;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import javafx.collections.FXCollections;
@@ -13,8 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.SVGPath;
 
 /**
  * An example of a custom control using FXML.
@@ -23,7 +28,15 @@ import javafx.scene.shape.Circle;
  */
 public class DialogBox extends HBox {
     @FXML
+    private StackPane stackPane;
+    @FXML
+    private VBox labelContainer;
+    @FXML
     private Label dialog;
+    @FXML
+    private Label time;
+    @FXML
+    private SVGPath directionIndicator;
     @FXML
     private ImageView displayPicture;
     @FXML
@@ -38,8 +51,9 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        time.setText(dtf.format(LocalDateTime.now()));
         circle.setFill(new ImagePattern(img));
     }
 
@@ -50,6 +64,11 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
+        labelContainer.setStyle("-fx-background-radius: 0 10 10 10; -fx-padding: 15 20 15 20; "
+                + "-fx-background-color: #7FDBFF, #001f3f; -fx-background-insets: 0, 1;");
+        directionIndicator.setContent("M20 0 L0 0 L20 20");
+        stackPane.setAlignment(Pos.TOP_LEFT);
+        labelContainer.setTranslateX(20.5);
         setAlignment(Pos.TOP_LEFT);
     }
 

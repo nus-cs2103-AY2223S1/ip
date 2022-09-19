@@ -3,23 +3,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.shape.Circle?>
-<fx:root alignment="TOP_RIGHT" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0"
-         style="-fx-background-color: #001f3f; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #7FDBFF;"
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<fx:root alignment="TOP_RIGHT" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="-2.3"
          type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
-        <Insets bottom="25.0" left="5.0" right="5.0" top="15.0"/>
+        <Insets bottom="25.0" left="12.0" right="12.0" top="15.0"/>
     </padding>
-    <Label fx:id="dialog" text="Label" wrapText="true"
-           style="-fx-text-fill: #FFFAF1; -fx-font-family: 'Trebuchet MS', sans-serif;">
+    <StackPane fx:id="stackPane" alignment="TOP_RIGHT" minHeight="-Infinity">
         <padding>
-            <Insets left="20.0" right="20.0"/>
+            <Insets right="12.0" left="12.0" />
         </padding>
-        <font>
-            <Font size="14.0"/>
-        </font>
-        <lineSpacing>6</lineSpacing>
-    </Label>
+        <VBox fx:id="labelContainer" minWidth="300" minHeight="-Infinity" style="-fx-background-radius: 10 0 10 10;
+                -fx-padding: 15 20 15 20; -fx-background-insets: 0, 1; -fx-background-color: #7FDBFF, #001f3f;"
+                translateX="-20.5" translateY="0.5" spacing="15">
+            <Label fx:id="dialog" text="Label" wrapText="true" style="-fx-text-fill: #FFFAF1; -fx-font-size: 14;
+                    -fx-font-family: 'Trebuchet MS', sans-serif;" minHeight="60" VBox.vgrow="ALWAYS" alignment="TOP_LEFT">
+                <lineSpacing>6</lineSpacing>
+            </Label>
+            <HBox alignment="BASELINE_RIGHT" minHeight="-Infinity">
+                <Label fx:id="time" text="Time" style="-fx-text-fill: #FFFAF1;-fx-font-family: 'Trebuchet MS', sans-serif;"/>
+            </HBox>
+        </VBox>
+        <SVGPath fx:id="directionIndicator" content="M0 0 L20 0 L0 20" fill="#001f3f" stroke="#7FDBFF" strokeLineCap="butt"/>
+    </StackPane>
     <Circle fx:id="circle" radius="60" stroke="seagreen" pickOnBounds="true"/>
 </fx:root>

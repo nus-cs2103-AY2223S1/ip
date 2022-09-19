@@ -23,7 +23,7 @@
     <ScrollPane fx:id="scrollPane" hvalue="1.0" prefHeight="557.0" prefWidth="500.0" vvalue="1.0"
                 GridPane.columnSpan="2" GridPane.hgrow="always" fitToHeight="true" fitToWidth="true"
                 GridPane.vgrow="always">
-        <VBox fx:id="dialogContainer" style="-fx-background-color: #0c4b8d;"
+        <VBox fx:id="dialogContainer" style="-fx-background-color: #0c4b8d; -fx-padding: 0 5"
               prefHeight="555.0" prefWidth="488.0"/>
     </ScrollPane>
     <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="424.0"

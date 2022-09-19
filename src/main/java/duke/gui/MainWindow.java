@@ -65,6 +65,9 @@ public class MainWindow extends VBox {
         String input = userInput.getText();
         try {
             String response = duke.getResponse(input);
+            if (response == null) {
+                return;
+            }
             DialogBox dukeDialog = DialogBox.getDukeDialog(response, dukeImage);
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
