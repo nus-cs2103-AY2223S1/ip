@@ -21,7 +21,7 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 ## Quick Start
 1. Ensure you have Java `11` or above installed on your Computer.
 
-2. Download the latest `duke.jar` from [here](https://github.com/therealdaofu/ip/releases/tag/A-Release).
+2. Download the latest `koba.jar` from [here](https://github.com/therealdaofu/ip/releases/tag/A-Release).
 
 3. You can now choose to keep the jar file in a specified folder you wish to use for your app.
 
