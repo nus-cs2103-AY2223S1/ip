@@ -88,7 +88,8 @@ Example of usage:
 Expected outcome:
 
 ```
-Nice! You've completed this task: [T][X] read book
+Nice! You've completed this task: 
+[T][X] read book
 ```
 
 ### `unmark <index>` - Marks a task as not done
@@ -102,7 +103,8 @@ Example of usage:
 Expected outcome:
 
 ```
-Oh no! Try to complete this task ASAP: [T][] read book
+Oh no! Try to complete this task ASAP: 
+[T][] read book
 ```
 
 ### `delete <index>` - Deletes a task
