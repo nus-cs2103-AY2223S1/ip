@@ -1,7 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  * Reads in user input and processes user input.
@@ -117,6 +117,25 @@ public class Parser {
                 }
 
                 return printMatch(matches);
+            case "update":
+                if (input.substring(6).replaceAll("\\s+", "").equals("")) {
+                    throw new DukeException("The description of an update cannot be empty.");
+                }
+                for (int i = 0; i < tasks.getSize(); i++) {
+                    task = tasks.getTask(i);
+                    if (task.getDescription().contains(inputArr[1])) {
+                        tasks.deleteTask(i);
+                        if (task instanceof Deadline) {
+                            tasks.addTask(new Deadline(inputArr[1], inputArr[2]));
+                        } else if (task instanceof Event) {
+                            tasks.addTask(new Event(inputArr[1], inputArr[2]));
+                        } else {
+                            throw new DukeException("No more to update for this task");
+                        }
+                        return printTask(task);
+                    }
+                }
+                throw new DukeException("Cannot find an existing task matching the update");
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
@@ -142,13 +161,13 @@ public class Parser {
                     + "\n" + BREAK_LINE;
         } else {
             assert tasks.getSize() > 0 : "The size of the task list should be larger than 0";
-            String output = BREAK_LINE + "\n"
-                    + "     Here are the tasks in your list:";
+            StringBuilder output = new StringBuilder(BREAK_LINE + "\n"
+                    + "     Here are the tasks in your list:");
             for (int i = 0; i < tasks.getSize(); i++) {
-                output += String.format("     %d.%s\n", i + 1, tasks.getTask(i));
+                output.append(String.format("     %d.%s\n", i + 1, tasks.getTask(i)));
             }
-            output += BREAK_LINE + "\n";
-            return output;
+            output.append(BREAK_LINE + "\n");
+            return output.toString();
         }
     }
 
@@ -158,13 +177,13 @@ public class Parser {
                     + "     There is no task matching this key word."
                     + "\n" + BREAK_LINE;
         } else {
-            String output = BREAK_LINE + "\n"
-                    + "     Okay! I've found these matches from the list:\n       ";
+            StringBuilder output = new StringBuilder(BREAK_LINE + "\n"
+                    + "     Okay! I've found these matches from the list:\n       ");
             for (int i = 0; i < matches.size(); i++) {
-                output += String.format("     %d.%s\n", i + 1, matches.get(i));
+                output.append(String.format("     %d.%s\n", i + 1, matches.get(i)));
             }
-            output += BREAK_LINE + "\n";
-            return output;
+            output.append(BREAK_LINE + "\n");
+            return output.toString();
         }
     }
 }
