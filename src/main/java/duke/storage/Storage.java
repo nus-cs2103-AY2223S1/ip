@@ -48,17 +48,17 @@ public class Storage {
 
                 switch (description[0]) {
 
-                    case "T":
-                        taskList.add(new ToDo(description[2], isDone));
-                        break;
-                    case "D":
-                        taskList.add(new Deadline(description[2], isDone, description[3]));
-                        break;
-                    case "E":
-                        taskList.add(new Event(description[2], isDone, description[3]));
-                        break;
-                    default:
-                        break;
+                case "T":
+                    taskList.add(new ToDo(description[2], isDone));
+                    break;
+                case "D":
+                    taskList.add(new Deadline(description[2], isDone, description[3]));
+                    break;
+                case "E":
+                    taskList.add(new Event(description[2], isDone, description[3]));
+                    break;
+                default:
+                    break;
                 }
             }
         } catch(FileNotFoundException e) {

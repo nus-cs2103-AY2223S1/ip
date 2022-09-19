@@ -24,25 +24,24 @@ public class Parser {
         String commandType = input[0].toLowerCase();
 
         switch (commandType) {
-
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return parseMark(input);
-            case "unmark":
-                return parseUnmark(input);
-            case "deadline":
-                return parseDeadline(input);
-            case "event":
-                return parseEvent(input);
-            case "todo":
-                return parseToDo(input);
-            case "delete":
-                return parseDelete(input);
-            default:
-                return new UnknownCommand();
+        case "bye":
+            return new ExitCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return parseMark(input);
+        case "unmark":
+            return parseUnmark(input);
+        case "deadline":
+            return parseDeadline(input);
+        case "event":
+            return parseEvent(input);
+        case "todo":
+            return parseToDo(input);
+        case "delete":
+            return parseDelete(input);
+        default:
+            return new UnknownCommand();
         }
     }
 
