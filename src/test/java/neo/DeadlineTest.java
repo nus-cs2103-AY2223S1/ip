@@ -26,7 +26,7 @@ public class DeadlineTest {
         assertEquals("X", arrayLL.getTask(0).getIsDone());
     }
 
-    /*
+
     @Test
     public void DeadlineUnMark() throws NeoException, IOException {
         Deadline d = new Deadline("return book", "2022-02-02");
@@ -34,9 +34,11 @@ public class DeadlineTest {
         Storage stor = new Storage();
         TaskList arrayLL = new TaskList();
         arrayLL.addTask(d);
-        UnMarkCommand mc = new UnMarkCommand(ui, stor, arrayLL);
+        MarkCommand mc = new MarkCommand(ui, stor, arrayLL);
         mc.complete("1");
+        UnMarkCommand umc = new UnMarkCommand(ui, stor, arrayLL);
+        umc.complete("1");
         assertEquals(" ", arrayLL.getTask(0).getIsDone());
-    }*/
+    }
 }
 

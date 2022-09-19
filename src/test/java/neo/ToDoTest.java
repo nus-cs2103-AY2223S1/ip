@@ -26,7 +26,7 @@ public class ToDoTest {
         assertEquals("X", arrayLL.getTask(0).getIsDone());
     }
 
-    /*
+
     @Test
     public void ToDoUnMark() throws NeoException, IOException {
         ToDo td = new ToDo("return book");
@@ -34,9 +34,11 @@ public class ToDoTest {
         Storage stor = new Storage();
         TaskList arrayLL = new TaskList();
         arrayLL.addTask(td);
-        UnMarkCommand mc = new UnMarkCommand(ui, stor, arrayLL);
+        MarkCommand mc = new MarkCommand(ui, stor, arrayLL);
         mc.complete("1");
+        UnMarkCommand umc = new UnMarkCommand(ui, stor, arrayLL);
+        umc.complete("1");
         assertEquals(" ", arrayLL.getTask(0).getIsDone());
-    }*/
+    }
 }
 
