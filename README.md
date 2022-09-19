@@ -1,5 +1,5 @@
 # User Guide
-![Duke](Ui.png)
+![Duke](docs/Ui.png)
 ## How to Start
 1. Download the latest version of duke.jar [here](https://github.com/dreammac3816547290/ip/releases).
 2. Open command prompt and navigate to the download folder.
