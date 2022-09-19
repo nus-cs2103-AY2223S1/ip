@@ -16,16 +16,16 @@ public class Storage {
     private File data;
     private File dir;
     private FileWriter writer;
-    private String PATH;
+    private String path;
 
     /**
      * Creates a Storage object to save tasks to memory.
      * @param filePath Path to txt file where tasks will be saved.
      */
     public Storage(String filePath) {
-        this.PATH = filePath;
-        this.dir = new File(PATH);
-        this.data = new File(PATH + "tasks.txt");
+        this.path = filePath;
+        this.dir = new File(path);
+        this.data = new File(path + "tasks.txt");
 
         try {
             if (!this.dir.exists()) {
