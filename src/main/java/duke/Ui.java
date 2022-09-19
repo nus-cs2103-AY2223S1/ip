@@ -9,16 +9,7 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner s;
-    private static final String INDENT = "        ";
     private static final String DOUBLE_INDENT = "                ";
-    private static final String DIVIDER = " ________________________________________________________________";
-    private static final String NAME = "\n"
-            + DOUBLE_INDENT + " _____  _____  __     __   __ \n"
-            + DOUBLE_INDENT + "|__   ||  ___||  |   |  |/  / \n"
-            + DOUBLE_INDENT + "  /  / |  |__ |  |   |  |  /  \n"
-            + DOUBLE_INDENT + " /  /_ |  ___||  |__ |  |\\  \\ \n"
-            + DOUBLE_INDENT + "|_____||_____||_____||__| \\__\\  ";
-
 
     public Ui() {
         s = new Scanner(System.in);

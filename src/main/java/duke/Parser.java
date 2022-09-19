@@ -14,9 +14,6 @@ public class Parser {
     private static final ArrayList<String> VIEW_COMMANDS = new ArrayList<>(List.of("list", "find"));
     private static final ArrayList<String> EXIT_COMMANDS = new ArrayList<>(List.of("bye"));
 
-    public Parser() {
-        //
-    }
 
     /**
      * Parses the user input into a command for the bot.
