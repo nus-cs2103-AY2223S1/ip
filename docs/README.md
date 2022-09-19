@@ -19,9 +19,9 @@ Koba is a desktop app for managing tasks and deadlines via a Graphical User Inte
 ## Summary of Commands
 Function                 | Command                                                    
 -------------------------|------------------------------------------------------------
-`add a todo`               | `todo     <DESCRIPTION>``                                   
-`add a deadline`           | `deadline <DESCRIPTION> **/by** <DATE_AND_TIME_IN_ISO_FORMAT>`
-`add a event`              | `event    <DESCRIPTION> **/at** <DURATION>`                  
+`add a todo`               | `todo     <DESCRIPTION>`                                  
+`add a deadline`           | `deadline <DESCRIPTION> /by <DATE_AND_TIME_IN_ISO_FORMAT>`
+`add a event`              | `event    <DESCRIPTION> /at <DURATION>`                  
 `mark a task as completed` | `mark     <INDEX>`                                         
 `mark a task as incomplete` | `unmark   <INDEX>`                                         
 `deletes a task`           | `delete   <INDEX>`                                         
@@ -45,10 +45,7 @@ todo Read the Hobbit
 ```
 Adds a new todo, 'read the hobbit' to the app.
 
-```
-todo Sign up for gym
-```
-Adds a new todo, 'Sign up for gym' to the app.
+<img src="./image/add-todo.png"/>
 
 
 
@@ -67,12 +64,7 @@ Example of usage:
 deadline assignment 1 /by 2022-08-15T23:59
 ```
 Adds a new deadline, assignment 1, due on Aug 8th, 2022 at 23:59hrs.
-
-```
-deadline critical reflection 1A /by 2022-09-01T08:00
-```
-Adds a new deadline, critical reflection 1A, due on Sep 1th, 2022, at 08:00hrs.
-
+<img src="./image/add-deadline.png"/>
 
 
 ### Add a event: `event`
@@ -86,10 +78,7 @@ event birthday party /at Friday 5-8pm
 ```
 Adds a new event, birthday party at Friday, 5-8pm
 
-```
-event team meeting /at 27/8/22 at 8-10am
-```
-Adds a new event, team meeting on 27th Aug 2022, at 8-10am.
+<img src="./image/add-event.png"/>
 
 
 
@@ -109,7 +98,7 @@ Example of usage:
 mark 2
 ```
 Mark the task at index 2 as complete.
-
+<img src="./image/mark.png"/>
 
 
 ### Unmark a task: `unmark`
@@ -127,7 +116,7 @@ Example of usage:
 ```
 unmark 1
 ```
-Marks the task at index 1 as incomplete.
+<img src="./image/unmark.png"/>
 
 
 
@@ -145,7 +134,7 @@ Example of usage:
 ```
 delete 3
 ```
-Deletes the task at index 3.
+<img src="./image/delete.png"/>
 
 
 
@@ -153,7 +142,7 @@ Deletes the task at index 3.
 Shows a list of all stored tasks in the app.
 
 Format: `list`
-
+<img src="./image/list.png"/>
 
 
 ### Find tasks by a keyword: `find`
@@ -170,14 +159,14 @@ Example of usage:
 find assignment
 ```
 This will return all tasks containing 'assignment' in their description.
-
+<img src="./image/find.png"/>
 
 
 ### Get help page: `help`
 Returns a list of all valid commands and their format in the app.
 
 Format: `help`
-
+<img src="./image/help.png"/>
 
 
 ### Exit from the app: `bye`
