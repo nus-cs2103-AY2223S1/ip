@@ -22,8 +22,7 @@ public class Message {
     public static final String INVALID_DELETE_TASK_FORMAT =
             "To delete a task, please input this format: delete {task number}";
     public static final String INVALID_USER_INPUT =
-            "Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" "
-                    + "for deadline and event tasks respectively.";
+            "Unfortunately, I am unable to recognise your command :( please input \"help\" for for more details";
     public static final String INVALID_DATE_INPUT = "The date given should not be before today's date";
     public static final String FILE_NOT_FOUND = "The memory file cannot be found.";
     public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
