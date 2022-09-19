@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Jarvis jarvis = new Jarvis("data/task_list.txt");
+    private Jarvis jarvis = new Jarvis("data_jarvis/task_list.txt");
 
     @Override
     public void start(Stage stage) {
@@ -22,6 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Jarvis");
             fxmlLoader.<MainWindow>getController().setJarvis(jarvis);
             stage.show();
         } catch (IOException e) {
