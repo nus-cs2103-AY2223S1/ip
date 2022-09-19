@@ -2,6 +2,12 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.controls' ]
 }
 
 repositories {
@@ -44,7 +50,7 @@ test {
 }
 
 application {
-    mainClassName = "jarvis.Jarvis"
+    mainClassName = "jarvis.Launcher"
 }
 
 shadowJar {

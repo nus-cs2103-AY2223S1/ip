@@ -15,16 +15,16 @@ public class Parser {
     private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
     private static final String MARK_NO_INDEX_MSG = "You need to specify the index of the task to mark";
     private static final String UNMARK_NO_INDEX_MSG = "You need to specify the index of the task to unmark";
-    private static final String TODO_EMPTY_DESCRIPTION = "☹ OOPS!!! The description of a todo cannot be empty.";
-    private static final String EVENT_EMPTY_DESCRIPTION = "☹ OOPS!!! The description of a event cannot be empty.";
-    private static final String DEADLINE_EMPTY_DESCRIPTION = "☹ OOPS!!! The description of a deadline cannot be empty.";
-    private static final String EVENT_FORMAT = "☹ OOPS!!! The event should have a time.\n" +
+    private static final String TODO_EMPTY_DESCRIPTION = "OOPS!!! The description of a todo cannot be empty.";
+    private static final String EVENT_EMPTY_DESCRIPTION = "OOPS!!! The description of a event cannot be empty.";
+    private static final String DEADLINE_EMPTY_DESCRIPTION = "OOPS!!! The description of a deadline cannot be empty.";
+    private static final String EVENT_FORMAT = "OOPS!!! The event should have a time.\n" +
             "e.g. event {name} /at {time}";
-    private static final String DEADLINE_FORMAT = "☹ OOPS!!! The deadline should have a due date.\n"
+    private static final String DEADLINE_FORMAT = "OOPS!!! The deadline should have a due date.\n"
             + "e.g. deadline {name} /by {time}";
     private static final String DELETE_NO_INDEX = "You should specify the index of task to delete";
-    private static final String FIND_NO_KEYWORD = "☹ OOPS!!! Please enter a keyword for searching.";
-    private static final String INVALID_COMMAND_MESSAGE = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String FIND_NO_KEYWORD = "OOPS!!! Please enter a keyword for searching.";
+    private static final String INVALID_COMMAND_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
 
     private boolean isBye = false;
 
