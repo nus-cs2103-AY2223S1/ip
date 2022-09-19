@@ -50,5 +50,13 @@ Credits
 
 21.Anya2.png downloaded from https://wall.alphacoders.com/tag/anya-forger-wallpapers (wallpaper submitted by Omelette)
 
-22.User2.png downloaded from https://wall.alphacoders.com/tag/yor-forger-wallpapers (wallpaper submitted by Artist: Gwan-E)                                                        
+22.User2.png downloaded from https://wall.alphacoders.com/tag/yor-forger-wallpapers (wallpaper submitted by Artist: Gwan-E)
 
+23.Smoke test help from the following github users:
+   - @parth-io
+   - @RezwanArefin01 
+   - @carriezhengjr
+   - @cheeheng                                                   
+   - @yeehaoo  
+
+                                                       
