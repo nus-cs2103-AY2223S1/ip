@@ -26,6 +26,9 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    //@@author Sampy147-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+    //with minor modifications
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -39,12 +42,16 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         displayPicture.setImage(img);
 
+        //@@author Sampy147-reused
+        //Reused from https://stackoverflow.com/questions/39650031/javafx-round-image-using-scenebuilderwith-clip
+        //with minor modifications
         Rectangle clip = new Rectangle(
                 displayPicture.getFitWidth(), displayPicture.getFitHeight()
         );
         clip.setArcWidth(40);
         clip.setArcHeight(40);
         displayPicture.setClip(clip);
+        //@@author
     }
 
     /**
@@ -66,4 +73,5 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+    //@@author
 }

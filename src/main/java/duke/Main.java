@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
 /**
  * A GUI for Duke using FXML.
  */
@@ -16,6 +17,8 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    //@@author Sampy147-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
     @Override
     public void start(Stage stage) {
         try {
@@ -29,4 +32,5 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    //@@author
 }

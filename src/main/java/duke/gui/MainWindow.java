@@ -10,6 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+//@@author Sampy147-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+//with minor modifications
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -60,3 +63,4 @@ public class MainWindow extends AnchorPane {
         }
     }
 }
+//@@author

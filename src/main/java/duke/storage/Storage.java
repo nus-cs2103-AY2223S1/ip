@@ -75,6 +75,9 @@ public class Storage {
         return newToDo;
     }
 
+    //@@author Sampy147-reused
+    //Reused from https://github.com/nus-cs2103-AY1920S1/duke/pull/266/files
+    //with minor modifications
     public Task makeTask(String taskString) throws DukeException {
         Task newTask;
         try {
@@ -100,7 +103,11 @@ public class Storage {
         }
         return newTask;
     }
+    //@@author
 
+    //@@author Sampy147-reused
+    //Reused from https://github.com/nus-cs2103-AY1920S1/duke/pull/266/files
+    //with minor modifications
     public void save(String taskString) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath, true);
@@ -120,5 +127,5 @@ public class Storage {
             throw new DukeException(Message.FILE_NOT_FOUND);
         }
     }
-
+    //@@author
 }

@@ -2,6 +2,9 @@ package duke;
 
 import duke.task.TaskList;
 
+//@@author Sampy147-reused
+//Reused from https://github.com/nus-cs2103-AY1920S1/duke/pull/266/files
+//with minor modifications, appropriated the idea of a Message class
 public class Message {
 
     public static final String HORIZONTAL_BORDER = "______________________________________________________";
@@ -57,3 +60,4 @@ public class Message {
     }
 
 }
+//@@author

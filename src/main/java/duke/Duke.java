@@ -18,6 +18,9 @@ public class Duke {
     private Ui ui;
     private boolean isExit;
 
+    //@@author Sampy147-reused
+    //Reused from https://github.com/nus-cs2103-AY1920S1/duke/pull/266/files
+    //with minor modifications
     public Duke() {
         this.isExit = false;
         this.storage = new Storage(SAVED_PATH);
@@ -35,15 +38,19 @@ public class Duke {
         return this.isExit;
     }
 
+    //@@author Sampy147-reused
+    //Reused from https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds
+    // with minor modifications
     public void exit() {
         Timer timer = new Timer();
-        TimerTask exitApp = new TimerTask() {
+        TimerTask exitApplication = new TimerTask() {
             public void run() {
                 System.exit(0);
             }
         };
-        timer.schedule(exitApp, new Date(System.currentTimeMillis() + 3 * 1000));
+        timer.schedule(exitApplication, new Date(System.currentTimeMillis() + 3 * 1000));
     }
+    //@@author
 
     public String getResponse(String input) {
         try {
