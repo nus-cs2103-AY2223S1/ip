@@ -1,3 +1,10 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.tasks.TaskList;
+import duke.tasks.Task;
+import duke.ui.Ui;
+
 import java.io.IOException;
 
 public class DeleteCommand extends Command {
@@ -15,6 +22,7 @@ public class DeleteCommand extends Command {
         storage.saveTaskList(taskList);
         String text = MESSAGE + "\n\t" + task.toString() +
                 "\n" + taskList.displayNumTasks();
+        ui.displayMessage(text);
     }
 
     @Override

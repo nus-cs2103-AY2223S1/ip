@@ -1,3 +1,10 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.tasks.TaskList;
+import duke.tasks.Task;
+import duke.ui.Ui;
+
 public class UnknownCommand extends Command {
 
     private static final String MESSAGE = "\tI am sorry, but I do " +

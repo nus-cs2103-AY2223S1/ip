@@ -1,3 +1,5 @@
+package duke.ui;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -26,7 +28,7 @@ public class Ui {
     }
 
     public String getUserInput() {
-        System.out.println("Enter command: ");
+        System.out.println("Please enter your command below: ");
         String userInput = sc.nextLine();
         return userInput;
     }
