@@ -16,7 +16,7 @@ Shiba is a **desktop app for managing tasks, deadlines and events, intended for 
 
 2. Download the latest `Duke.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for Shiba.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![PlainUi](PlainUi.png)
@@ -460,9 +460,8 @@ Now you have 0 tasks in the list.
 
 Finds the task containing a specific keyword. Keyword can be a string or a number.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The keyword is case sensitive. Proper capitalisation is advised when using this command.
-</div>
+:bulb: **Tip:**
+The keyword is case-sensitive. Proper capitalisation is advised when using this command.
 
 Command format: `find [keyword]`
 
