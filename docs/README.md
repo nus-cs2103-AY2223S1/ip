@@ -1,5 +1,4 @@
 # `Duke` User Guide
-![Duke Ui](./Ui.png)
 
 `Duke` is a task manager that helps you keep track of **Tasks** such as **Todos**, **Deadlines**
 and **Events**.
