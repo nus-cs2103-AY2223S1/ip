@@ -82,20 +82,7 @@ public class Storage {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String input = myReader.nextLine();
-                if (input.isEmpty()) {
-                    break;
-                }
-                char keyword = input.charAt(1);
-                switch (keyword) {
-                case 'E':
-                    loadEvent(input, tasksList);
-                    break;
-                case 'T':
-                    loadTodo(input, tasksList);
-                    break;
-                case 'D':
-                    loadDeadline(input, tasksList);
-                }
+                readSingleLine(input, tasksList);
             }
             myReader.close();
             return tasksList;
@@ -103,6 +90,24 @@ public class Storage {
             System.out.println(e.getMessage());
         } 
         return new ArrayList<>(100);
+    }
+
+    public void readSingleLine(String input, List<Task> tasksList) {
+        if (input.isEmpty()) {
+            return;
+        }
+        char keyword = input.charAt(1);
+        switch (keyword) {
+        case 'E':
+            loadEvent(input, tasksList);
+            break;
+        case 'T':
+            loadTodo(input, tasksList);
+            break;
+        case 'D':
+            loadDeadline(input, tasksList);
+            break;
+        }
     }
 
     public void loadEvent(String input, List<Task> tasksList) {
