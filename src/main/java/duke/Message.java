@@ -29,6 +29,21 @@ public class Message {
     public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
     public static final String FILE_CREATE_ERROR = "There is an error when creating the memory file";
     public static final String INVALID_FIND_TASK_FORMAT = "To find a task, please input this format: find {Keyword}";
+    public static final String HELP_MESSAGE =
+            "Hello! Here is some commands to help you use this app better!\n\n"
+            + "1. bye:\nEnds the session and app will close\n\n"
+            + "2. todo {task description}:\nAdds a to-do task to your list of tasks\n\n"
+            + "3. event {task description} /at {time or place}:\nAdds a event task to your list of tasks\n\n"
+            + "4. deadline {task description} /by {date time in YYYY-MM-DD}:\n"
+                    + "Adds a deadline task to your list of tasks\n\n"
+            + "5. list:\nReturns all tasks in the task list\n\n"
+            + "6. help!:\nMore advanced Duke features!";
+    public static final String ADVANCED_HELP_MESSAGE =
+            "More advanced commands here!\n\n"
+            + "1. mark {task number}:\nmarks the task with index corresponding to the task number as done\n\n"
+            + "2. unmark {task number}:\nun-marks the task with index corresponding to the task number as done\n\n"
+            + "3. delete {task number}:\ndeletes the task with index corresponding to the task number\n\n"
+            + "4. find {keyword}:\nfind the task with description corresponding to the keyword input";
 
     /**
      * Returns a String that describes that the task does not exist within the specified tasklist

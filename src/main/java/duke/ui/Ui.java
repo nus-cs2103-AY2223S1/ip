@@ -57,6 +57,14 @@ public class Ui {
         return showFullMessage(Message.BYE_MESSAGE);
     }
 
+    public String showHelp() {
+        return showFullMessage(Message.HELP_MESSAGE);
+    }
+
+    public String showAdvancedHelp() {
+        return showFullMessage(Message.ADVANCED_HELP_MESSAGE);
+    }
+
     /**
      * Returns the formatted full error message
      *
@@ -128,5 +136,6 @@ public class Ui {
     public String showFound(String foundTasks) {
         return showFullMessage("Here are the matching tasks in your list:\n" + foundTasks);
     }
+
 
 }

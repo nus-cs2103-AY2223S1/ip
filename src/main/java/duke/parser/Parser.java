@@ -19,6 +19,10 @@ public class Parser {
             return new ByeCommand();
         } else if (command.equals("list") && commandList.length == 1) {
             return new ListCommand();
+        } else if (command.equals("help") && commandList.length == 1) {
+            return new HelpCommand();
+        } else if (command.equals("help!") && commandList.length == 1) {
+            return new AdvancedHelpCommand();
         } else if (command.equals("mark")) {
             return markTask(fullCommand);
         } else if (command.equals("unmark")) {
