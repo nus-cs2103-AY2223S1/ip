@@ -55,6 +55,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             args = "";
         }
+        assert args != null : "Arguments to a command should be a string and never null";
         return new Pair<String, String>(command, args);
     }
 
@@ -68,6 +69,8 @@ public class Parser {
         } else if (args.length < 2) {
             throw new DaveException("Oh no!!! Please provide a timing for the event!");
         }
+
+        assert args.length == 2 : "Number of args to a Task command should always be 2";
 
         String task = args[0];
         String dateStr = args[1].trim();
