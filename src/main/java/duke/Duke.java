@@ -1,16 +1,25 @@
 package duke;
 
-import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Duke extends Chatbot {
-    //private LinkedList<Task> tasks = new LinkedList<>();
+/**
+ * Duke is a chatbot that records a list of Tasks that a user wishes to keep track of.
+ */
+class Duke extends Chatbot {
     private TaskList tasks = new TaskList();
 
+    /**
+     * The main program.
+     *
+     * @param args command line arguments.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }
 
+    /**
+     * Runs the Duke chatbot.
+     */
     public void run() {
         Storage.createDataFolder();
         Storage.createDataFile();
@@ -29,12 +38,12 @@ public class Duke extends Chatbot {
 
             if (Parser.containsExactKeyword(action)) {
                 switch (action) {
-                    case Parser.EXACT_KEYWORD_BYE:
-                        Ui.sayGoodbye();
-                        break;
-                    case Parser.EXACT_KEYWORD_LIST:
-                        duke.listTasks(duke);
-                        break;
+                case Parser.EXACT_KEYWORD_BYE:
+                    Ui.sayGoodbye();
+                    break;
+                case Parser.EXACT_KEYWORD_LIST:
+                    duke.listTasks();
+                    break;
                 }
 
                 if (action.equals(Parser.EXACT_KEYWORD_BYE)) {
@@ -49,15 +58,15 @@ public class Duke extends Chatbot {
                     }
 
                     switch (Parser.getNonexactKeyword(action)) {
-                        case Parser.MARK_KEYWORD_MARK:
-                            duke.markTask(duke, id);
-                            break;
-                        case Parser.MARK_KEYWORD_UNMARK:
-                            duke.unmarkTask(duke, id);
-                            break;
-                        case Parser.MARK_KEYWORD_DELETE:
-                            duke.tasks.deleteTask(id);
-                            break;
+                    case Parser.MARK_KEYWORD_MARK:
+                        duke.markTask(duke, id);
+                        break;
+                    case Parser.MARK_KEYWORD_UNMARK:
+                        duke.unmarkTask(duke, id);
+                        break;
+                    case Parser.MARK_KEYWORD_DELETE:
+                        duke.tasks.deleteTask(id);
+                        break;
                     }
 
                     Storage.updateData(duke.tasks);
@@ -67,21 +76,21 @@ public class Duke extends Chatbot {
             } else if (Parser.containsTaskKeyword(action)) {
                 try {
                     switch (Parser.getNonexactKeyword(action)) {
-                        case Parser.TASK_KEYWORD_TODO:
-                            duke.tasks.add(new Todo(action));
-                            break;
-                        case Parser.TASK_KEYWORD_DEADLINE:
-                            if (!action.contains(Deadline.DELIMITER)) {
-                                throw new DukeException("Missing Deadline delimiter!");
-                            }
-                            duke.tasks.add(new Deadline(action));
-                            break;
-                        case Parser.TASK_KEYWORD_EVENT:
-                            if (!action.contains(Event.DELIMITER)) {
-                                throw new DukeException("Missing Event delimiter!");
-                            }
-                            duke.tasks.add(new Event(action));
-                            break;
+                    case Parser.TASK_KEYWORD_TODO:
+                        duke.tasks.add(new Todo(action));
+                        break;
+                    case Parser.TASK_KEYWORD_DEADLINE:
+                        if (!action.contains(Deadline.DELIMITER)) {
+                            throw new DukeException("Missing Deadline delimiter!");
+                        }
+                        duke.tasks.add(new Deadline(action));
+                        break;
+                    case Parser.TASK_KEYWORD_EVENT:
+                        if (!action.contains(Event.DELIMITER)) {
+                            throw new DukeException("Missing Event delimiter!");
+                        }
+                        duke.tasks.add(new Event(action));
+                        break;
                     }
 
                     Storage.updateData(duke.tasks);
@@ -97,10 +106,19 @@ public class Duke extends Chatbot {
         }
     }
 
-    public void listTasks(Duke interaction) {
+    /**
+     * Lists all tasks recorded by the user.
+     */
+    public void listTasks() {
         this.tasks.listAllTasks();
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param interaction this duke session.
+     * @param id the id of the task.
+     */
     public void markTask(Duke interaction, int id) {
         Task task = interaction.tasks.get(id - 1);
         task.markAsDone();
@@ -109,6 +127,12 @@ public class Duke extends Chatbot {
                 task.getDescription()));
     }
 
+    /**
+     * Marks a task as not done.
+     *
+     * @param interaction this duke session.
+     * @param id the id of the task.
+     */
     public void unmarkTask(Duke interaction, int id) {
         Task task  = interaction.tasks.get(id - 1);
         task.markAsNotDone();
@@ -117,6 +141,11 @@ public class Duke extends Chatbot {
                 task.getDescription()));
     }
 
+    /**
+     * Listens to the user input.
+     *
+     * @return the user input.
+     */
     @Override
     public String listen() {
         Scanner scanner = new Scanner(System.in);

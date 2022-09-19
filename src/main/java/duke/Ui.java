@@ -4,7 +4,7 @@ package duke;
  * The Ui class handles the different interactions with the user.
  */
 
-public class Ui {
+class Ui {
     private static final String GREETING = "Hi friend! How may I help you?";
     private static final String FAREWELL = "See you soon, friend!";
 
@@ -24,6 +24,7 @@ public class Ui {
 
     /**
      * Shows a message to the user.
+     * 
      * @param message a relevant message to be displayed by the Ui.
      */
     public static void echo(String message) {

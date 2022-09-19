@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * The Event class represents a Task that will occur at a specified date.
  */
-public class Event extends Task {
+class Event extends Task {
     private final char tag = 'E';
     public static final String DELIMITER = " /at ";
     private String time;
@@ -14,6 +14,7 @@ public class Event extends Task {
 
     /**
      * Constructs an instance of Event.
+     *
      * @param description
      */
     public Event(String description) {
@@ -24,6 +25,7 @@ public class Event extends Task {
 
     /**
      * Returns the record of the Event's description, completion status and date of occurrence.
+     *
      * @return the record of the Event.
      */
     @Override

@@ -6,12 +6,13 @@ import java.time.format.DateTimeFormatter;
 /**
  * The Task class represents a task that the user wishes to record.
  */
-public class Task {
+class Task {
     private Boolean isDone;
     private final String description;
 
     /**
      * Constructs an instance of Task.
+     *
      * @param description description of the task.
      */
     public Task(String description) {
@@ -35,6 +36,7 @@ public class Task {
 
     /**
      * Retrieves the description of the Task.
+     *
      * @return description of the Task.
      */
     public String getDescription() {
@@ -43,6 +45,7 @@ public class Task {
 
     /**
      * Retrieves the completion status of the Task.
+     *
      * @return whether the Task is done or not done.
      */
     public Boolean getStatus() {
@@ -51,6 +54,7 @@ public class Task {
 
     /**
      * Returns the record of the Task's description and completion status.
+     *
      * @return the record of the Task.
      */
     public String printTask() {
@@ -61,6 +65,7 @@ public class Task {
 
     /**
      * Retrieves a character representing the type of Task from a "record".
+     *
      * @param entry the entry entered by the user to record a Task.
      * @return the character representing the type of Task.
      */
@@ -70,6 +75,7 @@ public class Task {
 
     /**
      * Retrieves whether the "record" of a Task is marked or not.
+     *
      * @param entry the entry entered by the user to record a Task.
      * @return true if the Task is recorded as done, false otherwise.
      */
@@ -79,6 +85,7 @@ public class Task {
 
     /**
      * Obtain the appropriate Task instance from a user entry.
+     *
      * @param entry the entry entered by the user to record a Task.
      * @param type the character representing the type of Task.
      * @return an appropriate instance of Task.
@@ -89,31 +96,31 @@ public class Task {
         String dataStr = entry.substring(7);
 
         switch (type) {
-            case 'T':
-                task = (T) new Todo(String.format("%s%s", Parser.TASK_KEYWORD_TODO, dataStr));
-                break;
-            case 'D':
-                String deadlineStr = dataStr.substring(0, dataStr.length() - 1);
-                deadlineStr = deadlineStr.replace("(by:", "/by");
-                String frontStr = deadlineStr.split(Deadline.DELIMITER)[0];
-                String dateStr = deadlineStr.split(Deadline.DELIMITER)[1];
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-                LocalDate date = LocalDate.parse(dateStr, formatter);
-                dateStr = date.toString();
-                String fullStr = frontStr + Deadline.DELIMITER + dateStr;
-                task = (T) new Deadline(String.format("%s%s", Parser.TASK_KEYWORD_DEADLINE, fullStr));
-                break;
-            case 'E':
-                String eventStr = dataStr.substring(0, dataStr.length() - 1);
-                eventStr = eventStr.replace("(at:", "/at");
-                String frontStrE = eventStr.split(Event.DELIMITER)[0];
-                String dateStrE = eventStr.split(Event.DELIMITER)[1];
-                DateTimeFormatter formatterE = DateTimeFormatter.ofPattern("MMM dd yyyy");
-                LocalDate dateE = LocalDate.parse(dateStrE, formatterE);
-                dateStrE = dateE.toString();
-                String fullStrE = frontStrE + Event.DELIMITER + dateStrE;
-                task = (T) new Event(String.format("%s%s", Parser.TASK_KEYWORD_EVENT, fullStrE));
-                break;
+        case 'T':
+            task = (T) new Todo(String.format("%s%s", Parser.TASK_KEYWORD_TODO, dataStr));
+            break;
+        case 'D':
+            String deadlineStr = dataStr.substring(0, dataStr.length() - 1);
+            deadlineStr = deadlineStr.replace("(by:", "/by");
+            String frontStr = deadlineStr.split(Deadline.DELIMITER)[0];
+            String dateStr = deadlineStr.split(Deadline.DELIMITER)[1];
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+            LocalDate date = LocalDate.parse(dateStr, formatter);
+            dateStr = date.toString();
+            String fullStr = frontStr + Deadline.DELIMITER + dateStr;
+            task = (T) new Deadline(String.format("%s%s", Parser.TASK_KEYWORD_DEADLINE, fullStr));
+            break;
+        case 'E':
+            String eventStr = dataStr.substring(0, dataStr.length() - 1);
+            eventStr = eventStr.replace("(at:", "/at");
+            String frontStrE = eventStr.split(Event.DELIMITER)[0];
+            String dateStrE = eventStr.split(Event.DELIMITER)[1];
+            DateTimeFormatter formatterE = DateTimeFormatter.ofPattern("MMM dd yyyy");
+            LocalDate dateE = LocalDate.parse(dateStrE, formatterE);
+            dateStrE = dateE.toString();
+            String fullStrE = frontStrE + Event.DELIMITER + dateStrE;
+            task = (T) new Event(String.format("%s%s", Parser.TASK_KEYWORD_EVENT, fullStrE));
+            break;
         }
 
         if (Task.isMarked(entry)) {

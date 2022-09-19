@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * The Parser class handles the detection of all user commands.
  */
-public class Parser {
+class Parser {
     public static final String EXACT_KEYWORD_BYE = "bye";
     public static final String EXACT_KEYWORD_LIST = "list";
     public static final String MARK_KEYWORD_MARK = "mark ";
@@ -22,6 +22,7 @@ public class Parser {
 
     /**
      * Gets whether an exact keyword is present.
+     *
      * @param userInput the user input.
      * @return true if an exact keyword is present, false otherwise.
      */
@@ -31,6 +32,7 @@ public class Parser {
 
     /**
      * Gets whether a mark type keyword is present.
+     *
      * @param userInput the user input.
      * @return true if a mark type keyword if present, false otherwise.
      */
@@ -50,6 +52,7 @@ public class Parser {
 
     /**
      * Gets whether a task type keyword is present.
+     *
      * @param userInput the user input.
      * @return true if a task type keyword is present, false otherwise.
      */
@@ -69,6 +72,7 @@ public class Parser {
 
     /**
      * Gets the nonexact keyword present in the user input.
+     *
      * @param userInput the user input.
      * @return the nonexact keyword if present, an empty string otherwise.
      */
@@ -95,6 +99,7 @@ public class Parser {
     /**
      * Gets the specifier following a nonexact keyword.
      * e.g. In "mark 1", the specifier is '1'.
+     *
      * @param userInput the user input.
      * @return the relevant specifier.
      */
@@ -102,15 +107,15 @@ public class Parser {
         int specifier = -1;
 
         switch (Parser.getNonexactKeyword(userInput)) {
-            case Parser.MARK_KEYWORD_MARK:
-                specifier = Integer.parseInt(userInput.substring(5));
-                break;
-            case Parser.MARK_KEYWORD_UNMARK:
-            case Parser.MARK_KEYWORD_DELETE:
-                specifier = Integer.parseInt(userInput.substring(7));
-                break;
-            default:
-                break;
+        case Parser.MARK_KEYWORD_MARK:
+            specifier = Integer.parseInt(userInput.substring(5));
+            break;
+        case Parser.MARK_KEYWORD_UNMARK:
+        case Parser.MARK_KEYWORD_DELETE:
+            specifier = Integer.parseInt(userInput.substring(7));
+            break;
+        default:
+            break;
         }
 
         return specifier;

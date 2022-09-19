@@ -6,11 +6,12 @@ import java.util.LinkedList;
  * The TaskList class encapsulates a list of Tasks as well as relevant operations to manage this list.
  */
 
-public class TaskList extends LinkedList {
+class TaskList extends LinkedList {
     private LinkedList<Task> tasks = new LinkedList<>();
 
     /**
      * Retrieves the size of the TaskList.
+     *
      * @return size of the TaskList.
      */
     @Override
@@ -20,6 +21,7 @@ public class TaskList extends LinkedList {
 
     /**
      * Adds a Task to the TaskList.
+     *
      * @param task a Task to be added.
      * @return true if the operation is successful.
      */
@@ -50,6 +52,7 @@ public class TaskList extends LinkedList {
 
     /**
      * Deletes a Task of a given index from the TaskList.
+     *
      * @param index the index of Task to delete.
      */
     public void deleteTask(int index) {

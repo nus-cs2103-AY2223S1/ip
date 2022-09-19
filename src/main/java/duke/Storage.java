@@ -9,7 +9,7 @@ import java.util.LinkedList;
 /**
  * The Storage class manages write and read operations into the data file "duke.txt".
  */
-public class Storage {
+class Storage {
     private static final String currentDir = System.getProperty("user.dir");
     private static final Path savedDataPath = Paths.get(Storage.currentDir, "/data");
     private static final Path dataFilePath = Paths.get(Storage.savedDataPath.toString(), "duke.txt");
@@ -47,6 +47,7 @@ public class Storage {
 
     /**
      * Updates the data of the data file with the current Tasks.
+     *
      * @param tasks the current list of Tasks.
      */
     public static void updateData(TaskList tasks) {
@@ -77,6 +78,7 @@ public class Storage {
 
     /**
      * Initializes Duke with recorded Tasks from a previous session.
+     *
      * @return the TaskList of previously recorded Tasks.
      * @throws DukeException if there is no data or if unable to initialize the data.
      */

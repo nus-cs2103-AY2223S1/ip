@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * The Deadline class represents a Task that has to be done by a given deadline.
  */
-public class Deadline extends Task {
+class Deadline extends Task {
     private final char tag = 'D';
     public static final String DELIMITER = " /by ";
     private String time;
@@ -14,6 +14,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline instance.
+     *
      * @param description description of the Task accompanied by the
      *                    deadline in the format of 'yyyy-mm-dd'.
      */
@@ -25,6 +26,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the record of the Deadline's description, completion status and date to be completed.
+     *
      * @return the record of the Deadline.
      */
     @Override
