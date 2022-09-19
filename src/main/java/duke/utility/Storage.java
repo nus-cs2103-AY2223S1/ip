@@ -92,6 +92,13 @@ public class Storage {
         return new ArrayList<>(100);
     }
 
+    /**
+     * Adds a single task to the task list
+     *
+     * @param input the String input of a single line in the text file
+     * @param tasksList A list where we store all the Tasks by user or in the
+     * text file.
+     */
     public void readSingleLine(String input, List<Task> tasksList) {
         if (input.isEmpty()) {
             return;
