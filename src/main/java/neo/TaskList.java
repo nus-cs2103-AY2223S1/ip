@@ -41,8 +41,6 @@ public class TaskList {
      * @param in Task number integer.
      */
     public void delete(int in) {
-        System.out.println("ok, I've deleted this task from array");
-        System.out.println(arrayL.get(in).toString());
         arrayL.remove(in);
     }
 }

@@ -41,6 +41,6 @@ public class DeleteCommand extends Command {
         for (int i = 1; i < arrayLL.arrayL.size(); i++) {
             store.storeData(arrayLL.getTask(i));
         }
-        return t;
+        return "Ohk! deleted this task from array: " + t;
     }
 }

@@ -45,7 +45,7 @@ public class AddCommand extends Command {
             Deadline d = new Deadline(temp2, temp3);
             arrayLL.addTask(d);
             store.storeData(d);
-            return "Added: " + d.toString();
+            return "Added this task to array: " + d.toString();
         }
         if (type ==1) {
             String arri[];
@@ -56,13 +56,13 @@ public class AddCommand extends Command {
             Event e = new Event(temp2, temp3);
             arrayLL.addTask(e);
             store.storeData(e);
-            return "Added: " + e.toString();
+            return "Added this task to array: " + e.toString();
         }
         if (type ==2) {
             ToDo td = new ToDo(taskNumber);
             arrayLL.addTask(td);
             store.storeData(td);
-            return "Added: " + td.toString();
+            return "Added this task to array: " + td.toString();
         }
         return "";
     }
