@@ -48,7 +48,7 @@ application {
 
 shadowJar {
     archiveBaseName = "pony"
-    archiveClassifier = "1.0"
+    archiveClassifier = ""
 }
 
 run{
