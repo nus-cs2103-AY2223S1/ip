@@ -13,7 +13,6 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
 import duke.ui.Ui;
-import javafx.application.Platform;
 
 public class CommandHandler {
     private final Ui ui;
@@ -51,12 +50,15 @@ public class CommandHandler {
                 TimerTask exitApp = new TimerTask() {
                     @Override
                     public void run() {
-                        Platform.exit();
+                        System.exit(0);
                     }
                 };
                 timer.schedule(exitApp, new Date(System.currentTimeMillis() + 1000));
                 return ui.getGoodbyeMessage();
             case LIST:
+                if (tasks.isEmpty()) {
+                    throw new DukeException("You have no tasks in the list!");
+                }
                 return tasks.toString();
             case MARK:
                 tasks.mark(taskIndex);

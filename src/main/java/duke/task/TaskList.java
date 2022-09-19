@@ -101,7 +101,7 @@ public class TaskList implements Iterable<Task> {
      */
     public String toStorageString() {
         StringBuilder data = new StringBuilder();
-        for (Task task : this.list) {
+        for (Task task : list) {
             data.append(task.toString());
             data.append("\n");
         }
