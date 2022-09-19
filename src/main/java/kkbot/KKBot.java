@@ -16,34 +16,45 @@ public class KKBot {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private String loadError;
 
+    /**
+     * Constructor for KKBot
+     */
     public KKBot() {
         ui = new Ui();
         storage = new Storage();
         try {
-            tasks = new TaskList(this.storage.load());
+            tasks = new TaskList(storage.load());
+            loadError ="";
         } catch (KKBotException e) {
-            ui.show(e.getMessage());
             tasks = new TaskList();
+            loadError = e.getMessage();
         }
     }
 
-    public void run() {
-        ui.showWelcome();
-        while (true) {
-            try {
-                String input = ui.readInput();
-                Command command = Parser.initialParse(input);
-                command.execute(tasks, ui, storage);
-                storage.save(tasks);
-            } catch (KKBotException e) {
-                ui.show(e.getMessage());
-            }
-        }
+    /**
+     * Returns the load error when retrieving tasks
+     * @return the laod error
+     */
+    public String showLoadError() {
+        return loadError;
     }
 
-    public static void main(String[] args) {
-        KKBot bot = new KKBot();
-        bot.run();
+    /**
+     * Method to show welcome message to user
+     * @return the welcome message
+     */
+    public String greet() {
+        return ui.showWelcome();
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.initialParse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (KKBotException e) {
+            return e.getMessage();
+        }
     }
 }

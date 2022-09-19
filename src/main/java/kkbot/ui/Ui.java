@@ -24,15 +24,15 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    private static String DIVIDER = "____________________________________________________________\n";
+    private static String DIVIDER = "_______________________________\n";
 
-    private static String LOGO = " __   __   __   __  _____\n"
-            + "|  | /  / |  | /  /|  __  \\\n"
-            + "|  |/  /  |  |/  / | |__|  |\n"
-            + "|     /   |     /  |      /\n"
-            + "|     \\   |     \\  |  __  \\\n"
-            + "|  |\\  \\  |  |\\  \\ | |__|  |\n"
-            + "|__| \\__\\ |__| \\__\\|______/\n";
+    private static String LOGO = " __   __   __   __  ____\n"
+            + "|   | /  /  |  | /  /  |  __  \\\n"
+            + "|   |/  /   |  |/  /   | |__|  |\n"
+            + "|      /     |     /    |        /\n"
+            + "|      \\     |     \\    |  __  \\\n"
+            + "|   |\\  \\   |  |\\  \\   | |__|  |\n"
+            + "|_ | \\_ \\ |_ | \\_ \\ |____ /\n";
 
     private static String WELCOME_MESSAGE = "Hello! I'm KKBot! \n"
             + "What can I do for you?\n";
