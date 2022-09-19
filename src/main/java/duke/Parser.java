@@ -54,63 +54,91 @@ public class Parser {
 
             switch (firstWord) {
             case "find":
-                String wordToFind = tokens[1];
-                String filteredListString = taskList.getTaskStringFiltered(wordToFind);
-                response = ui.printFilteredList(filteredListString);
+                executeFindCommand(tokens);
                 break;
             case "mark":
-                int taskNumber = Integer.parseInt(tokens[1]);
-                Task task = taskList.getTask(taskNumber);
-                markingOfTasks(firstWord, taskNumber);
-                storage.save(taskList);
-                response = ui.taskMarkedMsgString(task);
+                excecuteMarkCommand(tokens, firstWord);
                 break;
             case "unmark":
-                int taskNumber2 = Integer.parseInt(tokens[1]);
-                Task task2 = taskList.getTask(taskNumber2);
-                markingOfTasks(firstWord, taskNumber2);
-                storage.save(taskList);
-                response = ui.taskUnmarkedMsgString(task2);
+                executeUnmarkCommand(tokens, firstWord);
                 break;
             case "delete":
-                int taskNo = Integer.parseInt(tokens[1]);
-                Task task3 = taskList.getTask(taskNo);
-                this.taskList.deleteTask(taskNo);
-                storage.save(taskList);
-                response = ui.deleteTaskMsgString(task3, taskList);
+                executeDeleteCommand(tokens);
                 break;
             case "todo":
-                String taskContent = tokens[1];
-                ToDos toDos = new ToDos(taskContent);
-                this.taskList.addTask(toDos);
-                storage.save(taskList);
-                response = ui.addTaskMsgString(toDos, taskList);
+                executeTodoCommand(tokens);
                 break;
             case "deadline":
-                String[] deadlineToken = splitDeadlineInput(userInput);
-                String deadlineContent = deadlineToken[0];
-                String date = deadlineToken[1];
-
-                Deadline deadline = new Deadline(deadlineContent, date);
-                this.taskList.addTask(deadline);
-                storage.save(taskList);
-                response = ui.addTaskMsgString(deadline, taskList);
+                executeDeadlineCommand(userInput);
                 break;
             case "event":
-                String[] eventToken = splitEventInput(userInput);
-                String eventContent = eventToken[0];
-                String eventDate = eventToken[1];
-
-                Event event = new Event(eventContent, eventDate);
-                this.taskList.addTask(event);
-                storage.save(taskList);
-                response = ui.addTaskMsgString(event, taskList);
+                executeEventCommand(userInput);
                 break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return ui.showNoDescriptionError(userInput);
         }
         return response;
+    }
+
+    private void executeEventCommand(String userInput) {
+        String[] eventToken = splitEventInput(userInput);
+        String eventContent = eventToken[0];
+        String eventDate = eventToken[1];
+
+        Event event = new Event(eventContent, eventDate);
+        this.taskList.addTask(event);
+        storage.save(taskList);
+        response = ui.addTaskMsgString(event, taskList);
+    }
+
+    private void executeDeadlineCommand(String userInput) {
+        String[] deadlineToken = splitDeadlineInput(userInput);
+        String deadlineContent = deadlineToken[0];
+        String date = deadlineToken[1];
+
+        Deadline deadline = new Deadline(deadlineContent, date);
+        this.taskList.addTask(deadline);
+        storage.save(taskList);
+        response = ui.addTaskMsgString(deadline, taskList);
+    }
+
+    private void executeTodoCommand(String[] tokens) {
+        String taskContent = tokens[1];
+        ToDos toDos = new ToDos(taskContent);
+        this.taskList.addTask(toDos);
+        storage.save(taskList);
+        response = ui.addTaskMsgString(toDos, taskList);
+    }
+
+    private void executeDeleteCommand(String[] tokens) {
+        int taskNo = Integer.parseInt(tokens[1]);
+        Task task3 = taskList.getTask(taskNo);
+        this.taskList.deleteTask(taskNo);
+        storage.save(taskList);
+        response = ui.deleteTaskMsgString(task3, taskList);
+    }
+
+    private void executeUnmarkCommand(String[] tokens, String firstWord) {
+        int taskNumber2 = Integer.parseInt(tokens[1]);
+        Task task2 = taskList.getTask(taskNumber2);
+        markingOfTasks(firstWord, taskNumber2);
+        storage.save(taskList);
+        response = ui.taskUnmarkedMsgString(task2);
+    }
+
+    private void excecuteMarkCommand(String[] tokens, String firstWord) {
+        int taskNumber = Integer.parseInt(tokens[1]);
+        Task task = taskList.getTask(taskNumber);
+        markingOfTasks(firstWord, taskNumber);
+        storage.save(taskList);
+        response = ui.taskMarkedMsgString(task);
+    }
+
+    private void executeFindCommand(String[] tokens) {
+        String wordToFind = tokens[1];
+        String filteredListString = taskList.getTaskStringFiltered(wordToFind);
+        response = ui.printFilteredList(filteredListString);
     }
 
     private boolean containsOperationWord(String userInput) {

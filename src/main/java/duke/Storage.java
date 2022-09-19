@@ -88,8 +88,9 @@ public class Storage {
      * @param taskList list of tasks
      */
     public void save(TaskList taskList) {
-
         try {
+            String dataPath = dataFile.getPath();
+            assert !dataPath.isEmpty() : "data file path should not be empty";
             FileWriter filewriter = new FileWriter(dataFile.getPath());
 
             for (int i = 1; i <= taskList.getListSize(); i++) {
