@@ -16,6 +16,5 @@ public final class ResponseMessages {
     public static String TASK_COUNT = "Now you have %d task(s) in the list.\n";
     public static String TASKS_REMOVED = "Noted. I've removed these task(s):" + lineSep;
     public static String FIND_TASKS = "Here are tasks matching '%s' in your list:" + lineSep;
-    public static String LOAD_ERROR = "Error loading data from storage";
 
 }
