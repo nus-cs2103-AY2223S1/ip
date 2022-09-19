@@ -1,0 +1,7 @@
+* {
+    -fx-font-family: 'Courier New';
+}
+
+.mainWindow {
+    -fx-background-color: rgb(255, 250, 241);
+}
