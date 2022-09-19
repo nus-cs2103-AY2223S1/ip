@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jarvis.MainWindow">
+    <children>
+        <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Enter command here..."
+                   AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="80" AnchorPane.leftAnchor="2" maxWidth="-Infinity"
+                   style="-fx-background-radius: 20; -fx-background-color: #E1E1E1; -fx-border-color: #555555; -fx-border-radius: 20" />
+        <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send"
+                AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" style="-fx-background-color: #FA7268; -fx-background-radius: 20; -fx-font-size: 16; -fx-font-family: Helvetica;"/>
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" maxWidth="Infinity" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="50" AnchorPane.topAnchor="0">
+            <content>
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0"  maxWidth="-Infinity"/>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
