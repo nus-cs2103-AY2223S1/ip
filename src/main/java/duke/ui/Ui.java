@@ -53,7 +53,6 @@ public class Ui {
 
         String reply = "Ah! And so we part here today."
                 + "\n We may yet meet again...Farewell, my friend!\n";
-        System.out.println(reply);
         return reply;
     }
 

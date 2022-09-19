@@ -113,7 +113,7 @@ public class ParserDuke {
                     listOfItems.handleItemAddition(newItem);
                     Storage.makeListFile(FILE_PATH, listOfItems);
                     String comment = "Mark this on your calendar! \n" + newItem + "\n";
-                    String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                    String info = "You now have " + listOfItems.knowTaskCount() + "to do!\n";
                     return comment + info + "\n";
                 } catch (DateTimeFormatException e) {
                     return e.getMessage();
@@ -159,7 +159,7 @@ public class ParserDuke {
                     listOfItems.handleItemAddition(newItem);
                     Storage.makeListFile(FILE_PATH, listOfItems);
                     String comment = "Another moment to mark... \n" + newItem + "\n";
-                    String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                    String info = "You now have " + listOfItems.knowTaskCount() + "to do!\n";
                     return comment + info + "\n";
                 } catch (DateTimeFormatException e) {
                     return e.getMessage();
@@ -269,7 +269,7 @@ public class ParserDuke {
             String target = command.replaceAll("find ", "");
             if (!target.isEmpty()) {
                 String list = listOfItems.findByKeyword(target);
-                String comment = "Here is what you are looking for!";
+                String comment = "Here is what you are looking for!\n";
                 return comment + list + "\n";
             } else {
                 throw new ArgumentNumberException();
