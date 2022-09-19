@@ -10,7 +10,7 @@ public class HelpCommand implements DukeCommand {
                 "todo <description> -- add a todo\n" +
                 "deadline <description> /by <dd/MM/yyyy> -- add a deadline\n" +
                 "event <description> /at <dd/MM/yyyy> -- add an event\n" +
-                "revent <description> /at <StartDate> <EndDate> -- add a weekly recurring event" +
+                "revent <description> /at <StartDate> /end <EndDate> -- add a weekly recurring event" +
                 "mark <index> -- mark a task as done\n" +
                 "unmark <index> -- mark a task as undone\n" +
                 "delete <index> -- delete a task\n" +
