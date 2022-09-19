@@ -1,0 +1,11 @@
+todo todo1
+todo todo2
+event event1 @ eventtime1
+event event2 @ eventtime2
+deadline deadline1 @ deadlinetime1
+deadline deadline2 @ deadlinetime2
+mark 1
+mark 3
+mark 6
+list
+bye

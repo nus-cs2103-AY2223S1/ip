@@ -1,0 +1,9 @@
+E|1|Chinese New Year's Countdown|2022-02-02T23:29
+E|0|New Year's Countdown|2019-12-31T23:59
+T|1|another homework
+D|0|get some sleep|2022-02-02T22:22
+T|1|join sports club
+E|1|project meeting|2022-02-02T22:22
+T|1|read book
+D|1|return book|2022-02-02T22:22
+T|0|scream into the void
