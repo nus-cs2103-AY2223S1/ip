@@ -9,7 +9,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class ByeCommand extends Command {
     public static final String KEYWORD = "bye";
 

@@ -19,11 +19,10 @@ import kkbot.parser.exceptions.InvalidCommandException;
 import kkbot.parser.exceptions.InvalidDateException;
 
 /**
- * Parser class to process user input for kkbot.kkbot
+ * Parser class to process user input for KKBot
  *
  * @author AkkFiros
  */
-
 public class Parser {
     private static final String INVALID_INPUT = "Invalid user input, please try again.";
     private enum MissingDetails {

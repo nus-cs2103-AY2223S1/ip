@@ -21,7 +21,8 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", ToDo.TODO_SYMBOL, super.toString());
+        return String.format("[%s] %s",
+                ToDo.TODO_SYMBOL, super.toString());
     }
 
     /**

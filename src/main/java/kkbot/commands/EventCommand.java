@@ -11,7 +11,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class EventCommand extends Command {
     public static final String KEYWORD = "event";
     public static final String DATE_INPUT = " /at ";
@@ -37,7 +36,8 @@ public class EventCommand extends Command {
      * @return the related messages after an event task is added to KKBot
      * @throws StorageException if there is an error reading from/writing to hard drive
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws StorageException {
+    public String execute(TaskList tasks, Ui ui, Storage storage)
+            throws StorageException {
         Event task = new Event(description, date);
         tasks.addTask(task);
         storage.save(tasks);

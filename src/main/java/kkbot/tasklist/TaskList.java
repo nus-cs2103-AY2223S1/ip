@@ -14,7 +14,6 @@ import kkbot.tasks.Task;
  *
  * @author AkkFiros
  */
-
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -88,7 +87,8 @@ public class TaskList {
      * @return the task that had it status changed
      * @throws InvalidTaskException if user input is wrong
      */
-    public Task changeTaskStatus(int index, boolean status) throws InvalidTaskException {
+    public Task changeTaskStatus(int index, boolean status)
+            throws InvalidTaskException {
         if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskException();
         }

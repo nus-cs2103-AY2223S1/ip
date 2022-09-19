@@ -25,7 +25,6 @@ import kkbot.tasklist.TaskList;
  *
  * @author AkkFiros
  */
-
 public class Storage {
     private static final String FILE_PATH = "data/task-list.txt";
     private static final String PAST_FILE_PATH = "data/past-task-list.txt";
@@ -87,7 +86,8 @@ public class Storage {
      * @return returns the task stored in the hard drive
      * @throws StorageException when there is an error creating the task
      */
-    private Task createTask(String type, String description, String date) throws StorageException {
+    private Task createTask(String type, String description, String date)
+            throws StorageException {
         switch (type) {
             case "T":
                 return new ToDo(description);
@@ -105,7 +105,8 @@ public class Storage {
      * @param tasks the list of tasks to store to hard drive
      * @throws StorageException when there is an error storing the list to the hard drive
      */
-    public void save(TaskList tasks) throws StorageException {
+    public void save(TaskList tasks)
+            throws StorageException {
         int numOfTasks = tasks.getNumberOfTasks();
         copyFile(Paths.get(FILE_PATH), Paths.get(PAST_FILE_PATH));
         try (BufferedWriter w = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -124,7 +125,8 @@ public class Storage {
      * @param target the target file to copy to
      * @throws StorageException when there is an error copying the stored file
      */
-    public void copyFile(Path source, Path target) throws StorageException {
+    public void copyFile(Path source, Path target)
+            throws StorageException {
         try {
             Files.copy(source, target, REPLACE_EXISTING);
         } catch (IOException e) {

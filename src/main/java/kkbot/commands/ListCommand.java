@@ -9,7 +9,6 @@ import kkbot.ui.Ui;
  *
  * @author AkkFiros
  */
-
 public class ListCommand extends Command {
     public static final String KEYWORD = "list";
 
