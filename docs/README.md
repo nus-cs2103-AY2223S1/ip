@@ -2,9 +2,9 @@
 
 ## Quick Start
 
-Get the JAR file, and place it in the directory of your choice. Run the JAR and you are set! On Windows and Mac, you may double-click the JAR to run it.
+Get the JAR file, and place it in the directory of your choice. Run the JAR and you are set! On Windows, you may double-click the JAR to run it. On Mac, you can run `java -jar ./Anthea.jar` to avoid issues with saving data.
 
-Console mode is also provided. You may run `java -jar ./duke.jar console` in Windows if you prefer using the console.
+Console mode is also provided. You may run `java -jar ./Anthea.jar console` in Windows if you prefer using the console.
 
 ## Features
 
