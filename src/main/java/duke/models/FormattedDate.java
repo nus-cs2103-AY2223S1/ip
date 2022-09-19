@@ -28,7 +28,7 @@ public class FormattedDate {
 
     @Override
     public String toString() {
-        return this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
     public static FormattedDate addIntervalToDate(FormattedDate formattedDate, Interval interval) {
