@@ -1,7 +1,5 @@
 # User Guide for `Dukie` 🐥
 
----
-
 Your very own task tracker!  ✏️
 
 ## Features 
@@ -12,11 +10,9 @@ Your very own task tracker!  ✏️
 5. `Find` tasks 
 6. `Snooze` tasks if they need a little longer to complete  ⏰
 
----
-
 ## Commands
 
-### `Todo`
+### ✏️ `Todo`
 
 Adds a to-do task to your task list. 
 
@@ -28,7 +24,7 @@ Remarks:
 - `todo` items do not have a date tied to them! 
 - for items with specified dates, use `deadline` or `event` 
 
-### `Deadline`
+### 💣 `Deadline`
 
 Adds a deadline task to your task list. 
 
@@ -39,7 +35,7 @@ Example: `deadline ip /by 2022-09-16`
 Remarks: 
 - date must be in the format **YYYY-MM-DD**
 
-### `Event`
+### 📆 `Event`
 
 Adds an event task to your task list.
 
@@ -50,7 +46,7 @@ Example: `event holiday /at 2022-12-20`
 Remarks:
 - date must be in the format **YYYY-MM-DD**
 
-### `Mark` / `Unmark`
+### ✅ `Mark` / ❎ `Unmark`
 
 Marks a task as done/undone. 
 
@@ -63,7 +59,7 @@ Examples:
 Remarks: 
 - tasks are unmarked by default upon creation 
 
-### `List` 
+### 📃 `List` 
 
 Shows the complete list of tasks in the task list. 
 
@@ -77,7 +73,7 @@ Expected outcome:
 3. [T][ ] study for midterms
 ```
 
-### `Delete` 
+### 🗑️ `Delete` 
 
 Deletes a task that is in the task list. 
 
@@ -89,7 +85,7 @@ Remarks:
 - first item in the task list will be deleted 
 - remaining tasks will be updated with the new index number 
 
-### `Find` 
+### 🔍 `Find` 
 
 Searches task list for tasks that contain given keyword. 
 
@@ -97,7 +93,7 @@ Format: `Find <taskName>`
 
 Example' `Find hw`
 
-### `Schedule` 
+### 📅 `Schedule` 
 
 Generates all `deadline`s and `event`s for that given date.
 
@@ -113,7 +109,7 @@ Format: `snooze <taskName> /to <date>`
 
 Example: `snooze ip /to 2022-09-19`
 
-### `Bye`
+### 👋 `Bye`
 
 Exits Dukie. 
 
