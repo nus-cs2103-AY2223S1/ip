@@ -38,6 +38,7 @@ public class Storage {
                 String[] taskInArray = taskInFile.split(" \\| "); //The \\ is really equivalent to a single \ (the first \ is required as a Java escape sequence in string literals).
                 // It is then a special character in regular expressions which means "use the next character literally, don't interpret its special meaning"
                 String taskType = taskInArray[0];
+                assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E");
                 switch (taskType) {
                 case "T": {
                     Task task = new ToDo(taskInArray[2]);
