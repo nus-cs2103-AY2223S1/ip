@@ -1,5 +1,8 @@
 package duke.massops;
 
+/**
+ * Encapsulates a RangeOperation in Duke
+ */
 public class RangeOperation extends MassOperation {
 
     protected int startRange;
@@ -16,7 +19,13 @@ public class RangeOperation extends MassOperation {
         this.endRange = endRange;
     }
 
+    /**
+     * Constructs a RangeOperation object with an integer array of a start range as the first element and
+     * an end range as the second element
+     * @param range
+     */
     public RangeOperation(int[] range) {
+        assert(range.length == 2);
         this.startRange = range[0];
         this.endRange = range[1];
     }
@@ -31,16 +40,11 @@ public class RangeOperation extends MassOperation {
         return "range";
     }
 
-    /**
-     * Gets the number of tasks executed in the range operation
-     *
-     * @return the number of tasks being executed
-     */
-    public int getNumberOfTasksExecuted() {
-        return endRange - startRange + 1;
+    public int getStartRange() {
+        return startRange;
     }
 
-    public int getStartRange() { return startRange; }
-
-    public int getEndRange() { return endRange; }
+    public int getEndRange() {
+        return endRange;
+    }
 }

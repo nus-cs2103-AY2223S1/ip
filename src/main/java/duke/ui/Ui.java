@@ -23,8 +23,6 @@ public class Ui {
 
     /**
      * Displays the greeting message upon startup of the app
-     *
-     * @return the greeting message of the app, in string representation
      */
     public void showGreetingMessage() {
         drawLine();

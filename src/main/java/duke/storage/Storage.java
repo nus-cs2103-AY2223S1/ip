@@ -22,8 +22,9 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private final File f;
     private static final String PATH = "src/main/data/userTasks.txt";
+
+    private final File f;
     private ArrayList<String> stringArray;
 
     /**

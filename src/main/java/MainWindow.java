@@ -1,5 +1,4 @@
 import duke.Shiba;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +11,9 @@ import javafx.scene.layout.VBox;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Main Window for the application GUI
+ */
 public class MainWindow extends AnchorPane {
 
     @FXML
@@ -41,7 +43,10 @@ public class MainWindow extends AnchorPane {
      * Greets the user with a greeting message.
      */
     public void greetUser() {
-        String greetMessage = "Hello! I'm Shiba \uD83D\uDC15\nThe task management dog you can trust!\nWhat can I do for you today?";
+        String line1 = "Hello! I'm Shiba \uD83D\uDC15\n";
+        String line2 = "The task management dog you can trust!\n";
+        String line3 = "What can I do for you today?";
+        String greetMessage = line1 + line2 + line3;
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(greetMessage, dukeImage)
         );

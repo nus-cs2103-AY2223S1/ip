@@ -41,8 +41,18 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String msg = getMessage();
         storage.writeToFile(tasks.toArrayList());
-        ui.showMessage("Shiba hope you had a productive time today!\nDon't forget to come and work with me again \uD83D\uDC36");
+        ui.showMessage(msg);
+        return msg;
+    }
+
+    /**
+     * Gets the message to be returned from the ByeCommand
+     *
+     * @return the message to be returned from the ByeCommand
+     */
+    private String getMessage() {
         return "Shiba hope you had a productive time today!\nDon't forget to come and work with me again \uD83D\uDC36";
     }
 }

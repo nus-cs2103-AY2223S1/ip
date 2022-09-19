@@ -1,14 +1,11 @@
 package duke.tasks;
 
 import duke.exceptions.DukeException;
-import duke.exceptions.DukeInvalidCommandException;
 import duke.exceptions.DukeOutOfRangeException;
-
 import duke.massops.AllOperation;
 import duke.massops.MassOperation;
 import duke.massops.RangeOperation;
 import duke.massops.SingleOperation;
-
 import duke.parser.Parser;
 import duke.storage.Storage;
 
