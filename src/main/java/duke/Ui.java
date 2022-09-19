@@ -97,6 +97,15 @@ public class Ui {
     }
 
     /**
+     * Tells the user that the task specified by the user has been updated according to the user's inputs.
+     *
+     * @return The update message to display to the user.
+     */
+    public String showUpdatedTask() {
+        return "alright, I've updated that task";
+    }
+
+    /**
      * Tells the user that an error has occurred.
      *
      * @param message The error message to display to the user.

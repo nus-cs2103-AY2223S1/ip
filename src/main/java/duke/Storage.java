@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -86,6 +88,20 @@ public class Storage {
             dukeWriter.close();
         } catch (IOException e) {
             throw new DukeException("oops, I can't remove the task from the saved data :(");
+        }
+    }
+
+    public void updateTask(ArrayList<Task> taskList) throws DukeException {
+        try {
+            FileWriter dukeWriter = new FileWriter(DUKEFILE_STR);
+            String newList = "";
+            for (int i = 0; i < taskList.size(); i++) {
+                newList = newList + taskList.get(i).convertToFile();
+            }
+            dukeWriter.write(newList);
+            dukeWriter.close();
+        } catch (IOException e) {
+            throw new DukeException("oops, I can't seem to update the task");
         }
     }
 }
