@@ -2,12 +2,13 @@ package command;
 
 import java.time.LocalDateTime;
 
-import storage.Storage;
-
 import exception.DorisException;
-
-import task.*;
-
+import storage.Storage;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 import ui.Ui;
 
 /**
@@ -35,12 +36,10 @@ public class AddCommand extends Command {
      * @param time When is the task is due or happening
      */
     public AddCommand(String type, String description, LocalDateTime time) {
-        switch (type) {
-            case "deadline":
-                this.task = new Deadline(description, false, time);
-                break;
-            case "event":
-                this.task = new Event(description, false, time);
+        if (type == "deadline") {
+            this.task = new Deadline(description, false, time);
+        } else {
+            this.task = new Event(description, false, time);
         }
     }
 

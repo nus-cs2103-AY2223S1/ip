@@ -1,11 +1,10 @@
 package ui;
 
-import exception.DorisException;
+import java.util.Scanner;
 
+import exception.DorisException;
 import task.Task;
 import task.TaskList;
-
-import java.util.Scanner;
 
 /**
  * Encapsulates a user interface that the user interacts with.
@@ -14,22 +13,22 @@ import java.util.Scanner;
  */
 public class Ui {
     private static Scanner sc;
-    String logo = "                                                      \n" +
-                "                                                      \n" +
-                "    ,---,                                             \n" +
-                "  .'  .' `\\                       ,--,                \n" +
-                ",---.'     \\    ,---.    __  ,-.,--.'|                \n" +
-                "|   |  .`\\  |  '   ,'\\ ,' ,'/ /||  |,      .--.--.    \n" +
-                ":   : |  '  | /   /   |'  | |' |`--'_     /  /    '   \n" +
-                "|   ' '  ;  :.   ; ,. :|  |   ,',' ,'|   |  :  /`./   \n" +
-                "'   | ;  .  |'   | |: :'  :  /  '  | |   |  :  ;_     \n" +
-                "|   | :  |  ''   | .; :|  | '   |  | :    \\  \\    `.  \n" +
-                "'   : | /  ; |   :    |;  : |   '  : |__   `----.   \\ \n" +
-                "|   | '` ,/   \\   \\  / |  , ;   |  | '.'| /  /`--'  / \n" +
-                ";   :  .'      `----'   ---'    ;  :    ;'--'.     /  \n" +
-                "|   ,.'                         |  ,   /   `--'---'   \n" +
-                "'---'                            ---`-'               \n" +
-                "                                                      ";
+    private String logo = "                                            \n"
+                + "                                                      \n"
+                + "    ,---,                                             \n"
+                + "  .'  .' `\\                       ,--,                \n"
+                + ",---.'     \\    ,---.    __  ,-.,--.'|                \n"
+                + "|   |  .`\\  |  '   ,'\\ ,' ,'/ /||  |,      .--.--.    \n"
+                + ":   : |  '  | /   /   |'  | |' |`--'_     /  /    '   \n"
+                + "|   ' '  ;  :.   ; ,. :|  |   ,',' ,'|   |  :  /`./   \n"
+                + "'   | ;  .  |'   | |: :'  :  /  '  | |   |  :  ;_     \n"
+                + "|   | :  |  ''   | .; :|  | '   |  | :    \\  \\    `.  \n"
+                + "'   : | /  ; |   :    |;  : |   '  : |__   `----.   \\ \n"
+                + "|   | '` ,/   \\   \\  / |  , ;   |  | '.'| /  /`--'  / \n"
+                + ";   :  .'      `----'   ---'    ;  :    ;'--'.     /  \n"
+                + "|   ,.'                         |  ,   /   `--'---'   \n"
+                + "'---'                            ---`-'               \n"
+                + "                                                      ";
 
     /**
      * Constructs a new UI.
@@ -51,15 +50,15 @@ public class Ui {
      * Show the list of commands available.
      */
     public void showCommands() {
-        System.out.println("Eh I can do these things la trust me I'm a woman in STEM" +
-                "\n list | View all tasks you need to do la" +
-                "\n todo <task> | Add something you need to do la" +
-                "\n deadline <task> /by <yyyy-MM-dd hh:mm AM/PM> | Add a deadline you need to meet la" +
-                "\n event <task> /at <yyyy-MM-dd hh:mm AM/PM> | Add an event you need to go for la" +
-                "\n mark <index of task> | Mark the task as done la" +
-                "\n unmark <index of task> | Mark the task as not done la" +
-                "\n find <text to find> | Find any tasks that contains that text la" +
-                "\n bye | Stop using the bot la");
+        System.out.println("Eh I can do these things la trust me I'm a woman in STEM"
+                + "\n list | View all tasks you need to do la"
+                + "\n todo <task> | Add something you need to do la"
+                + "\n deadline <task> /by <yyyy-MM-dd hh:mm AM/PM> | Add a deadline you need to meet la"
+                + "\n event <task> /at <yyyy-MM-dd hh:mm AM/PM> | Add an event you need to go for la"
+                + "\n mark <index of task> | Mark the task as done la"
+                + "\n unmark <index of task> | Mark the task as not done la"
+                + "\n find <text to find> | Find any tasks that contains that text la"
+                + "\n bye | Stop using the bot la");
     }
 
     /**
@@ -68,7 +67,7 @@ public class Ui {
      * @param tasks List of tasks stored.
      * @param task Task added.
      */
-    public void showAddTodo (TaskList tasks, Task task) {
+    public void showAddTodo(TaskList tasks, Task task) {
         System.out.println("Eh must remember to do this ah:");
         System.out.println(task.getDescription());
         System.out.println("You have " + TaskList.size() + " tasks leh better hurry up");

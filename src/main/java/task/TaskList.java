@@ -110,6 +110,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds all the tasks that contains the query string.
+     *
+     * @param query Query to be matched.
+     * @return String containing all the tasks that contains the query.
+     */
     public String find(String query) {
         String result = "";
         int index = 1;

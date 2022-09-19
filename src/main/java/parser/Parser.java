@@ -1,5 +1,9 @@
 package parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import command.AddCommand;
 import command.Command;
 import command.DeleteCommand;
@@ -9,19 +13,12 @@ import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
-
 import exception.DorisException;
-
-import java.time.format.DateTimeParseException;
-
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Parses the user commands.
@@ -38,7 +35,7 @@ public class Parser {
      */
     public static Command parse(String command) throws DorisException {
         String[] commands = command.split(" ", 2);
-        DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         switch (commands[0]) {
         case "todo":
             if (command.length() <= 5) {
@@ -50,13 +47,13 @@ public class Parser {
                 throw new DorisException("Oi don't anyhow type must enter a task to do leh");
             }
             String[] description = commands[1].split(" /by ");
-            return new AddCommand("deadline", description[0], parseDateTime(description[1], DF));
+            return new AddCommand("deadline", description[0], parseDateTime(description[1], df));
         case "event":
             if (command.length() <= 6) {
                 throw new DorisException("Oi don't anyhow type must enter a task to do leh");
             }
             description = commands[1].split(" /at ");
-            return new AddCommand("event", description[0], parseDateTime(description[1], DF));
+            return new AddCommand("event", description[0], parseDateTime(description[1], df));
         case "list":
             return new ListCommand();
         case "bye":
@@ -86,16 +83,16 @@ public class Parser {
      */
     public static Task parseSaved(String task) throws DorisException {
         String[] commands = task.split(" \\| ");
-        DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
         switch (commands[0]) {
-            case "T":
-                return new Todo(commands[1], Boolean.parseBoolean(commands[2]));
-            case "D":
-                return new Deadline(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], DF));
-            case "E":
-                return new Event(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], DF));
-            default:
-                throw new DorisException("I have issues reading your file can save properly or not");
+        case "T":
+            return new Todo(commands[1], Boolean.parseBoolean(commands[2]));
+        case "D":
+            return new Deadline(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], df));
+        case "E":
+            return new Event(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], df));
+        default:
+            throw new DorisException("I have issues reading your file can save properly or not");
         }
     }
 
@@ -125,13 +122,13 @@ public class Parser {
      * If so, converts it into a LocalDateTime instance.
      *
      * @param dateTime String to be converted into a LocalDateTime instance.
-     * @param DF DateTimeFormat used to check.
+     * @param df DateTimeFormat used to check.
      * @return A LocalDateTime instance in the format specified by DF.
      * @throws DorisException If the date format is wrong.
      */
-    public static LocalDateTime parseDateTime(String dateTime, DateTimeFormatter DF) throws DorisException {
+    public static LocalDateTime parseDateTime(String dateTime, DateTimeFormatter df) throws DorisException {
         try {
-            return LocalDateTime.parse(dateTime, DF);
+            return LocalDateTime.parse(dateTime, df);
         } catch (DateTimeParseException e) {
             throw new DorisException("The date format wrong la try again");
         }

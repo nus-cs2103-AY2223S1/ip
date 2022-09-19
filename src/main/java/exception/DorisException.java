@@ -11,7 +11,7 @@ public class DorisException extends Exception {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return getMessage();
     }
 }

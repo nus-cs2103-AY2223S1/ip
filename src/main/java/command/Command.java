@@ -1,8 +1,9 @@
 package command;
 
+import storage.Storage;
 import task.TaskList;
 import ui.Ui;
-import storage.Storage;
+
 
 /**
  * Encapsulates the commands the users will input

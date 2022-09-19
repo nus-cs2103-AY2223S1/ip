@@ -1,13 +1,8 @@
 import command.Command;
-
 import exception.DorisException;
-
 import parser.Parser;
-
 import storage.Storage;
-
 import task.TaskList;
-
 import ui.Ui;
 
 /**
@@ -41,7 +36,7 @@ public class Doris {
         ui.showWelcome();
 
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 Command command = Parser.parse(ui.readCommand());
                 command.execute(tasks, ui, storage);
