@@ -18,7 +18,7 @@ import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
 import duke.command.FindTasksCommand;
 import duke.command.ListTasksCommand;
-import duke.command.MarkUnmarkTaskCommand;
+import duke.command.SetTaskAsDoneCommand;
 import duke.command.SortTasksCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
@@ -99,7 +99,7 @@ public final class Parser {
         }
         try {
             int index = Integer.parseInt(args[1]) - 1;
-            return new MarkUnmarkTaskCommand(index, isDone);
+            return new SetTaskAsDoneCommand(index, isDone);
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid argument: Index of task should be a number.");
         } catch (IndexOutOfBoundsException e) {

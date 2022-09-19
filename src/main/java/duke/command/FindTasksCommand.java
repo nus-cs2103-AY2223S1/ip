@@ -6,7 +6,7 @@ public class FindTasksCommand extends Command {
     private final String keyword;
 
     /**
-     * Initialises a {@code FindTasksCommand} with the {@code String} keyword.
+     * Initialises a {@code FindCommand} with the {@code String} keyword.
      *
      * @param keyword The {@code String} to search the {@code TaskList} with.
      */
