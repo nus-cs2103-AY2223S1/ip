@@ -16,6 +16,7 @@ public class Deadline extends Task {
      * @param taskName the description of the task to be done.
      * @param isDone   completion status of the task.
      * @param deadline date by which task must be done.
+     * @param priority the priority of the task.
      */
     public Deadline(String taskName, boolean isDone, String deadline, int priority) {
         super(taskName, isDone, priority);

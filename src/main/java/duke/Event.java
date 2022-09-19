@@ -13,6 +13,7 @@ public class Event extends Task {
      * @param taskName the description of the event.
      * @param isDone   the completion status of the event.
      * @param at       time of the event.
+     * @param priority the priority of the task.
      */
     public Event(String taskName, boolean isDone, String at, int priority) {
         super(taskName, isDone, priority);

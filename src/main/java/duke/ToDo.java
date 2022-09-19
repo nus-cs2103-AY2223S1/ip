@@ -10,6 +10,7 @@ public class ToDo extends Task {
      *
      * @param taskName the description of the task to be done.
      * @param isDone   the completion status of the task.
+     * @param priority the priority of the task.
      */
     public ToDo(String taskName, boolean isDone, int priority) {
         super(taskName, isDone, priority);

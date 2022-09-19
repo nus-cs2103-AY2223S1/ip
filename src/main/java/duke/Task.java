@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents a Task with a name, completion status and priority.
+ */
 public class Task {
     protected String taskName;
     protected boolean isDone;

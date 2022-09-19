@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class Ui {
     private TaskList tasks;
-    private final static String HOR_LINE = "------------------------------------------------------";
 
     public Ui() {
 
@@ -17,6 +16,7 @@ public class Ui {
      * Displays to the user the confirmatory message after saved tasks are loaded.
      *
      * @param size number of tasks loaded.
+     * @return the confirmatory message after saved tasks are loaded, or an error message if no saved tasks are found.
      */
     public String tasksLoadedMsg(int size) {
         String msg;
@@ -46,6 +46,8 @@ public class Ui {
 
     /**
      * Displays to the user the exit message on closing duke.
+     *
+     * @return the exit message.
      */
     public String exitMessage() {
         String msg = ("\tBye. Hope to see you again soon!");
@@ -57,6 +59,7 @@ public class Ui {
      *
      * @param task deleted task.
      * @param size number of tasks in the list after given tasks is deleted.
+     * @return the confirmatory message after the task is deleted.
      */
     public String deleteTaskMsg(Task task, int size) {
         String msg = ("\tNoted, I have removed this task: \n" +
@@ -69,7 +72,7 @@ public class Ui {
      * Displays to the user the confirmatory message after a task is marked as done.
      *
      * @param task task marked as done.
-     * @return the confirmatory message
+     * @return the confirmatory message after the task is marked as done.
      */
     public String taskDoneMsg(Task task) {
         String msg = ("\tNice! I've marked this task as done:\n" +
@@ -81,6 +84,7 @@ public class Ui {
      * Displays to the user the confirmatory message after a task is marked as undone.
      *
      * @param task task marked as undone.
+     * @return the confirmatory message after the task is marked as undone.
      */
     public String taskUndoneMsg(Task task) {
         String msg = ("\tOK, I've marked this task as not done yet:\n" +
@@ -88,6 +92,12 @@ public class Ui {
         return msg;
     }
 
+    /**
+     * Displays to the user the list of tasks.
+     *
+     * @param tasks the list of tasks to be displayed.
+     * @return the list of tasks if the list is not empty, else an error message.
+     */
     public String viewListMsg(ArrayList<Task> tasks) {
         if (tasks.size() != 0) {
             String msg = ("\tHere are the tasks in your list:\n");
@@ -101,6 +111,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays to the user the error message when the list of tasks is empty.
+     *
+     * @return the error message when list of tasks is empty.
+     */
     public String tasksNotFoundMsg() {
         String msg = "No tasks in the list\nPlease add a task";
         return msg;

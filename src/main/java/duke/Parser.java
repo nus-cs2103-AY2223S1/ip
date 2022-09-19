@@ -10,6 +10,7 @@ public class Parser {
      * @param command  the user command.
      * @param tasklist the <code>TaskList</code> where tasks are stored.
      * @param ui       the ui to display messages to the user.
+     * @return the ui message to show to the user after the required action is done.
      */
     protected String commandParser(String command, TaskList tasklist, Ui ui) {
         if (command.equals("list")) {

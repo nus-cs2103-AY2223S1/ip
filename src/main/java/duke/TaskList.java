@@ -39,6 +39,7 @@ public class TaskList {
      * @param taskName description of the task to be added.
      * @param ui       ui to print the confirmation messages after task is added
      *                 to the list.
+     * @return the ui message on addition of the task
      */
     public String addToList(String taskName, Ui ui) {
         try {
@@ -74,10 +75,12 @@ public class TaskList {
         }
     }
 
+
     /**
      * View the list of all tasks.
      *
      * @param ui ui to display the list of tasks to the user.
+     * @return the ui message with the list of tasks.
      */
     public String viewList(Ui ui) {
         return ui.viewListMsg(tasks);
@@ -88,6 +91,7 @@ public class TaskList {
      *
      * @param num the index of task to be marked as done.
      * @param ui  ui to display confirmatory message.
+     * @return the ui message on marking the task as done.
      */
     public String taskDone(int num, Ui ui) {
         Task task = tasks.get(num - 1);
@@ -106,6 +110,7 @@ public class TaskList {
      *
      * @param num index of task to be marked as undone.
      * @param ui  ui to display confirmatory message.
+     * @return the ui message on marking the task as undone.
      */
     public String taskUndone(int num, Ui ui) {
         Task task = tasks.get(num - 1);
@@ -116,8 +121,9 @@ public class TaskList {
     /**
      * Delete a task from the list
      *
-     * @param num index of task to be deleted
-     * @param ui  ui to display confirmatory message
+     * @param num index of task to be deleted.
+     * @param ui  ui to display confirmatory message.
+     * @return the ui message on deletion of the task.
      */
     public String deleteTask(int num, Ui ui) {
         Task task = tasks.get(num - 1);
