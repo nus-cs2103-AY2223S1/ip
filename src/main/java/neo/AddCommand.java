@@ -43,11 +43,9 @@ public class AddCommand extends Command {
             String temp3 = arri[1];
 
             Deadline d = new Deadline(temp2, temp3);
-            System.out.println("Added: " + d.toString());
             arrayLL.addTask(d);
-            System.out.println("here " + arrayLL.getTask(0));
             store.storeData(d);
-            return d.toString();
+            return "Added: " + d.toString();
         }
         if (type ==1) {
             String arri[];
@@ -56,19 +54,15 @@ public class AddCommand extends Command {
             String temp3 = arri[1];
 
             Event e = new Event(temp2, temp3);
-            System.out.println("Added: " + e.toString());
             arrayLL.addTask(e);
-            System.out.println("here " + arrayLL.getTask(0));
             store.storeData(e);
-            return e.toString();
+            return "Added: " + e.toString();
         }
         if (type ==2) {
             ToDo td = new ToDo(taskNumber);
-            System.out.println("Added: " + td.toString());
             arrayLL.addTask(td);
-            System.out.println("here: " + arrayLL.getTask(0));
             store.storeData(td);
-            return td.toString();
+            return "Added: " + td.toString();
         }
         return "";
     }

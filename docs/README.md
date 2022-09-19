@@ -7,8 +7,8 @@
 - [Features](#Features)
 - [Command summary](#CommandSummary)
 
-##GUI
-<img src= Ui.png>
+## GUI
+<img src= "Ui.png">
 
 ## GettingStarted
 All you need to do is,
@@ -189,20 +189,21 @@ Expected outcome:
 ```
 
 ## CommandSummary
-| COMMAND  | FORMAT                                  |
-|----------|-----------------------------------------|
-| Help     | help                                    |
-| Event    | event _description_ /at _yyyy-mm-dd_    |
-| Deadline | deadline _description_ /by _yyyy-mm-dd_ |
-| Todo     | todo _description_                      |
-| Mark     | mark _task number_                      |
-| Unmark   | unmark _task number_                    |
-| Hi       | hi                                      |
-| Find     | find _keyword_                          |
-| Low      | priority _tag_name_                     |
-| Medium   | medium _task number_                    |
-| High     | high _task number_                      |
-| Delete   | delete _task number_                    |
-| List     | list                                    |
-| Bye      | bye                                     |
+
+| COMMAND    | FORMAT                                      |
+|------------|---------------------------------------------|
+| Help       | help                                        |
+| Event      | event _description_ /at _yyyy-mm-dd_        |
+| Deadline   | deadline _description_ /by _yyyy-mm-dd_     |
+| Todo       | todo _description_                          |
+| Mark       | mark _task number_                          |
+| Unmark     | unmark _task number_                        |
+| Hi         | hi                                          |
+| Find       | find _keyword_                              |
+| Low        | priority _task number_                      |
+| Medium     | medium _task number_                        |
+| High       | high _task number_                          |
+| Delete     | delete _task number_                        |
+| List       | list                                        |
+| Bye        | bye                                         |
 

@@ -10,11 +10,13 @@ import java.util.Scanner;
  */
 public class Storage {
     protected String inp;
+    private File f;
 
     /**
      * Constructor for storage class.
      */
     public Storage() {
+
     }
 
     /**
@@ -23,7 +25,7 @@ public class Storage {
      * @param inp Stores user input string.
      */
     public Storage(String inp) {
-        this.inp = inp;
+
     }
 
     private static Task task;
@@ -77,7 +79,23 @@ public class Storage {
         fw.close();
     }
 
-    File f = new File("/Users/richavm/Documents/NUS/Y2S1/CS2103T/data/Neo.txt");
+    //File f = new File("data/Neo.txt");
+    private static final String FOLDER = "data";
+    private String filePath = "data/Neo.txt";
+
+    public void createFile() throws IOException {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Calls appendToFile to add to file.
@@ -87,7 +105,17 @@ public class Storage {
      */
 
     public void storeData(Task task) throws IOException {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
 
+        File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             appendToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -103,7 +131,17 @@ public class Storage {
      */
 
     public void writeData(Task task) throws IOException {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
 
+        File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             WriteToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -118,6 +156,17 @@ public class Storage {
      */
 
     public String retrieveData() throws IOException {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             return printFileContents(f.getAbsolutePath());
         } catch (FileNotFoundException e) {

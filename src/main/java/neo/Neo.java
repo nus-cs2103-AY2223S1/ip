@@ -39,8 +39,9 @@ public class Neo {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/Amy.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Jake.png"));
 
-    File f = new File("/Users/richavm/Documents/NUS/Y2S1/CS2103T/data/Neo.txt");
-
+    //File f = new File("data/Neo.txt");
+    private static final String FOLDER = "data";
+    private String filePath = "data/Neo.txt";
     /**
      * Constructor for neo class.
      */
@@ -50,7 +51,7 @@ public class Neo {
         this.arrayLL = new TaskList();
         this.parser = new Parser(ui, stor, arrayLL);
 
-        addToTaskList(String.valueOf(f), arrayLL);
+        addToTaskList(String.valueOf(filePath), arrayLL);
 
     }
 
@@ -61,7 +62,18 @@ public class Neo {
      * @param arrayLL taskList to store tasks
      */
     public static void addToTaskList(String filePath, TaskList arrayLL)  {
+        //File f = new File(filePath);
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
         File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Scanner sc = null;
         try {
             sc = new Scanner(f);
