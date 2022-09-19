@@ -117,15 +117,20 @@ public class Parser {
             String[] msg = tokenizeInput(input, "sort by");
             String sortType = msg[1];
 
-            if (!sortType.equals("alphabetically") && !sortType.equals("chronologically")) {
+            if ("alphabetically".startsWith(sortType)) {
+                sortType = "alphabetically";
+            } else if ("chronologically".startsWith(sortType)) {
+                sortType = "chronologically";
+            } else {
                 throw (new DukeException("sort type invalid! try 'alphabetically' or 'chronologically'"));
             }
 
             boolean isDescending = false;
-            if (msg.length > 2 && msg[2].equals("descending")) {
+            if (msg.length > 2 && "descending".startsWith(msg[2])) {
                 isDescending = true;
             }
-            return new SortCommand(msg[1], isDescending);
+
+            return new SortCommand(sortType, isDescending);
 
         } else {
             throw(new DukeException("I do not understand!"));
