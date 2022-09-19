@@ -2,6 +2,8 @@ package duke.task;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -47,6 +49,24 @@ public class TaskList extends ArrayList<Task> implements Serializable {
         assert !keyword.isBlank();
         return stream().filter(task -> task.contains(keyword))
                 .collect(Collectors.toCollection(TaskList::new));
+    }
+
+    public void sort(String sortType, boolean isAscending) {
+        switch (sortType) {
+        case "a":
+        case "alphabet":
+        case "alphabetically":
+            this.sort(Comparator.comparing(Task::getDescription));
+            break;
+        case "t":
+        case "time":
+        case "chronologically":
+        default:
+            this.sort(Comparator.comparing(Task::getTime));
+        }
+        if (!isAscending) {
+            Collections.reverse(this);
+        }
     }
 
     /**

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import duke.command.ByeCommand;
-import duke.command.ListCommand;
+import duke.command.ListTasksCommand;
 
 public class ParserTest {
     @Test
@@ -28,6 +28,6 @@ public class ParserTest {
 
     @Test
     public void parse_list_success() throws DukeException {
-        assertTrue(Parser.parseCommand("list") instanceof ListCommand);
+        assertTrue(Parser.parseCommand("list") instanceof ListTasksCommand);
     }
 }

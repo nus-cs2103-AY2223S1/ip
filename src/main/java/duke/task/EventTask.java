@@ -5,11 +5,9 @@ import java.time.LocalDateTime;
 import duke.Parser;
 
 public class EventTask extends Task {
-    private final LocalDateTime timeAt;
 
     public EventTask(String description, LocalDateTime timeAt, boolean isDone) {
-        super('E', description, isDone);
-        this.timeAt = timeAt;
+        super('E', description, timeAt, isDone);
         assert !description.isBlank();
         assert timeAt != null;
     }
@@ -17,6 +15,6 @@ public class EventTask extends Task {
     @Override
     public String toString() {
         return String.format("%s (at: %s)", super.toString(),
-                timeAt.format(Parser.DATETIME_OUTPUT_FORMAT));
+                super.time.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
 }

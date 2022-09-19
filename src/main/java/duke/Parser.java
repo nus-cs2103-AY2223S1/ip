@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+import duke.command.SortTasksCommand;
 import org.apache.commons.text.WordUtils;
 
 import duke.command.AddTaskCommand;
@@ -16,9 +17,9 @@ import duke.command.Command;
 import duke.command.CommandType;
 import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.SetDoneCommand;
+import duke.command.FindTasksCommand;
+import duke.command.ListTasksCommand;
+import duke.command.SetTaskAsDoneCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;
@@ -68,7 +69,7 @@ public final class Parser {
         case BYE:
             return new ByeCommand();
         case LIST:
-            return new ListCommand();
+            return new ListTasksCommand();
         case EMPTY:
             return new EmptyCommand();
         case MARK:
@@ -85,6 +86,8 @@ public final class Parser {
             return parseDeleteCommand(args);
         case FIND:
             return parseFindCommand(args);
+        case SORT:
+            return parseSortCommand(args);
         default:
             throw new DukeException("Invalid command: Please try again.");
         }
@@ -96,7 +99,7 @@ public final class Parser {
         }
         try {
             int index = Integer.parseInt(args[1]) - 1;
-            return new SetDoneCommand(index, isDone);
+            return new SetTaskAsDoneCommand(index, isDone);
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid argument: Index of task should be a number.");
         } catch (IndexOutOfBoundsException e) {
@@ -178,10 +181,23 @@ public final class Parser {
             throw new DukeException("Invalid argument: Keyword cannot be blank.");
         }
         try {
-            return new FindCommand(keyword);
+            return new FindTasksCommand(keyword);
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("Include the keyword you want to find.");
         }
+    }
+
+    public static Command parseSortCommand(String[] args) {
+        // Default sort options
+        String sortType = "time";
+        boolean isAscending = true;
+
+        if (args.length != 1) {
+            sortType = args[1].split(" ", 2)[0];
+            isAscending = !args[1].contains("/d");
+            System.out.println(sortType + (isAscending ? "asc" : "desc"));
+        }
+        return new SortTasksCommand(sortType, isAscending);
     }
 
     /**

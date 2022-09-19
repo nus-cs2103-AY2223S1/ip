@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.task.TaskList;
 
-public class FindCommand extends Command {
+public class FindTasksCommand extends Command {
     private final String keyword;
 
     /**
@@ -10,7 +10,7 @@ public class FindCommand extends Command {
      *
      * @param keyword The {@code String} to search the {@code TaskList} with.
      */
-    public FindCommand(String keyword) {
+    public FindTasksCommand(String keyword) {
         assert !keyword.isBlank();
         this.keyword = keyword;
     }

@@ -1,10 +1,12 @@
 package duke.task;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public abstract class Task implements Serializable {
-    private final String description;
     private final char symbol;
+    private final String description;
+    protected final LocalDateTime time;
     private boolean isDone;
 
     /**
@@ -14,10 +16,11 @@ public abstract class Task implements Serializable {
      * @param description A string representing the {@code Task}'s description.
      * @param isDone The boolean representing whether the {@code Task} is done.
      */
-    protected Task(char symbol, String description, boolean isDone) {
+    protected Task(char symbol, String description, LocalDateTime time, boolean isDone) {
         assert !description.isBlank();
         this.symbol = symbol;
         this.description = description;
+        this.time = time;
         this.isDone = isDone;
     }
 
@@ -28,6 +31,19 @@ public abstract class Task implements Serializable {
      */
     private String getStatusIcon() {
         return (isDone ? "X" : " ");
+    }
+
+    /**
+     * Returns a {@code Task}'s description.
+     *
+     * @return The string representing the {@code Task}'s description.
+     */
+    protected String getDescription() {
+        return description;
+    }
+
+    protected LocalDateTime getTime() {
+        return time;
     }
 
     /**

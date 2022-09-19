@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.Storage;
 import duke.task.TaskList;
 
-public class SetDoneCommand extends Command {
+public class SetTaskAsDoneCommand extends Command {
     private final int index;
     private final boolean isDone;
 
@@ -14,7 +14,7 @@ public class SetDoneCommand extends Command {
      * @param index The index of the {@code Task} to be marked as done/undone.
      * @param isDone Whether the {@code Task} is to be marked as done or undone.
      */
-    public SetDoneCommand(int index, boolean isDone) {
+    public SetTaskAsDoneCommand(int index, boolean isDone) {
         assert index >= 0;
         this.index = index;
         this.isDone = isDone;
