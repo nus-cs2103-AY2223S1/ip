@@ -3,8 +3,6 @@ package jarvis;
 import jarvis.task.*;
 import jarvis.exception.JarvisException;
 
-import java.util.Scanner;
-
 public class Parser {
     
     private static String introduction = "Hello. I am Jarvis \n"
@@ -117,6 +115,10 @@ public class Parser {
             } else {
                 return "I'm sorry, but I don't know what that means";
             }
+    }
+
+    public static String introduction() {
+        return introduction;
     }
 }
 
