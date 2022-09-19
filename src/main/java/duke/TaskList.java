@@ -127,7 +127,7 @@ public class TaskList {
      * @throws DukeException  If index given is out of bounds.
      */
     public Task mark(int n) throws DukeException {
-        if (n > findCurrentList().size() || n < 1) {
+        if (n > findCurrentList().size() || n < 0) {
             throw new DukeException("I can't mark an index beyond the list");
         }
         Task temp = findCurrentList().get(n);
@@ -151,7 +151,7 @@ public class TaskList {
      * @throws DukeException  If index given is out of bounds.
      */
     public Task unmark(int n) throws DukeException {
-        if (n > findCurrentList().size() || n < 1) {
+        if (n > findCurrentList().size() || n < 0) {
             throw new DukeException("I can't unmark an index beyond the list");
         }
         Task temp = findCurrentList().get(n);
