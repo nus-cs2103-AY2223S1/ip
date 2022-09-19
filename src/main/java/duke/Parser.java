@@ -109,37 +109,6 @@ public class Parser {
         }
     }
 
-    public static Command parseInputOld(Storage storage, String input, TaskList taskArr) throws DukeException {
-        String[] split = input.split(" ");
-        if (input.equals("list")) {
-            return parseList(input);
-        } else if (input.startsWith("mark")) {
-            return parseMark(input.substring(5));
-        } else if (input.startsWith("unmark")) {
-            return parseUnmark(input.substring(7));
-        } else if (input.startsWith("find")) {
-            return parseFind(split[1]);
-        } else {
-            // this is under task creation
-            if (input.startsWith("event")) {
-                return parseEvent(input);
-            } else if (input.startsWith("todo")) {
-
-                if (input.substring(4).equals("")){
-                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                } else {
-                    return parseToDo(input);
-                }
-            } else if (input.startsWith("deadline")) {
-                return parseDeadline(input);
-            } else if (input.startsWith("delete")) {
-                return parseDelete(input.substring(6));
-            } else {
-                throw new DukeException(ERROR_MESSAGE);
-            }
-        }
-
-    }
 
     private static void checkEmpty(String input) throws DukeException {
         if (!input.isEmpty()) {
