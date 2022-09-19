@@ -20,7 +20,7 @@ public class Task {
     }
 
     /**
-     * Status Getter
+     * Gets the status of the task
      * @return String that represents the status of the task ("X" or " " if it is done or not).
      */
     public String getStatus() {
