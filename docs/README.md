@@ -1,3 +1,9 @@
+
+@@author ciaoosuuu-reused
+
+Reused from https://kshan29.github.io/ip/#quick-start
+
+With minor modifications
 # User Guide
 
 Pony is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI)
@@ -209,14 +215,16 @@ Bye friend. Hope to see you again soon!
 
 ## Command summary
 
-**Action** | **Format, Examples**
---- | ---
-todo | `todo TASK_DESCRIPTION` <br> e.g. `todo watch movie`
-deadline | `deadline TASK_DESCRIPTION /by YYYY-MM-DD HH:mm` <br> e.g. `deadline CS2101 Assignment /by 2022-09-15 16:00`
-event | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br> e.g. `event NUS Supernova /at 2022-09-01 18:00`
-list | `list`
-delete | `delete INDEX` <br> e.g. `delete 1`
-find | `find KEYWORD` <br> e.g. `find test`
-mark | `mark INDEX` <br> e.g. `mark 3`
-unmark | `unmark INDEX` <br> e.g. `unmark 2`
-bye | `bye`
+| **Action** | **Format, Examples**                                                                                  |
+|------------|-------------------------------------------------------------------------------------------------------|
+| todo       | `todo TASK_DESCRIPTION` <br> e.g. `todo watch movie`                                                  |
+| deadline   | `deadline TASK_DESCRIPTION /by YYYY-MM-DD HH:mm` <br> e.g. `deadline Assignment /by 2022-09-15 16:00` |
+| event      | `event TASK_DESCRIPTION /at YYYY-MM-DD` <br> e.g. `event NUS Supernova /at 2022-09-01 18:00`          |
+| list       | `list`                                                                                                |
+| delete     | `delete INDEX` <br> e.g. `delete 1`                                                                   |
+| find       | `find KEYWORD` <br> e.g. `find test`                                                                  |
+| mark       | `mark INDEX` <br> e.g. `mark 3`                                                                       |
+| unmark     | `unmark INDEX` <br> e.g. `unmark 2`                                                                   |
+| bye        | `bye`                                                                                                 |
+
+@@author
