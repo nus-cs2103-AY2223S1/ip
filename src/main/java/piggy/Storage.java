@@ -1,5 +1,7 @@
 package piggy;
 
+import piggy.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,17 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import piggy.task.Deadline;
-import piggy.task.Event;
-import piggy.task.Task;
-import piggy.task.TaskWithDate;
-import piggy.task.Todo;
-
 /**
  * Class that handles storing and retrieving task data from the disk.
  */
 class Storage {
-    private File file;
+    private final File file;
 
     /**
      * Creates a new Storage object for the given file path.
@@ -50,9 +46,11 @@ class Storage {
                 if (data[0].equals("T")) {
                     task = new Todo(description);
                 } else if (data[0].equals("D")) {
-                    task = new Deadline(description, LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
+                    task = new Deadline(description,
+                            LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
                 } else if (data[0].equals("E")) {
-                    task = new Event(description, LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
+                    task = new Event(description,
+                            LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
                 } else {
                     task = new Task(description);
                 }
@@ -81,8 +79,7 @@ class Storage {
     }
 
     /**
-     * Writes the tasks to the disk inside the data file. Overrides any existing
-     * content in the file.
+     * Writes the tasks to the disk inside the data file. Overrides any existing content in the file.
      *
      * @param tasks The TaskList to write to disk.
      */
@@ -91,7 +88,7 @@ class Storage {
         try {
             writer = new FileWriter(file);
             FileWriter finalWriter = writer;
-            tasks.toList().stream().<String>map(task -> {
+            tasks.toList().stream().map(task -> {
                 List<String> line = new ArrayList<>();
                 if (task instanceof Todo) {
                     line.add("T");

@@ -6,8 +6,7 @@ package piggy.task;
 public class Deadline extends TaskWithDate {
 
     /**
-     * Creates a new Deadline with the given description and deadline.
-     * The Deadline is marked as not done by default.
+     * Creates a new Deadline with the given description and deadline. The Deadline is marked as not done by default.
      *
      * @param description The description of the deadline task.
      * @param by The due date of the deadline.

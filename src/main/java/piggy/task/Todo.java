@@ -6,8 +6,7 @@ package piggy.task;
 public class Todo extends Task {
 
     /**
-     * Creates a new Todo with the given description.
-     * The Todo is marked as not done by default.
+     * Creates a new Todo with the given description. The Todo is marked as not done by default.
      *
      * @param description The description of the todo.
      */

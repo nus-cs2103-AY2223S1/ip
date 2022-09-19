@@ -1,9 +1,8 @@
 package piggy;
 
-import java.util.List;
-import java.util.Scanner;
-
 import piggy.task.Task;
+
+import java.util.List;
 
 /**
  * Manages the user-interaction UI.
@@ -56,7 +55,7 @@ class Ui {
     /**
      * Get a message showing a task has been added along with the remaining tasks.
      *
-     * @param task             The added task to show.
+     * @param task The added task to show.
      * @param noRemainingTasks The number of remaining tasks.
      * @return the task added
      */
@@ -68,12 +67,13 @@ class Ui {
     /**
      * Gets a message that a task has been removed along with the remaining tasks.
      *
-     * @param task             The removed task to show.
+     * @param task The removed task to show.
      * @param noRemainingTasks The number of remaining tasks.
      * @return the task removed message
      */
     String getTaskRemoved(Task task, int noRemainingTasks) {
-        return "Noted. I've removed this task: \n" + "  " + task + "Now you have " + noRemainingTasks + " tasks in" + " the list.\n";
+        return "Noted. I've removed this task: \n" + "  " + task + "Now you have " + noRemainingTasks + " tasks in" +
+                " the list.\n";
     }
 
     /**
@@ -83,7 +83,7 @@ class Ui {
      * @return The message that the task has been marked as done.
      */
     String getMarkAsDone(Task task) {
-        return "Nice! I've marked this task as done:" + task;
+        return "Nice! I've marked this task as done:\n" + task;
     }
 
     /**
@@ -93,7 +93,7 @@ class Ui {
      * @return The message that the task has been marked as not done.
      */
     String getMarkAsNotDone(Task task) {
-        return "OK, I've marked this task as not done yet:" + task;
+        return "OK, I've marked this task as not done yet:\n" + task;
     }
 
     /**
