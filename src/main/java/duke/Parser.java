@@ -23,7 +23,7 @@ public class Parser {
     }
 
     /**
-     * Constructor of a Parser class.
+     * Constructs of a Parser class.
      *
      * @param storage The text document used for storing and loading data.
      * @param tasks The arraylist used to store tasks.
@@ -44,7 +44,7 @@ public class Parser {
     }
 
     /**
-     * Exit the application.
+     * Exits the application.
      *
      * @return String saying bye to the user.
      * @throws IOException If file does not exist.
@@ -72,7 +72,7 @@ public class Parser {
     }
 
     /**
-     * runs command after receiving response from the user.
+     * Runs command after receiving response from the user.
      *
      * @param response The string that consists of the user command.
      * @return Duke's response.

@@ -14,7 +14,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor of Duke class.
+     * Constructs of Duke class.
      *
      * @param filePath The String that is the relative path to the text document.
      */

@@ -13,14 +13,14 @@ public class TaskList {
     private final ArrayList<Task> list;
 
     /**
-     * Constructor of a TaskList.
+     * Constructs of a TaskList.
      */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
     /**
-     * To check if an integer is given after user input "mark", "unmark" or "delete".
+     * Checks if an integer is given after user input "mark", "unmark" or "delete".
      *
      * @param strNum The String after user input "mark", "unmark" or "delete".
      * @return True if it is an integer, false otherwise.
@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * gets index from the arraylist.
+     * Gets index from the arraylist.
      *
      * @param number The index
      * @return The task in that index.
@@ -205,7 +205,7 @@ public class TaskList {
     }
 
     /**
-     * Add a Deadline task to the list.
+     * Adds a Deadline task to the list.
      *
      * @param stringComponent The description and the date and time of the task.
      * @return The response of adding a Deadline task.
@@ -225,7 +225,7 @@ public class TaskList {
     }
 
     /**
-     * Add a Deadline task to the list.
+     * Adds a Deadline task to the list.
      *
      * @param stringComponent The description and the date and time of the task.
      * @return The response of adding a Todo task.
@@ -242,7 +242,7 @@ public class TaskList {
     }
 
     /**
-     * Add a Event task to the list.
+     * Adds a Event task to the list.
      *
      * @param stringComponent The description and the date and time of the task.
      * @return The response of adding a Event task.
@@ -302,7 +302,7 @@ public class TaskList {
     }
 
     /**
-     * Add tags into the task
+     * Adds tags into the task
      *
      * @param string The tag instructions.
      * @return String of tags added.

@@ -12,7 +12,7 @@ public class Task {
     private boolean isDone;
 
     /**
-     * Constructor for a Task Object.
+     * Constructs for a Task Object.
      *
      * @param description Description of the task.
      */

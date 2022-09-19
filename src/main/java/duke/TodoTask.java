@@ -6,7 +6,7 @@ package duke;
 public class TodoTask extends Task {
 
     /**
-     * Constructor for a TodoTask object.
+     * Constructs for a TodoTask object.
      *
      * @param description  Description of the task.
      */

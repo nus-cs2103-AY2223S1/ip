@@ -15,7 +15,7 @@ public class DeadlineTask extends Task {
     private LocalTime time;
 
     /**
-     * Constructor for a DeadlineTask object.
+     * Constructs a DeadlineTask object.
      *
      * @param description    description of the task.
      * @param by             Date of the deadline.
@@ -48,7 +48,7 @@ public class DeadlineTask extends Task {
     }
 
     /**
-     * formats date and time to a string that would be added into the text document.
+     * Formats date and time to a string that would be added into the text document.
      *
      * @return String added into the text document.
      */

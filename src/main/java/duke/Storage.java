@@ -14,7 +14,7 @@ public class Storage {
     private final String filePath;
 
     /**
-     * Constructor for a Storage class.
+     * Constructs for a Storage class.
      *
      * @param filePath The relative path to the text document.
      */
@@ -23,7 +23,7 @@ public class Storage {
     }
 
     /**
-     * To create the text document in the relevant file if it does not exist.
+     * Creates the text document in the relevant file if it does not exist.
      *
      * @throws IOException If the relative path to the text document is invalid.
      */
@@ -117,7 +117,7 @@ public class Storage {
     }
 
     /**
-     * Set task into the list.
+     * Sets task into the list.
      *
      * @param type Task type.
      * @param keywords The array of words separated by | symbol.
@@ -150,7 +150,7 @@ public class Storage {
     }
 
     /**
-     * Add all the tags back into the task.
+     * Adds all the tags back into the task.
      *
      * @param start The index of the first tag
      * @param end The index of the last tag.

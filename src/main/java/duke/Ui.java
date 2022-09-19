@@ -21,7 +21,7 @@ public class Ui {
     }
 
     /**
-     * To run the program after receiving the user input.
+     * Runs the program after receiving the user input.
      */
     public String run() {
         String response;
