@@ -16,13 +16,13 @@ enum TaskType {
 Task object that gets created by the user
 */
 public class Task {
-    private boolean done;
+    private boolean isDone;
     private String taskName;
     private TaskType taskType;
     private LocalDate date;
 
     public Task (String taskName, String taskType, String timing, boolean done) {
-        this.done = done;
+        this.isDone = done;
         this.taskName = taskName;
         this.date = null;
         switch (taskType) {
@@ -40,7 +40,7 @@ public class Task {
     }
 
     public Task (String taskName, String taskType, String timing) {
-        this.done = false;
+        this.isDone = false;
         this.taskName = taskName;
         this.date = null;
         switch (taskType.toUpperCase(Locale.ROOT)) {
@@ -63,7 +63,7 @@ public class Task {
     }
 
     public String isDoneString() {
-        if (done) {
+        if (isDone) {
             return "[X]";
         }
         return "[ ]";
@@ -90,7 +90,7 @@ public class Task {
     }
 
     public String toTxt() {
-        if (done) {
+        if (isDone) {
             return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " +
                     this.date + "\n";
         }
@@ -99,11 +99,11 @@ public class Task {
     }
 
     public void markDone() {
-        done = true;
+        isDone = true;
     }
 
     public void unmarkDone() {
-        done = false;
+        isDone = false;
     }
 
     public boolean onDate(String date) {

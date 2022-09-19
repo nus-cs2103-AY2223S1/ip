@@ -6,6 +6,9 @@ import duke.Ui;
 import duke.DukeException;
 import duke.Task;
 
+/*
+Allows the user to update the date of a task.
+ */
 public class SnoozeCommand extends Command{
 
     String taskName;

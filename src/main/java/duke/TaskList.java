@@ -1,8 +1,5 @@
 package duke;
 
-import duke.DukeException;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*
@@ -23,6 +20,11 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Returns the size of the existing task list.
+     *
+     * @return The size of task list.
+     */
     public int getTaskListSize() {
         return this.taskList.size();
     }
@@ -89,6 +91,12 @@ public class TaskList {
         this.taskList.add(task);
     }
 
+    /**
+     * Finds tasks that contain the given keyword.
+     *
+     * @param keyword Keyword used to search for tasks.
+     * @return The tasks that contain given keyword.
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
@@ -99,6 +107,13 @@ public class TaskList {
         return foundTasks;
     }
 
+    /**
+     * Updates the date of a specific task.
+     *
+     * @param taskName Name of the task to be updated.
+     * @param newDate Date to be changed into.
+     * @return The updated task.
+     */
     public Task updateDate(String taskName, String newDate) throws DukeException {
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getTask().contains(taskName)) {
