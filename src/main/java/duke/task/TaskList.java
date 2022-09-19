@@ -82,6 +82,7 @@ public class TaskList {
      */
     public void mark(int index) {
         Task task = tasks.get(index);
+        task.updateStatus(true);
     }
 
     /**
@@ -91,6 +92,7 @@ public class TaskList {
      */
     public void unmark(int index) {
         Task task = tasks.get(index);
+        task.updateStatus(false);
     }
 
     /**
