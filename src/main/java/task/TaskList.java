@@ -104,10 +104,12 @@ public class TaskList {
     /**
      * List down all the tasks in the task list.
      */
-    public void list() {
+    public String list() {
+        String result = "";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + ". " + tasks.get(i));
+            result += i + 1 + ". " + tasks.get(i) + "\n";
         }
+        return result;
     }
 
     /**

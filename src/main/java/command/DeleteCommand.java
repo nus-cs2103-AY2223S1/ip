@@ -24,13 +24,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             Task deleted = tasks.delete(this.index);
-            ui.showDeleted(tasks, deleted);
             storage.save(tasks);
+            return ui.showDeleted(tasks, deleted);
         } catch (DorisException e) {
-            ui.showError(e);
+            return ui.showError(e);
         }
     }
 }

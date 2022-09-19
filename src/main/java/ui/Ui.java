@@ -13,22 +13,22 @@ import task.TaskList;
  */
 public class Ui {
     private static Scanner sc;
-    private String logo = "                                            \n"
-                + "                                                      \n"
-                + "    ,---,                                             \n"
-                + "  .'  .' `\\                       ,--,                \n"
-                + ",---.'     \\    ,---.    __  ,-.,--.'|                \n"
-                + "|   |  .`\\  |  '   ,'\\ ,' ,'/ /||  |,      .--.--.    \n"
-                + ":   : |  '  | /   /   |'  | |' |`--'_     /  /    '   \n"
-                + "|   ' '  ;  :.   ; ,. :|  |   ,',' ,'|   |  :  /`./   \n"
-                + "'   | ;  .  |'   | |: :'  :  /  '  | |   |  :  ;_     \n"
-                + "|   | :  |  ''   | .; :|  | '   |  | :    \\  \\    `.  \n"
-                + "'   : | /  ; |   :    |;  : |   '  : |__   `----.   \\ \n"
-                + "|   | '` ,/   \\   \\  / |  , ;   |  | '.'| /  /`--'  / \n"
-                + ";   :  .'      `----'   ---'    ;  :    ;'--'.     /  \n"
-                + "|   ,.'                         |  ,   /   `--'---'   \n"
-                + "'---'                            ---`-'               \n"
-                + "                                                      ";
+//    private String logo = "                                            \n"
+//                + "                                                      \n"
+//                + "    ,---,                                             \n"
+//                + "  .'  .' `\\                       ,--,                \n"
+//                + ",---.'     \\    ,---.    __  ,-.,--.'|                \n"
+//                + "|   |  .`\\  |  '   ,'\\ ,' ,'/ /||  |,      .--.--.    \n"
+//                + ":   : |  '  | /   /   |'  | |' |`--'_     /  /    '   \n"
+//                + "|   ' '  ;  :.   ; ,. :|  |   ,',' ,'|   |  :  /`./   \n"
+//                + "'   | ;  .  |'   | |: :'  :  /  '  | |   |  :  ;_     \n"
+//                + "|   | :  |  ''   | .; :|  | '   |  | :    \\  \\    `.  \n"
+//                + "'   : | /  ; |   :    |;  : |   '  : |__   `----.   \\ \n"
+//                + "|   | '` ,/   \\   \\  / |  , ;   |  | '.'| /  /`--'  / \n"
+//                + ";   :  .'      `----'   ---'    ;  :    ;'--'.     /  \n"
+//                + "|   ,.'                         |  ,   /   `--'---'   \n"
+//                + "'---'                            ---`-'               \n"
+//                + "                                                      ";
 
     /**
      * Constructs a new UI.
@@ -40,25 +40,23 @@ public class Ui {
     /**
      * Show the welcome message to the user.
      */
-    public void showWelcome() {
-        System.out.println(logo);
-        System.out.println("Eh what you want?");
-        System.out.println("You need help just say");
+    public String showWelcome() {
+        return "Eh what you want? \nYou need help just say";
     }
 
     /**
      * Show the list of commands available.
      */
-    public void showCommands() {
-        System.out.println("Eh I can do these things la trust me I'm a woman in STEM"
-                + "\n list | View all tasks you need to do la"
-                + "\n todo <task> | Add something you need to do la"
-                + "\n deadline <task> /by <yyyy-MM-dd hh:mm AM/PM> | Add a deadline you need to meet la"
-                + "\n event <task> /at <yyyy-MM-dd hh:mm AM/PM> | Add an event you need to go for la"
-                + "\n mark <index of task> | Mark the task as done la"
-                + "\n unmark <index of task> | Mark the task as not done la"
-                + "\n find <text to find> | Find any tasks that contains that text la"
-                + "\n bye | Stop using the bot la");
+    public String showCommands() {
+        return "Eh I can do these things la trust me I'm a woman in STEM"
+                + "\nlist | View all tasks you need to do la"
+                + "\ntodo <task> | Add something you need to do la"
+                + "\ndeadline <task> /by <yyyy-MM-dd hh:mm AM/PM> | Add a deadline you need to meet la"
+                + "\nevent <task> /at <yyyy-MM-dd hh:mm AM/PM> | Add an event you need to go for la"
+                + "\nmark <index of task> | Mark the task as done la"
+                + "\nunmark <index of task> | Mark the task as not done la"
+                + "\nfind <text to find> | Find any tasks that contains that text la"
+                + "\nbye | Stop using the bot la";
     }
 
     /**
@@ -67,10 +65,9 @@ public class Ui {
      * @param tasks List of tasks stored.
      * @param task Task added.
      */
-    public void showAddTodo(TaskList tasks, Task task) {
-        System.out.println("Eh must remember to do this ah:");
-        System.out.println(task.getDescription());
-        System.out.println("You have " + TaskList.size() + " tasks leh better hurry up");
+    public String showAddTodo(TaskList tasks, Task task) {
+        return "Eh remember to do this ah:\n" + task.getDescription()
+                + "\nYou have " + TaskList.size() + " tasks leh better hurry up";
     }
 
     /**
@@ -79,10 +76,9 @@ public class Ui {
      * @param tasks List of tasks stored.
      * @param task Task added.
      */
-    public void showAddDeadline(TaskList tasks, Task task) {
-        System.out.println("Eh this one due soon stop wasting time go do now:");
-        System.out.println(task.getDescription());
-        System.out.println("You have " + TaskList.size() + " tasks leh better hurry up");
+    public String showAddDeadline(TaskList tasks, Task task) {
+        return "Eh this one due soon stop wasting time go do now:\n" + task.getDescription()
+                + "\nYou have " + TaskList.size() + " tasks leh better hurry up";
     }
 
     /**
@@ -91,27 +87,27 @@ public class Ui {
      * @param tasks List of tasks stored.
      * @param task Task added.
      */
-    public void showAddEvent(TaskList tasks, Task task) {
-        System.out.println("Oi remember to attend this ah:");
-        System.out.println(task.getDescription());
-        System.out.println("You have " + TaskList.size() + " tasks leh better hurry up");
+    public String showAddEvent(TaskList tasks, Task task) {
+        return "Oi remember to attend this ah:\n" + task.getDescription()
+                + "\nYou have " + TaskList.size() + " tasks leh better hurry up";
     }
 
     /**
-     * Shows the user the farewell message and ends the chat bot.
+     * Shows the user the farewell message and ends the chatbot.
      */
-    public void showBye() {
-        System.out.println("Bye you annoying sia don't want talk to you anymore");
+    public String showBye() {
         sc.close();
+        return "Bye you annoying sia don't want talk to you anymore";
     }
 
     /**
      * Shows the user an error.
      *
      * @param e An error to be shown.
+     * @return
      */
-    public void showError(DorisException e) {
-        System.out.println(e.toString());
+    public String showError(DorisException e) {
+        return e.toString();
     }
 
     /**
@@ -120,10 +116,9 @@ public class Ui {
      * @param tasks List of tasks.
      * @param task Task that was removed from the task list.
      */
-    public void showDeleted(TaskList tasks, Task task) {
-        System.out.println("Eh you don't want do this just say la:");
-        System.out.println(task.getDescription());
-        System.out.println("You have " + TaskList.size() + " tasks leh better hurry up");
+    public String showDeleted(TaskList tasks, Task task) {
+        return "Eh you don't want do this just say la:\n" + task.getDescription()
+                + "\nYou have " + TaskList.size() + " tasks leh better hurry up";
     }
 
     /**
@@ -131,9 +126,8 @@ public class Ui {
      *
      * @param tasks The task list storing the list of tasks to be done.
      */
-    public void showList(TaskList tasks) {
-        System.out.println("Eh faster go do these:");
-        tasks.list();
+    public String showList(TaskList tasks) {
+        return "Eh faster go do these:\n" + tasks.list();
     }
 
     /**
@@ -142,9 +136,8 @@ public class Ui {
      * @param task Task to be marked as done.
      */
 
-    public void showMark(Task task) {
-        System.out.println("Huh you sure you do " + task.getDescription() + " already or not?");
-        System.out.println("Okay la I trust you I trust you");
+    public String showMark(Task task) {
+        return "Huh you sure you do " + task.getDescription() + " already or not?\n Okay la I trust you I trust you";
     }
 
     /**
@@ -152,8 +145,8 @@ public class Ui {
      *
      * @param task Task to be marked as not done.
      */
-    public void showUnmark(Task task) {
-        System.out.println("Eh don't laze leh go do go do " + task.getDescription());
+    public String showUnmark(Task task) {
+        return "Eh don't laze leh go do go do " + task.getDescription();
     }
 
     /**
@@ -170,12 +163,11 @@ public class Ui {
      *
      * @param tasks The list of tasks that match the query.
      */
-    public void showFound(String tasks) {
+    public String showFound(String tasks) {
         if (tasks.equals("")) {
-            System.out.println("Eh don't have anything like that leh try again");
+            return "Eh don't have anything like that leh try again";
         } else {
-            System.out.println("Eh I managed to find these tasks hurry go do");
-            System.out.println(tasks);
+            return "Eh I managed to find these tasks hurry go do\n" + tasks;
         }
     }
 }

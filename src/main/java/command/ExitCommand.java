@@ -1,5 +1,6 @@
 package command;
 
+import exception.DorisException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -12,8 +13,13 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        try {
+            storage.save(tasks);
+            return ui.showBye();
+        } catch (DorisException e) {
+            return ui.showError(e);
+        }
     }
 
     @Override

@@ -1,3 +1,5 @@
+package doris;
+
 import command.Command;
 import exception.DorisException;
 import parser.Parser;
@@ -21,7 +23,7 @@ public class Doris {
      * Initialise the Doris chatbot.
      *
      * @param filePath Path to save the local file that stores the list of saved tasks.
-     * @throws DorisException
+     * @throws DorisException If there is a issue loading the file.
      */
     public Doris(String filePath) throws DorisException {
         ui = new Ui();
@@ -33,7 +35,6 @@ public class Doris {
      * Runs the chatbot.
      */
     public void run() {
-        ui.showWelcome();
 
         boolean isExit = false;
         while (!isExit) {
@@ -46,8 +47,15 @@ public class Doris {
             }
         }
     }
-
-    public static void main(String[] args) throws DorisException {
-        new Doris("data/tasks.txt").run();
+    public String getWelcomeMessage() {
+        return ui.showWelcome();
+    }
+    public String getResponse(String input) {
+        try {
+            Command cmd = Parser.parse(input);
+            return cmd.execute(tasks, ui, storage);
+        } catch (DorisException e) {
+            return ui.showError(e);
+        }
     }
 }

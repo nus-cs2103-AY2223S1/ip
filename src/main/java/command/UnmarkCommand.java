@@ -1,6 +1,5 @@
 package command;
 
-import exception.DorisException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -23,12 +22,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            ui.showMark(tasks.unmark(index));
-            storage.save(tasks);
-        } catch (DorisException e) {
-            ui.showError(e);
-        }
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showMark(tasks.unmark(index));
     }
 }
