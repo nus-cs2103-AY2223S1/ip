@@ -27,7 +27,7 @@ allowing the tracking of various types of tasks including events and deadlines.
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Pony.jar` file from [here](https://github.com/ciaoosuuu/ip/releases/tag/Pony).
+2. Download the latest `Pony.jar` file from [here](https://github.com/ciaoosuuu/ip/releases/tag/v1.0).
 3. Locate the file and double-click the file to start the app.
 
 ![Duke UI display](Ui.png "Pony UI")
