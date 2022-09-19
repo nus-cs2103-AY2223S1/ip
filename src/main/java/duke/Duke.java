@@ -253,4 +253,7 @@ public class Duke extends Application {
         return ui.goodBye();
     }
 
+    public String sendHelp() {
+        return ui.printHelp();
+    }
 }
