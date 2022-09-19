@@ -46,7 +46,7 @@ Input actions to optimise your experience with DukeAce
 
 ## Usage
 
----
+
 ### `hi`, `hello`  - DukeAce responds back hi
 
 DukeAce will show greeting message when received a "hi" input.
@@ -241,7 +241,8 @@ Now you have 0 task in the list.
 ```
 
 
-###Command Summary
+
+##Command Summary
 
 |  Command   | Format                                       |                   Example                    |
 |:----------:|:---------------------------------------------|:--------------------------------------------:|
