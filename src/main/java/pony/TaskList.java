@@ -32,6 +32,7 @@ public class TaskList {
         if (index < 0 || index >= sizeOf()) {
             throw new PonyException("Task index invalid!!");
         }
+        assert index < sizeOf() && index >= 0 : "Task index should be valid";
         return tasks.get(index);
     }
 
