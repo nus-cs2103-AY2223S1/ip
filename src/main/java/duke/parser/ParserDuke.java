@@ -8,6 +8,11 @@ import duke.listobjects.ToDo;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 /**
  * Represents the Parser of Duke which parses and interprets user commands
@@ -44,6 +49,12 @@ public class ParserDuke {
         throw new EmptyCommandException();
     }
 
+    /**
+     * Parse command to add a to-do task to the list of items stored
+     * @param listOfItems TaskList representing all stored tasks
+     * @return String representing confirmation of addition and new number of tasks in list
+     * @throws EmptyTaskException if the user does not provide task description
+     */
     public String parseTask(TaskList listOfItems) throws EmptyTaskException{
 
         String task = this.command.replaceAll("todo", "");
@@ -58,6 +69,15 @@ public class ParserDuke {
             return comment + info;
         }
     }
+
+    /**
+     * Parse command to add a deadline task to the list of items stored
+     * @param listOfItems TaskList representing all stored tasks
+     * @return String representing confirmation of addition and new number of tasks in list
+     * @throws EmptyTaskException if the user does not provide task description
+     * @throws EmptyDateTimeException if the user does not provide date and time description
+     * @throws ArgumentNumberException if the user does not provide the correct number of arguments
+     */
 
     public String parseDeadline(TaskList listOfItems) throws EmptyTaskException,
             EmptyDateTimeException, ArgumentNumberException{
@@ -79,19 +99,31 @@ public class ParserDuke {
             if(times.length <= 1) {
                 throw new EmptyDateTimeException();
             } else if (times.length == 2) {
-                ListObject newItem = new Deadline(task, 0, dateTime);
-                listOfItems.handleItemAddition(newItem);
-                Storage.makeListFile(FILE_PATH, listOfItems);
-                Storage.makeListFile(FILE_PATH, listOfItems);
-                String comment = "Mark this on your calendar! \n" + newItem + "\n";
-                String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
-                return comment + info + "\n";
+                try {
+                    checkDateTimeFormat(times[0], times[1]);
+                    ListObject newItem = new Deadline(task, 0, dateTime);
+                    listOfItems.handleItemAddition(newItem);
+                    Storage.makeListFile(FILE_PATH, listOfItems);
+                    String comment = "Mark this on your calendar! \n" + newItem + "\n";
+                    String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                    return comment + info + "\n";
+                } catch (DateTimeFormatException e){
+                    return e.getMessage();
+                }
             } else {
                 throw new ArgumentNumberException();
             }
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     * @throws EmptyTaskException
+     * @throws EmptyDateTimeException
+     * @throws ArgumentNumberException
+     */
     public String parseEvent(TaskList listOfItems) throws EmptyTaskException,
             EmptyDateTimeException, ArgumentNumberException{
 
@@ -112,18 +144,28 @@ public class ParserDuke {
             if(times.length <= 2) {
                 throw new EmptyDateTimeException();
             } else if (times.length == 3) {
-                ListObject newItem = new Event(task, 0, dateTime);
-                listOfItems.handleItemAddition(newItem);
-                Storage.makeListFile(FILE_PATH, listOfItems);
-                String comment = "Another moment to mark... \n" + newItem + "\n";
-                String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
-                return comment + info + "\n";
+                try {
+                    checkDateTimeFormat(times[0], times[1], times[2]);
+                    ListObject newItem = new Event(task, 0, dateTime);
+                    listOfItems.handleItemAddition(newItem);
+                    Storage.makeListFile(FILE_PATH, listOfItems);
+                    String comment = "Another moment to mark... \n" + newItem + "\n";
+                    String info = "You now have " + listOfItems.knowTaskCount() + " to do!\n";
+                    return comment + info + "\n";
+                } catch (DateTimeFormatException e){
+                    return e.getMessage();
+                }
             } else {
                 throw new ArgumentNumberException();
             }
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     */
     public String parseListCmd(TaskList listOfItems){
 
         if(listOfItems.getListLength() != 0) {
@@ -135,6 +177,12 @@ public class ParserDuke {
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     * @throws InvalidItemException
+     */
     public String parseMarkCmd(TaskList listOfItems) throws InvalidItemException{
         try {
             String taskNo = command.replaceAll("\\D+", "");
@@ -148,6 +196,11 @@ public class ParserDuke {
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     */
     public String parseUnmarkCmd(TaskList listOfItems) {
         try {
             String taskNo = command.replaceAll("\\D+", "");
@@ -161,12 +214,22 @@ public class ParserDuke {
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     */
     public String parseSortCmd(TaskList listOfItems) {
         listOfItems.sortList();
         String comment = "Indeed I shall invoke the Eye of Agomotto to turn time ... \n";
         return comment + listOfItems;
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     */
     public String parseDeleteCmd(TaskList listOfItems) {
         try {
             String taskNo = command.replaceAll("\\D+", "");
@@ -181,6 +244,12 @@ public class ParserDuke {
         }
     }
 
+    /**
+     *
+     * @param listOfItems
+     * @return
+     * @throws ArgumentNumberException
+     */
     public String parseFind(TaskList listOfItems) throws ArgumentNumberException{
         try {
             String target = command.replaceAll("find ", "");
@@ -196,6 +265,10 @@ public class ParserDuke {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String parseHelpCmd(){
         String comment = "Aye, what good is a phantom were he not to share what he knows?\n";
         String helpList = "You may use the following commands and arguments: \n" +
@@ -224,12 +297,22 @@ public class ParserDuke {
         String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself...\n" +
                 "But you are young blood. What brings you to these ancient halls?\n";
 
-        String reply = "Welcome, my friend!\n" + intro + quote1;
-        return reply;
+        return "Welcome, my friend!\n" + intro + quote1;
     }
 
-
-
+    public void checkDateTimeFormat(String ... dateTimes) throws DateTimeFormatException{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try{
+            String date = dateTimes[0];
+            LocalDate dateFormat = LocalDate.parse(date, formatter);
+            String timeBegin = dateTimes[1];
+            LocalTime timeBeginFormat = LocalTime.parse(timeBegin, DateTimeFormatter.ISO_LOCAL_TIME);
+            String timeEnd = dateTimes[2];
+            LocalTime timeEndFormat = LocalTime.parse(timeEnd, DateTimeFormatter.ISO_LOCAL_TIME);
+        } catch (DateTimeParseException e) {
+            throw new DateTimeFormatException();
+        }
+    }
 
 
     /**
@@ -249,32 +332,45 @@ public class ParserDuke {
                 String instruction = parts[0];
 
 
-                if (instruction.equals(LIST_CMD)) {
-                    reply = parseListCmd(listOfItems);
-                } else if (instruction.equals(HELP_CMD)){
-                    reply = parseHelpCmd();
-                } else if (instruction.equals(HELLO_CMD)){
-                    reply = introduceDuke();
-                } else if (instruction.equals(MARK_CMD)) {
-                    reply = parseMarkCmd(listOfItems);
-                } else if (instruction.equals(UNMARK_CMD)) {
-                    reply = parseUnmarkCmd(listOfItems);
-                } else if (instruction.equals(DELETE_CMD)) {
-                    reply = parseDeleteCmd(listOfItems);
-                } else if (instruction.equals(FIND_CMD)) {
-                    reply = parseFind(listOfItems);
-                } else if (instruction.equals(TODO_CMD)) {
-                    reply = parseTask(listOfItems);
-                } else if (instruction.equals(DEADLINE_CMD)) {
-                    reply = parseDeadline(listOfItems);
-                } else if (instruction.equals(EVENT_CMD)) {
-                    reply = parseEvent(listOfItems);
-                } else if (instruction.equals(SORT_CMD)) {
-                    reply = parseSortCmd(listOfItems);
-                } else {
-                    String comment = "Why trouble me with the unrefined language of the youth! " +
-                            "Speak plainly, my friend!";
-                    reply = comment + "\n";
+                switch (instruction) {
+                    case LIST_CMD:
+                        reply = parseListCmd(listOfItems);
+                        break;
+                    case HELP_CMD:
+                        reply = parseHelpCmd();
+                        break;
+                    case HELLO_CMD:
+                        reply = introduceDuke();
+                        break;
+                    case MARK_CMD:
+                        reply = parseMarkCmd(listOfItems);
+                        break;
+                    case UNMARK_CMD:
+                        reply = parseUnmarkCmd(listOfItems);
+                        break;
+                    case DELETE_CMD:
+                        reply = parseDeleteCmd(listOfItems);
+                        break;
+                    case FIND_CMD:
+                        reply = parseFind(listOfItems);
+                        break;
+                    case TODO_CMD:
+                        reply = parseTask(listOfItems);
+                        break;
+                    case DEADLINE_CMD:
+                        reply = parseDeadline(listOfItems);
+                        break;
+                    case EVENT_CMD:
+                        reply = parseEvent(listOfItems);
+                        break;
+                    case SORT_CMD:
+                        reply = parseSortCmd(listOfItems);
+                        break;
+                    default:
+                        String comment = "Why trouble me with the unrefined language of the youth! " +
+                                "Speak plainly, my friend!";
+                        reply = comment + "\n";
+                        break;
                 }
 
                 return reply;
@@ -290,8 +386,7 @@ public class ParserDuke {
         } catch (Exception e) {
             reply = "Aemon went back to his crypt for a nap.\n" +
                     "Please restart the program after deleteing the DukeList.txt file.";
-        }
-        finally {
+        } finally {
             return reply;
         }
     }

@@ -144,7 +144,7 @@ public class TaskList implements Serializable {
     public String toString() {
         String str = "";
         for (int i = 0; i < this.tasksList.size(); i++) {
-            str = str + i + ". " + tasksList.get(i).toString() + "\n";
+            str = str + (i+1) + ". " + tasksList.get(i).toString() + "\n";
         }
         return str;
     }

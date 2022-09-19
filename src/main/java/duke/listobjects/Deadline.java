@@ -13,7 +13,7 @@ public class Deadline extends ListObject {
      * @param doBy   String representing deadline (date and time) for task
      */
     public Deadline(String task, int status, String doBy) {
-        super(task, doBy, status);
+            super(task, doBy, status);
     }
 
     /**
