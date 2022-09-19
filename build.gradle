@@ -48,12 +48,18 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.AhDukeLauncher"
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'duke.AhDukeLauncher')
+    }
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveVersion = "1.1"
+    archiveBaseName = "AhDuke"
+    archiveVersion = "v1.2"
     archiveClassifier = null
 }
 
