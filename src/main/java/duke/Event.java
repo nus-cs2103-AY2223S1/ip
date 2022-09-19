@@ -3,6 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event is a type of task that contains a date that the event is at.
+ */
 public class Event extends Task {
 
     /**

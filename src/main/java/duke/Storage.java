@@ -9,7 +9,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class Storage {
+
     /**
      * File that contains user task information.
      */
@@ -19,6 +23,11 @@ public class Storage {
      */
     private String path;
 
+    /**
+     * Creates a new Storage.
+     *
+     * @param path The String path that contains the storage file.
+     */
     public Storage (String path) {
         this.path = path;
         toRead = new File(path);
@@ -74,6 +83,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Helper to load a todo task.
+     *
+     * @param info The String array that stores the information of the todo.
+     * @param tasks The task list to be loaded into.
+     */
     private void loadTodo(String[] info, ArrayList<Task> tasks) {
         Todo toAdd = new Todo(info[2]);
         if (Integer.parseInt(info[1]) == 1) {
@@ -81,7 +96,13 @@ public class Storage {
         }
         tasks.add(toAdd);
     }
-    
+
+    /**
+     * Helper to load a deadline task.
+     *
+     * @param info The String array that stores the information of the deadline.
+     * @param tasks The task list to be loaded into.
+     */
     private void loadDeadline(String[] info, ArrayList<Task> tasks) {
         Deadline toAdd = new Deadline(info[2]);
         String[] dateArr = info[3].split(" ");
@@ -95,7 +116,13 @@ public class Storage {
         }
         tasks.add(toAdd);
     }
-    
+
+    /**
+     * Helper to load a event task.
+     *
+     * @param info The String array that stores the information of the event.
+     * @param tasks The task list to be loaded into.
+     */
     private void loadEvent(String[] info, ArrayList<Task> tasks) {
         Event toAdd = new Event(info[2]);
         String[] dateArrEvent = info[3].split(" ");
@@ -112,6 +139,7 @@ public class Storage {
 
     /**
      * Writes user's task information to the file in the path.
+     *
      * @param tasks List of tasks that the user specified.
      */
     public void write(TaskList tasks) {

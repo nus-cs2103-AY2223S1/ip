@@ -45,8 +45,9 @@ public class ArchiveCommand extends Command{
 
         else if (this.input.equalsIgnoreCase("all")) {
             for(int i = 0; i < tasks.getCount(); i++) {
-                archiveTasks.add(tasks.remove(0));
+                archiveTasks.add(tasks.get(0));
             }
+            tasks.clear();
 
             toReturn.append("You have successfully archived all tasks!\n");
             toReturn.append(this.listArchiveTasks());
@@ -55,7 +56,7 @@ public class ArchiveCommand extends Command{
 
         } else if (this.input.matches(intRegex)){
             int index = Integer.parseInt(this.input);
-            if (index >= tasks.getCount()) {
+            if (index > tasks.getCount()) {
                 throw new DukeException("This index does not exist and can't be archived! " +
                         "Try again with a task index that exists!");
 

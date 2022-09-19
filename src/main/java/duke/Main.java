@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The GUI for Duke bot.
+ */
 public class Main extends Application {
 
     private Duke duke = new Duke();

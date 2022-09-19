@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * Task class models a task. Where each task has a name and indicator if its completed.
+ */
 public abstract class Task {
     /**
      * Description of the task.
@@ -12,6 +15,12 @@ public abstract class Task {
      */
     private boolean isComplete;
 
+
+    /**
+     * Creates a new Task instance.
+     *
+     * @param name The name of the task.
+     */
     public Task(String name) {
         this.taskName = name;
         this.isComplete = false;

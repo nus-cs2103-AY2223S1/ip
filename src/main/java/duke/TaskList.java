@@ -1,17 +1,20 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
- *
+ * TaskList stores the tasks of the user.
  */
 public class TaskList {
 
-    /**
-     * List containing all the users tasks.
-     */
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates a new TaskList.
+     *
+     * @param tasks The list of tasks the user has.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -64,12 +67,21 @@ public class TaskList {
      */
     public ArrayList<Task> find(String input) {
         ArrayList toReturn = new ArrayList<>();
+        String inputLower = input.toLowerCase();
         for(Task t : tasks) {
-            if(t.getTaskName().contains(input)) {
+            String taskNameLower = t.getTaskName().toLowerCase();
+            if(taskNameLower.contains(inputLower)) {
                 toReturn.add(t);
             }
         }
         return toReturn;
+    }
+
+    /**
+     * Clears the tasklist.
+     */
+    public void clear() {
+        tasks.clear();
     }
 
 }

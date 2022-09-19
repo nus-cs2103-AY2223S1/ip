@@ -2,8 +2,16 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * Todo is a type of task that contains the name of the task.
+ */
 public class Todo extends Task{
 
+    /**
+     * Creates a new Todo task.
+     *
+     * @param name The name of the task.
+     */
     public Todo(String name) {
         super(name);
     }

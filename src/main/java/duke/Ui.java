@@ -4,6 +4,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * Deals with the user interface of duke.
+ */
 public class Ui {
 
     /**
@@ -15,10 +18,19 @@ public class Ui {
      */
     private final PrintStream out;
 
+    /**
+     * Creates a new Ui instance.
+     */
     public Ui() {
         this(System.in, System.out);
     }
 
+    /**
+     * Creates a new Ui instance.
+     *
+     * @param in The input reader.
+     * @param out The output displayer.
+     */
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;

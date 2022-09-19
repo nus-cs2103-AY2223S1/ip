@@ -1,1 +1,15 @@
 D,1,home ,2019-12-02
+D,1,2103 task ,2022-12-02 6:00pm
+T,0,new task,
+T,0,new task,
+T,0,new task,
+T,0,1,
+T,0,1,
+T,0,1,
+T,0,1,
+T,0,1,
+T,0,1,
+E,0,cs2103t group meeting ,2022-10-10 6:00pm
+D,0,cs2103t homework ,2022-09-11
+D,0,cs2103t homework ,2022-09-11
+T,0,homework ,
