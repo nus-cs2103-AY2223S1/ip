@@ -46,6 +46,36 @@ public class Parser {
         }
         String arr[];
         arr = userText.split(" ", 2);
+        if (arr.length > 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete"))) {
+            int taskNum;
+            try {
+                taskNum = Integer.valueOf(arr[1]);
+            } catch (Exception e){
+                throw new NeoException("sorry you need to provide task number");
+            }
+        }
+        if (arr.length > 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete"))) {
+            int taskNum = Integer.valueOf(arr[1]);
+            if (taskNum > arrayLL.size()) {
+                throw new NeoException("sorry, there aren't " + taskNum + " tasks in the list");
+            }
+        }
+        if (arr.length > 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete"))) {
+            int taskNum;
+            try {
+                taskNum = Integer.valueOf(arr[1]);
+            } catch (Exception e){
+                throw new NeoException("sorry you need to provide task number");
+            }
+        }
+        if (arr.length > 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete"))) {
+            int taskNum;
+            try {
+                taskNum = Integer.valueOf(arr[1]);
+            } catch (Exception e){
+                throw new NeoException("sorry you need to provide task number");
+            }
+        }
         if (arr.length == 1 && (arr[0].equals("high") || arr[0].equals("medium") || arr[0].equals("low") || arr[0].equals("event")
                 || arr[0].equals("todo") || arr[0].equals("find") || arr[0].equals("mark") || arr[0].equals("unmark") || arr[0].equals("delete") || arr[0].equals("deadline"))) {
             throw new NeoException("sorry task cannot be empty");

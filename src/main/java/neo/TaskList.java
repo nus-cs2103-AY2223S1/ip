@@ -21,6 +21,10 @@ public class TaskList {
         this.arrayL.add(t);
     }
 
+    public int size() {
+        return arrayL.size();
+    }
+
     /**
      * Gets task from ArrayList.
      *

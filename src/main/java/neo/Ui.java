@@ -35,7 +35,7 @@ public class Ui {
         String STR_1 = "Command format";
         String STR_2 = "list";
         String STR_3 = "deadline <description> /by <yyyy-mm-dd>";
-        String STR_4 = "event <description> /by <yyyy-mm-dd>";
+        String STR_4 = "event <description> /at <yyyy-mm-dd>";
         String STR_5 = "todo <description>";
         String STR_6 = "delete <task number>";
         String STR_7 = "mark <task number>";
