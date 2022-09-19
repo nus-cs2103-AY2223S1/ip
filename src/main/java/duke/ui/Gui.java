@@ -19,6 +19,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Represents the Graphical User Interface through which user can interact with Duke.
+ * This is modelled after the version in https://se-education.org/guides/tutorials/javaFxPart3.html.
+ */
 public class Gui extends Application {
 
     private ScrollPane scrollPane;
@@ -29,6 +33,11 @@ public class Gui extends Application {
     private final Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
     private final Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
 
+    /**
+     * Starts the GUI with the scene set onto the stage
+     * @param stage the primary stage for this application, onto which
+     * the application scene can be set
+     */
     @Override
     public void start(Stage stage) {
 
@@ -97,8 +106,9 @@ public class Gui extends Application {
 
     }
 
-    //adapted from https://se-education.org/guides/tutorials/javaFxPart3.html
-
+    /**
+     * Handles user commands and directions
+     */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
@@ -109,23 +119,41 @@ public class Gui extends Application {
         userInput.clear();
     }
 
+
+    /**
+     * Returns Duke's response to user command
+     * @param input String representing user command
+     * @return String response to the user command
+     */
     private String getResponse(String input) {
         Duke aemon = new Duke();
         return aemon.interact(input);
     }
 
+    /**
+     * Returns Label containing text to be displayed
+     * @param text String to be used in the Dialogue Label
+     * @return Label containing dialogue
+     */
     private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
         return textToAdd;
     }
 
+    /**
+     * Represents a DialogBox with a speaker image and message
+     */
     public static class DialogBox extends HBox {
 
         private final Label text;
         private final ImageView displayPicture;
 
+        /**
+         * Constructs a DialogBox with a given Label or text and image
+         * @param l Label with text to be displayed
+         * @param iv ImageView of speaker's image
+         */
         public DialogBox(Label l, ImageView iv) {
             text = l;
             displayPicture = iv;
@@ -138,6 +166,12 @@ public class Gui extends Application {
             this.getChildren().addAll(text, displayPicture);
         }
 
+        /**
+         * Returns DialogBox of Duke with the label and image in the correct orientation
+         * @param l Label with text to be displayed
+         * @param iv ImageView of speaker's image
+         * @return DialogBox with given label and image in appropriate orientation
+         */
         public static DialogBox getDukeDialog(Label l, ImageView iv) {
             var db = new DialogBox(l, iv);
             db.flip();
@@ -145,10 +179,19 @@ public class Gui extends Application {
             return db;
         }
 
+        /**
+         * Returns DialogBox of User with the label and image in the correct orientation
+         * @param l Label with text to be displayed
+         * @param iv ImageView of speaker's image
+         * @return DialogBox with given label and image in appropriate orientation
+         */
         public static DialogBox getUserDialog(Label l, ImageView iv) {
             return new DialogBox(l, iv);
         }
 
+        /**
+         * Flips the orientation of the DialogBox
+         */
         private void flip() {
             this.setAlignment(Pos.CENTER);
             ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());

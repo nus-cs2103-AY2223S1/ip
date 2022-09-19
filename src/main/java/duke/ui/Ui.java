@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Ui {
 
     private static final String END_CMD = "bye";
-    private static final String BREAK_LINE = "\n";
     private final Scanner in;
     private final PrintStream out;
 
@@ -37,7 +36,7 @@ public class Ui {
             String userMsg = input.nextLine();
             String reply;
             if (!userMsg.equals(END_CMD)) {
-                reply = userMsg + BREAK_LINE;
+                reply = userMsg + "\n";
             } else {
                 reply = "Ah! And so we part here today." +
                         "\n We may yet meet again...Farewell, my friend!";
@@ -54,8 +53,7 @@ public class Ui {
     public String bidFarewell() {
 
         String reply = "Ah! And so we part here today."
-                + "\n We may yet meet again...Farewell, my friend!"
-                + BREAK_LINE;
+                + "\n We may yet meet again...Farewell, my friend!\n";
         System.out.println(reply);
         return reply;
     }
@@ -70,15 +68,17 @@ public class Ui {
     public String askForClarification(String userMsg) {
 
         String question = "Did you say..." + userMsg + "?\n";
-        String response = "The shadow of my memory is long...State what you would ask clearly.";
-        String reply = question + response + BREAK_LINE;
+        String response = "The shadow of my memory is long...State what you would ask clearly.\n";
+        String reply = question + response;
         System.out.println(reply);
         return reply;
     }
 
 
     /**
-     * Reads user message and prints an appropriate response back
+     * Returns an appropriate message for the user command
+     * @param userMsg String representing user command
+     * @return String representing Duke's response
      */
 
     public String readAndRespond(String userMsg) {
@@ -91,7 +91,9 @@ public class Ui {
                     ParserDuke parseCmd = new ParserDuke(userMsg);
                     return parseCmd.parseCommand();
                 } catch (Exception e) {
-                    return e.toString();
+                    String response = askForClarification(userMsg);
+                    String filler = "This is what my scribe tells me...\n ";
+                    return response + filler + e.toString();
                 }
             }
         }

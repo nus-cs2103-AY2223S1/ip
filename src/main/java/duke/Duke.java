@@ -18,7 +18,7 @@ public class Duke {
     }
 
     /**
-     * Introduces Duke and initiates interactive conversation with user
+     * Initiates Duke's interactive conversation with user
      */
     public String interact(String input) {
         return this.ui.readAndRespond(input);
