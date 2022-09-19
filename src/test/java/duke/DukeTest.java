@@ -3,6 +3,9 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The DukeTest class contains tests for the Duke Chatbot.
+ */
 class DukeTest {
     @Test
     public void dummyTest() {
