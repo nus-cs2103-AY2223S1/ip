@@ -1,30 +1,47 @@
 package duke.services;
 
-import javafx.application.Platform;
-
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
- * Personal Assistant that helps you keep track of your tasks
+ * Provides Duke's high-level functionality
  */
 public class Duke {
 
-    public static String response;
+    /** What Duke will tell the user after a command */
+    private static String reply;
+
+    /** Is Duke interacting with the user? */
+    private static boolean isActive;
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Duke performs its activation behaviour. Save data is loaded.
+     *
+     * @throws IOException From IO errors when loading save data
      */
-    public static String getResponse(String input) {
-        response = "";
-        String[] words = Arrays.stream(input.strip().split(" ")).toArray(String[]::new);
+    public static void activate() throws IOException {
+        isActive = true;
+        Storage.loadData();
+        setReply(new String[] {
+                "Hello! I'm Duke",
+                "What can I do for you?",
+        });
+    }
+
+    /**
+     * Responds to the command and gives a reply
+     *
+     * @param command User's inputted command
+     * @return Duke's reply
+     */
+    public static String getResponse(String command) {
+        String[] words = Parser.convertToWords(command);
         if (words.length > 0) {
             try {
+                //could try grouping words.length == 1 cases
                 if (words.length == 1 && words[0].equals("bye")) {
-                    stop();
+                    Duke.deactivate();
                 } else if (words.length == 1 && words[0].equals("list")) {
-                    TaskList.listTasks(); //could put words.length == 1 cases all here
+                    TaskList.listTasks();
                 } else if (words.length == 1 && words[0].equals("SAVE")) {
                     Storage.wipeDataOnExit(false);
                 } else if (words.length == 1 && words[0].equals("WIPE")) {
@@ -44,24 +61,47 @@ public class Duke {
                 } else if (words[0].equals("find")) {
                     TaskList.findTasksContainingKeyword(words);
                 } else {
-                    Ui.sayLines(new String[]{"I'm sorry, I don't know what that means"});
+                    setReply(new String[]{"I'm sorry, I don't know that command"});
                 }
             } catch (IllegalArgumentException | IOException e) {
-                Ui.sayLines(new String[]{e.getMessage()});
+                setReply(new String[]{e.getMessage()});
             }
         }
-        return response;
+        return getReply();
     }
 
-    public static void start() throws IOException {
-        Storage.loadData();
-        Ui.introduceSelf();
+    /**
+     * Updates duke's reply to the given lines
+     */
+    public static void setReply(String[] lines) {
+        StringBuilder replyBuilder = new StringBuilder();
+        System.out.println("____________________________________________________________");
+        for (String line : lines) {
+            System.out.println(line);
+            replyBuilder.append(line).append("\n");
+        }
+        System.out.println("____________________________________________________________\n");
+        reply = replyBuilder.toString();
     }
 
-    public static void stop() throws IOException {
+    public static String getReply() {
+        return reply;
+    }
+
+    /**
+     * Duke performs its deactivation behaviour. Data is saved.
+     *
+     * @throws IOException From IO errors when saving data
+     */
+    public static void deactivate() throws IOException {
         Storage.saveData();
-        Ui.sayGoodbye();
-        Platform.exit();
-        System.exit(0);
+        setReply(new String[] {
+                "Bye. Hope to see you again soon!",
+        });
+        isActive = false;
+    }
+
+    public static boolean isActive() {
+        return isActive;
     }
 }

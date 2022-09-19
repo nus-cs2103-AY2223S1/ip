@@ -1,6 +1,7 @@
 package duke.gui;
 
 import duke.services.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -32,8 +35,8 @@ public class MainWindow extends AnchorPane {
         //Scroll down to the end every time dialogContainer's height changes
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
-        Duke.start();
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Duke.response, dukeImage));
+        Duke.activate();
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Duke.getReply(), dukeImage));
     }
 
     /**
@@ -49,5 +52,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (!Duke.isActive()) {
+            userInput.setDisable(true);
+            sendButton.setDisable(true);
+            new Timer().schedule(new TimerTask() {
+                public void run() {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }, 2000);
+        }
     }
 }

@@ -28,7 +28,7 @@ public class Storage {
     /**
      * Loads saved data on stored tasks from Duke_Tasks.txt if it exists, otherwise creates it
      *
-     * @throws IOException If an I/O error occurs or the parent directory doesn't exist
+     * @throws IOException If an IO error occurs or the parent directory doesn't exist
      */
     public static void loadData() throws IOException {
         Path path = Paths.get("Duke_Tasks");
@@ -40,7 +40,7 @@ public class Storage {
             String[] words;
             Task task;
             while (line != null) {
-                //[typeSymbol][1 or 0] [desc] [flag] [timing]
+                //format of savedata lines: [typeSymbol][1 or 0] [desc] [flag] [timing]
                 words = Arrays.stream(line.split(" ")).toArray(String[]::new);
                 if (line.charAt(0) == 'T') {
                     task = new Todo(Parser.getDescription(words, null));
@@ -69,7 +69,7 @@ public class Storage {
      */
     public static void wipeDataOnExit(boolean willWipe) {
         willWipeData = willWipe;
-        Ui.sayLines(new String[] {
+        Duke.setReply(new String[] {
             "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"}
         );
     }
@@ -85,7 +85,7 @@ public class Storage {
             BufferedWriter bf = new BufferedWriter(new FileWriter(dataSaved));
             StringBuilder lineBuilder = new StringBuilder();
             for (Task task : TaskList.getTasks()) {
-                //[typeSymbol][1 or 0] [desc] [flag] [timing]
+                //format of savedata lines: [typeSymbol][1 or 0] [desc] [flag] [timing]
                 lineBuilder.append(task.getTypeSymbol())
                         .append(task.getStatusIcon().equals("X") ? '1' : '0')
                         .append(" ")
