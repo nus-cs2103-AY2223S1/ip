@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
  *  Represents an Event which is a subclass of Task.
  *
  */
-public class Event extends Task{
+public class Event extends Task {
 
-    public LocalDate at;
+    private LocalDate at;
 
     /**
      * Returns a new Event Object with the given description and date.
@@ -30,5 +30,9 @@ public class Event extends Task{
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+    }
+
+    public LocalDate getAt() {
+        return at;
     }
 }

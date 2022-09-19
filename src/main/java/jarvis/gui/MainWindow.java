@@ -1,5 +1,7 @@
-package jarvis;
+package jarvis.gui;
 
+import jarvis.Jarvis;
+import jarvis.Parser;
 import jarvis.exception.JarvisException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -27,6 +30,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image jarvisImage = new Image(this.getClass().getResourceAsStream("/images/jarvis.png"));
 
+    /**
+     * Initialise the scroll window in the UI with introduction message.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

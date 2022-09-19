@@ -4,9 +4,9 @@ package jarvis.task;
  * Represents a Task.
  */
 public abstract class Task {
-    public String description;
-    public boolean isDone;
-    public static int count = 0;
+    private static int count = 0;
+    private String description;
+    private boolean isDone;
 
     /**
      * Returns a Task object with the given Description.
@@ -23,7 +23,7 @@ public abstract class Task {
     /**
      * Marks the task as done.
      */
-    public void mark(){
+    public void mark() {
         isDone = true;
     }
 
@@ -50,4 +50,15 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean getDone() {
+        return this.isDone;
+    }
+
+    public static int getCount() {
+        return count;
+    }
 }

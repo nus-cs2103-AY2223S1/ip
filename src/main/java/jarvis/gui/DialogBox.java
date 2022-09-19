@@ -1,4 +1,4 @@
-package jarvis;
+package jarvis.gui;
 
 import java.io.IOException;
 import java.util.Collections;

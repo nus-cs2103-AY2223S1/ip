@@ -1,7 +1,8 @@
-package jarvis;
+package jarvis.gui;
 
 import java.io.IOException;
 
+import jarvis.Jarvis;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
