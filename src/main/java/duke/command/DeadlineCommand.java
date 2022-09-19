@@ -21,6 +21,10 @@ public class DeadlineCommand extends Command{
 
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) throws DukeException {
+        assert storage != null;
+        assert taskList != null;
+        assert ui != null;
+
         String output = "";
         Task task = new Deadline(description, by);
         taskList.add(task);

@@ -22,6 +22,10 @@ public class EventCommand extends Command{
 
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) throws DukeException {
+        assert storage != null;
+        assert taskList != null;
+        assert ui != null;
+
         String output = "";
         Task task = new Event(description, at);
         taskList.add(task);

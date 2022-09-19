@@ -20,6 +20,10 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) throws DukeException {
+        assert storage != null;
+        assert taskList != null;
+        assert ui != null;
+
         return taskList.find(keyword);
     }
 }
