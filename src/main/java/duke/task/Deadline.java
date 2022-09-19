@@ -1,15 +1,18 @@
 package duke.task;
 
+import com.sun.prism.shader.DrawEllipse_Color_AlphaTest_Loader;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Represents a task that has a deadline.
  */
-public class Deadline extends Task {
+public class Deadline extends Task implements Comparable<Deadline> {
 
     /** Deadline for this task */
-    private String deadline;
+    private LocalDate date;
 
     /**
      * Constructs a new deadline task with
@@ -20,7 +23,8 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadline) {
         super(description);
-        this.deadline = deadline;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.date = LocalDate.parse(deadline, formatter);
     }
 
     @Override
@@ -28,7 +32,7 @@ public class Deadline extends Task {
         return "[D]"
                 + super.toString()
                 + " (by: "
-                + LocalDate.parse(deadline).format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
+                + this.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
                 + ")";
     }
 
@@ -40,6 +44,15 @@ public class Deadline extends Task {
                 + " | "
                 + this.getName()
                 + " | "
-                + this.deadline;
+                + this.date;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    @Override
+    public int compareTo(Deadline o) {
+        return getDate().compareTo(o.getDate());
     }
 }

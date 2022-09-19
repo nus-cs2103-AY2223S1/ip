@@ -2,25 +2,8 @@ package duke;
 
 import duke.task.Task;
 
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A chatbot that helps to keep track of tasks.
@@ -50,7 +33,9 @@ public class Duke {
         Parser parser = new Parser(listOfTasks, ui, storage);
         if (input.isEmpty()) {
             return ui.invalidCommandErrorString();
-        } else if (input.equals("bye")) {
+        } else if (input.equals("help")) {
+            return ui.helpMsg();
+        }else if (input.equals("bye")) {
             return ui.endingMsg();
         } else {
             return parser.checkAndExecuteCommand(input);
