@@ -19,9 +19,7 @@ public class Parser {
      * @param echoCommand Command to be echoed
      */
     public static String echo(String echoCommand) {
-        String echoMessage = "--------------------------------------------------\n"
-                + echoCommand
-                + "\n--------------------------------------------------\n";
+        String echoMessage = echoCommand;
         return echoMessage;
     }
 

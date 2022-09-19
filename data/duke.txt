@@ -1,8 +1,4 @@
 1.[T][ ] homework
 2.[E][X] event (at: Mon 3pm)
-3.[T][ ] homework
-4.[D][ ] project (by: Nov 2 2020)
-5.[D][X] homework 345 (by: Jan 4 2010)
-6.[T][ ] another homework
-7.[T][ ] homework 8980
-8.[T][X] project
+3.[D][X] homework 345 (by: Jan 4 2010)
+4.[T][ ] Maths Homework
