@@ -1,4 +1,4 @@
-# Duke project template
+# duke.duke project template
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
@@ -13,7 +13,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. If there are any further prompts, accept the defaults.
 1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
    In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
+3. After that, locate the `src/main/java/duke.duke.java` file, right-click it, and choose `Run duke.duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
    Hello from
     ____        _        
@@ -22,3 +22,10 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+Images of profile pictures are taken from:
+<a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
+
+Background picture taken from:
+<a href="https://www.freepik.com/free-vector/colorful-memphis-style-poster-vector_18234258.htm#query=free%20png%20background&position=22&from_view=search">Image by rawpixel.com</a> on Freepik 
+

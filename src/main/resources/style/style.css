@@ -1,0 +1,42 @@
+.scroll-pane .viewport {
+    -fx-background-image: url('../images/backgroundWallpaper.jpg');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.scroll-bar .thumb {
+    -fx-background-color: white;
+}
+
+.userInput {
+    -fx-background-color: white;
+    -fx-border-color: rgb(44,52,51);
+    -fx-border-width: 0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: rgb(113, 60, 255);
+}
+
+.sendBtn {
+    -fx-background-color: rgba(220, 181, 186, 0.71);
+    -fx-background-radius: 20px;
+    -fx-border-color: white;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #2c3433;
+}
+
+.textBox {
+    -fx-background-color: rgba(220, 181, 186, 0.90);
+    -fx-background-radius: 20px;
+    -fx-border-color: rgb(165,146,144);
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+    -fx-padding: 20;
+    -fx-max-height: Infinity;
+    -fx-text-fill: #2c3433;
+}
+
+.text-box:focused {
+    -fx-background-color: transparent, -fx-box-border, -fx-control-inner-background;
+    -fx-border-color: lightgrey;
+}
