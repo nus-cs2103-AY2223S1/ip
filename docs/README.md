@@ -207,7 +207,7 @@ These are the commands my bread can understand:
 * mark/m [num] - Marks the task at the specified number
 * unmark/u [num] - Unmarks the task at the specified number
 * delete/del [num] - Deletes the task at the specified number
-* bye/b - Exits the chat bot
+* bye/b - Exits the chatbot
 ```
 
 ### `bye` - Closes the application

@@ -9,7 +9,7 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 
 /**
- * Doemon chat bot and task manager.
+ * Doemon chatbot and task manager.
  */
 public class Doemon {
     /** The storage instance used to load and save tasks to data file. */
@@ -26,14 +26,14 @@ public class Doemon {
      */
     public Doemon(String filePath) {
         assert filePath != null : "File path should not be null";
-        this.response = new Response();
-        this.storage = new Storage(filePath);
+        response = new Response();
+        storage = new Storage(filePath);
         try {
-            this.tasks = new TaskList(storage.loadTasks());
+            tasks = new TaskList(storage.loadTasks());
         } catch (TaskDataException tde) {
-            this.tasks = new TaskList();
+            tasks = new TaskList();
         }
-        assert this.tasks != null : "The tasks field should not be empty";
+        assert tasks != null : "The tasks field should not be empty";
     }
 
     /**
@@ -45,6 +45,6 @@ public class Doemon {
      */
     public String getResponse(String input) throws DoemonException {
         Command c = Parser.parse(input);
-        return c.execute(this.tasks, this.response, this.storage);
+        return c.execute(tasks, response, storage);
     }
 }

@@ -16,7 +16,7 @@ public class TaskList {
      * Constructor for empty TaskList.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -53,7 +53,7 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void addTask(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -67,9 +67,9 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("mark");
         }
-        assert this.tasks.get(taskIndex) != null : "Task to be marked should exist";
-        this.tasks.get(taskIndex).mark();
-        return this.tasks.get(taskIndex);
+        assert tasks.get(taskIndex) != null : "Task to be marked should exist";
+        tasks.get(taskIndex).mark();
+        return tasks.get(taskIndex);
     }
 
     /**
@@ -83,9 +83,9 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("unmark");
         }
-        assert this.tasks.get(taskIndex) != null : "Task to be unmarked should exist";
-        this.tasks.get(taskIndex).unmark();
-        return this.tasks.get(taskIndex);
+        assert tasks.get(taskIndex) != null : "Task to be unmarked should exist";
+        tasks.get(taskIndex).unmark();
+        return tasks.get(taskIndex);
     }
 
     /**
@@ -99,8 +99,8 @@ public class TaskList {
         if (isInvalidTaskIndex(taskIndex)) {
             throw new InvalidTaskNumberException("delete");
         }
-        assert this.tasks.get(taskIndex) != null : "Task to be deleted should exist";
-        return this.tasks.remove(taskIndex);
+        assert tasks.get(taskIndex) != null : "Task to be deleted should exist";
+        return tasks.remove(taskIndex);
     }
 
     /**
@@ -111,9 +111,9 @@ public class TaskList {
      */
     public ArrayList<Task> findTasks(String keyword) {
         ArrayList<Task> foundTasks = new ArrayList<>();
-        for (int i = 0; i < this.getSize(); i++) {
-            if (this.tasks.get(i).matchesDescription(keyword)) {
-                foundTasks.add(this.tasks.get(i));
+        for (int i = 0; i < getSize(); i++) {
+            if (tasks.get(i).matchesDescription(keyword)) {
+                foundTasks.add(tasks.get(i));
             }
         }
         return foundTasks;
@@ -127,6 +127,6 @@ public class TaskList {
      * @return Boolean indicating if the specified index is valid.
      */
     private boolean isInvalidTaskIndex(int taskIndex) {
-        return taskIndex < 0 || taskIndex >= this.tasks.size();
+        return taskIndex < 0 || taskIndex >= tasks.size();
     }
 }

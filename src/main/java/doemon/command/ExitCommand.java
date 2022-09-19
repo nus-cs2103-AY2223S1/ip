@@ -5,7 +5,7 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 
 /**
- * Command to exit the Doemon chat bot.
+ * Command to exit the Doemon chatbot.
  */
 public class ExitCommand extends Command {
     /**

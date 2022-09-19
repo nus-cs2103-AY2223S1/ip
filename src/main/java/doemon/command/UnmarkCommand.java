@@ -26,8 +26,8 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Response response, Storage storage) {
-        Task task = tasks.unmarkTask(this.taskIndex);
-        storage.unmarkTaskData(this.taskIndex);
+        Task task = tasks.unmarkTask(taskIndex);
+        storage.unmarkTaskData(taskIndex);
         return response.unmarkTaskString(task);
     }
 

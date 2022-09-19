@@ -30,7 +30,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
-        this.taskSaveStrings = new ArrayList<>();
+        taskSaveStrings = new ArrayList<>();
     }
 
     /**
@@ -40,7 +40,7 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     public void addTaskData(Task task) throws TaskDataException {
-        this.taskSaveStrings.add(task.getSaveString());
+        taskSaveStrings.add(task.getSaveString());
         saveTasks();
     }
 
@@ -51,9 +51,9 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     public void markTaskData(int taskIndex) throws TaskDataException {
-        this.taskSaveStrings.set(
+        taskSaveStrings.set(
                 taskIndex,
-                this.taskSaveStrings.get(taskIndex).replaceFirst("0", "1"));
+                taskSaveStrings.get(taskIndex).replaceFirst("0", "1"));
         saveTasks();
     }
 
@@ -64,9 +64,9 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     public void unmarkTaskData(int taskIndex) throws TaskDataException {
-        this.taskSaveStrings.set(
+        taskSaveStrings.set(
                 taskIndex,
-                this.taskSaveStrings.get(taskIndex).replaceFirst("1", "0"));
+                taskSaveStrings.get(taskIndex).replaceFirst("1", "0"));
         saveTasks();
     }
 
@@ -77,7 +77,7 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     public void deleteTaskData(int taskIndex) throws TaskDataException {
-        this.taskSaveStrings.remove(taskIndex);
+        taskSaveStrings.remove(taskIndex);
         saveTasks();
     }
 
@@ -98,7 +98,7 @@ public class Storage {
         }
 
         // Create file if it does not exist.
-        File taskDataFile = new File(this.filePath);
+        File taskDataFile = new File(filePath);
         if (!taskDataFile.exists()) {
             try {
                 taskDataFile.createNewFile();
@@ -115,7 +115,7 @@ public class Storage {
                 String flag = taskDataArr.length > 3 ? taskDataArr[3] : null;
                 Task task = getTaskFromSaveString(taskDataArr[0], taskDataArr[1], taskDataArr[2], flag);
                 loadedTasks.add(task);
-                this.taskSaveStrings.add(taskData);
+                taskSaveStrings.add(taskData);
                 taskData = reader.readLine();
             }
         } catch (IOException e) {
@@ -130,15 +130,15 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     private void saveTasks() throws TaskDataException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             StringBuilder toWrite = new StringBuilder();
             int i = 0;
-            while (i < this.taskSaveStrings.size() - 1) {
-                toWrite.append(this.taskSaveStrings.get(i++));
+            while (i < taskSaveStrings.size() - 1) {
+                toWrite.append(taskSaveStrings.get(i++));
                 toWrite.append('\n');
             }
-            if (this.taskSaveStrings.size() > 0) {
-                toWrite.append(this.taskSaveStrings.get(i));
+            if (taskSaveStrings.size() > 0) {
+                toWrite.append(taskSaveStrings.get(i));
             }
             writer.write(toWrite.toString());
         } catch (IOException e) {

@@ -19,7 +19,7 @@ public class Task {
         assert description != null : "Description of task should not be null";
         assert description.equals("") : "Task should not be created with an empty string";
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Task {
      */
     public boolean matchesDescription(String keyword) {
         // Remove task and mark label
-        String taskString = this.toString().substring(7);
+        String taskString = toString().substring(7);
         if (taskString.toLowerCase().contains(keyword.toLowerCase())) {
             return true;
         }
@@ -58,7 +58,7 @@ public class Task {
      */
     public String getSaveString() {
         String isMarked = isDone ? "1" : "0";
-        return String.format("%s | %s", isMarked, this.description);
+        return String.format("%s | %s", isMarked, description);
     }
 
     /**
@@ -66,6 +66,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.isDone ? "X" : " ", this.description);
+        return String.format("[%s] %s", isDone ? "X" : " ", description);
     }
 }

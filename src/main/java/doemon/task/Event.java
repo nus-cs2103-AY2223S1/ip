@@ -27,14 +27,14 @@ public class Event extends Task {
         super(description);
         try {
             String[] dateTime = dueAt.split(" ");
-            this.dueAtDate = LocalDate.parse(dateTime[0],
+            dueAtDate = LocalDate.parse(dateTime[0],
                     DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT));
             if (dateTime.length == 2) {
-                this.dueAtTime = LocalTime.parse(dateTime[1],
+                dueAtTime = LocalTime.parse(dateTime[1],
                         DateTimeFormatter.ofPattern("HHmm").withResolverStyle(ResolverStyle.STRICT));
             }
         } catch (DateTimeParseException e) {
-            this.dueAtStr = dueAt;
+            dueAtStr = dueAt;
         }
     }
 
@@ -43,11 +43,11 @@ public class Event extends Task {
      */
     @Override
     public String getSaveString() {
-        String date = this.dueAtDate != null
-                      ? this.dueAtDate.toString()
-                      : this.dueAtStr;
-        String time = this.dueAtTime != null
-                      ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
+        String date = dueAtDate != null
+                      ? dueAtDate.toString()
+                      : dueAtStr;
+        String time = dueAtTime != null
+                      ? String.format(" %s", dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
                       : "";
         return String.format("E | %s | %s%s", super.getSaveString(), date, time);
     }
@@ -57,11 +57,11 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String date = this.dueAtDate != null
-                      ? this.dueAtDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                      : this.dueAtStr;
-        String time = this.dueAtDate != null && this.dueAtTime != null
-                      ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern("K:mma")))
+        String date = dueAtDate != null
+                      ? dueAtDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                      : dueAtStr;
+        String time = dueAtDate != null && dueAtTime != null
+                      ? String.format(" %s", dueAtTime.format(DateTimeFormatter.ofPattern("K:mma")))
                       : "";
         return String.format("[E]%s (at: %s%s)", super.toString(), date, time);
     }

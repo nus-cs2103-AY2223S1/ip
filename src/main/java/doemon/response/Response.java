@@ -7,11 +7,11 @@ import doemon.task.Task;
 import doemon.task.TaskList;
 
 /**
- * Handles Doemon chat bot message displays.
+ * Handles Doemon chatbot message displays.
  */
 public class Response {
     /** Text art of Doemon. */
-    private static final String logo =
+    private static final String LOGO =
             "                       _______________\n"
             + "                      /  --. --.      \\ \n"
             + "                     /  | '| ' |   \\   \\ \n"
@@ -24,11 +24,11 @@ public class Response {
     /**
      * Introduction string that is printed when Doemon is started.
      */
-    private static final String introStr = "Hello I'm Doemon! How can I help you?";
+    private static final String INTRO_STRING = "Hello I'm Doemon! How can I help you?";
     /** String that is printed when Doemon is exited. */
-    private static final String exitStr = "I'm going to sleep now...See you again soon!";
+    private static final String EXIT_STRING = "I'm going to sleep now...See you again soon!";
     /** Help string. */
-    private static final String helpStr =
+    private static final String HELP_STRING =
             "These are the commands my bread can understand:\n"
             + "* list/l - Lists all your recorded tasks\n"
             + "* todo/t [desc] - Adds a todo with a specified description\n"
@@ -37,7 +37,7 @@ public class Response {
             + "* mark/m [num] - Marks the task at the specified number\n"
             + "* unmark/u [num] - Unmarks the task at the specified number\n"
             + "* delete/del [num] - Deletes the task at the specified number\n"
-            + "* bye/b - Exits the chat bot";
+            + "* bye/b - Exits the chatbot";
 
     /**
      * Returns welcome message.
@@ -45,7 +45,7 @@ public class Response {
      * @return Welcome string.
      */
     public static String welcomeString() {
-        return introStr;
+        return INTRO_STRING;
     }
 
     /**
@@ -150,7 +150,7 @@ public class Response {
      * @return Help string.
      */
     public String helpString() {
-        return helpStr;
+        return HELP_STRING;
     }
 
     /**
@@ -169,6 +169,6 @@ public class Response {
      * @return Exit string.
      */
     public String exitString() {
-        return this.exitStr;
+        return EXIT_STRING;
     }
 }
