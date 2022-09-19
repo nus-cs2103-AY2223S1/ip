@@ -44,6 +44,29 @@ public class Event extends Task {
      * @inheritDoc
      */
     @Override
+    public String setDatetime(String dt) throws DateTimeParseException {
+        String response = null;
+        String previousDT = this.dateTime;
+        try {
+            DateTimeFormatter parserFormats = DateTimeFormatter.ofPattern("[dd/MM/yyyy HHmm][dd MMMM yyyy HH:mm]");
+            LocalDateTime dtFormatted = LocalDateTime.parse(dt, parserFormats);
+            this.dateTime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
+            response = "Successfully rescheduled the task's datetime from "
+                    + previousDT + " to " + this.dateTime;
+        } catch (DateTimeParseException err) {
+            response = "I don't recognise this time format."
+                    + "\nTry using this format next time: dd/MM/yyyy HHmm"
+                    + "Successfully rescheduledthe task's datetime from "
+                    + previousDT + " to " + this.dateTime;
+            this.dateTime = dt;
+        }
+        return response;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + dateTime + ")";
     }

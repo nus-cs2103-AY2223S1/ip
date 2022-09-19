@@ -84,6 +84,15 @@ public class Parser {
             String keyword = inputArray[1];
             response = tl.findTask(keyword);
             break;
+        case "SNOOZE":
+            if (inputArray.length < 5) {
+                throw new DukeException("You're missing some details!\n" +
+                        "The command format should be: snooze TASK_NUMBER /by DATE TIME");
+            }
+            taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+            taskDesc = String.join(" ", taskDesc).split("/by ");
+            response = tl.snoozeTask(taskDesc);
+            break;
         default:
             response = "I'm sorry, but I don't know what that means";
             break;

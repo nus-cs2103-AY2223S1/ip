@@ -68,4 +68,16 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + getDescription();
     }
+
+    /**
+     * Sets the datetime of the task
+     * Note that the task must be an Event or a Deadline in order to use this method
+     * Otherwise, the method will throw an exception by default
+     *
+     * @param dt The datetime to set on the task
+     * @throws DukeException if the task is not an Event or Deadline
+     */
+    public String setDatetime(String dt) throws DukeException {
+        throw new DukeException("This task does not have a datetime!");
+    }
 }

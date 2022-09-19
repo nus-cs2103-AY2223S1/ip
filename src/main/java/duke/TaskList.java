@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 /**
@@ -177,6 +178,23 @@ public class TaskList {
         if (numOfMatchingTasks == 0) {
             response = "There is no matching task with your keyword";
         }
+        return response;
+    }
+
+    /**
+     * Snooze a task that has a datetime
+     *
+     * @param desc The description of the task
+     * @return Message to display
+     * @throws IOException If the task description cannot be interpreted
+     * @throws DukeException If
+     */
+    public String snoozeTask(String[] desc) throws IOException, DukeException, DateTimeParseException {
+        String response = null;
+        int taskNum = Integer.parseInt(desc[0].replaceAll("\\s", "")) - 1;
+        Task chosenTask = this.tasks.get(taskNum);
+        response = chosenTask.setDatetime(desc[1]);
+        storage.refreshList(this.tasks);
         return response;
     }
 
