@@ -1,7 +1,7 @@
 
 @@author ciaoosuuu-reused
 
-Reused from https://kshan29.github.io/ip/#quick-start
+Reused from [kshan29](https://kshan29.github.io/ip/#quick-start)
 
 With minor modifications
 # User Guide
@@ -22,7 +22,7 @@ allowing the tracking of various types of tasks including events and deadlines.
     - [Marking a task: `mark`](https://ciaoosuuu.github.io/ip/#marking-a-task-mark)
     - [Unmarking a task: `unmark`](https://ciaoosuuu.github.io/ip/#unmarking-a-task-unmark)
     - [Exiting the program: `bye`](https://ciaoosuuu.github.io/ip/#exiting-the-program-bye)
-- [Commmand summary](https://ciaoosuuu.github.io/ip/#command-summary)
+- [Command summary](https://ciaoosuuu.github.io/ip/#command-summary)
 
 ## Quick Start
 
