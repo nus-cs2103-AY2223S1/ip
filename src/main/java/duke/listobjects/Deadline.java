@@ -23,7 +23,7 @@ public class Deadline extends ListObject {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + super.formatDateTime("d") + ")";
+        return "[D]" + super.toString() + super.formatDateTime(Type.DEADLINE);
     }
 
 

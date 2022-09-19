@@ -13,6 +13,12 @@ public class ListObject implements Serializable, Comparable<ListObject> {
     private final String task;
     private int status;
 
+    public enum Type{
+        TODO,
+        EVENT,
+        DEADLINE
+    }
+
     /**
      * Constructs a ListObject with given task description and status
      *
@@ -97,49 +103,49 @@ public class ListObject implements Serializable, Comparable<ListObject> {
      * @return String representing event time in format MMM dd yyyy HH:mm HH:mm as date, start and end times
      */
 
-    public String formatDateTime(String type) {
+    public String formatDateTime(Type type) {
 
         String txt = this.time;
+        String[] words = txt.split(" ");
+        String date = words[0];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
-        if (type.equals("e")) {
-            String[] words = txt.split(" ");
-            String date = words[0];
-            String start = words[1];
-            String end = words[2];
 
-            //format date of form yyyy-MM-dd
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate deadline = LocalDate.parse(date, formatter);
-            DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            String dateNew = deadline.format(formatNew);
+        switch (type) {
 
-            //format time of form HH:mm (24h clock)
-            LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ISO_LOCAL_TIME);
-            String timeStart = startTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ISO_LOCAL_TIME);
-            String timeEnd = endTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+            case EVENT:
+                String start = words[1];
+                String end = words[2];
 
-            return dateNew + " from: " + timeStart + " to: " + timeEnd;
-        }
+                //format date of form yyyy-MM-dd
+                LocalDate eventDate = LocalDate.parse(date, formatter);
+                String eventDateNew = eventDate.format(formatNew);
 
-        if (type.equals("d")) {
-            String[] words = txt.split(" ");
-            String date = words[0];
-            String time = words[1];
+                //format time of form HH:mm (24h clock)
+                LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ISO_LOCAL_TIME);
+                String timeStart = startTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+                LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ISO_LOCAL_TIME);
+                String timeEnd = endTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
 
-            //format date of form yyyy-MM-dd
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate deadline = LocalDate.parse(date, formatter);
-            DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            String dateNew = deadline.format(formatNew);
+                return " (on: " + eventDateNew + " from: " + timeStart + " to: " + timeEnd + ")";
 
-            //format time of form HH:mm (24h clock)
-            LocalTime deadlineTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-            String timeNew = deadlineTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+            case DEADLINE:
+                String time = words[1];
 
-            return dateNew + " at " + timeNew;
-        } else {
-            return "Try again!";
+                //format date of form yyyy-MM-dd
+                LocalDate deadline = LocalDate.parse(date, formatter);
+                String dateNew = deadline.format(formatNew);
+
+                //format time of form HH:mm (24h clock)
+                LocalTime deadlineTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
+                String timeNew = deadlineTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+
+                return " (by: " + dateNew + " at " + timeNew + ")";
+
+            default:
+                return "Are you sure you have recorded the time?";
+
         }
     }
 

@@ -23,6 +23,6 @@ public class Event extends ListObject {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + super.formatDateTime("e") + ")";
+        return "[E]" + super.toString() + super.formatDateTime(Type.EVENT);
     }
 }
