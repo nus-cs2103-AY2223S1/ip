@@ -46,10 +46,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.CENTER_LEFT);
     }
 
+    /**
+     * Returns DialogBox corresponding to the user.
+     * @param text String contained in the DialogBox.
+     * @param img Profile picture of user.
+     * @return DialogBox created using user input.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns DialogBox corresponding to Duke.
+     * @param text String contained in the DialogBox.
+     * @param img Profile picture of Duke.
+     * @return DialogBox created using Duke input.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

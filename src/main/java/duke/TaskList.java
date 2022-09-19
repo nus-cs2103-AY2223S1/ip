@@ -112,6 +112,12 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Sorts the Task list according to specified parameters.
+     * The list can be either sorted alphabetically, or chronologically.
+     * @param sortType Type of sort to use.
+     * @param isDescending
+     */
     public void sort(String sortType, boolean isDescending) {
         switch (sortType) {
         case "alphabetically":

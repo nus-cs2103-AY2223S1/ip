@@ -42,6 +42,12 @@ public class Duke {
         return isLoaded;
     }
 
+    /**
+     * Processes user input by parsing the input and executing given command.
+     * Saves the task list after given command.
+     * @param input
+     * @return Result of command to be printed by Duke.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);

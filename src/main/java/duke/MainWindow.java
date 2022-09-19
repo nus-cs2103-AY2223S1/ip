@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -49,6 +50,10 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Prints message in UI.
+     * @param response Response to be printed.
+     */
     public void print(String response) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(response, dukeImage)

@@ -45,9 +45,15 @@ public class Ui extends Application {
         }
     }
 
+
+    /**
+     * Prints message provided as parameter.
+     * @param msg Message to print.
+     */
     public static void print(String msg) {
         mainWindow.print(msg);
     }
+
     /**
      * Prints greetings message.
      */

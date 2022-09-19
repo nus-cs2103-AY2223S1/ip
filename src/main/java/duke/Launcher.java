@@ -11,7 +11,7 @@ public class Launcher {
     }
 
     /**
-     * Main method for Duke.
+     * Launches the Duke program.
      *
      * @param args Command Line arguments.
      */

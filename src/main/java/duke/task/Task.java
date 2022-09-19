@@ -34,10 +34,20 @@ public class Task {
         return description;
     }
 
+    /**
+     * Returns String corresponding to whether task is done or not.
+     * Returns "X" if task is done, and " " if not.
+     * @return String representing whether task is done.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns String corresponding to task description.
+     * If task has non-null time, time will also be printed in parentheses.
+     * @return Description of the task.
+     */
     public String getDescription() {
         if (time == null) {
             return description;
@@ -45,6 +55,10 @@ public class Task {
         return description + " (" + DateTimeFormatter.ofPattern("MMM dd yyyy H:mm").format(time) + ")";
     }
 
+    /**
+     * Returns String corresponding to type of task.
+     * @return Type of the task.
+     */
     public String getTag() {
         switch (tag) {
         case Todo:
