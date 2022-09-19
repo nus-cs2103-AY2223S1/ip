@@ -35,6 +35,12 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructor for event from database
+     * @param input Description of the event
+     * @param times Starting time (and ending time)(if exists) of the event
+     * @param isDone The status of the task
+     */
     public Event(String input, String times, boolean isDone) {
         super(isDone);
         this.description = input;
@@ -65,13 +71,13 @@ public class Event extends Task {
         String done = this.isDone ? "1" : "0";
         String endTime = this.end == null
                 ? ""
-                : "~" + this.end ;
+                : "~" + this.end;
         return "E|" + done + "|" + this.description + "|" + this.at + endTime + "\n";
     }
 
     @Override
     public String toString() {
-        String start  = this.at.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
+        String start = this.at.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
         String head = "[E][" + this.getStatusIcon() + "] ";
         String body;
         if (this.end == null) {
@@ -97,7 +103,7 @@ public class Event extends Task {
         } else if (task2 instanceof Deadline) {
             return 1;
         }
-        Event _task2 = (Event) task2;
-        return this.at.compareTo(_task2.at);
+        Event event = (Event) task2;
+        return this.at.compareTo(event.at);
     }
 }

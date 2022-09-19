@@ -4,6 +4,9 @@ package jarvis.task;
  * Contains the information that todo, event, deadline have in common
  */
 public abstract class Task implements Comparable<Task> {
+    /**
+     * Wrap three task types
+     */
     public static enum TaskType {
         ToDo,
         Deadline,

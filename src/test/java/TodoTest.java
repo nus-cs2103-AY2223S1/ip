@@ -1,7 +1,8 @@
-import jarvis.task.Deadline;
-import jarvis.task.Todo;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import jarvis.task.Todo;
 
 public class TodoTest {
     @Test

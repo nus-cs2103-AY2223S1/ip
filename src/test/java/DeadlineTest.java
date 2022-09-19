@@ -1,11 +1,12 @@
-import jarvis.task.Deadline;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import jarvis.task.Deadline;
 
 public class DeadlineTest {
     @Test
-    public void toDataFormTest(){
+    public void toDataFormTest() {
         Deadline ddl = new Deadline("ddl", "2011-11-11T11:22", true);
         assertEquals("D|1|ddl|2011-11-11T11:22\n", ddl.toDataForm());
     }
@@ -17,7 +18,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void anotherDummyTest(){
+    public void anotherDummyTest() {
         assertEquals(4, 4);
     }
 }

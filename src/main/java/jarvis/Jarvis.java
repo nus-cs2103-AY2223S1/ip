@@ -5,12 +5,6 @@ package jarvis;
  * to keep track of their todos, events and deadlines
  */
 public class Jarvis {
-    static String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
     private Storage storage;
     private TaskList taskList;
     private Parser parser;

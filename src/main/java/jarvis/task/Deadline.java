@@ -84,7 +84,7 @@ public class Deadline extends Task {
         if (task2 instanceof Todo || task2 instanceof Event) {
             return -1;
         }
-        Deadline _task2 = (Deadline) task2;
-        return this.by.compareTo(_task2.by);
+        Deadline ddl = (Deadline) task2;
+        return this.by.compareTo(ddl.by);
     }
 }

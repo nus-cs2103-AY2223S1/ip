@@ -1,21 +1,21 @@
 package jarvis;
 
-import jarvis.task.Deadline;
-import jarvis.task.Event;
-import jarvis.task.Task;
-import jarvis.task.Todo;
-
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import jarvis.task.Deadline;
+import jarvis.task.Event;
+import jarvis.task.Task;
+import jarvis.task.Todo;
 
 /**
  * Stores the task list when the program is running
  */
 public class TaskList {
 
-    ArrayList<Task> taskList = new ArrayList<>();
+    private ArrayList<Task> taskList = new ArrayList<>();
 
     private Storage storage;
 
@@ -66,6 +66,12 @@ public class TaskList {
         taskList.add(task);
     }
 
+    /**
+     * Mark a task as done
+     * @param taskNum index of the task to mark
+     * @return Marking message
+     * @throws IOException Exception when saving task list
+     */
     public String markTaskAsDone(int taskNum) throws IOException {
         if (taskNum >= taskList.size()) {
             return "There is no task with index " + (taskNum + 1);
@@ -79,6 +85,12 @@ public class TaskList {
         return msg;
     }
 
+    /**
+     * Mark a task as not done yet
+     * @param taskNum index of the task to mark
+     * @return Marking message
+     * @throws IOException Exception when saving task list
+     */
     public String markTaskAsUnDone(int taskNum) throws IOException {
         if (taskNum >= taskList.size()) {
             return "There is no task with index " + (taskNum + 1);
@@ -136,6 +148,11 @@ public class TaskList {
         return taskList.size();
     }
 
+    /**
+     * Search(find) for tasks with the matching keyword in their description
+     * @param keyword Search word
+     * @return String representation of the search result list
+     */
     public String find(String keyword) {
         //Use stream
         Task[] searchResult = taskList.stream().filter(task -> task.match(keyword)).toArray(Task[]::new);

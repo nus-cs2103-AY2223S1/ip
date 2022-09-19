@@ -1,8 +1,8 @@
-import jarvis.task.Deadline;
-import jarvis.task.Event;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import jarvis.task.Event;
 
 public class EventTest {
     @Test

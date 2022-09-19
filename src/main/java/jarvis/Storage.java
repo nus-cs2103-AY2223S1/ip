@@ -1,14 +1,15 @@
 package jarvis;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 import jarvis.task.Deadline;
 import jarvis.task.Event;
 import jarvis.task.Task;
 import jarvis.task.Todo;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Wraps the methods and information for Jarvis to interact
@@ -17,8 +18,12 @@ import java.util.Scanner;
 public class Storage {
     private File dataFile;
 
-    public Storage(String file_path) {
-        File file = new File(file_path);
+    /**
+     * Constructor for a storage(data reader and writer)
+     * @param file_path path of database file
+     */
+    public Storage(String filePath) {
+        File file = new File(filePath);
         file.getParentFile().mkdir();
         this.dataFile = file;
         try {
@@ -76,17 +81,18 @@ public class Storage {
                 String[] taskInfoArr = taskStr.split("\\|");
                 boolean isDone = taskInfoArr[1].equals("1");
                 switch (taskInfoArr[0]) {
-                    case "T":
-                        taskList.appendLoadedTask(new Todo(taskInfoArr[2], isDone));
-                        break;
-                    case "E":
-                        taskList.appendLoadedTask(new Event(taskInfoArr[2], taskInfoArr[3], isDone));
-                        break;
-                    case "D":
-                        taskList.appendLoadedTask(new Deadline(taskInfoArr[2], taskInfoArr[3], isDone));
-                        break;
-                    default:
-                        throw new RuntimeException("Something wrong with task types in data file");
+                //This indentation is required by Checkstyle
+                case "T":
+                    taskList.appendLoadedTask(new Todo(taskInfoArr[2], isDone));
+                    break;
+                case "E":
+                    taskList.appendLoadedTask(new Event(taskInfoArr[2], taskInfoArr[3], isDone));
+                    break;
+                case "D":
+                    taskList.appendLoadedTask(new Deadline(taskInfoArr[2], taskInfoArr[3], isDone));
+                    break;
+                default:
+                    throw new RuntimeException("Something wrong with task types in data file");
                 }
             }
         } catch (Exception e) {

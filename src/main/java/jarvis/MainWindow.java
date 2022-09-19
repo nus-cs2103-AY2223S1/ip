@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
  * For Level 10
  */
 public class MainWindow extends AnchorPane {
+    private static final String GREETING_MESSAGE = "Hello! This is Jarvis :D. \nHow can I help you?\n"
+            + "Enter \"help\" for command summary";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -27,9 +29,10 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    private final String GREETING_MESSAGE = "Hello! This is Jarvis :D. \nHow can I help you?\n"
-            + "Enter \"help\" for command summary";
 
+    /**
+     * To make Checkstyle happy
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -37,6 +40,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(GREETING_MESSAGE, dukeImage)
         );
     }
+
 
     public void setJarvis(Jarvis j) {
         jarvis = j;

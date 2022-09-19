@@ -1,25 +1,22 @@
 package jarvis;
 
-import jarvis.task.Task;
-
 import java.io.IOException;
+
+import jarvis.task.Task;
 
 /**
  * Parser parse the users' input from CMI
  * and do run corresponding code
  */
 public class Parser {
-    private TaskList taskList;
-
-
     private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
     private static final String MARK_NO_INDEX_MSG = "You need to specify the index of the task to mark";
     private static final String UNMARK_NO_INDEX_MSG = "You need to specify the index of the task to unmark";
     private static final String TODO_EMPTY_DESCRIPTION = "OOPS!!! The description of a todo cannot be empty.";
     private static final String EVENT_EMPTY_DESCRIPTION = "OOPS!!! The description of a event cannot be empty.";
     private static final String DEADLINE_EMPTY_DESCRIPTION = "OOPS!!! The description of a deadline cannot be empty.";
-    private static final String EVENT_FORMAT = "OOPS!!! The event should have a time.\n" +
-            "e.g. event {name} /at {startTime}(~{endTime})(optional)";
+    private static final String EVENT_FORMAT = "OOPS!!! The event should have a time.\n"
+            + "e.g. event {name} /at {startTime}(~{endTime})(optional)";
     private static final String DEADLINE_FORMAT = "OOPS!!! The deadline should have a due date.\n"
             + "e.g. deadline {name} /by {time}";
     private static final String DELETE_NO_INDEX = "You should specify the index of task to delete";
@@ -30,6 +27,7 @@ public class Parser {
             + "deadline {description} /by {date and time}\n\n(Date and time format: yyyy-mm-dd hh-mm)\n\n"
             + "list\nmark/unmark {index}\ndelete {index}";
 
+    private TaskList taskList;
     private boolean isBye = false;
 
     public Parser(TaskList taskList) {
