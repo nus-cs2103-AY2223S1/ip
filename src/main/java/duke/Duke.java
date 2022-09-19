@@ -48,14 +48,10 @@ public class Duke {
      * @param input
      * @return Result of command to be printed by Duke.
      */
-    public String getResponse(String input) {
-        try {
-            Command c = Parser.parse(input);
-            String res = c.execute(tasks, storage);
-            storage.save(tasks);
-            return res;
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+    public String getResponse(String input) throws Exception {
+        Command c = Parser.parse(input);
+        String res = c.execute(tasks, storage);
+        storage.save(tasks);
+        return res;
     }
 }

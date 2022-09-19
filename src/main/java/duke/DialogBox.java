@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,9 +42,14 @@ public class DialogBox extends HBox {
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
-        setStyle("-fx-background-color: lightgrey; -fx-background-insets: 5, 5, 5, 5;");
         getChildren().setAll(tmp);
+        setStyle("-fx-background-color: lightgrey; -fx-background-insets: 5, 5, 5, 5;");
         setAlignment(Pos.CENTER_LEFT);
+    }
+
+    private void error() {
+        flip();
+        setStyle("-fx-background-color: moccasin; -fx-background-insets: 5, 5, 5, 5;");
     }
 
     /**
@@ -63,8 +69,14 @@ public class DialogBox extends HBox {
      * @return DialogBox created using Duke input.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        return db;
+        var dialogBox = new DialogBox(text, img);
+        dialogBox.flip();
+        return dialogBox;
+    }
+
+    public static DialogBox getErrorDialog(String text, Image img) {
+        var dialogBox = new DialogBox(text, img);
+        dialogBox.error();
+        return dialogBox;
     }
 }
