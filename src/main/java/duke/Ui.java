@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 /**
  * Deals with interactions with the user
@@ -12,45 +11,11 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private static final String line = "-----------------------------";
-    private Scanner sc = new Scanner(System.in);
-
     public Ui() {
     }
 
-    /**
-     * Our lovely Duke gives a sweet intro
-     */
-    public void sayHi() {
-        System.out.println(line + "\n"
-                + "Hello! I'm Duke\n"
-                + "What can I do for you\n"
-                + line + "\n");
-    }
-
-    /**
-     * Our lovely Duke gives its parting words
-     */
-    public void sayBye() {
-        System.out.println(line + "\n"
-                + "Bye. Hope to see you again soon!\n"
-                + line + "\n");
-    }
-
-    public String showLine() {
-        return line;
-    }
-
-    /**
-     * Our lovely Duke takes in the commands of the user
-     * @return the command, as it is
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
     public String printTasks(TaskList tasks) {
-        return "Here are the tasks in your list:\n" + tasks;
+        return "Here you go fellow cat! Tasks in your list:\n" + tasks;
     }
 
     public String printMarked(Task task) {
@@ -58,11 +23,23 @@ public class Ui {
     }
 
     public String printUnmarked(Task task) {
-        return "OK, I've marked this task as not done yet:\n" + task;
+        return "Alright! I've marked this task as not done yet:\n" + task;
     }
 
     public String printAddedTag(Task task) {
         return "Nice! I've tagged the task as per your request:\n" + task;
+    }
+
+    /**
+     * Shows user that the most recent tag on said task has been removed, if any
+     * @param task name of task to remove tag from
+     * @param removedTag tag removed from said task (if any)
+     * @return description of undone tag
+     */
+    public String printUndoneTag(Task task, String removedTag) {
+        return (removedTag == null
+                ? "Hey fellow cat! There are no tags on the task to begin with! Please be careful! :("
+                : "OK, I've undone the most recent tag #" + removedTag + " for your task:\n" + task);
     }
 
     /**
@@ -72,9 +49,10 @@ public class Ui {
      * @return task description and size of current TaskList
      */
     public String printAddedTask(Task task, int size) {
-        return "Got it. I've added this task:\n"
+        return "Got it! I've added this task:\n"
                 + task + "\n"
-                + "Now you have " + size + " tasks in the list.\n";
+                + "Now you have " + size + " tasks in the list.\n"
+                + "Stay on track fellow cat!";
     }
 
     /**
@@ -84,9 +62,14 @@ public class Ui {
      * @return task description and size of current TaskList
      */
     public String printDeletedTask(Task task, int size) {
-        return "Noted. I've removed this task:\n"
+        return "Alright! I've removed this task:\n"
                 + task + "\n"
                 + "Now you have " + size + " tasks in the list.\n";
+    }
+
+    // Show this message when the index of task to delete is out of bounds
+    public String printNoSuchTask() {
+        return "Hey fellow cat! There is no such task! Please be careful! :(";
     }
 
     /**
@@ -96,5 +79,4 @@ public class Ui {
     public void showLoadingError() throws FileNotFoundException {
         throw new FileNotFoundException("File cannot be found!");
     }
-
 }

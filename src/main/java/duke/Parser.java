@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * deals with making sense of the user command, as well as processing what needs to be done
@@ -38,9 +39,16 @@ public class Parser {
             return "BYE";
         } else if (input.startsWith("tag ")) {
             return "TAG";
+        } else if (input.startsWith("untag ")) {
+            return "UNTAG";
         } else { // to handle unknown inputs, e.g. 'blah', 'todo'
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+    }
+
+    // overloaded method to work for loadTasks() in Storage
+    public static void process(String command, String commandType, ArrayList<Task> ls, Ui ui) {
+        process(command, commandType, new TaskList(ls), ui);
     }
 
     /**
@@ -52,21 +60,30 @@ public class Parser {
      * @return boolean isExit
      */
     public static String process(String command, String commandType, TaskList tasks, Ui ui) {
+        String[] inputs = command.split(" ");
         switch(commandType) {
         case "LIST":
             return ui.printTasks(tasks);
             // Fallthrough
         case "MARK":
-            int markIdx = Integer.parseInt(command.substring(5)) - 1;
-            tasks.mark(markIdx);
-            assert tasks.getTask(markIdx).getStatusIcon().equals("X"); // For A-Assertions
-            return ui.printMarked(tasks.getTask(markIdx));
+            if (tasks.canGetTask(Integer.parseInt(inputs[1]))) {
+                int markIdx = Integer.parseInt(inputs[1]) - 1;
+                tasks.mark(markIdx);
+                assert tasks.getTask(markIdx).getStatusIcon().equals("X"); // For A-Assertions
+                return ui.printMarked(tasks.getTask(markIdx));
+            } else {
+                return ui.printNoSuchTask();
+            }
             // Fallthrough
         case "UNMARK":
-            int unmarkIdx = Integer.parseInt(command.substring(7)) - 1;
-            tasks.unmark(unmarkIdx);
-            assert tasks.getTask(unmarkIdx).getStatusIcon().equals(" "); // For A-Assertions
-            return ui.printUnmarked(tasks.getTask(unmarkIdx));
+            if (tasks.canGetTask(Integer.parseInt(inputs[1]))) {
+                int unmarkIdx = Integer.parseInt(inputs[1]) - 1;
+                tasks.unmark(unmarkIdx);
+                assert tasks.getTask(unmarkIdx).getStatusIcon().equals(" "); // For A-Assertions
+                return ui.printUnmarked(tasks.getTask(unmarkIdx));
+            } else {
+                return ui.printNoSuchTask();
+            }
             // Fallthrough
         case "TODO":
             assert command.startsWith("todo"); // For A-Assertions
@@ -89,10 +106,14 @@ public class Parser {
             return ui.printAddedTask(ev, tasks.getSize());
             // Fallthrough
         case "DELETE":
-            int deleteIdx = Integer.parseInt(command.substring(7)) - 1;
-            Task taskToDelete = tasks.getTask(deleteIdx);
-            tasks.delete(deleteIdx);
-            return ui.printDeletedTask(taskToDelete, tasks.getSize());
+            if (tasks.canGetTask(Integer.parseInt(inputs[1]))) {
+                int deleteIdx = Integer.parseInt(inputs[1]) - 1;
+                Task taskToDelete = tasks.getTask(deleteIdx);
+                tasks.delete(deleteIdx);
+                return ui.printDeletedTask(taskToDelete, tasks.getSize());
+            } else {
+                return ui.printNoSuchTask();
+            }
             // Fallthrough
         case "FIND":
             String keyword = command.substring(5);
@@ -103,11 +124,23 @@ public class Parser {
             return null;
             // Fallthrough
         case "TAG":
-            String[] inputs = command.split(" ");
-            int taskIdx = Integer.parseInt(inputs[1]) - 1;
-            String tag = inputs[2];
-            tasks.getTask(taskIdx).addTag(tag);
-            return ui.printAddedTag(tasks.getTask(taskIdx));
+            if (tasks.canGetTask(Integer.parseInt(inputs[1]))) {
+                int tagIdx = Integer.parseInt(inputs[1]) - 1;
+                String tag = inputs[2];
+                tasks.getTask(tagIdx).addTag(tag);
+                return ui.printAddedTag(tasks.getTask(tagIdx));
+            } else {
+                return ui.printNoSuchTask();
+            }
+            // Fallthrough
+        case "UNTAG":
+            if (tasks.canGetTask(Integer.parseInt(inputs[1]))) {
+                int untagIdx = Integer.parseInt(inputs[1]) - 1;
+                String removedTag = tasks.getTask(untagIdx).undoTag();
+                return ui.printUndoneTag(tasks.getTask(untagIdx), removedTag);
+            } else {
+                return ui.printNoSuchTask();
+            }
             // Fallthrough
         default:
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

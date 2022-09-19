@@ -11,32 +11,25 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private static final String LINE = "-----------------------------";
     private ArrayList<Task> tasks;
 
-    /**
-     * If there are no pre-existing Tasklist, create a new Tasklist
-     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    /**
-     * Creates a TaskList with pre-defined tasks
-     * @input pre-existing list of tasks
-     */
     public TaskList(ArrayList<Task> ls) {
         this.tasks = ls;
     }
+
     /**
      * Finds all the tasks which contain the specified keyword and prints them out
-     * @input keyword to check
+     * @param keyword keyword to check
      * @return found task
      */
     public String findTask(String keyword) {
         ArrayList<Task> matched = new ArrayList<>();
         StringBuilder output = new StringBuilder();
-        output.append("Here are the matching tasks in your list:");
+        output.append("Here are the matching tasks in your list:\n");
         for (Task t : tasks) {
             if (t.getAction().contains(keyword)) {
                 matched.add(t);
@@ -82,17 +75,23 @@ public class TaskList {
     }
 
     /**
-     * Adds a task into TaskList
+     * Adds a specified task into TaskList
+     * @param task specified task
      */
     public void add(Task task) {
         tasks.add(task);
     }
 
     /**
-     * @input index of task to be removed from TaskList
+     * Deletes task with specified index from TaskList
+     * @param idx index of task to be removed from TaskList
      */
     public void delete(int idx) {
         tasks.remove(idx);
+    }
+
+    public boolean canGetTask(int idx) {
+        return idx <= tasks.size();
     }
 
     /**

@@ -25,54 +25,23 @@ public class Storage {
     }
 
     /**
-     * Responsible for loading all the pre-existing tasks from file
+     * Loads all the saved tasks from file
      * @return ArrayList of tasks loaded
      * @throws FileNotFoundException if file cannot be found
      */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         try {
             ArrayList<Task> ls = new ArrayList<>();
+            Ui dummyUi = new Ui();
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 if (input.equals("")) { // for empty spacing in nextLine
-                    input = sc.nextLine();
+                    continue;
                 }
                 String commandType = Parser.getCommandType(input);
-                switch(commandType) {
-                case "MARK":
-                    int markIdx = Integer.parseInt(input.substring(5)) - 1;
-                    ls.get(markIdx).markIsDone();
-                    break;
-                case "UNMARK":
-                    int unmarkIdx = Integer.parseInt(input.substring(7)) - 1;
-                    ls.get(unmarkIdx).unmarkIsDone();
-                    break;
-                case "TODO":
-                    ls.add(new ToDo(input.substring(5)));
-                    break;
-                case "DEADLINE":
-                    String dlAction = input.substring(9, input.indexOf("/") - 1);
-                    ls.add(new Deadline(dlAction, Parser.formatEventTime(input)));
-                    break;
-                case "EVENT":
-                    String eAction = input.substring(6, input.indexOf("/") - 1);
-                    ls.add(new Event(eAction, Parser.formatEventTime(input)));
-                    break;
-                case "DELETE":
-                    int deleteIdx = Integer.parseInt(input.substring(7)) - 1;
-                    ls.remove(deleteIdx);
-                    break;
-                case "TAG":
-                    String[] inputs = input.split(" ");
-                    int taskIdx = Integer.parseInt(inputs[1]) - 1;
-                    String tag = inputs[2];
-                    ls.get(taskIdx).addTag(tag);
-                    break;
-                default:
-                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                }
+                Parser.process(input, commandType, ls, dummyUi);
             }
             return ls;
         } catch (FileNotFoundException fnfe) {

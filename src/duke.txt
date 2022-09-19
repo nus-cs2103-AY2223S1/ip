@@ -10,6 +10,10 @@ tag 2 yay
 tag 2 woohoo!
 event donut day /at 14-09-2022 1230
 mark 5
-
 mark 3
-unmark 3
+unmark 2
+mark 2
+untag 3
+delete 6
+
+mark 6

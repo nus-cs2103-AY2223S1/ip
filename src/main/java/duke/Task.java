@@ -47,19 +47,18 @@ public class Task {
         this.tags.add(tag);
     }
 
-    /*
-    public void removeTag(String tag) {
-        boolean isRemoved = false;
-        for (String insideTag : this.tags) {
-            if (insideTag.equals(tag)) {
-                this.tags.remove(tag);
-                isRemoved = true;
-            }
+    /**
+     * Removes the most recently added tag
+     */
+    public String undoTag() {
+        if (this.tags.size() > 0) {
+            return tags.remove(tags.size() - 1);
         }
-    }*/
+        return null;
+    }
 
     /**
-     * Getter to get the action description
+     * Returns the action description
      * @return the description of the action
      */
     public String getAction() {
@@ -67,7 +66,7 @@ public class Task {
     }
 
     /**
-     * Getter to get the action status
+     * Returns the action status
      * @return the status of the action
      */
     public String getStatusIcon() {
