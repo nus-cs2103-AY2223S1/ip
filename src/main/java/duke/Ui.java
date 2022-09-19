@@ -21,7 +21,7 @@ public class Ui {
 
     public String printList(TaskList tasks) {
         StringBuilder builder = new StringBuilder();
-        builder.append("\tHere are the tasks in your list:");
+        builder.append("\tHere are the task(s) in your list:");
         for (int i = 0; i < tasks.getSize(); i++) {
             System.out.println((i + 1) + ". " + tasks.getTask(i));
             Task task = tasks.getTask(i);
@@ -32,15 +32,15 @@ public class Ui {
     }
 
     public String printToDo(Task todo, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in your list.", todo, size);
+        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d task(s) in your list.", todo, size);
     }
 
     public String printDeadLine(Task deadline, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in your list.", deadline, size);
+        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d task(s) in your list.", deadline, size);
     }
 
     public String printEvent(Task event, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in your list.", event, size);
+        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d task(s) in your list.", event, size);
     }
 
     public String printMark(Task task) {
@@ -58,7 +58,7 @@ public class Ui {
 
     public String printFind(ArrayList<Task> list) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Here are the tasks you are looking for:");
+        builder.append("Here are the task(s) you are looking for:");
         for (int i = 0; i < list.size(); i++) {
             Task task = list.get(i);
             builder.append((i + 1) + ". " + task.toString());
