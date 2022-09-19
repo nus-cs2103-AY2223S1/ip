@@ -55,6 +55,7 @@ Find | `find <keyWord(s)>` | find homework | Searches the descriptions of all th
 |View a help sheet| `help`| help | Opens up a document in your browser with all the basic commands |
 
 ## Advanced User Saving Guide 
+
 Preview the save file as shown here 
 ![SaveFile](./SaveScreenShot.png)
 
@@ -76,7 +77,7 @@ Preview the save file as shown here
 
 Credit where it's due to the people who helped along the way! 
 
-##  Images 
+##  Images
 
  - User Icon: @Author: Unknown
     - Retrieved from: "https://www.kindpng.com/imgv/iwoRiix_transparent-clipart-free-download-ajit-pai-hd-png/"
@@ -87,7 +88,8 @@ Credit where it's due to the people who helped along the way!
  - App Icon: @Author: UrieW.
     -  Retrieved from OpenGameArt.org @ "https://opengameart.org/content/device-app-icons-with-template"
 
- ##  Code
+##  Code Reuse
+
  1. GUI Inspiration and formatting 
  -  @@author `PinranJ` - reused
     - Reused code from batchmate for GUI styling. Specifically, to shape the user profile into a circle
