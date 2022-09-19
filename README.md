@@ -30,3 +30,70 @@ public class Main {
     }
 }
 ```
+
+##USERGUIDE
+
+---
+
+####FEATURES
+
+---
+
+#####Creating a To-Do Task
+Command: todo [task]
+
+Example: todo drink milk
+
+---
+
+#####Creating a Deadline Task
+Command: deadline [task] /by [deadline]
+
+__Deadline format: DD-MM-YYYY-HH:MM__
+
+Example: deadline eat dinner /by 01-01-2023-23:59
+
+---
+
+#####Creating a Event Task
+Command: event [task] /at [deadline]
+
+__Deadline format: DD-MM-YYYY-HH:MM__
+
+Example: event concert /at 01-01-2023-23:59
+
+---
+
+#####Adding a Tag to the Task
+Command: tag [description] [index]
+__Description format: no spaces__
+Example: tag this_is_fun 2
+
+---
+
+#####Mark Task as Done
+Command: mark [index]
+Example: mark 3
+
+---
+
+#####Un-mark Task as not done
+Command: unmark [index]
+Example: unmark 3
+
+---
+
+#####Delete task
+Command: delete [index]
+Example: delete 3
+
+---
+
+#####List all tasks
+Command: list
+
+---
+
+#####List all tags associated with a Task
+Command: listtag [index]
+Example: listtag 3
