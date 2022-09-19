@@ -186,6 +186,7 @@ public class TaskList {
         if (findDuplicate(newTask)) {
             throw new DuplicateEntryException("Same task already exists in database!");
         }
+
         Storage.INPUT_TASKS.add(Pixel.getTaskCount(), newTask);
 
         // index of last element in ArrayList is always smaller than size

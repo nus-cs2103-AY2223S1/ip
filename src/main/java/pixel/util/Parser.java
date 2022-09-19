@@ -142,8 +142,9 @@ public class Parser {
             }
 
         } catch (IndexOutOfBoundsException e) {
-            return (e + "\n"
-                + "caught Index Out of Bounds Exception \n"
+            return (e.getMessage() + "\n"
+                + "Make sure you enter valid information after \"/at\" or \"/by\" \n"
+                + "And check if the total number of tasks does not exceed 100 \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
@@ -185,7 +186,7 @@ public class Parser {
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {
-            return ("Caught parse exception! \n"
+            return (e.getMessage() + "\n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
