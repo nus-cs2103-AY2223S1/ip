@@ -33,7 +33,7 @@ public class Storage {
      * @throws IOException if error occurs when reading file.
      */
     public List<Task> load() throws IOException {
-        File myFile = new File(filePath);
+        File myFile = new File(System. getProperty("user. dir") + filePath);
         List<Task> taskList = new ArrayList<>();
         if (!myFile.createNewFile()) {
             Scanner sc = new Scanner(myFile);
@@ -61,7 +61,10 @@ public class Storage {
      * @throws IOException if error occurs when writing to data file.
      */
     public void write(TaskList tasks) throws IOException {
-        File myFile = new File(filePath);
+        File myFile = new File(System. getProperty("user. dir") + filePath);
+        if (!myFile.getParentFile().exists()) {
+            myFile.getParentFile().mkdirs();
+        }
         myFile.createNewFile();
         FileWriter myWriter = new FileWriter(myFile);
         for (int i = 0; i < tasks.getList().size(); i++) {
