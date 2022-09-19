@@ -131,25 +131,9 @@ public class Ui {
      * @return the message informing the user of the number of tasks
      */
     public String showNumberOfTasks(int count) {
-        if (count < 0) {
-            System.out.println(DIVIDER
-                    + "Don't break the 4th wall! You can't have a negative number of tasks!"
-                    + DIVIDER);
-            return DIVIDER
-                    + "Don't break the 4th wall! You can't have a negative number of tasks!"
-                    + DIVIDER;
-        }
-        if (count == 0) {
-            System.out.println(DIVIDER
-                    + "Woohoo! You don't have any tasks!" + DIVIDER);
-            return DIVIDER + "Woohoo! You don't have any tasks!" + DIVIDER;
-        }
-        System.out.println(DIVIDER
-                + String.format("\nYou have %d task(s)!", count)
-                + "\n" + DIVIDER);
-        return DIVIDER
-                + String.format("\n\nYou have %d task(s)!", count)
-                + "\n" +  DIVIDER;
+        assert count >= 0 : "Silly you, you can't have a negative number of tasks!";
+        System.out.println(DIVIDER + String.format("\nYou have %d task(s)!", count) + "\n" + DIVIDER);
+        return DIVIDER + String.format("\n\nYou have %d task(s)!", count) + "\n" +  DIVIDER;
     }
 
     /**
