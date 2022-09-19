@@ -32,27 +32,6 @@ public class Duke {
     }
 
     /**
-     * Starts the bot.
-     */
-    public void run() {
-        boolean isExit = false;
-
-        ui.greet();
-        while (!isExit) {
-            try {
-                String input = ui.getInput();
-                Command c = Parser.parse(input);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                System.out.println();
-            }
-        }
-    }
-
-    /**
      * Parses the input command and returns the command's input.
      * @param text input command
      * @return result of command
