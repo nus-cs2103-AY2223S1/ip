@@ -61,3 +61,6 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
+application {
+    mainClassName = "duke.Launcher"
+}

@@ -249,7 +249,7 @@ public class Parser {
 
                     String task = (((ToDos) tasktobehandled).getItem());
                     String item = ((tasktobehandled).getTask());
-                    TaskList.deletetodo(nextvalue,task,item,ListofMessages);
+                    tobereturned += TaskList.deletetodo(nextvalue,task,item,ListofMessages);
                     Storage.UpdateFile(log,ListofMessages);
 
                 }else if(tasktobehandled instanceof Deadlines){
@@ -257,7 +257,7 @@ public class Parser {
                     String deadlinetask = (((Deadlines) tasktobehandled).getDeadLineTask());
                     String item = (((Deadlines) tasktobehandled).getItem());
 
-                    TaskList.deletedeadline(nextvalue,item,deadlinetask,deadline,ListofMessages);
+                    tobereturned += TaskList.deletedeadline(nextvalue,item,deadlinetask,deadline,ListofMessages);
 
                     Storage.UpdateFile(log,ListofMessages);
 
@@ -266,7 +266,7 @@ public class Parser {
                     String symbol = (((Events) tasktobehandled).getItem()); //Symbol
                     String item = (((Events) tasktobehandled). getEventDeadlineString()); //Due date
 
-                    TaskList.deleteevents(nextvalue,symbol,eventdescription,item,ListofMessages);
+                    tobereturned += TaskList.deleteevents(nextvalue,symbol,eventdescription,item,ListofMessages);
                     Storage.UpdateFile(log,ListofMessages);
                 }
                 //Remove at the end
