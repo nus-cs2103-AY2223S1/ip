@@ -82,16 +82,17 @@ public class LocalStorage {
                 String taskDone = m.group(3);
                 String taskName = m.group(4);
                 String taskDate = m.group(5);
+                FormattedDate formattedTaskDate = new FormattedDate(taskDate);
                 switch (taskType) {
                 case "T":
                     taskList.add(new Todo(taskName, taskDone.equalsIgnoreCase("X")));
                     break;
                 case "D":
-                    taskList.add(new Deadline(taskName, taskDone.equalsIgnoreCase("X"), taskDate));
+                    taskList.add(new Deadline(taskName, taskDone.equalsIgnoreCase("X"), formattedTaskDate));
                     break;
                 case "E":
                     Interval interval = IntervalUtil.getInterval(taskInterval);
-                    taskList.add(new Event(taskName, taskDone.equalsIgnoreCase("X"), taskDate, interval));
+                    taskList.add(new Event(taskName, taskDone.equalsIgnoreCase("X"), formattedTaskDate, interval));
                     break;
                 default:
                     throw new DukeException("Unknown Task type parsed from duke.txt");

@@ -1,5 +1,6 @@
 package duke.models;
 
+import duke.exceptions.DukeException;
 import duke.utils.Interval;
 
 /**
@@ -106,14 +107,20 @@ public class Task {
     /**
      * Marks the current Task as completed.
      */
-    public void markAsDone() {
+    public void markAsDone() throws DukeException {
+        if (this.isDone) {
+            throw new DukeException("This task is already marked.");
+        }
         this.isDone = true;
     }
 
     /**
      * Unmarks the current Task as completed.
      */
-    public void unmarkAsDone() {
+    public void unmarkAsDone() throws DukeException {
+        if (!this.isDone) {
+            throw new DukeException("This task is already unmarked.");
+        }
         this.isDone = false;
     }
 

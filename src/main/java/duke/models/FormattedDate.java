@@ -3,7 +3,9 @@ package duke.models;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 
+import duke.exceptions.DukeException;
 import duke.utils.Interval;
 
 /**
@@ -17,8 +19,18 @@ public class FormattedDate {
             .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"))
             .toFormatter();
 
-    public FormattedDate(String str) {
-        this.date = LocalDate.parse(str, parserOptionalFormats);
+    /**
+     * FormattedDate Constructor.
+     *
+     * @param str Date.
+     * @throws DukeException Invalid Date format Exception.
+     */
+    public FormattedDate(String str) throws DukeException {
+        try {
+            this.date = LocalDate.parse(str, parserOptionalFormats);
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new DukeException("Invalid Date format, please try again.");
+        }
     }
 
     public FormattedDate(LocalDate date) {

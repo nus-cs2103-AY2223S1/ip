@@ -17,7 +17,7 @@ public class IntervalUtil {
         case " ":
             return Interval.None;
         default:
-            throw new DukeException("Invalid Interval Flag in storage file, please delete duke.txt and restart.");
+            throw new DukeException("Invalid Interval format, please try again.");
         }
     }
 }

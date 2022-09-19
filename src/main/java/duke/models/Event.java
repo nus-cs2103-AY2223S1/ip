@@ -6,7 +6,7 @@ import duke.utils.Interval;
  * A class representing an Event task with an "at" date.
  */
 public class Event extends Task {
-    protected FormattedDate formattedDate;
+    protected FormattedDate atDate;
 
     /**
      * Event Constructor.
@@ -14,9 +14,9 @@ public class Event extends Task {
      * @param description Event description.
      * @param at Date at which the event occurs.
      */
-    public Event(String description, String at) {
+    public Event(String description, FormattedDate at) {
         super(description);
-        this.formattedDate = new FormattedDate(at);
+        this.atDate = at;
     }
 
     /**
@@ -24,38 +24,25 @@ public class Event extends Task {
      *
      * @param description Event description.
      * @param isDone Completion status.
-     * @param at Date at which the event occurs.
+     * @param atDate Date at which the event occurs.
      * @param interval Interval at which the event recurs.
      */
-    public Event(String description, boolean isDone, String at, Interval interval) {
+    public Event(String description, boolean isDone, FormattedDate atDate, Interval interval) {
         super(description, isDone, interval);
-        this.formattedDate = new FormattedDate(at);
+        this.atDate = atDate;
     }
 
     /**
-     * Event Constructor.
+     * Gets the at date of the Event.
      *
-     * @param description Event description.
-     * @param isDone Completion status.
-     * @param formattedDate Date at which the event occurs.
-     * @param interval Interval at which the event recurs.
+     * @return Date of Event.
      */
-    public Event(String description, boolean isDone, FormattedDate formattedDate, Interval interval) {
-        super(description, isDone, interval);
-        this.formattedDate = formattedDate;
-    }
-
-    /**
-     * Gets the formatted date of the Event.
-     *
-     * @return Event at date.
-     */
-    public FormattedDate getFormattedDate() {
-        return this.formattedDate;
+    public FormattedDate getEventDate() {
+        return this.atDate;
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.formattedDate);
+        return String.format("[E]%s (at: %s)", super.toString(), this.atDate);
     }
 }

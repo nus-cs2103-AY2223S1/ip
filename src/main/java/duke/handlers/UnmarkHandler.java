@@ -1,5 +1,6 @@
 package duke.handlers;
 
+import duke.exceptions.DukeException;
 import duke.models.Task;
 import duke.models.TaskList;
 
@@ -24,6 +25,8 @@ public class UnmarkHandler {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             int listSize = list.size();
             return (String.format("Please enter a valid number from 1 to %d.%n", listSize));
+        } catch (DukeException exception) {
+            return exception.getMessage();
         }
     }
 }

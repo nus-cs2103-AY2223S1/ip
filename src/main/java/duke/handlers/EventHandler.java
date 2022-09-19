@@ -40,10 +40,11 @@ public class EventHandler {
     public static String createNonRecurringEvent(TaskList list, String input) throws DukeException {
         String[] eventInputs = input.split(" /at ", 2);
         if (eventInputs.length < 2 || eventInputs[1].trim().equals("")) {
-            throw new DukeException("No match with event format, please try again.");
+            throw new DukeException("Invalid Event Command format, please try again.");
         }
         assert eventInputs.length == 2;
-        Task newTask = new Event(eventInputs[0], eventInputs[1]);
+        FormattedDate atDate = new FormattedDate(eventInputs[1]);
+        Task newTask = new Event(eventInputs[0], atDate);
         list.add(newTask);
         return ("Event Added!");
     }
@@ -61,13 +62,13 @@ public class EventHandler {
         if (m.find()) {
             String eventDescription = m.group(1).trim();
             System.out.println(eventDescription);
-            String eventDate = m.group(2).trim();
+            FormattedDate atDate = new FormattedDate(m.group(2).trim());
             Interval eventInterval = IntervalUtil.getInterval(m.group(3).trim());
-            Task newTask = new Event(eventDescription, false, eventDate, eventInterval);
+            Task newTask = new Event(eventDescription, false, atDate, eventInterval);
             list.add(newTask);
             return (String.format("Recurring Event every %s added!", eventInterval.toString()));
         } else {
-            return ("No match with event format, please try again.");
+            return ("Invalid Event Command format, please try again.");
         }
     }
 }
