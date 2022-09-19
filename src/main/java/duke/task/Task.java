@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public abstract class Task implements Serializable {
     private final char symbol;
     private final String description;
-    protected final LocalDateTime time;
+    private final LocalDateTime time;
     private boolean isDone;
 
     /**

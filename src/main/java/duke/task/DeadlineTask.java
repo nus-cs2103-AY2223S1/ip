@@ -15,6 +15,6 @@ public class DeadlineTask extends Task {
     @Override
     public String toString() {
         return String.format("%s (by: %s)", super.toString(),
-                super.time.format(Parser.DATETIME_OUTPUT_FORMAT));
+                super.getTime().format(Parser.DATETIME_OUTPUT_FORMAT));
     }
 }

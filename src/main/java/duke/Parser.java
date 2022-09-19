@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-import duke.command.SortTasksCommand;
 import org.apache.commons.text.WordUtils;
 
 import duke.command.AddTaskCommand;
@@ -20,6 +19,7 @@ import duke.command.EmptyCommand;
 import duke.command.FindTasksCommand;
 import duke.command.ListTasksCommand;
 import duke.command.SetTaskAsDoneCommand;
+import duke.command.SortTasksCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;
