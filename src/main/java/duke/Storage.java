@@ -113,38 +113,44 @@ public class Storage {
      *Its the same as list comment.Everything will be displayed
      * @param ListofMessages
      */
-    public static void DisplayListOfMessages(List<Task> ListofMessages) {
+    public static String DisplayListOfMessages(List<Task> ListofMessages) {
         int LengthOfArrayList;
+        String response = "";
         LengthOfArrayList = ListofMessages.size();
         for (int i = 0; i < LengthOfArrayList; i++) {
             int NumberToDisplay = i + 1;
             if (ListofMessages.get(i) instanceof ToDos) {
                 String AdditemMessage = "[T]";
                 String finalmessage = NumberToDisplay +   "."  +  AdditemMessage +   "[" + ((ListofMessages.get(i)).getStatusIcon()) + "]" + ((ListofMessages.get(i)).getTask());
-                System.out.println(finalmessage);
+                response += finalmessage;
+                response += "\n";
             }else if (ListofMessages.get(i) instanceof Deadlines) {
                 String ToManipulate = ListofMessages.get(i).getStatusIcon();
                 String ItemType = ((Deadlines) ListofMessages.get(i)).getItem();
                 String GetDateLine = ((Deadlines) ListofMessages.get(i)).getDeadLine();//Type casting
                 String TaskName = ((Deadlines) ListofMessages.get(i)).getDeadLineTask();
                 String finalmessage = NumberToDisplay + "." + ItemType + "[" + ListofMessages.get(i).getStatusIcon() + "] " + TaskName + "(by: " + GetDateLine + ")";
-                System.out.println(finalmessage);
+                response += finalmessage;
+                response += "\n";
+
             }else if (ListofMessages.get(i) instanceof Events) {
                 String ToManipulate = ListofMessages.get(i).getStatusIcon();
                 String ItemType = ((Events) ListofMessages.get(i)).getItem();
                 String GetDateLine = ((Events) ListofMessages.get(i)).getEvent();
                 String TaskName = ((Events) ListofMessages.get(i)).getEventsDescription();
                 String finalmessage = NumberToDisplay + "." + ItemType + "[" + ListofMessages.get(i).getStatusIcon() + "] " + TaskName + "(at: " + GetDateLine + ")";
-                System.out.println(finalmessage);
+                response += finalmessage;
+                response += "\n";
+
             } else {
                 String finalmessage = NumberToDisplay + ".[" + ((ListofMessages.get(i)).getStatusIcon()) + "]" + " " + ((ListofMessages.get(i)).getTask());
-                System.out.println(finalmessage);
+                response += finalmessage;
+                response += "\n";
+
             }
         }
+        return response;
     }
-
-
-
 
 
 }

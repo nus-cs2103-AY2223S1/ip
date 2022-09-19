@@ -13,10 +13,13 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 //testing
 public class Duke  {
     private static final List<Task> ListofMessages  = new ArrayList<>();
@@ -27,13 +30,21 @@ public class Duke  {
     private Button sendButton;
     private Scene scene;
 
+    public Duke () throws IOException {
+        Scanner input = new Scanner(System.in);
+        File log = new File("log.txt");
 
+        if(log.exists()==false){
+            //System.out.println("We had to make a new file.");
+            log.createNewFile();
+        }
 
-    public Duke () {
+        //Reading in data from the file
+        Scanner readfile = new Scanner(log);
+
+        Storage.readfilez(readfile,ListofMessages); //Reads all the input
 
     }
-
-
     /**
      * Runs Parser and the entire code
      * @param args
@@ -42,15 +53,11 @@ public class Duke  {
      * @throws ParseException
      */
     public static void main(String[] args) throws DukeException, IOException, ParseException {
-        Parser.Parser(ListofMessages);
     }
 
-
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
+    public String getResponse(String input) throws DukeException, IOException {
+       // Parser.HandleUserInput(input,ListofMessages)
+        return Parser.HandleUserInput(input,ListofMessages);
     }
-
-
-
 
 }
