@@ -57,14 +57,17 @@ public class Parser {
 
         switch (firstArg) {
         case "b":
+            // Fallthrough
         case "bye":
             command = Command.BYE;
             break;
         case "l":
+            // Fallthrough
         case "list":
             command = Command.LIST;
             break;
         case "m":
+            // Fallthrough
         case "mark":
             if (numArgs != 2) {
                 throw new DukeException("Input format: mark (task number)");
@@ -73,6 +76,7 @@ public class Parser {
             taskIndex = integerParser(listOfInputs.get(1), "mark") - 1;
             break;
         case "um":
+            // Fallthrough
         case "unmark":
             if (numArgs != 2) {
                 throw new DukeException("Input format: unmark (task number)");
@@ -81,6 +85,7 @@ public class Parser {
             taskIndex = integerParser(listOfInputs.get(1), "unmark") - 1;
             break;
         case "d":
+            // Fallthrough
         case "delete":
             if (numArgs != 2) {
                 throw new DukeException("Input format: delete (task number)");
@@ -89,6 +94,7 @@ public class Parser {
             taskIndex = integerParser(listOfInputs.get(1), "delete") - 1;
             break;
         case "f":
+            // Fallthrough
         case "find":
             if (numArgs != 2) {
                 throw new DukeException("Input format: find (keyword)");
@@ -98,6 +104,7 @@ public class Parser {
             break;
         case "td":
             isTodoCommandShortcut = true;
+            // Fallthrough
         case "todo":
             if (numArgs == 1) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -108,6 +115,7 @@ public class Parser {
             break;
         case "ev":
             isEventCommandShortcut = true;
+            // Fallthrough
         case "event": {
             if (numArgs < 4 || !listOfInputs.contains("\\at")) {
                 throw new DukeException("Input format: event (event name) \\at (event date/time)");
@@ -121,6 +129,7 @@ public class Parser {
         }
         case "dl":
             isDeadlineCommandShortcut = true;
+            // Fallthrough
         case "deadline": {
             if (numArgs < 4 || !listOfInputs.contains("\\by")) {
                 throw new DukeException("Input format: deadline (deadline name) \\by (YYYY-MM-DD)");
