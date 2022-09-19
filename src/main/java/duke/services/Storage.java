@@ -70,12 +70,9 @@ public class Storage {
      */
     public static void wipeDataOnExit(boolean willWipe) {
         willWipeData = willWipe;
-        Duke.setReply(new String[] {
+        Ui.setReply(new String[] {
             "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"}
         );
-        /**Ui.sayLines(new String[] {
-            "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"
-        });*/
     }
 
     /**

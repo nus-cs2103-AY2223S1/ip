@@ -18,18 +18,11 @@ public class TaskList {
     }
 
     /**
-     * @param i The index of the task in the tasklist
-     * @return A string describing the task w.r.t to the tasklist
-     */
-    private static String getTaskInfo(int i) {
-        return "  " + (i + 1) + ". " + tasks.get(i);
-    }
-    /**
      * Stores the task and displays outcome
      */
     public static void addTask(Task task) {
         tasks.add(task);
-        Duke.setReply(new String[] {
+        Ui.setReply(new String[] {
             "Got it. I've added this task:",
             "  " + task,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -70,7 +63,7 @@ public class TaskList {
      */
     public static void markTaskAsDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsDone();
-        Duke.setReply(new String[]{
+        Ui.setReply(new String[]{
             "Nice! I've marked this task as done:",
             "  " + task
         });
@@ -83,7 +76,7 @@ public class TaskList {
      */
     public static void markTaskAsNotDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsNotDone();
-        Duke.setReply(new String[]{
+        Ui.setReply(new String[]{
             "OK, I've marked this task as not done yet:",
             "  " + task
         });
@@ -96,7 +89,7 @@ public class TaskList {
      */
     public static void deleteTask(String[] words) {
         Task removedTask = tasks.remove(Parser.getTaskNumber(words) - 1);
-        Duke.setReply(new String[]{
+        Ui.setReply(new String[]{
             "Noted. I've removed this task:",
             "  " + removedTask,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -112,7 +105,7 @@ public class TaskList {
         for (int i = 1; i < taskDescriptions.length; ++i) {
             taskDescriptions[i] = "  " + i + ". " + tasks.get(i - 1);
         }
-        Duke.setReply(taskDescriptions);
+        Ui.setReply(taskDescriptions);
     }
 
     /**
@@ -134,6 +127,6 @@ public class TaskList {
                 matchingTasks.add("  " + (i + 1) + ". " + currTask);
             }
         }
-        Duke.setReply(matchingTasks.toArray(String[]::new));
+        Ui.setReply(matchingTasks.toArray(String[]::new));
     }
 }

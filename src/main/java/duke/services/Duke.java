@@ -7,9 +7,6 @@ import java.io.IOException;
  */
 public class Duke {
 
-    /** What Duke will tell the user after a command */
-    private static String reply;
-
     /** Is Duke interacting with the user? */
     private static boolean isActive;
 
@@ -21,7 +18,7 @@ public class Duke {
     public static void activate() throws IOException {
         isActive = true;
         Storage.loadData();
-        setReply(new String[] {
+        Ui.setReply(new String[] {
                 "Hello! I'm Duke",
                 "What can I do for you?",
         });
@@ -61,33 +58,17 @@ public class Duke {
                 } else if (words[0].equals("find")) {
                     TaskList.findTasksContainingKeyword(words);
                 } else {
-                    setReply(new String[]{"I'm sorry, I don't know that command"});
+                    Ui.setReply(new String[]{"I'm sorry, I don't know that command"});
                 }
             } catch (IllegalArgumentException | IOException e) {
-                setReply(new String[]{e.getMessage()});
+                Ui.setReply(new String[]{e.getMessage()});
             }
         }
-        assert !getReply().isEmpty(): "Reply can't be empty";
-        return getReply();
+        assert !Ui.getReply().isEmpty(): "Reply can't be empty";
+        return Ui.getReply();
     }
 
-    /**
-     * Updates duke's reply to the given lines
-     */
-    public static void setReply(String[] lines) {
-        StringBuilder replyBuilder = new StringBuilder();
-        System.out.println("____________________________________________________________");
-        for (String line : lines) {
-            System.out.println(line);
-            replyBuilder.append(line).append("\n");
-        }
-        System.out.println("____________________________________________________________\n");
-        reply = replyBuilder.toString();
-    }
 
-    public static String getReply() {
-        return reply;
-    }
 
     /**
      * Duke performs its deactivation behaviour. Data is saved.
@@ -96,7 +77,7 @@ public class Duke {
      */
     public static void deactivate() throws IOException {
         Storage.saveData();
-        setReply(new String[] {
+        Ui.setReply(new String[] {
                 "Bye. Hope to see you again soon!",
         });
         isActive = false;
