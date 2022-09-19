@@ -1,5 +1,7 @@
 package kkbot.exceptions;
 
+import kkbot.ui.Ui;
+
 /**
  * KKBotException class to encompass exceptions thrown by KKBot.
  *
@@ -12,6 +14,6 @@ public abstract class KKBotException extends Exception {
      * @param message Error message shown to user.
      */
     public KKBotException(String message) {
-        super("Oh no!" + message);
+        super(Ui.DIVIDER + "\n" + message + "\n" + Ui.DIVIDER);
     }
 }

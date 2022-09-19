@@ -24,7 +24,7 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    private static String DIVIDER = "_______________________________\n";
+    public static String DIVIDER = "_______________________________________________\n";
 
     private static String LOGO = " __   __   __   __  ____\n"
             + "|   | /  /  |  | /  /  |  __  \\\n"
@@ -82,9 +82,9 @@ public class Ui {
      */
     public String showTaskAddition(Task task) {
         System.out.println(DIVIDER
-                + "Got it! Task added:\n " + task + "\n" + DIVIDER);
+                + "\nGot it! Task added:\n " + task + "\n" + DIVIDER);
         return DIVIDER
-                + "Got it! Task added:\n " + task + "\n" + DIVIDER;
+                + "\nGot it! Task added:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -94,9 +94,9 @@ public class Ui {
      */
     public String showTaskDeletion(Task task) {
         System.out.println(DIVIDER
-                + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER);
+                + "\nGotcha! Task deleted:\n " + task + "\n" + DIVIDER);
         return DIVIDER
-                + "Gotcha! Task deleted:\n " + task + "\n" + DIVIDER;
+                + "\nGotcha! Task deleted:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -106,9 +106,9 @@ public class Ui {
      */
     public String showTaskDone(Task task) {
         System.out.println(DIVIDER
-                + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER);
+                + "\nNicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER);
         return DIVIDER
-                + "Nicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER;
+                + "\nNicely done!\n\nTask marked as done:\n " + task + "\n" + DIVIDER;
     }
 
     /**
@@ -118,10 +118,10 @@ public class Ui {
      */
     public String showTaskUndone(Task task) {
         System.out.println(DIVIDER
-                + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
+                + "\nOI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
                 + task + "\n" + DIVIDER);
         return DIVIDER
-                + "OI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
+                + "\nOI! Are you trynna cheat?! ):<\n\nTask marked as not done:\n "
                 + task + "\n" + DIVIDER;
     }
 
@@ -133,7 +133,7 @@ public class Ui {
     public String showNumberOfTasks(int count) {
         assert count >= 0 : "Silly you, you can't have a negative number of tasks!";
         System.out.println(DIVIDER + String.format("\nYou have %d task(s)!", count) + "\n" + DIVIDER);
-        return DIVIDER + String.format("\n\nYou have %d task(s)!", count) + "\n" +  DIVIDER;
+        return DIVIDER + String.format("\nYou have %d task(s)!", count) + "\n" +  DIVIDER;
     }
 
     /**
@@ -145,10 +145,10 @@ public class Ui {
         int numOfTasks = tasks.getNumberOfTasks();
         if (numOfTasks == 0) {
             System.out.println(DIVIDER
-                    + "Woohoo! You don't have any tasks!" + "\n"
+                    + "\nWoohoo! You don't have any tasks!" + "\n"
                     + DIVIDER);
             return DIVIDER
-                    + "Woohoo! You don't have any tasks!" + "\n"
+                    + "\nWoohoo! You don't have any tasks!" + "\n"
                     + DIVIDER;
         }
 
@@ -172,16 +172,17 @@ public class Ui {
      */
     public String showMatches(List<Task> matches) {
         if (matches.size() == 0) {
-            System.out.println("No matches found!");
-            return "No matches found!";
+            System.out.println(DIVIDER + "\nNo matches found!\n" + DIVIDER);
+            return DIVIDER + "\nNo matches found!\n" + DIVIDER;
         }
 
-        StringBuilder sb = new StringBuilder("The following tasks match your search!\n\nThey are:\n");
+        StringBuilder sb = new StringBuilder(DIVIDER + "\nThe following tasks match your search!\n\nThey are:\n");
         int serialNumber = 1;
         for (Task task : matches) {
             sb.append(String.format("%d.%s\n", serialNumber, task));
             serialNumber++;
         }
+        sb.append(DIVIDER);
         System.out.println(sb.toString());
         return sb.toString();
     }
