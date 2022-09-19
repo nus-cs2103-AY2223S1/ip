@@ -24,21 +24,6 @@ public class DeleteCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try {
-            Task tmp = tasks.delete(taskNo);
-            storage.write(tasks.toStringWritable());
-            ui.showOutput("Noted. I've removed this task:");
-            ui.showOutput("\t" + tmp.toString());
-        } catch (IndexOutOfBoundsException err) {
-            throw new DukeException("Invalid task to delete.");
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

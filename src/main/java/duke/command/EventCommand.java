@@ -29,19 +29,6 @@ public class EventCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Event tmp = new Event(desc, datetime);
-        tasks.addEvent(tmp);
-        storage.write(tasks.toStringWritable());
-        ui.showOutput("Got it. I added this task:");
-        ui.showOutput("\t" + tmp);
-        ui.showOutput("Now you have " + tasks.getLength() + " tasks in the list.");
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

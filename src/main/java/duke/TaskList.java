@@ -15,6 +15,9 @@ public class TaskList {
     /** ArrayList to store Duke's tasks */
     private ArrayList<Task> db;
 
+    /** Needed as the first task is listed as index 1 in the GUI. */
+    static final int OFF_BY_ONE = 1;
+
     /**
      * Constructor for empty TaskList.
      */
@@ -58,7 +61,7 @@ public class TaskList {
      */
     public Task getTask(int i) {
         assert (i > 0);
-        return db.get(i - 1);
+        return db.get(i - OFF_BY_ONE);
     }
 
     /**
@@ -67,7 +70,7 @@ public class TaskList {
      */
     public void mark(int userInput) {
         assert (userInput > 0 && userInput <= db.size());
-        Task tmp = db.get(userInput - 1);
+        Task tmp = db.get(userInput - OFF_BY_ONE);
         tmp.setDone();
     }
 
@@ -77,7 +80,7 @@ public class TaskList {
      */
     public void unmark(int userInput) {
         assert (userInput > 0 && userInput <= db.size());
-        Task tmp = db.get(userInput - 1);
+        Task tmp = db.get(userInput - OFF_BY_ONE);
         tmp.setUndone();
     }
 
@@ -120,14 +123,14 @@ public class TaskList {
      */
     public Task delete(int userInput) {
         assert (userInput > 0 && userInput <= db.size());
-        return db.remove(userInput - 1);
+        return db.remove(userInput - OFF_BY_ONE);
     }
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < db.size(); i++) {
-            res.append(i+1).append(". ").append(db.get(i).toString()).append("\n");
+            res.append(i + OFF_BY_ONE).append(". ").append(db.get(i).toString()).append("\n");
         }
         return res.toString().trim();
     }
