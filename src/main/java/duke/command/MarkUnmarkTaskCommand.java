@@ -4,17 +4,17 @@ import duke.DukeException;
 import duke.Storage;
 import duke.task.TaskList;
 
-public class SetTaskAsDoneCommand extends Command {
+public class MarkUnmarkTaskCommand extends Command {
     private final int index;
     private final boolean isDone;
 
     /**
-     * Initialises a {@code SetDoneCommand} with an {@code int} index and {@code boolean} isDone.
+     * Initialises a {@code MarkUnmarkTaskCommand} with an {@code int} index and {@code boolean} isDone.
      *
      * @param index The index of the {@code Task} to be marked as done/undone.
      * @param isDone Whether the {@code Task} is to be marked as done or undone.
      */
-    public SetTaskAsDoneCommand(int index, boolean isDone) {
+    public MarkUnmarkTaskCommand(int index, boolean isDone) {
         assert index >= 0;
         this.index = index;
         this.isDone = isDone;
@@ -28,7 +28,7 @@ public class SetTaskAsDoneCommand extends Command {
         } catch (DukeException e) {
             e.printStackTrace();
         }
-        return String.format("Nice! I've marked this task as done:\n %s",
-                tasks.get(index));
+        String response = isDone ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
+        return String.format("%s\n %s", response, tasks.get(index));
     }
 }
