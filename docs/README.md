@@ -1,6 +1,7 @@
 # User Guide to us Duke
 
-##What is Duke?
+## What is Duke?
+
 Duke is a chat bot designed to help users manage their tasks. It is a command-line
 software that processes user input and displays immediate responses. Furthermore, 
 tasks added by users to Duke will be stored and can be retrieved each 
@@ -8,25 +9,26 @@ time Duke is opened.
 
 ## Features 
 
-###Add Tasks
+### Add Tasks
+
 Tasks can be added to the list of tasks via one of the following categories:
 1. To-do task
 2. Deadline task
 3. Event task
 
-###View Tasks
+### View Tasks
 Tasks can be viewed as a list.
 
-###Mark Tasks
+### Mark Tasks
 Tasks can be marked as completed.
 
-###Un-mark Tasks
+### Un-mark Tasks
 Tasks can be un-marked to show they are  still incomplete.
 
-###Delete tasks
+### Delete tasks
 Tasks can be deleted from the list of tasks.
 
-###Find tasks
+### Find tasks
 Tasks can be found from the list of tasks.
 
 ## Features Details
@@ -112,7 +114,7 @@ ______________________________________________________
 `list`
 
 **Expected outcome:**
-A list of the user's tasks will be shown.
+A list of all the user's tasks will be shown.
 
 ```
 ______________________________________________________
