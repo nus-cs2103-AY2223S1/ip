@@ -3,7 +3,7 @@
 Welcome to the world of ***DOOKIE***, where we turn your world from utter Dookie to a 
 brand spanking clean world!!!
 
-Dookie aims to help users keep track of all the Dookies in their lives, including **Todos**, **
+Dookie aims to help users keep track of all the Dookies in their lives, including **Todos**, **Events** and **Deadlines**.
 
 ## Getting started
 
