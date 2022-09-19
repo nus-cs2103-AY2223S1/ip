@@ -9,7 +9,6 @@ import java.io.IOException;
  */
 public class Duke {
 
-    private static final String EXIT_COMMAND = "bye";
     private static final String FILE_NAME = "dukeList.txt";
     private Storage storage;
     private TaskList tasks;
@@ -22,12 +21,12 @@ public class Duke {
      */
     public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(Paths.get(FILE_NAME));
+        storage = new Storage(Paths.get(filePath));
         try {
             tasks = new TaskList(storage.loadTasks(), storage);
             ui.printLoadingSuccessMessage();
         } catch (IOException err) {
-            ui.printLoadingError(FILE_NAME);
+            ui.printLoadingError(filePath);
             tasks = new TaskList(new ArrayList<>(), storage);
         }
     }
@@ -37,11 +36,11 @@ public class Duke {
      */
     public void run() {
         ui.printWelcomeMessage();
-        boolean isExit = false;
-        while (!isExit) {
+        String response;
+        while (!this.tasks.getTaskListStatus()) {
             try {
                 String inputCommand = ui.readInput();
-                isExit = Parser.parse(inputCommand, tasks, ui);
+                response = Parser.parse(inputCommand, tasks);
             } catch (DukeException err) {
                 ui.printError(err.getMessage());
             } catch (IOException err) {
@@ -49,6 +48,27 @@ public class Duke {
             }
         }
         ui.printExitMessage();
+    }
+
+    public String getWelcomeMessage() {
+        return "Hello, my name is Duke!\nHow can I help you today?";
+    }
+
+    public String getExitMessage() {
+        return "Goodbye! Looking forward to see you again soon!";
+    }
+
+    public String getResponse(String input) throws DukeException, IOException {
+        String response = null;
+        try {
+            response = Parser.parse(input, tasks);
+        } catch (DukeException err) {
+            response = err.getMessage();
+        }
+        if (tasks.getTaskListStatus()) {
+            response = getExitMessage();
+        }
+        return response;
     }
 
     public static void main(String[] args) {

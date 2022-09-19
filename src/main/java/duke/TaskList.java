@@ -1,5 +1,7 @@
 package duke;
 
+import duke.gui.Gui;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class TaskList {
 
     private final List<Task> tasks;
     private final Storage storage;
+    private boolean isClosed;
 
     /**
      * A constructor for the TaskList class
@@ -20,10 +23,12 @@ public class TaskList {
     public TaskList(List<Task> tl, Storage s) {
         this.tasks = tl;
         this.storage = s;
+        this.isClosed = false;
     }
 
     /**
      * Obtains the number of tasks in the <code>TaskList</code>
+     *
      * @return The total number of tasks
      */
     public int getSize() {
@@ -33,131 +38,155 @@ public class TaskList {
     /**
      * Prints out all the tasks in the <code>TaskList</code>
      *
-     * @param ui The <code>Ui</code> to print out the tasks or any messages
+     * @return Message to display
      * @throws DukeException If there is a Duke-specific error encountered
      */
-    public void listTasks(Ui ui) throws DukeException {
+    public String listTask() throws DukeException {
+        String response = null;
         if (this.tasks.size() == 0) { // List is empty
-            ui.printEmptyListMessage();
+            response = "Your list is empty! Why not add a task to it first?";
         } else {
-            ui.printLine();
-            System.out.println("Here are the tasks in your list:");
+            response = "Here are the tasks in your list:\n";
             for (int i = 0; i < this.tasks.size(); i++) {
                 Task curTask = this.tasks.get(i);
-                System.out.println((i + 1) + "." + curTask.toString());
+                response = response.concat((i + 1) + "." + curTask.toString() + "\n");
             }
-            ui.printLine();
         }
+        return response;
     }
 
     /**
      * Marks a specific task in the list of tasks as done
      *
      * @param index The specific task number
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task index is invalid
      */
-    public void markTask(int index, Ui ui) throws IOException {
+    public String markTask(int index) throws IOException {
         Task taskChosen = this.tasks.get(index);
         taskChosen.markAsDone();
-        ui.printTaskMarked(taskChosen);
+        String response = "Okay, I have marked this task as done: \n"
+                + taskChosen.toString();
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Marks a specific task in the list of tasks as not done
      *
      * @param index The specific task number
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task index is invalid
      */
-    public void unmarkTask(int index, Ui ui) throws IOException {
+    public String unmarkTask(int index) throws IOException {
         Task taskChosen = this.tasks.get(index);
         taskChosen.markAsUndone();
-        ui.printTaskUnmarked(taskChosen);
+        String response = "Okay, I have marked this task as not done: \n"
+                + taskChosen.toString();
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Creates a <code>Todo</code> task
      *
      * @param desc The description of the task
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task description cannot be interpreted
      */
-    public void createToDo(String[] desc, Ui ui) throws IOException {
+    public String createToDo(String[] desc) throws IOException {
         Todo newToDo = new Todo(String.join(" ", desc));
         this.tasks.add(newToDo);
-        ui.printToDoCreated(newToDo, getSize());
+        String response = "Got it! I have added this task to your list:\n  "
+                + newToDo.toString()
+                + "\nNow you have " + getSize() + " tasks in the list.";
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Creates a <code>Deadline</code> task
      *
      * @param desc The description of the task
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task description cannot be interpreted
      */
-    public void createDeadline(String[] desc, Ui ui) throws IOException {
+    public String createDeadline(String[] desc) throws IOException {
         Deadline newDeadline = new Deadline(desc[0], desc[1]);
         this.tasks.add(newDeadline);
-        ui.printDeadlineCreated(newDeadline, getSize());
+        String response = "Got it! I have added this task to your list:\n  "
+                + newDeadline.toString()
+                + "\nNow you have " + getSize() + " tasks in the list.";
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Creates a <code>Event</code> task
      *
      * @param desc The description of the task
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task description cannot be interpreted
      */
-    public void createEvent(String[] desc, Ui ui) throws IOException {
+    public String createEvent(String[] desc) throws IOException {
         Event newEvent = new Event(desc[0], desc[1]);
         this.tasks.add(newEvent);
-        ui.printEventCreated(newEvent, getSize());
+        String response = "Got it! I have added this task to your list:\n  "
+                + newEvent.toString()
+                + "\nNow you have " + getSize() + " tasks in the list.";
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Deletes a specific task in the list of tasks
      *
      * @param index The specific task number
-     * @param ui The <code>Ui</code> to print out any messages
+     * @return Message to display
      * @throws IOException If the task index is invalid
      */
-    public void deleteTask(int index, Ui ui) throws IOException{
+    public String deleteTask(int index) throws IOException{
         Task taskToRemove = this.tasks.get(index);
         this.tasks.remove(index);
-        ui.printTaskDeleted(taskToRemove, getSize());
+        String response = "Okay, I have removed this task from the list:\n  "
+                + taskToRemove.toString()
+                + "\nNow you have " + getSize() + " tasks in the list.";
         storage.refreshList(this.tasks);
+        return response;
     }
 
     /**
      * Finds all tasks that has descriptions containing the keyword
      *
      * @param keyword Keyword to match
-     * @param ui The UI to print outputs
+     * @return Message response to display
      */
-    public void findTask(String keyword, Ui ui) {
+    public String findTask(String keyword) {
+        String response = null;
         if (this.tasks.size() == 0) { // List is empty
-            ui.printEmptyListMessage();
+            response = "Your list is empty! Why not add a task to it first?";
         } else {
             int numOfMatchingTasks = 0;
-            ui.printLine();
-            System.out.println("Here are the matching tasks in your list:");
+            response = "Here are the matching tasks in your list:\n";
             for (int i = 0; i < this.tasks.size(); i++) {
                 Task curTask = this.tasks.get(i);
                 if (curTask.getDescription().contains(keyword)) {
                     numOfMatchingTasks++;
-                    System.out.println((i + 1) + "." + curTask.toString());
+                    response = response.concat((i + 1) + "." + curTask.toString() + "\n");
                 }
             }
             if (numOfMatchingTasks == 0) {
-                System.out.println("*** There is no matching task with your keyword ***");
+                response = "There is no matching task with your keyword";
             }
-            ui.printLine();
         }
+        return response;
+    }
+
+    public void closeTaskList() {
+        this.isClosed = true;
+    }
+
+    public boolean getTaskListStatus() {
+        return this.isClosed;
     }
 }

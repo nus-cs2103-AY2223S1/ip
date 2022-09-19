@@ -1,5 +1,7 @@
 package duke;
 
+import duke.gui.Gui;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -13,39 +15,38 @@ public class Parser {
      *
      * @param input The command inputted by the user
      * @param tl The <code>TaskList</code> given to manage
-     * @param ui The <code>Ui</code> given to print any outputs
      * @return A boolean indicating whether the program is to be closed
      * @throws DukeException If there is a Duke-specific error encountered
      * @throws IOException If the input cannot be handled by the parser
      */
-    public static boolean parse(String input, TaskList tl, Ui ui) throws DukeException, IOException {
+    public static String parse(String input, TaskList tl) throws DukeException, IOException {
         String[] inputArray = input.split(" ");
-        boolean isExitCommand = false;
+        String response = null;
 
         switch (inputArray[0].toUpperCase()) {
         case "LIST":
-            tl.listTasks(ui);
+            response = tl.listTask();
             break;
         case "MARK":
             if (inputArray.length < 2) {
                 throw new DukeException("You did not state a task number!");
             }
             int taskNum = Integer.parseInt(inputArray[1]) - 1;
-            tl.markTask(taskNum, ui);
+            response = tl.markTask(taskNum);
             break;
         case "UNMARK":
             if (inputArray.length < 2) {
                 throw new DukeException("You did not state a task number!");
             }
             taskNum = Integer.parseInt(inputArray[1]) - 1;
-            tl.unmarkTask(taskNum, ui);
+            response = tl.unmarkTask(taskNum);
             break;
         case "TODO":
             if (inputArray.length < 2) {
-                throw new DukeException("The description of a duke.Todo cannot be empty");
+                throw new DukeException("The description of a Todo task cannot be empty");
             }
             String[] taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-            tl.createToDo(taskDesc, ui);
+            response = tl.createToDo(taskDesc);
             break;
         case "DEADLINE":
             taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
@@ -54,7 +55,7 @@ public class Parser {
                 throw new DukeException("You're missing some details!\nRemember to include the description "
                         + "followed by '/by [INSERT DATETIME]'");
             }
-            tl.createDeadline(taskDesc, ui);
+            response = tl.createDeadline(taskDesc);
             break;
         case "EVENT":
             taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
@@ -63,29 +64,29 @@ public class Parser {
                 throw new DukeException("You're missing some details!\nRemember to include the description "
                         + "followed by '/at [INSERT DATETIME]'");
             }
-            tl.createEvent(taskDesc, ui);
+            response = tl.createEvent(taskDesc);
             break;
         case "DELETE":
             if (inputArray.length < 2) {
                 throw new DukeException("You did not state a task number!");
             }
             taskNum = Integer.parseInt(inputArray[1]) - 1;
-            tl.deleteTask(taskNum, ui);
+            response = tl.deleteTask(taskNum);
             break;
         case "BYE":
-            isExitCommand = true;
+            tl.closeTaskList();
             break;
         case "FIND":
             if (inputArray.length < 2) {
                 throw new DukeException("Please enter a keyword to search!");
             }
             String keyword = inputArray[1];
-            tl.findTask(keyword, ui);
+            response = tl.findTask(keyword);
             break;
         default:
-            ui.printUnknownCommandMessage();
+            response = "I'm sorry, but I don't know what that means";
             break;
         }
-        return isExitCommand;
+        return response;
     }
 }
