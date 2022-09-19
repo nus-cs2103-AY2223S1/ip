@@ -44,21 +44,21 @@ public class Ui {
     }
 
     public String printMark(Task task) {
-        return String.format("\tNice! I've marked this task as done:\n\t%s", task);
+        return String.format("\tNice! You've completed this task:\n\t%s", task);
 
     }
 
     public String printUnMark(Task task) {
-        return String.format("\tNice! I've marked this task as not done:\n\t%s", task);
+        return String.format("\tOh no! Try to complete this task ASAP:\n\t%s", task);
     }
 
     public String printDelete(Task task, int size) {
-        return String.format("\tNoted. I've removed this task:\n\t%s\n\tNow you have %d tasks in your list.", task, size);
+        return String.format("\tTask eliminated:\n\t%s\n\tNow you have %d tasks in your list.", task, size);
     }
 
     public String printFind(ArrayList<Task> list) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Here are the matching tasks in your list:");
+        builder.append("Here are the tasks you are looking for:");
         for (int i = 0; i < list.size(); i++) {
             Task task = list.get(i);
             builder.append((i + 1) + ". " + task.toString());
@@ -68,7 +68,7 @@ public class Ui {
 
     public String printHelp() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Here is the list of commands available for use:");
+        builder.append("These are the commands available for use:");
         builder.append("\n\t");
         builder.append("todo : Add a ToDo type task to the list.");
         builder.append("\n\t");

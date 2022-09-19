@@ -24,7 +24,6 @@ public class Duke extends Application {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private final String HORIZONTAL_LINE_BREAK = "-------------------------";
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -138,19 +137,6 @@ public class Duke extends Application {
 
 
     //Solution adapted from https://github.com/nus-cs2103-AY2223S1/ip/commit/1425eadf831d33ce6909694a2c3d5d58670aacd9
-
- /*   public void run(Parser parser) {
-        ui.hello();
-        parser.initialise();
-        ui.goodBye();
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        Parser parser = new Parser(duke);
-        duke.run(parser);
-    }
-*/
 
     /**
      * Returns the list of all current tasks.
