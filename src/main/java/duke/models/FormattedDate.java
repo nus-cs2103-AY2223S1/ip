@@ -14,6 +14,7 @@ public class FormattedDate {
     protected DateTimeFormatter parserOptionalFormats = new DateTimeFormatterBuilder()
             .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
+            .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"))
             .toFormatter();
 
     public FormattedDate(String str) {

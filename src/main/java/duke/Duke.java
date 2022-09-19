@@ -90,6 +90,8 @@ public class Duke {
             storage.write(list);
         } catch (DukeException dukeException) {
             response = (dukeException.getMessage());
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            response = "Invalid command format, please try again.";
         }
         return response;
     }
