@@ -1,24 +1,35 @@
-# duke.Duke project template
-
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
-
-## Setting up in Intellij
-
-Prerequisites: JDK 11, update Intellij to the most recent version.
-
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+# User Guide
+![Duke](Ui.png)
+## How to Start
+1. Download the latest version of duke.jar [here](https://github.com/dreammac3816547290/ip/releases).
+2. Open command prompt and navigate to the download folder.
+3. Run `java -jar duke.jar`.
+4. The Duke GUI will open, and you can type in commands in the command box.
+## Command
+### `bye` exits Duke
+> bye
+### `list` lists all tasks
+> list
+### `free`  finds the nearest date without task
+> free
+### `mark` marks a task as done
+`> mark <task index>`
+> mark 1
+### `unmark` marks a task as not done
+`> unmark <task index>`
+> unmark 1
+### `find` finds all tasks which description matches a string
+`> find <string>`
+> find read book
+### `todo` creates a todo task
+`> todo <description>`
+> todo read book at the library
+### `deadline` creates a task with deadline
+`> deadline <description> /by <deadline YYYY-MM-DD>`
+> deadline finish math homework /by 2022-09-19
+### `event` creates a task with time
+`> event <description> /at <time YYYY-MM-DD>`
+> event go fishing /at 2022-09-20
+### `delete` deletes a task
+`> delete <task index>`
+> delete 1
