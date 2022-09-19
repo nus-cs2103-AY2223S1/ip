@@ -1,5 +1,9 @@
 # User Guide to Duke Bot
 
+#### This is Duke, the Duke Bot. 
+
+![This is supposed to be an image of Duke](./Ui.png)
+
 ## Features 
 
 ### Add tasks
