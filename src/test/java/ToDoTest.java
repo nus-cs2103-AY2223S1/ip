@@ -7,7 +7,7 @@ public class ToDoTest {
     @Test
     public void toString_dummyTodo_success() {
         ToDo todo = new ToDo("test");
-        assertEquals("[T][ ] test", todo.toString());
+        assertEquals("[T] [ ] test", todo.toString());
     }
 
     @Test

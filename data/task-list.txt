@@ -1,2 +1,0 @@
-T;X;say hi to asher; 
-D; ;ip;2022-09-19
