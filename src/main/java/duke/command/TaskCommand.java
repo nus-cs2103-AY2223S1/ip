@@ -58,6 +58,8 @@ public class TaskCommand extends Command {
                 return "I've added this task to the list:\n  " + task.getTask()
                         + "\nYou have a total of " + tasks.listSize() + " " + taskS + " in the list.";
             } catch (NullPointerException e) {
+                tasks.delete(task);
+                storage.delete(taskType, description);
                 return "You've given me an invalid task description!";
             }
         }

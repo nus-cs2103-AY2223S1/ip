@@ -131,6 +131,10 @@ public class Storage {
         storage.remove(index - 1);
     }
 
+    public void delete(String taskType, String description) {
+        storage.remove(taskType + description);
+    }
+
     /**
      * Adds a task to be recorded and saved in storage.
      * @param taskType the string representing the type of task

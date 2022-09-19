@@ -33,6 +33,10 @@ public class TaskList {
         taskList.remove(index - 1);
     }
 
+    public void delete(Task task) {
+        taskList.remove(task);
+    }
+
     public void add(Task task) {
         taskList.add(task);
     }

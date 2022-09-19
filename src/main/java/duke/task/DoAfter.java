@@ -14,11 +14,16 @@ public class DoAfter extends Task {
     public DoAfter(String desc) {
         super(desc);
 
-        String[] parts = desc.split("/after");
+        String[] parts = desc.split("/after ");
         super.description = parts[0];
         super.isDone = false;
         super.type = "A";
-        after = parts[1];
+
+        try {
+            after = parts[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -27,6 +32,11 @@ public class DoAfter extends Task {
         if (this.isDone) {
             mark = "X";
         }
-        return "[" + type + "][" + mark + "]" + this.description + "(after:" + after + ")";
+
+        if (after == null) {
+            throw new NullPointerException();
+        } else {
+            return "[" + type + "][" + mark + "]" + this.description + "(after: " + after + ")";
+        }
     }
 }
