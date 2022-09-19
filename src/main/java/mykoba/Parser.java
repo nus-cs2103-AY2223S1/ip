@@ -55,7 +55,7 @@ public class Parser {
         case "delete":
             return getDeleteCommand(description);
         case "find":
-            return getFindCommand(description);
+            return new FindCommand(description);
         default:
             throw new KobaException("I'm sorry, but I don't know what that means :-(");
         }
@@ -107,11 +107,5 @@ public class Parser {
             throw new KobaException("The date cannot be empty!");
         }
         return new AddCommand(new Event(task, false, date));
-    }
-
-    private static FindCommand getFindCommand(String description) {
-        String[] splitString = description.split("find ", 2);
-        String keyword = splitString[1];
-        return new FindCommand(keyword);
     }
 }

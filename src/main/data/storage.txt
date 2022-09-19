@@ -1,3 +1,6 @@
 T | T | homework
 E | T | party | sunday 2-5pm
 D | T | ps2 | 2022-09-10T23:59
+T | F | Read the Hobbit
+D | F | Return library books | 2022-09-28T18:00
+T | F | read the hunger games
