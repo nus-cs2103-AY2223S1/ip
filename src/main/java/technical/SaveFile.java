@@ -1,7 +1,5 @@
 package technical;
 
-import functional.Task;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import functional.Task;
 
 /**
  * The class which organises the save file.
@@ -28,7 +28,8 @@ public class SaveFile {
      * @throws IOException if the file failed to be created.
      */
     private static void guaranteeSaveFile() throws IOException {
-        assert saveFile.exists() || saveFile.createNewFile();
+        boolean result = saveFile.exists() || saveFile.createNewFile();
+        assert result;
     }
 
     /**
@@ -86,16 +87,20 @@ public class SaveFile {
      */
     public static void saveFile() throws IOException {
         guaranteeSaveFile();
-        assert !temporaryFile.exists() || temporaryFile.delete();
-        assert(temporaryFile.createNewFile());
+        boolean result = !temporaryFile.exists() || temporaryFile.delete();
+        assert result;
+        result = temporaryFile.createNewFile();
+        assert(result);
         FileWriter temporaryFileWriter = new FileWriter(temporaryFile);
         for (SaveLine i : fileData) {
             temporaryFileWriter.append(i.toString());
             temporaryFileWriter.append('\n');
         }
         temporaryFileWriter.close();
-        assert(saveFile.delete());
-        assert(temporaryFile.renameTo(saveFile));
+        result = saveFile.delete();
+        assert(result);
+        result = temporaryFile.renameTo(saveFile);
+        assert(result);
     }
 
     // TODO: Prevent fileData from being edited outside this class.

@@ -1,28 +1,40 @@
 # User Guide
 
-## Features 
+## Features
 
-### Feature-ABC
+### Task List
 
-Description of the feature.
+You can keep track of your tasks, whether that would be todos, deadlines, or
+events!
 
-### Feature-XYZ
+### Automatic Help
 
-Description of the feature.
+If you don't know how to use a command, writing that command by itself will
+give you a brief explanation of its usage (except for list and sort).
+
+### Marking Tasks
+
+You can mark tasks as done or not done, which makes keeping track of your todos
+and deadlines easier. You can also mark an event as done or not done, but I
+don't know why you would ever want to do that.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `list` - Lists your tasks
 
-Describe the action and its outcome.
+The command will simply list all your tasks (todos, deadlines, and events).
 
-Example of usage: 
+Example of usage:
 
-`keyword (optional arguments)`
+`list`
 
 Expected outcome:
 
-Description of the outcome.
+1. \[T\]\[ \] Take out trash
+1. \[D\]\[ \] Make a user guide for the iP for CS2103T (by 2022/9/4 at
+15:16:17)
+1. \[E\]\[X\] The entire year of 2023 (from 2023/1/1 at 00:00:00 to 2023/12/31
+at 23:59:59)
 
 ```
 expected output

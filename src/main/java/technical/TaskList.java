@@ -82,18 +82,23 @@ public class TaskList {
      * @return A String array of split message chunks.
      */
     private static String[] readFlags(String[] arguments, String ... keys) {
-        StringBuilder[] flagged = new StringBuilder[keys.length];
+        StringBuilder[] flagged = new StringBuilder[keys.length + 1];
         for (int i = 0; i < flagged.length; ++i) {
             flagged[i] = new StringBuilder();
         }
-        for (String i : arguments) {
-            int mode = Arrays.asList(keys).indexOf(i) + 1;
+        int mode = 0;
+        for (int i = 1; i < arguments.length; ++i) {
+            int newMode = Arrays.asList(keys).indexOf(arguments[i]) + 1;
+            if (newMode > 0) {
+                mode = newMode;
+                continue;
+            }
             if (flagged[mode].length() != 0) {
                 flagged[mode].append(' ');
             }
-            flagged[mode].append(i);
+            flagged[mode].append(arguments[i]);
         }
-        String[] ret = new String[keys.length];
+        String[] ret = new String[keys.length + 1];
         for (int i = 0; i < ret.length; ++i) {
             ret[i] = flagged[i].toString();
         }

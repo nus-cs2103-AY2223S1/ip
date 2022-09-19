@@ -32,7 +32,6 @@ public class Deadline extends Task {
      */
     public Deadline(SaveLine line) {
         super(line);
-        System.out.println(line.getValue(DEADLINE_DEADLINE_LABEL));
         deadline = LocalDateTime
             .parse(line.getValue(DEADLINE_DEADLINE_LABEL),
             DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
