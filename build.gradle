@@ -14,7 +14,7 @@ run {
 }
 
 group 'org.example'
-version '0.1'
+version '0.2'
 mainClassName = 'duke.gui.Launcher'
 
 // Output to build/libs/Duke.jar
