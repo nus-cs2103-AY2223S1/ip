@@ -23,7 +23,7 @@ import pixel.task.ToDo;
  */
 public class TaskList {
 
-    private String filePath;
+    private final String filePath;
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
         .withResolverStyle(ResolverStyle.SMART);
@@ -84,15 +84,16 @@ public class TaskList {
         String date = String.valueOf(inputDue.getDayOfMonth());
 
         //time pattern of input date in 24 hour format -- HH for 24h, hh for 12h
-        DateFormat timeFormat = new SimpleDateFormat("HHmm");
+        DateFormat inputTimeFormat = new SimpleDateFormat("HHmm");
+        inputTimeFormat.setLenient(false);
 
         //Date/time pattern of desired output date
-        DateFormat outputFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
+        DateFormat outputTimeFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
 
         if (!Objects.equals(dueTime, "")) {
-            Date oldTimeFormat = timeFormat.parse(dueTime);
-            String finalTimeFormat = outputFormat.format(oldTimeFormat);
-            return month + " " + date + " " + year + " " + finalTimeFormat;
+            Date inputTime = inputTimeFormat.parse(dueTime);
+            String outputTime = outputTimeFormat.format(inputTime);
+            return month + " " + date + " " + year + " " + outputTime;
         }
 
         return month + " " + date + " " + year;

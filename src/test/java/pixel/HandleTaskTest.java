@@ -6,33 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
-import pixel.util.IncorrectFormatException;
-import pixel.util.Parser;
-import pixel.util.Storage;
-import pixel.util.TaskList;
+import pixel.util.*;
 
 public class HandleTaskTest {
 
-    private String filePath = "./data/pixel.txt";
-    private Pixel pixelBot = new Pixel(filePath); // output file address
-    private TaskList taskList = new TaskList(filePath);
-
-    //@Test
-    //public void testAddingTasks() throws FileNotFoundException {
-    //String inputFileAddress = "C:/!Education/CS2103/gitFolderOne/data/testInput.txt";
-    //File text = new File(inputFileAddress);
-    //Scanner inputScanner = new Scanner(text);
-
-    //Reading each line of the file using Scanner class
-    //        int lineNumber = 1;
-    //        while (inputScanner.hasNextLine()){
-    //            String line = inputScanner.nextLine();
-    //            System.out.println("line " + lineNumber + " :" + line);
-    //            lineNumber++;
-    //        }
+    private final String filePath = "./data/pixelTest.txt";
+    private final Pixel pixelBot = new Pixel(filePath); // output file address
+    private final TaskList taskList = new TaskList(filePath);
 
     @Test
     public void testInvalidInput() {
@@ -53,7 +37,7 @@ public class HandleTaskTest {
             // System.out.println(exception);
             assertTrue(exception instanceof IncorrectFormatException);
             assertEquals(exception.toString(),
-                "pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!");
+                "Slash should be followed by \"by\" or \"at\"!");
         }
     }
 
@@ -61,23 +45,16 @@ public class HandleTaskTest {
     public void testDeleteTask() {
         try {
             taskList.handleNewTask("deadline CS2103 assignment /by tomorrow", Parser.TaskType.DEADLINE);
-            taskList.handleNewTask("todo meet Wayne for dinner /at 2022-26-08 1850", Parser.TaskType.DEADLINE);
+            taskList.handleNewTask("todo meet Wayne for dinner /at 2022-06-08 1850", Parser.TaskType.DEADLINE);
             assertEquals(2, Storage.INPUT_TASKS.size());
             Storage.deleteEntry("delete 2", this.filePath);
             assertEquals(1, Storage.INPUT_TASKS.size());
+            taskList.handleNewTask("todo meet Wayne for dinner /on 2022-26-08 1850", Parser.TaskType.DEADLINE);
         } catch (Exception exception) {
-            // System.out.println(exception);
-            assertTrue(exception instanceof IOException);
-            // assertEquals("pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!",
-            //      exception.toString());
+            assertTrue(exception instanceof IncorrectFormatException);
+            assertEquals("Slash should be followed by \"by\" or \"at\"!",
+                exception.toString());
         }
     }
 
-    @Test
-    public void dateTimeFormatterWorking() {
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
-        .withResolverStyle(ResolverStyle.SMART);
-    DateValidator validator = new DateValidatorUsingDateTimeFormatter(dateFormatter);
-    assertTrue(validator.isValid("2019-02-28"));
-    assertFalse(validator.isValid("2019-02-30"));
 }
