@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -12,11 +13,8 @@ import java.util.Date;
  */
 public class Event extends Task {
 
-    /** Date of the event */
-    private String date;
-
-    /** Time of the event */
-    private String time;
+    /** Date and time of the event */
+    private LocalDateTime dateTime;
 
     /**
      * Constructs a new event task with given
@@ -27,8 +25,9 @@ public class Event extends Task {
      */
     public Event(String description, String dateAndTime) {
         super(description);
-        this.date = getDateFromInput(dateAndTime);
-        this.time = getTimeFromInput(dateAndTime);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        this.dateTime = LocalDateTime.parse(dateAndTime, formatter);
     }
 
     @Override
@@ -36,9 +35,7 @@ public class Event extends Task {
         return "[E]"
                 + super.toString()
                 + " (at: "
-                + LocalDate.parse(date).format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
-                + " "
-                + formatTime(time)
+                + this.dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy h:mma"))
                 + ")";
     }
 
@@ -50,34 +47,13 @@ public class Event extends Task {
                 +  " | "
                 + this.getName()
                 + " | "
-                + this.date
+                + this.dateTime.toLocalDate()
                 + " "
-                + this.time;
+                + this.dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HHmm"));
     }
 
-    private String[] splitIntoDateAndTime(String string) {
-        String[] token = string.split(" ", 2);
-        return token;
-    }
 
-    private String getDateFromInput(String input) {
-        String[] token = splitIntoDateAndTime(input);
-        return token[0];
-    }
-
-    private String getTimeFromInput(String input) {
-        String[] token = splitIntoDateAndTime(input);
-        return token[1];
-    }
-
-    private String formatTime(String str) {
-        try {
-            Date date = new SimpleDateFormat("HHmm").parse(str);
-            SimpleDateFormat format = new SimpleDateFormat("h:mm a");
-            return format.format(date);
-        } catch (ParseException e) {
-            System.out.println("There is some problem saving your event");
-        }
-        return time;
+    public LocalDateTime getLocalDateTime() {
+        return this.dateTime;
     }
 }

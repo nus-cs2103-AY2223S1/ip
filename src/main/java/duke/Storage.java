@@ -56,30 +56,28 @@ public class Storage {
             switch (firstLetter) {
             case "T":
                 ToDos todo = new ToDos(taskContent);
-                if (isDone) {
-                    todo.setDone(true);
-                }
-                taskList.add(todo);
+                checkAndAddToList(taskList, isDone, todo);
                 break;
             case "D":
                 Deadline deadline = new Deadline(taskContent, token[3]);
-                if (isDone) {
-                    deadline.setDone(true);
-                }
-                taskList.add(deadline);
+                checkAndAddToList(taskList, isDone, deadline);
                 break;
             case "E":
                 Event event = new Event(taskContent, token[3]);
-                if (isDone) {
-                    event.setDone(true);
-                }
-                taskList.add(event);
+                checkAndAddToList(taskList, isDone, event);
                 break;
             default:
                 throw new DukeException();
             }
         }
         return taskList;
+    }
+
+    private void checkAndAddToList(List<Task> taskList, boolean isDone, Task task) {
+        if (isDone) {
+            task.setDone(true);
+        }
+        taskList.add(task);
     }
 
     /**
