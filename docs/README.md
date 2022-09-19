@@ -1,18 +1,32 @@
-# User Guide
+# _Jarvis_ User Guide
 
-## Features 
+_Jarvis_ is a Personal Assistant Chatbot🤖 that helps you to keep track of various tasks so that you won't forget them.
 
-### Feature-ABC
+## Features
 
-Description of the feature.
+### Task type support
 
-### Feature-XYZ
+1. `todo`: A simple task to do, no specified time
+2. `event`: A event with a date and time of occurring
+3. `deadline`: A task with a due date
 
-Description of the feature.
+### Chat box command based
+
+You can use _Jarvis_ simply by entering keywords and descriptions in a message
+
+### Search
+You can look up your tasks easily with `find` command
+
+### Basic CRUD
+
+- Create: Add 3 different type of tasks
+- Read: View all tasks you saved in a list
+- Update: Mark/Unmark tasks as done/not done yet
+- Delete: Remove tasks from your list
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - Describe action
 
 Describe the action and its outcome.
 
@@ -22,7 +36,8 @@ Example of usage:
 
 Expected outcome:
 
-Description of the outcome.
+Description of the outcome.<br/>
+<img src="screenshots/todo.png" width="200px">
 
 ```
 expected output
