@@ -79,6 +79,21 @@ public class TaskList {
     }
 
     /**
+     * Adds a FixedDurationTask to the task list.
+     *
+     * @param s Data for the FixedDurationTask.
+     * @throws DukeTaskException  If FixedDurationTask can't be created with the input.
+     */
+    public Task addFixedDurationTask(String s) throws DukeTaskException {
+        wasFinding = false;
+        String duration = dateFinder(s, "/for");
+        String name = nameFinder(s, "/for");
+        Task temp = new FixedDurationTask(name, false, duration);
+        log.add(temp);
+        return temp;
+    }
+
+    /**
      * Prints out the contents of the task list.
      *
      * @return String containing tasks in task list.

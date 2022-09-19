@@ -260,6 +260,10 @@ public class Duke extends Application {
             storage.save(tasklist);
             return ("added event: " + event.getName());
             //fallthrough
+        case FIXEDDURATIONTASK:
+            Task fixedDurationTask = tasklist.addFixedDurationTask(s);
+            storage.save(tasklist);
+            return ("added fixed duration task: " + fixedDurationTask.getName());
         case FIND:
             return tasklist.findList(s);
             //fallthrough
@@ -286,6 +290,7 @@ public class Duke extends Application {
         TODO,
         DEADLINE,
         EVENT,
-        FIND
+        FIND,
+        FIXEDDURATIONTASK
     }
 }

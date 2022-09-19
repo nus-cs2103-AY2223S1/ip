@@ -106,6 +106,9 @@ public class Storage {
         case 'E':
             log.add(Event.load(s));
             break;
+        case 'F':
+            log.add(FixedDurationTask.load(s));
+            break;
         default:
             throw new DukeException("Something went wrong with reading the save");
             //Fallthrough

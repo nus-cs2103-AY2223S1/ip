@@ -65,6 +65,12 @@ public class Parser {
                 }
                 return new Pair<>(Duke.Command.EVENT, restWord);
                 //Fallthrough
+            case "fdt":
+                if (!restWord.contains("/for")) {
+                    throw new DukeTaskException("Events require command '/for' to signify duration");
+                }
+                return new Pair<>(Duke.Command.FIXEDDURATIONTASK, restWord);
+            //Fallthrough
             case "find":
                 if (restWord.equals("")) {
                     throw new DukeTaskException("Keyword to find cannot be empty");
