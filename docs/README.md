@@ -25,25 +25,25 @@ Shiba is a **desktop app for managing tasks, deadlines and events, intended for 
 
 ## Features 
 
-1. Add task
-   - Add ToDo: `todo`
-   - Add Deadline: `deadline`
-   - Add Event: `event`
-2. List tasks: `list`
-3. Mark tasks as done
-   - Mark single task as done: `mark [number]`
-   - Mark a range of tasks as done: `mark [start of range] - [end of range]`
-   - Mark all tasks as done: `mark all`
-4. Mark tasks as not done
-   - Mark single task as not done: `unmark [number]`
-   - Mark a range of tasks as not done: `unmark [start of range] - [end of range]`
-   - Mark all tasks as not done: `unmark all`
-5. Delete tasks
-   - Delete a single task: `mark [number]`
-   - Delete a range of tasks: `delete [start of range] - [end of range]`
-   - Delete all tasks: `delete all`
-6. Find task: `find`
-7. Exit Shiba: `bye`
+1. [Add task](#1-add-task)
+   - [Add ToDo: `todo`](#todo---add-todo-task)
+   - [Add Deadline: `deadline`](#deadline---add-deadline-task)
+   - [Add Event: `event`](#event---add-event-task)
+2. [List tasks: `list`](#2-list-tasks)
+3. [Mark tasks as done](#3-mark-tasks-as-done)
+   - [Mark single task as done: `mark [number]`](#mark-task-number---mark-a-specific-task-as-done)
+   - [Mark a range of tasks as done: `mark [start of range] - [end of range]`](#mark-start-of-range---end-of-range---mark-a-range-of-tasks-as-done)
+   - [Mark all tasks as done: `mark all`](#mark-all---mark-all-tasks-as-done)
+4. [Mark tasks as not done](#4-mark-tasks-as-not-done)
+   - [Mark single task as not done: `unmark [number]`](#unmark-task-number---mark-a-specific-task-as-not-done)
+   - [Mark a range of tasks as not done: `unmark [start of range] - [end of range]`](#unmark-start-of-range---end-of-range---mark-a-range-of-tasks-as-not-done)
+   - [Mark all tasks as not done: `unmark all`](#unmark-all---mark-all-tasks-as-not-done)
+5. [Delete tasks](#5-delete-tasks)
+   - [Delete a single task: `mark [number]`](#delete-task-number---delete-a-specific-task)
+   - [Delete a range of tasks: `delete [start of range] - [end of range]`](#delete-start-of-range---end-of-range---delete-a-range-of-tasks)
+   - [Delete all tasks: `delete all`](#delete-all---delete-all-tasks)
+6. [Find task: `find`](#6-find-tasks)
+7. [Exit Shiba: `bye`](#7-exit-shiba)
 
 ## Usage
 
@@ -483,3 +483,21 @@ Shiba will respond with:
 Shiba hope you had a productive time today!
 Don't forget to come and work with me again 
 ```
+---
+## Frequently Asked Questions
+**Q**: How do I run the application in my computer? The double click does not seem to be working <br>
+**A**: You can try opening your terminal in your computer and proceed to the directory containing the `Shiba.jar` file. 
+Once opened, you can try to run `java -jar Shiba.jar`
+
+**Q**: I cannot input the date and format when running the `deadline` and `event` commands. What should I do? <br>
+**A**: You can first check the order of your arguments. It should be in the form `deadline [description] /by [date] [time]`
+for deadline and `event [description] /at [date] [time] ` for event. <br> 
+You may also want to check your date and time format. <br>
+Dates should be in the form of `YYYY-MM-DD`, and time in the 24-hour format `HHMM` (e.g. 06.05 p.m. of Monday, 19th 
+September 2022) would be written as `2022-09-19 1805`
+---
+## Command Summary
+
+| Action                            | Format | Example | 
+|-----------------------------------|--------|---------|
+| [Add Todo](#todo---add-todo-task) |        |         |
