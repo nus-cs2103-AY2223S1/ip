@@ -30,9 +30,6 @@ public class Deadline extends Task implements Serializable {
         return "D | " + super.toFileData() + "| " + this.endTime;
     }
 
-    /**
-     * Returns string representation of deadline.
-     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), endTime);

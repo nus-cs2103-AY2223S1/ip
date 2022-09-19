@@ -140,10 +140,11 @@ public class Ui {
         String mark = "\n\t6. mark <task number> : mark task as complete";
         String unmark = "\n\t7. unmark <task number> : unmark task as complete";
         String find = "\n\t8. find <keyword> : find task with keyword";
-        String help = "\n\t9. help : get all available commands";
-        String bye = "\n\t10. bye : save all current tasks and leave app";
+        String reminder = "\n\t9. reminder : get all incomplete tasks left";
+        String help = "\n\t10. help : get all available commands";
+        String bye = "\n\t11. bye : save and quit app";
 
-        return String.format("These are the commands you can use, try them!\n%s%s%s%s%s%s%s%s%s%s", todo,
-        event, deadline, list, delete, mark, unmark, find, help, bye);
+        return String.format("These are the commands you can use, try them!\n%s%s%s%s%s%s%s%s%s%s%s", todo,
+        event, deadline, list, delete, mark, unmark, find, reminder, help, bye);
     }
 }

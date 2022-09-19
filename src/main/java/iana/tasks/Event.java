@@ -31,9 +31,6 @@ public class Event extends Task implements Serializable {
         return "E | " + super.toFileData() + "| " + this.eventTime;
     }
 
-    /**
-     * String representation of event.
-     */
     @Override
     public String toString() { 
         return String.format("[E]%s (at: %s)", super.toString(), this.eventTime);

@@ -115,6 +115,10 @@ public class Task implements Serializable {
         this.isCompleted = isCompleted;
     }
 
+    protected boolean isCompleted() {
+        return this.isCompleted;
+    } 
+
     /**
      * Checks if task description contains keyword.
      * 
@@ -122,8 +126,8 @@ public class Task implements Serializable {
      * @return true if task contains keyword.
      */
     public boolean containsKeyword(String keyword) {
-        String key = keyword.trim().toLowerCase();
-        return this.task.toLowerCase().contains(key);
+        String key = keyword.trim();
+        return this.task.contains(key);
     }
  
     /**
@@ -135,9 +139,6 @@ public class Task implements Serializable {
         return String.format("%d | %s", this.isCompleted ? 1 : 0, this.task);
     }
 
-    /**
-     * Returns string representation of task.
-     */
     @Override
     public String toString() {
         return String.format("%s %s", this.isCompleted ? "[X]" : "[ ]", this.task);

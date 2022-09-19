@@ -9,6 +9,7 @@ import iana.command.FindCommand;
 import iana.command.HelpCommand;
 import iana.command.ListCommand;
 import iana.command.MarkCommand;
+import iana.command.ReminderCommand;
 import iana.command.UnmarkCommand;
 import iana.exception.IanaException;
 
@@ -57,6 +58,9 @@ public class Parser {
 
             case "help":
                 return new HelpCommand();
+
+            case "reminder":
+                return new ReminderCommand();
 
             default:
                 return new AnotherCommand();

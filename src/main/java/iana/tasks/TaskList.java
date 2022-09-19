@@ -40,9 +40,13 @@ public class TaskList implements Serializable {
      * Add a new task into the task list.
      * 
      * @param newTask new task to be added.
-     * @throws IanaException if task is in the incorrect format.
      */
     public void add(Task newTask) {
+        for (Task curr : this.taskList) {
+            if (newTask.equals(curr)) {
+                return;
+            }
+        }
         this.taskList.add(newTask);
     }
 
@@ -93,6 +97,18 @@ public class TaskList implements Serializable {
             }
         }
         return list;
+    }
+
+    public TaskList getIncompleteTasks() {
+        TaskList incompleteTasks = new TaskList();
+
+        for (Task curr : this.taskList) {
+            if (!curr.isCompleted()) {
+                incompleteTasks.add(curr);
+            } 
+        }
+
+        return incompleteTasks;
     }
 
     /**
