@@ -1,14 +1,7 @@
 package duke.parser;
 
 import duke.DukeException;
-import duke.commands.Command;
-import duke.commands.AddCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.ExitCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnknownCommand;
-import duke.commands.UnmarkCommand;
+import duke.commands.*;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.ToDo;
@@ -41,6 +34,8 @@ public class Parser {
                 return parseToDo(input);
             case "delete":
                 return parseDelete(input);
+            case "find":
+                return parseFind(input);
             default:
                 return new UnknownCommand();
         }
@@ -79,5 +74,8 @@ public class Parser {
         return new AddCommand(new ToDo(description));
     }
 
-
+    private static Command parseFind(String[] input) {
+        String search = input[1];
+        return new FindCommand(search);
+    }
 }
