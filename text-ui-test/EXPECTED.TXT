@@ -1,7 +1,421 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+____________________________________________________________
+   _____       _____
+  / ____|     / ____|
+ | |     __ _| |     __ _
+ | |    / _` | |    / _` |
+ | |___| (_| | |___| (_| |
+  \_____\__,_|\_____\__,_|
+
+Hello! I'm CaCa.
+What can I do for you?
+____________________________________________________________
+
+The file to store all your tasks does not exist.
+I will create one now...
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+____________________________________________________________
+There is no task in your list!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! The description of todo cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[T][ ] read book
+Now you have 1 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! The description of deadline cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I do not accept blank details. A deadline must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[D][ ] return book (by: Sep 02 2022 00:00)
+Now you have 2 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! The description of event cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I do not accept blank details. An event must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[E][ ] project meeting (at: Oct 01 2022 14:00)
+Now you have 3 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[T][ ] join sports club
+Now you have 4 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
+4.[T][ ] join sports club
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Nice! I've marked this task as done:
+[D][X] return book (by: Sep 02 2022 00:00)
+____________________________________________________________
+
+____________________________________________________________
+Nice! I've marked this task as done:
+[T][X] read book
+____________________________________________________________
+
+____________________________________________________________
+Nice! I've marked this task as done:
+[T][X] join sports club
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][X] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
+4.[T][X] join sports club
+____________________________________________________________
+
+____________________________________________________________
+OK, I've marked this task as not done yet:
+[E][ ] project meeting (at: Oct 01 2022 14:00)
+____________________________________________________________
+
+____________________________________________________________
+OK, I've marked this task as not done yet:
+[D][ ] return book (by: Sep 02 2022 00:00)
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
+4.[T][X] join sports club
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[T][ ] borrow book
+Now you have 5 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 5.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 5.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 5.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Noted. I've removed this task:
+[E][ ] project meeting (at: Oct 01 2022 14:00)
+Now you have 4 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][X] join sports club
+4.[T][ ] borrow book
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[D][ ] return book (by: Aug 29 2022 15:30)
+Now you have 5 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[E][ ] project meeting (at: Sep 09 2022 17:00)
+Now you have 6 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[T][ ] exercise
+Now you have 7 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Nice! I've marked this task as done:
+[T][X] exercise
+____________________________________________________________
+
+____________________________________________________________
+Noted. I've removed this task:
+[T][X] exercise
+Now you have 6 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][X] join sports club
+4.[T][ ] borrow book
+5.[D][ ] return book (by: Aug 29 2022 15:30)
+6.[E][ ] project meeting (at: Sep 09 2022 17:00)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][ ] borrow book
+4.[D][ ] return book (by: Aug 29 2022 15:30)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[D][ ] return book (by: Sep 02 2022 00:00)
+2.[D][ ] return book (by: Aug 29 2022 15:30)
+____________________________________________________________
+
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
+
+____________________________________________________________
+   _____       _____
+  / ____|     / ____|
+ | |     __ _| |     __ _
+ | |    / _` | |    / _` |
+ | |___| (_| | |___| (_| |
+  \_____\__,_|\_____\__,_|
+
+Hello! I'm CaCa.
+What can I do for you?
+____________________________________________________________
+
+Opening the file that stores all your tasks...
+
+These are the tasks in your list:
+T | X | read book
+D |   | return book | 02/09/2022 0000
+T | X | join sports club
+T |   | borrow book
+D |   | return book | 29/08/2022 1530
+E |   | project meeting | 09/09/2022 1700
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][X] join sports club
+4.[T][ ] borrow book
+5.[D][ ] return book (by: Aug 29 2022 15:30)
+6.[E][ ] project meeting (at: Sep 09 2022 17:00)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][ ] borrow book
+4.[D][ ] return book (by: Aug 29 2022 15:30)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[T][ ] borrow book
+4.[D][ ] return book (by: Aug 29 2022 15:30)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+OOPS!!! There is no matching task in your list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][X] join sports club
+2.[E][ ] project meeting (at: Sep 09 2022 17:00)
+____________________________________________________________
+
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[D][ ] return book (by: Aug 29 2022 15:30)
+____________________________________________________________
+
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
 
