@@ -24,6 +24,7 @@ public class DukeCommandMap {
         commandMap.put("revent", new AddRecurringEventCommand());
         commandMap.put("save", new SaveCommand());
         commandMap.put("bye", new ExitCommand());
+        commandMap.put("help", new HelpCommand());
     }
 
     /**
@@ -35,7 +36,7 @@ public class DukeCommandMap {
      */
     public DukeCommand getCommand(String keyword) throws DukeException {
         if (!commandMap.containsKey(keyword)) {
-            throw new DukeException("Command not found!");
+            throw new DukeException("Command not found! Type 'help' to see all the commands.");
         }
         return commandMap.get(keyword);
     }
