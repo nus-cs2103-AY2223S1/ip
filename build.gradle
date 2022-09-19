@@ -9,11 +9,6 @@ repositories {
     mavenCentral()
 }
 
-//javafx {
-//    version = "11"
-//    modules = [ 'javafx.controls' ]
-//}
-
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
@@ -59,8 +54,5 @@ shadowJar {
 
 run{
     standardInput = System.in
-}
-
-run {
     enableAssertions = true
 }

@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class Storage {
 
     /** File that is saved */
-    private File dataFile;
+    private String filePath;
 
     /**
      * Constructs a new storage object with given file path.
@@ -30,7 +30,7 @@ public class Storage {
      * @param filePath in which the history will be saved to.
      */
     public Storage(String filePath) {
-        this.dataFile = new File(filePath);
+        this.filePath = filePath;
     }
 
     /**
@@ -43,7 +43,11 @@ public class Storage {
     public List<Task> load() throws DukeException, FileNotFoundException {
 
         List<Task> taskList = new ArrayList<>();
-        Scanner scanner = new Scanner(dataFile);
+        File file = new File(this.filePath);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+        }
+        Scanner scanner = new Scanner(file);
 
         while (scanner.hasNext()) {
             String string = scanner.nextLine();
@@ -87,9 +91,7 @@ public class Storage {
      */
     public void save(TaskList taskList) {
         try {
-            String dataPath = dataFile.getPath();
-            assert !dataPath.isEmpty() : "data file path should not be empty";
-            FileWriter filewriter = new FileWriter(dataFile.getPath());
+            FileWriter filewriter = new FileWriter(this.filePath);
 
             for (int i = 1; i <= taskList.getListSize(); i++) {
                 Task task = taskList.getTask(i);

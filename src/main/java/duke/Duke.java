@@ -15,7 +15,8 @@ public class Duke {
     private TaskList listOfTasks;
 
     public Duke() {
-        this.storage = new Storage("./data/duke.txt");
+        String workingDir = System.getProperty("user.dir");
+        this.storage = new Storage(workingDir + "/out/duke.txt");
         this.ui = new Ui();
         try {
             listOfTasks = new TaskList(storage.load());
