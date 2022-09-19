@@ -10,7 +10,7 @@ public class TaskList {
 
     public String displayNumTasks() {
         String text = "\tNow you have " + this.taskList.size() +
-                "tasks in the list.";
+                " tasks in the list.";
         return text;
     }
 

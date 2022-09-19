@@ -13,11 +13,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markTask(index);
-        try {
-            storage.saveTaskList(taskList);
-        } catch (IOException e) {
-            System.out.println("Error while saving the text");
-        }
+        storage.saveTaskList(taskList);
         String text = MESSAGE + "\n " + taskList.getTaskString(index);
         ui.displayMessage(text);
     }

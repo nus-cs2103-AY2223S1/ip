@@ -13,11 +13,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(task);
-        try {
-            storage.saveTaskList(taskList);
-        } catch (IOException e) {
-            System.out.println("Error while saving the text");
-        }
+        storage.saveTaskList(taskList);
         String text = MESSAGE + "\n\t" + task.toString() + "\n" +
                 taskList.displayNumTasks();
         ui.displayMessage(text);

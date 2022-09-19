@@ -5,34 +5,32 @@ import java.util.ArrayList;
 
 public class Duke {
 
+	private Ui ui;
+	private Storage storage;
+	private TaskList taskList;
+
+	public Duke() {
+		ui = new Ui();
+		storage = new Storage();
+		taskList = new TaskList(storage.convertToTaskList());
+	}
+
+	public void run() {
+		ui.displayWelcomeMessage();
+		boolean isExit = false;
+		while(!isExit) {
+			String userInput = ui.getUserInput();
+			Command command = Parser.parse(userInput);
+			command.execute(taskList, ui, storage);
+			isExit = command.isExit();
+
+		}
+	}
 
 	public static void main(String[] args) {
 
-		Scanner sc = new Scanner(System.in);
-
-		ChatBot chatBot = new ChatBot("duke", new Storage());
-
-		Storage taskStorage = new Storage();
-
-		chatBot.greet();
-
-		boolean quit = false;
-		String input;
-		String[] command;
-		String time; // for the deadline or time of the event
-		String taskName;
-
-		while(!quit) {
-
-			try {
-				quit = chatBot.executeCommand(sc.nextLine());
-			} catch (DukeException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-
-		sc.close();
-
-
+		new Duke().run();
 	}
+
+
 }

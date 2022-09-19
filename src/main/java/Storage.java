@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -7,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-class Storage {
+public class Storage {
 
     private final File DATA_DIRECTORY = new File("/data");
     private final File DATA_FILEPATH = new File("data/duke.txt");
 
-    public Storage() throws IOException {
+    public Storage() {
         if(!DATA_DIRECTORY.exists()) {
             DATA_DIRECTORY.mkdir();
         }
@@ -20,7 +21,7 @@ class Storage {
         try {
             DATA_FILEPATH.createNewFile();
         } catch (IOException e) {
-            System.out.println("There was an error while creating the file");
+            System.out.println("Couldn't create a new file.");
         }
     }
 
@@ -61,14 +62,14 @@ class Storage {
 
     }
 
-    public void saveTaskList(TaskList taskList) throws IOException {
+    public void saveTaskList(TaskList taskList) {
 
         try {
             FileWriter fw = new FileWriter(DATA_FILEPATH);
             fw.write(taskList.taskListFileString());
             fw.close();
         } catch (IOException e) {
-            System.out.println("YOur data couldn't be saved");
+            System.out.println("Your data couldn't be saved");
         }
 
     }

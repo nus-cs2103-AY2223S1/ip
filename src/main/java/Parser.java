@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Parser {
 
-    public static Command parse(String command) throws DukeException {
+    public static Command parse(String command) {
         String[] input = command.split(" ", 2);
 
         String commandType = input[0].toLowerCase();

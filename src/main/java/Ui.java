@@ -4,10 +4,8 @@ public class Ui {
 
     private final String LINE = "------------------------------" +
             "----------------------------------";
-
     private final String WELCOME = "\tHello I'm Duke" + "!!\n" +
             "What do you wanna chat about today?";
-
     private final String EXIT = "\t Bye. Looking forward to chating " +
             "with you soon again!";
 
@@ -25,7 +23,6 @@ public class Ui {
 
     public void displayWelcomeMessage() {
         displayMessage(WELCOME);
-        sc.close();
     }
 
     public String getUserInput() {
@@ -36,6 +33,7 @@ public class Ui {
 
     public void displayExitMessage() {
         displayMessage(EXIT);
+        sc.close();
     }
 
 }
