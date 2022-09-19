@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
+    //@@author mjgui-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     private static final String DATA_FILE = "duke.dat";
     private final Duke duke = new Duke(DATA_FILE);
     private ScrollPane scrollPane;
@@ -39,4 +42,5 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    //@@author
 }

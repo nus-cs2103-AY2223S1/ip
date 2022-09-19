@@ -18,6 +18,9 @@ import utils.Pair;
  * Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class MainWindow extends AnchorPane {
+    //@@author mjgui-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     private final Image userImage = new Image(Objects.requireNonNull(
             this.getClass().getResourceAsStream("/images/DaUser.png")));
     private final Image dukeImage = new Image(Objects.requireNonNull(
@@ -74,4 +77,5 @@ public class MainWindow extends AnchorPane {
             userInput.clear();
         }
     }
+    //@@author
 }
