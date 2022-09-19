@@ -6,7 +6,7 @@ public class DateTime {
     private static DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
 
-    public static LocalDateTime parseDate(String date) throws DukeException{
+    public static LocalDateTime parseDate(String date) throws DukeException {
         try {
             LocalDateTime parsedDate = LocalDateTime.parse(date, inputFormat);
             return parsedDate;

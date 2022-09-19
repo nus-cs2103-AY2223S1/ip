@@ -1,2 +1,1 @@
-T | X | Read
-E |   | Bark | 1200
+T |   | Read
