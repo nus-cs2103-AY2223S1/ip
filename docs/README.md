@@ -6,6 +6,7 @@ Duke is a chat bot designed to help users manage their tasks. It is a command-li
 software that processes user input and displays immediate responses. Furthermore, 
 tasks added by users to Duke will be stored and can be retrieved each 
 time Duke is opened.
+
 <br>
 
 ## Features 
@@ -31,6 +32,7 @@ Tasks can be deleted from the list of tasks.
 
 ### Find tasks
 Tasks can be found from the list of tasks.
+
 <br>
 
 ## Features Details
