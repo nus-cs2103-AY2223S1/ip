@@ -33,8 +33,9 @@ public class ParserDukeTest {
             ParserDuke parser = new ParserDuke("deadline iP/2022-12-12 16:00");
             TaskList list = new TaskList();
             Deadline deadline = new Deadline("iP", 0, "2022-12-12 16:00");
-            String expected = "Mark this on your calendar! \n" + deadline + "\n"
-                    + "You now have 1 tasks  to do!\n" + "\n";
+            String expected = "Mark this on your calendar! \n"
+                    + "[D][ ]  iP (by: Dec 12 2022 at 16:00:00)" + "\n"
+                    + "You now have 1 tasks to do!\n" + "\n";
             assertEquals(expected, parser.parseDeadline(list));
             assertEquals(1, list.getListLength());
 
