@@ -40,6 +40,6 @@ public class UnmarkCommand extends Command {
             throws InvalidTaskException, StorageException {
         Task task = tasks.changeTaskStatus(index, false);
         storage.save(tasks);
-        return ui.showTaskDone(task);
+        return ui.showTaskUndone(task);
     }
 }

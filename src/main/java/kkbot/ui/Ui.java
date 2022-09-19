@@ -143,12 +143,13 @@ public class Ui {
             return DIVIDER + "Woohoo! You don't have any tasks!" + "\n" + DIVIDER;
         }
 
-        StringBuilder fullList = new StringBuilder("Here's your list of tasks:\n");
+        StringBuilder fullList = new StringBuilder(DIVIDER + "\nHere's your list of tasks:\n");
         for (int i = 0; i < numOfTasks; i++) {
             int index = i + 1;
             Task task = tasks.getTask(i);
             fullList.append(String.format("%d.%s\n", index, task));
         }
+        fullList.append(DIVIDER);
         System.out.print(fullList.toString());
         return fullList.toString();
     }
