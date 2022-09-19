@@ -2,6 +2,8 @@ package task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents an Event object that allows users to specify the date and time of the Task.
@@ -10,24 +12,29 @@ public class Event extends Task {
 
     private static final String SHORTHAND = "E";
 
-    private LocalDateTime at;
+    private LocalDateTime datetime;
 
     /**
-     * Initialises the Event with the given description and datetime.
+     * Initialises the Event with the given description, datetime, and no tags.
      *
      * @param description The description of the Event.
-     * @param at The datetime of the Event.
+     * @param datetime The datetime of the Event.
      */
-    public Event(String description, LocalDateTime at) {
-        super(description, SHORTHAND);
-        assert at != null: "Timing for Events cannot be null";
-        this.at = at;
+    public Event(String description, LocalDateTime datetime) {
+        this(description, datetime, new ArrayList<>());
     }
 
-    Event(String description, String at) {
+    /**
+     * Initialises the Event with the given description, datetime, tags.
+     *
+     * @param description The description of the Event.
+     * @param datetime The datetime of the Event.
+     * @param tags A list of tags for this Event.
+     */
+    public Event(String description, LocalDateTime datetime, List<String> tags) {
         super(description, SHORTHAND);
-        assert at != null: "Timing for Events cannot be null";
-        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
+        assert datetime != null: "Timing for Events cannot be null";
+        this.datetime = datetime;
     }
 
     /**
@@ -45,14 +52,18 @@ public class Event extends Task {
     @Override
     public String toString() {
         String parStr = super.toString();
-        return String.format("%s (at: %s)", parStr, getAtStr());
+        String tags = super.getPrintableTags();
+        if (!tags.equals("")) {
+            tags = "[" + tags + "]";
+        }
+        return String.format("%s (at: %s) %s", parStr, getAtStr(), tags);
     }
 
     private String getAtStr() {
-        return this.at.format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
+        return this.datetime.format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
     }
 
     private String getAtStorage() {
-        return this.at.format(DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
+        return this.datetime.format(DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
     }
 }

@@ -138,6 +138,10 @@ public class DukeException extends Exception {
         return formatError("finding task", errorMsg);
     }
 
+    public static DukeException tagTaskException(String errorMsg) {
+        return formatError("tagging task", errorMsg);
+    }
+
     /**
      * Returns a DukeException that specifies location of exception to be in the keyword.
      *

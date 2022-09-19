@@ -2,6 +2,8 @@ package task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a Deadline object that allows users to set a date and time as a deadline for the
@@ -11,18 +13,29 @@ public class Deadline extends Task {
 
     private static final String SHORTHAND = "D";
 
-    private LocalDateTime by;
+    private LocalDateTime datetime;
 
     /**
-     * Initialises the Deadline with the given description and datetime.
+     * Initialises the Deadline with the given description, datetime, and no tags.
      *
      * @param description The description of the Deadline.
-     * @param by The datetime of the Deadline.
+     * @param datetime The datetime of the Deadline.
      */
-    public Deadline(String description, LocalDateTime by) {
-        super(description, SHORTHAND);
-        assert by != null: "Timing for Deadlines cannot be null";
-        this.by = by;
+    public Deadline(String description, LocalDateTime datetime) {
+        this(description, datetime, new ArrayList<>());
+    }
+
+    /**
+     * Initialises the Deadline with the given description, datetime, tags.
+     *
+     * @param description The description of the Deadline.
+     * @param datetime The datetime of the Deadline.
+     * @param tags A list of tags for this Deadline.
+     */
+    public Deadline(String description, LocalDateTime datetime, List<String> tags) {
+        super(description, SHORTHAND, tags);
+        assert datetime != null: "Timing for Deadlines cannot be null";
+        this.datetime = datetime;
     }
 
     /**
@@ -40,14 +53,18 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         String parStr = super.toString();
-        return String.format("%s (by: %s)", parStr, getByStr());
+        String tags = super.getPrintableTags();
+        if (!tags.equals("")) {
+            tags = "[" + tags + "]";
+        }
+        return String.format("%s (by: %s) %s", parStr, getByStr(), tags);
     }
 
     private String getByStr() {
-        return this.by.format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
+        return this.datetime.format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
     }
 
     private String getByStorage() {
-        return this.by.format(DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
+        return this.datetime.format(DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
     }
 }

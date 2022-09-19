@@ -70,21 +70,29 @@ public class Storage {
             assert taskStr != null: "String to load task cannot be null";
             String[] tokens = tokenize(taskStr);
             String taskTypeStr = getTaskTypeStr(tokens);
-            boolean isDone = getIsDone(tokens);
             String description = getDescription(tokens);
+            String[] tags = getTags(tokens);
 
+            Task newTask;
             switch (taskTypeStr) {
             case "T":
-                return loadTodo(description, isDone);
+                newTask = loadTodo(description);
+                break;
             case "D":
                 LocalDateTime deadlineDateTime = getDateTime(tokens);
-                return loadDeadline(description, deadlineDateTime, isDone);
+                newTask = loadDeadline(description, deadlineDateTime);
+                break;
             case "E":
                 LocalDateTime eventDateTime = getDateTime(tokens);
-                return loadEvent(description, eventDateTime, isDone);
+                newTask = loadEvent(description, eventDateTime);
+                break;
             default:
                 throw DukeException.readRowFromFileException(taskStr);
             }
+
+            modifyDone(newTask, isDone(tokens));
+            modifyTags(newTask, tags);
+            return newTask;
         } catch (DukeException de) {
             throw DukeException.readRowFromFileException(
                     String.format("%s - %s", taskStr, de));
@@ -94,7 +102,7 @@ public class Storage {
     }
 
     private String[] tokenize(String taskStr) throws DukeException {
-        if (taskStr.contains("|")) {
+        if (!taskStr.contains("|")) {
             throw new DukeException("Task String does not contain the separator.");
         }
         return taskStr.split("\\|");
@@ -104,7 +112,7 @@ public class Storage {
         return tokens[0];
     }
 
-    private boolean getIsDone(String[] tokens) throws DukeException {
+    private boolean isDone(String[] tokens) throws DukeException {
         String isDoneStr = tokens[1];
         return isDoneStr.equals("X");
     }
@@ -114,7 +122,7 @@ public class Storage {
     }
 
     private LocalDateTime getDateTime(String[] tokens) throws DukeException {
-        String datetimeStr = tokens[3];
+        String datetimeStr = tokens[4];
         return getDateTime(datetimeStr);
     }
 
@@ -129,28 +137,33 @@ public class Storage {
         }
     }
 
-    private Task loadTodo(String description, boolean isDone) throws DukeException {
-        Task newTodo = new ToDo(description);
-        if (isDone) {
-            newTodo.markAsDone();
-        }
-        return newTodo;
+    private String[] getTags(String[] tokens) {
+        String tokenString = tokens[3];
+        return tokenString.split(",");
     }
 
-    private Task loadDeadline(String description, LocalDateTime datetime, boolean isDone) throws DukeException {
-        Task newDeadline = new Deadline(description, datetime);
-        if (isDone) {
-            newDeadline.markAsDone();
-        }
-        return newDeadline;
+    private Task loadTodo(String description) throws DukeException {
+        return new ToDo(description);
     }
 
-    private Task loadEvent(String description, LocalDateTime datetime, boolean isDone) throws DukeException {
-        Task newEvent = new Event(description, datetime);
+    private Task loadDeadline(String description, LocalDateTime datetime) throws DukeException {
+        return new Deadline(description, datetime);
+    }
+
+    private Task loadEvent(String description, LocalDateTime datetime) throws DukeException {
+        return new Event(description, datetime);
+    }
+
+    private void modifyDone(Task newTask, boolean isDone) {
         if (isDone) {
-            newEvent.markAsDone();
+            newTask.markAsDone();
         }
-        return newEvent;
+    }
+
+    private void modifyTags(Task newTask, String[] tags) {
+        for (String tag: tags) {
+            newTask.addTag(tag);
+        }
     }
 
     /**

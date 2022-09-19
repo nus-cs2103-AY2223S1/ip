@@ -26,6 +26,7 @@ public class Ui {
     private static final String DELETE_MESSAGE = "Noted. I've removed this task:";
     private static final String FOUND_MESSAGE = "Here are the matching tasks in your list:";
     private static final String NOT_FOUND_MESSAGE = "There are no tasks in your list with this keyword.";
+    private static final String TAG_MESSAGE = "Alright, I've tagged this task:";
 
     // Error Messages
     private static final String ERROR_PREFIX = "DukeError";
@@ -36,7 +37,7 @@ public class Ui {
     /**
      * Prints the welcome message when the user first starts the application.
      *
-     * @return String Welcome dialog to be read by user.
+     * @return Welcome dialog to be read by user.
      */
     public String printWelcome() {
         return prettyPrint(WELCOME_MESSAGE);
@@ -45,7 +46,7 @@ public class Ui {
     /**
      *  Prints the goodbye message when the user closes the program.
      *
-     * @return String Goodbye dialog to be read by user.
+     * @return Goodbye dialog to be read by user.
      */
     public String printGoodbye() {
         sc.close();
@@ -56,7 +57,7 @@ public class Ui {
      * Prints error messages when an exception is thrown and passed back to the parser.
      *
      * @param e The exception passed to the parser.
-     * @return String Error message dialogue to be read by user.
+     * @return Error message dialogue to be read by user.
      */
     public String printException(Exception e) {
         assert e != null: "Exception to be printed cannot be null";
@@ -67,7 +68,7 @@ public class Ui {
      * Prints a task after it has been successfully created.
      *
      * @param task A successfully created task.
-     * @return String Task created dialogue to be read by user.
+     * @return Task created dialogue to be read by user.
      */
     public String printTaskCreated(Task task) {
         assert task != null: "Created task to be printed cannot be null";
@@ -79,7 +80,7 @@ public class Ui {
      * Prints a task after it has been successfully marked as complete.
      *
      * @param task A successfully marked task.
-     * @return String Task marked dialogue to be read by user.
+     * @return Task marked dialogue to be read by user.
      */
     public String printTaskMarked(Task task) {
         assert task != null: "Marked task to be printed cannot be null";
@@ -91,7 +92,7 @@ public class Ui {
      * Prints a task after it has been successfully marked as incomplete.
      *
      * @param task A successfully unmarked task.
-     * @return String Task unmarked dialogue to be read by user.
+     * @return Task unmarked dialogue to be read by user.
      */
     public String printTaskUnmarked(Task task) {
         assert task != null: "Unmarked task to be printed cannot be null";
@@ -103,7 +104,7 @@ public class Ui {
      * Prints a task after it has been successfully deleted.
      *
      * @param task A successfully deleted task.
-     * @return String Task deleted dialogue to be read by user.
+     * @return Task deleted dialogue to be read by user.
      */
     public String printTaskDeleted(Task task) {
         assert task != null: "Deleted task to be printed cannot be null";
@@ -115,7 +116,7 @@ public class Ui {
      * Prints out the entire list of tasks stored in the taskList.
      *
      * @param taskList The object that stores all the user's tasks.
-     * @return String List of all Tasks dialogue to be read by user.
+     * @return List of all Tasks dialogue to be read by user.
      */
     public String printAll(TaskList taskList) {
         assert taskList != null: "TaskList to be printed cannot be null";
@@ -135,7 +136,7 @@ public class Ui {
      * If no tasks are found, prints a message to indicate failure to find any tasks.
      *
      * @param foundTasks an array of found tasks from TaskList that match keyword
-     * @return String List of all tasks that match keyword dialogue to be read by user.
+     * @return List of all tasks that match keyword dialogue to be read by user.
      */
     public String printFoundTasks(Task[] foundTasks) {
         assert foundTasks != null: "List of found tasks to be printed cannot be null";
@@ -147,6 +148,18 @@ public class Ui {
                         .collect(Collectors.toList());
 
         return prettyPrint(FOUND_MESSAGE, printables);
+    }
+
+    /**
+     * Prints a task after it has been successfully tagged.
+     *
+     * @param task A successfully tagged task.
+     * @return Task tagged dialogue to be read by user.
+     */
+    public String printTaskTagged(Task task) {
+        assert task != null: "Deleted task to be printed cannot be null";
+        String taskStr = task.toString();
+        return prettyPrint(String.format("%s\n%s %s", TAG_MESSAGE, TAB, taskStr));
     }
 
     private String prettyPrint(String printable) {

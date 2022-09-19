@@ -26,6 +26,7 @@ public class Parser {
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
+    private static final String TAG_COMMAND = "tag";
 
     private static final String TODO_SEPARATOR = "/";
     private static final String DEADLINE_SEPARATOR = "/by";
@@ -81,6 +82,8 @@ public class Parser {
                 return deleteTask(inputRem);
             case (FIND_COMMAND):
                 return findTasks(inputRem);
+            case (TAG_COMMAND):
+                return tagTask(inputRem);
             default:
                 throw new DukeException("Unexpected task type!");
             }
@@ -275,5 +278,17 @@ public class Parser {
             throw DukeException.keywordException("Only one keyword expected");
         }
         return keyword;
+    }
+
+    private String tagTask(String str) throws DukeException {
+        try {
+            String[] tokens = tokenize(str, " ");
+            int index = Integer.parseInt(tokens[0]);
+            String tag = tokens[1];
+            Task task = taskList.tagTask(index, tag);
+            return ui.printTaskTagged(task);
+        } catch (DukeException de) {
+            throw DukeException.tagTaskException(de.toString());
+        }
     }
 }
