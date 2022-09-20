@@ -3,7 +3,13 @@
 This is the user guide for Duke.
 Duke is a program designed for keyboard users. While it is designed with a graphical user interface, most of the user interactions happening on the CLI (Command Line Interface).
 
-<img src="https://github.com/rui-han-crh/ip/blob/v0.2/docs/Ui.png" width="500">
+I suggest enlarging the UI to fullscreen as the windowed layout looks cramped, but it is operable within expected dimensions.
+
+Fullscreen:
+<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui.png?raw=true">
+
+Windowed view:
+<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui_windowed.png?raw=true">
 
 **Acknowledgements**
 
