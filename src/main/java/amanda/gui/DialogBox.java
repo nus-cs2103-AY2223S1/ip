@@ -49,7 +49,7 @@ public class DialogBox extends HBox {
 		}
 
 		dialog.setText(text);
-		dialog.setFont(Font.font("Times New Roman",13));
+		dialog.setFont(Font.font("Times New Roman",15));
 		displayPicture.setImage(img);
 	}
 

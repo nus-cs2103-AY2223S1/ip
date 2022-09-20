@@ -60,18 +60,6 @@ public class Task {
         return state;
     }
 
-    public void addTag(Tag tag) {
-        this.tags.add(tag);
-    }
-
-    public String listTags() {
-        String res = "";
-        for (Tag t : tags) {
-            res += t + "\n";
-        }
-        return res;
-    }
-
     /**
      * Get the time associated with this event.
      * @return time associated with this event.
@@ -94,6 +82,19 @@ public class Task {
         } else {
             return "?";
         }
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
+
+    public String listTags() {
+        StringBuilder res = new StringBuilder();
+        for (Tag tag : this.tags) {
+            res.append(tag.getDesc());
+            res.append("\n");
+        }
+        return String.valueOf(res);
     }
 
     @Override

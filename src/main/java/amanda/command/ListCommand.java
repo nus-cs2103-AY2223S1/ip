@@ -17,8 +17,12 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, StoreManager store) {
         Ui.listResponse();
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < TaskList.getList().size(); i++) { // iterate through current task list and print each task.
             Ui.addResponse((i + 1) + "." + TaskList.getList().get(i) + "\n");
+            res.append(i + 1).append(".").append(TaskList.getList().get(i)).append("\n");
         }
+        Ui.addResponse("");
+        System.out.println(res);
     }
 }

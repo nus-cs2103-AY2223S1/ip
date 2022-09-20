@@ -49,7 +49,12 @@ public class StoreManager {
         try {
             TaskList.resetList();
             Scanner read = new Scanner(storage); // use scanner to read from the file
-            String curr = read.nextLine();
+            String curr = "";
+            try {
+                curr = read.nextLine();
+            } catch (Exception e) {
+                System.out.println("no next line");
+            }
             if (curr.isEmpty()) {
                 return;
             }

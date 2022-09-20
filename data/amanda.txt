@@ -1,0 +1,5 @@
+T/0/  cry
+D/0/  milk/ Fri Jul 22 2022 11:59 PM
+T/0/  meow
+E/0/  concert/ Tue Aug 30 2022 10:00 AM
+T/0/  buy cat
