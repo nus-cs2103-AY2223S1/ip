@@ -87,7 +87,7 @@ General Format: `tasks add event <name> /from <start_date> /to <end_date>`
 tasks add event store under construction /from 23 Sep 15:33 /to 11 Oct 8:29
 ```
 
-This command will add a task of type event, with the name "store under construction" that starts on the 23rd of September of the current year, at \3:33pm and ends on the 11th of October of the current year, at 8:29 am.
+This command will add a task of type event, with the name "store under construction" that starts on the 23rd of September of the current year, at 3:33pm and ends on the 11th of October of the current year, at 8:29 am.
 
 If no end date is specified and the `/to` parameter is omitted, the end date and time will be exactly the same as the start date and time.
 
@@ -95,7 +95,7 @@ If no end date is specified and the `/to` parameter is omitted, the end date and
 tasks add event store under construction /from 23/9/22 15:33
 ```
 
-This command will add a task of type event, with the name "store under construction" that starts and ends on the 23rd of September of the current year, at \3:33pm.
+This command will add a task of type event, with the name "store under construction" that starts and ends on the 23rd of September of the current year, at 3:33pm.
 
 #### Adding an Deadline Task
 
@@ -110,7 +110,7 @@ General Format: `tasks add deadline <name> /by <date>`
 tasks add deadline remember to submit documents /by 15 Jan 19:15
 ```
 
-This command will add a task of type event, with the name "remember to submit documents" that occurs on the 15th of January of the current year, at \7:15pm.
+This command will add a task of type event, with the name "remember to submit documents" that occurs on the 15th of January of the current year, at 7:15pm.
 
 ---
 ### Listing tasks
@@ -132,7 +132,7 @@ General Format: `task mark <substring of task name>`
 tasks mark 1
 ```
 
-This command will mark the 2nd task in the task list, counting from \1.
+This command will mark the 2nd task in the task list, counting from 1.
 
 ```
 tasks mark store
@@ -151,7 +151,7 @@ General Format: `task unmark <substring of task name>`
 tasks unmark 1
 ```
 
-This command will unmark the 2nd task in the task list, counting from \1.
+This command will unmark the 2nd task in the task list, counting from 1.
 
 ```
 tasks unmark store
@@ -198,7 +198,7 @@ Spaces are also valid, and the above command will return the first task.
 ---
 ### Deleting a task
 
-We may delete a task based on a substring of its name, or the index it exists in in the task list
+We may delete a task based on a substring of its name, or its index within the task list
 
 General Format: `tasks delete <index>`
 
@@ -342,7 +342,9 @@ General format: `set picture`
 set picture
 ``
 
-Note that the file names `User.png` and `Duke.png` must remain the same as the program uses these names to find the correct images to load. If either image does not exist, the program will load the default images to use for Duke and the User and save a copy into the save folder to use next time.
+Note that the file names `User.png` and `Duke.png` must remain the same as the program uses these names to find the correct images to load. 
+
+If either image does not exist, the program will load the default images to use for Duke and the User and save a copy into the save folder to use next time.
 
 ---
 ## Saving
