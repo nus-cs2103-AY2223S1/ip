@@ -35,6 +35,7 @@ public class Parser {
     private static final String NO_KEYWORD_ERROR = "Please enter a keyword to search.";
     private static final String NO_DESCRIPTION_DEADLINE_ERROR = "Description of deadline task cannot be empty.";
     private static final String NO_DESCRIPTION_EVENT_ERROR = "Description of event task cannot be empty.";
+    private static final String NO_INDEX_ERROR = "'%s' command requires an index.";
 
     private final TaskList tasks;
     private final Storage storage;
@@ -161,14 +162,23 @@ public class Parser {
                             response, tokens[0], taskAdded, tasks.size());
                 }
             } else if (tokens[0].equals("mark")) {
+                if (tokens.length == 1) {
+                    throw new IllegalCommandException(String.format(NO_INDEX_ERROR, tokens[0]));
+                }
                 int index = parseIndex(tokens[1]);
                 response = String.format("%sThe following task has been marked as done:\n  %s\n",
                         response, markTask(index));
             } else if (tokens[0].equals("unmark")) {
+                if (tokens.length == 1) {
+                    throw new IllegalCommandException(String.format(NO_INDEX_ERROR, tokens[0]));
+                }
                 int index = parseIndex(tokens[1]);
                 response = String.format("%sThe following task has been marked as undone:\n  %s\n",
                         response, unmarkTask(index));
             } else if (tokens[0].equals("delete")) {
+                if (tokens.length == 1) {
+                    throw new IllegalCommandException(String.format(NO_INDEX_ERROR, tokens[0]));
+                }
                 int index = Integer.parseInt(tokens[1]);
                 Task task = deleteTask(index);
                 response = String.format("%sThe following task has been removed:\n  %s\n"
