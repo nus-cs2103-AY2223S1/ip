@@ -29,9 +29,9 @@ public class LoadCommand extends Command{
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
         try {
             if (this.logFileAddress.equals("")) {
-                return ui.load(storage.loadLog());
+                return ui.load(storage.loadFile());
             } else {
-                return ui.load(storage.loadLog(this.logFileAddress));
+                return ui.load(storage.loadFile(this.logFileAddress));
             }
         } catch (MeowerException e) {
             throw e;

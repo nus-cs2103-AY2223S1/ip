@@ -42,6 +42,10 @@ public class TaskList {
         return this.size;
     }
 
+    public void clear() {
+        this.tasks = new ArrayList<Task>();
+    }
+
     
     /** 
      * adds a task into the back of the tasklist

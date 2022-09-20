@@ -2,24 +2,22 @@ package command;
 
 import exception.MeowerException;
 import exception.MeowerFileAddressInvalidException;
+
+import task.Task;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
-import task.Task;
 
-/**
- * Represents a "bye" command from the user that will end the chatbot.
- * @extends Command
- */
-
-public class ByeCommand extends Command {
+public class ArchiveCommand {
+    private final String MESSAGE_FILE_ADDRESS_ERROR = "User file address invalid, please check pathing";
 
     private String logFileAddress = "";
+    private Ui ui;
     
-    public ByeCommand() {
+    public ArchiveCommand() {
     }
 
-    public ByeCommand(String newAddress) {
+    public ArchiveCommand(String newAddress) {
         this.logFileAddress = newAddress;
     }
  
@@ -32,6 +30,12 @@ public class ByeCommand extends Command {
      * @throws MeowerException
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
+        //if not a valid address, throw exception
+        if (!this.verifyAddress(this.logFileAddress)) {
+            throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
+        }
+
+        //else, do cleanUp()
         try {
             if (this.logFileAddress.equals("")) {
                 return ui.bye(storage.saveToFile());
@@ -42,6 +46,27 @@ public class ByeCommand extends Command {
             throw e;
         }
     }
+
+    /** 
+     * verify if user given file address is valid
+     * @param address file path address given by user
+     * @return boolean
+     */
+
+    private boolean verifyAddress(String address) {
+        //pre-process address string
+        String addressToCheck = address.strip();
+        String[] addressSplit = addressToCheck.split(" ");
+
+        //verification
+        if (addressSplit.length > 1) {
+            return false;
+        }
+        if (address.equals("")) {
+            return false;
+        }
+        return true;
+    }
     
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated
@@ -50,5 +75,4 @@ public class ByeCommand extends Command {
     public Task getTask() {
         return Task.empty();
     }
-
 }
