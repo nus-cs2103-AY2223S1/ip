@@ -244,11 +244,11 @@ General format: `loans add <creditor_name> -amount <amount_owed>`
 
 **Example**
 ```
-loans add Lynette -amount $50
+loans add Lynette /amount $50
 ```
 or
 ```
-loans add Lynette -amount 50
+loans add Lynette /amount 50
 ```
 
 These commands both add a loan credited to a creditor named `Lynette`, to whom is owed an amount of $50. The dollar sign in the command is optional and will be parsed out if given.
@@ -268,7 +268,7 @@ This subtracts $23 from the amount owed to Lynette. Now, the program records the
 In addition, loans amounts can move into the negatives, at which it will be represented by an amount recievable.
 
 ```
-loans add Adam -amount -15
+loans add Adam /amount -15
 ```
 
 The above command will record that Adam is due to pay $15, as Adam is currently owed an amount of -$15.
