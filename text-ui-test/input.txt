@@ -1,0 +1,5 @@
+deadline finish resume /by 7pm
+event Jane Street Talk /at 23 August 4pm
+list
+mark 2
+bye
