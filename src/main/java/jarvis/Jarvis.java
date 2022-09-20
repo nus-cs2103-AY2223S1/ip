@@ -19,7 +19,7 @@ public class Jarvis {
      */
     public static void main(String[] args) {
 
-        String filePath = "data/taskList.txt";
+        String filePath = System.getProperty("user. dir") + "data/taskList.txt";
 
         TaskList tasks;
         Storage storage = new Storage(filePath);
