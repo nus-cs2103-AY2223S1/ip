@@ -3,9 +3,9 @@ package exception;
 /**
  * When there is an error in the IO of the chatbot
  */
-public class DukeIOException extends DukeException{
+public class MeowerIOException extends MeowerException{
     
-    public DukeIOException(String message) {
+    public MeowerIOException(String message) {
         super(message);
     }
 }

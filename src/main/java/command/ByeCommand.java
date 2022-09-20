@@ -1,7 +1,7 @@
 package command;
 
-import exception.DukeException;
-import exception.DukeFileAddressInvalidException;
+import exception.MeowerException;
+import exception.MeowerFileAddressInvalidException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
@@ -14,6 +14,8 @@ import task.Task;
 
 public class ByeCommand extends Command {
 
+    private final String MESSAGE_FILE_ADDRESS_ERROR = "User file address invalid, please check pathing";
+
     private String logFileAddress = "";
     private Ui ui;
     
@@ -23,44 +25,45 @@ public class ByeCommand extends Command {
     public ByeCommand(String newAddress) {
         this.logFileAddress = newAddress;
     }
-
-    
-    /** 
-     * Checks if command will cause chatbot to end.
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return true;
-    }
-
-    
+ 
     /** 
      * Executes the functionality of the command, in the tasklist, 
      * UI and storage that are taken in as arguments, in this case saves the chatbot logs
-     * @param tasks
-     * @param ui
-     * @param storage
-     * @throws DukeException
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
+        //if not a valid address, throw exception
         if (!this.verifyAddress(this.logFileAddress)) {
-            throw new DukeFileAddressInvalidException("User file address invalid, please check pathing");
+            throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
         }
+
+        //else, do cleanUp()
         try {
             if (this.logFileAddress.equals("")) {
                 return ui.bye(storage.cleanUp());
             } else {
                 return ui.bye(storage.cleanUp(this.logFileAddress));
             }
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             throw e;
         }
     }
 
+    /** 
+     * verify if user given file address is valid
+     * @param address file path address given by user
+     * @return boolean
+     */
+
     private boolean verifyAddress(String address) {
+        //pre-process address string
         String addressToCheck = address.strip();
         String[] addressSplit = addressToCheck.split(" ");
+
+        //verification
         if (addressSplit.length > 1) {
             return false;
         }

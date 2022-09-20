@@ -1,6 +1,6 @@
 package command;
 
-import exception.DukeException;
+import exception.MeowerException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
@@ -13,16 +13,7 @@ public abstract class Command {
     Command() {
     }
 
-    
-    /** 
-     * Checks if command will cause chatbot to end.
-     * @return boolean
-     */
-    public boolean isEnd() {
-        return false;
-    }
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException; //Referenced from Marcus Ong Wee's code
 
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException; //Referenced from Marcus Ong Wee's code
-
-    public abstract Task getTask() throws DukeException;
+    public abstract Task getTask() throws MeowerException;
 }

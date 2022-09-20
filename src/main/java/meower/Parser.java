@@ -15,16 +15,19 @@ import exception.InvalidCommandException;
 
 public class Parser {
 
-    private static final String COMMAND_FIND = "find"; 
-    private static final String COMMAND_LOAD = "load"; 
-    private static final String COMMAND_LIST = "list";
-    private static final String COMMAND_BYE = "bye";
-    private static final String COMMAND_DELETE = "delete";
-    private static final String COMMAND_TODO = "todo";
-    private static final String COMMAND_DEADLINE = "deadline";
-    private static final String COMMAND_EVENT = "event";
-    private static final String COMMAND_MARK = "mark";
-    private static final String COMMAND_UNMARK = "unmark";
+    private final String MESSAGE_ERROR_UNNECESSARY_ARG = "Argument given for command not needing argument";
+    private final String MESSAGE_ERROR_INVALID_COMMAND = "Command entered is invalid";
+
+    private final String COMMAND_FIND = "find"; 
+    private final String COMMAND_LOAD = "load"; 
+    private final String COMMAND_LIST = "list";
+    private final String COMMAND_BYE = "bye";
+    private final String COMMAND_DELETE = "delete";
+    private final String COMMAND_TODO = "todo";
+    private final String COMMAND_DEADLINE = "deadline";
+    private final String COMMAND_EVENT = "event";
+    private final String COMMAND_MARK = "mark";
+    private final String COMMAND_UNMARK = "unmark";
 
     public Parser() {
         ;
@@ -33,9 +36,9 @@ public class Parser {
     
     /** 
      * Parses a given userinput into the respective commands, throws InvalidCommandException when user gives invalid commands
-     * @param userCommand
+     * @param userCommand the command inputted by the user
      * @return Command
-     * @throws InvalidCommandException
+     * @throws InvalidCommandException thrown when an invalid command is inputted by the user
      */
     public Command parse(String userCommand) throws InvalidCommandException {
 
@@ -49,7 +52,7 @@ public class Parser {
             commandArgs = splitUserStatement[1].strip();
         }
 
-        //switch-case for command word
+        //switch-case for different command word
         switch(command) { //no breaks as all cases lead to return
         case COMMAND_FIND:
             return new FindCommand(commandArgs);
@@ -60,7 +63,7 @@ public class Parser {
             return new LoadCommand();
         case COMMAND_LIST:
             if (!commandArgs.equals("")) {
-                throw new InvalidCommandException("Argument given for command not needing argument");
+                throw new InvalidCommandException(MESSAGE_ERROR_UNNECESSARY_ARG);
             }
             return new ListCommand();
         case COMMAND_BYE:
@@ -77,7 +80,7 @@ public class Parser {
             String deadlineDate = deadlineArgs[1].strip();  
             return new DeadlineCommand(deadlineDescription, deadlineDate);
         case COMMAND_EVENT:
-        //process arguments to pass into Command constructor
+            //process arguments to pass into Command constructor
             String[] eventArgs = parseCommandArgs("/at",commandArgs); 
             String eventDescription = eventArgs[0];
             String eventDate = eventArgs[1].strip();          
@@ -89,15 +92,15 @@ public class Parser {
         case COMMAND_DELETE:
             return new DeleteCommand(commandArgs);
         default:
-            throw new InvalidCommandException("Command entered is invalid");
+            throw new InvalidCommandException(MESSAGE_ERROR_INVALID_COMMAND);
         }
     }
 
     
     /** 
      * Parses the arguments of the user inputted commands
-     * @param delimiter
-     * @param args
+     * @param delimiter the String that will be used to split the given arguments
+     * @param args String representation of user inputted arguments
      * @return String[]
      */
     public String[] parseCommandArgs(String delimiter, String args) {

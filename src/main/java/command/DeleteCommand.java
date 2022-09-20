@@ -1,6 +1,6 @@
 package command;
 
-import exception.DukeException;
+import exception.MeowerException;
 import exception.TaskListOutOfBoundsException;
 import meower.Storage;
 import meower.TaskList;
@@ -18,31 +18,20 @@ public class DeleteCommand extends Command{
         super();
         this.pos = Integer.parseInt(pos);
     }
-
-    
-    /** 
-     * Checks if command will cause chatbot to end.
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return false;
-    }
-
     
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments
-     * @param tasks
-     * @param ui
-     * @param storage
-     * @throws DukeException
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
         try {   
             tasks.delete(this.pos);
             return ui.delete(this.pos);
         } catch (TaskListOutOfBoundsException e) {
-            throw new DukeException(e.getLocalizedMessage());
+            throw new MeowerException(e.getLocalizedMessage());
         }
     }
 
