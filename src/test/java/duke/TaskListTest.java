@@ -14,7 +14,7 @@ import duke.task.Todo;
 public class TaskListTest {
 
     @Test
-    public void addTest() throws DukeException {
+    public void addTest_success() throws DukeException {
         TaskList tasks = new TaskList();
         ArrayList<Task> list = tasks.getTaskArrayList();
 
@@ -47,7 +47,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void deleteTest() throws DukeException {
+    public void deleteTest_success() throws DukeException {
         TaskList tasks = new TaskList();
         ArrayList<Task> list = tasks.getTaskArrayList();
 

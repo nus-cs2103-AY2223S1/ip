@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class StorageTest {
     @Test
-    public void loadTest() throws DukeException, IOException {
+    public void loadTest_success() throws DukeException, IOException {
         Storage storage = new Storage("data/tasks.txt");
         TaskList tasks = new TaskList(storage.load());
         int expectedSize = 3;
