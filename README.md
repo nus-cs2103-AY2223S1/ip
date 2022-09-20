@@ -6,6 +6,8 @@ This is a project template for a greenfield Java project. It's named after the J
 
 The user guide may be found [here](https://rui-han-crh.github.io/ip/).
 
+Your saved file is likely in `USER -> CS2103T -> DukeData`, in whatever file structure your OS uses.
+
 ## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
