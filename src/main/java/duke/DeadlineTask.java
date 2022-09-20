@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * The  DeadlineTask class is a Task that takes a deadline.
+ * The DeadlineTask class is a Task that takes a deadline.
  */
 public class DeadlineTask extends Task {
 
