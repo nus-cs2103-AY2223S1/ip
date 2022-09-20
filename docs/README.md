@@ -21,23 +21,24 @@ I would like to thank [Seerlight](https://www.deviantart.com/seerlight) from Dev
 The following features are available in Duke:
 
 - Tasks
-  - Adding tasks
-  - Deleting tasks
-  - Listing tasks
-  - Annotating tasks by completion status
-  - Searching tasks by name
+  - [Adding tasks](#adding-tasks)
+  - [Deleting tasks](#deleting-a-task)
+  - [Listing tasks](#listing-tasks)
+  - [Annotating tasks by completion status](#annotating-a-task)
+  - [Searching tasks by name](#finding-a-task)
   
 - Loans
-  - Adding loans, or modifying exist amount loaned
-  - Deleting loans
-  - Listing loans
+  - [Adding loans, or modifying exist amount loaned](#adding-loans)
+  - [Deleting loans](#deleting-loans)
+  - [Listing loans](#listing-loans)
   
 - Customisation
-  - Setting the name that you would like Duke to call you
+  - [Setting a custom alias](#setting-username)
+  - [Setting custom pictures](#setting-profile-pictures)
   
 - Saving
-  - Autosaving and serialising file to disk after every critical action
-  - Serialising the file to disk at fixed time intervals
+  - [Autosaving and serialising file to disk after every critical action](#saving)
+  - [Serialising the file to disk at fixed time intervals](#autosaving)
   
 ---
 ## Tasks
@@ -66,45 +67,56 @@ This command will add a task of type todo, with the name "buy groceries".
 
 #### Adding an Event Task
 
-One may add a Event type task by specifying the task type, followed by the name of the task, then a fixed delimiter `-on`, followed by the date of the event.
+One may add an Event type task by specifying the task type, followed by the name of the task, then a fixed delimiter `/from`, followed by the start date and time of the event and an optional delimiter `/to`, followed by the end date and time of the event
 
 Duke is able to handle a variety of date formats. In the event it is unable to parse the date correctly, it will use the actual input as the date, but will be unable to perform time specific commands on the event.
 
-General Format: `tasks add event <name> -on <date>`
+General Format: `tasks add event <name> /from <start_date> /to <end_date>`
 
 **Example**
 ```
-tasks add event open the shop -on 23 Sep 15:33
+tasks add event store under construction /from 23 Sep 15:33 /to 11 Oct 8:29
 ```
 
-This command will add a task of type event, with the name "open the shop" that occurs on the 23rd of September of the current year, at \3:33pm.
+This command will add a task of type event, with the name "store under construction" that starts on the 23rd of September of the current year, at \3:33pm and ends on the 11th of October of the current year, at 8:29 am.
+
+If no end date is specified and the `/to` parameter is omitted, the end date and time will be exactly the same as the start date and time.
+
+```
+tasks add event store under construction /from 23/9/22 15:33
+```
+
+This command will add a task of type event, with the name "store under construction" that starts and ends on the 23rd of September of the current year, at \3:33pm.
 
 #### Adding an Deadline Task
 
-One may add a Deadline type task by specifying the task type, followed by the name of the task, then a fixed delimiter `-by`, followed by the due date.
+One may add a Deadline type task by specifying the task type, followed by the name of the task, then a fixed delimiter `/by`, followed by the due date.
 
 Duke is able to handle a variety of date formats. In the event it is unable to parse the date correctly, it will use the actual input as the date, but will be unable to perform time specific commands on the deadline.
 
-General Format: `tasks add deadline <name> -by <date>`
+General Format: `tasks add deadline <name> /by <date>`
 
 **Example**
 ```
-tasks add deadline remember to submit documents -by 15 Jan 19:15
+tasks add deadline remember to submit documents /by 15 Jan 19:15
 ```
 
 This command will add a task of type event, with the name "remember to submit documents" that occurs on the 15th of January of the current year, at \7:15pm.
 
+---
 ### Listing tasks
 
 For an overview of the entire task list, input `tasks list` to list all the tasks.
 
 Format: `tasks list`
 
+---
 ### Annotating a task
 
-Tasks may be marked as finished. To mark a task, specify the `mark` command, followed by the index.
+Tasks may be marked as finished. To mark a task, specify the `mark` command, followed by the index, or any substring of the task name.
 
 General Format: `task mark <index>`
+General Format: `task mark <substring of task name>`
 
 **Example**
 ```
@@ -113,10 +125,17 @@ tasks mark 1
 
 This command will mark the 2nd task in the task list, counting from \1.
 
+```
+tasks mark store
+```
 
-Similarly a task may be unmarked using the same format.
+This command will mark the task with the substring store, only if there is only one task with that substring. Otherwise, an ambiguity is detected and no action is performed.
+
+
+Similarly, a task may be unmarked using the same format.
 
 General Format: `tasks unmark <index>`
+General Format: `task unmark <substring of task name>`
 
 **Example**
 ```
@@ -125,6 +144,13 @@ tasks unmark 1
 
 This command will unmark the 2nd task in the task list, counting from \1.
 
+```
+tasks unmark store
+```
+
+This command will unmark the task with the substring store, only if there is only one task with that substring. Otherwise, an ambiguity is detected and no action is performed.
+
+---
 ### Finding a task
 
 We may find a task based on a substring of its name.
@@ -161,6 +187,45 @@ tasks find read b
 Spaces are also valid, and the above command will return the first task.
 
 ---
+### Deleting a task
+
+We may delete a task based on a substring of its name, or the index it exists in in the task list
+
+General Format: `tasks delete <index>`
+
+General Format: `tasks delete <substring>`
+
+**Example**
+Assume this task list of names:
+1. read book
+2. renovate house
+3. refurbish laptop and wireless mouse
+
+```
+tasks delete 1
+```
+
+This command will delete the first task, which is `read book`.
+
+```
+tasks delete re
+```
+
+This command will not perform any actions, as ambiguity exists amongst the three tasks, as all three names contain the substring `re`.
+
+```
+tasks delete renovate
+```
+
+This command will delete the task `renovate house`, as it is the only task that has the substring `renovate`.
+
+The entire task list can be deleted with
+```
+tasks delete all
+```
+A prompt will ask to confirm this action, input `yes` to confirm, `no` or any other commands to reject.
+
+---
 ## Loans
 
 ### Adding Loans
@@ -171,19 +236,25 @@ General format: `loans add <creditor_name> -amount <amount_owed>`
 **Example**
 ```
 loans add Lynette -amount $50
-
+```
+or
+```
 loans add Lynette -amount 50
 ```
 
 These commands both add a loan credited to a creditor named `Lynette`, to whom is owed an amount of $50. The dollar sign in the command is optional and will be parsed out if given.
 
-Suppose, we paid back Lynette a sum of $23. We may specify the same command.
+Suppose, we paid back Lynette a sum of $23. We may specify the same command:
 
 ```
-loans add Lynette -amount -23
+loans add Lynette /amount -$23
+```
+or
+```
+loans add Lynette /amount -23
 ```
 
-that subtracts $23 from the amount owed to Lynette. Now, the program records the amount that Lynette is due to be $27.
+This subtracts $23 from the amount owed to Lynette. Now, the program records the amount that Lynette is due to be $27.
 
 In addition, loans amounts can move into the negatives, at which it will be represented by an amount recievable.
 
@@ -193,7 +264,7 @@ loans add Adam -amount -15
 
 The above command will record that Adam is due to pay $15, as Adam is currently owed an amount of -$15.
 
-
+---
 ### Deleting Loans
 Loans can be completely removed by specifying the `loans` command, followed by the delete argument, then the name of the creditor.
 
@@ -206,6 +277,13 @@ loans delete Lynette
 
 This command will remove Lynette's loan from the collection of loans, regardless of whether she was due to pay or be paid. This command _does not_ set Lynette's amount of money owed to be zero, but instead removes the entire loan object completely from the stored loans.
 
+Loans may be entirely reset with:
+```
+loans delete all
+```
+A prompt will ask to confirm this action, input `yes` to confirm, `no` or any other commands to reject.
+
+---
 ### Listing Loans
 
 The prevailing loans may be reviewed by specifying the loans command, followed by the `list` argument.
@@ -222,8 +300,8 @@ This command will list the loans currently recorded.
 - A person from whom an amount is payable will have the prefix `Lent` before the amount of money.
 
 At the end of the list, a summary of receivable or payable funds will be noted.
-- If the sum of all amounts is non-negative, a label `PAYABLE` will be shown before the absolute value of the sum
-- If the sum of all amounts is negative, the label `RECEIVABLE` will be shown before the absolute value of the sum.
+- If the sum of all amounts is non-negative, a label `TOTAL PAYABLE` will be shown before the absolute value of the sum
+- If the sum of all amounts is negative, the label `TOTAL RECEIVABLE` will be shown before the absolute value of the sum.
 
 ---
 ## Customisation
@@ -244,10 +322,26 @@ set name Lain
 This command will prompt Duke to address the user as `Lain` from now on. There is no limit to how many times the alias may be changed. This command does not affect any bound data to the user.
 
 ---
+### Setting Profile Pictures
+
+Both the user's image and Duke's image may be changed with the command `set picture`. An explorer window to the profile pictures directory will be opened, with which the user may change the images used.
+
+General format: `set picture`
+
+**Example**
+``
+set picture
+``
+
+Note that the file names `User.png` and `Duke.png` must remain the same as the program uses these names to find the correct images to load. If either image does not exist, the program will load the default images to use for Duke and the User and save a copy into the save folder to use next time.
+
+---
 ## Saving
 
 ### Autosaving
 
 Duke automatically performs saves after crucial operations that modify user data, such as adding tasks. No user interference is required.
+
+The save file is saved into JSON format.
 
 Duke will also save the file every 5 minutes.

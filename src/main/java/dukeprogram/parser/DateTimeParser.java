@@ -17,36 +17,71 @@ public class DateTimeParser {
             new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
                     .optionalStart()
-                    .appendPattern("d MMM")
-                    .optionalEnd()
-
-                    .optionalStart()
-                    .appendPattern("d MM")
-                    .optionalEnd()
-
-                    .optionalStart()
-                    .appendPattern("d/MM")
-                    .optionalEnd()
-
-                    .optionalStart()
-                    .appendPattern("MMM d")
-                    .optionalEnd()
-
-                    .optionalStart()
-                    .appendPattern(" yy")
+                    .appendPattern("d MMM yy")
                     .optionalEnd()
 
                     .optionalStart()
                     .appendPattern(" H:mm")
                     .optionalEnd()
 
+                    .parseDefaulting(ChronoField.HOUR_OF_DAY, 12)
+                    .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                    .toFormatter(),
+
+            new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
                     .optionalStart()
-                    .appendPattern(" h:mm a")
+                    .appendPattern("d MMM")
+                    .optionalEnd()
+
+                    .optionalStart()
+                    .appendPattern(" H:mm")
                     .optionalEnd()
 
                     .parseDefaulting(ChronoField.HOUR_OF_DAY, 12)
                     .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                     .parseDefaulting(ChronoField.YEAR, CURRENT_YEAR)
+                    .toFormatter(),
+
+            new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .optionalStart()
+                    .appendPattern("d/MMM/yy")
+
+                    .optionalStart()
+                    .appendPattern(" H:mm")
+                    .optionalEnd()
+
+                    .parseDefaulting(ChronoField.HOUR_OF_DAY, 12)
+                    .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                    .toFormatter(),
+
+            new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .optionalStart()
+                    .appendPattern("d/MMM")
+
+                    .optionalStart()
+                    .appendPattern(" H:mm")
+                    .optionalEnd()
+
+                    .parseDefaulting(ChronoField.HOUR_OF_DAY, 12)
+                    .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                    .parseDefaulting(ChronoField.YEAR, CURRENT_YEAR)
+                    .toFormatter(),
+
+            new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .optionalStart()
+                    .appendPattern("d/M/yy")
+                    .optionalEnd()
+
+                    .optionalStart()
+                    .appendPattern(" H:mm")
+                    .optionalEnd()
+
+                    .parseDefaulting(ChronoField.HOUR_OF_DAY, 12)
+                    .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                     .toFormatter()
     };
 

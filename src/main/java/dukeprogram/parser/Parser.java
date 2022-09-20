@@ -23,7 +23,7 @@ public class Parser {
 
     private final Duke duke;
     private int numberOfInvalidCommands = 0;
-    private final int maximumNumberOfInvalidCommands = 3;
+    private final int maximumNumberOfInvalidCommands = 5;
 
     public Parser(Duke duke) {
         this.duke = duke;
@@ -71,7 +71,7 @@ public class Parser {
                     public void run() {
                         System.exit(0);
                     }
-                }, 1000);
+                }, 1300);
                 break;
 
             case "thank":

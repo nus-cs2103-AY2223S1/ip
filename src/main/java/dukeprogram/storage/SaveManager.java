@@ -135,7 +135,6 @@ public class SaveManager {
 
         try {
             objectMapper.writeValue(saveFile, dataInMemory);
-            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataInMemory));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

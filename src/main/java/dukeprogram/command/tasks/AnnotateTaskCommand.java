@@ -1,10 +1,14 @@
 package dukeprogram.command.tasks;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.stream.Collectors;
 
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.storage.SaveManager;
+import dukeprogram.tasks.Task;
+import dukeprogram.userinterface.Widget;
 import exceptions.InvalidCommandException;
 
 /**
@@ -40,14 +44,33 @@ public abstract class AnnotateTaskCommand extends Command {
         try {
             index = Integer.parseInt(element) - 1;
             if (index < 0 || index >= duke.getTaskList().getSize()) {
-                throw new NumberFormatException();
+                throw new IndexOutOfBoundsException();
             }
         } catch (NumberFormatException e) {
+            Task[] tasksFound = duke.getTaskList().findTasks(element);
+
+            if (tasksFound.length == 0) {
+                throw new InvalidCommandException("I couldn't find any tasks with " + element);
+            }
+
+            if (tasksFound.length > 1) {
+                duke.sendMessage("I'm not sure which one to annotate",
+                        new Widget(Arrays.stream(tasksFound)
+                                .map(Task::createLabelWidget).collect(Collectors.toList()))
+                );
+                throw new InvalidCommandException(
+                        String.format("There was an ambiguity with the above %d tasks",
+                                tasksFound.length));
+            }
+
+            index = duke.getTaskList().indexOf(tasksFound[0]);
+        } catch (IndexOutOfBoundsException e) {
             throw new InvalidCommandException("That was not a valid index within the task list");
         }
 
-        duke.getTaskList().get(index).markJobState(isToMark);
-        duke.sendMessage(annotationMessage);
+        Task task = duke.getTaskList().get(index);
+        task.markJobState(isToMark);
+        duke.sendMessage(annotationMessage, new Widget(task.createLabelWidget()));
         SaveManager.save("tasklist", duke.getTaskList());
     }
 }

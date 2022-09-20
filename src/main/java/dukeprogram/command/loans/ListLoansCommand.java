@@ -2,14 +2,17 @@ package dukeprogram.command.loans;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.facilities.Loan;
 import dukeprogram.userinterface.Widget;
+import dukeprogram.userinterface.WidgetLoanLabel;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
+import javafx.scene.layout.Region;
 
 /**
  * ListLoansCommand can print the loans collection onto the GUO
@@ -37,17 +40,22 @@ public class ListLoansCommand extends Command {
     public void printToGui() {
         Loan[] loans = duke.getLoanCollection().getAllLoans();
 
-        String formattedLoanCollectionString = Arrays.stream(loans)
-                .map(Loan::toString).collect(Collectors.joining("\n"));
-
         double poolAmount = Arrays.stream(loans).mapToDouble(Loan::getAmount).sum();
-        String debt;
+        List<Region> loansWidgets = Arrays.stream(loans).map(Loan::makeWidget)
+                .collect(Collectors.toList());
+
+        WidgetLoanLabel debt;
         if (poolAmount >= 0) {
-            debt = "\n\t\tPAYABLE $" + poolAmount;
+            debt = new WidgetLoanLabel("TOTAL PAYABLE", poolAmount);
         } else {
-            debt = "\n\t\tRECEIVABLE $" + -poolAmount;
+            debt = new WidgetLoanLabel("TOTAL RECEIVABLE", poolAmount);
         }
+        Region space = new Region();
+        space.setMinHeight(10);
+        loansWidgets.add(space);
+        loansWidgets.add(debt);
+
         duke.sendMessage("Here are your loans:\n",
-                new Widget(Arrays.stream(loans).map(Loan::makeWidget).collect(Collectors.toList())));
+                new Widget(loansWidgets));
     }
 }
