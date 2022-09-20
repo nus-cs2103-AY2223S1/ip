@@ -17,7 +17,7 @@ import duke.model.Deadline;
 import duke.model.Event;
 import duke.model.ToDo;
 
-
+//Solution below adapted from https://github.com/dextertanyj/ip/blob/master/src/main/java/nekochan/parser/Parser.java
 /**
  * Deals with making sense of the user command.
  */

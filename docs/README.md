@@ -142,3 +142,9 @@ There is no need to save manually.
 
 Charmposter data is saved as a txt file ```[JAR file location]/duke.txt```. 
 Advanced users are welcome to update data directly by editing that data file.
+
+
+### Acknowledgements:
+
+The Parser class was adapted from:
+https://github.com/dextertanyj/ip/blob/master/src/main/java/nekochan/parser/Parser.java
