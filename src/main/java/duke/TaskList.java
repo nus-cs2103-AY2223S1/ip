@@ -34,7 +34,7 @@ public class TaskList {
     }
 
     /**
-     * Add a task (to-do,event or deadline) to the tasklist.
+     * Adds a task (to-do,event or deadline) to the tasklist.
      *
      * @param taskName description of the task to be added.
      * @param ui       ui to print the confirmation messages after task is added
@@ -94,7 +94,7 @@ public class TaskList {
 
 
     /**
-     * View the list of all tasks.
+     * Views the list of all tasks.
      *
      * @param ui ui to display the list of tasks to the user.
      * @return the ui message with the list of tasks.
@@ -104,7 +104,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done/completed.
+     * Marks a task as done/completed.
      *
      * @param num the index of task to be marked as done.
      * @param ui  ui to display confirmatory message.
@@ -123,7 +123,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as undone.
+     * Marks a task as undone.
      *
      * @param num index of task to be marked as undone.
      * @param ui  ui to display confirmatory message.
@@ -136,7 +136,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task from the list
+     * Deletes a task from the list
      *
      * @param num index of task to be deleted.
      * @param ui  ui to display confirmatory message.
@@ -153,7 +153,7 @@ public class TaskList {
     }
 
     /**
-     * Save all the tasks from the list to the local file.
+     * Saves all the tasks from the list to the local file.
      */
     public void addTasksToFile() {
         try {
