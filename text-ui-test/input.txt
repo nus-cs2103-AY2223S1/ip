@@ -1,0 +1,14 @@
+say hello
+todo say hello
+mark 2
+event
+event go to dinner at 6 pm
+event go to dinner /at 6 pm
+deadline something /by 7 pm
+mark 2
+list
+delete 4
+delete
+delete 2
+list
+bye
