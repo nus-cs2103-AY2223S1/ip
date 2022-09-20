@@ -2,11 +2,13 @@ package dukeprogram;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,6 +30,12 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinWidth(400);
             stage.setMinHeight(650);
+            stage.setTitle("Duke");
+
+            stage.getIcons().add(new Image(
+                    Objects.requireNonNull(Main.class.getResourceAsStream("/images/icon.png")))
+            );
+
             stage.show();
             applications.add(this);
         } catch (IOException e) {

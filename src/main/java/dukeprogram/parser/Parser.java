@@ -15,6 +15,7 @@ import dukeprogram.userinterface.Widget;
 import dukeprogram.userinterface.WidgetButton;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
+import javafx.application.Platform;
 
 /**
  * Parser will parse a command string in any given command context.
@@ -69,6 +70,7 @@ public class Parser {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
+                        Platform.exit();
                         System.exit(0);
                     }
                 }, 1300);
