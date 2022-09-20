@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="dialog" style="-fx-background-radius: 20; -fx-background-color: #8dfcf8;" text="event badasdadsadasdasddbadasdadsadasdasddbadasdadsadasdasdd /at 22/1/2022 12:00amevent badasdadsadasdasddbadasdadsadasdasddbadasdadsadasdasdd /at 22/1/2022 12:00amevent badasdadsadasdasddbadasdadsadasdasddbadasdadsadasdasdd /at 22/1/2022 12:00amevent badasdadsadasdasddbadasdadsadasdasddbadasdadsadasdasdd /at 22/1/2022 12:00am" wrapText="true">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding></Label>
+        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/User.png" />
+         </image></ImageView>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
+</fx:root>
