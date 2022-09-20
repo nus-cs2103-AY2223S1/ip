@@ -1,8 +1,12 @@
-package dukeprogram.command;
+package dukeprogram.command.tasks;
 
 import java.util.Iterator;
 
 import dukeprogram.Duke;
+import dukeprogram.Main;
+import dukeprogram.command.Command;
+import dukeprogram.userinterface.Widget;
+import dukeprogram.userinterface.WidgetButton;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
@@ -63,12 +67,13 @@ public class AccessTasksCommand extends Command {
     }
 
     private void printHelp() {
-        duke.sendMessage("You can specify "
-                + "list, find, add, mark, unmark or delete "
-                + "after the tasks arguments to use a procedure in tasks.");
+        duke.sendMessage("Here are the commands you can specify:\n"
+                + "\nlist | find | add | mark | unmark | delete");
         duke.sendMessage("For example, you can do \"tasks list\" to list all current tasks.");
-        duke.sendMessage("Or, you could also do \"tasks add <args>\" to add a new task.");
         duke.sendMessage("Don't forget you can also specify the help command after any argument"
-                + "to learn what you can do!");
+                + "to learn what you can do!",
+                new Widget(new WidgetButton("User Guide [Tasks]",
+                        e -> Main.getPrimaryHostService()
+                                .showDocument("https://rui-han-crh.github.io/ip/#tasks"))));
     }
 }

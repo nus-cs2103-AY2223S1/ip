@@ -1,14 +1,10 @@
 package dukeprogram.facilities;
 
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Objects;
-import javax.imageio.ImageIO;
 
-import javafx.embed.swing.SwingFXUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import dukeprogram.storage.SaveManager;
 import javafx.scene.image.Image;
 
 /**
@@ -17,24 +13,30 @@ import javafx.scene.image.Image;
  */
 public class User implements Serializable {
 
-    public static final Image DUKE_IMAGE = new Image(
-            Objects.requireNonNull(User.class.getResourceAsStream("/images/DaDuke.png")));
+    public static final User DUKE = new User("Duke",
+            SaveManager.loadProfilePicture(SaveManager.ImageType.DukeImage));
 
-    public static final Image USER_IMAGE = new Image(
-            Objects.requireNonNull(User.class.getResourceAsStream("/images/DaUser.png")));
-
-    public static final User DUKE = new User("Duke", DUKE_IMAGE);
-
+    @JsonProperty("userName")
     private String userName;
-    private transient Image profilePicture;
+
+    @JsonIgnore
+    private Image profilePicture;
 
     /**
      * Constructs a new user profile with the given userName
      * @param userName the user's name
      */
+
     public User(String userName, Image profilePicture) {
         this.userName = userName;
         this.profilePicture = profilePicture;
+    }
+
+    /**
+     * Constructs a new user profile with the given userName
+     */
+    public User() {
+        this.profilePicture = SaveManager.loadProfilePicture(SaveManager.ImageType.UserImage);
     }
 
     /**
@@ -45,6 +47,7 @@ public class User implements Serializable {
         return userName;
     }
 
+    @JsonIgnore
     public Image getUserImage() {
         return profilePicture;
     }
@@ -57,7 +60,7 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+    /*private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         profilePicture = SwingFXUtils.toFXImage(ImageIO.read(stream), null);
     }
@@ -67,5 +70,5 @@ public class User implements Serializable {
         ImageIO.write(
                 SwingFXUtils.fromFXImage(profilePicture, null),
                 "png", stream);
-    }
+    }*/
 }

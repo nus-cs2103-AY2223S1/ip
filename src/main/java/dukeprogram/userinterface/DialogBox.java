@@ -37,9 +37,8 @@ import utilities.StringUtilities;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
-
-    private static final Color DUKE_COLOR = Color.color(0.15, 0.15, 0.15);
-    private static final Color USER_COLOR = Color.color(1, 0.5, 0);
+    private static final Color BACKGROUND_COLOR = Color.color(0.15, 0.15, 0.15);
+    private static final Color HIGHLIGHT_COLOR = Color.color(1, 0.5, 0);
 
     @FXML
     private Label name;
@@ -54,20 +53,23 @@ public class DialogBox extends HBox {
 
     private boolean isDuke;
 
-    protected DialogBox(String dialogText, User user, Color backgroundColor, Widget widget) {
-        this(dialogText, user, backgroundColor);
+    protected DialogBox(String dialogText, User user, TextStyle style, Widget widget) {
+        this(dialogText, user, style);
         this.widget = widget;
 
         ObservableList<Node> observableList = dialogLayout.getChildren();
 
         Region spacing = new Region();
-        spacing.setMinHeight(20);
+        spacing.setMinHeight(10);
 
         observableList.add(observableList.size() - 1, spacing);
         observableList.add(observableList.size() - 1, widget);
+
+        dialogLayout.minWidthProperty().unbind();
+        dialogLayout.setMinWidth(dialogLayout.getMaxWidth());
     }
 
-    protected DialogBox(String dialogText, User user, Color backgroundColor) {
+    protected DialogBox(String dialogText, User user, TextStyle style) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -78,7 +80,7 @@ public class DialogBox extends HBox {
         }
 
         name.getStyleClass().add("header");
-        dialog.getStyleClass().add("regular");
+        dialog.getStyleClass().add(style.label);
         date.getStyleClass().add("tag");
 
         name.setText(user.getName());
@@ -87,7 +89,7 @@ public class DialogBox extends HBox {
                 StringUtilities.computeTextWidth(dialog.getFont(), dialog.getText(), 50),
                 dialogLayout.getMaxWidth()));
 
-        dialog.setPadding(new Insets(0, 0, 0, 15));
+        dialog.setPadding(new Insets(0, 0, 0, 25));
         date.setPrefWidth(Double.MAX_VALUE);
         date.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm a")));
 
@@ -95,6 +97,7 @@ public class DialogBox extends HBox {
             isDuke = true;
             this.flip();
         }
+
         dialogLayout.minWidthProperty().bind(dialog.widthProperty());
         createAnimation(user);
     }
@@ -118,7 +121,7 @@ public class DialogBox extends HBox {
      * @return the constructed dialog box
      */
     public static DialogBox ofUser(String text, User user) {
-        DialogBox dialogBox = new DialogBox(text, user, USER_COLOR);
+        DialogBox dialogBox = new DialogBox(text, user, TextStyle.Regular);
         setBackground(dialogBox);
         return dialogBox;
     }
@@ -126,10 +129,11 @@ public class DialogBox extends HBox {
     /**
      * Creates a dialog box belonging to Duke
      * @param text the text to show in the dialog box
+     * @param style the text style of the rendered text
      * @return the constructed dialog box
      */
-    public static DialogBox ofDuke(String text) {
-        DialogBox dialogBox = new DialogBox(text, User.DUKE, DUKE_COLOR);
+    public static DialogBox ofDuke(String text, TextStyle style) {
+        DialogBox dialogBox = new DialogBox(text, User.DUKE, style);
         setBackground(dialogBox);
         return dialogBox;
     }
@@ -137,10 +141,12 @@ public class DialogBox extends HBox {
     /**
      * Creates a dialog box belonging to Duke
      * @param text the text to show in the dialog box
+     * @param style the text style of the rendered text
+     * @param widget the widget to attach after the text
      * @return the constructed dialog box
      */
-    public static DialogBox ofDuke(String text, Widget widget) {
-        DialogBox dialogBox = new DialogBox(text, User.DUKE, DUKE_COLOR, widget);
+    public static DialogBox ofDuke(String text, TextStyle style, Widget widget) {
+        DialogBox dialogBox = new DialogBox(text, User.DUKE, style, widget);
         setBackground(dialogBox);
         return dialogBox;
     }
@@ -170,8 +176,8 @@ public class DialogBox extends HBox {
                         0.5,
                         true,
                         CycleMethod.NO_CYCLE,
-                        new Stop(offsetDuke, DUKE_COLOR),
-                        new Stop(offsetUser, USER_COLOR)
+                        new Stop(offsetDuke, BACKGROUND_COLOR),
+                        new Stop(offsetUser, HIGHLIGHT_COLOR)
                 ),
                 new CornerRadii(10),
                 Insets.EMPTY))

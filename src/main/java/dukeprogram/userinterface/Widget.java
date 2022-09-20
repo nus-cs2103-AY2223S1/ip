@@ -1,6 +1,8 @@
 package dukeprogram.userinterface;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,8 +30,17 @@ public class Widget extends VBox {
 
     /**
      * Creates a widget
+     * @param elements the elements to embed inside the widget
      */
     public Widget(Region... elements) {
+        this(List.of(elements));
+    }
+
+    /**
+     * Creates a widget
+     * @param elements the elements to embed inside the widget
+     */
+    public Widget(Collection<Region> elements) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/Widget.fxml"));
             fxmlLoader.setController(this);
@@ -39,17 +50,8 @@ public class Widget extends VBox {
             e.printStackTrace();
         }
 
-        this.setBackground(new Background(new BackgroundFill(
-                Color.color(0.3, 0.3, 0.3),
-                new CornerRadii(3),
-                new Insets(5, 5, 5, 5)))
-        );
-
-        this.widthProperty().addListener(c -> {
-            for (Region element : elements) {
-                element.setMinWidth(this.getWidth());
-            }
-        });
+        setFillWidth(true);
+        elements.forEach(e -> e.setMaxWidth(Double.MAX_VALUE));
         getChildren().addAll(elements);
     }
 }

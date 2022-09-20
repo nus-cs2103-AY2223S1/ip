@@ -3,6 +3,7 @@ package dukeprogram.storage;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import exceptions.KeyNotFoundException;
 
 /**
@@ -13,7 +14,8 @@ import exceptions.KeyNotFoundException;
  */
 public class Storage implements Serializable {
 
-    private final HashMap<String, Serializable> dataObjectsInMemory;
+    @JsonProperty
+    private HashMap<String, Serializable> dataObjectsInMemory;
 
     /**
      * Creates a new storage object
@@ -30,6 +32,7 @@ public class Storage implements Serializable {
      */
     public void put(String header, Serializable obj) {
         dataObjectsInMemory.put(header, obj);
+        System.out.println("Saved " + header + ": " + obj);
     }
 
     /**
@@ -44,5 +47,14 @@ public class Storage implements Serializable {
         } else {
             return dataObjectsInMemory.get(header);
         }
+    }
+
+    /**
+     * Do not use this method. This is reserved for Jackson serialisation procedures.
+     * Accessing the hashmap may cause unexpected behaviours and saved data mutations.
+     * @return the internal hashmap of the storage object
+     */
+    public HashMap<String, Serializable> getDataObjectsInMemory() {
+        return dataObjectsInMemory;
     }
 }

@@ -14,6 +14,7 @@ import dukeprogram.parser.Parser;
 import dukeprogram.storage.SaveManager;
 import dukeprogram.userinterface.DukeResponse;
 import dukeprogram.userinterface.MainWindow;
+import dukeprogram.userinterface.TextStyle;
 import dukeprogram.userinterface.Widget;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
@@ -29,7 +30,7 @@ public class Duke {
     private LoanCollection loanCollection;
     private final Parser parser;
 
-    private Optional<ContinuableCommand> attachedState = Optional.empty();
+    private ContinuableCommand attachedState = null;
 
     /**
      * Creates an instance of Duke
@@ -63,15 +64,29 @@ public class Duke {
     /**
      * Sends a message to the GUI of this current instance
      */
+    public void sendMessage(String message, TextStyle style) {
+        mainWindow.sendDukeDialog(new DukeResponse(message, style));
+    }
+
+    /**
+     * Sends a message to the GUI of this current instance
+     */
+    public void sendMessage(String message, TextStyle style, Widget widget) {
+        mainWindow.sendDukeDialog(new DukeResponse(message, widget, style));
+    }
+
+    /**
+     * Sends a message to the GUI of this current instance
+     */
     public void sendMessage(String message) {
-        mainWindow.sendDukeDialog(new DukeResponse(message));
+        mainWindow.sendDukeDialog(new DukeResponse(message, TextStyle.Regular));
     }
 
     /**
      * Sends a message to the GUI of this current instance
      */
     public void sendMessage(String message, Widget widget) {
-        mainWindow.sendDukeDialog(new DukeResponse(message, widget));
+        mainWindow.sendDukeDialog(new DukeResponse(message, widget, TextStyle.Regular));
     }
 
 
@@ -80,15 +95,16 @@ public class Duke {
      * @param userInput the user input given
      */
     public void parseInput(String userInput) {
-        if (attachedState.isPresent()) {
+        if (attachedState != null) {
             System.out.println("Caught attachment");
             try {
-                attachedState.get().continueParse(parser.convertToIterator(userInput));
+                attachedState.continueParse(parser.convertToIterator(userInput));
             } catch (InvalidCommandException e) {
                 // ignores the attached state and resends input as a new command
                 System.out.println("Ignored");
-                attachedState = Optional.empty();
                 parseInput(userInput);
+            } finally {
+                attachedState = null;
             }
         } else {
             try {
@@ -104,7 +120,7 @@ public class Duke {
      * @param state the state to attach
      */
     public void attachState(ContinuableCommand state) {
-        attachedState = Optional.of(state);
+        attachedState = state;
     }
 
     public TaskList getTaskList() {
@@ -126,7 +142,7 @@ public class Duke {
      */
     public void save() {
         try {
-            SaveManager.serialize("savefile");
+            SaveManager.serialize("savefile.json");
         } catch (IOException e) {
             sendMessage("Hey, I tried to save this file, but I couldn't for some reason...");
             sendMessage("Is the save file open on your computer?");

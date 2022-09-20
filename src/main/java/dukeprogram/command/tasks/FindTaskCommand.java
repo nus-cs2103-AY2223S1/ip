@@ -1,14 +1,14 @@
-package dukeprogram.command;
+package dukeprogram.command.tasks;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import dukeprogram.tasks.Task;
 import dukeprogram.userinterface.Widget;
+import javafx.scene.layout.Region;
 
 /**
  * Finds a task in the task list
@@ -35,17 +35,11 @@ public class FindTaskCommand extends Command {
             }
         }
 
-        Pattern pattern = Pattern.compile(String.format("(.*)%s(.*)", sb));
+        Task[] tasksFound = duke.getTaskList().findTasks(sb.toString());
 
-        ArrayList<Task> matches = new ArrayList<>();
-        Arrays.stream(duke.getTaskList().getAllTasks())
-                .filter(task -> pattern.matcher(task.getName()).matches())
-                .forEach(matches::add);
-
-        duke.sendMessage("Here are the matches that I've found:\n"
-                        + matches.stream()
-                                .map(Task::toString)
-                                .collect(Collectors.joining("\n"))
+        duke.sendMessage("Here are the matches that I've found:\t\t\t\t\t\n",
+                        new Widget(List.of(Arrays.stream(tasksFound)
+                                .map(Task::createLabelWidget).toArray(Region[]::new)))
         );
     }
 }

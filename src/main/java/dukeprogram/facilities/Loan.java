@@ -2,12 +2,19 @@ package dukeprogram.facilities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import dukeprogram.userinterface.WidgetLoanLabel;
+
 /**
  * A loan object stores the current loans to a person in the real world
  */
 public class Loan implements Serializable {
 
-    private final Person creditor;
+    @JsonProperty("creditor")
+    private String creditor;
+    @JsonProperty("moneyOwed")
     private double moneyOwed;
 
     /**
@@ -15,9 +22,13 @@ public class Loan implements Serializable {
      * @param creditor the person whom the money is owed to
      * @param moneyOwed the amount of money owed
      */
-    public Loan(Person creditor, double moneyOwed) {
+    public Loan(String creditor, double moneyOwed) {
         this.creditor = creditor;
         this.moneyOwed = moneyOwed;
+    }
+
+    private Loan() {
+
     }
 
     /**
@@ -37,17 +48,19 @@ public class Loan implements Serializable {
         addAmountOwed(-amount);
     }
 
-    public Person getCreditor() {
+    @JsonIgnore
+    public String getCreditorName() {
         return creditor;
     }
 
+    @JsonIgnore
     public double getAmount() {
         return moneyOwed;
     }
 
     @Override
     public String toString() {
-        String representation = "> " + creditor.getName() + "\n\t\t| ";
+        String representation = "> " + creditor + "\n\t\t| ";
 
         if (moneyOwed > 0) {
             representation += "\tOwed $" + moneyOwed;
@@ -56,5 +69,13 @@ public class Loan implements Serializable {
         }
 
         return representation;
+    }
+
+    /**
+     * Creates a WidgetLoanLabel for use in the dialog bubbles
+     * @return a widget loan label
+     */
+    public WidgetLoanLabel makeWidget() {
+        return new WidgetLoanLabel(creditor, moneyOwed);
     }
 }

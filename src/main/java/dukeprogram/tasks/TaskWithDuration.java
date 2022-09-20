@@ -1,29 +1,39 @@
 package dukeprogram.tasks;
 
+import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dukeprogram.parser.DateTimeParser;
 
 /**
- * DatedJob describes any form of Task that is associated with a date
+ * JobWithDuration describes any form of Task that is associated with a date
  */
-public abstract class DatedJob extends Task {
+public abstract class TaskWithDuration extends Task {
+    @JsonProperty("timeString")
     private String timeString;
-    private LocalDateTime localDate;
-    private final String prefix;
+    @JsonProperty("hasLocalDate")
+    private boolean hasValidDateParsed;
+    @JsonProperty("prefix")
+    private String prefix;
 
     /**
-     * Creates a DatedJob with the given name and dateString.
+     * Creates a TaskWithDuration with the given name and dateString.
      * The prefix string describes how to join the name and the dateString
      * @param name name of the DatedJob
      * @param dateString the string that describes when the task is due by
      * @param prefix a label that will be between the name and date to aid interpretation
      */
-    public DatedJob(String name, String dateString, String prefix) {
+    public TaskWithDuration(String name, String dateString, String prefix) {
         super(name);
         setDate(dateString);
         this.prefix = prefix;
+    }
+
+    protected TaskWithDuration() {
+        super();
     }
 
     /**
@@ -32,17 +42,25 @@ public abstract class DatedJob extends Task {
      *                   either in any valid format or none at all
      */
     private void setDate(String dateString) {
-        this.localDate = DateTimeParser.parse(dateString);
-        this.timeString = localDate == null
-                ? dateString
-                : localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a"));
+        LocalDateTime localDate = DateTimeParser.parse(dateString);
+        hasValidDateParsed = localDate != null;
+        if (hasValidDateParsed) {
+            this.timeString = localDate.format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm a"));
+        } else {
+            this.timeString = dateString;
+        }
     }
 
     /**
-     * Retrieves the LocalDateTime of this DatedJob
+     * Retrieves the formatted representation of this task
      */
-    public LocalDateTime getDate() {
-        return localDate;
+    @JsonIgnore
+    public String getTimeString() {
+        if (hasValidDateParsed) {
+            return timeString;
+        } else {
+            return "Invalid " + timeString;
+        }
     }
 
     /**
@@ -55,7 +73,7 @@ public abstract class DatedJob extends Task {
      */
     @Override
     public String toString() {
-        String formality = localDate == null ? " [Informal Format]" : "";
+        String formality = hasValidDateParsed ? " [Informal Format]" : "";
         return super.toString()
                 + String.format(" (%s: %s%s)", prefix, timeString, formality);
     }

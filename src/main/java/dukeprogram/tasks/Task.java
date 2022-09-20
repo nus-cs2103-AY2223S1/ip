@@ -2,20 +2,19 @@ package dukeprogram.tasks;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import dukeprogram.userinterface.WidgetTaskLabel;
+
 /**
  * A serializable Task class that describes a task in a tasklist
  */
-public class Task implements Serializable {
+public abstract class Task implements Serializable {
 
-    /**
-     * States the task could be in
-     */
-    public enum TaskState {
-        Done,
-        NotDone
-    }
-    private final String name;
-    private TaskState taskState;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("isComplete")
+    private boolean isComplete;
 
     /**
      * Creates a new task with the given name
@@ -23,17 +22,11 @@ public class Task implements Serializable {
      */
     public Task(String name) {
         this.name = name;
-        this.taskState = TaskState.NotDone;
+        this.isComplete = false;
     }
 
-    /**
-     * Creates a task with the given name and completion status
-     * @param name the task's name
-     * @param isDone the completion status describing whether the task is done or not
-     */
-    public Task(String name, boolean isDone) {
-        this(name);
-        this.taskState = TaskState.Done;
+    public Task() {
+
     }
 
     /**
@@ -44,12 +37,18 @@ public class Task implements Serializable {
         return name;
     }
 
+    public abstract WidgetTaskLabel createLabelWidget();
+
+    protected boolean getTaskState() {
+        return isComplete;
+    }
+
     /**
      * Annotates this task as either complete or incomplete
      * @param isComplete the state to annotate this task with
      */
     public void markJobState(boolean isComplete) {
-        this.taskState = isComplete ? TaskState.Done : TaskState.NotDone;
+        this.isComplete = isComplete;
     }
 
     /**
@@ -59,6 +58,6 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("[%s] ", taskState.equals(TaskState.Done) ? "X" : " ") + name;
+        return String.format("[%s] ", isComplete ? "X" : " ") + name;
     }
 }

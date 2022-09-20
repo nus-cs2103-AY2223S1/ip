@@ -90,6 +90,36 @@ public class StringUtilities {
     }
 
     /**
+     * Copies the elements from the iterator up to the first instance of the
+     * given delimiter, returns the copied elements and throws away the delimiter
+     * @param elements the iterator of elements to copy from
+     * @param delimiter the delimiter to read up to
+     * @return a concatenated string of copied elements excluding the first
+     *      instance of the delimiter
+     */
+    public static String copyUntilDelimiter(Iterator<String> elements, String delimiter) {
+        if (!elements.hasNext()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        String next = elements.next();
+
+        while (!next.equals(delimiter)) {
+            sb.append(next);
+            if (!elements.hasNext()) {
+                break;
+            }
+            next = elements.next();
+            if (!next.equals(delimiter)) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
      * Calculates the width of a text font
      * @param font the font of the text
      * @param text the text in the text field

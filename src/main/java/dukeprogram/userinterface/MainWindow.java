@@ -3,21 +3,17 @@ package dukeprogram.userinterface;
 import java.util.LinkedList;
 
 import dukeprogram.Duke;
-import dukeprogram.facilities.User;
 import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -40,8 +36,9 @@ public class MainWindow extends AnchorPane {
     private boolean hasStoppedResponse = true;
     private final LinkedList<DukeResponse> queuedResponses = new LinkedList<>();
     private boolean wasUserDialogPreviously = true;
-    private VBox groupedDialogBubbles;
+    private DialogBubbleGroup groupedDialogBubbles;
     private boolean isScrolling = false;
+    private int numberOfBubbles = 0;
 
     /**
      * Initialises the main window
@@ -88,23 +85,9 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
 
         getDialogGroup(true).getChildren().add(DialogBox.ofUser(input, duke.getUser()));
+        incrementAndClearExcessDialogBubbles();
         duke.parseInput(input);
         userInput.clear();
-    }
-
-    private void consumeResponse() {
-        hasStoppedResponse = false;
-        if (!queuedResponses.isEmpty()) {
-            DukeResponse nextResponse = queuedResponses.poll();
-            PauseTransition pause = new PauseTransition(Duration.millis(500));
-            pause.setOnFinished(event -> {
-                getDialogGroup(false).getChildren().add(nextResponse.createDialogBox());
-                consumeResponse();
-            });
-            pause.play();
-        } else {
-            hasStoppedResponse = true;
-        }
     }
 
     /**
@@ -119,34 +102,51 @@ public class MainWindow extends AnchorPane {
         }
     }
 
-    private VBox getDialogGroup(boolean isCurrentDialogFromUser) {
-        if (isCurrentDialogFromUser ^ wasUserDialogPreviously) {
-            groupedDialogBubbles = new VBox(5);
-            HBox pictureAndDialogDivider = new HBox();
-            setDisplayPicture(pictureAndDialogDivider, isCurrentDialogFromUser);
-            dialogContainer.getChildren().add(pictureAndDialogDivider);
+    private void consumeResponse() {
+        hasStoppedResponse = false;
+        if (!queuedResponses.isEmpty()) {
+            DukeResponse nextResponse = queuedResponses.poll();
+            PauseTransition pause = new PauseTransition(Duration.millis(500));
+            pause.setOnFinished(event -> {
+                getDialogGroup(false).getChildren().add(nextResponse.createDialogBox());
+                incrementAndClearExcessDialogBubbles();
+                consumeResponse();
+            });
+            pause.play();
+        } else {
+            hasStoppedResponse = true;
         }
-        wasUserDialogPreviously = isCurrentDialogFromUser;
-        return groupedDialogBubbles;
     }
 
-    private void setDisplayPicture(HBox groupContainer, boolean isClientDialog) {
-        ImageView displayPicture = new ImageView();
-
-        if (isClientDialog) {
-            groupContainer.setAlignment(Pos.BOTTOM_RIGHT);
-            displayPicture.setImage(duke.getUser().getUserImage());
-            groupContainer.getChildren().addAll(groupedDialogBubbles, displayPicture);
-        } else {
-            groupContainer.setAlignment(Pos.BOTTOM_LEFT);
-            displayPicture.setImage(User.DUKE.getUserImage());
-            groupContainer.getChildren().addAll(displayPicture, groupedDialogBubbles);
+    private VBox getDialogGroup(boolean isCurrentDialogFromUser) {
+        if (isCurrentDialogFromUser ^ wasUserDialogPreviously) {
+            if (isCurrentDialogFromUser) {
+                groupedDialogBubbles = new DialogBubbleGroup(5,
+                        duke.getUser().getUserImage(), dialogContainer);
+            } else {
+                groupedDialogBubbles = new DialogBubbleGroup(5, dialogContainer);
+            }
         }
 
-        new LayoutAnimator(true, true, 400)
-                .observe(groupContainer.getChildren());
+        wasUserDialogPreviously = isCurrentDialogFromUser;
+        return groupedDialogBubbles.getDialogBubbleContainer();
+    }
 
-        new DropShadowCircleFrame(25, 25, 1, 1)
-                .frame(displayPicture);
+    private void incrementAndClearExcessDialogBubbles() {
+        numberOfBubbles++;
+        if (numberOfBubbles > 60) {
+            if (dialogContainer.getChildren().size() == 1) {
+                groupedDialogBubbles.getDialogBubbleContainer().getChildren().remove(0);
+            } else {
+                DialogBubbleGroup firstGroup = (DialogBubbleGroup) dialogContainer.getChildren().get(0);
+                VBox firstGroupDialogContainer = firstGroup.getDialogBubbleContainer();
+                if (firstGroupDialogContainer.getChildren().size() > 1) {
+                    firstGroupDialogContainer.getChildren().remove(0);
+                } else {
+                    dialogContainer.getChildren().remove(0);
+                }
+            }
+            numberOfBubbles--;
+        }
     }
 }

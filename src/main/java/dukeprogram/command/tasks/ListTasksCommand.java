@@ -1,11 +1,18 @@
-package dukeprogram.command;
+package dukeprogram.command.tasks;
 
 import java.util.Iterator;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import dukeprogram.facilities.TaskList;
+import dukeprogram.tasks.Task;
+import dukeprogram.userinterface.TextStyle;
+import dukeprogram.userinterface.Widget;
+import dukeprogram.userinterface.WidgetTaskLabel;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 
 /**
  * A ListTaskCommand specifies a command that allows the main program
@@ -33,10 +40,12 @@ public class ListTasksCommand extends Command {
     public void printToGui() {
         TaskList currentTaskList = duke.getTaskList();
 
-        String formattedTaskListString = IntStream.range(0, currentTaskList.getSize())
-                .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
-                .collect(Collectors.joining("\n"));
+        System.out.println(currentTaskList.getSize());
 
-        duke.sendMessage("Here is your task list:\n" + formattedTaskListString);
+        Stream<Region> tasksLabelStream = IntStream.range(0, currentTaskList.getSize())
+                .mapToObj(i -> currentTaskList.get(i).createLabelWidget());
+
+        duke.sendMessage("Here is your task list:",
+                new Widget(tasksLabelStream.toArray(Region[]::new)));
     }
 }

@@ -2,13 +2,22 @@ package dukeprogram.storage;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.util.Objects;
+import javax.imageio.ImageIO;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 
 import exceptions.KeyNotFoundException;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 /**
  * SaveManager manages all the save functionalities
@@ -17,12 +26,35 @@ public class SaveManager {
 
     private static Storage dataInMemory;
 
+    /**
+     * A description of all images that can be loaded
+     */
+    public enum ImageType {
+        DukeImage("Duke.png", new Image(Objects.requireNonNull(
+                SaveManager.class.getResourceAsStream("/images/DaDuke.png")))),
+        UserImage("User.png", new Image(Objects.requireNonNull(
+                SaveManager.class.getResourceAsStream("/images/DaUser.png"))));
+
+        public final String label;
+        public final Image defaultImage;
+
+        ImageType(String label, Image defaultImage) {
+            this.label = label;
+            this.defaultImage = defaultImage;
+        }
+    }
+
     private static final String DATA_FOLDER = System.getProperty("user.home");
-    private static final java.nio.file.Path PATH = java.nio.file.Paths.get(
+    private static final Path PATH = java.nio.file.Paths.get(
             DATA_FOLDER,
             "CS2103T",
-            "Duke"
+            "DukeData"
     );
+
+    private static final Path RESOURCES_PATH = PATH.resolve("Resources");
+    private static final Path PROFILE_PICTURES = RESOURCES_PATH.resolve("ProfilePictures");
+
+    private static ObjectMapper objectMapper;
 
     /**
      * Saves to the storage object
@@ -46,24 +78,65 @@ public class SaveManager {
     }
 
     /**
+     * Retrieves a profile picture with the name <code>header</code>
+     * @param imageType the supported Image type to load
+     * @return an image with the given name
+     */
+    public static Image loadProfilePicture(ImageType imageType) {
+        File profilePicturesDirectory = new File(PROFILE_PICTURES.toString());
+        File imageFile = new File(profilePicturesDirectory, imageType.label);
+
+        if (profilePicturesDirectory.mkdirs()) {
+            System.out.println("Folders missing, creating absent folders");
+        }
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(imageFile);
+            return new Image(fileInputStream);
+        } catch (FileNotFoundException e) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(imageType.defaultImage, null),
+                        "png", imageFile);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            return imageType.defaultImage;
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    private static void createObjectMapper() {
+        PolymorphicTypeValidator ptv = BasicPolymorphicTypeValidator.builder()
+                .allowIfSubType(Serializable.class)
+                .build();
+        objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+    }
+
+    /**
      * Serializes a file to disk under the path
      * @param fileName the file name to serialize to under the folder path
      */
     public static void serialize(String fileName) throws IOException {
-        FileOutputStream fileOutputStream;
+        if (objectMapper == null) {
+            createObjectMapper();
+        }
+
         File saveFile = new File(PATH.toString(), fileName);
 
-        saveFile.getParentFile().mkdirs();
-        fileOutputStream = new FileOutputStream(saveFile);
+        if (saveFile.getParentFile().mkdirs()) {
+            System.out.println("Folder structure incomplete, attempting to create absent folders.");
+        }
 
-        ObjectOutputStream objOutputStream = new ObjectOutputStream(
-                fileOutputStream
-        );
-
-        objOutputStream.writeObject(dataInMemory);
-        objOutputStream.flush();
-        objOutputStream.close();
-        fileOutputStream.close();
+        try {
+            objectMapper.writeValue(saveFile, dataInMemory);
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataInMemory));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -72,24 +145,18 @@ public class SaveManager {
      * @return whether deserialization was successful
      */
     public static boolean deserialize(String fileName) {
+        if (objectMapper == null) {
+            createObjectMapper();
+        }
+
         try {
             File file = new File(PATH.toString(), fileName);
 
-            FileInputStream fileInputStream = new FileInputStream(file);
-            ObjectInputStream objInputStream = new ObjectInputStream(
-                    fileInputStream
-            );
-
-            try {
-                dataInMemory = (Storage) objInputStream.readObject();
-            } catch (ClassNotFoundException e) {
-                System.out.println("FATAL ERROR: " + e.getMessage());
-            }
-
+            dataInMemory = objectMapper.readValue(file, Storage.class);
             assert dataInMemory != null;
-            fileInputStream.close();
             return true;
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             dataInMemory = new Storage();
             return false;
         }

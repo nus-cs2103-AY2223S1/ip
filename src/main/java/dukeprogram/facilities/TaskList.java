@@ -2,6 +2,9 @@ package dukeprogram.facilities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import dukeprogram.storage.SaveManager;
 import dukeprogram.tasks.Task;
@@ -12,11 +15,10 @@ import exceptions.KeyNotFoundException;
  * of each task list. It also organises all the collected task lists.
  */
 public class TaskList implements Serializable {
-    private final ArrayList<Task> taskArrayList = new ArrayList<>(100);
-    private String name;
+    private final ArrayList<Task> taskArrayList;
 
-    private TaskList(String name) {
-        this.name = name;
+    public TaskList() {
+        taskArrayList = new ArrayList<>();
     }
 
     /**
@@ -28,21 +30,30 @@ public class TaskList implements Serializable {
         try {
             current = SaveManager.load("tasklist");
         } catch (KeyNotFoundException e) {
-            current = new TaskList("my tasks");
+            current = new TaskList();
             SaveManager.save("tasklist", current);
         }
 
         return current;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-
+    @JsonIgnore
     public Task[] getAllTasks() {
         return taskArrayList.toArray(Task[]::new);
+    }
+
+    /**
+     * Searches for all tasks with a substring in their names and returns
+     * an array of tasks that contain the substring
+     * @param substring the substring to be found within task names
+     * @return an array of tasks that match the substring
+     */
+    public Task[] findTasks(String substring) {
+        Pattern pattern = Pattern.compile(String.format("(.*)%s(.*)", substring));
+
+        return taskArrayList.stream()
+                .filter(task -> pattern.matcher(task.getName()).matches())
+                .toArray(Task[]::new);
     }
 
 
@@ -50,6 +61,7 @@ public class TaskList implements Serializable {
      * Retrieves the size of all the stored task lists
      * @return the size of all task lists
      */
+    @JsonIgnore
     public int getSize() {
         return taskArrayList.size();
     }
@@ -87,5 +99,9 @@ public class TaskList implements Serializable {
         Task removedTask = taskArrayList.remove(index);
         SaveManager.save("tasklist", this);
         return removedTask;
+    }
+
+    public int indexOf(Task task) {
+        return taskArrayList.indexOf(task);
     }
 }

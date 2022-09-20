@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import dukeprogram.Duke;
 import dukeprogram.facilities.LoanCollection;
-import dukeprogram.facilities.User;
 import dukeprogram.facilities.TaskList;
+import dukeprogram.facilities.User;
 import dukeprogram.storage.SaveManager;
 import exceptions.KeyNotFoundException;
 
@@ -28,7 +28,8 @@ public class LoadUserCommand extends Command {
      * @return an optional containing the User loaded
      */
     public Optional<User> load() {
-        if (SaveManager.deserialize("saveFile")) {
+        if (SaveManager.deserialize("saveFile.json")) {
+            // if deserialization is successful
             try {
                 user = SaveManager.load("user");
                 duke.sendMessage(String.format("Welcome back %s!", user.getName()));
@@ -36,7 +37,10 @@ public class LoadUserCommand extends Command {
                 return Optional.empty();
             }
         } else {
-            user = new User(System.getProperty("user.name"), User.USER_IMAGE);
+            // if deserialization is unsuccessful
+            user = new User(System.getProperty("user.name"),
+                    SaveManager.loadProfilePicture(SaveManager.ImageType.UserImage));
+
             SaveManager.save("user", user);
             duke.sendMessage(String.format("Nice to meet you %s!", user.getName()));
         }

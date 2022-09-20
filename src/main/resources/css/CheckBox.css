@@ -1,0 +1,14 @@
+.check-box .box {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius:3px;
+    -fx-padding: 0.5em;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #660033;
+}
+
+.check-box:selected .box {
+    -fx-background-color: hotpink;
+}

@@ -228,7 +228,7 @@ At the end of the list, a summary of receivable or payable funds will be noted.
 ---
 ## Customisation
 
-###Setting Username
+### Setting Username
 
 By default, Duke addresses the user by the name registered as the username on the current account of the machine.
 

@@ -1,10 +1,12 @@
-package dukeprogram.command;
+package dukeprogram.command.tasks;
 
 import java.util.Iterator;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import dukeprogram.tasks.Task;
 import dukeprogram.tasks.ToDo;
+import dukeprogram.userinterface.Widget;
 import exceptions.InvalidCommandException;
 import utilities.StringUtilities;
 
@@ -29,6 +31,6 @@ public class AddTodoTaskCommand extends Command {
 
         Task task = new ToDo(StringUtilities.concatByDelimiter(elements, " "));
         duke.getTaskList().add(task);
-        duke.sendMessage("Okay, I've added the task " + task);
+        duke.sendMessage("Okay, I've added the task ", new Widget(task.createLabelWidget()));
     }
 }

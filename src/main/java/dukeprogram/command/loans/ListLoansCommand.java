@@ -1,14 +1,14 @@
-package dukeprogram.command;
+package dukeprogram.command.loans;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import dukeprogram.facilities.Loan;
-import dukeprogram.facilities.LoanCollection;
-import dukeprogram.facilities.TaskList;
+import dukeprogram.userinterface.Widget;
+import dukeprogram.userinterface.WidgetLoanLabel;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
@@ -48,6 +48,7 @@ public class ListLoansCommand extends Command {
         } else {
             debt = "\n\t\tRECEIVABLE $" + -poolAmount;
         }
-        duke.sendMessage("Here are your loans:\n" + formattedLoanCollectionString + debt);
+        duke.sendMessage("Here are your loans:\n",
+                new Widget(Arrays.stream(loans).map(Loan::makeWidget).collect(Collectors.toList())));
     }
 }

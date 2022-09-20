@@ -31,6 +31,7 @@ public class RenameUserCommand extends Command {
 
         duke.getUser().setName(name);
         SaveManager.save("user", duke.getUser());
+        duke.save();
         duke.sendMessage(String.format("Alright, I'll call you %s from now on", name));
     }
 }

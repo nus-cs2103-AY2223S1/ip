@@ -8,6 +8,7 @@ import java.util.Optional;
 public class DukeResponse {
 
     private final String text;
+    private final TextStyle style;
     private final Optional<Widget> optionalWidget;
 
     /**
@@ -15,14 +16,16 @@ public class DukeResponse {
      * @param text the text that Duke would say
      * @param widget an optional widget to represent additional information,
      *               if null is passed, then nothing will be rendered
+     * @param style the text style to render the text in
      */
-    public DukeResponse(String text, Widget widget) {
+    public DukeResponse(String text, Widget widget, TextStyle style) {
         this.text = text;
+        this.style = style;
         optionalWidget = widget != null ? Optional.of(widget) : Optional.empty();
     }
 
-    public DukeResponse(String text) {
-        this(text, null);
+    public DukeResponse(String text, TextStyle style) {
+        this(text, null, style);
     }
 
     /**
@@ -31,8 +34,8 @@ public class DukeResponse {
      */
     public DialogBox createDialogBox() {
         return optionalWidget
-                .map(widget -> DialogBox.ofDuke(text, widget))
-                .orElseGet(() -> DialogBox.ofDuke(text));
+                .map(widget -> DialogBox.ofDuke(text, style, widget))
+                .orElseGet(() -> DialogBox.ofDuke(text, style));
     }
 
     @Override

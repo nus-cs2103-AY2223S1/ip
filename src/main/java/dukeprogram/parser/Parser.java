@@ -2,23 +2,28 @@ package dukeprogram.parser;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import dukeprogram.Duke;
 import dukeprogram.Main;
-import dukeprogram.command.AccessLoansCommand;
-import dukeprogram.command.AccessTasksCommand;
 import dukeprogram.command.SetVariableCommand;
+import dukeprogram.command.loans.AccessLoansCommand;
+import dukeprogram.command.tasks.AccessTasksCommand;
+import dukeprogram.userinterface.TextStyle;
 import dukeprogram.userinterface.Widget;
+import dukeprogram.userinterface.WidgetButton;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
-import javafx.scene.control.Button;
 
 /**
  * Parser will parse a command string in any given command context.
  */
 public class Parser {
 
-    private Duke duke;
+    private final Duke duke;
+    private int numberOfInvalidCommands = 0;
+    private final int maximumNumberOfInvalidCommands = 3;
 
     public Parser(Duke duke) {
         this.duke = duke;
@@ -34,56 +39,81 @@ public class Parser {
         if (!elements.hasNext()) {
             throw new IncompleteCommandException();
         }
-
         String thisElement = elements.next();
 
         try {
             switch (thisElement) {
             case "tasks":
                 new AccessTasksCommand(duke).parse(elements);
+                numberOfInvalidCommands = 0;
                 break;
 
             case "set":
                 new SetVariableCommand(duke).parse(elements);
+                numberOfInvalidCommands = 0;
                 break;
 
             case "loans":
                 new AccessLoansCommand(duke).parse(elements);
+                numberOfInvalidCommands = 0;
                 break;
 
             case "help":
                 printHelp();
+                numberOfInvalidCommands = 0;
+                break;
+
+            case "bye":
+                duke.sendMessage("Goodbye!");
+                duke.save();
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.exit(0);
+                    }
+                }, 1000);
+                break;
+
+            case "thank":
+            case "thanks":
+                duke.sendMessage("Your welcome!");
+                break;
+
+            case "hi":
+            case "hello":
+                duke.sendMessage("Hello :)");
                 break;
 
             default:
-                duke.sendMessage(String.format("\"%s\" is not a valid command!", thisElement));
+                throw new InvalidCommandException(String.format("\"%s\" is not a valid command!", thisElement));
             }
         } catch (InvalidCommandException | IncompleteCommandException e) {
+            countInvalidCommands(e);
+        }
+    }
+
+    private void countInvalidCommands(Exception e) {
+        if (++numberOfInvalidCommands == maximumNumberOfInvalidCommands) {
+            duke.sendMessage("Please stop doing that.", TextStyle.Warning);
+            duke.sendMessage("Have a look at the user guide", createWidgetForUserGuide());
+        } else if (numberOfInvalidCommands < maximumNumberOfInvalidCommands) {
             duke.sendMessage(e.getMessage());
         }
     }
 
     private void printHelp() {
-        Button userGuideButton = new Button("User Guide");
-        userGuideButton.getStyleClass().add("header");
-
-        String styleDefault = "-fx-background-color: #FF1493; -fx-background-radius: 5px;";
-        String styleHover = "-fx-background-color: #FF69B4; -fx-background-radius: 5px;";
-
-        userGuideButton.setStyle(styleDefault);
-        userGuideButton.setOnMouseEntered(e -> userGuideButton.setStyle(styleHover));
-        userGuideButton.setOnMouseExited(e -> userGuideButton.setStyle(styleDefault));
-
-        userGuideButton.setMinHeight(40);
-        userGuideButton.setOnAction(
-                e -> Main.getPrimaryHostService().showDocument("https://rui-han-crh.github.io/ip/")
-        );
-
         duke.sendMessage("I am able to record tasks or loans.");
         duke.sendMessage("Type \"tasks help\" for more information regarding tasks.\n"
                         + "\nOtherwise, type \"loans help\" for more information regarding loans.\n"
                         + "\nHere is the user guide on how to use this program.",
-                new Widget(userGuideButton));
+                createWidgetForUserGuide());
+    }
+
+    private Widget createWidgetForUserGuide() {
+        return new Widget(new WidgetButton("User Guide",
+                e -> Main.getPrimaryHostService()
+                        .showDocument("https://rui-han-crh.github.io/ip/"))
+        );
     }
 
     /**

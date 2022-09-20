@@ -1,9 +1,12 @@
-package dukeprogram.command;
+package dukeprogram.command.loans;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
+import dukeprogram.facilities.Loan;
+import dukeprogram.userinterface.Widget;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
@@ -12,7 +15,7 @@ import exceptions.InvalidCommandException;
  */
 public class AddLoanCommand extends Command {
 
-    private static final String DELIMITER = "-amount";
+    private static final String DELIMITER = "/amount";
 
     /**
      * Creates a AddLoanCommand
@@ -39,9 +42,8 @@ public class AddLoanCommand extends Command {
         double amountOwed;
         try {
             String element = elements.next();
-            if (element.charAt(0) == '$') {
-                element = element.substring(1);
-            }
+            element = element.replace("$", "");
+
             amountOwed = Double.parseDouble(element);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException("The amount owed must be specified in numerics only");
@@ -51,6 +53,7 @@ public class AddLoanCommand extends Command {
 
         duke.getLoanCollection().add(personName, amountOwed);
         duke.save();
+        duke.sendMessage("Okay, I've updated the loan for " + personName);
     }
 
     private String fetchName(Iterator<String> elements) {

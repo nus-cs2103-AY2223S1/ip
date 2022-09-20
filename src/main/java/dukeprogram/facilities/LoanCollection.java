@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import dukeprogram.storage.SaveManager;
 import exceptions.KeyNotFoundException;
 
+/**
+ * A LoanCollection represents a collection of loans associated with creditors
+ */
 public class LoanCollection implements Serializable {
-    private final Map<Person, Loan> loans = new HashMap<>();
-    private final Map<String, Person> uniquePersonNames = new HashMap<>();
+    private final Map<String, Loan> loans = new HashMap<>();
 
     /**
      * Initialises the LoanCollection saved
@@ -32,6 +36,7 @@ public class LoanCollection implements Serializable {
      * Gets all the recorded loans
      * @return an array of Loan objects
      */
+    @JsonIgnore
     public Loan[] getAllLoans() {
         return loans.values().toArray(new Loan[0]);
     }
@@ -41,24 +46,9 @@ public class LoanCollection implements Serializable {
      * Retrieves the size of all the stored task lists
      * @return the size of all task lists
      */
+    @JsonIgnore
     public int getSize() {
         return loans.size();
-    }
-
-    /**
-     * Adds an amount of owed money to a creditor.
-     * This operation will save the loan collection afterwards.
-     * @param creditor the person the money is owed to
-     * @param amountOwedToAdd the amount of owed money to be added
-     * @return
-     */
-    public void add(Person creditor, double amountOwedToAdd) {
-        if (loans.containsKey(creditor)) {
-            loans.get(creditor).addAmountOwed(amountOwedToAdd);
-        } else {
-            loans.put(creditor, new Loan(creditor, amountOwedToAdd));
-        }
-        SaveManager.save("loanCollection", this);
     }
 
     /**
@@ -68,14 +58,12 @@ public class LoanCollection implements Serializable {
      * @return
      */
     public void add(String creditorName, double amountOwedToAdd) {
-        Person creditor;
-        if (uniquePersonNames.containsKey(creditorName)) {
-            creditor = uniquePersonNames.get(creditorName);
+        if (!loans.containsKey(creditorName)) {
+            loans.put(creditorName, new Loan(creditorName, amountOwedToAdd));
         } else {
-            creditor = new Person(creditorName);
-            uniquePersonNames.put(creditorName, creditor);
+            Loan existingLoan = loans.get(creditorName);
+            existingLoan.addAmountOwed(amountOwedToAdd);
         }
-        add(creditor, amountOwedToAdd);
     }
 
     /**
@@ -86,30 +74,12 @@ public class LoanCollection implements Serializable {
         SaveManager.save("loanCollection", this);
     }
 
-    public Loan get(Person creditor) {
-        return loans.get(creditor);
-    }
-
     public Loan get(String creditorName) throws KeyNotFoundException {
-        if (!uniquePersonNames.containsKey(creditorName)) {
+        if (!loans.containsKey(creditorName)) {
             throw new KeyNotFoundException(creditorName, "loans");
         }
 
-        return loans.get(uniquePersonNames.get(creditorName));
-    }
-
-    /**
-     * Removes a person and the corresponding loan from the loan list
-     * @param creditor the person and attached loan to remove
-     * @return the task that was removed if the index was valid, otherwise null
-     */
-    public Loan remove(Person creditor) {
-        if (creditor == null) {
-            return null;
-        }
-
-        uniquePersonNames.remove(creditor.getName());
-        return loans.remove(creditor);
+        return loans.get(creditorName);
     }
 
     /**
@@ -118,6 +88,15 @@ public class LoanCollection implements Serializable {
      * @return the task that was removed if the index was valid, otherwise null
      */
     public Loan remove(String creditorName) {
-        return remove(uniquePersonNames.remove(creditorName));
+        return loans.remove(creditorName);
+    }
+
+    /**
+     * Checks to see if the name of the creditor exists in the loan collection
+     * @param name name of the creditor
+     * @return whether the name exists as a creditor's name
+     */
+    public boolean containsKey(String name) {
+        return loans.containsKey(name);
     }
 }

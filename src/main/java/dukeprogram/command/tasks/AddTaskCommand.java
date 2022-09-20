@@ -1,8 +1,9 @@
-package dukeprogram.command;
+package dukeprogram.command.tasks;
 
 import java.util.Iterator;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
