@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="583.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" alignment="CENTER" minHeight="99.0" minWidth="200.0" style="-fx-background-color: #e7e1f5; -fx-background-radius: 8;" text="Label" wrapText="true">
+        <Label fx:id="dialog" alignment="CENTER" minHeight="99.0" minWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-opacity: 90;" text="Label" textFill="#fb8987" wrapText="true">
          <HBox.margin>
             <Insets left="8.0" right="8.0" />
          </HBox.margin>
          <font>
-            <Font name="Calibri" size="14.0" />
+            <Font name="Calibri Bold" size="14.0" />
          </font>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

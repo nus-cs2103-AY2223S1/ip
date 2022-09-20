@@ -14,7 +14,7 @@ import java.util.*;
 public class Ui {
 
     /**
-     * Returns a welcome message with instructions on how to use Duke.
+     * Returns a help message with instructions on how to use PAL.
      *
      * @return a welcome message.
      */
@@ -22,7 +22,7 @@ public class Ui {
         return "I'm capable of doing the following:\n\n"
                 + "See what I can do:\nhelp\n\n"
                 + "See all the tasks you've added:\nlist\n\n"
-                + "Sort all the tasks by task type then by date and time:\nsort\n\n"
+                + "Sort all the tasks by date and time:\nsort\n\n"
                 + "Add a ToDo task:\ntodo <your task>\n\n"
                 + "Add a Deadline task:\ndeadline <your deadline> /by <2022-01-28>\n\n"
                 + "Add an Event task:\nevent <your event> /at <2022-01-28> <2359>\n\n"
@@ -31,6 +31,12 @@ public class Ui {
                 + "Mark a task as undone:\nunmark <index>\n\n"
                 + "Delete a task:\ndelete <INDEX>\n\n"
                 + "Exit the program:\nbye";
+    }
+
+    public String welcomeMsg() {
+        return "Hello! I am PAL, your best PAL when it comes to task managing!\nStart by adding any one of the task below!\n\n"
+                + "todo borrow books\ndeadline homework /by 2022-01-28\n"
+                + "event furniture expo /at 2022-01-28 1700";
     }
 
     /**
