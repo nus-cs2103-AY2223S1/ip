@@ -49,10 +49,6 @@ application {
     mainClassName = "duke.Launcher"
 }
 
-javafx {
-    version = "11.0.2"
-    modules = [ "javafx.controls", "javafx.fxml", "javafx.web" ]
-}
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null

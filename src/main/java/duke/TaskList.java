@@ -242,10 +242,10 @@ public class TaskList {
     }
 
     /**
-     * Adds a Event task to the list.
+     * Adds an Event task to the list.
      *
      * @param stringComponent The description and the date and time of the task.
-     * @return The response of adding a Event task.
+     * @return The response of adding an Event task.
      * @throws DukeException If | is used.
      */
     public String addEventTask(String stringComponent) throws DukeException {
