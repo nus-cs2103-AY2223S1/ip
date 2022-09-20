@@ -8,7 +8,6 @@ import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.facilities.Loan;
 import dukeprogram.userinterface.Widget;
-import dukeprogram.userinterface.WidgetLoanLabel;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 

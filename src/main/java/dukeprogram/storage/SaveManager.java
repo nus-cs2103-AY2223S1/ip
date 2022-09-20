@@ -83,7 +83,7 @@ public class SaveManager {
      * @return an image with the given name
      */
     public static Image loadProfilePicture(ImageType imageType) {
-        File profilePicturesDirectory = new File(PROFILE_PICTURES.toString());
+        File profilePicturesDirectory = getProfilePicturesDirectory();
         File imageFile = new File(profilePicturesDirectory, imageType.label);
 
         if (profilePicturesDirectory.mkdirs()) {
@@ -92,7 +92,9 @@ public class SaveManager {
 
         try {
             FileInputStream fileInputStream = new FileInputStream(imageFile);
-            return new Image(fileInputStream);
+            Image image = new Image(fileInputStream);
+            fileInputStream.close();
+            return image;
         } catch (FileNotFoundException e) {
             try {
                 ImageIO.write(SwingFXUtils.fromFXImage(imageType.defaultImage, null),
@@ -101,7 +103,7 @@ public class SaveManager {
                 ex.printStackTrace();
             }
             return imageType.defaultImage;
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IOException e) {
             System.out.println(e.getMessage());
             return null;
         }
@@ -160,5 +162,13 @@ public class SaveManager {
             dataInMemory = new Storage();
             return false;
         }
+    }
+
+    public static File getProfilePicturesDirectory() {
+        File dir = new File(PROFILE_PICTURES.toString());
+        if (dir.mkdirs()) {
+            System.out.println("Creating absent folders for profile pictures");
+        }
+        return dir;
     }
 }

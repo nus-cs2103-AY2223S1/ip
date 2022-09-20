@@ -7,11 +7,7 @@ import java.util.stream.Stream;
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.facilities.TaskList;
-import dukeprogram.tasks.Task;
-import dukeprogram.userinterface.TextStyle;
 import dukeprogram.userinterface.Widget;
-import dukeprogram.userinterface.WidgetTaskLabel;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**

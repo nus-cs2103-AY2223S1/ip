@@ -5,8 +5,6 @@ import java.util.NoSuchElementException;
 
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
-import dukeprogram.facilities.Loan;
-import dukeprogram.userinterface.Widget;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 

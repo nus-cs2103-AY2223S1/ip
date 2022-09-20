@@ -1,6 +1,5 @@
 package dukeprogram.userinterface;
 
-import dukeprogram.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

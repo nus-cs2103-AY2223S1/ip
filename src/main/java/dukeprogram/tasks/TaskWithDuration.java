@@ -1,11 +1,11 @@
 package dukeprogram.tasks;
 
-import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import dukeprogram.parser.DateTimeParser;
 
 /**

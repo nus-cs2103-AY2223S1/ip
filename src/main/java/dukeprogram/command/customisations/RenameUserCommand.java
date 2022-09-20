@@ -1,8 +1,9 @@
-package dukeprogram.command;
+package dukeprogram.command.customisations;
 
 import java.util.Iterator;
 
 import dukeprogram.Duke;
+import dukeprogram.command.Command;
 import dukeprogram.storage.SaveManager;
 import exceptions.IncompleteCommandException;
 import utilities.StringUtilities;

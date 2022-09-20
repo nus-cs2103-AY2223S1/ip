@@ -1,10 +1,12 @@
 package dukeprogram.command;
 
+import java.util.Iterator;
+
 import dukeprogram.Duke;
+import dukeprogram.command.customisations.ChangeProfilePictureCommand;
+import dukeprogram.command.customisations.RenameUserCommand;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
-
-import java.util.Iterator;
 
 /**
  * SetVariableCommand is used to set a variable related to the currently running Duke task.
@@ -32,6 +34,10 @@ public class SetVariableCommand extends Command {
         switch (element) {
         case "name":
             new RenameUserCommand(duke).parse(elements);
+            break;
+
+        case "picture":
+            new ChangeProfilePictureCommand(duke).parse(elements);
             break;
 
         default:
