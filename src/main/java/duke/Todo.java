@@ -1,16 +1,16 @@
 package duke;
 
 class Todo extends Task {
-    Todo (int id, String name) {
-        super(id, name);
+    Todo (String name) {
+        super(name);
     }
-    Todo (int id, String name, boolean done) {
-        super(id, name, done);
+    Todo (String name, boolean done) {
+        super(name, done);
     }
 
     @Override
     public String toString() {
-        String out = super.getId() + ".[T][";
+        String out = "[T][";
         if (super.getStatus()) {
             out += "X";
         } else {

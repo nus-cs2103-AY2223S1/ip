@@ -6,19 +6,19 @@ import java.time.format.DateTimeFormatter;
 class Event extends Task {
 
     LocalDate eventTime;
-    Event (int id, String name, String eventTime) {
-        super(id, name);
+    Event (String name, String eventTime) {
+        super(name);
         this.eventTime = LocalDate.parse(eventTime);
     }
-    Event (int id, String name, String eventTime, boolean done) {
-        super(id, name, done);
+    Event (String name, String eventTime, boolean done) {
+        super(name, done);
         this.eventTime = LocalDate.parse(eventTime.trim(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
         assert(this.eventTime.isAfter(LocalDate.now()));
     }
 
     @Override
     public String toString() {
-        String out = super.getId() + ".[E][";
+        String out = "[E][";
         if (super.getStatus()) {
             out += "X";
         } else {

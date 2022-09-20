@@ -7,20 +7,20 @@ class Deadline extends Task {
 
     LocalDate deadline;
 
-    Deadline (int id, String name, String deadline) {
-        super(id, name);
+    Deadline (String name, String deadline) {
+        super(name);
         this.deadline = LocalDate.parse(deadline.trim());
     }
 
-    Deadline (int id, String name, String deadline, boolean done) {
-        super(id, name, done);
+    Deadline (String name, String deadline, boolean done) {
+        super(name, done);
         this.deadline = LocalDate.parse(deadline.trim(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
         assert(this.deadline.isAfter(LocalDate.now()));
     }
 
     @Override
     public String toString() {
-        String out = super.getId() + ".[D][";
+        String out = "[D][";
         if (super.getStatus()) {
             out += "X";
         } else {

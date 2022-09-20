@@ -1,3 +1,4 @@
-1.[T][ ] 2103 project
-2.[E][ ] 2103 team meeting (at : Sep 12 2022)
-3.[D][ ] 2107 assignment (by : Sep 18 2022)
+[E][X] 03 team meetin(at : Sep 12 2022)
+[D][X] 07 assignmen(by : Sep 18 2022)
+[T][ ]  2105 revision
+[T][ ] 2107 revision

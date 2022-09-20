@@ -1,17 +1,15 @@
 package duke;
 
 abstract class Task {
-    private final int id;
     private final String name;
     private boolean isDone = false;
 
-    Task(int id, String name) {
-        this.id = id;
+    Task(String name) {
         this.name = name;
     }
 
-    Task(int id, String name, Boolean isDone) {
-        this(id, name);
+    Task(String name, Boolean isDone) {
+        this(name);
         this.isDone = isDone;
     }
 
@@ -21,10 +19,6 @@ abstract class Task {
 
     void setStatus(boolean b) {
         isDone = b;
-    }
-
-    int getId() {
-        return id;
     }
 
     boolean getStatus() {

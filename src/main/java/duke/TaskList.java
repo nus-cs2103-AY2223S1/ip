@@ -19,25 +19,23 @@ class TaskList {
     List<Task> populateList(Stream<String> lines) {
         ArrayList<Task> arrayList = new ArrayList<>();
         lines.forEach(x -> {
-            int id = Integer.parseInt(x.substring(0, 1));
-            char type = x.charAt(3);
-            boolean done = x.charAt(6) == 'X';
+            char type = x.charAt(1);
+            boolean done = x.charAt(4) == 'X';
             String task;
 
-            assert(id > 0);
             assert(type == 'T' || type == 'D' || type == 'E');
 
             if (type == 'D' || type == 'E') {
                 task = x.substring(9, x.indexOf("(") - 1);
                 String additional = x.substring(x.indexOf("(") + 6, x.indexOf(')'));
                 if (type == 'D') {
-                    arrayList.add(new Deadline(id, task, additional, done));
+                    arrayList.add(new Deadline(task, additional, done));
                 } else {
-                    arrayList.add(new Event(id, task, additional, done));
+                    arrayList.add(new Event(task, additional, done));
                 }
             } else {
-                task = x.substring(9);
-                arrayList.add(new Todo(id, task, done));
+                task = x.substring(6);
+                arrayList.add(new Todo(task, done));
             }
         });
         return arrayList;
@@ -56,7 +54,11 @@ class TaskList {
 
     String list() {
         String[] response = new String[]{"Woof! Here is everything you need: \n"};
-        tasks.forEach(x -> response[0] += x + "\n");
+        int counter[] = new int[]{1};
+        tasks.forEach(x -> {
+            response[0] += counter[0] + "." + x.toString() + "\n";
+            counter[0]++;
+        });
         return response[0];
     }
 
@@ -97,13 +99,13 @@ class TaskList {
         Task newTask;
         switch (type) {
         case "T":
-            newTask = new Todo(tasks.size() + 1, name);
+            newTask = new Todo(name);
             break;
         case "D":
-            newTask = new Deadline(tasks.size() + 1, name, additional);
+            newTask = new Deadline(name, additional);
             break;
         case "E":
-            newTask = new Event(tasks.size() + 1, name, additional);
+            newTask = new Event(name, additional);
             break;
         default:
             return "Unknown task type";
