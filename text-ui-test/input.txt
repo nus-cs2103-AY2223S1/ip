@@ -1,0 +1,7 @@
+todo eat
+deadline sleep /by 1030
+event concert /at monday 2359
+mark 1
+unmark 1
+list
+bye
