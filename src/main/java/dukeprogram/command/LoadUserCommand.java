@@ -28,7 +28,7 @@ public class LoadUserCommand extends Command {
      * @return an optional containing the User loaded
      */
     public Optional<User> load() {
-        if (SaveManager.deserialize("saveFile.json")) {
+        if (SaveManager.deserialize("savefile.json")) {
             // if deserialization is successful
             try {
                 user = SaveManager.load("user");

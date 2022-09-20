@@ -157,7 +157,9 @@ public class SaveManager {
             assert dataInMemory != null;
             return true;
         } catch (IOException e) {
+            System.out.println("Deserialization error, see below:");
             System.out.println(e.getMessage());
+            System.out.println("----------------------------------");
             dataInMemory = new Storage();
             return false;
         }
