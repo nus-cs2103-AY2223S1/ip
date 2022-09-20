@@ -26,8 +26,8 @@ public class Ui {
     public static String sayGoodbye(ToDoList list) {
         String response = "\n" + LanguageBank.GOODBYE_MESSAGE;
         String haveMoreTasks = " You still have " + list.getLength()
-                + (list.getLength() == 1 ? " slay\u2728" : " slays\u2728")
-                + " to slay\u2728! \uD83D\uDE0A";
+                + (list.getLength() == 1 ? " slay" : " slays")
+                + " to slay!";
         String completedAllTasks = LanguageBank.COMPLETED_ALL_TASKS_GOODBYE_MESSAGE;
 
         response = list.getLength() == 0 ? response + completedAllTasks : response + haveMoreTasks;
@@ -44,7 +44,7 @@ public class Ui {
     public static String taskAddedMessage(Task t, ToDoList list) {
         String response = LanguageBank.TASK_ADDED_MESSAGE;
         response += "\t" + t.toString() + "\n";
-        response += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " slay\u2728" : " slays\u2728")
+        response += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " slay" : " slays")
                 + " in the list.";
         return response;
     }
@@ -61,7 +61,7 @@ public class Ui {
         response += "\t\t" + t.toString() + "\n";
         response += "\tYou now have "
                 + (list.getLength())
-                + (list.getLength() == 1 ? " slay\u2728" : " slays\u2728");
+                + (list.getLength() == 1 ? " slay" : " slays");
         return response;
     }
 
