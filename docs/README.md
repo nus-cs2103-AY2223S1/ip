@@ -4,7 +4,7 @@
 Whichever needs to be done, whenever the time.
 Duke is a **simple** and **easy-to-use** Java app to track your tasks on the go.
 
-![Duke Ui Screenshot](./docs/Ui.png)
+![Duke Ui Screenshot](/docs/Ui.png)
 
 ## Task-Tracking Features 
 - Find
