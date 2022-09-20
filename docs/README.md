@@ -25,6 +25,12 @@ There are 3 types of tasks that can be added to Duke
 2. Deadline
 3. Event
 
+A task is formatted as follows:
+
+`[T][ ] TASK_ITEM`
+
+The first box `[T]` indicates the type of task, while the second `[ ]` indicates whether the task has been marked as completed.
+
 ### `todo` - Adds a Todo task to Duke list
 Command format: `todo TODO_ITEM`
 
