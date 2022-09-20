@@ -4,7 +4,21 @@ import duke.exceptions.EmptyTextException;
 import duke.exceptions.EndProgramException;
 import duke.exceptions.IllegalCommandException;
 
+/**
+ * Encapsulates the input parser which parses user input.
+ */
 class InputParser {
+
+    /**
+     * Parses user input according to the specified user command.
+     * @param input The user input.
+     * @param taskList The list of tasks currently kept in memory.
+     * @param storage The Storage class which will save data to memory when user closes the chat.
+     * @return Returns response according to the user's command.
+     * @throws EmptyTextException Thrown when user only specifies a command without arguments.
+     * @throws IllegalCommandException Thrown when user specifies a command which is not recognised.
+     * @throws EndProgramException Thrown when user wants to exit the program.
+     */
     String parse(String input, TaskList taskList, Storage storage) throws EmptyTextException, IllegalCommandException, EndProgramException {
         String response = "";
         assert(input.length() > 0);

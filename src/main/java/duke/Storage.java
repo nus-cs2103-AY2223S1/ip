@@ -8,12 +8,20 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
+
+/**
+ * Encapsulates two methods to store and load data to and from disk.
+ */
 class Storage {
     private final String filepath;
     Storage(String path) {
         filepath = path;
     }
 
+    /**
+     * Attempts to load saved data from disk.
+     * @return If there is saved data, returns saved data as a TaskList. Else, returns a new empty TaskList.
+     */
     TaskList load() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filepath));
@@ -29,6 +37,10 @@ class Storage {
     }
 
 
+    /**
+     * Saves data to disk.
+     * @param taskList The list of tasks currently stored on memory.
+     */
     void save(TaskList taskList) {
         List<Task> tasks = taskList.getTasks();
         try {

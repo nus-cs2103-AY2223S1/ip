@@ -5,17 +5,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Encapsulates the list of tasks currently kept on memory.
+ */
 class TaskList {
 
     private final List<Task> tasks;
+
+    /**
+     * Create a new empty TaskList.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
+    /**
+     * Create a new TaskList from a list of existing tasks.
+     * @param lines The list of existing tasks.
+     */
     public TaskList(Stream<String> lines) {
         tasks = populateList(lines);
     }
 
+    /**
+     * Populate the empty TaskList with list of existing tasks.
+     * @param lines The list of existing tasks.
+     * @return A new List<Task> containing the existing tasks.
+     */
     List<Task> populateList(Stream<String> lines) {
         ArrayList<Task> arrayList = new ArrayList<>();
         lines.forEach(x -> {
@@ -41,6 +57,11 @@ class TaskList {
         return arrayList;
     }
 
+    /**
+     * Looks for a task in TaskList matching query.
+     * @param query The task to be matched.
+     * @return Returns the matching task if found, or a nil response if not found.
+     */
     String find(String query) {
         String[] response = new String[]{"Woof! This is what I found: \n"};
         tasks.stream().filter(x -> x.getName().contains(query))
@@ -52,6 +73,10 @@ class TaskList {
         return tasks;
     }
 
+    /**
+     * Prints all tasks currently in memory.
+     * @return Returns a string of all tasks currently in memory, to be printed.
+     */
     String list() {
         String[] response = new String[]{"Woof! Here is everything you need: \n"};
         int counter[] = new int[]{1};
@@ -62,6 +87,12 @@ class TaskList {
         return response[0];
     }
 
+    /**
+     * Marks a task as done or undone.
+     * @param id The position of the task to mark.
+     * @param done The status of the task.
+     * @return Returns the description of the marked or unmarked task to be printed.
+     */
     String mark(int id, boolean done) {
         String response = "";
         Task task = tasks.get(id - 1);
@@ -75,6 +106,13 @@ class TaskList {
         return response;
     }
 
+    /**
+     * Checks if the new task is a duplicate of an existing task.
+     * @param name The name of the new task.
+     * @param type The type of the new task.
+     * @param additional Any additional information about the new task (deadline for Deadline tasks, eventTime for Events)
+     * @return Returns true if the task already exists, else returns false.
+     */
     boolean checkIfDuplicate(String name, String type, String additional) {
         if (type.equals("T")) {
             return tasks.stream().anyMatch(x -> x.getName().equals(name) && x.getClass() == Todo.class);
@@ -91,6 +129,13 @@ class TaskList {
         }
     }
 
+    /**
+     * Adds a new task to the current list of tasks.
+     * @param name Name of the task.
+     * @param type Type of the task.
+     * @param additional Deadline for Deadline tasks, eventTime for Event tasks. Not used for Todo tasks.
+     * @return Returns a response, printing the added task.
+     */
     String addTask(String name, String type, String additional) {
         if (checkIfDuplicate(name, type, additional)) {
             return "Woof! Duplicate task! Not added.";
@@ -117,6 +162,11 @@ class TaskList {
         return response;
     }
 
+    /**
+     * Removes a specified task from the current list of tasks.
+     * @param id Position of the task.
+     * @return Returns response containing the removed task, and number of tasks left.
+     */
     String delete(int id) {
         String response = "";
         Task toRemove = tasks.remove(id - 1);

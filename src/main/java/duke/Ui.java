@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.util.Objects;
 
+/**
+ * Encapsulates the graphical user interface.
+ */
 public class Ui extends AnchorPane {
 
     @FXML
@@ -68,10 +71,6 @@ public class Ui extends AnchorPane {
         userInput.clear();
     }
 
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
     private String getResponse(String input) {
         String response = "";
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Main class for running the Duke chatbot.
+ * Main class for running the MOTOONG chatbot.
  */
 public class Duke extends Application {
     private final Storage storage;
@@ -22,7 +22,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Initialises the Duke chatbot, loads tasks from specified filepath if found.
+     * Initialises the MOTOONG chatbot, loads tasks from specified filepath if found.
      * @param filepath where tasks are stored in persistent memory.
      */
     public Duke(String filepath) {
@@ -35,6 +35,10 @@ public class Duke extends Application {
         ui = new Ui(storage, tasks);
     }
 
+    /**
+     * Starts operation of the chatbot.
+     * @param stage The stage to draw all objects.
+     */
     @Override
     public void start(Stage stage) {
         try {
