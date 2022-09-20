@@ -1,5 +1,7 @@
 # Pixel User Guide
 
+![alt text](https://github.com/HakkaNgin/ip/blob/A-Release/docs/Ui.png)
+
 <b> Pixel </b> frees your mind of having to remember things you need to do. It is a task manager chatbot that helps you keep track of your tasks through a simple to navigate interface.
 
 ## Features
