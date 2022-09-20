@@ -20,29 +20,27 @@ class TaskListTest {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
         Task returnedStub = test.addTask(stub);
-        assertAll(
-                () -> assertSame(returnedStub, stub),
-                () -> assertSame(stub, test.getItem(1))
+        assertAll(() -> assertSame(returnedStub, stub), () -> assertSame(stub, test.getItem(1))
         );
     }
 
     @Test
     @DisplayName("Testing toString() when list is empty")
-    void testToString_when_list_is_empty() {
+    void test_empty_list() {
         TaskList test = new TaskList();
-        String expected = "\t " + "Here are the tasks in your list:" + "\n";
+        String expected = "Here are the tasks in your list:" + "\n";
         assertEquals(expected, test.toString());
     }
 
     @Test
     @DisplayName("Testing toString() when list is not empty")
-    void testToString_when_list_is_not_empty() {
+    void test_nonempty_list() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
         test.addTask(stub);
 
-        String taskItemString = String.format("\t 1.%s\n", stub.toString());
-        String expected = "\t " + "Here are the tasks in your list:" + "\n"
+        String taskItemString = String.format("1.%s\n", stub.toString());
+        String expected = "Here are the tasks in your list:" + "\n"
                 + taskItemString;
         assertEquals(expected, test.toString());
     }
@@ -75,26 +73,26 @@ class TaskListTest {
 
     @Test
     @DisplayName("Testing deleteItem()")
-    void deleteItem_giving_empty_list() {
+    void deleteItem_resulting_emptyList() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
         test.addTask(stub);
         test.deleteItem(1);
 
-        String expected = "\t " + "Here are the tasks in your list:" + "\n";
+        String expected = "Here are the tasks in your list:" + "\n";
         assertEquals(expected, test.toString());
     }
 
     @Test
     @DisplayName("Testing getTaskCount() when list is empty")
-    void getTaskCount_when_list_is_empty() {
+    void getTaskCount_empty_list() {
         TaskList test = new TaskList();
         assertEquals(test.getTaskCount(), 0);
     }
 
     @Test
     @DisplayName("Testing getTaskCount() when list has one task")
-    void getTaskCount_when_list_has_one_task() {
+    void getTaskCount_nonempty_list() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
         test.addTask(stub);

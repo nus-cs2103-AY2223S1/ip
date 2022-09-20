@@ -12,7 +12,7 @@ class TodoTest {
 
     @Test
     @DisplayName("Test for toString() method of unmarked todo")
-    void testToString_for_unmarked_todo() {
+    void test_unmarked_todo() {
         Todo test = new Todo("Testing!");
         String expected = "[T][ ] Testing!";
         assertEquals(expected, test.toString());
@@ -20,25 +20,21 @@ class TodoTest {
 
     @Test
     @DisplayName("Test validateInput throws exception when task item is not given")
-    void validateInput_throws_exception_when_input_length_less_than_two() {
-        String[] inputLengthLessThanOne = new String[] {
-                "Testing!"
-        };
+    void validateInput_throws_exception() {
+        String[] inputLengthLessThanOne = new String[] {"Testing!"};
         assertThrows(
-                DukeException.class,
-                () -> Todo.validateInput(inputLengthLessThanOne));
+                DukeException.class, () -> Todo.validateInput(inputLengthLessThanOne));
     }
 
     @Test
     @DisplayName("Test validateInput throws exception when task item is whitespace")
-    void validateInput_throws_exception_when_second_string_is_whitespace() {
+    void validateInput_throws_exception2() {
         String[] secondStringIsWhitespace = new String[] {
-                "Testing!",
-                "        ",
+            "Testing!",
+            "        ",
         };
         assertThrows(
-                DukeException.class,
-                () -> Todo.validateInput(secondStringIsWhitespace));
+                DukeException.class, () -> Todo.validateInput(secondStringIsWhitespace));
     }
 
     @Test
