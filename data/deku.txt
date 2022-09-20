@@ -1,0 +1,5 @@
+E | 1 | project meeting | Aug 6th 2-4pm
+T | 1 | join sports club
+D | 0 | return book | 10-2-2020
+D | 0 | CS2103T iP | 16-10-2022 2359
+T | 0 | read
