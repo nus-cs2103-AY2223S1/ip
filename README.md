@@ -8,7 +8,7 @@ DukeProMax allows you to store your daily tasks so you can always give your 100%
 - USER Friendly
 - SUPER Fast to use
 
-# SUS for short
+# SUS for short :+1:
 
 
 It is absolutely 
