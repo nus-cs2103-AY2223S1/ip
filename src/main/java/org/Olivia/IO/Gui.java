@@ -50,6 +50,7 @@ public class Gui {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
+        scrollPane.setStyle("-fx-background: #303030; -fx-border-color: #A0A0A0;");
 
         userInput = new TextField();
         sendButton = new Button("Send");
@@ -76,7 +77,7 @@ public class Gui {
         mainLayout.setPrefSize(400.0, 600.0);
 
         assert scrollPane!=null;
-        scrollPane.setPrefSize(385, 535);
+        scrollPane.setPrefSize(400, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setVvalue(1.0);
@@ -117,7 +118,9 @@ public class Gui {
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
+        userText.setStyle("-fx-text-fill:WHITE");
         Label oliviaText = new Label(getResponse(userInput.getText()));
+        oliviaText.setStyle("-fx-text-fill:WHITE");
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getOliviaDialog(oliviaText, new ImageView(olivia))
