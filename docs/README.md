@@ -265,7 +265,7 @@ loans add Lynette /amount -23
 
 This subtracts $23 from the amount owed to Lynette. Now, the program records the amount that Lynette is due to be $27.
 
-In addition, loans amounts can move into the negatives, at which it will be represented by an amount recievable.
+In addition, loans amounts can move into the negatives, at which it will be represented by an amount receivable.
 
 ```
 loans add Adam /amount -15
@@ -275,7 +275,7 @@ The above command will record that Adam is due to pay $15, as Adam is currently 
 
 ---
 ### Deleting Loans
-Loans can be completely removed by specifying the `loans` command, followed by the delete argument, then the name of the creditor.
+Loans can be completely removed by specifying the `loans` command, followed by the `delete` argument, then the name of the creditor.
 
 General format: `loans delete <creditor_name> ` 
 
