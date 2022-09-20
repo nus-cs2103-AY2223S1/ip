@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "pixel.GUI.Launcher"
+    mainClassName = "pixel.gui.Launcher"
 }
 
 shadowJar {

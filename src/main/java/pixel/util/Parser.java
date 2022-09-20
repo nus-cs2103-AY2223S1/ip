@@ -166,7 +166,15 @@ public class Parser {
 
         } catch (IOException e) {
             if (e instanceof FileNotFoundException) {
-                File tempFile = new File("./data/pixel", "pixel.txt");
+                File dataFolder = new File("./data");
+                dataFolder.mkdir();
+                File tempFile = new File("./data/pixel.txt");
+                try {
+                    tempFile.createNewFile();
+                } catch (IOException ex) {
+                    return ("Unable to create new file to store tasks \n"
+                        + "Please check your storage directory!");
+                }
                 return ("Caught FileNotFound exception! \n"
                     + "New file is created for you \n"
                     + UserInterface.PROMPT_MESSAGE);

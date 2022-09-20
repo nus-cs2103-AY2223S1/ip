@@ -107,7 +107,17 @@ public class MainWindow extends AnchorPane {
             );
 
         } catch (IOException e) {
-            File tempFile = new File("./data/pixel", "pixel.txt");
+            File dataFolder = new File("./data");
+            dataFolder.mkdir();
+            File tempFile = new File("./data/pixel.txt");
+            try {
+                tempFile.createNewFile();
+            } catch (IOException ex) {
+                dialogContainer.getChildren().add(
+                    DialogBox.getDukeDialog("Unable to create new file to store tasks \n"
+                        + "Please check your storage directory!", pixelImage)
+                );
+            }
             dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(UserInterface.FILE_DOES_NOT_EXIST, pixelImage)
             );
