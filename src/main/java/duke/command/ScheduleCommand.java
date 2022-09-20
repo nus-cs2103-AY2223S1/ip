@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /*
 Shows the user a list of events/deadlines for the given date.
  */
@@ -26,6 +29,11 @@ public class ScheduleCommand extends Command {
      */
     public String exec(TaskList taskList, Storage storage , Ui ui) throws DukeException {
         assert(ui != null);
+        try {
+            LocalDate.parse(this.date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("please input a valid date in the format YYYY-MM-DD");
+        }
         return ui.showSchedule(this.date, taskList.getTaskList());
     };
 

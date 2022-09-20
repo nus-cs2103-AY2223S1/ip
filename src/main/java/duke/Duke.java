@@ -2,7 +2,6 @@ package duke;
 
 import duke.command.Command;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 /*
 Main class that starts the running of Duke Chat Bot
@@ -12,18 +11,15 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private ArrayList<Task> list;
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("data/duke.txt");
         try {
+            storage = new Storage();
             tasks = new TaskList(storage.load());
-            list = tasks.getTaskList();
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
-            list = tasks.getTaskList();
         } catch (FileNotFoundException e) {
             ui.showFileNotFoundError();
         }
@@ -35,14 +31,13 @@ public class Duke {
      * @return The response of Dukie.
      */
     public String getResponse(String input) {
-        // String response = dukieUi.showDoNotKnowMessage();
 
         Command command;
         String response;
 
         try {
             command = Parser.parseUserInput(input);
-            response = command.exec(tasks, storage, ui);
+            response = command.exec(this.tasks, this.storage, this.ui);
         } catch (DukeException e) {
             return e.getMessage();
         }

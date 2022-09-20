@@ -21,7 +21,7 @@ public class Parser {
      * @param userInput String of user input.
      * @return The extracted command word.
      */
-    public static Command parseUserInput(String userInput) throws DukeException{
+    public static Command parseUserInput(String userInput) throws DukeException {
         String[] splitUserInput = userInput.split(" ");
 
         switch (splitUserInput[0]) {
@@ -72,11 +72,17 @@ public class Parser {
      * @param userInput String of user input.
      * @return The extracted date.
      */
-    public static String getDate(String userInput) {
+    public static String getDate(String userInput) throws DukeException {
         assert(userInput.length() != 0);
+
+        String[] splitUserInput = userInput.split(" ");
+
+        if (splitUserInput.length == 1) {
+            throw new DukeException("please input a date in the format YYYY-MM-DD");
+        }
         if (userInput.contains("/")) {
             return userInput.substring(userInput.indexOf("/") + 4);
         }
-        return userInput.split(" ")[1];
+        return splitUserInput[1];
     }
 }

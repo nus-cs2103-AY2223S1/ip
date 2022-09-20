@@ -15,9 +15,22 @@ Deals with loading tasks from file and saving tasks to file
 public class Storage {
 
     private String filePath;
+    private static final String DIRECTORY = "./data";
+    private static final String FILENAME = "duke.txt";
 
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() throws DukeException {
+        this.filePath = DIRECTORY + "/" + FILENAME;
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            File directory = new File(DIRECTORY);
+            directory.mkdir();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new DukeException("tasks can't be loaded :< message: " + e);
+            }
+        }
     }
 
     public ArrayList<Task> load() throws DukeException, FileNotFoundException {
