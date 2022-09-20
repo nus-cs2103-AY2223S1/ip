@@ -6,10 +6,13 @@ Duke is a program designed for keyboard users. While it is designed with a graph
 I suggest enlarging the UI to fullscreen as the windowed layout looks cramped, but it is operable within expected dimensions.
 
 Fullscreen:
+
 <img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui.png?raw=true">
 
+
 Windowed view:
-<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui_windowed.png?raw=true">
+
+<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui_windowed.png?raw=true" width="300">
 
 **Acknowledgements**
 
