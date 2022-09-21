@@ -3,9 +3,6 @@ package Duke.commands;
 
 import Duke.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.List;
 
 
 public abstract class TaskCommands extends Command {

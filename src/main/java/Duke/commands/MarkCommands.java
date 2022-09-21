@@ -2,8 +2,6 @@ package Duke.commands;
 
 import Duke.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MarkCommands extends TaskCommands {
 

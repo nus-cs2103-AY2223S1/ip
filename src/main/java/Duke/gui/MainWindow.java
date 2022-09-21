@@ -1,8 +1,6 @@
 package Duke.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import Duke.*;
 import Duke.commands.Command;

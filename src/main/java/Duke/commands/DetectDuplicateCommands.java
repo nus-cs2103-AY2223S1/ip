@@ -3,8 +3,6 @@ package Duke.commands;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import Duke.*;
 
 public class DetectDuplicateCommands extends Command {

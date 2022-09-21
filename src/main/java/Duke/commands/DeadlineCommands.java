@@ -1,8 +1,5 @@
 package Duke.commands;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import Duke.*;
 import Duke.tasks.Deadline;
 import Duke.tasks.Task;

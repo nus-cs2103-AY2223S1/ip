@@ -10,8 +10,8 @@ public class Todo extends Task {
     }
 
     @Override
-    public List<String> toList() {
-        List<String> product = new ArrayList<>();
+    public ArrayList<String> toList() {
+        ArrayList<String> product = new ArrayList<>();
         product.add("T");
         product.addAll(super.toList());
         return product;

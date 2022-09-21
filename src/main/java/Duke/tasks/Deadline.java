@@ -21,8 +21,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public List<String> toList() {
-        List<String> product = new ArrayList<>();
+    public ArrayList<String> toList() {
+        ArrayList<String> product = new ArrayList<>();
         product.add("D");
         product.addAll(super.toList());
         product.add(by.toString());

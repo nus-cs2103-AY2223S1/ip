@@ -5,8 +5,6 @@ import Duke.DukeException;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.IOException;
 
 public class ListCommands extends Command {

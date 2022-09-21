@@ -3,7 +3,6 @@ package Duke.tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Event extends Task {
 
@@ -20,8 +19,8 @@ public class Event extends Task {
     }
 
     @Override
-    public List<String> toList() {
-        List<String> product = new ArrayList<>();
+    public ArrayList<String> toList() {
+        ArrayList<String> product = new ArrayList<>();
         product.add("E");
         product.addAll(super.toList());
         product.add(at.toString());

@@ -1,7 +1,5 @@
 package Duke.commands;
 
-import java.util.ArrayList;
-import java.util.List;
 import Duke.*;
 import java.io.IOException;
 
