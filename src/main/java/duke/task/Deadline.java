@@ -1,5 +1,6 @@
 package duke.task;
 
+import duke.DukeException;
 import duke.task.Task;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ public class Deadline extends Task {
     public String dl;
     public LocalDate exactTime;
 
-    public Deadline(String name, String dl) throws DateTimeParseException{
+    public Deadline(String name, String dl) throws DateTimeParseException {
         super(name);
         this.dl = dl;
         this.exactTime = LocalDate.parse(dl);
