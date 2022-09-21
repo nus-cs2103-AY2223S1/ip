@@ -39,7 +39,7 @@ public class MainWindow {
     public void initialize() {
         InputStream userImageResource = this.getClass().getResourceAsStream("/images/User.png");
         InputStream chatbotImageResource = this.getClass().getResourceAsStream("/images"
-                + "/ManSmilingBehindWall.jpg");
+                + "/ManSmilingBehindWall.png");
         assert(userImageResource != null);
         assert(chatbotImageResource != null);
         userImage = new Image(userImageResource);
