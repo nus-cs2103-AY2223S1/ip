@@ -43,9 +43,9 @@ public class MainWindow extends AnchorPane {
     private Image dekuImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
     //image taken from https://unsplash.com/photos/zA7I5BtFbvw
-    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.jpg"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
     private Image backgroundImageFlipped = new Image(this.getClass()
-            .getResourceAsStream("/images/backgroundFlipped.jpg")
+            .getResourceAsStream("/images/backgroundFlipped.png")
     );
     private Label previousNode;
 
