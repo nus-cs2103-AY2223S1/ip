@@ -41,6 +41,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
+        dialog.setMinHeight(USE_PREF_SIZE);
         displayPicture.setImage(img);
         imageBorderRadius(displayPicture);
     }

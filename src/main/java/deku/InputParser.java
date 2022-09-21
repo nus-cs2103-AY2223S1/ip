@@ -47,7 +47,10 @@ public class InputParser {
     private String dateTimeFormatter(String output, String misc, String date, String time) {
         parseDate(date);
         if (this.date == null) {
-            return output + misc + ")";
+            return output + misc + ")\n"
+                    + "\nInvalid date format! I will add this task, some functionalities might not work!\n"
+                    + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
+                    + "Example: 23/08/2022";
         }
         output += this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         if (time.equals("")) {
@@ -55,7 +58,11 @@ public class InputParser {
         }
         parseTime(time);
         if (this.time == null) {
-            return output + " " + time + ")";
+            return output + " " + time + ")\n"
+                    + "\nPlease input a valid time format! I will add this task, "
+                    + "some functionalities might not work!\n"
+                    + "Currently supports 24 hour format: HH:mm | HHmm |\n"
+                    + "Example: 1800";
         }
         return output
                 + " "
@@ -113,9 +120,9 @@ public class InputParser {
             this.date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeException e) {
             this.date = null;
-            System.out.println("Invalid date format! I will add this task, some functionalities might not work!\n"
-                    + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
-                    + "Example: 23/08/2022");
+            //System.out.println("Invalid date format! I will add this task, some functionalities might not work!\n"
+            //        + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
+            //        + "Example: 23/08/2022");
         }
     }
 
@@ -128,10 +135,10 @@ public class InputParser {
                 return;
             }
             this.time = null;
-            System.out.println("Please input a valid time format! I will add this task, "
-                    + "some functionalities might not work!\n"
-                    + "Currently supports 24 hour format: HH:mm | HHmm |\n"
-                    + "Example: 1800");
+            //System.out.println("Please input a valid time format! I will add this task, "
+            //        + "some functionalities might not work!\n"
+            //        + "Currently supports 24 hour format: HH:mm | HHmm |\n"
+            //        + "Example: 1800");
         }
     }
 

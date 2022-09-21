@@ -63,7 +63,10 @@ public class InputParserTest {
         testInput.add("test test test");
         testInput.add("/by");
         testInput.add("1800");
-        assertEquals("test test test (by: 1800)",
+        assertEquals("test test test (by: 1800)\n\n"
+                        + "Invalid date format! I will add this task, some functionalities might not work!\n"
+                        + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
+                        + "Example: 23/08/2022",
                 new InputParser().parseTask(testInput),
                 "deadline command as input, with only time");
     }
