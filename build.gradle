@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "main/Main"
+    mainClassName = "main.Launcher"
 }
 
 javafx {
