@@ -94,6 +94,7 @@ public class Duke {
                 }
                 case "bye": {
                     dukeResponse = ui.printGoodbyeMessage();
+                    System.exit(0);
                     break;
                 }
                 default:
