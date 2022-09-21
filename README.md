@@ -6,7 +6,7 @@ What is CatBot?
 
 Whats good about CatBot?
 1. Text based!
-2. Easy to learn!
+2. Easy to learn! Heres the [link](https://tyw2811.github.io/ip/) to the user guide if you require help!
 2. Simple to set up! Just download from this [link](https://github.com/tyw2811/ip/releases/tag/A-Release).
 
 Features of CatBot:
