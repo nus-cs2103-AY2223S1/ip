@@ -8,9 +8,9 @@ public class Todo extends Task {
     private static final String TYPE = "[T]";
     private static final int NUM_ELEMENTS_EXPECTED = 3;
     public Todo(String description) {
-
         super(description);
     }
+
 
     public Todo(boolean isDone, String description) {
         super(isDone, description);

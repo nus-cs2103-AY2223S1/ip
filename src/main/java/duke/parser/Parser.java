@@ -151,8 +151,17 @@ public class Parser {
                         + Ui.displayMessage("Event & Deadline requires both a task description and a date");
             }
         }
-
-        Task newTask = generateTask(input);
+        //now, handle new exceptions
+        Task newTask;
+        try {
+            newTask = generateTask(input);
+        } catch (IndexOutOfBoundsException e) {
+            return e + "\n"
+                    + Ui.displayMessage("Please enter the correct number of arguments for deadline/event tasks");
+        } catch (DateTimeParseException e) {
+            return Ui.displayMessage("Incorrect [date] format entered, remember our standard date format : ")
+                    + Ui.displayMessage("YYYY-MM-DD");
+        }
         return taskList.addTask(newTask);
     }
 
