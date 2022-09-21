@@ -6,13 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<!-- @@author j-lum-reused
+<!-- @@author izzahaj-reused
      Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
      with minor modification -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="mort.ui.MainWindow">
     <children>
+        <!-- @@author izzahaj-reused
+             Reused from https://github.com/cheeheng/ip/blob/master/src/main/resources/view/MainWindow.fxml
+             with minor modification -->
         <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0"
                    promptText="Enter a command" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0"
                    AnchorPane.rightAnchor="80.0">
@@ -28,6 +31,7 @@
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0"/>
             </content>
         </ScrollPane>
+        <!-- @@author -->
     </children>
 </AnchorPane>
 <!-- @@author -->

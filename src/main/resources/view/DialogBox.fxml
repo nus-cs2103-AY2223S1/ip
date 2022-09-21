@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<!-- @@author j-lum-reused
+<!-- @@author izzahaj-reused
      Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
      with minor modification -->
 <fx:root alignment="TOP_RIGHT" minHeight="-Infinity" maxHeight="1.7976931348623157E308"

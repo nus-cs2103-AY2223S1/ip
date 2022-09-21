@@ -52,7 +52,7 @@ public class MainWindow extends AnchorPane {
         dialogContainer.setBackground(new Background(background));
         sendButton.setStyle("-fx-background-color: #553939; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
         sendButton.setFont(Font.font("Helvetica Neue", 14));
-        //@@author j-lum-reused
+        //@@author izzahaj-reused
         //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         //@@author
@@ -69,7 +69,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        //@@author j-lum-reused
+        //@@author izzahaj-reused
         //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
         // with minor modifications
         String input = userInput.getText();
@@ -81,7 +81,7 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
         //@@author
 
-        //@@author syinyichen-reused
+        //@@author izzahaj-reused
         //Reused from https://github.com/syinyichen/duke/blob/master/src/main/java/duke/MainWindow.java
         // with minor modification
         if (input.equals("bye")) {
