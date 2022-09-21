@@ -1,5 +1,9 @@
 package uwu.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -73,8 +77,22 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (uwuBot.isEnd(input)) {
-            sendButton.setDisable(true);
-            userInput.setDisable(true);
+            exitProgram();
         }
+    }
+
+    /**
+     * Exits the program after a delay.
+     */
+    private void exitProgram() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.exit();
+            }
+        };
+
+        Timer timer = new Timer("exitTime");
+        timer.schedule(timerTask, 1000);
     }
 }
