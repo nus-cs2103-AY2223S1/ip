@@ -4,4 +4,8 @@
 		<pattern>WHAT IS JAVA</pattern>
 		<template>Java is a programming language.</template>
 	</category>
+	<category>
+    		<pattern>HELLO</pattern>
+    		<template><random><li>Hi!</li><li>Hello!</li><li>Hi, how are you doing?</li><li>What's up?</li></random></template>
+    	</category>
 </aiml>

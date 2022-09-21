@@ -81,8 +81,6 @@ public class Parser {
             return new ListCommand();
         case TentativeCommand.COMMAND_WORD:
             return handleTentativeCommand(args);
-        case InteractCommand.COMMAND_WORD:
-            return handleInteractCommand(args);
 
         case MarkCommand.COMMAND_WORD:
         case UnmarkCommand.COMMAND_WORD:
@@ -94,11 +92,11 @@ public class Parser {
         case EventCommand.COMMAND_WORD:
             return handleTaskCommand(command, args);
         default:
-            throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
+            return handleInteraction(text);
         }
     }
 
-    private Command handleInteractCommand(String args) {
+    private Command handleInteraction(String args) {
         String response = chatSession.multisentenceRespond(args);
         while (response.contains("&lt;")) {
             response = response.replace("&lt;", "<");
