@@ -17,7 +17,7 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
     private Window window= new Window();
-
+    private Stage stage;
     private NotificationPane np;
     @Override
     public void start(Stage stage) {
@@ -26,6 +26,7 @@ public class Main extends Application {
             fxmlLoader.setController(window);
 //            fxmlLoader.setRoot(window);
 
+            this.stage = stage;
             AnchorPane ap = fxmlLoader.load();
             fxmlLoader.<Window>getController().initialise(duke);
             NotificationPane np = new NotificationPane(ap);
@@ -35,6 +36,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setTitle("Duke Task Manager");
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,5 +49,9 @@ public class Main extends Application {
 
     public void initDuke() {
         duke.init();
+    }
+
+    public void exit() {
+        stage.close();
     }
 }

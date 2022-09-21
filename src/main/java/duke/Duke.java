@@ -23,11 +23,7 @@ public class Duke {
     }
 
     public String execCommand(Command c) {
-        assert (tasks != null);
-        assert (storage != null);
-        String returnStr = c.exec(this.tasks);
-        this.storage.save(this.tasks);
-        return returnStr;
+        return this.execCommand(c, this.tasks);
     }
 
     public String execCommand(Command c, TaskList customTaskList) {
@@ -41,11 +37,6 @@ public class Duke {
 
     public TaskList getTasks() {
         return this.tasks;
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.init();
     }
 
 }

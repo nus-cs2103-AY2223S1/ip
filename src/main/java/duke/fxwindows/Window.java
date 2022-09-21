@@ -4,6 +4,7 @@ import duke.Duke;
 import duke.TaskList;
 import duke.command.Command;
 import duke.tasks.Task;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.controlsfx.control.NotificationPane;
 
 public class Window extends AnchorPane {
@@ -80,6 +82,7 @@ public class Window extends AnchorPane {
     void deselectTask() {
         this.taskListPane.deSelectTaskFromParent();
     }
+
     void selectTask(Task t) {
         this.taskDescriptionPane.displayTask(t);
         this.taskListPane.selectTaskFromParent(t);
@@ -108,10 +111,23 @@ public class Window extends AnchorPane {
         String response = duke.execCommand(c, taskList);
         userInput.setText("");
         showNotification(response);
+
         if (c.returnsTaskList()) {
             updateTaskList(c.getTaskList());
         }
         taskListPane.refresh();
+        if (c.isExit()) {
+//            Make the GUI exit in 1 second without hanging the thread
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> ((Stage) taskListPane.getScene().getWindow()).close());
+            }).start();
+        }
+        ;
     }
 
     @FXML
@@ -135,7 +151,7 @@ public class Window extends AnchorPane {
         });
 
         np.setOnKeyReleased((KeyEvent event) -> {
-            if(event.getCode() != KeyCode.ENTER) {
+            if (event.getCode() != KeyCode.ENTER) {
                 np.hide();
             }
         });
