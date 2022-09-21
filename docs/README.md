@@ -32,6 +32,7 @@
   - `mark` / `unmark`
   - `delete`
 - Utility
+  - `help`
   - `find`
   - `list`
   - `bye`
@@ -90,6 +91,12 @@ Format: `delete INDEX`
 - INDEX must be a valid number in the list.
 
 ## Features for utility
+
+### Feature - `help`
+
+Displays this website's link to the user.
+
+Format: `help`
 
 ### Feature - `find`
 

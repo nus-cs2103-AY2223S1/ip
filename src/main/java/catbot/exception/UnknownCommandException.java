@@ -20,6 +20,7 @@ public class UnknownCommandException extends CatBotException {
             + "- unmark - marks task number n as uncompleted, e.g. unmark n\n"
             + "- delete - deletes task number n, e.g. delete n\n"
             + "\nUtility commands:\n"
+            + "- help - lists the website for the user guide\n"
             + "- find - finds all tasks which match the search input, e.g. find book\n"
             + "- list - lists out all your current tasks\n"
             + "- bye - exits the program:(\n";

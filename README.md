@@ -1,4 +1,4 @@
-# CatBot Project
+# CatBot
 
 What is CatBot?
 - A command line chat bot.
@@ -20,6 +20,7 @@ Features of CatBot:
 - [ ] Reminders (coming soon)
 
 Here is what CatBot looks like!
+
 <img src="docs/Ui.png" width="370">
 
 #

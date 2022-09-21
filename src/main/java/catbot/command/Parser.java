@@ -14,7 +14,7 @@ public class Parser {
 
     /** Set to store all known commands. */
     private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo",
-            "deadline", "event", "delete", "find", "fixed", "meow");
+            "deadline", "event", "delete", "find", "fixed", "meow", "help");
 
     /**
      * Returns a command based on the input string.
@@ -65,6 +65,8 @@ public class Parser {
                     this.response = Arrays.stream(postSplit).reduce("", (curr, word) -> curr + "meow ");
                 }
             };
+        case "help":
+            return new HelpCommand();
         default:
             return null;
         }
