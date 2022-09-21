@@ -17,6 +17,15 @@ repositories {
     }
 }
 
+// Java target version 11 from https://stackoverflow.com/questions/66258667/how-to-create-a-jar-file-with-gradle-shadowjar-that-works-on-java-11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+compileJava {
+    options.release = 11
+}
 //apply plugin : "java"
 
 
@@ -33,7 +42,7 @@ application {
 
 dependencies {
 
-    String javaFxVersion = '11'
+    String javaFxVersion = '11.0.2'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
