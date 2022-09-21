@@ -215,7 +215,9 @@ public class TaskList {
         String[] deadlineComponents = stringComponent.split(" /by ", 2);
         assert verifyTask(deadlineComponents, " /by ", Parser.Type.DEADLINE)
                 : "It should never be false.";
-        if (isDescriptionValid(deadlineComponents[0])) {
+        if (deadlineComponents.length <= 1) {
+            throw new DukeException("You did not specify a date and time using /by");
+        } else if (isDescriptionValid(deadlineComponents[0])) {
             throw new DukeException("We do not accept | in the description.");
         } else {
             DeadlineTask deadline = new DeadlineTask(deadlineComponents[0], deadlineComponents[1]);
@@ -250,14 +252,18 @@ public class TaskList {
      */
     public String addEventTask(String stringComponent) throws DukeException {
         String[] eventComponents = stringComponent.split(" /at ", 2);
-        assert verifyTask(eventComponents, " /at ", Parser.Type.EVENT)
-                : "It should never be false.";
-        if (isDescriptionValid(eventComponents[0])) {
-            throw new DukeException("We do not accept | in the description.");
+        if (eventComponents.length <= 1) {
+            throw new DukeException("You did not specifya date and time using /at.");
         } else {
-            EventTask event = new EventTask(eventComponents[0], eventComponents[1]);
-            this.list.add(event);
-            return addTask(event);
+            assert verifyTask(eventComponents, " /at ", Parser.Type.EVENT)
+                    : "It should never be false.";
+            if (isDescriptionValid(eventComponents[0])) {
+                throw new DukeException("We do not accept | in the description.");
+            } else {
+                EventTask event = new EventTask(eventComponents[0], eventComponents[1]);
+                this.list.add(event);
+                return addTask(event);
+            }
         }
     }
 
