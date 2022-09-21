@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "main.Launcher"
+    mainClassName = "duke.main.Launcher"
 }
 
 javafx {
