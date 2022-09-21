@@ -41,6 +41,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
+        // adapted from: https://stackoverflow.com/questions/35012518/resize-javafx-label-if-overrun
         dialog.setMinHeight(USE_PREF_SIZE);
         displayPicture.setImage(img);
         imageBorderRadius(displayPicture);
