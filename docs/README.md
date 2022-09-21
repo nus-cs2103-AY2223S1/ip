@@ -1,29 +1,97 @@
 # User Guide
-
+![](Ui.png)
 ## Features 
 
-### Feature-ABC
+### list
 
-Description of the feature.
+Lists all the tasks.
 
-### Feature-XYZ
+Format:  `list`
 
-Description of the feature.
+### Adding a Todo task
 
-## Usage
+Adds a Todo task to the list.
 
-### `Keyword` - Describe action
+Format: `todo DESCRIPTION`
 
-Describe the action and its outcome.
+Examples:
 
-Example of usage: 
+- `todo Read book`
 
-`keyword (optional arguments)`
+### Adding a Deadline
 
-Expected outcome:
+Format: `deadline DESCRIPTION /by DATE`
 
-Description of the outcome.
+Examples:
 
-```
-expected output
-```
+-`deadline play basketball /by 2022-09-20`
+
+### Adding an Event
+
+Format: `event DESCRIPTION /at DATE`
+
+Examples:
+
+-`event read books /at 2022-09-20`
+
+### Mark a task
+
+Marks a task as done.
+
+Format:  `mark TASK_NUMBER`
+Examples:
+
+-`mark 1`
+
+### Unmark a task
+
+Marks a task as not done.
+
+Format:  `unmark TASK_NUMBER`
+Examples:
+
+-`unmark 1`
+
+### Delete a task
+
+Deletes a task according to the number
+
+Format:  `delete TASK_NUMBER`
+
+Examples:
+
+-`delete 1` Deletes the first task.
+
+### Find a task
+
+Finds a task according to the keyword
+
+Format:  `find KEYWORD`
+
+Examples:
+
+-`find play` Find the tasks containing keyword play
+
+### Reminder
+
+Lists the tasks and all the todos within a week
+
+Format:  `reminder`
+
+Examples:
+
+-`reminder` Find the tasks and todos within a week
+
+
+### Close the app
+
+Closes the duke chatbox.
+
+Format:  `bye`
+
+Examples:
+
+-`bye` 
+
+
+
