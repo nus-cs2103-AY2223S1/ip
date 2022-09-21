@@ -23,6 +23,16 @@ class BotList {
     */
     String add(Task task) {
         StringBuilder output = new StringBuilder("I've added this task:\n").append(task);
+        if (task.getDate() == null) {
+            output.append("\n\nInvalid date format! I will add this task, some functionalities might not work!\n"
+                    + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
+                    + "Example: 23/08/2022");
+        } else if (task.getTime() == null) {
+            output.append("\n\nPlease input a valid time format! I will add this task, "
+                    + "some functionalities might not work!\n"
+                    + "Currently supports 24 hour format: HH:mm | HHmm |\n"
+                    + "Example: 1800");
+        }
         userInstructions.add(task);
         storage.save(userInstructions);
         return output.toString();
@@ -92,13 +102,14 @@ class BotList {
         InputParser parser = new InputParser();
         for (Task task: userInstructions) {
             parser.parseDate(date);
-            boolean isEmptyDate = (task.getDate() != null);
-            boolean isEqualDate = (task.getDate().equals(parser.getDate()));
-            if (isEmptyDate && isEqualDate) {
+            boolean isEmptyDate = (task.getDate() == null);
+            boolean isEqualDate = (!isEmptyDate && task.getDate().equals(parser.getDate()));
+            if (isEqualDate) {
                 containsDate.add(task);
-            } else {
-                containsDate.add(null);
             }
+        }
+        if (containsDate.isEmpty()) {
+            return "Whoops! I could not find any that matches that date!";
         }
         return outputList("Here are the tasks with the same date:", containsDate);
     }
@@ -109,9 +120,10 @@ class BotList {
         for (Task task: userInstructions) {
             if (task.find_word(word)) {
                 containsWord.add(task);
-            } else {
-                containsWord.add(null);
             }
+        }
+        if (containsWord.isEmpty()) {
+            return "Whoops! I could not find any that matches that word!";
         }
         return outputList("Here are the tasks containing the word: "
                 + word, containsWord);

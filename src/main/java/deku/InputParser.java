@@ -47,10 +47,7 @@ public class InputParser {
     private String dateTimeFormatter(String output, String misc, String date, String time) {
         parseDate(date);
         if (this.date == null) {
-            return output + misc + ")\n"
-                    + "\nInvalid date format! I will add this task, some functionalities might not work!\n"
-                    + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
-                    + "Example: 23/08/2022";
+            return output + misc + ")";
         }
         output += this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         if (time.equals("")) {
@@ -58,11 +55,7 @@ public class InputParser {
         }
         parseTime(time);
         if (this.time == null) {
-            return output + " " + time + ")\n"
-                    + "\nPlease input a valid time format! I will add this task, "
-                    + "some functionalities might not work!\n"
-                    + "Currently supports 24 hour format: HH:mm | HHmm |\n"
-                    + "Example: 1800";
+            return output + " " + time + ")";
         }
         return output
                 + " "
@@ -194,6 +187,8 @@ public class InputParser {
             reply = e.toString();
         } catch (NumberFormatException e) {
             reply = new DekuExceptions("I have no idea what that means. (T _ T)").toString();
+        } catch (IndexOutOfBoundsException e) {
+            reply = new DekuExceptions("Empty Command!").toString();
         }
         return "\n" + reply;
     }
