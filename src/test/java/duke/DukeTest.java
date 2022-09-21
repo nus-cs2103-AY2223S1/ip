@@ -1,11 +1,11 @@
 package duke;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DukeTest {
     @Test
-    public void parserTest(){
+    public void parserTest() {
         Storage storage = new Storage("./data/duke.txt");
         Ui ui = new Ui(new Duke());
         TaskList taskList = new TaskList(storage.getTasks(), ui, storage);
@@ -22,7 +22,7 @@ public class DukeTest {
     }
 
     @Test
-    public void markTest(){
+    public void markTest() {
         Todo todo = new Todo("test");
 
         assertEquals(todo.toString(), "[T][ ] test");
@@ -31,7 +31,7 @@ public class DukeTest {
     }
 
     @Test
-    public void unmarkTest(){
+    public void unmarkTest() {
         Todo todo = new Todo("test");
         todo.mark();
         assertEquals(todo.toString(), "[T][X] test");
