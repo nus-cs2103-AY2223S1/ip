@@ -27,7 +27,6 @@ public class InputParser {
      * @return String of friendly and readable output
      */
     public String parseTask(List<String> task) {
-        System.out.println(task.toString());
         StringBuilder date = new StringBuilder();
         StringBuilder time = new StringBuilder();
         StringBuilder misc = new StringBuilder();
