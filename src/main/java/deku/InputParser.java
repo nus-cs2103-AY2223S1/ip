@@ -16,9 +16,9 @@ import deku.task.ToDo;
  */
 public class InputParser {
     private LocalDate date;
-    private String date_backup;
+    private String dateBackup;
     private LocalTime time;
-    private String time_backup;
+    private String timeBackup;
 
     /**
      * Parses input from user to bot understandable structure
@@ -112,14 +112,14 @@ public class InputParser {
 
     public String getDateBackup() {
         if (date == null) {
-            return date_backup;
+            return dateBackup;
         }
         return this.date.toString();
     }
 
     public String getTimeBackup() {
         if (time == null) {
-            return time_backup;
+            return timeBackup;
         }
         return this.time.toString();
     }
@@ -130,7 +130,7 @@ public class InputParser {
             this.date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeException e) {
             this.date = null;
-            date_backup = dateString;
+            dateBackup = dateString;
         }
     }
 
@@ -143,7 +143,7 @@ public class InputParser {
                 return;
             }
             this.time = null;
-            time_backup = timeString;
+            timeBackup = timeString;
         }
     }
 
