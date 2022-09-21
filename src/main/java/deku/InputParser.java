@@ -16,7 +16,9 @@ import deku.task.ToDo;
  */
 public class InputParser {
     private LocalDate date;
+    private String date_backup;
     private LocalTime time;
+    private String time_backup;
 
     /**
      * Parses input from user to bot understandable structure
@@ -25,6 +27,7 @@ public class InputParser {
      * @return String of friendly and readable output
      */
     public String parseTask(List<String> task) {
+        System.out.println(task.toString());
         StringBuilder date = new StringBuilder();
         StringBuilder time = new StringBuilder();
         StringBuilder misc = new StringBuilder();
@@ -107,15 +110,27 @@ public class InputParser {
         return this.time;
     }
 
+    public String getDateBackup() {
+        if (date == null) {
+            return date_backup;
+        }
+        return this.date.toString();
+    }
+
+    public String getTimeBackup() {
+        if (time == null) {
+            return time_backup;
+        }
+        return this.time.toString();
+    }
+
     void parseDate(String dateString) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][yyyy-MM-dd]");
             this.date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeException e) {
             this.date = null;
-            //System.out.println("Invalid date format! I will add this task, some functionalities might not work!\n"
-            //        + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
-            //        + "Example: 23/08/2022");
+            date_backup = dateString;
         }
     }
 
@@ -128,10 +143,7 @@ public class InputParser {
                 return;
             }
             this.time = null;
-            //System.out.println("Please input a valid time format! I will add this task, "
-            //        + "some functionalities might not work!\n"
-            //        + "Currently supports 24 hour format: HH:mm | HHmm |\n"
-            //        + "Example: 1800");
+            time_backup = timeString;
         }
     }
 

@@ -52,6 +52,13 @@ public class Task {
         return parser.getTime();
     }
 
+    public String getDateBackup() {
+        return parser.getDateBackup();
+    }
+
+    public String getTimeBackup() {
+        return parser.getTimeBackup();
+    }
 
     /**
      * Searches for a particular word within the information user inputs
@@ -119,9 +126,9 @@ public class Task {
                 + SAVE_SEPARATOR
                 + getSpecial()
                 + SAVE_SEPARATOR
-                + getDate()
+                + getDateBackup()
                 + SAVE_SEPARATOR
-                + getTime();
+                + getTimeBackup();
     }
 
     @Override
