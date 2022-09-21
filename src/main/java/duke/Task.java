@@ -7,7 +7,7 @@ package duke;
 /**
  * Represents a task of any type.
  */
-public class Task {
+public abstract class Task {
     private boolean isDone;
     private String description;
 
