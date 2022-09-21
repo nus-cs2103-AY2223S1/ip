@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 
 /**
  * An example of a custom control using FXML.
@@ -25,7 +26,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private final Circle clip = new Circle(50, 50, 50);
+    private final Circle clip = new Circle(37.5, 37.5, 37.5);
 
     private DialogBox(String text, Image img) {
         //@@author j-lum-reused
