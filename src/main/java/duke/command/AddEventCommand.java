@@ -31,15 +31,20 @@ public class AddEventCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String at;
         if (!details.contains("/at")) {
-            throw new DukeException("OOPS!!! Time of event required. (/at)");
+            throw new DukeException("OOPS!!! Time of event required. (/at YYYY-MM-DD)");
         }
         String[] split = details.split(" /");
         String desc = split[0];
         if (desc.equals("") || desc.equals(" ")) {
             throw new DukeException("OOPS!!! Description of event is required.");
         }
-        String at = split[1].split(" ", 2)[1];
+        try {
+            at = split[1].split(" ", 2)[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("OOPS!!! Time of event required. (/at YYYY-MM-DD)");
+        }
         Event event = new Event(desc, at);
         tasks.add(event);
         return event.toString();

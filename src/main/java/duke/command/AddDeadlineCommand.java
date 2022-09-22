@@ -31,15 +31,20 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String by;
         if (!details.contains("/by")) {
-            throw new DukeException("OOPS!!! The deadline is required. (/by)");
+            throw new DukeException("OOPS!!! The deadline is required. (/by YYYY-MM-DD)");
         }
         String[] split = details.split(" /");
         String desc = split[0];
         if (desc.equals("") || desc.equals(" ")) {
             throw new DukeException("OOPS!!! Description of deadline is required.");
         }
-        String by = split[1].split(" ", 2)[1];
+        try {
+            by = split[1].split(" ", 2)[1];
+        } catch (Exception e) {
+            throw new DukeException("OOPS!!! The deadline is required. (/by YYYY-MM-DD)");
+        }
         Deadline deadline = new Deadline(desc, by);
         tasks.add(deadline);
         return deadline.toString();
