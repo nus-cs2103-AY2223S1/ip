@@ -10,11 +10,11 @@ import duke.task.Task;
 import javafx.application.Platform;
 
 /**
- * public class Ui to handle text shown to users when command is typed in to Duke.
+ * public class Ui to handle text shown to users when command is typed in to DukePro.
  */
 public class Ui {
 
-    private static final String initText = "Hello! I'm Duke! What can I do for you? \n"
+    private static final String initText = "Hello! I'm DukePro! What can I do for you? \n"
             + "The commands I currently have are as follows: \n";
     private static final String endText = "Bye bye! Hope to see you again soon!";
 
