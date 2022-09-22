@@ -1,0 +1,5 @@
+list
+todo this task
+event e /at 2022-01-01
+deadline assignment /by 2022-03-04
+mark 1
