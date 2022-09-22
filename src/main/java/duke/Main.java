@@ -25,8 +25,8 @@ public class Main extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/ngo1.png"));
-    private Image ngo = new Image(this.getClass().getResourceAsStream("/images/ngo2.png"));
+    private Image user = new Image(Main.class.getResourceAsStream("/images/ngo1.png"));
+    private Image ngo = new Image(Main.class.getResourceAsStream("/images/ngo2.png"));
 
     private Duke duke = new Duke();
 

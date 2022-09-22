@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Main-Class: duke.Launcher
+Class-Path: javafx-fxml-11-linux.jar javafx-base-11-linux.jar apiguardia
+ n-api-1.1.0.jar javafx-graphics-11-mac.jar javafx-base-11.jar javafx-co
+ ntrols-11.jar javafx-base-11-win.jar javafx-base-11-mac.jar javafx-fxml
+ -11-win.jar javafx-controls-11-mac.jar javafx-controls-11-linux.jar jav
+ afx-controls-11-win.jar junit-jupiter-engine-5.5.0.jar javafx-graphics-
+ 11-linux.jar junit-platform-engine-1.5.0.jar opentest4j-1.2.0.jar javaf
+ x-graphics-11.jar junit-platform-commons-1.5.0.jar javafx-fxml-11-mac.j
+ ar javafx-graphics-11-win.jar junit-jupiter-api-5.5.0.jar
+
