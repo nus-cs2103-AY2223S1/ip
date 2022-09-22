@@ -25,6 +25,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainGui>getController().setContext(mia);
+            stage.setTitle("Mia");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
