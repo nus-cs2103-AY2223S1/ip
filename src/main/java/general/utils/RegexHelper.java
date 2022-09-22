@@ -83,7 +83,7 @@ public class RegexHelper {
                 .replaceFirst("[:.]", ":");
         final DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()
-                .appendPattern("HH:mm")
+                .appendPattern("H:mm")
                 .toFormatter();
         return Optional.of(LocalTime.parse(extractedTime, formatter));
     }
