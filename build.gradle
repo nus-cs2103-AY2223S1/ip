@@ -39,7 +39,7 @@ test {
 }
 
 dependencies {
-    String javaFxVersion = '11'
+    String javaFxVersion = '17'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'

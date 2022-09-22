@@ -7,8 +7,8 @@ import exception.MissingArgumentException;
 
 public class Event extends Task{
 
-    private final String MESSAGE_ERROR_MISSING_ARGS = "Event command is missing arguments.";
-    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "Description is missing";
+    private final String MESSAGE_ERROR_MISSING_ARGS = "ERROR :Event command is missing arguments.";
+    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "ERROR: Description is missing";
 
     protected LocalDate duration;
 

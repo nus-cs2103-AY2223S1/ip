@@ -8,7 +8,6 @@ public class Meower {
     private Parser parser;
     private Storage storage;
     private Ui ui;
-    private boolean isEnd;
 
     public Meower() {
         this.parser = new Parser();

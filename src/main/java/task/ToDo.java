@@ -4,7 +4,7 @@ import exception.MissingArgumentException;
 
 public class ToDo extends Task{
 
-    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "Description is missing";
+    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "ERROR: Description is missing";
     
     public ToDo(String description) throws MissingArgumentException{
         super("todo", description);

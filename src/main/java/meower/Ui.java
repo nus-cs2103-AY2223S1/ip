@@ -14,7 +14,7 @@ public class Ui {
     private final String MESSAGE_UNMARK = "Task has been marked not done:";
     private final String MESSAGE_ADD = "Task added: \n";
     private final String MESSAGE_DELETE = "Task deleted: \n";
-    private final String MESSAGE_ERROR_END = "Error in saving Tasks, progress from current session is not saved :(";
+    private final String MESSAGE_ERROR_END = "ERROR: Error in saving Tasks, progress from current session is not saved :(";
     
     public Ui(TaskList tasks) {
         this.tasks = tasks;
@@ -147,6 +147,15 @@ public class Ui {
      */
     public String archive(int numOfTasks) {
         return this.chat(String.format("Archived %d tasks.", numOfTasks));
+    }
+
+    /**
+     * returns the message upon successful clearing of archives, specifies number of archives cleared
+     * @param numOfArchives number of archives cleared
+     * @return
+     */
+    public String clear(int numOfArchives) {
+        return this.chat(String.format("Cleared %d archives", numOfArchives));
     }
     
     /** 

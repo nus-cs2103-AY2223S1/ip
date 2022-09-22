@@ -27,7 +27,10 @@ public class ArchiveList {
         this.archives.clear();
     }
 
-    
+    public ArrayList<String> getArchives() {
+        return this.archives;
+    }
+
     /** 
      * Returns true if the archive list is empty, false otherwise
      * @return boolean

@@ -7,8 +7,8 @@ import exception.MissingArgumentException;
 
 public class Deadline extends Task{
 
-    private final String MESSAGE_ERROR_MISSING_ARGS = "Deadline command is missing arguments.";
-    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "Description is missing";
+    private final String MESSAGE_ERROR_MISSING_ARGS = "ERROR: Deadline command is missing arguments.";
+    private final String MESSAGE_ERROR_MISSING_DESCRIPTION = "ERROR: Description is missing";
     
     protected LocalDate date;
 

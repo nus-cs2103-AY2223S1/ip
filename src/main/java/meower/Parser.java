@@ -2,6 +2,7 @@ package meower;
 
 import command.ArchiveCommand;
 import command.ByeCommand;
+import command.ClearCommand;
 import command.Command;
 import command.DeadlineCommand;
 import command.DeleteCommand;
@@ -22,6 +23,7 @@ public class Parser {
     private final String MESSAGE_ERROR_INVALID_COMMAND = "ERROR: Command entered is invalid";
     private final String MESSAGE_ERROR_WRONG_ARGUMENTS = "ERROR: Arguments given for command are invalid or missing";
 
+    private final String COMMAND_CLEAR = "clear";
     private final String COMMAND_LIST_ARCHIVE = "listA";
     private final String COMMAND_LOAD_ARCHIVE = "loadA";
     private final String COMMAND_ARCHIVE = "archive";
@@ -61,6 +63,8 @@ public class Parser {
 
         //switch-case for different command word
         switch(command) { //no breaks as all cases lead to return
+        case COMMAND_CLEAR:
+            return new ClearCommand();
         case COMMAND_LIST_ARCHIVE:
             return new ListArchiveCommand();
         case COMMAND_ARCHIVE:

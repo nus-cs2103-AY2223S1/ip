@@ -6,8 +6,8 @@ import java.time.format.DateTimeParseException;
 import exception.InvalidDateException;
 
 public class Task {
-    private final String MESSAGE_ERROR_PAST_DATE = "Date should be a future date, not one in the past";
-    private final String MESSAGE_ERROR_WRONG_FORMAT = "Date is formatted wrongly";
+    private final String MESSAGE_ERROR_PAST_DATE = "ERROR: Date should be a future date, not one in the past";
+    private final String MESSAGE_ERROR_WRONG_FORMAT = "ERROR: Date is formatted wrongly";
 
     protected DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     protected DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("E, d MMM yyyy");

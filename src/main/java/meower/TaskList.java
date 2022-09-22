@@ -7,7 +7,7 @@ import task.Task;
 
 public class TaskList {
 
-    private final String MESSAGE_ERROR_OUTOFBOUNDS = "Positional argument out of bounds for TaskList of size ";
+    private final String MESSAGE_ERROR_OUTOFBOUNDS = "ERROR: Positional argument out of bounds for TaskList of size ";
 
     private ArrayList<Task> tasks;
     private TaskList searchTasks;

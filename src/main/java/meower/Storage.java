@@ -20,10 +20,12 @@ import task.Task;
 
 public class Storage {
 
-    private final String MESSAGE_ERROR_ARCHIVENAME = "Archive name not allowed";
-    private final String MESSAGE_ERROR_FILEPATH = "File path specified does not exist";
-    private final String MESSAGE_ERROR_FILESAVE = "Error in saving Tasks";
-    private final String MESSAGE_FILE_ADDRESS_ERROR = "User file address invalid, please check pathing";
+    private final String MESSAGE_ERROR_ARCHIVE_MISSING = "ERROR: Archive clearing cannot be done as archive list is corrupted";
+    private final String MESSAGE_ERROR_ARCHIVENAME = "ERROR: Archive name not allowed";
+    private final String MESSAGE_ERROR_FILEPATH = "ERROR: File path specified does not exist";
+    private final String MESSAGE_ERROR_FILESAVE = "ERROR: Error in saving Tasks";
+    private final String MESSAGE_FILE_ADDRESS_ERROR = "ERROR: User file address invalid, please check pathing";
+
     private final String LOG_FILE_DIRECTORY = "./src/main/resources/logs"; //log files must be in resources directory
     private final String ARCHIVE_PATH = "./src/main/resources/archive";
 
@@ -50,10 +52,22 @@ public class Storage {
     }
 
     /**
-     * Clears the archive list of all archives
+     * Clears the archive list of all archives asnd delete all the archive files
      */
-    public void clearArchive() {
-        this.archives.clear();
+    public int clearArchive() throws MeowerException{
+        try {
+            int count = 0;
+            ArrayList<String> archiveList = this.archives.getArchives();
+            for (String archive : archiveList) {
+                Path fullPath = Paths.get(this.ARCHIVE_PATH + "/" + archive);
+                Files.deleteIfExists(fullPath);
+                count += 1;
+            }
+            this.archives.clear();
+            return count;
+        } catch (IOException e) {
+            throw new MeowerException(MESSAGE_ERROR_ARCHIVE_MISSING);
+        }
     }
     
     /** 
