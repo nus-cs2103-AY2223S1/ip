@@ -33,11 +33,9 @@ public class Storage {
     private ArchiveList archives = new ArchiveList();
     private ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
     private TaskList existingTasks;
-    private Ui ui;
 
     public Storage(TaskList existingTasks, Ui ui) {
         this.existingTasks = existingTasks;
-        this.ui = ui;
     }
 
     /**
