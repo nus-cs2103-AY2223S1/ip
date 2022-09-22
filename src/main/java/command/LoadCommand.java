@@ -29,7 +29,7 @@ public class LoadCommand extends Command{
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
         try {
             if (this.logFileAddress.equals("")) {
-                return ui.load(storage.loadFile());
+                return ui.load(storage.loadFile(true));
             } else {
                 return ui.load(storage.loadFile(this.logFileAddress));
             }

@@ -1,12 +1,15 @@
 package meower;
 
+import command.ArchiveCommand;
 import command.ByeCommand;
 import command.Command;
 import command.DeadlineCommand;
 import command.DeleteCommand;
 import command.EventCommand;
 import command.FindCommand;
+import command.ListArchiveCommand;
 import command.ListCommand;
+import command.LoadArchiveCommand;
 import command.LoadCommand;
 import command.MarkCommand;
 import command.TodoCommand;
@@ -18,6 +21,9 @@ public class Parser {
     private final String MESSAGE_ERROR_UNNECESSARY_ARG = "Argument given for command not needing argument";
     private final String MESSAGE_ERROR_INVALID_COMMAND = "Command entered is invalid";
 
+    private final String COMMAND_LIST_ARCHIVE = "listA";
+    private final String COMMAND_LOAD_ARCHIVE = "loadA";
+    private final String COMMAND_ARCHIVE = "archive";
     private final String COMMAND_FIND = "find"; 
     private final String COMMAND_LOAD = "load"; 
     private final String COMMAND_LIST = "list";
@@ -54,6 +60,12 @@ public class Parser {
 
         //switch-case for different command word
         switch(command) { //no breaks as all cases lead to return
+        case COMMAND_LIST_ARCHIVE:
+            return new ListArchiveCommand();
+        case COMMAND_ARCHIVE:
+            return new ArchiveCommand(commandArgs);
+        case COMMAND_LOAD_ARCHIVE:
+            return new LoadArchiveCommand(commandArgs);
         case COMMAND_FIND:
             return new FindCommand(commandArgs);
         case COMMAND_LOAD:

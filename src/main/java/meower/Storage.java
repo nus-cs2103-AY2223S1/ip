@@ -28,9 +28,9 @@ public class Storage {
     private final String ARCHIVE_PATH = "./src/main/resources/archive";
 
     private String logFileAddress = "./src/main/resources/logs/meowerLog.txt"; //default log file address
-    private String saveFileAddress = "./src/main/resources/archive/archive.txt"; //default archive file address
+    private String saveFileAddress = "./src/main/resources/logs/meowerLog.txt"; //default archive file address
 
-    private ArrayList<String> archive = new ArrayList<String>();
+    private Archive archive = new Archive();
     private ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
     private TaskList existingTasks;
     private Ui ui;
@@ -41,10 +41,14 @@ public class Storage {
     }
 
     public void createArchive() throws MeowerFileAddressInvalidException {
-        if (!this.verifyPath(ARCHIVE_PATH)) {
+        if (!this.verifyPath(ARCHIVE_PATH)) { 
             this.createDirectory(ARCHIVE_PATH);
-            this.archive = new ArrayList<String>();
+            this.archive = new Archive();
         }
+    }
+
+    public void clearArchive() {
+        this.archive.clear();
     }
     
     /** 
@@ -53,13 +57,17 @@ public class Storage {
      * @return TaskList
      * @throws MeowerException Main Meower chatbot Exception
      */
-    public int loadFile() throws MeowerException {
+    public int loadFile(boolean isLog) throws MeowerException {
+        this.loggedTasks.clear();
+        if (isLog) {
+            this.saveFileAddress = this.logFileAddress;
+        }
         assert this.saveFileAddress != null: "There must be a log file address at this point";
         
         try {
             //initialise parser, file scanner and tasklist
             Parser parser = new Parser();
-            Scanner fileReader = new Scanner(new File(saveFileAddress));
+            Scanner fileReader = new Scanner(new File(this.saveFileAddress));
             TaskList newTaskList = new TaskList();
 
             //read the log file and store tasks read to the temporary arraylist of task logs
@@ -108,7 +116,8 @@ public class Storage {
             throw new MeowerFileAddressInvalidException(MESSAGE_ERROR_FILEPATH);
         }
         this.logFileAddress = fullPath;
-        return this.loadFile();
+        this.saveFileAddress = fullPath;
+        return this.loadFile(true);
     }
 
     public int archiveToFile(String archiveName) throws MeowerException {
@@ -119,18 +128,33 @@ public class Storage {
         if (!this.verifyAddress(archiveName)) { //note to self use better method to verify
             throw new MeowerFileAddressInvalidException(MESSAGE_ERROR_ARCHIVENAME); //since archive name is name of file must not have spaces etc
         }
-        this.saveToFile(ARCHIVE_PATH + "/" + archiveName);
+        this.saveFileAddress = ARCHIVE_PATH + "/" + archiveName;
+        int numOfTasks = this.saveToFile(false);
         this.existingTasks.clear();
         archive.add(archiveName);
-        return 0;
+        return numOfTasks;
+    }
+
+    public int loadArchive(String archiveName) throws MeowerException {
+        if (!this.archive.contains(archiveName)) {
+            throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
+        }
+        String fullPath = this.ARCHIVE_PATH + "/" + archiveName;
+        this.existingTasks.clear();
+        this.saveFileAddress = fullPath;
+        int numOfTasks = loadFile(false);
+        return numOfTasks;
     }
     
     /** 
      * Saves the tasks in the tasklist into a logfile given by a pre-loaded file address
      * @throws MeowerException Main Meower chatbot Exception
      */
-    public int saveToFile() throws MeowerException {
-        assert this.logFileAddress != null: "There must be a log file address at this point";
+    public int saveToFile(boolean isLog) throws MeowerException {
+        if (isLog) {
+            this.saveFileAddress = this.logFileAddress;
+        }
+        assert this.saveFileAddress != null: "There must be a log file address at this point";
 
         //if no tasks to be saved, exit with message
         if (existingTasks.getSize() == 0) {
@@ -138,11 +162,11 @@ public class Storage {
         }
         try {
             //Verify filepath exists
-            this.verifyAddress(this.logFileAddress);
-            this.createDirectory(this.logFileAddress);
+            this.verifyAddress(this.saveFileAddress);
+            this.createDirectory(this.saveFileAddress);
 
             //initialise file writer and integer counter
-            FileWriter fileWriter = new FileWriter(logFileAddress);
+            FileWriter fileWriter = new FileWriter(this.saveFileAddress);
             int numOfTasks = 0;
 
             //log tasks in tasklist
@@ -162,15 +186,16 @@ public class Storage {
 
     /**
      * Overloaded constructor that allows for a new user defined file path
-     * @param newFilePathe user inputted new file path for saving log files, relative path from ip folder
+     * @param newFilePath user inputted new file path for saving log files, relative path from ip folder
      * @throws MeowerException Main Meower chatbot Exception
      */
     public int saveToFile(String newFilePath) throws MeowerException{
         if (!this.verifyAddress(newFilePath)) {
             throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
         }
-        logFileAddress = this.LOG_FILE_DIRECTORY + "/" + newFilePath;
-        return this.saveToFile();
+        this.logFileAddress = this.LOG_FILE_DIRECTORY + "/" + newFilePath;
+        this.saveFileAddress = this.logFileAddress;
+        return this.saveToFile(true);
     }
 
     
@@ -223,6 +248,10 @@ public class Storage {
                 throw new MeowerFileAddressInvalidException("cannot create directory as file address is invalid");
             }
         }
+    }
+
+    public String listArchive() {
+        return this.archive.toString();
     }
 
     

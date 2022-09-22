@@ -29,12 +29,12 @@ public class ByeCommand extends Command {
      * @param tasks tasklist from Meower chatbot
      * @param ui ui from Meower chatbot
      * @param storage storage from Meower chatbot
-     * @throws MeowerException
+     * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
         try {
             if (this.logFileAddress.equals("")) {
-                return ui.bye(storage.saveToFile());
+                return ui.bye(storage.saveToFile(true));
             } else {
                 return ui.bye(storage.saveToFile(this.logFileAddress));
             }

@@ -7,11 +7,11 @@ import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 
-public class ArchiveCommand extends Command{
+public class LoadArchiveCommand extends Command{
 
     private String archiveFileAddress = "";
 
-    public ArchiveCommand(String newAddress) {
+    public LoadArchiveCommand(String newAddress) {
         this.archiveFileAddress = newAddress;
     }
  
@@ -25,7 +25,7 @@ public class ArchiveCommand extends Command{
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
         try {
-                return ui.archive(storage.archiveToFile(this.archiveFileAddress));
+                return ui.loadArchive(storage.loadArchive(this.archiveFileAddress));
         } catch (MeowerException e) {
             throw e;
         }
@@ -39,3 +39,4 @@ public class ArchiveCommand extends Command{
         return Task.empty();
     }
 }
+
