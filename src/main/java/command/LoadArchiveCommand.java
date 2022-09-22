@@ -12,6 +12,7 @@ public class LoadArchiveCommand extends Command{
     private String archiveFileAddress = "";
 
     public LoadArchiveCommand(String newAddress) {
+        super(false);
         this.archiveFileAddress = newAddress;
     }
  

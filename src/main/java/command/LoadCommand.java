@@ -11,10 +11,11 @@ public class LoadCommand extends Command{
     private String logFileAddress = "";
     
     public LoadCommand() {
-        super();
+        super(false);
     }
 
     public LoadCommand(String newAddress) {
+        super(false);
         this.logFileAddress = newAddress;
     }
     

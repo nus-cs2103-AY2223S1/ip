@@ -1,7 +1,6 @@
 package command;
 
 import exception.MeowerException;
-import exception.MeowerFileAddressInvalidException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
@@ -17,9 +16,11 @@ public class ByeCommand extends Command {
     private String logFileAddress = "";
     
     public ByeCommand() {
+        super(true);
     }
 
     public ByeCommand(String newAddress) {
+        super(true);
         this.logFileAddress = newAddress;
     }
  

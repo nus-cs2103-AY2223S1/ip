@@ -8,7 +8,7 @@ import task.Task;
 public class ListArchiveCommand extends Command {
 
     public ListArchiveCommand() {
-        super();
+        super(false);
     }
 
     /** 

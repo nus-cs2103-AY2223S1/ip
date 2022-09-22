@@ -71,12 +71,8 @@ public class Ui {
      * @param pos index in tasklist where task to be deleted
      * @throws MeowerException Main Meower chatbot Exception
      */
-    public String delete(int pos) throws MeowerException{
-        try {
-            return this.chat(String.format("%s%s", MESSAGE_DELETE, this.tasks.get(pos)));
-        } catch (TaskListOutOfBoundsException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        }
+    public String delete(String taskDescription) {
+        return this.chat(String.format("%s%s", MESSAGE_DELETE, taskDescription));
     }
 
     

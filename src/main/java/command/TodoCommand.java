@@ -13,7 +13,7 @@ public class TodoCommand extends Command{
     private String description;
     
     public TodoCommand(String description) {
-        super();
+        super(false);
         this.description = description;
     }
 

@@ -63,12 +63,14 @@ public class TaskList {
      * @param pos user inputted index to delete task
      * @throws TaskListOutOfBoundsException thrown when user inputted pos is outside the size of the tasklist
      */
-    public void delete(int pos) throws TaskListOutOfBoundsException{
+    public String delete(int pos) throws TaskListOutOfBoundsException{
         if (pos > this.getSize()) {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.MESSAGE_ERROR_OUTOFBOUNDS,this.getSize()));
         }
+        String deletedTask = this.tasks.get(pos-1).toString();
         this.tasks.remove(pos-1);
         this.size -= 1;
+        return deletedTask;
     }
 
     

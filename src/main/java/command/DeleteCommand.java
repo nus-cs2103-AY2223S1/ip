@@ -15,7 +15,7 @@ public class DeleteCommand extends Command{
     private int pos;
     
     public DeleteCommand(String pos) {
-        super();
+        super(false);
         this.pos = Integer.parseInt(pos);
     }
     
@@ -28,8 +28,7 @@ public class DeleteCommand extends Command{
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
         try {   
-            tasks.delete(this.pos);
-            return ui.delete(this.pos);
+            return ui.delete(tasks.delete(this.pos));
         } catch (TaskListOutOfBoundsException e) {
             throw new MeowerException(e.getLocalizedMessage());
         }

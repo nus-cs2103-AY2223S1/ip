@@ -8,6 +8,7 @@ public class Meower {
     private Parser parser;
     private Storage storage;
     private Ui ui;
+    private boolean isEnd;
 
     public Meower() {
         this.parser = new Parser();
@@ -39,10 +40,15 @@ public class Meower {
     public String getResponse(String input) {
         try {
             Command nextCommand = parser.parse(input);
+            this.isEnd = nextCommand.isEnd();
             assert this.tasks.getSize() >= 0: "tasklist size pointer should never be negative";
             return nextCommand.execute(this.tasks, this.ui, this.storage);
         } catch (MeowerException e) {
             return ui.errorMessage(e);
         }
+    }
+
+    public boolean isEnd() {
+        return this.isEnd;
     }
 }

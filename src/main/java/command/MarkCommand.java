@@ -12,7 +12,7 @@ public class MarkCommand extends Command{
     private int pos;
     
     public MarkCommand(String pos) {
-        super();
+        super(false);
         this.pos = Integer.parseInt(pos);
     }
     

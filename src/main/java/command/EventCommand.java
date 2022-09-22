@@ -15,7 +15,7 @@ public class EventCommand extends Command {
     private String duration;
 
     public EventCommand(String description, String duration) {
-        super();
+        super(false);
         this.description = description;
         this.duration = duration;
     }

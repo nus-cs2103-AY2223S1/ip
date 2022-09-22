@@ -12,7 +12,7 @@ public class UnmarkCommand extends Command{
     private int pos;
     
     public UnmarkCommand(String pos) {
-        super();
+        super(false);
         this.pos = Integer.parseInt(pos);
     }
  

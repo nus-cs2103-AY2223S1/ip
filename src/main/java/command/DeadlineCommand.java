@@ -19,7 +19,7 @@ public class DeadlineCommand extends Command {
     private String date;
 
     public DeadlineCommand(String description, String date) {
-        super();
+        super(false);
         this.description = description;
         this.date = date;
     }
