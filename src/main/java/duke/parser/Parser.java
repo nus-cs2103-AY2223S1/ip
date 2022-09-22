@@ -43,6 +43,8 @@ public class Parser {
             return parseToDo(input);
         case "delete":
             return parseDelete(input);
+        case "find":
+            return parseFind(input);
         default:
             return new UnknownCommand();
         }
@@ -69,11 +71,11 @@ public class Parser {
     }
 
     private static Command parseEvent(String[] input) {
-        String[] event = input[1].split(" /by ");
+        String[] event = input[1].split(" /at ");
         LocalDateTime at = LocalDateTime.parse(event[1],
                 DateTimeFormatter.ofPattern("d/M/y HHmm"));
         String description = event[0];
-        return new AddCommand(new Deadline(description, at));
+        return new AddCommand(new Event(description, at));
     }
 
     private static Command parseToDo(String[] input) {
