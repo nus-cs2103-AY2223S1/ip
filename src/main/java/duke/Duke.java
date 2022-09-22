@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Duke is a chatbot that records a list of Tasks that a user wishes to keep track of.
  */
-class Duke extends Chatbot {
+class Duke {
     private TaskList tasks = new TaskList();
 
     /**
@@ -157,7 +157,6 @@ class Duke extends Chatbot {
      *
      * @return the user input.
      */
-    @Override
     public String listen() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
