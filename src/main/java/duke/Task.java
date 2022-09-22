@@ -49,8 +49,9 @@ public class Task {
         this.isDone = false;
     }
 
-    public boolean startsWith(String prefix) {
-        return description.startsWith(prefix);
+
+    public boolean contains(String prefix) {
+        return description.contains(prefix);
     }
 
     /**

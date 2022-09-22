@@ -107,7 +107,7 @@ public class TaskList {
                 continue;
             }
 
-            if (curr.startsWith(prefix)) {
+            if (curr.contains(prefix)) {
                 retrievedMessage.append(i + 1).append(". ").append(curr + "\n");
             }
         }
