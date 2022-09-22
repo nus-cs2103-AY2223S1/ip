@@ -121,11 +121,11 @@ Expected output:
 
 
 ### Find a Task : `find`
-Find all tasks in the list with the specified prefix.
+Find all tasks in the list with the specified keyword.
 <br>
-Format: `find PREFIX`
-* `PREFIX` must be present.
-* `PREFIX` is case sensitive.
+Format: `find KEYWORD`
+* `KEYWORD` must be present.
+* `KEYWORD` is case sensitive.
 
 Example of usage:
 <br>
