@@ -8,7 +8,6 @@ import javafx.application.Application;
  * @author Isaac Li Haoyang
  * @version v0.2
  */
-
 public class Launcher {
     public static void main(String[] args) {
         Application.launch(Main.class, args);
