@@ -106,8 +106,9 @@ public class TaskList {
         String response = MESSAGE_FIND;
         int count = 1;
         for (int i = 0; i < tasks.size(); i++) {
-            String task = tasks.get(i).toString();
-            if (task.contains(input.substring(5))) {
+            Task task = tasks.get(i);
+            String taskDescription = task.getDescription();
+            if (taskDescription.contains(input.substring(5))) {
                 response += count + "." + task + "\n";
                 count++;
             }
