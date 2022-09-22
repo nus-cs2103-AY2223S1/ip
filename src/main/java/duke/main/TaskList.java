@@ -82,6 +82,9 @@ public class TaskList {
      * @param newArr the new array that will overwrite.
      */
     public void overwrite(ArrayList<Task> newArr) {
-        arr = newArr;
+        arr.clear();
+        for (Task task: newArr) {
+            arr.add(task);
+        }
     }
 }

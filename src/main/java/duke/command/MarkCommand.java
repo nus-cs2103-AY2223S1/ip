@@ -31,10 +31,12 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
+            UndoCommand.addHistory(tasks);
             tasks.getArr().get(this.num - 1).mark();
             ui.sayMarked(this.num, tasks.getArr());
             storage.overwrite();
         } catch (IndexOutOfBoundsException e) {
+            UndoCommand.deleteLast();
             throw new DukeException("How to mark something that is not inside??");
         }
     }

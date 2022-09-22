@@ -49,4 +49,13 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
+    /**
+     * Returns the description of the task.
+     *
+     * @return the description of the task.
+     */
+    public String getDescription() {
+        return description;
+    }
 }

@@ -6,7 +6,11 @@ import duke.main.DukeException;
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
+import duke.task.DatedTask;
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * A class to handle the undo command.
@@ -16,7 +20,24 @@ public class UndoCommand extends Command {
     private static ArrayList<ArrayList<Task>> history = new ArrayList<>();
 
     protected static void addHistory(TaskList tasks) {
-        ArrayList<Task> clonedArray = (ArrayList<Task>) tasks.getArr().clone();
+        ArrayList<Task> clonedArray = new ArrayList<>();
+        Task savedTask;
+        for (Task task: tasks.getArr()) {
+            if (task instanceof ToDo) {
+                savedTask = new ToDo(task.getDescription());
+            } else if (task instanceof Deadline) {
+                savedTask = new Deadline(task.getDescription(), ((DatedTask) task).getDate());
+            } else if (task instanceof Event) {
+                savedTask = new Event(task.getDescription(), ((DatedTask) task).getDate());
+            } else {
+                savedTask = null;
+                assert false;
+            }
+            if (task.getStatusIcon().equals("X")) {
+                savedTask.mark();
+            }
+            clonedArray.add(savedTask);
+        }
         history.add(clonedArray);
     }
 
