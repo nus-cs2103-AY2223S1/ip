@@ -8,6 +8,7 @@ import duke.data.Storage;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.application.Platform;
 
 /** Contains storage, tasks and ui to help interact with user and execute commands */
 public class Duke {
@@ -34,6 +35,13 @@ public class Duke {
     }
 
     /**
+     * Exits Program if user typed 'bye'.
+     */
+    private void leaveProgram() {
+        Platform.exit();
+    }
+
+    /**
      * Displays response in GUI.
      *
      * @param input is the command input.
@@ -42,6 +50,9 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            if (c.isExit()) {
+                leaveProgram();
+            }
             return c.execute(tasks, ui, storage);
         } catch (DukeException | IOException e) {
             return e.getMessage();

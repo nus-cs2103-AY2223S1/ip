@@ -80,7 +80,7 @@ Get the number of uncompleted tasks in Duke's taskList.
 
 ### `bye` - Exit the program
 
-Exit the program and save the changes to the taskList in a file.
+Exit the program.
 
 ### `list` - Display taskList
 
