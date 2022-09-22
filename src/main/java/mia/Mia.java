@@ -25,7 +25,7 @@ public class Mia {
     /**
      * Sends a message to the user.
      *
-     * @param message the message to be sent
+     * @param message the message to be sent.
      */
     public void respond(String message) {
         window.printResponse(new Span(message));
@@ -66,8 +66,7 @@ public class Mia {
     /**
      * Determine whether {@code Mia} intends for the calling context to be exited.
      *
-     * @return {@code true} if {@code Mia} intends for an exit, {@code false}
-     *         otherwise.
+     * @return {@code true} if {@code Mia} intends for an exit, {@code false} otherwise.
      */
     public boolean shouldExitExternalContext() {
         return flagShouldExitContext;

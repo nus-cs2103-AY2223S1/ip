@@ -22,7 +22,7 @@ public class TaskManager {
      * If the file does not exist, a default state is used. If the file has an invalid format, as much of
      * the parseable state will be used, while everything else will be dropped.
      *
-     * @param saveFile The path to the file containing the saved state information
+     * @param saveFile The path to the file containing the saved state information.
      */
     public TaskManager(String saveFile) {
         List<Task> tasks;
@@ -62,7 +62,7 @@ public class TaskManager {
     /**
      * Adds a new task to the list of tasks to be executed, and saves the updated save file to disk.
      *
-     * @param task The task to be added
+     * @param task The task to be added.
      */
     public void addTask(Task task) {
         try {
@@ -75,8 +75,8 @@ public class TaskManager {
     /**
      * Deletes a task, and saves the updated save file to disk.
      *
-     * @param number the task number
-     * @return {@code true} if the task was deleted, {@code false} otherwise
+     * @param number the task number.
+     * @return {@code true} if the task was deleted, {@code false} otherwise.
      */
     public boolean deleteTask(int number) {
         try {
@@ -93,8 +93,8 @@ public class TaskManager {
     /**
      * Marks a task as completed, and saves the updated save file to disk.
      *
-     * @param number the task number
-     * @return {@code true} if the task is modified, {@code false} otherwise
+     * @param number the task number.
+     * @return {@code true} if the task is modified, {@code false} otherwise.
      */
     public boolean checkTask(int number) {
         try {
@@ -110,8 +110,8 @@ public class TaskManager {
     /**
      * Marks a task as incomplete, and saves the updated save file to disk.
      *
-     * @param number the task number
-     * @return {@code true} if the task is modified, {@code false} otherwise
+     * @param number the task number.
+     * @return {@code true} if the task is modified, {@code false} otherwise.
      */
     public boolean uncheckTask(int number) {
         try {
@@ -127,8 +127,8 @@ public class TaskManager {
     /**
      * Searches all tasks for titles matching the given query.
      *
-     * @param query The query to be word-matched against the task titles
-     * @return A {@code String} representation of the tasks that matched the given query
+     * @param query The query to be word-matched against the task titles.
+     * @return A {@code String} representation of the tasks that matched the given query.
      */
     public String search(String query) {
         final List<Task> matches = new ArrayList<>();
