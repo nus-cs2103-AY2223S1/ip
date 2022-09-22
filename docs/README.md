@@ -26,7 +26,7 @@ Example Usage:
 deadline ip /by 22/09/2022 2359
 ```
 
-####`Event`
+#### `Event`
 
 This adds a new Event task to the list 
 
