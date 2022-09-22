@@ -30,7 +30,7 @@ public class Storage {
     private String logFileAddress = "./src/main/resources/logs/meowerLog.txt"; //default log file address
     private String saveFileAddress = "./src/main/resources/logs/meowerLog.txt"; //default archive file address
 
-    private Archive archive = new Archive();
+    private ArchiveList archives = new ArchiveList();
     private ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
     private TaskList existingTasks;
     private Ui ui;
@@ -40,20 +40,27 @@ public class Storage {
         this.ui = ui;
     }
 
+    /**
+     * Creates the archive directory structure if it does not exist
+     * @throws MeowerFileAddressInvalidException Thrown when file address inputted is not a valid system path
+     */
     public void createArchive() throws MeowerFileAddressInvalidException {
         if (!this.verifyPath(ARCHIVE_PATH)) { 
             this.createDirectory(ARCHIVE_PATH);
-            this.archive = new Archive();
+            this.archives = new ArchiveList();
         }
     }
 
+    /**
+     * Clears the archive list of all archives
+     */
     public void clearArchive() {
-        this.archive.clear();
+        this.archives.clear();
     }
     
     /** 
-     * loadLog loads the tasks stored in the log file into the current tasklist, 
-     * throws DukeExceptions if theres issues with the format of the log file or file address is invalid
+     * loadLog loads the tasks stored in the log or archive file into the current tasklist, 
+     * throws DukeExceptions if theres issues with the format of the log or archive file or file address is invalid
      * @return TaskList
      * @throws MeowerException Main Meower chatbot Exception
      */
@@ -120,23 +127,35 @@ public class Storage {
         return this.loadFile(true);
     }
 
+    /**
+     * Archives current tasks in an archive file specified by the user, then clears out the task list
+     * @param archiveName User specified name for the archive file
+     * @return int
+     * @throws MeowerException Main Meower chatbot Exception
+     */
     public int archiveToFile(String archiveName) throws MeowerException {
         //create archive directory structure if it doesn't yet exist
         this.createArchive();
 
         //archive by storing file names in a arraylist, dedicated archive folder
-        if (!this.verifyAddress(archiveName)) { //note to self use better method to verify
+        if (!this.verifyAddress(archiveName)) {
             throw new MeowerFileAddressInvalidException(MESSAGE_ERROR_ARCHIVENAME); //since archive name is name of file must not have spaces etc
         }
         this.saveFileAddress = ARCHIVE_PATH + "/" + archiveName;
         int numOfTasks = this.saveToFile(false);
         this.existingTasks.clear();
-        archive.add(archiveName);
+        archives.add(archiveName);
         return numOfTasks;
     }
 
+    /**
+     * Loads the tasks archived in the user specified archive file, clears the current tasks before loading
+     * @param archiveName User specified archive file to load tasks from
+     * @return int
+     * @throws MeowerException Main Meower chatbot Exception
+     */
     public int loadArchive(String archiveName) throws MeowerException {
-        if (!this.archive.contains(archiveName)) {
+        if (!this.archives.contains(archiveName)) {
             throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
         }
         String fullPath = this.ARCHIVE_PATH + "/" + archiveName;
@@ -147,7 +166,7 @@ public class Storage {
     }
     
     /** 
-     * Saves the tasks in the tasklist into a logfile given by a pre-loaded file address
+     * Saves the tasks in the tasklist into a log or archive file given by a pre-loaded file address
      * @throws MeowerException Main Meower chatbot Exception
      */
     public int saveToFile(boolean isLog) throws MeowerException {
@@ -218,7 +237,6 @@ public class Storage {
      * @param address file path address given by user
      * @return boolean
      */
-
     private boolean verifyAddress(String address) {
         //pre-process address string
         String addressToCheck = address.strip();
@@ -250,8 +268,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the String representation of the archive list in the listA format
+     * @return
+     */
     public String listArchive() {
-        return this.archive.toString();
+        return this.archives.toString();
     }
 
     
@@ -262,16 +284,5 @@ public class Storage {
      */
     private String removeFilePath(String fullPath) {
         return fullPath.substring(0, fullPath.lastIndexOf("/") + 1);
-    }
-    
-    /** 
-     * @param numOfTasks
-     */
-    public void sendEndMessage(int numOfTasks) {
-        this.ui.chat(String.format("Saved %d tasks to log file\n", numOfTasks));
-    }
-
-    public void sendNoTasksMessage() {
-        this.ui.chat("No tasks saved to log file \n");
     }
 }

@@ -8,7 +8,7 @@ import task.Task;
 public class ListCommand extends Command {
 
     public ListCommand() {
-        super(false);
+        super();
     }
 
     /** 

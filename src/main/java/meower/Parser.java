@@ -18,8 +18,9 @@ import exception.InvalidCommandException;
 
 public class Parser {
 
-    private final String MESSAGE_ERROR_UNNECESSARY_ARG = "Argument given for command not needing argument";
-    private final String MESSAGE_ERROR_INVALID_COMMAND = "Command entered is invalid";
+    private final String MESSAGE_ERROR_UNNECESSARY_ARG = "ERROR: Argument given for command not needing argument";
+    private final String MESSAGE_ERROR_INVALID_COMMAND = "ERROR: Command entered is invalid";
+    private final String MESSAGE_ERROR_WRONG_ARGUMENTS = "ERROR: Arguments given for command are invalid or missing";
 
     private final String COMMAND_LIST_ARCHIVE = "listA";
     private final String COMMAND_LOAD_ARCHIVE = "loadA";
@@ -88,12 +89,18 @@ public class Parser {
         case COMMAND_DEADLINE:   
             //process arguments to pass into Command constructor
             String[] deadlineArgs = parseCommandArgs("/by",commandArgs); 
+            if (deadlineArgs.length < 2) {
+                throw new InvalidCommandException(MESSAGE_ERROR_WRONG_ARGUMENTS);
+            }
             String deadlineDescription = deadlineArgs[0];
             String deadlineDate = deadlineArgs[1].strip();  
             return new DeadlineCommand(deadlineDescription, deadlineDate);
         case COMMAND_EVENT:
             //process arguments to pass into Command constructor
             String[] eventArgs = parseCommandArgs("/at",commandArgs); 
+            if (eventArgs.length < 2) {
+                throw new InvalidCommandException(MESSAGE_ERROR_WRONG_ARGUMENTS);
+            }
             String eventDescription = eventArgs[0];
             String eventDate = eventArgs[1].strip();          
             return new EventCommand(eventDescription, eventDate);

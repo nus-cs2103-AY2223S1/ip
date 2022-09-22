@@ -1,18 +1,17 @@
 package command;
 
 import exception.MeowerException;
-import exception.TaskListOutOfBoundsException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 import task.Task;
 
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
 
     private int pos;
     
     public UnmarkCommand(String pos) {
-        super(false);
+        super();
         this.pos = Integer.parseInt(pos);
     }
  
@@ -25,12 +24,8 @@ public class UnmarkCommand extends Command{
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
-        try {
-            tasks.unmark(this.pos);
-            return ui.unmark(this.pos);
-        } catch (TaskListOutOfBoundsException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        }
+        tasks.unmark(this.pos);
+        return ui.unmark(this.pos);
     }
 
     

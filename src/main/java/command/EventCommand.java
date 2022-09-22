@@ -1,8 +1,6 @@
 package command;
 
 import exception.MeowerException;
-import exception.InvalidDateException;
-import exception.MissingArgumentException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
@@ -15,7 +13,7 @@ public class EventCommand extends Command {
     private String duration;
 
     public EventCommand(String description, String duration) {
-        super(false);
+        super();
         this.description = description;
         this.duration = duration;
     }
@@ -29,13 +27,9 @@ public class EventCommand extends Command {
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
-        try {
-            Task newEvent = this.getTask();
-            tasks.add(newEvent);
-            return ui.add(newEvent);
-        } catch (MeowerException e) {
-            throw e;
-        }
+        Task newEvent = this.getTask();
+        tasks.add(newEvent);
+        return ui.add(newEvent);
     }
 
     
@@ -46,12 +40,6 @@ public class EventCommand extends Command {
      */
     @Override
     public Task getTask() throws MeowerException {
-        try {
-            return new Event(description, duration);
-        } catch (MissingArgumentException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        } catch (InvalidDateException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        }
+        return new Event(description, duration);
     }
 }

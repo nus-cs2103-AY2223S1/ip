@@ -8,12 +8,12 @@ import task.Task;
 public class ListArchiveCommand extends Command {
 
     public ListArchiveCommand() {
-        super(false);
+        super();
     }
 
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments, 
-     * in this case it lists all tasks in the tasklist
+     * in this case it lists all archives in the storage
      * @param tasks tasklist from Meower chatbot
      * @param ui ui from Meower chatbot
      * @param storage storage from Meower chatbot

@@ -1,19 +1,18 @@
 package command;
 
 import exception.MeowerException;
-import exception.MissingArgumentException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 import task.Task;
 import task.ToDo;
 
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
 
     private String description;
     
     public TodoCommand(String description) {
-        super(false);
+        super();
         this.description = description;
     }
 
@@ -35,13 +34,9 @@ public class TodoCommand extends Command{
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
-        try {
-            Task newEvent = this.getTask();
-            tasks.add(newEvent);
-            return ui.add(newEvent);
-        } catch (MeowerException e) {
-            throw e;
-        }
+        Task newEvent = this.getTask();
+        tasks.add(newEvent);
+        return ui.add(newEvent);
     }
 
     
@@ -52,11 +47,6 @@ public class TodoCommand extends Command{
      */
     @Override
     public Task getTask() throws MeowerException{
-        try {
             return new ToDo(description);
-        } catch (MissingArgumentException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        }
     }
-
 }

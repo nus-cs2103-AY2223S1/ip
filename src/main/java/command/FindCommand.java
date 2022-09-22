@@ -5,12 +5,12 @@ import meower.TaskList;
 import meower.Ui;
 import task.Task;
 
-public class FindCommand extends Command{
+public class FindCommand extends Command {
     
     private String keyword;
     
     public FindCommand(String keyword) {
-        super(false);
+        super();
         this.keyword = keyword;
     }
     
@@ -23,7 +23,8 @@ public class FindCommand extends Command{
      * @return String
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.list(tasks.search(keyword), true);
+        TaskList searchList = tasks.search(keyword);
+        return ui.list(searchList, true);
     }
 
     

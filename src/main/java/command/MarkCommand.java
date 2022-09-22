@@ -1,18 +1,17 @@
 package command;
 
 import exception.MeowerException;
-import exception.TaskListOutOfBoundsException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 import task.Task;
 
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
 
     private int pos;
     
     public MarkCommand(String pos) {
-        super(false);
+        super();
         this.pos = Integer.parseInt(pos);
     }
     
@@ -25,15 +24,10 @@ public class MarkCommand extends Command{
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
-        try {
-            tasks.mark(this.pos);
-            return ui.mark(this.pos);
-        } catch (TaskListOutOfBoundsException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-    }
+        tasks.mark(this.pos);
+        return ui.mark(this.pos);
     }
 
-    
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated
      * @return Task

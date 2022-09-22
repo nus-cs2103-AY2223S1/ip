@@ -42,8 +42,11 @@ public class TaskList {
         return this.size;
     }
 
+    /**
+     * Clears the TaskList of all tasks
+     */
     public void clear() {
-        this.tasks = new ArrayList<Task>();
+        this.tasks.clear();
     }
 
     
@@ -63,7 +66,7 @@ public class TaskList {
      * @param pos user inputted index to delete task
      * @throws TaskListOutOfBoundsException thrown when user inputted pos is outside the size of the tasklist
      */
-    public String delete(int pos) throws TaskListOutOfBoundsException{
+    public String delete(int pos) throws TaskListOutOfBoundsException {
         if (pos > this.getSize()) {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.MESSAGE_ERROR_OUTOFBOUNDS,this.getSize()));
         }
@@ -80,7 +83,7 @@ public class TaskList {
      * @return Task
      * @throws TaskListOutOfBoundsException thrown when user inputted pos is outside the size of the tasklist
      */
-    public Task get(int pos) throws TaskListOutOfBoundsException{
+    public Task get(int pos) throws TaskListOutOfBoundsException {
         if (pos > this.getSize()) {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.MESSAGE_ERROR_OUTOFBOUNDS,this.getSize()));
         }
@@ -93,7 +96,7 @@ public class TaskList {
      * @param pos user inputted index to mark task done
      * @throws TaskListOutOfBoundsException thrown when user inputted pos is outside the size of the tasklist
      */
-    public void mark(int pos) throws TaskListOutOfBoundsException{
+    public void mark(int pos) throws TaskListOutOfBoundsException {
         if (pos > this.getSize()) {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.MESSAGE_ERROR_OUTOFBOUNDS,this.getSize()));
         }
@@ -106,7 +109,7 @@ public class TaskList {
      * @param pos user inputted index to mark task not done
      * @throws TaskListOutOfBoundsException thrown when user inputted pos is outside the size of the tasklist
      */
-    public void unmark(int pos) throws TaskListOutOfBoundsException{
+    public void unmark(int pos) throws TaskListOutOfBoundsException {
         if (pos > this.getSize()) {
             throw new TaskListOutOfBoundsException(String.format("%s%d", this.MESSAGE_ERROR_OUTOFBOUNDS,this.getSize()));
         }

@@ -7,29 +7,26 @@ import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 
-public class LoadArchiveCommand extends Command{
+public class LoadArchiveCommand extends Command {
 
-    private String archiveFileAddress = "";
+    private String archiveFileAddress;
 
     public LoadArchiveCommand(String newAddress) {
-        super(false);
+        super();
         this.archiveFileAddress = newAddress;
     }
  
     /** 
      * Executes the functionality of the command, in the tasklist, 
-     * UI and storage that are taken in as arguments, in this case saves the chatbot logs
+     * UI and storage that are taken in as arguments, in this case loads the tasks from an archive file into the tasklist
      * @param tasks tasklist from Meower chatbot
      * @param ui ui from Meower chatbot
      * @param storage storage from Meower chatbot
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
-        try {
-                return ui.loadArchive(storage.loadArchive(this.archiveFileAddress));
-        } catch (MeowerException e) {
-            throw e;
-        }
+        int numOfTasks = storage.loadArchive(this.archiveFileAddress);
+        return ui.loadArchive(numOfTasks);
     }
     
     /** 

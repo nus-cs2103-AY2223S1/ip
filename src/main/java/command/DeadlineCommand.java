@@ -1,17 +1,11 @@
 package command;
 
 import exception.MeowerException;
-import exception.InvalidDateException;
-import exception.MissingArgumentException;
 import meower.Storage;
 import meower.TaskList;
 import meower.Ui;
 import task.Deadline;
 import task.Task;
-
-/**
- * Represents a "deadline" command from the user that will schedule a new Deadline task in the chatbot.
- */
 
 public class DeadlineCommand extends Command {
 
@@ -19,7 +13,7 @@ public class DeadlineCommand extends Command {
     private String date;
 
     public DeadlineCommand(String description, String date) {
-        super(false);
+        super();
         this.description = description;
         this.date = date;
     }
@@ -42,13 +36,9 @@ public class DeadlineCommand extends Command {
      * @throws MeowerException
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
-        try {
-            Task newDeadline = this.getTask();
-            tasks.add(newDeadline);
-            return ui.add(newDeadline);
-        } catch (MeowerException e) {
-            throw e;
-        }
+        Task newDeadline = this.getTask();
+        tasks.add(newDeadline);
+        return ui.add(newDeadline);
     }
 
     
@@ -59,13 +49,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public Task getTask() throws MeowerException {
-        try {
-            return new Deadline(description, date);
-        } catch (MissingArgumentException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        } catch (InvalidDateException e) {
-            throw new MeowerException(e.getLocalizedMessage());
-        }
+        return new Deadline(description, date);
     }
     
 }

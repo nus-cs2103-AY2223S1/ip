@@ -6,21 +6,16 @@ import meower.TaskList;
 import meower.Ui;
 import task.Task;
 
-/**
- * Represents a "bye" command from the user that will end the chatbot.
- * @extends Command
- */
-
 public class ByeCommand extends Command {
 
     private String logFileAddress = "";
     
     public ByeCommand() {
-        super(true);
+        super();
     }
 
     public ByeCommand(String newAddress) {
-        super(true);
+        super();
         this.logFileAddress = newAddress;
     }
  
@@ -33,14 +28,12 @@ public class ByeCommand extends Command {
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
-        try {
-            if (this.logFileAddress.equals("")) {
-                return ui.bye(storage.saveToFile(true));
-            } else {
-                return ui.bye(storage.saveToFile(this.logFileAddress));
-            }
-        } catch (MeowerException e) {
-            throw e;
+        if (this.logFileAddress.equals("")) {
+            int numOfTasks = storage.saveToFile(true);
+            return ui.bye(numOfTasks);
+        } else {
+            int numOfTasks = storage.saveToFile(this.logFileAddress);
+            return ui.bye(numOfTasks);
         }
     }
     

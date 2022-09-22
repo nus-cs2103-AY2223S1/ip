@@ -6,16 +6,16 @@ import meower.TaskList;
 import meower.Ui;
 import task.Task;
 
-public class LoadCommand extends Command{
+public class LoadCommand extends Command {
 
     private String logFileAddress = "";
     
     public LoadCommand() {
-        super(false);
+        super();
     }
 
     public LoadCommand(String newAddress) {
-        super(false);
+        super();
         this.logFileAddress = newAddress;
     }
     
@@ -28,14 +28,12 @@ public class LoadCommand extends Command{
      * @throws MeowerException Main Meower chatbot Exception
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
-        try {
-            if (this.logFileAddress.equals("")) {
-                return ui.load(storage.loadFile(true));
-            } else {
-                return ui.load(storage.loadFile(this.logFileAddress));
-            }
-        } catch (MeowerException e) {
-            throw e;
+        if (this.logFileAddress.equals("")) {
+            int numOfTasks = storage.loadFile(true);
+            return ui.load(numOfTasks);
+        } else {
+            int numOfTasks = storage.loadFile(this.logFileAddress);
+            return ui.load(numOfTasks);
         }
     }
     

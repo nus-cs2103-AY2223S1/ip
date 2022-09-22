@@ -10,14 +10,8 @@ import task.Task;
  */
 public abstract class Command {
 
-    private boolean isEnd;
-
-    Command(boolean isEnd) {
-        this.isEnd = isEnd;
-    }
-
-    public boolean isEnd() {
-        return this.isEnd;
+    Command() {
+        ;
     }
 
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException; //Referenced from Marcus Ong Wee's code
