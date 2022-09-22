@@ -9,18 +9,18 @@ import java.util.LinkedList;
 class TaskList extends LinkedList {
     private LinkedList<Task> tasks = new LinkedList<>();
 
-    public void printMatchingTasks(String termTofind) {
-        System.out.println("The following matching tasks are found:");
+    public String printMatchingTasks(String termTofind) {
+        String str = "The following matching tasks are found:\n";
 
-        this.tasks.forEach(
-                task -> {
-                    if (task.getDescription().contains(termTofind)) {
-                        System.out.println(String.format("%d.%s",
-                                tasks.indexOf(task) + 1,
-                                task.printTask()));
-                    }
-                }
-        );
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).getDescription().contains(termTofind)) {
+                str = str.concat(String.format("%d.%s\n",
+                        i + 1,
+                        this.tasks.get(i).printTask()));
+            }
+        }
+
+        return str;
     }
 
     /**
@@ -46,12 +46,16 @@ class TaskList extends LinkedList {
     /**
      * Prints all the Tasks in the TaskList.
      */
-    public void listAllTasks() {
-        this.tasks.forEach(
-                task -> { System.out.println(String.format("%d.%s",
-                        tasks.indexOf(task) + 1,
-                        task.printTask()));
-                });
+    public String listAllTasks() {
+        String str = "";
+
+        for (int i = 0; i < this.tasks.size(); i++) {
+            str = str.concat(String.format("%d.%s\n",
+                    i + 1,
+                    tasks.get(i).printTask()));
+        }
+
+        return str;
     }
 
     @Override
@@ -69,11 +73,15 @@ class TaskList extends LinkedList {
      *
      * @param index the index of Task to delete.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
+        String str = "";
+
         Task taskToDelete = this.tasks.get(index - 1);
         this.tasks.remove(taskToDelete);
-        Ui.echo(String.format("Task %d [%s] removed.",
+        str = String.format("Task %d [%s] removed.",
                 index,
-                taskToDelete.getDescription()));
+                taskToDelete.getDescription());
+
+        return str;
     }
 }
