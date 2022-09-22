@@ -32,7 +32,7 @@ test {
 }
 
 application {
-    mainClassName = "cinnamon.Launcher"
+    mainClassName = "cinnamon.GUI.Launcher"
 }
 
 shadowJar {
