@@ -83,18 +83,18 @@ class Storage {
      * @param tasks all recorded tasks.
      */
     public static void archive(TaskList tasks) {
-        // create archive file if not exists
-        boolean dataFileExists = Files.exists(Storage.dataFilePath);
+        // create archive file if it does not exist
+        boolean archiveFileExists = Files.exists(Storage.archiveFilePath);
 
-        if(!dataFileExists) {
+        if(!archiveFileExists) {
             try {
-                Files.createFile(Storage.dataFilePath);
+                Files.createFile(Storage.archiveFilePath);
             } catch (IOException ex) {
-                System.out.println("IOException in creating data file!");
+                System.out.println("IOException in creating archive file!");
             }
         }
 
-        // writing to archive file
+        // write to archive file
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
 
@@ -118,6 +118,9 @@ class Storage {
         } catch (IOException ex) {
             System.out.println("Error in archiving!");
         }
+
+        // call Duke to clear all tasks and update
+        Duke.clearTasks();
     }
 
     /**

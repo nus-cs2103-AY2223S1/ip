@@ -158,4 +158,12 @@ class Duke {
 
         return str;
     }
+
+    /**
+     * Clear all tasks and update the data file.
+     */
+    public static void clearTasks() {
+        Duke.tasks = new TaskList();
+        Storage.updateData(Duke.tasks);
+    }
 }
