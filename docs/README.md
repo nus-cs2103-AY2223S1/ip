@@ -59,7 +59,7 @@ Expected outcome:
 ![image](https://user-images.githubusercontent.com/77394751/190422564-49a79f42-f946-4e69-bcde-ac7f005a87cd.png)
 
 ### Add a Deadline Task - `deadline`
-Add an Event task into the list.
+Add a Deadline task into the list.
 <br>
 
 Format: `event TASK_DESCRIPTION /by TASK_DEADLINE`
