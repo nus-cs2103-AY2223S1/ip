@@ -1,0 +1,5 @@
+T | 1 | cook dinner
+D | 0 | return textbook to the library | 21/12/2022 1700
+E | 0 | Ed Sheeran concert | 24/06/2023 2000
+R | 0 |  weekly project meeting | FRIDAY | 1130
+D | 0 | watch lecture | 24/12/2000 1200
