@@ -1,0 +1,5 @@
+[T][ ] read book
+[D][ ] finish cs2103 assignment (2022-09-16)
+[E][X] open house (2022-08-01)
+[D][X] finish cs2105 assignment (2022-09-14)
+[D][ ] finish cs2103 assignment (2022-09-16)
