@@ -26,7 +26,7 @@ public class Unmark extends Command{
         if (input.length() <= 7) {
             throw new DukeException("☹ OOPS!!! Please enter the index of the task that you want to unmark.");
         }
-        int index = Integer.parseInt(input.substring(5)) - 1;
+        int index = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(index);
         task.markAsNotDone();
         assert (ui != null);

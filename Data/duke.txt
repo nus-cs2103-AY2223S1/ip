@@ -1,3 +1,0 @@
-E|0|shop|orchard|2022-12-30|1700
-T|0|hw
-T|0|shop
