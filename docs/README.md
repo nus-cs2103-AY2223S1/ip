@@ -1,5 +1,10 @@
 # Duke User Guide
+
+## About Duke
 Duke is a simple application that helps you keep track of your tasks.
+
+## Acknowledgments
+[Jeffry Lum's JavaFX tutorial](#https://se-education.org/guides/tutorials/javaFx.html)
 
 ## Features 
 
