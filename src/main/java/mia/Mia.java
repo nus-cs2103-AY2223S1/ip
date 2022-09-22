@@ -1,5 +1,8 @@
 package mia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import general.ui.ChatWindow;
 import general.ui.Span;
 
@@ -12,6 +15,8 @@ public class Mia {
                                      + "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
     private final TaskManager tasksManager;
     private final ChatWindow window = new ChatWindow(50);
+    private final ArrayList<String> responses = new ArrayList<>();
+    private boolean flagShouldExitContext = false;
 
     public Mia(String dataPath) {
         tasksManager = new TaskManager(dataPath);
@@ -24,6 +29,7 @@ public class Mia {
      */
     public void respond(String message) {
         window.printResponse(new Span(message));
+        responses.add(message);
     }
 
     /**
@@ -48,19 +54,28 @@ public class Mia {
 
             // Replaces the entered command (previous line) with a bubble
             System.out.print("\u001B[1A\u001B[K");
-            window.printCommand(new Span(line));
 
-            try {
-                final Command command = Command.from(this, line);
-                command.run();
-                if (command.shouldExitContext()) {
-                    break;
-                }
-            } catch (IllegalArgumentException e) {
-                respond(e.getMessage());
+            parseAndExecute(line);
+            if (flagShouldExitContext) {
+                break;
             }
         }
         window.dispose();
+    }
+
+    public List<String> parseAndExecute(String line) {
+        window.printCommand(new Span(line));
+
+        try {
+            final Command command = Command.from(this, line);
+            command.run();
+            flagShouldExitContext = command.shouldExitContext();
+        } catch (IllegalArgumentException e) {
+            respond(e.getMessage());
+        }
+        ArrayList<String> commandOutputs = new ArrayList<>(responses);
+        responses.clear();
+        return commandOutputs;
     }
 
 }
