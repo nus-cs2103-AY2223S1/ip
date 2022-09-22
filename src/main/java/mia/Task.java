@@ -27,8 +27,8 @@ public abstract class Task {
     /**
      * Sets whether the task is completed.
      *
-     * @param completed the task status
-     * @return {@code true} if the status is modified, {@code false} otherwise
+     * @param completed the task status.
+     * @return {@code true} if the status is modified, {@code false} otherwise.
      */
     public boolean setCompleted(boolean completed) {
         if (completed == this.isCompleted) {
@@ -41,8 +41,8 @@ public abstract class Task {
     /**
      * Determines whether a {@code Task}'s title matches a given query.
      *
-     * @param query The query to be word-matched against the title
-     * @return {@code true} if the task matches, {@code false} otherwise
+     * @param query The query to be word-matched against the title.
+     * @return {@code true} if the task matches, {@code false} otherwise.
      */
     public boolean matches(String query) {
         final String[] queryWords = query.toLowerCase().split("\\s");
@@ -57,7 +57,7 @@ public abstract class Task {
     /**
      * Parses the data contained in this {@code Task} object into a {@code String}.
      *
-     * @return The parsed data
+     * @return The parsed data.
      */
     public String toSaveFormat() {
         return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);

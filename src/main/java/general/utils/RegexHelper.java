@@ -47,8 +47,8 @@ public class RegexHelper {
     /**
      * Extracts and parses the first date from an input string (which contains the date).
      *
-     * @param text The input string to extract the date from
-     * @return an optional LocalDate object with the date specified in the string
+     * @param text The input string to extract the date from.
+     * @return an optional LocalDate object with the date specified in the string.
      */
     public static Optional<LocalDate> extractAndParseDate(String text) {
         final Matcher matcher = DATE_REGEX.matcher(text);
@@ -69,8 +69,8 @@ public class RegexHelper {
     /**
      * Extracts and parses the first time from an input string (which contains the time).
      *
-     * @param text The input string to extract the time from
-     * @return an optional LocalTime object with the time specified in the string
+     * @param text The input string to extract the time from.
+     * @return an optional LocalTime object with the time specified in the string.
      */
     public static Optional<LocalTime> extractAndParseTime(String text) {
         final Matcher matcher = TIME_REGEX.matcher(text);
