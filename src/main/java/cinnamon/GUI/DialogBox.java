@@ -1,4 +1,4 @@
-package Cinnamon.GUI;
+package cinnamon.GUI;
 import java.io.IOException;
 import java.util.Collections;
 import javafx.collections.FXCollections;

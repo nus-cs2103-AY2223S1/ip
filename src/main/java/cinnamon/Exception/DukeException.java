@@ -1,4 +1,4 @@
-package Cinnamon.Exception;
+package cinnamon.Exception;
 
 /**
  * Exception to handle special cases

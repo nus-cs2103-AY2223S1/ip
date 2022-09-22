@@ -1,4 +1,4 @@
-package Cinnamon.Tasks;
+package cinnamon.Tasks;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -52,7 +52,7 @@ public class Deadline extends Task {
      */
     @Override
     public String fileFormat() {
-        return "D|" + super.fileFormat() + "|" + by + "|" + date + "|" + time;
+        return "D|" + super.fileFormat() + "|" + this.date + "|" + this.time;
     }
 
     /**

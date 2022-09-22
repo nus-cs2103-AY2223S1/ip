@@ -1,40 +1,35 @@
 Hello!, I'm Yiye.
 What can I do for you? ◠‿◠
 Got it, this task is added in your list:
-[E][ ] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
+[T][ ] shopping
 Now you have 1 task in your list.
 Got it, this task is added in your list:
+[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
+Now you have 2 tasks in your list.
+Got it, this task is added in your list:
 [D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-Now you have 2 tasks in your list.
-Got it, this task is added in your list:
-[T][ ] shopping
 Now you have 3 tasks in your list.
 Here are the tasks in your list:
-1.[E][ ] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
-2.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-3.[T][ ] shopping
+1.[T][ ] shopping
+2.[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
+3.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
 Nice! I have marked this task as done:
-[E][X] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
+[T][X] shopping
 This task is marked as not done:
-[E][ ] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
-Nice! I have marked this task as done:
-[D][X] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-Here are the tasks in your list:
-1.[E][ ] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
-2.[D][X] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-3.[T][ ] shopping
-Noted. I've removed this task:
-[E][ ] meeting (at: school, WEDNESDAY, Apr 04 2007, 02:00 pm)
+[T][ ] shopping
+Noted. I've deleted this task:
+[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
 Now you have 2 tasks in your list.
-Here are the tasks in your list:
-1.[D][X] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-2.[T][ ] shopping
-No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy
 Here are the matching tasks:
-1.[D][X] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
-Got it, this task is added in your list:
-[T][ ] dinner
-Now you have 3 tasks in your list.
+1.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
 Here are the matching tasks:
-1.[T][ ] dinner
+1.[T][ ] shopping
+Your task [T][ ] shopping is tagged as:
+#fun
+Your task is tagged as #fun
+[T][ ] shopping
+Here are the matching tasks:
+1.[T][ ] shopping
+Tag is removed.
+[T][ ] shopping
 Bye! Hope to see you again soon!

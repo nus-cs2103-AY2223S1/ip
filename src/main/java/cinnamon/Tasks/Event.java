@@ -1,4 +1,4 @@
-package Cinnamon.Tasks;
+package cinnamon.Tasks;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -55,7 +55,7 @@ public class Event extends Task {
      */
     @Override
     public String fileFormat() {
-        return "E" + super.fileFormat() + "|" + at + "|" + day + "|" + date + "|" + time;
+        return "E|" + super.fileFormat() + "|" + at + "|" + date + "|" + time;
     }
 
     /**

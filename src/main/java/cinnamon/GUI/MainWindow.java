@@ -1,6 +1,6 @@
-package Cinnamon.GUI;
-import Cinnamon.Cinnamon;
-import Cinnamon.Exception.DukeException;
+package cinnamon.GUI;
+import cinnamon.Cinnamon;
+import cinnamon.Exception.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,16 +45,18 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws DukeException {
         String input = userInput.getText();
         String response = cinnamon.getResponse(input);
-        if (input.equals("bye")) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getDukeDialog(cinnamon.displayBye(), cinnamonImage)
-            );
-           Platform.exit();
-        }
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, cinnamonImage)
         );
         userInput.clear();
+
+        if (input.equals("bye")) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getDukeDialog(cinnamon.displayBye(), cinnamonImage)
+            );
+            Platform.exit();
+        }
     }
 }

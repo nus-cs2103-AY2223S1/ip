@@ -1,5 +1,5 @@
-package Cinnamon.GUI;
-import Cinnamon.Cinnamon;
+package cinnamon.GUI;
+import cinnamon.Cinnamon;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package Cinnamon.Tasks;
+package cinnamon.Tasks;
 
 /**
  * Class task

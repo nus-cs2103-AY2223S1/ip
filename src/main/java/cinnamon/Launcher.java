@@ -1,5 +1,6 @@
-package Cinnamon.GUI;
+package cinnamon;
 
+import cinnamon.GUI.Main;
 import javafx.application.Application;
 
 public class Launcher {
