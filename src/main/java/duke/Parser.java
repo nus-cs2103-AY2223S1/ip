@@ -16,6 +16,7 @@ class Parser {
     public static final String TASK_KEYWORD_EVENT = "event ";
     public static final String MARK_KEYWORD_DELETE = "delete ";
     public static final String FIND_KEYWORD = "find ";
+    public static final String ARCHIVE_KEYWORD = "archive";
     private static final LinkedList<String> listOfExactKeywords = new LinkedList<>(
             List.of(Parser.EXACT_KEYWORD_BYE,
                     Parser.EXACT_KEYWORD_LIST)
@@ -89,6 +90,16 @@ class Parser {
      */
     public static boolean containsFindKeyword(String userInput) {
         return userInput.startsWith(Parser.FIND_KEYWORD);
+    }
+
+    /**
+     * Gets whether the keyword archive is present.
+     *
+     * @param userInput the user input.
+     * @return true if the keyword archive is present, false otherwise.
+     */
+    public static boolean containsArchiveKeyword(String userInput) {
+        return userInput.startsWith(Parser.ARCHIVE_KEYWORD);
     }
 
     /**

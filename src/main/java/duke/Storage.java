@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-import java.util.LinkedList;
 
 /**
  * The Storage class manages write and read operations into the data file "duke.txt".
@@ -13,7 +12,9 @@ class Storage {
     private static final String currentDir = System.getProperty("user.dir");
     private static final Path savedDataPath = Paths.get(Storage.currentDir, "/data");
     private static final Path dataFilePath = Paths.get(Storage.savedDataPath.toString(), "duke.txt");
+    private static final Path archiveFilePath = Paths.get(Storage.savedDataPath.toString(), "archive.txt");
     private static final String filePath = currentDir + "/data/duke.txt";
+    private static final String archivePath = currentDir + "/data/archive.txt";
 
     /**
      * Creates the data folder if it does not exist.
@@ -73,6 +74,49 @@ class Storage {
             fileWriter.close();
         } catch (IOException ex) {
             System.out.println("Error in updating data file!");
+        }
+    }
+
+    /**
+     * Archives all the tasks into an archive file.
+     *
+     * @param tasks all recorded tasks.
+     */
+    public static void archive(TaskList tasks) {
+        // create archive file if not exists
+        boolean dataFileExists = Files.exists(Storage.dataFilePath);
+
+        if(!dataFileExists) {
+            try {
+                Files.createFile(Storage.dataFilePath);
+            } catch (IOException ex) {
+                System.out.println("IOException in creating data file!");
+            }
+        }
+
+        // writing to archive file
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+
+        try {
+            fileWriter = new FileWriter(Storage.archivePath, false);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (int i = 0; i < tasks.size(); i++) {
+                String entry = tasks.get(i).printTask();
+
+                try {
+                    bufferedWriter.write(entry);
+                    bufferedWriter.newLine();
+                } catch (IOException ex) {
+                    System.out.println("Error in archiving!");
+                }
+            }
+
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException ex) {
+            System.out.println("Error in archiving!");
         }
     }
 

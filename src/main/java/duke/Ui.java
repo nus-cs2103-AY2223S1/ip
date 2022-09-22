@@ -108,8 +108,8 @@ public class Ui extends Application {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Handles the user input by feeding it into Duke.
+     * Replies with a relevant message.
      */
     private void handleUserInput() {
         // Show input in UI, feed input to duke
@@ -125,13 +125,5 @@ public class Ui extends Application {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(dukeText, new ImageView(dukeImage))
         );
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
     }
 }

@@ -4,3 +4,4 @@
 [D][ ] cs2103 ip (by: Sep 19 2022)
 [D][ ] make user guide (by: Sep 22 2022)
 [E][X] have a rest (at: Sep 23 2022)
+[T][ ] have a fruit

@@ -37,10 +37,9 @@ class TaskList extends LinkedList {
      * Adds a Task to the TaskList.
      *
      * @param task a Task to be added.
-     * @return true if the operation is successful.
      */
-    public boolean add(Task task) {
-        return this.tasks.add(task);
+    public void add(Task task) {
+        this.tasks.add(task);
     }
 
     /**

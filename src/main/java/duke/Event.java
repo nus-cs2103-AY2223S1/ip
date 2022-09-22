@@ -15,7 +15,7 @@ class Event extends Task {
     /**
      * Constructs an instance of Event.
      *
-     * @param description
+     * @param description the description of the event task.
      */
     public Event(String description) {
         super(description.split(Event.DELIMITER)[0].substring(6));

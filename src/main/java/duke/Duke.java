@@ -16,10 +16,9 @@ class Duke {
     public static void main(String[] args) {
         Storage.createDataFolder();
         Storage.createDataFile();
-        Duke duke = new Duke();
 
         try {
-            duke.tasks = Storage.initializeData();
+            Duke.tasks = Storage.initializeData();
         } catch (DukeException ex) {
             System.out.println("Error in initializing data!");
         }
@@ -28,10 +27,10 @@ class Duke {
     }
 
     /**
-     * Processed entries from user input in GUI.
+     * Processes entries from user input in GUI.
      *
-     * @param entry
-     * @return
+     * @param entry the user input from GUI.
+     * @return a reply to show up in the GUI.
      */
     public static String process(String entry) {
         String reply = "";
@@ -100,6 +99,9 @@ class Duke {
             }
         } else if (Parser.containsFindKeyword(entry)) {
             reply = listMatchingTasks(entry);
+        } else if (Parser.containsArchiveKeyword(entry)) {
+
+            reply = "All tasks archived.";
         } else {
             reply = Ui.CONFUSED;
         }
