@@ -21,8 +21,8 @@ public class PrintListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        this.response = taskList.printList() + "\n" +
-        ui.printListMessage(taskList);
+        this.response = taskList.printList() + "\n"
+                + ui.printListMessage(taskList);
     }
 
     /**
