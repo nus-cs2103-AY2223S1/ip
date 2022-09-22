@@ -17,7 +17,7 @@ import javafx.util.Duration;
  */
 public class MainWindow extends AnchorPane {
 
-    private static final String IMAGE_PATH_DUKE = "/images/Duke.jpg";
+    private static final String IMAGE_PATH_DUKE = "/images/Duke.png";
     private static final String IMAGE_PATH_USER = "/images/DaUser.png";
 
     private static final String MESSAGE_EXIT = "Goodbye!";
