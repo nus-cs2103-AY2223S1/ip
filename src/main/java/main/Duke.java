@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Objects;
+
 import exception.DukeException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,8 +29,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image user = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
+    private Image duke = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
 
     private TaskList taskList;
     private final Storage storage;
