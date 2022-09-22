@@ -100,7 +100,7 @@ class Duke {
         } else if (Parser.containsFindKeyword(entry)) {
             reply = listMatchingTasks(entry);
         } else if (Parser.containsArchiveKeyword(entry)) {
-
+            Storage.archive(Duke.tasks);
             reply = "All tasks archived.";
         } else {
             reply = Ui.CONFUSED;
