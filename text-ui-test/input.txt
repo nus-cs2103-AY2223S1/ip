@@ -80,4 +80,8 @@ delete
 mark
 unmark
 list
+mark abc
+unmark abc
+delete abc
+list
 bye

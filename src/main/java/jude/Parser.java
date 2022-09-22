@@ -179,7 +179,7 @@ public class Parser {
                 if (tokens.length == 1) {
                     throw new IllegalCommandException(String.format(NO_INDEX_ERROR, tokens[0]));
                 }
-                int index = Integer.parseInt(tokens[1]);
+                int index = parseIndex(tokens[1]);
                 Task task = deleteTask(index);
                 response = String.format("%sThe following task has been removed:\n  %s\n"
                                 + "The task list now contains %d task(s).\n",

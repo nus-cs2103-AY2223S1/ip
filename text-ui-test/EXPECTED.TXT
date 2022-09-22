@@ -395,6 +395,24 @@ No tasks found
 
 
 
+> Invalid index.
+
+
+> Invalid index.
+
+
+> Invalid index.
+
+
+> 1.[T][X] task1
+2.[T][ ] task3
+3.[D][X] task4 (by: 22 Aug 2022 00:00)
+4.[E][ ] task5 (from 12 Aug 2022 16:00 to 12 Aug 2022 17:00)
+5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
+6.[E][ ] Task 7 (from 13 Aug 2022 01:00 to 13 Aug 2022 02:00)
+
+
+
 > Goodbye! Have a nice day!
 Hello! I'm Jude, named after the Beatles' hit song 'Hey Jude'.
 What can I do for you?
