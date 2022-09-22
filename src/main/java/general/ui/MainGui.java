@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -50,5 +51,8 @@ public class MainGui extends AnchorPane {
         }
         chatWindow.getChildren().addAll(bubbles);
         userInput.clear();
+        if (context.shouldExitExternalContext()) {
+            Platform.exit();
+        }
     }
 }

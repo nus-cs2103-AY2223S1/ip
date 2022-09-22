@@ -11,8 +11,8 @@ import general.ui.Span;
  */
 public class Mia {
     private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-                                     + "┃ You are talking to MIA... ┃\n"
-                                     + "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
+            + "┃ You are talking to MIA... ┃\n"
+            + "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
     private final TaskManager tasksManager;
     private final ChatWindow window = new ChatWindow(50);
     private final ArrayList<String> responses = new ArrayList<>();
@@ -61,6 +61,16 @@ public class Mia {
             }
         }
         window.dispose();
+    }
+
+    /**
+     * Determine whether {@code Mia} intends for the calling context to be exited.
+     *
+     * @return {@code true} if {@code Mia} intends for an exit, {@code false}
+     *         otherwise.
+     */
+    public boolean shouldExitExternalContext() {
+        return flagShouldExitContext;
     }
 
     public List<String> parseAndExecute(String line) {
