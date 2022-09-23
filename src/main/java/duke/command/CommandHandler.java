@@ -13,13 +13,23 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
 import duke.ui.Ui;
+import javafx.application.Platform;
 
+/**
+ * Handles commands.
+ *
+ * @author ish1506
+ */
 public class CommandHandler {
-    private final Ui ui;
+    private final Ui ui = new Ui();
     private final TaskList tasks;
 
-    public CommandHandler(Ui ui, TaskList tasks) {
-        this.ui = ui;
+    /**
+     * Constructs a <code>CommandHandler</code>.
+     *
+     * @param tasks the <code>TaskList</code> of Duke.
+     */
+    public CommandHandler(TaskList tasks) {
         this.tasks = tasks;
     }
 
@@ -50,6 +60,7 @@ public class CommandHandler {
                 TimerTask exitApp = new TimerTask() {
                     @Override
                     public void run() {
+                        Platform.exit();
                         System.exit(0);
                     }
                 };

@@ -38,6 +38,12 @@ public class TaskList implements Iterable<Task> {
         list.add(task);
     }
 
+    /**
+     * Removes a <code>Task</code> from the <code>TaskList</code> at a specified index.
+     *
+     * @param index index of the <code>Task</code> to remove.
+     * @throws DukeException when index is out of range.
+     */
     public void remove(int index) throws DukeException {
         if (index < 0 || index >= list.size()) {
             throw new DukeException("Oops! Index is out of range!");

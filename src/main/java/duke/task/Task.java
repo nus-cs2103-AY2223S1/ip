@@ -69,8 +69,9 @@ public abstract class Task {
             return Deadline.fromString(inputString);
         case 'E':
             return Event.fromString(inputString);
+        default:
+            return null;
         }
-        return null;
     }
 
     /**

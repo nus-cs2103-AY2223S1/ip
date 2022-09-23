@@ -15,6 +15,9 @@ public class Duke {
     private final TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a <code>Duke</code> object.
+     */
     public Duke() {
         ui = new Ui();
         tasks = new TaskList(Storage.readData());
@@ -27,7 +30,7 @@ public class Duke {
      * @return the response message.
      */
     public String getResponse(String input) {
-        CommandHandler commandHandler = new CommandHandler(ui, tasks);
+        CommandHandler commandHandler = new CommandHandler(tasks);
         String dukeResponse = commandHandler.execute(input);
         assert !dukeResponse.isEmpty() : "Duke response should not be empty";
         return dukeResponse;
