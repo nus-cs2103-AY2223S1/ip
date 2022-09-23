@@ -127,10 +127,11 @@ public class MessagePrinter {
     public void printInTerminal(String input, String output) {
         char logBorderLineSymbol = '-';
         int logBorderLineLength = 50;
-        System.out.println("At " + new java.util.Date() + ":" + System.lineSeparator()
+        String timestamp = new java.util.Date().toString();
+        System.out.println("At " + timestamp + ":" + System.lineSeparator()
                 + "User input: [" + input + "]" + System.lineSeparator()
                 + "Response:" + System.lineSeparator()
-                + output + System.lineSeparator());
+                + output);
         System.out.println(getBorderLine(logBorderLineSymbol, logBorderLineLength));
     }
 
@@ -147,7 +148,7 @@ public class MessagePrinter {
                                 + (x.equals("") ? "" : System.lineSeparator())
                                 + getIndentation() + y))
                 .append(System.lineSeparator());
-        result.append(getBorderLine()).append(System.lineSeparator());
+        result.append(getBorderLine());
         return result.toString();
     }
 
