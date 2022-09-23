@@ -1,2 +1,3 @@
 [T][X] borrow book
-[D][X] return book (by: Feb 03 2020)
+[E][X] project meeting (at: Feb 03 2020)
+[D][X] submission (by: Mar 04 2021)

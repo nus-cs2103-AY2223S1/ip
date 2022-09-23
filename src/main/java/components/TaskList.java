@@ -107,16 +107,15 @@ public class TaskList {
   }
 
   public String findLine(String s) throws DukeException {
-    boolean stop = false;
+    this.tracker.clear();
     for (int i = 0; i < ls.size(); i++) {
-      if (ls.get(i).toString().contains(s)) {
+      if (ls.get(i).description.contains(s)) {
         this.tracker.add(ls.get(i).toString());
-        stop = true;
       }
     }
-    if (stop) {
+    if (this.tracker.size()!=0) {
       String string = "Here are the matching tasks in your list: \n";
-      for (int i = 0; i < ls.size(); i++) {
+      for (int i = 0; i < this.tracker.size(); i++) {
         string += valueOf(i + 1) + "." + " " + tracker.get(i) + "\n";
       }
       return string;
