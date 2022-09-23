@@ -80,10 +80,14 @@ public class Task {
      * @return string of desired format
      */
     public String fileFormat() {
-        if(isDone) {
+        if(isDone && isTagged) {
+            return "1|" + this.name + "|" + this.tag;
+        } else if(!isDone && isTagged) {
+            return "0|" + this.name + "|" + this.tag;
+        } else if(isDone && !isTagged) {
             return "1|" + this.name;
         }
-        return"0|" + this.name;
+        return "0|" + this.name;
     }
 
     /**

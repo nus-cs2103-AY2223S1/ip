@@ -54,18 +54,35 @@ public class Storage {
                 throw new DukeException("You have not created nay tasks.");
             }
             String[] parts = txt.split("\\|");
-            if (parts.length == 3) {
+            if (txt.startsWith("T")) {
                 Task todo = new Todo(parts[2]);
+                if (parts.length == 4) {
+                    todo.setTag(parts[3]);
+                }
                 checkMark(todo, Integer.parseInt(parts[1]));
                 list.add(todo);
             } else if (txt.startsWith("D")) {
-                Task dl = new Deadline(parts[2], parts[3], parts[4]);
-                checkMark(dl, Integer.parseInt(parts[1]));
-                list.add(dl);
+                if (parts.length == 6) {
+                    Task dl = new Deadline(parts[2], parts[4], parts[5]);
+                    dl.setTag(parts[3]);
+                    checkMark(dl, Integer.parseInt(parts[1]));
+                    list.add(dl);
+                } else if (parts.length == 5) {
+                    Task dl = new Deadline(parts[2], parts[3], parts[4]);
+                    checkMark(dl, Integer.parseInt(parts[1]));
+                    list.add(dl);
+                }
             } else if (txt.startsWith("E")) {
-                Task event = new Event(parts[2], parts[3], parts[4], parts[5]);
-                checkMark(event, Integer.parseInt(parts[1]));
-                list.add(event);
+                if (parts.length == 7) {
+                    Task event = new Event(parts[2], parts[4], parts[5], parts[6]);
+                    event.setTag(parts[3]);
+                    checkMark(event, Integer.parseInt(parts[1]));
+                    list.add(event);
+                } else if (parts.length == 6) {
+                    Task event = new Event(parts[2], parts[3], parts[4], parts[5]);
+                    checkMark(event, Integer.parseInt(parts[1]));
+                    list.add(event);
+                }
             }
         }
         return list;
