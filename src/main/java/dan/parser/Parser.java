@@ -1,6 +1,5 @@
 package dan.parser;
 
-import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
