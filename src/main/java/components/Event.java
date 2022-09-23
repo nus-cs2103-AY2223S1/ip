@@ -33,7 +33,7 @@ public class Event extends Task {
     if (this.at != null) {
       return "[E]" + super.toString() + " (at: " + at + ")";
     } else {
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
       return "[E]" + super.toString() + " (at: " + at2.format(formatter) + ")";
     }
   }

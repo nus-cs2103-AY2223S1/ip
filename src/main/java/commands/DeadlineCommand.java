@@ -10,7 +10,7 @@ public class DeadlineCommand implements Command {
   @Override
   public String execute(TaskList taskList, Storage storage, String input) throws DukeException {
     if (input.equals("deadline")) {
-     throw new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.");
+     throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
     } else {
       try {
         String description = input.substring(9, input.indexOf("/") - 1);

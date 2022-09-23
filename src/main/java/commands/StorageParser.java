@@ -26,12 +26,12 @@ public class StorageParser {
     try {
       if (line.contains("[X]")) {
         String var = line.substring(line.indexOf(":") + 2, line.length() - 1);
-        Deadline test = new Deadline(line.substring(8, line.indexOf(":") - 4), LocalDate.parse(var));
+        Deadline test = new Deadline(line.substring(7, line.indexOf(":") - 4), LocalDate.parse(var));
         test.setStatus(true);
         storage.add(test);
       } else {
         String var = line.substring(line.indexOf(":") + 2, line.length() - 1);
-        Deadline test = new Deadline(line.substring(8, line.indexOf(":") - 7), LocalDate.parse(var));
+        Deadline test = new Deadline(line.substring(7, line.indexOf(":") - 7), LocalDate.parse(var));
         storage.add(test);
       }
     } catch (DateTimeParseException e) {
