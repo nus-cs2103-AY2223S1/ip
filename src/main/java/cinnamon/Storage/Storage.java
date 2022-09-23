@@ -58,6 +58,9 @@ public class Storage {
                 Task todo = new Todo(parts[2]);
                 if (parts.length == 4) {
                     todo.setTag(parts[3]);
+                    todo.tagged();
+                    checkMark(todo, Integer.parseInt(parts[1]));
+                    list.add(todo);
                 }
                 checkMark(todo, Integer.parseInt(parts[1]));
                 list.add(todo);
@@ -65,6 +68,7 @@ public class Storage {
                 if (parts.length == 6) {
                     Task dl = new Deadline(parts[2], parts[4], parts[5]);
                     dl.setTag(parts[3]);
+                    dl.tagged();
                     checkMark(dl, Integer.parseInt(parts[1]));
                     list.add(dl);
                 } else if (parts.length == 5) {
@@ -76,6 +80,7 @@ public class Storage {
                 if (parts.length == 7) {
                     Task event = new Event(parts[2], parts[4], parts[5], parts[6]);
                     event.setTag(parts[3]);
+                    event.tagged();
                     checkMark(event, Integer.parseInt(parts[1]));
                     list.add(event);
                 } else if (parts.length == 6) {

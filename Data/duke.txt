@@ -1,2 +1,3 @@
-E|1|run|parl|2022-09-23|1700
+E|1|run|#fun|parl|2022-09-23|1700
 T|0|shop
+E|1|dance|studio|2022-09-27|1700
