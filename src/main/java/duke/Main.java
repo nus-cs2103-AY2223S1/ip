@@ -40,7 +40,7 @@ public class Main extends Application {
      * @throws Exception
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception{
 
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();

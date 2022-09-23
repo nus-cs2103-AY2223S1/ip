@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Launcher"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
@@ -52,6 +52,6 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }
