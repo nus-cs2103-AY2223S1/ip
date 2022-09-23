@@ -37,7 +37,7 @@ public class Event extends Task {
 
         try {
             LocalDateTime dateTime;
-            dateTime = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
+            dateTime = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             date = dateTime.toLocalDate();
             this.at = dateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy, h.mma"));
         } catch (DateTimeParseException e1) {

@@ -26,6 +26,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("NyanDuke :3");
+            stage.setResizable(false);
             MainWindow controller = fxmlLoader.getController();
             controller.setNyanDuke(nyanDuke);
             controller.showWelcome();

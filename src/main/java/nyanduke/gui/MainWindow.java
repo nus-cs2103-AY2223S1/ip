@@ -1,5 +1,6 @@
 package nyanduke.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import nyanduke.NyanDuke;
 
 /**
@@ -60,7 +62,10 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         if (nyanDuke.isExit()) {
-            Platform.exit();
+            userInput.setDisable(true);
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
         }
         userInput.clear();
     }

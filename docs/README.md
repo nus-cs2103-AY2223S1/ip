@@ -314,4 +314,8 @@ Exit the NyanDuke app by bidding NyanDuke goodbye!
 
 **Expected outcome:**
 
-The app will close. Until you open it again!
+NyanDuke will bid you farewell, and the app will close after 3 seconds. Until you open it again!
+
+```
+Bye :3
+```

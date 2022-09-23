@@ -52,18 +52,21 @@ public abstract class Task {
                 break;
 
             default:
-                throw new NyanDukeException("Invalid task data loaded.");
+                throw new NyanDukeException("Invalid task data loaded.\n"
+                        + "Data may be cleared if you continue to use NyanDuke.");
             }
 
             if (strings[1].equals("X")) {
                 task.markAsDone();
             } else if (!strings[1].equals(" ")) {
-                throw new NyanDukeException("Invalid task data loaded.");
+                throw new NyanDukeException("Invalid task data loaded.\n"
+                        + "Data may be cleared if you continue to use NyanDuke.");
             }
 
             return task;
         } catch (ArrayIndexOutOfBoundsException | NyanDukeException e) {
-            throw new NyanDukeException("Invalid task data loaded.");
+            throw new NyanDukeException("Invalid task data loaded.\n"
+                    + "Data may be cleared if you continue to use NyanDuke.");
         }
     }
 
