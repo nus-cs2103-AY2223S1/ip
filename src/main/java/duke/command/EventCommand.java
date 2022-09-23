@@ -3,6 +3,7 @@ package duke.command;
 import java.time.LocalDateTime;
 
 import duke.Duke;
+import duke.task.Event;
 import duke.task.Task;
 import duke.util.MessagePrinter;
 import duke.util.TaskList;
@@ -11,9 +12,6 @@ import duke.util.TaskList;
  * Represents a Command to create an Event Task in Duke.
  */
 public class EventCommand extends AddCommand {
-    /**
-     * The date and time of the Task.
-     */
     private final LocalDateTime time;
 
     /**
@@ -44,7 +42,7 @@ public class EventCommand extends AddCommand {
         TaskList taskList = duke.getTaskList();
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         String successMsg = "Got it. I've added this task:";
-        Task event = Task.event(msg, time);
+        Task event = new Event(msg, time);
         taskList.add(event);
         successMsg = successMsg + "\n" + event + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";

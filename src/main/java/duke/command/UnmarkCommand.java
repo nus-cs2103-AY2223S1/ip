@@ -9,9 +9,6 @@ import duke.util.TaskList;
  * Represents a Command to mark a Task not done in Duke.
  */
 public class UnmarkCommand extends Command {
-    /**
-     * The index of the Task to be marked as not done in TaskList.
-     */
     private final int idTask;
 
     /**

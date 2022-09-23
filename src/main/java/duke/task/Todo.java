@@ -8,7 +8,11 @@ import duke.util.Parser;
 public class Todo extends Task {
     public static final String SYMBOL = "T";
 
-    protected Todo(String name) {
+    /**
+     * Constructs the Deadline with given Task information.
+     * @param name The given task information.
+     */
+    public Todo(String name) {
         super(name);
     }
 

@@ -12,7 +12,6 @@ public class TaskAlreadyExistException extends DukeRuntimeException {
      */
     public TaskAlreadyExistException(Task task) {
         super("The task has already been added into the TaskList.\n"
-                + "Here are the task details:"
-                + System.lineSeparator() + task.toString());
+                + "Here are the task details:" + System.lineSeparator() + task.toString());
     }
 }

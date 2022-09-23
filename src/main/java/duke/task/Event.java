@@ -11,7 +11,12 @@ public class Event extends Task {
     public static final String SYMBOL = "E";
     private LocalDateTime time;
 
-    protected Event(String name, LocalDateTime time) {
+    /**
+     * Constructs the Event with given Task information and time.
+     * @param name The given task information.
+     * @param time The given event time.
+     */
+    public Event(String name, LocalDateTime time) {
         super(name);
         this.time = time;
     }

@@ -12,7 +12,12 @@ public class Deadline extends Task {
     public static final String SYMBOL = "D";
     private LocalDateTime time;
 
-    protected Deadline(String name, LocalDateTime time) {
+    /**
+     * Constructs the Deadline with given Task information and time.
+     * @param name The given task information.
+     * @param time The given deadline time.
+     */
+    public Deadline(String name, LocalDateTime time) {
         super(name);
         this.time = time;
     }

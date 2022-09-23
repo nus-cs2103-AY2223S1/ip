@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Duke;
 import duke.task.Task;
+import duke.task.Todo;
 import duke.util.MessagePrinter;
 import duke.util.TaskList;
 
@@ -27,7 +28,7 @@ public class TodoCommand extends AddCommand {
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         String msg = this.msg;
         String successMsg = "Got it. I've added this Task:";
-        Task todo = Task.todo(msg);
+        Task todo = new Todo(msg);
         taskList.add(todo);
         successMsg = successMsg + "\n" + todo + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";

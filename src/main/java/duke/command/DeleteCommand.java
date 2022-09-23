@@ -9,9 +9,6 @@ import duke.util.TaskList;
  * Represents a Command to delete existing Task in Duke.
  */
 public class DeleteCommand extends Command {
-    /**
-     * The index of Task to be deleted in the TaskList.
-     */
     private final int idTask;
 
     /**

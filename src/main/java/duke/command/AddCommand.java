@@ -4,9 +4,6 @@ package duke.command;
  * Represents the Command to add Tasks to TaskList.
  */
 public abstract class AddCommand extends Command {
-    /**
-     * The information of the Task.
-     */
     protected String msg;
 
     /**

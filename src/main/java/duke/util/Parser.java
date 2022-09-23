@@ -272,36 +272,36 @@ public class Parser {
         return new DeleteCommand(Integer.parseInt(arg1));
     }
 
-    private static Event parseEvent(String formattedString) {
+    protected static Event parseEvent(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
             throw new ReadAttributeException("Event", formattedString, "Number of attributes less than 4");
         }
-        Event result = Task.event(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        Event result = new Event(attributes.get(2), parseStringToDateTime(attributes.get(3)));
         if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
         return result;
     }
 
-    private static Deadline parseDeadline(String formattedString) {
+    protected static Deadline parseDeadline(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
             throw new ReadAttributeException("Deadline", formattedString, "Number of attributes less than 4");
         }
-        Deadline result = Task.deadline(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        Deadline result = new Deadline(attributes.get(2), parseStringToDateTime(attributes.get(3)));
         if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
         return result;
     }
 
-    private static Todo parseTodo(String formattedString) {
+    protected static Todo parseTodo(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 3) {
             throw new ReadAttributeException("Todo", formattedString, "Number of attributes less than 3");
         }
-        Todo result = Task.todo(attributes.get(2));
+        Todo result = new Todo(attributes.get(2));
         if (Parser.convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
