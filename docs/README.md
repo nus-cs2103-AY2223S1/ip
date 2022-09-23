@@ -2,7 +2,7 @@
 
 ## Features 
 
-### Add tasks
+### 1. Add tasks
 
 The Duke bot allows  the user to add 3 types of tasks: ToDo, Deadline and Event.
 
@@ -12,29 +12,29 @@ A Deadline task requires the description, due date and time of the activity.
 
 An Event task requires the description, start date and time of the activity.
 
-### Edit task status
+### 2. Edit task status
 
 The user is able to change the status of a task by marking the task as done or unchecking it as not done.
 
-### Set priority for tasks
+### 3. Set priority for tasks
 
 The user can set a priority for each task: High, Medium or Low.
 
-### Delete tasks
+### 4. Delete tasks
 
 The user can delete tasks from the task list.
 
-### Find tasks
+### 5. Find tasks
 
 The user can find tasks by searching for a keyword.
 
-### List tasks
+### 6. List tasks
 
 The user can see the list of tasks that he/she has.
 
 ## Usage
 
-### `todo` - Add a ToDo task
+### 1. `todo` - Add a ToDo task
 
 Typing "todo" with the description of the task will add a ToDo task to the list.
 
@@ -60,13 +60,13 @@ A ToDo task has been created and added to the list.
 ```
 
 
-### `deadline` - Add a Deadline task
+### 2. `deadline` - Add a Deadline task
 
 Typing "deadline" with the description, followed by "/by", and then the due date and time of the
 task will create the deadline task.
 
-The due date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed
-24-hour format.
+The due date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed in
+24-hour format: "HHmm".
 
 Command format:
 
@@ -90,13 +90,13 @@ Description of the outcome.
 A Deadline task has been created and added to the list.
 ```
 
-### `event` - Add a Event task
+### 3. `event` - Add a Event task
 
 Typing "event" with the description, followed by "/at", and then the start date and time of the
 task will create the event task.
 
-The start date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed
-24-hour format.
+The start date must be typed in "YYYY-MM-DD" format or "DD/MM/YYYY" format whereas the time must be typed in
+24-hour format: "HHmm".'
 
 Command format:
 
@@ -120,7 +120,7 @@ Description of the outcome.
 A Event task has been created and added to the list.
 ```
 
-### `list` - Shows the list of all tasks
+### 4. `list` - Shows the list of all tasks
 
 Typing "list" into the text field commands the Duke bot to show the user the list of all tasks.
 
@@ -163,7 +163,7 @@ by: - due date and time (Deadline tasks)
 at: - start date and time (Event tasks)
 ```
 
-### `mark` - Marks the task as done
+### 5. `mark` - Marks the task as done
 
 Typing "mark" and the task number into the text field commands the Duke bot
 to mark the task as done.
@@ -188,7 +188,7 @@ Description of the outcome.
 ```
 Task number 3's status is marked as done, as can be seen from [X].
 ```
-### `unmark` - Unmarks the task as not done
+### 6. `unmark` - Unmarks the task as not done
 
 Typing "unmark" and the task number into the text field commands the Duke bot
 to unmark the task as not done.
@@ -214,7 +214,7 @@ Description of the outcome.
 Task number 3's status is unmarked as not done, as can be seen from [ ].
 ```
 
-### `high` - Marks the task as "High" priority
+### 7. `high` - Marks the task as "High" priority
 
 Typing "high" and the task number into the text field commands the Duke bot
 to mark the task's priority as "high".
@@ -239,7 +239,7 @@ Description of the outcome.
 ```
 Task number 3's priority is marked as high, as can be seen from [H].
 ```
-### `medium` - Marks the task as "Medium" priority
+### 8. `medium` - Marks the task as "Medium" priority
 
 Typing "medium" and the task number into the text field commands the Duke bot
 to mark the task's priority as "medium".
@@ -265,7 +265,7 @@ Description of the outcome.
 Task number 1's priority is marked as medium, as can be seen from [M].
 ```
 
-### `low` - Marks the task as "Low" priority
+### 9. `low` - Marks the task as "Low" priority
 
 Typing "low" and the task number into the text field commands the Duke bot
 to mark the task's priority as "low".
@@ -291,7 +291,7 @@ Description of the outcome.
 Task number 2's priority is marked as low, as can be seen from [L].
 ```
 
-### `delete` - Deletes the task
+### 10. `delete` - Deletes the task
 
 Typing "delete" and the task number into the text field commands the Duke bot
 to delete that particular task.
@@ -318,7 +318,7 @@ Description of the outcome.
 Task number 2 is deleted from the list of tasks.
 ```
 
-### `find` - Find tasks with the keyword
+### 11. `find` - Find tasks with the keyword
 
 Typing "find" and the keyword commands the Duke bot to show the list of tasks containing that keyword.
 
@@ -343,7 +343,7 @@ Description of the outcome.
 All of the tasks with the keyword "study" will be shown.
 ```
 
-### `bye` - Exit the program
+### 12. `bye` - Exit the program
 
 Typing "bye" will cause the program to exit after a few seconds.
 
