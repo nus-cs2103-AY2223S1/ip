@@ -68,6 +68,9 @@ public abstract class Task {
         if (tag.split(" ").length > 1) {
             return false;
         }
+        if (tag.strip().equals("")) {
+            return false;
+        }
         return tags.add(tag);
     }
 
