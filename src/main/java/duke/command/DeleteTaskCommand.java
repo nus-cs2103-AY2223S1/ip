@@ -19,14 +19,18 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
-        Task task = tasks.remove(index);
+    public String execute(TaskList tasks) throws DukeException {
         try {
-            Storage.write(tasks);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        return String.format("Noted. I've removed this task:\n %s",
+            Task task = tasks.remove(index);
+            try {
+                Storage.write(tasks);
+            } catch (DukeException e) {
+                e.printStackTrace();
+            }
+            return String.format("Noted. I've removed this task:\n %s",
                 task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+        }
     }
 }

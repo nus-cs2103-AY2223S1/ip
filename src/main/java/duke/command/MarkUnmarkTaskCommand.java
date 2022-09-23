@@ -21,7 +21,10 @@ public class MarkUnmarkTaskCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+        }
         tasks.setDone(index, isDone);
         try {
             Storage.write(tasks);

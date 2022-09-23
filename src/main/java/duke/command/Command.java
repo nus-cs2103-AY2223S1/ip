@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.task.TaskList;
 
 /**
@@ -12,5 +13,5 @@ public abstract class Command {
      * @param tasks The {@code TaskList} to execute the command on.
      * @return The {@code String} output.
      */
-    public abstract String execute(TaskList tasks);
+    public abstract String execute(TaskList tasks) throws DukeException;
 }

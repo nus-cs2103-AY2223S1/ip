@@ -92,7 +92,7 @@ Now you have 2 tasks in your list.
 
 Add an event task that you have to do at a specified date and time to Duke.<br>
 
-**Format:** `event DESCRIPTION /by DATE TIME`
+**Format:** `event DESCRIPTION /at DATE TIME`
 
 **Example of usage:** `event team meeting /at 19-10-2022 2000`
 
@@ -127,7 +127,7 @@ Here are the tasks in your list:
 
 Mark a specified task in Duke as done.
 
-**Format:** `mark TASK_NUMBER ...`
+**Format:** `mark TASK_NUMBER`
 
 **Example of usage:** `mark 1`
 

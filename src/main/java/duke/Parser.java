@@ -102,8 +102,6 @@ public final class Parser {
             return new MarkUnmarkTaskCommand(index, isDone);
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid argument: Index of task should be a number.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
         }
     }
 
@@ -167,8 +165,6 @@ public final class Parser {
             return new DeleteTaskCommand(index);
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid argument: Index of task should be a number.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
         }
     }
 
