@@ -20,7 +20,7 @@ public class Storage {
     private final Path path;
 
     /**
-     * The constructor of the Class.
+     * Constructs Storage.
      * @param path
      */
     public Storage(String path) {
@@ -28,9 +28,6 @@ public class Storage {
         initialize();
     }
 
-    /**
-     * To check whether directory or file exists and create if not exist.
-     */
     private void initialize() {
         checkDirectory();
         checkFile();
@@ -86,7 +83,7 @@ public class Storage {
     }
 
     /**
-     * Checks whether directory exists. Create if does not exist.
+     * Checks whether directory exists. Creates if it does not exist.
      */
     private void checkDirectory() {
         File temp = this.path.getParent().toFile();
@@ -96,7 +93,7 @@ public class Storage {
     }
 
     /**
-     * Checks whether file exists. Create if does not exist.
+     * Checks whether file exists. Creates if it does not exist.
      */
     private void checkFile() {
         File temp = this.path.toFile();

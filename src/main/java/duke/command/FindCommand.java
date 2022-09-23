@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     private String target;
 
     /**
-     * Constructor of the class.
+     * Constructs the class.
      * @param target The given String.
      */
     public FindCommand(String target) {
@@ -57,32 +57,7 @@ public class FindCommand extends Command {
      * @return Returns whether this command terminates Duke.
      */
     @Override
-    public boolean isTerminated() {
-        return false;
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof FindCommand) {
-            FindCommand c = (FindCommand) obj;
-            if (this.target == c.getTarget()) {
-                return true;
-            }
-            if (this.target == null || c.getTarget() == null) {
-                return false;
-            }
-            return this.target.equals(c.getTarget());
-        }
+    public boolean isTerminating() {
         return false;
     }
 }

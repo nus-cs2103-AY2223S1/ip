@@ -34,12 +34,12 @@ public enum Action {
     /**
      * The HashMap stores the standardFormat of an Action.
      */
-    private static HashMap<Action, String> actionFormatMap = new HashMap<>();
+    private static final HashMap<Action, String> actionFormatMap = new HashMap<>();
 
     /**
      * The HashMap stores the String representation of an Action.
      */
-    private static HashMap<String, Action> stringActionMap = new HashMap<>();
+    private static final HashMap<String, Action> stringActionMap = new HashMap<>();
 
     static {
         HashMap<Action, String> map = actionFormatMap;
@@ -130,7 +130,7 @@ public enum Action {
      */
     public static String getFormat(Action action) {
         return Optional.ofNullable(action)
-                .map(x -> Action.actionFormatMap.get(x))
+                .map(x -> actionFormatMap.get(x))
                 .orElse("No standard format is provided");
     }
 }

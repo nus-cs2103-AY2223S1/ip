@@ -1,4 +1,4 @@
-E } 0 } read chapter 2 } 2022-10-01 11:22
+E } 1 } read chapter 2 } 2022-10-01 11:22
 D } 0 } chapter 2 refelction } 2022-10-07 18:26
 T } 0 } open the first page of chapter 3
 T } 0 } read chapter 3

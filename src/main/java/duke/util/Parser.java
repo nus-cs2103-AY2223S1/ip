@@ -36,9 +36,6 @@ import duke.task.Todo;
  * The Parser for conversion between String and other types.
  */
 public class Parser {
-    /**
-     * The String representation of the separator to divide a row of String into attributes.
-     */
     private static final String ATTRIBUTE_SEPARATOR = "}";
 
     /**
@@ -143,7 +140,7 @@ public class Parser {
         arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
-        } else if (!isInt(arg1)) {
+        } else if (!isValidInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
         return new MarkCommand(Integer.parseInt(arg1));
@@ -155,7 +152,7 @@ public class Parser {
         arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
-        } else if (!isInt(arg1)) {
+        } else if (!isValidInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
         return new UnmarkCommand(Integer.parseInt(arg1));
@@ -269,19 +266,12 @@ public class Parser {
         arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
-        } else if (!isInt(arg1)) {
+        } else if (!isValidInt(arg1)) {
             throw new InvalidArgumentException(action, "The argument should be an integer.");
         }
         return new DeleteCommand(Integer.parseInt(arg1));
     }
 
-    /**
-     * Returns the Event represented by given formatted String.
-     *
-     * @param formattedString The given formatted String.
-     * @return The Event represented by given formatted String.
-     * @throws ReadAttributeException if the String is not in correct format.
-     */
     private static Event parseEvent(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
@@ -294,13 +284,6 @@ public class Parser {
         return result;
     }
 
-    /**
-     * Returns the Deadline represented by given formatted String.
-     *
-     * @param formattedString The given formatted String.
-     * @return The Deadline represented by given formatted String.
-     * @throws ReadAttributeException if the String is not in correct format.
-     */
     private static Deadline parseDeadline(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
@@ -313,13 +296,6 @@ public class Parser {
         return result;
     }
 
-    /**
-     * Returns the Todo represented by given formatted String.
-     *
-     * @param formattedString The given formatted String.
-     * @return The Todo represented by given formatted String.
-     * @throws ReadAttributeException if the String is not in correct format.
-     */
     private static Todo parseTodo(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 3) {
@@ -350,13 +326,7 @@ public class Parser {
         return result;
     }
 
-    /**
-     * Returns a boolean indicating whether the given String is a valid integer.
-     *
-     * @param s The given String
-     * @return The boolean indicating whether the given String is a valid integer.
-     */
-    private static boolean isInt(String s) {
+    private static boolean isValidInt(String s) {
         try {
             Integer.parseInt(s);
             return true;
@@ -365,22 +335,10 @@ public class Parser {
         }
     }
 
-    /**
-     * Returns a boolean indicating whether the given String is a valid String.
-     *
-     * @param input The given String
-     * @return The boolean indicating whether the given String is a valid String.
-     */
     private static boolean isValidString(String input) {
         return input != null && !input.equals("") && !input.contains(ATTRIBUTE_SEPARATOR);
     }
 
-    /**
-     * Returns a boolean indicating whether the given String is a valid LocalDateTime.
-     *
-     * @param input The given String
-     * @return The boolean indicating whether the given String is a valid LocalDateTime.
-     */
     private static boolean isValidDate(String input) {
         try {
             LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

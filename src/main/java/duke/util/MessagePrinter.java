@@ -7,61 +7,20 @@ import java.util.stream.Stream;
  * Represents the UI of the Duke.
  */
 public class MessagePrinter {
-    /**
-     * The indentation level.
-     */
     private int indentationLevel;
-
-    /**
-     * The length of horizontal lines around the message.
-     */
     private int horizontalLineLength;
-
-    /**
-     * The symbol in horizontal lines.
-     */
     private char horizontalLineSymbol;
 
     /**
-     * The constructor of the class
+     * Constructs Message Printer.
      */
     public MessagePrinter() {
-        setHorizontalLineLength(50);
-        setHorizontalLineSymbol('*');
-        setIndentationLevel(2);
-    }
-
-    /**
-     * The constructor of the class
-     */
-    public MessagePrinter(int horizontalLineLength, char horizontalLineSymbol, int indentationLevel) {
-        setHorizontalLineLength(horizontalLineLength);
-        setHorizontalLineSymbol(horizontalLineSymbol);
-        setIndentationLevel(indentationLevel);
-    }
-
-    /**
-     * Set the indentation level to given value.
-     * @param indentationLevel
-     */
-    private void setIndentationLevel(int indentationLevel) {
-        this.indentationLevel = indentationLevel;
-    }
-
-    /**
-     * Set the horizontal line length to given value.
-     * @param horizontalLineLength
-     */
-    private void setHorizontalLineLength(int horizontalLineLength) {
-        this.horizontalLineLength = horizontalLineLength;
-    }
-
-    /**
-     * Set the horizontal line symbol to given character.
-     * @param horizontalLineSymbol
-     */
-    private void setHorizontalLineSymbol(char horizontalLineSymbol) {
-        this.horizontalLineSymbol = horizontalLineSymbol;
+        int defaultHorizontalLineLength = 39;
+        char defaultHorizontalLineSymbol = '*';
+        int defaultIndentationLevel = 0;
+        this.indentationLevel = defaultIndentationLevel;
+        this.horizontalLineLength = defaultHorizontalLineLength;
+        this.horizontalLineSymbol = defaultHorizontalLineSymbol;
     }
 
     /**
@@ -88,30 +47,16 @@ public class MessagePrinter {
         return indentationLevel;
     }
 
-    /**
-     * Returns the indentation in String.
-     * @return The indentation in String.
-     */
     private String getIndentation() {
         return Stream.generate(() -> " ")
                 .limit(this.indentationLevel)
                 .reduce("", (x, y) -> x + y);
     }
 
-    /**
-     * Returns String of horizontal line.
-     * @return The String of horizontal line.
-     */
     private String getBorderLine() {
         return getBorderLine(this.horizontalLineSymbol, horizontalLineLength);
     }
 
-    /**
-     * Returns String of horizontal line with given style.
-     * @param symbol The given symbol.
-     * @param length The given length.
-     * @return The String of horizontal line.
-     */
     private String getBorderLine(char symbol, int length) {
         String line = Stream.generate(() -> Character.toString(symbol))
                 .limit(length)
@@ -150,26 +95,5 @@ public class MessagePrinter {
                 .append(System.lineSeparator());
         result.append(getBorderLine());
         return result.toString();
-    }
-
-    /**
-     * Return boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof MessagePrinter) {
-            MessagePrinter mp = (MessagePrinter) obj;
-            return this.horizontalLineLength == mp.horizontalLineLength
-                    && this.horizontalLineSymbol == mp.getHorizontalLineSymbol()
-                    && this.indentationLevel == mp.getIndentationLevel();
-        }
-        return false;
     }
 }

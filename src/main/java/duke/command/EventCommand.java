@@ -17,7 +17,7 @@ public class EventCommand extends AddCommand {
     private final LocalDateTime time;
 
     /**
-     * The constructor of the class.
+     * Constructs the class.
      * @param msg The information of the Task.
      * @param time The date and time of the Task.
      */
@@ -49,33 +49,5 @@ public class EventCommand extends AddCommand {
         successMsg = successMsg + "\n" + event + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
         return messagePrinter.getPrintMessage(successMsg);
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof EventCommand) {
-            EventCommand c = (EventCommand) obj;
-            if (this.getMsg() == c.getMsg() && this.time == c.getTime()) {
-                return true;
-            }
-            if (this.getMsg() == null || c.getMsg() == null) {
-                return false;
-            }
-            if (this.getTime() == null || c.getTime() == null) {
-                return false;
-            }
-            return this.getTime().equals(c.getTime()) && this.getMsg().equals(c.getMsg());
-        }
-        return false;
     }
 }

@@ -12,10 +12,6 @@ public class Todo extends Task {
         super(name);
     }
 
-    /**
-     * Return the String representation of the Task.
-     * @return The String representation of the Task.
-     */
     @Override
     public String toString() {
         return "[" + SYMBOL + "]" + super.toString();
@@ -32,6 +28,10 @@ public class Todo extends Task {
                 this.getName());
     }
 
+    /**
+     * Returns an identical Todo.
+     * @return An identical Todo.
+     */
     @Override
     public Todo clone() {
         Todo result = new Todo(String.valueOf(this.getName()));
@@ -54,13 +54,6 @@ public class Todo extends Task {
         return false;
     }
 
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

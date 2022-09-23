@@ -8,7 +8,7 @@ import duke.util.Parser;
  */
 public class InvalidArgumentException extends CompileException {
     /**
-     * The constructor of the Exception.
+     * Constructs InvalidArgumentException.
      * @param action The invoking Action.
      * @param message The error information.
      */
@@ -18,27 +18,5 @@ public class InvalidArgumentException extends CompileException {
                 + "\nThe format of [" + Action.convertToString(action) + "] should be '"
                 + Action.getFormat(action) + "'"
                 + "\nAttribute Separator: '" + Parser.getAttributeSeparator() + "', is not allowed.");
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof InvalidArgumentException) {
-            InvalidArgumentException e = (InvalidArgumentException) obj;
-            if (e == null) {
-                return false;
-            }
-            return this.getMessage().equals(e.getMessage());
-        }
-        return false;
     }
 }

@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
     private final int idTask;
 
     /**
-     * The constructor of the class.
+     * Constructs the class.
      * @param idTask The index of Task to be deleted in the TaskList.
      */
     public DeleteCommand(int idTask) {
@@ -52,26 +52,7 @@ public class DeleteCommand extends Command {
      * @return Returns whether this command terminates Duke.
      */
     @Override
-    public boolean isTerminated() {
-        return false;
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof DeleteCommand) {
-            DeleteCommand c = (DeleteCommand) obj;
-            return this.idTask == c.getIdTask();
-        }
+    public boolean isTerminating() {
         return false;
     }
 }

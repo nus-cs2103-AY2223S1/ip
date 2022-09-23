@@ -10,7 +10,7 @@ import duke.util.TaskList;
  */
 public class TodoCommand extends AddCommand {
     /**
-     * The constructor of the Class.
+     * Constructs the class.
      * @param msg The information of the Task.
      */
     public TodoCommand(String msg) {
@@ -32,30 +32,5 @@ public class TodoCommand extends AddCommand {
         successMsg = successMsg + "\n" + todo + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
         return messagePrinter.getPrintMessage(successMsg);
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof DeadlineCommand) {
-            DeadlineCommand c = (DeadlineCommand) obj;
-            if (this.getMsg() == c.getMsg()) {
-                return true;
-            }
-            if (this.getMsg() == null || c.getMsg() == null) {
-                return false;
-            }
-            return this.getMsg().equals(c.getMsg());
-        }
-        return false;
     }
 }

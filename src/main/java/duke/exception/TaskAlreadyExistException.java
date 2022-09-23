@@ -7,11 +7,12 @@ import duke.task.Task;
  */
 public class TaskAlreadyExistException extends DukeRuntimeException {
     /**
-     * The constructor of the Exception.
+     * Constructs TaskAlreadyExistException.
      * @param task The duplicated task.
      */
     public TaskAlreadyExistException(Task task) {
         super("The task has already been added into the TaskList.\n"
-                + "Here are the task details:" + task.toString());
+                + "Here are the task details:"
+                + System.lineSeparator() + task.toString());
     }
 }

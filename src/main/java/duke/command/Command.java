@@ -12,7 +12,7 @@ public abstract class Command {
     protected Action action;
 
     /**
-     * Constructor with the Action to be done by the Command.
+     * Constructs the class.
      * @param action The Action to be done by the Command.
      */
     public Command(Action action) {
@@ -30,7 +30,7 @@ public abstract class Command {
      * Returns whether this command terminates Duke.
      * @return The boolean indicating whether this command terminates Duke.
      */
-    public abstract boolean isTerminated();
+    public abstract boolean isTerminating();
 
     /**
      * Returns the Action to be done by the Command.

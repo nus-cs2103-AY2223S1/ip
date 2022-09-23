@@ -10,7 +10,7 @@ public abstract class AddCommand extends Command {
     protected String msg;
 
     /**
-     * Constructor of the Add Command.
+     * Constructs the class.
      * @param action Action to add specified Task.
      * @param message The information of the Task.
      */
@@ -20,19 +20,11 @@ public abstract class AddCommand extends Command {
     }
 
     /**
-     * Returns the information of the Task.
-     * @return The information of the Task.
-     */
-    public String getMsg() {
-        return this.msg;
-    }
-
-    /**
      * Returns whether this command terminates Duke.
      * @return Returns whether this command terminates Duke.
      */
     @Override
-    public boolean isTerminated() {
+    public boolean isTerminating() {
         return false;
     }
 }

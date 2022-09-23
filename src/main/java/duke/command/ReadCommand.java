@@ -11,7 +11,7 @@ import duke.util.TaskList;
  */
 public class ReadCommand extends Command {
     /**
-     * The constructor of the Class.
+     * Constructs the class.
      */
     public ReadCommand() {
         super(Action.READ);
@@ -39,22 +39,7 @@ public class ReadCommand extends Command {
      * @return Returns whether this command terminates Duke.
      */
     @Override
-    public boolean isTerminated() {
+    public boolean isTerminating() {
         return false;
-    }
-
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        return obj instanceof ReadCommand;
     }
 }

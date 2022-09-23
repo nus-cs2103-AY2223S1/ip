@@ -18,7 +18,7 @@ public class TaskList implements Savable<TaskList> {
     private final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
-     * Add a given Task to the collection.
+     * Adds a given Task to the collection.
      * @param task The given task.
      */
     public void add(Task task) {
@@ -53,7 +53,7 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Return the Task at given index.
+     * Returns the Task at given index.
      * @param i The given index.
      * @return The Task at given index.
      * @throws TaskNotFoundException if given index is invalid.
@@ -64,7 +64,7 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Return the size of the TaskList.
+     * Returns the size of the TaskList.
      * @return The Task size of the TaskList.
      */
     public int size() {
@@ -83,7 +83,7 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Return if the given index is valid.
+     * Returns if the given index is valid.
      * @param i The given index.
      * @return The boolean if the given index is valid.
      */
@@ -103,7 +103,7 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Return the String representation of the TaskList.
+     * Returns the String representation of the TaskList.
      * @return The String representation of the TaskList.
      */
     @Override

@@ -24,7 +24,7 @@ public class Duke {
     private Stack<TaskList> taskListHistory;
 
     /**
-     * The constructor of the Duke.
+     * Constructs Duke.
      */
     public Duke() {
         String storagePathWin = "data\\duke.txt";
@@ -33,28 +33,19 @@ public class Duke {
         initialize(storagePath);
     }
 
-    /**
-     * The main method of Duke.
-     *
-     * @param args The arguments.
-     */
     public static void main(String[] args) {
         new Duke().run();
     }
 
     private void initialize(String storagePath) {
-        int defaultHorizontalLineLength = 39;
-        char defaultHorizontalLineSymbol = '*';
-        int defaultIndentationLevel = 0;
         this.tasks = new TaskList();
-        this.messagePrinter = new MessagePrinter(defaultHorizontalLineLength,
-                defaultHorizontalLineSymbol, defaultIndentationLevel);
+        this.messagePrinter = new MessagePrinter();
         this.storage = new Storage(storagePath);
         this.taskListHistory = new Stack<>();
     }
 
     /**
-     * The method to launch Duke.
+     * Launches Duke.
      */
     public void run() {
         Scanner scanner = new Scanner(System.in);
@@ -70,7 +61,7 @@ public class Duke {
     }
 
     /**
-     * The method to execute a givenCommand.
+     * Executes a given Command.
      *
      * @param command The given Command.
      */
@@ -87,7 +78,7 @@ public class Duke {
     }
 
     /**
-     * The method to print given DukeException Details.
+     * Handles Duke Exceptions.
      *
      * @param dukeException The given DukeException.
      */
@@ -112,7 +103,7 @@ public class Duke {
             if (scanner.hasNext()) {
                 String entry = scanner.nextLine();
                 Command command = parse(entry);
-                this.isTerminated = command.isTerminated();
+                this.isTerminated = command.isTerminating();
                 response = execute(command);
             }
         } catch (DukeException dukeException) {

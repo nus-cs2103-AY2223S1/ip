@@ -24,10 +24,6 @@ public class Event extends Task {
         this.time = time;
     }
 
-    /**
-     * Return the String representation of the Task.
-     * @return The String representation of the Task.
-     */
     @Override
     public String toString() {
         return "[" + SYMBOL + "]" + super.toString() + " (at: " + Parser.parseDateTimeToString(this.time) + ")";
@@ -45,6 +41,10 @@ public class Event extends Task {
                 Parser.parseDateTimeToString(this.getTime()));
     }
 
+    /**
+     * Returns an identical Event.
+     * @return An identical Event.
+     */
     @Override
     public Event clone() {
         Event result = new Event(String.valueOf(this.getName()), this.getTime());
@@ -69,13 +69,6 @@ public class Event extends Task {
         return false;
     }
 
-    /**
-     * Returns boolean indicating whether this object
-     * is equivalent to another object.
-     *
-     * @param obj The object to be checked.
-     * @return The boolean whether the given object is equivalent to this object.
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
