@@ -46,10 +46,10 @@ public class Ui {
             return "There are no tasks in your taskList ~";
         }
         String t = "Here are the tasks in your taskList:";
-        StringBuilder s = new StringBuilder();
+        String s ="";
         for (int i = 0; i < list.size(); i++) {
             int index = i + 1;
-            s.append("").append(index).append(".").append(list.get(i).toString()).append('\n');
+            s = s + (index + ". " + list.get(i)) + "\n";
         }
         return t + "\n" + s;
     }
@@ -128,11 +128,14 @@ public class Ui {
      */
 
     public String printMatchedTasks(ArrayList<Task> list) {
+        if (list.size() == 0) {
+            return "You have no tasks in your list.";
+        }
         String t = "Here are the matching tasks:\n";
-        StringBuilder s = new StringBuilder();
+        String s ="";
         for (int i = 0; i < list.size(); i++) {
             int index = i + 1;
-            s.append("").append(index).append(".").append(list.get(i).toString()).append("\n");
+            s = s + (index + ". " + list.get(i))+ "\n";
         }
         return t + s;
     }

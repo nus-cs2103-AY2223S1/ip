@@ -23,8 +23,19 @@ public class Storage {
      * Constructor for Storage
      *
      */
-    public Storage(String fp) {
-        this.filePath = fp;;
+    public Storage(String fp) throws DukeException {
+        this.filePath = fp;
+        File file = new File(filePath);
+        if (!file.exists()) {
+            File newFile = new File("./Data");
+            newFile.mkdir();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new DukeException("failed to load file");
+            }
+        }
+
     }
 
     /**
@@ -43,7 +54,7 @@ public class Storage {
                 throw new DukeException("You have not created nay tasks.");
             }
             String[] parts = txt.split("\\|");
-            if (parts.length == 2) {
+            if (parts.length == 3) {
                 Task todo = new Todo(parts[2]);
                 checkMark(todo, Integer.parseInt(parts[1]));
                 list.add(todo);
@@ -84,7 +95,7 @@ public class Storage {
         try {
             FileWriter fileWriter = new FileWriter(this.filePath);
             for (int i = 0; i < tl.size(); i++) {
-                Task task = tl.get(i);
+                Task task = tl.listTasks().get(i);
                 String str = task.fileFormat();
                 fileWriter.write(str + "\n");
             }

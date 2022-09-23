@@ -16,24 +16,21 @@ import cinnamon.command.Command;
  * @author Fang Yiye
  */
 public class Cinnamon {
-    private TaskList taskList = new TaskList();
+    private TaskList taskList;
     private Ui ui;
     private Storage storage;
-    private ArrayList<Task> list;
 
     /**
      * Constructor of Duke to initialise ui, storage and scanner
      */
     public Cinnamon() {
         ui = new Ui();
-        storage = new Storage("Data/duke.txt");
         try {
+            storage = new Storage("Data/duke.txt");
             taskList = new TaskList(storage.loadTasks());
-            list = taskList.listTasks();
         } catch (DukeException e) {
             ui.loadingError();
             taskList = new TaskList();
-            list = taskList.listTasks();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
