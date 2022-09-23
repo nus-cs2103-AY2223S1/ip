@@ -10,7 +10,7 @@ public class UnmarkCommand implements Command {
       throw new DukeException("☹ OOPS!!! The description of unmark cannot be empty.");
     } else {
       int num = Integer.parseInt(input.substring(7));
-      assert num >= 0;
+      assert num >= 0 : "index should be greater than or equal to 0";
       return taskList.setTaskStatus(num - 1, false);
     }
   }

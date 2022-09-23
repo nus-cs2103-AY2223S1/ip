@@ -10,6 +10,7 @@ public class MarkCommand implements Command {
       throw new DukeException("☹ OOPS!!! The description of mark cannot be empty.");
     } else {
       int num = Integer.parseInt(input.substring(5));
+      assert num >= 0 : "index should be greater than or equal to 0";
       return taskList.setTaskStatus(num - 1, true);
     }
   }
