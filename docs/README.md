@@ -28,9 +28,8 @@ unmarked, which means to indicate that the task is not done.
 ### Remind deadlines and events
 
 Upon startup, Jude the chatbot displays a list which includes the following:
-- upcoming or overdue deadlines which are yet marked as done
-- upcoming events
-to ensure that the user does not miss them. Reminders can be subsequently triggered by using the command `remindme`.
+- Upcoming or overdue deadlines which are yet marked as done.
+- Upcoming events to ensure that the user does not miss them. Reminders can be subsequently triggered by using the command `remindme`.
 
 ## Command summary:
 - `todo DESCRIPTION`: Add todo task
@@ -45,8 +44,6 @@ to ensure that the user does not miss them. Reminders can be subsequently trigge
 - `remindme`: Remind user of deadlines and events
 
 ## Usage
-* remindme - reminds the user of any event about to begin and any deadlines of tasks, which are
-*   not marked as complete, coming soon (default: within the next 24 hours)
 
 ### `todo` - Add todo task
 
