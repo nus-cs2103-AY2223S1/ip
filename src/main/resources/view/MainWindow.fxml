@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
+    <children>
+        <TextField fx:id="userInput" layoutX="1.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="321.0" promptText="type here" style="-fx-background-color: #e1e3e3#e1e3e3;" AnchorPane.bottomAnchor="1.0">
+         <font>
+            <Font name="Weibei SC Bold" size="13.0" />
+         </font></TextField>
+        <Button fx:id="sendButton" blendMode="SRC_ATOP" layoutX="323.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #b1bab9#b1bab9;" text="Send">
+         <font>
+            <Font name="YuGothic Bold" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9523809523809523" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5400000214576721" green="0.39959999918937683" blue="0.39959999918937683" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.5400000214576721" green="0.39959999918937683" blue="0.39959999918937683" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9599999785423279" green="0.9312000274658203" blue="0.9312000274658203" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
+            <content>
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

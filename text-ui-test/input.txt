@@ -1,0 +1,8 @@
+deadline hw /by Monday
+event clean room /at today asap
+list
+mark clean room
+mark hw
+list
+unmark clean room
+bye
