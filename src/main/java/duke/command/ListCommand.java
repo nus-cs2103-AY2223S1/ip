@@ -30,7 +30,7 @@ public class ListCommand extends Command {
         } else {
             message = message + taskList;
         }
-        return messagePrinter.printMessage(message);
+        return messagePrinter.getPrintMessage(message);
     }
 
     /**

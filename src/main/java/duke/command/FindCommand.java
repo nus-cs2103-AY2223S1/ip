@@ -49,7 +49,7 @@ public class FindCommand extends Command {
         } else {
             message = message + temp.toString();
         }
-        return messagePrinter.printMessage(message);
+        return messagePrinter.getPrintMessage(message);
     }
 
     /**

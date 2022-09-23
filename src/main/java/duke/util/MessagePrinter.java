@@ -102,19 +102,36 @@ public class MessagePrinter {
      * Returns String of horizontal line.
      * @return The String of horizontal line.
      */
-    private String printLine() {
-        String line = Stream.generate(() -> Character.toString(this.horizontalLineSymbol))
-                .limit(this.horizontalLineLength)
+    private String getBorderLine() {
+        return getBorderLine(this.horizontalLineSymbol, horizontalLineLength);
+    }
+
+    /**
+     * Returns String of horizontal line with given style.
+     * @param symbol The given symbol.
+     * @param length The given length.
+     * @return The String of horizontal line.
+     */
+    private String getBorderLine(char symbol, int length) {
+        String line = Stream.generate(() -> Character.toString(symbol))
+                .limit(length)
                 .reduce("", (x, y) -> x + y);
         return line;
     }
 
     /**
      * The method to print message.
-     * @param msg The message to print.
+     * @param input The user input.
+     * @param output The duke's response.
      */
-    private void print(String msg) {
-        System.out.println(getIndentation() + msg);
+    public void printInTerminal(String input, String output) {
+        char logBorderLineSymbol = '-';
+        int logBorderLineLength = 50;
+        System.out.println("At " + new java.util.Date() + ":" + System.lineSeparator()
+                + "User input: [" + input + "]" + System.lineSeparator()
+                + "Response:" + System.lineSeparator()
+                + output + System.lineSeparator());
+        System.out.println(getBorderLine(logBorderLineSymbol, logBorderLineLength));
     }
 
     /**
@@ -122,16 +139,15 @@ public class MessagePrinter {
      * @param msg The given message.
      * @return The message with style.
      */
-    public String printMessage(String msg) {
+    public String getPrintMessage(String msg) {
         StringBuilder result = new StringBuilder();
-        result.append(printLine()).append(System.lineSeparator());
+        result.append(getBorderLine()).append(System.lineSeparator());
         result.append(Arrays.stream(msg.split(System.lineSeparator()))
                         .reduce("", (x, y) -> x
                                 + (x.equals("") ? "" : System.lineSeparator())
                                 + getIndentation() + y))
                 .append(System.lineSeparator());
-        result.append(printLine()).append(System.lineSeparator());
-        System.out.println(result.toString());
+        result.append(getBorderLine()).append(System.lineSeparator());
         return result.toString();
     }
 

@@ -23,7 +23,7 @@ public class ExitCommand extends Command {
     public String execute(Duke duke) {
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         String farewellMsg = "Bye. Hope to see you again soon!";
-        return messagePrinter.printMessage(farewellMsg);
+        return messagePrinter.getPrintMessage(farewellMsg);
     }
 
     /**

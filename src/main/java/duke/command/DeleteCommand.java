@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
         Task task = taskList.remove(idTask - 1);
         successMsg = successMsg + "\n" + task + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        return messagePrinter.printMessage(successMsg);
+        return messagePrinter.getPrintMessage(successMsg);
     }
 
     /**

@@ -40,7 +40,7 @@ public class MarkCommand extends Command {
         String successMsg = "Nice! I've marked this task as done:";
         Task task = taskList.get(idTask - 1);
         task.markAsDone();
-        return messagePrinter.printMessage(successMsg + "\n" + task);
+        return messagePrinter.getPrintMessage(successMsg + "\n" + task);
     }
 
     /**

@@ -48,7 +48,7 @@ public class DeadlineCommand extends AddCommand {
         taskList.add(deadline);
         successMsg = successMsg + "\n" + deadline + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        return messagePrinter.printMessage(successMsg);
+        return messagePrinter.getPrintMessage(successMsg);
     }
 
     /**

@@ -5,7 +5,6 @@ import java.util.Stack;
 
 import duke.command.Action;
 import duke.command.Command;
-import duke.command.GreetCommand;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
@@ -52,7 +51,6 @@ public class Duke {
                 defaultHorizontalLineSymbol, defaultIndentationLevel);
         this.storage = new Storage(storagePath);
         this.taskListHistory = new Stack<>();
-        this.execute(new GreetCommand());
     }
 
     /**
@@ -94,7 +92,7 @@ public class Duke {
      * @param dukeException The given DukeException.
      */
     public String handle(DukeException dukeException) {
-        return this.messagePrinter.printMessage(dukeException.getMessage());
+        return this.messagePrinter.getPrintMessage(dukeException.getMessage());
     }
 
     /**
@@ -105,6 +103,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         String responseIfTerminated = "...";
+        String response = null;
         try {
             if (isTerminated) {
                 return responseIfTerminated;
@@ -114,13 +113,16 @@ public class Duke {
                 String entry = scanner.nextLine();
                 Command command = parse(entry);
                 this.isTerminated = command.isTerminated();
-                return execute(command);
+                response = execute(command);
             }
         } catch (DukeException dukeException) {
-            return handle(dukeException);
+            response = handle(dukeException);
         }
-        return null;
+        this.messagePrinter.printInTerminal(input, response);
+        return response;
     }
+
+
 
     /**
      * Returns whether the Duke is running.

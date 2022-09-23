@@ -31,7 +31,7 @@ public class TodoCommand extends AddCommand {
         taskList.add(todo);
         successMsg = successMsg + "\n" + todo + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        return messagePrinter.printMessage(successMsg);
+        return messagePrinter.getPrintMessage(successMsg);
     }
 
     /**

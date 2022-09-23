@@ -29,7 +29,7 @@ public class SaveCommand extends Command {
         storage.write(taskList);
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
-        return messagePrinter.printMessage("Your " + size + " " + temp + " been saved successfully");
+        return messagePrinter.getPrintMessage("Your " + size + " " + temp + " been saved successfully");
     }
 
     /**

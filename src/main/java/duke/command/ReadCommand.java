@@ -30,7 +30,7 @@ public class ReadCommand extends Command {
         duke.setTaskList(newTaskList);
         int size = newTaskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
-        return messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
+        return messagePrinter.getPrintMessage("Your " + size + " " + temp + " been loaded successfully\n"
                 + "Type [list] to view your tasks");
     }
 

@@ -43,7 +43,7 @@ public class UnmarkCommand extends Command {
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = taskList.get(idTask - 1);
         task.markAsNotDone();
-        return messagePrinter.printMessage(successMsg + "\n" + task);
+        return messagePrinter.getPrintMessage(successMsg + "\n" + task);
     }
 
     /**

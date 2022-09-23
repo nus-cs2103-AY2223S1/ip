@@ -28,7 +28,7 @@ public class GreetCommand extends Command {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String welcomeMsg = "Hello! I'm Duke \n" + "What can I do for you?";
-        return messagePrinter.printMessage("Hello from\n" + logo + "\n" + welcomeMsg);
+        return messagePrinter.getPrintMessage("Hello from\n" + logo + "\n" + welcomeMsg);
     }
 
     /**

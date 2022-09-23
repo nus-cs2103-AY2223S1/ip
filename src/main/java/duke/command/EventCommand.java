@@ -48,7 +48,7 @@ public class EventCommand extends AddCommand {
         taskList.add(event);
         successMsg = successMsg + "\n" + event + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        return messagePrinter.printMessage(successMsg);
+        return messagePrinter.getPrintMessage(successMsg);
     }
 
     /**
