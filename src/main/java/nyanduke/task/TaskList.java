@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import nyanduke.NyanDukeException;
+import nyanduke.Ui;
 
 /**
  * The TaskList class represents a list of tasks.
@@ -125,7 +126,7 @@ public class TaskList {
         boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
         boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
         if (hasInvalidNumbers) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
+            throw new NyanDukeException(Ui.ERROR_INVALID_INDEX);
         }
 
         ArrayList<Task> deletedTasks = new ArrayList<>();
@@ -152,7 +153,7 @@ public class TaskList {
         boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
         boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
         if (hasInvalidNumbers) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
+            throw new NyanDukeException(Ui.ERROR_INVALID_INDEX);
         }
 
         ArrayList<Task> markedTasks = new ArrayList<>();
@@ -179,7 +180,7 @@ public class TaskList {
         boolean hasOversizedNumbers = numbers[len - 1] > tasks.size();
         boolean hasInvalidNumbers = hasNonPositiveNumbers || hasOversizedNumbers;
         if (hasInvalidNumbers) {
-            throw new NyanDukeException("There's a specified task that does not exist ;-;\n");
+            throw new NyanDukeException(Ui.ERROR_INVALID_INDEX);
         }
         ArrayList<Task> unmarkedTasks = new ArrayList<>();
 

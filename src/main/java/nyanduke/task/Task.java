@@ -3,6 +3,7 @@ package nyanduke.task;
 import java.time.LocalDate;
 
 import nyanduke.NyanDukeException;
+import nyanduke.Ui;
 
 /**
  * The Task class represents a task added to NyanDuke.
@@ -52,21 +53,18 @@ public abstract class Task {
                 break;
 
             default:
-                throw new NyanDukeException("Invalid task data loaded.\n"
-                        + "Data may be cleared if you continue to use NyanDuke.");
+                throw new NyanDukeException(Ui.ERROR_INVALID_TASK);
             }
 
             if (strings[1].equals("X")) {
                 task.markAsDone();
             } else if (!strings[1].equals(" ")) {
-                throw new NyanDukeException("Invalid task data loaded.\n"
-                        + "Data may be cleared if you continue to use NyanDuke.");
+                throw new NyanDukeException(Ui.ERROR_INVALID_TASK);
             }
 
             return task;
         } catch (ArrayIndexOutOfBoundsException | NyanDukeException e) {
-            throw new NyanDukeException("Invalid task data loaded.\n"
-                    + "Data may be cleared if you continue to use NyanDuke.");
+            throw new NyanDukeException(Ui.ERROR_INVALID_TASK);
         }
     }
 

@@ -3,6 +3,7 @@ package nyanduke.task;
 import java.time.LocalDate;
 
 import nyanduke.NyanDukeException;
+import nyanduke.Ui;
 
 /**
  * The Todo class represents a task
@@ -18,7 +19,7 @@ public class Todo extends Task {
     public Todo(String description) throws NyanDukeException {
         super(description);
         if (description.equals("")) {
-            throw new NyanDukeException("The description of a todo cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_TODO);
         }
     }
 
@@ -48,7 +49,7 @@ public class Todo extends Task {
      */
     @Override
     public boolean isOnDate(LocalDate date) {
-        assert date != null : "Todo::onDate invoked with null argument.";
+        assert date != null : "Todo::isOnDate invoked with null argument.";
         return false;
     }
 }

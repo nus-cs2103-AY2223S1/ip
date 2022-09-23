@@ -22,8 +22,7 @@ public class ParserTest {
             Parser.parse("hello");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("IDK what that means :c",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_UNKNOWN_COMMAND, e.getMessage());
         }
     }
 
@@ -48,7 +47,7 @@ public class ParserTest {
             Parser.parse("mark");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to mark with integers.",
+            assertEquals(Ui.ERROR_MARK,
                     e.getMessage());
         }
     }
@@ -59,8 +58,7 @@ public class ParserTest {
             Parser.parse("mark food");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to mark with integers.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_MARK, e.getMessage());
         }
     }
 
@@ -75,8 +73,7 @@ public class ParserTest {
             Parser.parse("unmark");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to unmark with integers.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_UNMARK, e.getMessage());
         }
     }
 
@@ -86,8 +83,7 @@ public class ParserTest {
             Parser.parse("unmark food");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to unmark with integers.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_UNMARK, e.getMessage());
         }
     }
 
@@ -102,8 +98,7 @@ public class ParserTest {
             Parser.parse("todo");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("The description of a todo cannot be empty.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_TODO, e.getMessage());
         }
     }
 
@@ -121,8 +116,7 @@ public class ParserTest {
             Parser.parse("deadline sleep");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Use /by to provide when a deadline must be completed.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DEADLINE_BY, e.getMessage());
         }
     }
 
@@ -132,8 +126,7 @@ public class ParserTest {
             Parser.parse("deadline sleep /by");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Use /by to provide when a deadline must be completed.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DEADLINE_BY, e.getMessage());
         }
     }
 
@@ -143,8 +136,7 @@ public class ParserTest {
             Parser.parse("deadline /by tomorrow");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("The description of a deadline cannot be empty.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DEADLINE_DESCRIPTION, e.getMessage());
         }
     }
 
@@ -154,8 +146,7 @@ public class ParserTest {
             Parser.parse("deadline");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("The description of a deadline cannot be empty.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DEADLINE_DESCRIPTION, e.getMessage());
         }
     }
 
@@ -173,8 +164,7 @@ public class ParserTest {
             Parser.parse("event sleep");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Use /at to provide when an event occurs.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_EVENT_AT, e.getMessage());
         }
     }
 
@@ -184,8 +174,7 @@ public class ParserTest {
             Parser.parse("event sleep /at");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Use /at to provide when an event occurs.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_EVENT_AT, e.getMessage());
         }
     }
 
@@ -195,8 +184,7 @@ public class ParserTest {
             Parser.parse("event /at tomorrow");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("The description of an event cannot be empty.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_EVENT_DESCRIPTION, e.getMessage());
         }
     }
 
@@ -206,8 +194,7 @@ public class ParserTest {
             Parser.parse("event");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("The description of an event cannot be empty.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_EVENT_DESCRIPTION, e.getMessage());
         }
     }
 
@@ -222,8 +209,7 @@ public class ParserTest {
             Parser.parse("delete");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to delete with integers.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DELETE, e.getMessage());
         }
     }
 
@@ -233,8 +219,7 @@ public class ParserTest {
             Parser.parse("delete food");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify which tasks to delete with integers.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_DELETE, e.getMessage());
         }
     }
 
@@ -249,8 +234,7 @@ public class ParserTest {
             Parser.parse("on");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify the date to check with yyyy-MM-dd.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_ON, e.getMessage());
         }
     }
 
@@ -260,8 +244,7 @@ public class ParserTest {
             Parser.parse("on 22-5-4");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Specify the date to check with yyyy-MM-dd.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_ON, e.getMessage());
         }
     }
 
@@ -276,8 +259,7 @@ public class ParserTest {
             Parser.parse("find");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Include the keyword you want to find.",
-                    e.getMessage());
+            assertEquals(Ui.ERROR_FIND, e.getMessage());
         }
     }
 }

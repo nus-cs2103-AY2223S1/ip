@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import nyanduke.NyanDukeException;
+import nyanduke.Ui;
 
 /**
  * The Deadline class represents a task
@@ -29,10 +30,10 @@ public class Deadline extends Task {
         super(description);
         String emptyString = "";
         if (description.equals(emptyString)) {
-            throw new NyanDukeException("The description of a deadline cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_DEADLINE_DESCRIPTION);
         }
         if (by.equals(emptyString)) {
-            throw new NyanDukeException("Use /by to provide when a deadline must be completed.");
+            throw new NyanDukeException(Ui.ERROR_DEADLINE_BY);
         }
 
         try {
@@ -82,7 +83,7 @@ public class Deadline extends Task {
      */
     @Override
     public boolean isOnDate(LocalDate date) {
-        assert date != null : "Deadline::onDate invoked with null argument.";
+        assert date != null : "Deadline::isOnDate invoked with null argument.";
         String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return by.startsWith(formattedDate);
     }

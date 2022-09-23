@@ -1,5 +1,6 @@
 package nyanduke.task;
 
+import static nyanduke.Ui.ERROR_INVALID_TASK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +23,7 @@ public class TaskTest {
             Task.parseData("T |   | ");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -38,7 +39,7 @@ public class TaskTest {
             Task test = Task.parseData("D | X | test | ");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -48,7 +49,7 @@ public class TaskTest {
             Task test = Task.parseData("D | X |  | tomorrow");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -64,7 +65,7 @@ public class TaskTest {
             Task test = Task.parseData("E |   | test | ");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -74,7 +75,7 @@ public class TaskTest {
             Task test = Task.parseData("E |  | test | ");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -84,7 +85,7 @@ public class TaskTest {
             Task.parseData("X | X | doesn't matter");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 
@@ -94,7 +95,7 @@ public class TaskTest {
             Task.parseData("T | P | doesn't matter");
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("Invalid task data loaded.", e.getMessage());
+            assertEquals(ERROR_INVALID_TASK, e.getMessage());
         }
     }
 

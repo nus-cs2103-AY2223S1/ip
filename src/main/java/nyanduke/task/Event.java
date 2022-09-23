@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import nyanduke.NyanDukeException;
+import nyanduke.Ui;
 
 /**
  * The Event class represents a task that
@@ -29,10 +30,10 @@ public class Event extends Task {
         super(description);
         String emptyString = "";
         if (description.equals(emptyString)) {
-            throw new NyanDukeException("The description of an event cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_EVENT_DESCRIPTION);
         }
         if (at.equals(emptyString)) {
-            throw new NyanDukeException("Use /at to provide when an event occurs.");
+            throw new NyanDukeException(Ui.ERROR_EVENT_AT);
         }
 
         try {
@@ -80,7 +81,7 @@ public class Event extends Task {
      */
     @Override
     public boolean isOnDate(LocalDate date) {
-        assert date != null : "Event::onDate invoked with null argument.";
+        assert date != null : "Event::isOnDate invoked with null argument.";
         String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return at.startsWith(formattedDate);
     }

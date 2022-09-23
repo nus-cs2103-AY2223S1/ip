@@ -1,5 +1,6 @@
 package nyanduke.task;
 
+import static nyanduke.Ui.ERROR_INVALID_INDEX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -63,8 +64,7 @@ public class TaskListTest {
             testList.delete(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n",
-                    e.getMessage());
+            assertEquals(ERROR_INVALID_INDEX, e.getMessage());
         }
     }
 
@@ -90,8 +90,7 @@ public class TaskListTest {
             testList.mark(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n",
-                    e.getMessage());
+            assertEquals(ERROR_INVALID_INDEX, e.getMessage());
         }
     }
 
@@ -118,8 +117,7 @@ public class TaskListTest {
             testList.unmark(testArray);
             fail();
         } catch (NyanDukeException e) {
-            assertEquals("There's a specified task that does not exist ;-;\n",
-                    e.getMessage());
+            assertEquals(ERROR_INVALID_INDEX, e.getMessage());
         }
     }
 

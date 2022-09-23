@@ -10,7 +10,7 @@ import nyanduke.task.TaskList;
  */
 public class Ui {
     public static final String LINE = "______________________________________";
-    private static final String LOGO = "  _   _                   \n"
+    public static final String LOGO = "  _   _                   \n"
             + " | \\ | |                  \n"
             + " |  \\| |_   _  __ _ _ __  \n"
             + " | . ` | | | |/ _` | '_ \\ \n"
@@ -18,6 +18,21 @@ public class Ui {
             + " |_| \\_|\\__, |\\__,_|_| |_|\n"
             + "         __/ |            \n"
             + "        |___/             ";
+
+    public static final String ERROR_UNKNOWN_COMMAND = "IDK what that means :c";
+    public static final String ERROR_FIND = "Include the keyword you want to find.";
+    public static final String ERROR_ON = "Specify the date to check with yyyy-MM-dd.";
+    public static final String ERROR_DELETE = "Specify which tasks to delete with integers.";
+    public static final String ERROR_UNMARK = "Specify which tasks to unmark with integers.";
+    public static final String ERROR_MARK = "Specify which tasks to mark with integers.";
+    public static final String ERROR_TODO = "The description of a todo cannot be empty.";
+    public static final String ERROR_EVENT_DESCRIPTION = "The description of an event cannot be empty.";
+    public static final String ERROR_EVENT_AT = "Use /at to provide when an event occurs.";
+    public static final String ERROR_DEADLINE_DESCRIPTION = "The description of a deadline cannot be empty.";
+    public static final String ERROR_DEADLINE_BY = "Use /by to provide when a deadline must be completed.";
+    public static final String ERROR_INVALID_INDEX = "There's a specified task that does not exist ;-;";
+    public static final String ERROR_INVALID_TASK = "Invalid task data loaded.\n"
+            + "Data may be cleared if you continue to use NyanDuke.";
 
     /**
      * Returns a message that a specified task has been added to a task list.

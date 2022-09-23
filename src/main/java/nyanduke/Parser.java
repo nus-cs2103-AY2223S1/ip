@@ -21,6 +21,7 @@ import nyanduke.task.Todo;
  * The Parser class deals with making sense of user commands to NyanDuke.
  */
 public class Parser {
+
     private enum Keyword {
         BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, ON, FIND
     }
@@ -71,10 +72,10 @@ public class Parser {
                 return parseFind(fullCommand);
 
             default:
-                throw new NyanDukeException("IDK what that means :c");
+                throw new NyanDukeException(Ui.ERROR_UNKNOWN_COMMAND);
             }
         } catch (IllegalArgumentException e) {
-            throw new NyanDukeException("IDK what that means :c");
+            throw new NyanDukeException(Ui.ERROR_UNKNOWN_COMMAND);
         }
     }
 
@@ -89,7 +90,7 @@ public class Parser {
         try {
             return new FindCommand(fullCommand.substring(5));
         } catch (StringIndexOutOfBoundsException e) {
-            throw new NyanDukeException("Include the keyword you want to find.");
+            throw new NyanDukeException(Ui.ERROR_FIND);
         }
     }
 
@@ -102,13 +103,13 @@ public class Parser {
      */
     private static OnCommand parseOn(String fullCommand) throws NyanDukeException {
         if (fullCommand.length() == 2) {
-            throw new NyanDukeException("Specify the date to check with yyyy-MM-dd.");
+            throw new NyanDukeException(Ui.ERROR_ON);
         }
         try {
             LocalDate date = LocalDate.parse(fullCommand.substring(3));
             return new OnCommand(date);
         } catch (DateTimeParseException e) {
-            throw new NyanDukeException("Specify the date to check with yyyy-MM-dd.");
+            throw new NyanDukeException(Ui.ERROR_ON);
         }
     }
 
@@ -121,7 +122,7 @@ public class Parser {
      */
     private static DeleteCommand parseDelete(String fullCommand) throws NyanDukeException {
         if (fullCommand.length() == 6) {
-            throw new NyanDukeException("Specify which tasks to delete with integers.");
+            throw new NyanDukeException(Ui.ERROR_DELETE);
         }
         try {
             String input = fullCommand.substring(7);
@@ -131,7 +132,7 @@ public class Parser {
                     .toArray(Integer[]::new);
             return new DeleteCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new NyanDukeException("Specify which tasks to delete with integers.");
+            throw new NyanDukeException(Ui.ERROR_DELETE);
         }
     }
 
@@ -146,14 +147,14 @@ public class Parser {
         try {
             String input = fullCommand.substring(6);
             if (input.startsWith("/at")) {
-                throw new NyanDukeException("The description of an event cannot be empty.");
+                throw new NyanDukeException(Ui.ERROR_EVENT_DESCRIPTION);
             }
             String[] splitInput = input.split(" /at ", 2);
             return new AddCommand(new Event(splitInput[0], splitInput[1]));
         } catch (StringIndexOutOfBoundsException | NyanDukeException e) {
-            throw new NyanDukeException("The description of an event cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_EVENT_DESCRIPTION);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new NyanDukeException("Use /at to provide when an event occurs.");
+            throw new NyanDukeException(Ui.ERROR_EVENT_AT);
         }
     }
 
@@ -168,14 +169,14 @@ public class Parser {
         try {
             String input = fullCommand.substring(9);
             if (input.startsWith("/by")) {
-                throw new NyanDukeException("The description of a deadline cannot be empty.");
+                throw new NyanDukeException(Ui.ERROR_DEADLINE_DESCRIPTION);
             }
             String[] splitInput = input.split(" /by ", 2);
             return new AddCommand(new Deadline(splitInput[0], splitInput[1]));
         } catch (StringIndexOutOfBoundsException e) {
-            throw new NyanDukeException("The description of a deadline cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_DEADLINE_DESCRIPTION);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new NyanDukeException("Use /by to provide when a deadline must be completed.");
+            throw new NyanDukeException(Ui.ERROR_DEADLINE_BY);
         }
     }
 
@@ -190,7 +191,7 @@ public class Parser {
         try {
             return new AddCommand(new Todo(fullCommand.substring(5)));
         } catch (StringIndexOutOfBoundsException e) {
-            throw new NyanDukeException("The description of a todo cannot be empty.");
+            throw new NyanDukeException(Ui.ERROR_TODO);
         }
     }
 
@@ -203,7 +204,7 @@ public class Parser {
      */
     private static UnmarkCommand parseUnmark(String fullCommand) throws NyanDukeException {
         if (fullCommand.length() == 6) {
-            throw new NyanDukeException("Specify which tasks to unmark with integers.");
+            throw new NyanDukeException(Ui.ERROR_UNMARK);
         }
         try {
             String input = fullCommand.substring(7);
@@ -213,7 +214,7 @@ public class Parser {
                     .toArray(Integer[]::new);
             return new UnmarkCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new NyanDukeException("Specify which tasks to unmark with integers.");
+            throw new NyanDukeException(Ui.ERROR_UNMARK);
         }
     }
 
@@ -226,7 +227,7 @@ public class Parser {
      */
     private static MarkCommand parseMark(String fullCommand) throws NyanDukeException {
         if (fullCommand.length() == 4) {
-            throw new NyanDukeException("Specify which tasks to mark with integers.");
+            throw new NyanDukeException(Ui.ERROR_MARK);
         }
         try {
             String input = fullCommand.substring(5);
@@ -236,7 +237,7 @@ public class Parser {
                     .toArray(Integer[]::new);
             return new MarkCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new NyanDukeException("Specify which tasks to mark with integers.");
+            throw new NyanDukeException(Ui.ERROR_MARK);
         }
     }
 }
