@@ -45,6 +45,7 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(Label l, ImageView iv) {
+
         return new DialogBox(l, iv);
     }
 
