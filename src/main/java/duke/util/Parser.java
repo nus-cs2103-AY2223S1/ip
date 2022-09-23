@@ -104,7 +104,7 @@ public class Parser {
      * @throws DukeException if the given String is not in correct format.
      */
     public static Command parseCommand(String s) throws DukeException {
-        Action action = Action.getAction(s.trim().split(" ", 2)[0]);
+        Action action = Action.parseAction(s.trim().split(" ", 2)[0]);
         switch (action) {
         case GREET:
             return new GreetCommand();
@@ -140,7 +140,7 @@ public class Parser {
     protected static MarkCommand parseMarkCommand(String s) throws CompileException {
         String arg1;
         Action action = Action.MARK;
-        arg1 = s.substring(Action.getString(action).length()).trim();
+        arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
         } else if (!isInt(arg1)) {
@@ -152,7 +152,7 @@ public class Parser {
     protected static UnmarkCommand parseUnmarkCommand(String s) throws CompileException {
         String arg1;
         Action action = Action.UNMARK;
-        arg1 = s.substring(Action.getString(action).length()).trim();
+        arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
         } else if (!isInt(arg1)) {
@@ -164,7 +164,7 @@ public class Parser {
     protected static TodoCommand parseTodoCommand(String s) throws CompileException {
         String arg1;
         Action action = Action.TODO;
-        arg1 = s.substring(Action.getString(action).length()).trim();
+        arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
         } else if (!isValidString(arg1)) {
@@ -184,7 +184,7 @@ public class Parser {
             throw new InvalidArgumentException(action, "Keyword: ["
                     + symbolEvent + " ] or [Time] is not found.");
         }
-        indexOfName = Action.getString(action).length();
+        indexOfName = Action.convertToString(action).length();
         indexOfTime = getFirstIndexOfStr1InStr2(symbolEvent, s);
         arg1 = s.substring(indexOfName, indexOfTime).trim();
         arg2 = s.substring(indexOfTime + symbolEvent.length()).trim();
@@ -211,7 +211,7 @@ public class Parser {
             throw new InvalidArgumentException(action, "Keyword: ["
                     + symbolDeadline + " ] or [Time] is not found.");
         }
-        indexOfName = Action.getString(action).length();
+        indexOfName = Action.convertToString(action).length();
         indexOfTime = getFirstIndexOfStr1InStr2(symbolDeadline, s);
         arg1 = s.substring(indexOfName, indexOfTime).trim();
         arg2 = s.substring(indexOfTime + symbolDeadline.length()).trim();
@@ -232,7 +232,7 @@ public class Parser {
     protected static FindCommand parseFindCommand(String s) throws CompileException {
         String arg1;
         Action action = Action.FIND;
-        arg1 = s.substring(Action.getString(action).length()).trim();
+        arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
         } else if (!isValidString(arg1)) {
@@ -266,7 +266,7 @@ public class Parser {
     protected static DeleteCommand parseDeleteCommand(String s) throws CompileException {
         String arg1;
         Action action = Action.DELETE;
-        arg1 = s.substring(Action.getString(action).length()).trim();
+        arg1 = s.substring(Action.convertToString(action).length()).trim();
         if (arg1.equals("")) {
             throw new NoArgumentException(action);
         } else if (!isInt(arg1)) {

@@ -80,7 +80,7 @@ public class MainWindow extends AnchorPane {
         } else {
             this.duke = dukes[0];
         }
-        addDialogBox(DialogBox.getDukeDialog(duke.getResponse(Action.getString(Action.GREET)), dukeImage));
+        addDialogBox(DialogBox.getDukeDialog(duke.getResponse(Action.convertToString(Action.GREET)), dukeImage));
     }
 
     @FXML

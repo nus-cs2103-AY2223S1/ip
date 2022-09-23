@@ -44,25 +44,8 @@ test {
     }
 }
 
-javafx {
-    version = "11.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-
 application {
     mainClassName = "Launcher"
-}
-
-//create a single Jar with all dependencies
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Implementation-Title': 'ip',
-                'Implementation-Version': 6.0,
-                'Main-Class': 'Launcher'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
 
 shadowJar {

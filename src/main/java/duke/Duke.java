@@ -25,16 +25,7 @@ public class Duke {
     private Stack<TaskList> taskListHistory;
 
     /**
-     * The constructor of the Duke with given storage path.
-     *
-     * @param storagePath The given storage path.
-     */
-    public Duke(String storagePath) {
-        initialize(storagePath);
-    }
-
-    /**
-     * The constructor of the Duke with given storage path.
+     * The constructor of the Duke.
      */
     public Duke() {
         String storagePathWin = "data\\duke.txt";
@@ -49,15 +40,16 @@ public class Duke {
      * @param args The arguments.
      */
     public static void main(String[] args) {
-        String storagePathWin = "data\\duke.txt";
-        String storagePathElse = "data/duke.txt";
-        String storagePath = System.getProperty("os.name").startsWith("Windows") ? storagePathWin : storagePathElse;
-        new Duke(storagePath).run();
+        new Duke().run();
     }
 
     private void initialize(String storagePath) {
+        int defaultHorizontalLineLength = 39;
+        char defaultHorizontalLineSymbol = '*';
+        int defaultIndentationLevel = 0;
         this.tasks = new TaskList();
-        this.messagePrinter = new MessagePrinter(39, '*', 0);
+        this.messagePrinter = new MessagePrinter(defaultHorizontalLineLength,
+                defaultHorizontalLineSymbol, defaultIndentationLevel);
         this.storage = new Storage(storagePath);
         this.taskListHistory = new Stack<>();
         this.execute(new GreetCommand());

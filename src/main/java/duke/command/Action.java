@@ -9,7 +9,7 @@ import duke.exception.InvalidActionException;
  * Represents all Actions that Duke supports.
  */
 public enum Action {
-    DONOTHING,
+    DO_NOTHING,
     //    Level_1
     GREET, ECHO, EXIT,
     //    Level_2
@@ -43,7 +43,7 @@ public enum Action {
 
     static {
         HashMap<Action, String> map = actionFormatMap;
-        map.put(Action.DONOTHING, "");
+        map.put(Action.DO_NOTHING, "");
         //        Level_1
         map.put(Action.GREET, "greet");
         map.put(Action.EXIT, "bye");
@@ -73,7 +73,7 @@ public enum Action {
 
     static {
         HashMap<String, Action> map = stringActionMap;
-        map.put("", Action.DONOTHING);
+        map.put("", Action.DO_NOTHING);
         //        Level_1
         map.put("greet", Action.GREET);
         map.put("bye", Action.EXIT);
@@ -104,7 +104,7 @@ public enum Action {
      * @param action The Action to convert.
      * @return The String representation of an Action.
      */
-    public static String getString(Action action) {
+    public static String convertToString(Action action) {
         return stringActionMap.entrySet().stream()
                 .filter(m -> m.getValue().equals(action))
                 .map(m -> m.getKey())
@@ -117,7 +117,7 @@ public enum Action {
      * @return The mapped Action of the given String.
      * @throws InvalidActionException If the mapping of the given String is undefined.
      */
-    public static Action getAction(String action) throws InvalidActionException {
+    public static Action parseAction(String action) throws InvalidActionException {
         return Optional.ofNullable(action)
                 .map(x -> Action.stringActionMap.get(x.trim()))
                 .orElseThrow(() -> new InvalidActionException(action));

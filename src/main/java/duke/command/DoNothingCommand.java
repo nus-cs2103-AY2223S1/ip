@@ -10,7 +10,7 @@ public class DoNothingCommand extends Command {
      * The constructor of the class.
      */
     public DoNothingCommand() {
-        super(Action.DONOTHING);
+        super(Action.DO_NOTHING);
     }
 
     /**

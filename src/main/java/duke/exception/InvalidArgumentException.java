@@ -13,9 +13,10 @@ public class InvalidArgumentException extends CompileException {
      * @param message The error information.
      */
     public InvalidArgumentException(Action action, String message) {
-        super("The description of a [" + Action.getString(action) + "] is incorrect.\n"
+        super("The description of a [" + Action.convertToString(action) + "] is incorrect.\n"
                 + message
-                + "\nThe format of [" + Action.getString(action) + "] should be '" + Action.getFormat(action) + "'"
+                + "\nThe format of [" + Action.convertToString(action) + "] should be '"
+                + Action.getFormat(action) + "'"
                 + "\nAttribute Separator: '" + Parser.getAttributeSeparator() + "', is not allowed.");
     }
 

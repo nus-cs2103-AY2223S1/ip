@@ -10,6 +10,6 @@ public class FindCommandTest extends CommandTest {
 
     @Test
     public void task1() {
-        TaskList wholeTaskList = Parser.parseTaskList(this.wholeFormattedTasklist);
+        TaskList wholeTaskList = Parser.parseTaskList(this.wholeFormattedTaskList);
     }
 }

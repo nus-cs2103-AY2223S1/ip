@@ -11,8 +11,9 @@ public class NoArgumentException extends CompileException {
      * @param action The invoking Action.
      */
     public NoArgumentException(Action action) {
-        super("The description of a [" + Action.getString(action) + "] cannot be empty."
-                + "\nThe format of [" + Action.getString(action) + "] should be '" + Action.getFormat(action) + "'");
+        super("The description of a [" + Action.convertToString(action) + "] cannot be empty."
+                + "\nThe format of [" + Action.convertToString(action) + "] should be '"
+                + Action.getFormat(action) + "'");
     }
 
     /**

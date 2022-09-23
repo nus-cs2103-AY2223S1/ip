@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="dialog" maxHeight="-Infinity" minHeight="-Infinity" text="Label" wrapText="true">
          <font>
-            <Font name="Menlo Regular" size="13.0" />
+            <Font name="Courier New Bold" size="13.0" />
          </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="52.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
     </children>
