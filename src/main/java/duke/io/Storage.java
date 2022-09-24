@@ -1,6 +1,7 @@
 package duke.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,21 +19,42 @@ import duke.types.Todo;
  */
 public class Storage {
 
-    private static final File FILE_PATH = new File("data/duke.txt");
+    private static final String FILE_PATH = "data/duke.txt";
     private static final String FILE_NAME = "duke.txt";
     private static final String FILE_FOLDER = "data";
+    private File file;
+
+    /**
+     * Creates a storage object of the specified file path.
+     *
+     * @param filePath Path from root directory to the file.
+     * @throws DukeException If unable to create file.
+     */
+    public Storage() throws DukeException {
+        file = new File(FILE_PATH);
+        try {
+            // Does not overwrite directory or file if it already exists.
+            file.getParentFile().mkdir();
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new DukeException("Directory or file cannot be located. New file is created.");
+        }
+    }
 
     /**
      * Loads data from a save file.
      *
      * @return A TaskList with data loaded from a savefile.
      */
-    public static TaskList readData() throws DukeException {
+    public TaskList readData() throws DukeException {
         try {
-            Scanner fileScanner = new Scanner(FILE_PATH);
+            Scanner fileScanner = new Scanner(file);
             TaskList tasks = new TaskList();
             while (fileScanner.hasNextLine()) {
                 String[] info = fileScanner.nextLine().split(" \\| ");
+                if (info.length < 2) {
+                    throw new DukeException("data cannot be read");
+                }
                 String type = info[0];
                 boolean isDone = info[1].equals("1") ? true : false;
                 String description = info[2];
@@ -54,13 +76,9 @@ public class Storage {
             }
             fileScanner.close();
             return tasks;
-        } catch (IOException e) {
-            createNewStorageFile();
-            throw new DukeException("data cannot be found, making new folder");
-        } catch (DukeException e) {
-            System.out.println("data cannot be read");
+        } catch (DukeException | FileNotFoundException e) {
+            throw new DukeException("File is inaccessible");
         }
-        return null;
     }
 
     /**
@@ -82,12 +100,13 @@ public class Storage {
         }
     }
 
-    private static void createNewStorageFile() throws DukeException {
+    private void createNewStorageFile() throws DukeException {
         try {
             File folder = new File(FILE_FOLDER);
             folder.mkdir();
             File file = new File(folder, FILE_NAME);
             file.createNewFile();
+            readData();
         } catch (IOException e) {
             throw new DukeException("folder cannot be created");
         }
