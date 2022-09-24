@@ -1,7 +1,35 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello!, I'm Yiye.
+What can I do for you? ◠‿◠
+Got it, this task is added in your list:
+[T][ ] shopping
+Now you have 1 task in your list.
+Got it, this task is added in your list:
+[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
+Now you have 2 tasks in your list.
+Got it, this task is added in your list:
+[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
+Now you have 3 tasks in your list.
+Here are the tasks in your list:
+1.[T][ ] shopping
+2.[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
+3.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
+Nice! I have marked this task as done:
+[T][X] shopping
+This task is marked as not done:
+[T][ ] shopping
+Noted. I've deleted this task:
+[E][ ] meeting (at: school, SATURDAY, Apr 07 2007, 02:00 pm)
+Now you have 2 tasks in your list.
+Here are the matching tasks:
+1.[D][ ] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
+Here are the matching tasks:
+1.[T][ ] shopping
+Your task [T][ ] shopping is tagged as:
+#fun
+Your task is tagged as #fun
+[T][ ] shopping
+Here are the matching tasks:
+1.[T][ ] shopping
+Tag is removed.
+[T][ ] shopping
+Bye! Hope to see you again soon!
