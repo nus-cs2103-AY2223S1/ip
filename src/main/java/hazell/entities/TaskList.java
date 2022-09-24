@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hazell.Storage;
+import hazell.exceptions.HazellException;
 import hazell.exceptions.NoSuchTask;
 
 /**
@@ -135,7 +136,7 @@ public class TaskList {
      * @return The bot response
      * @throws NoSuchTask If there is no task corresponding to this index
      */
-    public String postponeTimeSensitiveTask(int index, String time) throws NoSuchTask {
+    public String postponeTimeSensitiveTask(int index, String time) throws HazellException {
         Task task = getTask(index);
         if (!(task instanceof TimeSensitiveTask)) {
             return "This task is not time-sensitive!";

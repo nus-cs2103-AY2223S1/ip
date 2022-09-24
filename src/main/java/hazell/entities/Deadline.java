@@ -1,9 +1,6 @@
 package hazell.entities;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
+import hazell.exceptions.HazellException;
 import hazell.exceptions.TaskDescriptionEmpty;
 
 /**
@@ -11,11 +8,9 @@ import hazell.exceptions.TaskDescriptionEmpty;
  */
 public class Deadline extends TimeSensitiveTask {
     private static final String typeIcon = "D";
-    private String time;
 
-    protected Deadline(boolean isDone, String description, String time) {
-        super(isDone, description);
-        this.time = time;
+    protected Deadline(boolean isDone, String description, String time) throws HazellException {
+        super(isDone, description, toLocalDate(time));
     }
 
     /**
@@ -25,7 +20,7 @@ public class Deadline extends TimeSensitiveTask {
      * @return A Deadline
      * @throws TaskDescriptionEmpty If empty description is given
      */
-    public static Deadline create(String description, String time) throws TaskDescriptionEmpty {
+    public static Deadline create(String description, String time) throws HazellException {
         Deadline deadline = new Deadline(false, description, time);
         deadline.validate();
         return deadline;
@@ -37,7 +32,7 @@ public class Deadline extends TimeSensitiveTask {
                 typeIcon,
                 this.getIsDone() ? 1 : 0,
                 this.getDescription(),
-                this.time);
+                this.getParsedTime());
     }
 
     /**
@@ -47,30 +42,19 @@ public class Deadline extends TimeSensitiveTask {
      * @return The unserialised Deadline object
      */
     public static Deadline unserialise(String[] words) {
-        return new Deadline(
+        try {
+            return new Deadline(
                 words[1].equals("1"),
                 words[2],
                 words[3]);
-    }
-
-    @Override
-    public void postpone(String time) {
-        this.time = time;
+        } catch (HazellException ex) {
+            // This will not occur assuming the text file is not tampered with.
+            return null;
+        }
     }
 
     @Override
     public String toString() {
-        String[] words = this.time.split(" ");
-        StringBuilder sbFormattedTime = new StringBuilder();
-        if (words.length >= 1) {
-            try {
-                LocalDate date = LocalDate.parse(words[0]);
-                sbFormattedTime.append(date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
-            } catch (DateTimeParseException ex) {
-                sbFormattedTime.append(this.time);
-            }
-        }
-        assert sbFormattedTime.length() != 0 : "Timestring formatting error occured";
-        return String.format("[%s]%s (by: %s)", typeIcon, super.toString(), sbFormattedTime);
+        return String.format("[%s]%s (by: %s)", typeIcon, super.toString(), getFriendlyTime());
     }
 }

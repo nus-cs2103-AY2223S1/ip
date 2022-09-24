@@ -1,5 +1,6 @@
 package hazell.entities;
 
+import hazell.exceptions.HazellException;
 import hazell.exceptions.TaskDescriptionEmpty;
 
 /**
@@ -7,11 +8,9 @@ import hazell.exceptions.TaskDescriptionEmpty;
  */
 public class Event extends TimeSensitiveTask {
     private static final String typeIcon = "E";
-    private String time;
 
-    protected Event(boolean isDone, String description, String time) {
-        super(isDone, description);
-        this.time = time;
+    protected Event(boolean isDone, String description, String time) throws HazellException {
+        super(isDone, description, toLocalDate(time));
     }
 
     /**
@@ -22,15 +21,10 @@ public class Event extends TimeSensitiveTask {
      * @return An Event object
      * @throws TaskDescriptionEmpty If the description is empty
      */
-    public static Event create(String description, String time) throws TaskDescriptionEmpty {
+    public static Event create(String description, String time) throws HazellException {
         Event event = new Event(false, description, time);
         event.validate();
         return event;
-    }
-
-    @Override
-    public void postpone(String time) {
-        this.time = time;
     }
 
     @Override
@@ -39,7 +33,7 @@ public class Event extends TimeSensitiveTask {
                 typeIcon,
                 this.getIsDone() ? 1 : 0,
                 this.getDescription(),
-                this.time);
+                this.getParsedTime());
     }
 
 
@@ -50,14 +44,19 @@ public class Event extends TimeSensitiveTask {
      * @return The unserialised Event object
      */
     public static Event unserialise(String[] words) {
-        return new Event(
-                words[1].equals("1"),
-                words[2],
-                words[3]);
+        try {
+            return new Event(
+                    words[1].equals("1"),
+                    words[2],
+                    words[3]);
+        } catch (HazellException ex) {
+            // This will not occur assuming the text file is not tampered with.
+            return null;
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%s (at: %s)", typeIcon, super.toString(), this.time);
+        return String.format("[%s]%s (at: %s)", typeIcon, super.toString(), getFriendlyTime());
     }
 }
