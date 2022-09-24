@@ -1,5 +1,5 @@
 # Duke
-
+[![CI Status](https://github.com/wweqg/ip/workflows/Java%20CI/badge.svg)](https://github.com/wweqg/ip/actions)
 > **An organised and efficient task manager that can be customised to your own taste.**
 
 Duke is a flexible software that helps to plan, manage and track all your tasks. It has,
