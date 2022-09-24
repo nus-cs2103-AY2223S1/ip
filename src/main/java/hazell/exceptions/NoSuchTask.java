@@ -13,7 +13,7 @@ public class NoSuchTask extends HazellException {
     @Override
     public String toString() {
         return String.format(
-                "☹ OOPS!!! There's no such task! Please choose a task from 1 to %d.",
-                this.maxNumberOfTasks);
+                "%s There's no such task! Please choose a task from 1 to %d.",
+                super.toString(), this.maxNumberOfTasks);
     }
 }

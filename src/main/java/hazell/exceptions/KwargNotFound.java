@@ -20,6 +20,7 @@ public class KwargNotFound extends HazellException {
 
     @Override
     public String toString() {
-        return String.format("☹ OOPS!!! The %s command requires a mandatory /%s option.", this.command, this.key);
+        return String.format("%s The %s command requires a mandatory /%s option.",
+                super.toString(), this.command, this.key);
     }
 }
