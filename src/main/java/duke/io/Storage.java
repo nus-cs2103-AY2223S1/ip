@@ -5,12 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import duke.DukeException;
 import duke.types.Deadline;
 import duke.types.Event;
 import duke.types.Task;
 import duke.types.Todo;
+import javafx.scene.control.Alert;
 
 /**
  * Storage for the Duke chatbot, storing and restoring files into/from a save file.
@@ -53,7 +56,7 @@ public class Storage {
             while (fileScanner.hasNextLine()) {
                 String[] info = fileScanner.nextLine().split(" \\| ");
                 if (info.length < 2) {
-                    throw new DukeException("data cannot be read");
+                    throw new DukeException("data is corrupted!");
                 }
                 String type = info[0];
                 boolean isDone = info[1].equals("1") ? true : false;
@@ -76,8 +79,15 @@ public class Storage {
             }
             fileScanner.close();
             return tasks;
-        } catch (DukeException | FileNotFoundException e) {
-            throw new DukeException("File is inaccessible");
+        } catch (DukeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "invalid save file, resetting");
+            alert.show();
+            TaskList emptyList = new TaskList();
+            saveData(emptyList);
+
+            return emptyList;
+        } catch (FileNotFoundException e) {
+            throw new DukeException("file not found");
         }
     }
 
