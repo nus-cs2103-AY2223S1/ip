@@ -40,7 +40,11 @@ public class Command {
         Map<String, String> kwargs = new HashMap<>();
         for (int i = 0; i < splitBySlash.length - 1; i++) {
             String[] kwargWords = splitBySlash[i + 1].split(" ", 2);
-            kwargs.put(kwargWords[0], kwargWords[1]);
+            if (kwargWords.length < 2) {
+                kwargs.put(kwargWords[0], null);
+            } else {
+                kwargs.put(kwargWords[0], kwargWords[1]);
+            }
         }
 
         return new Command(args, kwargs);
