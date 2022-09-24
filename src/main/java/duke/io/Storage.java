@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import duke.DukeException;
 import duke.types.Deadline;
