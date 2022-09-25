@@ -17,7 +17,7 @@
         <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
       </content>
     </ScrollPane>
-      <ImageView fitHeight="553.0" fitWidth="397.0" focusTraversable="true" opacity="0.13" pickOnBounds="true">
+      <ImageView fitHeight="553.0" fitWidth="397.0" focusTraversable="true" opacity="0.04" pickOnBounds="true">
          <image>
             <Image url="@../images/kittens.jpg" />
          </image>
