@@ -51,8 +51,7 @@ public class SaveManager {
             "DukeData"
     );
 
-    private static final Path RESOURCES_PATH = PATH.resolve("Resources");
-    private static final Path PROFILE_PICTURES = RESOURCES_PATH.resolve("ProfilePictures");
+    private static final Path PROFILE_PICTURES = PATH.resolve("ProfilePictures");
 
     private static ObjectMapper objectMapper;
 
@@ -85,10 +84,6 @@ public class SaveManager {
     public static Image loadProfilePicture(ImageType imageType) {
         File profilePicturesDirectory = getProfilePicturesDirectory();
         File imageFile = new File(profilePicturesDirectory, imageType.label);
-
-        if (profilePicturesDirectory.mkdirs()) {
-            System.out.println("Folders missing, creating absent folders");
-        }
 
         try {
             FileInputStream fileInputStream = new FileInputStream(imageFile);
@@ -129,12 +124,11 @@ public class SaveManager {
 
         File saveFile = new File(PATH.toString(), fileName);
 
-        if (saveFile.getParentFile().mkdirs()) {
-            System.out.println("Folder structure incomplete, attempting to create absent folders.");
-        }
+        creatingDirectoriesUpTo(saveFile.getParentFile());
 
         try {
             objectMapper.writeValue(saveFile, dataInMemory);
+            System.out.println("Serialization successful, saved at " + saveFile.getPath());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -150,16 +144,17 @@ public class SaveManager {
             createObjectMapper();
         }
 
+        File file = new File(PATH.toString(), fileName);
         try {
-            File file = new File(PATH.toString(), fileName);
-
             dataInMemory = objectMapper.readValue(file, Storage.class);
             assert dataInMemory != null;
+            System.out.println("Saved data successfully retrieved");
             return true;
         } catch (IOException e) {
-            System.out.println("Deserialization error, see below:");
-            System.out.println(e.getMessage());
-            System.out.println("----------------------------------");
+            if (file.exists()) {
+                System.out.println("Deserialization error, likely corrupt file");
+                System.out.println(e.getMessage());
+            }
             dataInMemory = new Storage();
             return false;
         }
@@ -167,9 +162,22 @@ public class SaveManager {
 
     public static File getProfilePicturesDirectory() {
         File dir = new File(PROFILE_PICTURES.toString());
-        if (dir.mkdirs()) {
-            System.out.println("Creating absent folders for profile pictures");
-        }
+        creatingDirectoriesUpTo(dir);
         return dir;
+    }
+
+    /**
+     * Creates directories to this folder, if they do not exist, including this folder.
+     * Nothing is performed if the directories already exist
+     * @param folder the end folder to create directories to
+     */
+    private static void creatingDirectoriesUpTo(File folder) {
+        try {
+            if (folder.mkdirs()) {
+                System.out.println("Created subdirectories at " + folder.getPath());
+            }
+        } catch (SecurityException e) {
+            System.out.println("Read or writing permissions denied at " + folder.getPath());
+        }
     }
 }

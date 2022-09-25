@@ -65,15 +65,7 @@ public class Parser {
                 break;
 
             case "bye":
-                duke.sendMessage("Goodbye!");
-                duke.save();
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.exit();
-                        System.exit(0);
-                    }
-                }, 1300);
+                exitProgram();
                 break;
 
             case "thank":
@@ -92,6 +84,17 @@ public class Parser {
         } catch (InvalidCommandException | IncompleteCommandException e) {
             countInvalidCommands(e);
         }
+    }
+
+    private void exitProgram() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.exit();
+            }
+        }, 1300);
+        duke.sendMessage("Goodbye!");
+        duke.serializeToFile();
     }
 
     private void countInvalidCommands(Exception e) {

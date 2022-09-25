@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import dukeprogram.Duke;
 import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -32,6 +33,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Duke duke;
+
+    private Application app;
 
     private boolean hasStoppedResponse = true;
     private final LinkedList<DukeResponse> queuedResponses = new LinkedList<>();

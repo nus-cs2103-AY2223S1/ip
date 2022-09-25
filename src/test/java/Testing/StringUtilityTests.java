@@ -28,7 +28,7 @@ public class StringUtilityTests {
      * when two delimiters are next to each other with nothing in between
      */
     @Test
-    public void splitStringArrayWithRepeatedDelimiter() {
+    public void splitStringArray_repeatedDelimiter() {
         String[] arr = {"a", "c", "b", "d", "b", "b", "e"};
         assertArrayEquals(
                 new String[][] {{"a", "c"}, {"d"}, {"e"}},
@@ -41,7 +41,7 @@ public class StringUtilityTests {
      * when the entire array ends with a delimiter
      */
     @Test
-    public void splitStringArrayEndingWithDelimiter() {
+    public void splitStringArray_endsWithDelimiter() {
         String[] arr = {"a", "c", "b", "d", "b", "b", "b", "b", "e", "b"};
         assertArrayEquals(
                 new String[][] {{"a", "c"}, {"d"}, {"e"}},
@@ -54,7 +54,7 @@ public class StringUtilityTests {
      * when the entire array ends with multiple delimiters
      */
     @Test
-    public void splitStringArrayEndingWithRepeatedDelimiter() {
+    public void splitStringArray_endRepeatedDelimiter() {
         String[] arr = {"a", "c", "b", "d", "b", "b", "b", "b"};
         assertArrayEquals(
                 new String[][] {{"a", "c"}, {"d"}},
@@ -67,7 +67,7 @@ public class StringUtilityTests {
      * when it begins with a delimiter
      */
     @Test
-    public void splitStringArrayStartingWithDelimiter() {
+    public void splitStringArray_startsWithDelimiter() {
         String[] arr = {"b", "a", "c", "b", "d", "b", "b", "b", "b", "e", "b"};
         assertArrayEquals(
                 new String[][] {{"a", "c"}, {"d"}, {"e"}},
@@ -80,7 +80,7 @@ public class StringUtilityTests {
      * when it begins with multiple delimiters
      */
     @Test
-    public void splitStringArrayStartingWithRepeatedDelimiter() {
+    public void splitStringArray_startsWithRepeatedDelimiter() {
         String[] arr = {"b", "b", "b", "a", "c", "b", "d", "b", "b", "b", "b", "e", "b"};
         assertArrayEquals(
                 new String[][] {{"a", "c"}, {"d"}, {"e"}},

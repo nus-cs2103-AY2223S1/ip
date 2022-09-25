@@ -71,7 +71,6 @@ public class LoanCollection implements Serializable {
      */
     public void clear() {
         loans.clear();
-        SaveManager.save("loanCollection", this);
     }
 
     public Loan get(String creditorName) throws KeyNotFoundException {

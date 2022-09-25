@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
+import dukeprogram.storage.SaveManager;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
@@ -50,7 +51,9 @@ public class AddLoanCommand extends Command {
         }
 
         duke.getLoanCollection().add(personName, amountOwed);
-        duke.save();
+
+        SaveManager.save("loanCollection", duke.getLoanCollection());
+        duke.serializeToFile();
         duke.sendMessage("Okay, I've updated the loan for " + personName);
     }
 

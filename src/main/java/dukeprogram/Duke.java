@@ -53,7 +53,7 @@ public class Duke {
         saveTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                save();
+                serializeToFile();
                 sendMessage("Oh, by the way, I just saved your file.");
             }
         }, 300_000, 300_000);
@@ -139,7 +139,7 @@ public class Duke {
     /**
      * Saves this file to disk by calling the serialize method on the SaveManager
      */
-    public void save() {
+    public void serializeToFile() {
         try {
             SaveManager.serialize("savefile.json");
         } catch (IOException e) {

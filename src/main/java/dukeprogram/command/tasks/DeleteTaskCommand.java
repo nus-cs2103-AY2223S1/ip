@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.command.ContinuableCommand;
+import dukeprogram.storage.SaveManager;
 import dukeprogram.tasks.Task;
 import dukeprogram.userinterface.Widget;
 import exceptions.InvalidCommandException;
@@ -44,7 +45,9 @@ public class DeleteTaskCommand extends Command implements ContinuableCommand {
         duke.sendMessage("Okay, I've removed this task,",
                 new Widget(task.createLabelWidget()));
 
-        duke.save();
+        SaveManager.save("tasklist", duke.getTaskList());
+
+        duke.serializeToFile();
     }
 
     private int parseTaskIndex(String thisElement) throws InvalidCommandException {
@@ -102,7 +105,8 @@ public class DeleteTaskCommand extends Command implements ContinuableCommand {
             throw new InvalidCommandException("The previous command was ignored.");
         }
 
-        duke.save();
+        SaveManager.save("tasklist", duke.getTaskList());
+        duke.serializeToFile();
     }
 
     private Task deleteAt(int index) {

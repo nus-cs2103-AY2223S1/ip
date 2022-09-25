@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import dukeprogram.Duke;
 import dukeprogram.command.Command;
+import dukeprogram.storage.SaveManager;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 
@@ -45,15 +46,18 @@ public class AddTaskCommand extends Command {
                 break;
 
             default:
-                duke.sendMessage(String.format("Sorry, %s is not a valid task type", thisElement));
-                duke.sendMessage("The valid task types are \"todo\", \"event\" and \"deadline\".");
-                duke.sendMessage("For example, \"tasks add todo buy groceries\" "
-                        + "will add the a ToDo task called \"buy groceries\"");
+                throw new InvalidCommandException(
+                        String.format("Sorry, %s is not a valid task type", thisElement));
             }
         } catch (InvalidCommandException e) {
             duke.sendMessage(e.getMessage());
+            duke.sendMessage("The valid task types are \"todo\", \"event\" and \"deadline\".");
+            duke.sendMessage("For example, \"tasks add todo buy groceries\" "
+                    + "will add the a ToDo task called \"buy groceries\"");
+            return;
         }
 
-        duke.save();
+        SaveManager.save("tasklist", duke.getTaskList());
+        duke.serializeToFile();
     }
 }

@@ -33,7 +33,6 @@ public class Storage implements Serializable {
      */
     public void put(String header, Serializable obj) {
         dataObjectsInMemory.put(header, obj);
-        System.out.println("Saved " + header + ": " + obj);
     }
 
     /**

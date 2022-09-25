@@ -71,6 +71,8 @@ public abstract class AnnotateTaskCommand extends Command {
         Task task = duke.getTaskList().get(index);
         task.markJobState(isToMark);
         duke.sendMessage(annotationMessage, new Widget(task.createLabelWidget()));
+
         SaveManager.save("tasklist", duke.getTaskList());
+        duke.serializeToFile();
     }
 }

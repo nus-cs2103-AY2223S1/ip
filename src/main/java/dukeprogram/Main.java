@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private static ArrayList<Application> applications = new ArrayList<>();
+    private static final ArrayList<Application> applications = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {

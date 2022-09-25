@@ -1,7 +1,7 @@
 .check-box .box {
     -fx-background-color: transparent;
-    -fx-border-color: white;
     -fx-border-radius:3px;
+    -fx-border-color: WHITE;
     -fx-padding: 0.5em;
 }
 
@@ -10,5 +10,7 @@
 }
 
 .check-box:selected .box {
-    -fx-background-color: hotpink;
+    -fx-background-color: LIGHTPINK;
+    -fx-border-radius:3px;
+    -fx-padding: 0.5em;
 }

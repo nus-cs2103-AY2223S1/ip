@@ -6,6 +6,7 @@ import dukeprogram.Duke;
 import dukeprogram.command.Command;
 import dukeprogram.command.ContinuableCommand;
 import dukeprogram.facilities.Loan;
+import dukeprogram.storage.SaveManager;
 import exceptions.IncompleteCommandException;
 import exceptions.InvalidCommandException;
 import utilities.StringUtilities;
@@ -37,7 +38,9 @@ public class DeleteLoanCommand extends Command implements ContinuableCommand {
         } else if (duke.getLoanCollection().containsKey(thisElement)) {
             Loan loan = duke.getLoanCollection().remove(thisElement);
             duke.sendMessage("Okay, I've removed the loan records of " + loan.getCreditorName());
-            duke.save();
+
+            SaveManager.save("loanCollection", duke.getLoanCollection());
+            duke.serializeToFile();
         } else {
             duke.sendMessage("Sorry, I wasn't able to find a person called "
                     + thisElement + " in the loan records!");
@@ -68,7 +71,8 @@ public class DeleteLoanCommand extends Command implements ContinuableCommand {
             throw new InvalidCommandException("The previous command was ignored.");
         }
 
-        duke.save();
+        SaveManager.save("loanCollection", duke.getLoanCollection());
+        duke.serializeToFile();
     }
 
     private void askToDeleteAllLoans() {

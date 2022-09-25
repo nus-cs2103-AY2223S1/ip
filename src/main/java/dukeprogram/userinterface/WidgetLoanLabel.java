@@ -41,7 +41,7 @@ public class WidgetLoanLabel extends HBox {
     private Label createNameLabel(String creditorName) {
         Label nameLabel = new Label(creditorName);
         nameLabel.setBackground(new Background(new BackgroundFill(
-                Color.DARKGOLDENROD,
+                Color.DARKVIOLET,
                 new CornerRadii(5),
                 Insets.EMPTY
         )));

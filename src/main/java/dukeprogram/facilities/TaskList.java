@@ -2,6 +2,7 @@ package dukeprogram.facilities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +17,9 @@ import exceptions.KeyNotFoundException;
  */
 public class TaskList implements Serializable {
     private final ArrayList<Task> taskArrayList;
-
+    /**
+     * Creates a new task list
+     */
     public TaskList() {
         taskArrayList = new ArrayList<>();
     }
@@ -72,9 +75,12 @@ public class TaskList implements Serializable {
      * @return whether the addition to the task list was successful
      */
     public boolean add(Task task) {
-        boolean isValid = taskArrayList.add(task);
-        SaveManager.save("tasklist", this);
-        return isValid;
+        if (taskArrayList.contains(task)) {
+            return false;
+        }
+
+        taskArrayList.add(task);
+        return true;
     }
 
     /**
@@ -82,7 +88,6 @@ public class TaskList implements Serializable {
      */
     public void clear() {
         taskArrayList.clear();
-        SaveManager.save("tasklist", this);
     }
 
     public Task get(int index) {
@@ -96,9 +101,7 @@ public class TaskList implements Serializable {
      */
     public Task remove(int index) {
         assert index < taskArrayList.size() && index >= 0;
-        Task removedTask = taskArrayList.remove(index);
-        SaveManager.save("tasklist", this);
-        return removedTask;
+        return taskArrayList.remove(index);
     }
 
     public int indexOf(Task task) {

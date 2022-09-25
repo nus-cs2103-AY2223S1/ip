@@ -37,10 +37,11 @@ public class WidgetTaskLabel extends HBox {
 
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setBackground(new Background(new BackgroundFill(
-                Color.BLUEVIOLET,
+                Color.DARKVIOLET,
                 new CornerRadii(5),
                 Insets.EMPTY
         )));
+        this.setStyle("-fx-border-width: 0 0 1 0; -fx-border-radius: 5; -fx-border-color: white;");
         taskInfoBox.getChildren().add(typeLabel);
 
         CheckBox checkBox = new CheckBox();
@@ -70,7 +71,7 @@ public class WidgetTaskLabel extends HBox {
         typeLabel.setPadding(new Insets(5, 10, 5, 10));
         typeLabel.setAlignment(Pos.CENTER);
         typeLabel.setTextAlignment(TextAlignment.CENTER);
-        typeLabel.setMinWidth(130);
+        typeLabel.setMinWidth(120);
         typeLabel.setBackground(new Background(new BackgroundFill(
                 color,
                 new CornerRadii(20),

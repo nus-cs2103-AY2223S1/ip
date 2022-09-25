@@ -40,10 +40,6 @@ public class AccessLoansCommand extends Command {
             new ListLoansCommand(duke).printToGui();
             break;
 
-        /*case "find":
-            new FindLoanCommand(duke).parse(elements);
-            break;*/
-
         case "add":
             new AddLoanCommand(duke).parse(elements);
             break;

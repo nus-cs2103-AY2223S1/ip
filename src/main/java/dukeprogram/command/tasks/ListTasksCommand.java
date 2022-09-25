@@ -36,8 +36,6 @@ public class ListTasksCommand extends Command {
     public void printToGui() {
         TaskList currentTaskList = duke.getTaskList();
 
-        System.out.println(currentTaskList.getSize());
-
         Stream<Region> tasksLabelStream = IntStream.range(0, currentTaskList.getSize())
                 .mapToObj(i -> currentTaskList.get(i).createLabelWidget());
 
