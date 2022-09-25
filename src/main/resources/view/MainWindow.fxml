@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="561.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="390.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clevernotbot.MainWindow">
+<AnchorPane maxHeight="600.0" maxWidth="561.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="390.0" xmlns="http://javafx.com/javafx  " xmlns:fx="http://javafx.com/fxml/1" fx:controller="clevernotbot.MainWindow">
   <children>
     <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Type your response here!" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="76.0">
          <font>
@@ -22,10 +23,13 @@
             <Font size="14.0" />
          </font>
       </Button>
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" layoutY="25.0" pannable="true" prefHeight="559.0" prefWidth="433.0" style="-fx-background-color: #1E90FF;" vvalue="1.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" layoutY="25.0" pannable="true" prefHeight="559.0" prefWidth="433.0" style="-fx-background-color: #1E90FF;" vvalue="1.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
       <content>
         <VBox fx:id="dialogContainer" />
       </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
     </ScrollPane>
       <MenuBar fx:id="menu" minWidth="-Infinity" prefHeight="26.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>

@@ -36,9 +36,10 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         int lines = text.split("\n").length;
-        if(lines > 7) {
-            int extraLines = lines - 7;
-            dialog.setMinHeight(138 + extraLines * 17);
+        int linesBeforeExceeding = 2;
+        if(lines > linesBeforeExceeding) {
+            int extraLines = lines - linesBeforeExceeding;
+            dialog.setMinHeight(84 + extraLines * 17);
         }
 
         dialog.setText(text);
