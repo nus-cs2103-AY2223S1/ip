@@ -67,61 +67,11 @@ public class Storage {
             if (keywords[0].contains("T")) {
                 // If user is trying to add a to-do, save the description
                 // Have a default value in case the user did not add any description
-                String description = "";
-                if (keywords.length > 1) {
-                    description = Parser.joinString(keywords, 1);
-                    description = description.substring(0, description.length() - 1);
-                }
-                Todo newTodo = new Todo(description);
-
-                if (keywords[0].indexOf("X") == 1) {
-                    newTodo.markAsDone();
-                }
-                taskArrayList.add(newTodo);
+                addTodo(keywords, taskArrayList);
             } else if (keywords[0].contains("D")) {
-                String remainingDescription = "";
-                String description = "";
-                String[] remainingWords = null;
-                String[] dateTimeArray = null;
-                String by = "";
-                if (keywords.length > 1) {
-                    // Remaining description are the words after the task description
-                    remainingDescription = Parser.joinString(keywords, 1);
-                    remainingWords = remainingDescription.split("by: ");
-                    description = remainingWords[0].replace("(", "");
-                    by = remainingWords[1];
-                    dateTimeArray = by.split(" ");
-                    // Cut down a white spacing at the end
-                    by = by.substring(0, by.length() - 1);
-                }
-                System.out.println(Arrays.toString(remainingWords));
-                assert dateTimeArray != null;
-                System.out.println(dateTimeArray[0].strip());
-                LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
-                Deadline newDeadline = new Deadline(description, byDate, by);
-                if (keywords[0].indexOf("X") == 1) {
-                    newDeadline.markAsDone();
-                }
-                taskArrayList.add(newDeadline);
+                addDeadline(keywords, taskArrayList);
             } else if (keywords[0].contains("E")) {
-                String description = "";
-                String[] remainingWords;
-                String at = "";
-                String remainingDescription = "";
-                if (keywords.length > 1) {
-                    // Remaining description are the words after the task description
-                    remainingDescription = Parser.joinString(keywords, 1);
-                    remainingWords = remainingDescription.split("at:");
-                    description = remainingWords[0].replace("(", "");
-                    at = remainingWords[1];
-                    // Cut down a white spacing at the end
-                    at = at.substring(0, at.length() - 1);
-                }
-                Event newEvent = new Event(description, at);
-                if (keywords[0].indexOf("X") == 1) {
-                    newEvent.markAsDone();
-                }
-                taskArrayList.add(newEvent);
+                addEvent(keywords, taskArrayList);
             } else {
                 throw new DukeException("I'm sorry, I don't know what that means!");
             }
@@ -131,4 +81,73 @@ public class Storage {
 
         bufferedReader.close();
     }
+
+    private void addTodo(String[] keywords, List<Task> taskArrayList) throws DukeException {
+        String description = "";
+        if (keywords.length > 1) {
+            description = Parser.joinString(keywords, 1);
+            description = description.substring(0, description.length() - 1);
+        }
+        Todo newTodo = new Todo(description);
+
+        // 4 is the position of the marking if it exists
+        if (keywords[0].indexOf("X") == 4) {
+            newTodo.markAsDone();
+        }
+        taskArrayList.add(newTodo);
+    }
+
+    private void addDeadline(String[] keywords, List<Task> taskArrayList) throws DukeException {
+        String remainingDescription = "";
+        String description = "";
+        String[] remainingWords = null;
+        String[] dateTimeArray = null;
+        String by = "";
+        if (keywords.length > 1) {
+            // Remaining description are the words after the task description
+            remainingDescription = Parser.joinString(keywords, 1);
+            remainingWords = remainingDescription.split("by: ");
+            description = remainingWords[0].replace("(", "");
+            description = description.substring(0, description.length() - 1);
+            by = remainingWords[1];
+            dateTimeArray = by.split(" ");
+            // Cut down a white spacing and bracket at the end
+            by = by.substring(0, by.length() - 2);
+        }
+        assert dateTimeArray != null;
+        System.out.println(dateTimeArray[0].strip());
+        LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
+        Deadline newDeadline = new Deadline(description, byDate, by);
+
+        // 4 is the position of the marking if it exists
+        if (keywords[0].indexOf("X") == 4) {
+            newDeadline.markAsDone();
+        }
+        taskArrayList.add(newDeadline);
+    }
+
+    private void addEvent(String[] keywords, List<Task> taskArrayList) throws DukeException {
+        String description = "";
+        String[] remainingWords;
+        String at = "";
+        String remainingDescription = "";
+        if (keywords.length > 1) {
+            // Remaining description are the words after the task description
+            remainingDescription = Parser.joinString(keywords, 1);
+            remainingWords = remainingDescription.split("at: ");
+            description = remainingWords[0].replace("(", "");
+            description = description.substring(0, description.length() - 1);
+            at = remainingWords[1];
+            // Cut down a white spacing and bracket at the end
+            at = at.substring(0, at.length() - 2);
+        }
+        Event newEvent = new Event(description, at);
+
+        // 4 is the position of the marking if it exists
+        if (keywords[0].indexOf("X") == 4) {
+            newEvent.markAsDone();
+        }
+        taskArrayList.add(newEvent);
+    }
+
 }

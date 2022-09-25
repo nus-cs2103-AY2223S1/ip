@@ -71,9 +71,7 @@ public class Duke {
                 return ui.greet();
             } else if (userCommand.equals("list")) {
                 return ui.showTaskList();
-            } else if (userCommand.equals("exit")) {
-            }
-            else {
+            } else {
                 // Get all the words the user has typed
                 String[] words = userCommand.split(" ");
                 // Check if user wants to mark task
@@ -84,7 +82,7 @@ public class Duke {
         } finally {
             storage.saveTasks();
         }
-        return "Invalid command";
+        return "Invalid command, enter 'help1' or 'help2' to see the list of commands again.";
     }
 
     /**
@@ -132,7 +130,8 @@ public class Duke {
             String[] allKeywords = keywords.split(" ");
             return findMatchingTasks(taskArrayList, allKeywords);
         } else {
-            return "I don't know what you mean, did you type an invalid command?\n";
+            return "I don't know what you mean, did you type an invalid command?\n" +
+                    "Enter 'help1' or 'help2' to see the list of commands again";
         }
 
     }
@@ -262,22 +261,26 @@ public class Duke {
         String[] dateTimeArray = null;
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         String by = "";
-        if (wordsArray.length > 1) {
-            // Remaining description are the words after the task description
-            remainingDescription = Parser.joinString(wordsArray, 1);
-            remainingWords = remainingDescription.split(" /by ");
-            description = remainingWords[0];
-            by = remainingWords[1];
-            dateTimeArray = by.split(" ");
-            // Cut down a white spacing at the end
-            by = by.substring(0, by.length() - 1);
+        try {
+            if (wordsArray.length > 1) {
+                // Remaining description are the words after the task description
+                remainingDescription = Parser.joinString(wordsArray, 1);
+                remainingWords = remainingDescription.split(" /by ");
+                description = remainingWords[0];
+                by = remainingWords[1];
+                dateTimeArray = by.split(" ");
+                // Cut down a white spacing at the end
+                by = by.substring(0, by.length() - 1);
+            }
+            // Assert dateTimeArray not null
+            assert dateTimeArray != null;
+            LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
+            Deadline newDeadline = new Deadline(description, byDate, by);
+            taskArrayList.add(newDeadline);
+            return ui.printAddedTask(newDeadline);
+        } catch (Exception e) {
+            return "Invalid format, type 'help2' to see the format again";
         }
-        // Assert dateTimeArray not null
-        assert dateTimeArray != null;
-        LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
-        Deadline newDeadline = new Deadline(description, byDate, by);
-        taskArrayList.add(newDeadline);
-        return ui.printAddedTask(newDeadline);
     }
 
     /**
@@ -293,18 +296,22 @@ public class Duke {
         String at = "";
         String remainingDescription = "";
         List<Task> taskArrayList = TaskList.getTaskArrayList();
-        if (wordsArray.length > 1) {
-            // Remaining description are the words after the task description
-            remainingDescription = Parser.joinString(wordsArray, 1);
-            remainingWords = remainingDescription.split(" /at ");
-            description = remainingWords[0];
-            at = remainingWords[1];
-            // Cut down a white spacing at the end
-            at = at.substring(0, at.length() - 1);
+        try {
+            if (wordsArray.length > 1) {
+                // Remaining description are the words after the task description
+                remainingDescription = Parser.joinString(wordsArray, 1);
+                remainingWords = remainingDescription.split(" /at ");
+                description = remainingWords[0];
+                at = remainingWords[1];
+                // Cut down a white spacing at the end
+                at = at.substring(0, at.length() - 1);
+            }
+            Event newEvent = new Event(description, at);
+            taskArrayList.add(newEvent);
+            return ui.printAddedTask(newEvent);
+        } catch (Exception e) {
+            return "Invalid format, type 'help2' to see the format again";
         }
-        Event newEvent = new Event(description, at);
-        taskArrayList.add(newEvent);
-        return ui.printAddedTask(newEvent);
     }
 
     /**
