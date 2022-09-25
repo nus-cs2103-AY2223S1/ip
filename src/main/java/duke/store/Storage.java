@@ -27,22 +27,9 @@ public class Storage {
     public Storage(String path) throws FileFailedToLoadException, IOException {
         filepath = path;
         File file = new File(filepath);
-        createFileIfFileDoesNotExist(file);
+        file.getParentFile().mkdir();
+        file.createNewFile();
         scanner = new Scanner(file);
-    }
-
-    /**
-     * Creates a file if it does not already exist.
-     */
-    private void createFileIfFileDoesNotExist(File file) throws IOException, FileFailedToLoadException {
-        if (file.exists()) {
-            return;
-        }
-        boolean isMakeDirectoryUnsuccessful = file.getParentFile().mkdirs();
-        boolean isFileCreatedUnsuccessful = file.createNewFile();
-        if (isFileCreatedUnsuccessful || isMakeDirectoryUnsuccessful) {
-            throw new FileFailedToLoadException();
-        }
     }
 
     /**

@@ -85,7 +85,7 @@ public class Parser {
         case CHECK:
         case UNCHECK:
         case DELETE:
-            handleDeleteCommand(result, input);
+            handleIndexCommand(result, input);
             break;
         case FIND:
             handleFindCommand(result, input);
@@ -119,12 +119,12 @@ public class Parser {
     }
 
     /**
-     * Handles the delete command with the input provided.
+     * Handles a command which requires only an index.
      *
      * @param result the result that information will be stored in.
      * @param input  a string containing the information associated with the command.
      */
-    private static void handleDeleteCommand(Parser result, String input) throws InvalidIndexException {
+    private static void handleIndexCommand(Parser result, String input) throws InvalidIndexException {
         boolean hasInsufficientInformation = input.isEmpty();
         if (hasInsufficientInformation) {
             throw new InvalidIndexException("Please enter an index");
