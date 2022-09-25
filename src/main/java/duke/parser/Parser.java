@@ -36,34 +36,14 @@ public class Parser {
         int taskNumber;
 
         switch (commandWord) {
-
         case AddCommand.ADD_TODO:
             return parseToDo(userInput);
-
         case AddCommand.ADD_DEADLINE:
-            arguments = userInput.trim().split(" ", 2)[1];
-            String deadline = arguments.split(" /by ")[0];
-            String by = arguments.split(" /by ")[1];
-            LocalDate date = LocalDate.parse(by);
-            task = new Deadline(deadline, date);
-            Set<String> deadlineCommand = new HashSet<>();
-            deadlineCommand.add(deadline);
-            return new AddCommand(task, deadlineCommand);
-
+            return parseDeadline(userInput);
         case AddCommand.ADD_EVENT:
-            arguments = userInput.trim().split(" ", 2)[1];
-            String event = arguments.split(" /at ")[0];
-            String at = arguments.split(" /at ")[1];
-            task = new Event(event, at);
-            Set<String> eventCommand = new HashSet<>();
-            eventCommand.add(event);
-            return new AddCommand(task, eventCommand);
-
+            return parseEvent(userInput);
         case DeleteCommand.DELETE_COMMAND:
-            arguments = userInput.trim().split(" ", 2)[1];
-            taskNumber = Integer.parseInt(arguments);
-            return new DeleteCommand(taskNumber - 1);
-
+            return parseDeleteTask(userInput);
         case MarkCommand.MARK_COMMAND:
             arguments = userInput.trim().split(" ", 2)[1];
             taskNumber = Integer.parseInt(arguments);
@@ -99,7 +79,47 @@ public class Parser {
             toDoCommand.add(arguments);
             return new AddCommand(task, toDoCommand);
         } catch (Exception e) {
-            throw new DukeException("Need more description! Do what??");
+            throw new DukeException("Need more description for your todo! Do what??");
+        }
+    }
+
+    private static Command parseDeadline(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            String deadline = arguments.split(" /by ")[0];
+            String by = arguments.split(" /by ")[1];
+            LocalDate date = LocalDate.parse(by);
+            Task task = new Deadline(deadline, date);
+            Set<String> deadlineCommand = new HashSet<>();
+            deadlineCommand.add(deadline);
+            return new AddCommand(task, deadlineCommand);
+        } catch (Exception e) {
+            throw new DukeException("Eh I don't understand :( "
+                    + "You sure you type the deadline format correctly?");
+        }
+    }
+
+    private static Command parseEvent(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            String event = arguments.split(" /at ")[0];
+            String at = arguments.split(" /at ")[1];
+            Task task = new Event(event, at);
+            Set<String> eventCommand = new HashSet<>();
+            eventCommand.add(event);
+            return new AddCommand(task, eventCommand);
+        } catch (Exception e) {
+            throw new DukeException("Hmm seems like your event format is wrong?");
+        }
+    }
+
+    private static Command parseDeleteTask(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            int taskNumber = Integer.parseInt(arguments);
+            return new DeleteCommand(taskNumber - 1);
+        } catch (Exception e) {
+            throw new DukeException("What is it you want to delete?");
         }
     }
 }
