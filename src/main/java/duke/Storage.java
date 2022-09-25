@@ -29,6 +29,7 @@ public class Storage {
         if (file.exists()) {
             return;
         }
+        // Create File if doesn't exist
         file.getParentFile().mkdirs();
         file.createNewFile();
     }
