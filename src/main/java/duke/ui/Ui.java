@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class Ui {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
-    private static final String MESSAGE_GREET = "OMG HII! I am Floren! What can I do for you?";
+    private static final String MESSAGE_GREET = "OMG HII! I am Floren the Best Assistant. What can I do for you?";
     private static final String MESSAGE_GOODBYE = "Hiks. I'm sad, but see you again!!";
     private static final String MESSAGE_INIT_FAILED = "Failed to initialise Duke application. Exiting...";
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
@@ -25,7 +25,7 @@ public class Ui {
     }
 
     /**
-     * Constructor for Ui with specified InputStream and PrintStream
+     * Constructs Ui with specified InputStream and PrintStream
      */
     public Ui(InputStream in) {
         this.in = new Scanner(in);
