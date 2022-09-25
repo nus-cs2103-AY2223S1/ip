@@ -1,10 +1,18 @@
+import duke.AllTasksList;
+import duke.Command;
+import duke.Storage;
+
+
+/**
+ * The main driver class for duke
+ *
+ * @author Cui Shen Yi
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Duke {
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    protected String getResponse(String input) {
+        AllTasksList allTasks = Storage.loadTasks();
+        String userOutput = Command.chat(input, allTasks);
+        return userOutput;
     }
 }
