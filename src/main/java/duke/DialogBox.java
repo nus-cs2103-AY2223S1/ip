@@ -9,7 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class DialogBox extends HBox {
-
+    //@@author ramanathan0908-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
+    // with minor modifications
     private Label text;
     private ImageView displayPicture;
 

@@ -21,6 +21,9 @@ import duke.dukeExceptions.DukeException;
  * @author Ramanathan Kumarappan
  */
 public class Duke extends Application {
+    //@@author ramanathan0908-reused
+    //Reused from https://se-education.org/guides/tutorials/javaFxPart2.html
+    // with minor modifications
     private TaskList taskList;
     private Storage storage;
     private Parser parser;
