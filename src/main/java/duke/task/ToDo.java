@@ -8,7 +8,7 @@ import duke.exception.DukeException;
 public class ToDo extends Task {
 
     /**
-     * Constructor for ToDo task.
+     * Constructs the ToDo task.
      */
     public ToDo(String description) throws DukeException {
         super(description);

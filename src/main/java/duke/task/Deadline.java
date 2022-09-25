@@ -13,7 +13,7 @@ public class Deadline extends Task {
     private final LocalDate date;
 
     /**
-     * Constructor for Deadline task.
+     * Constructs the Deadline task.
      */
     public Deadline(String description, LocalDate date) throws DukeException {
         super(description);

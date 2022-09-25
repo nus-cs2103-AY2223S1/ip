@@ -30,7 +30,8 @@ public class List {
     }
 
     /**
-     * delete the task in the list according to the number given.
+     * Deletes the task in the list according to the number given.
+     *
      * @param taskNumber task number to delete
      * @throws DukeException
      */

@@ -32,7 +32,7 @@ public class AddCommand extends Command {
     private final Set<String> commandDescription;
 
     /**
-     * Add a task to the list.
+     * Adds a task to the list.
      */
     public AddCommand(Task taskToAdd, Set<String> commandDescription) {
         this.taskToAdd = taskToAdd;

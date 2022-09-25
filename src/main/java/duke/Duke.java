@@ -8,7 +8,6 @@ import duke.task.List;
 import duke.ui.Ui;
 
 /**
- * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {

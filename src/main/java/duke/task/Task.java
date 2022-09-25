@@ -10,7 +10,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for Task.
+     * Constructs the Task deadline.
      */
     public Task(String description) throws DukeException {
         if (description.equals("blah")) {
