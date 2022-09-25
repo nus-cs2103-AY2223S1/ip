@@ -27,11 +27,14 @@ public class FindCommand extends Command {
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         List tasksFound = getTasksWithDescriptionContainingAnyKeyword(keywords, tasks);
+        if (tasksFound.getTaskList().isEmpty()) {
+            return ui.showErrorMessage("No task matching that keyword.");
+        }
         return ui.showToUserAsIndexedList(tasksFound.getTaskList());
     }
 
     /**
-     * Retrieves all tasks in the list which description contain some of the
+     * Retrieves all tasks in the list which description contain some of
      * specified keywords.
      *
      * @param keywords for searching
