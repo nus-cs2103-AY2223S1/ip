@@ -66,7 +66,6 @@ public class Duke {
      * Runs the main logic of the program.
      *
      * @return The response from executing the command.
-     * @throws DukeException If there are no commands.
      */
     public String getResponse(String input) {
         String output;

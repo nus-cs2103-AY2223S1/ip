@@ -71,12 +71,12 @@ public class Ui {
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
-    public String showWelcomeMessage() {
-        return showToUser(MESSAGE_GREET, DIVIDER);
+    public void showWelcomeMessage() {
+        showToUser(MESSAGE_GREET, DIVIDER);
     }
 
-    public String showLine() {
-        return showToUser(DIVIDER);
+    public void showLine() {
+        showToUser(DIVIDER);
     }
 
     /** Shows message(s) to the user */
@@ -105,8 +105,8 @@ public class Ui {
     /**
      * Generates and prints the error message if there is an error in initializing application.
      */
-    public String showLoadingError() {
-        return showToUser(MESSAGE_INIT_FAILED);
+    public void showLoadingError() {
+        showToUser(MESSAGE_INIT_FAILED);
     }
 
     /** Formats a list of strings as a viewable indexed list. */

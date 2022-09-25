@@ -33,7 +33,7 @@ public class List {
      * Deletes the task in the list according to the number given.
      *
      * @param taskNumber task number to delete
-     * @throws DukeException
+     * @throws DukeException error message to be displayed
      */
     public void deleteTask(int taskNumber) throws DukeException {
         if (taskNumber < 0 || taskNumber > this.taskList.size() - 1) {
