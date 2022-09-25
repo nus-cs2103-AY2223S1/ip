@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
+import javafx.util.Duration;
 
 
 /**
@@ -61,6 +63,9 @@ public class Duke {
                 return ui.help2();
             } else if (userCommand.equals("bye")) {
                 storage.saveTasks();
+                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                delay.setOnFinished(event -> Platform.exit());
+                delay.play();
                 return ui.bye();
             } else if (userCommand.equals("hello")) {
                 return ui.greet();
