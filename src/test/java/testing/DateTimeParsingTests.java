@@ -77,7 +77,7 @@ public class DateTimeParsingTests {
      * Tests if parsing D MMM YYYY HH:MM is correct
      */
     @Test
-    public void dateTimeParser_spaceDelimiter_dateWordMonthFullYear_withTime() {
+    public void dateTimeParser_spaceDelimiter_dateWordMonthFullYearWithTime() {
         LocalDateTime localDateTime = DateTimeParser.parse("8 Dec 2002 12:08");
         assertEquals(LocalDateTime.of(2002, 12, 8, 12, 8),
                 localDateTime);
@@ -110,7 +110,7 @@ public class DateTimeParsingTests {
      * Tests if parsing D MM HH:MM is correct
      */
     @Test
-    public void dateTimeParser_spaceDelimiter_dateWordMonthNoYear_WithTime() {
+    public void dateTimeParser_spaceDelimiter_dateWordMonthNoYearWithTime() {
         LocalDateTime localDateTime = DateTimeParser.parse("8 Nov 15:40");
         int currentYear = LocalDateTime.now().getYear();
         assertEquals(LocalDateTime.of(currentYear, 11, 8, 15, 40),
