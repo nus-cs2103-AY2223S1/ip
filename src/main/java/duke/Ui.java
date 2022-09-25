@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Ui {
 
     // Use final variables to denote standard greetings we will say to the user
-    static final String GREETING = "Hello! I'm Duke! What can I do for you?";
+    static final String GREETING = "Hello! I'm Dukity Duke! What can I do for you?";
     static final String BYE = "Bye. Hope to see you again soon ^^!";
     static final String LINEBREAK = "-------------------------";
 
@@ -115,5 +115,24 @@ public class Ui {
         currentTask.markNotDone();
         outputString += currentTask.toString();
         return outputString;
+    }
+
+    public String help1() {
+        String outputString = "";
+        outputString += "list: list down all your available tasks\n";
+        outputString += "mark: marks a task a done E.g mark 2 (marks 2nd task as done)\n";
+        outputString += "unmark: marks a task as not done E.g unmark 2 (marks 2nd task as not done)\n";
+        outputString += "delete: deletes a task E.g delete 1 (deletes the first task)\n";
+
+        return  outputString;
+    }
+
+    public String help2() {
+        String outputString = "";
+        outputString += "todo: adds a todo task to the list E.g todo return book\n";
+        outputString += "event: adds an event task to the list E.g event project meeting /at Mon 2-4pm\n";
+        outputString += "deadline: adds a deadline task to the list E.g deadline return book /by 2/12/2019 1800\n";
+
+        return  outputString;
     }
 }

@@ -15,7 +15,7 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
-    public Main() throws IOException {
+    public Main() throws IOException, DukeException {
     }
 
     @Override

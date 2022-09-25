@@ -2,6 +2,7 @@ package duke;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -31,8 +32,11 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/user2.png"));
+    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
+    private Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user2.png")));
+
+    private final String STARTING_TEXT = "Hello! I'm Dukity Duke! Type 'help1' to see " +
+            "a list of useful commands, and 'help2' to see a list of commands to create tasks! Type 'bye' to quit!";
 
     /**
      * Initialise the window
@@ -40,6 +44,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        scrollPane.isResizable();
 
         // Generate the background colour for the Dialog
         java.awt.Color awtColor = Color.cyan;
@@ -55,7 +60,7 @@ public class MainWindow extends AnchorPane {
 
         String userText = userInput.getText();
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("Hello! I'm Dukity Duke! How can I help you?", dukeImage)
+                DialogBox.getDukeDialog(STARTING_TEXT, dukeImage)
         );
         userInput.clear();
     }

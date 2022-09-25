@@ -2,6 +2,7 @@ package duke;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javafx.scene.Scene;
@@ -33,16 +34,17 @@ public class Duke {
     private Scene scene;
 
     // The images used for Duke
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/user2.png"));
+    private Image user = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
+    private Image duke = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user2.png")));
 
     /**
      * The constructor for the Duke class
      */
-    public Duke() throws IOException {
+    public Duke() throws IOException, DukeException {
         ui = new Ui();
         storage = new Storage(FILEDESTINATION);
         taskList = new TaskList();
+        storage.loadTasks();
     }
 
     /**
@@ -53,44 +55,24 @@ public class Duke {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         try {
             String userCommand = input;
-            if (userCommand.equals("bye")) {
+            if (userCommand.equals("help1")) {
+                return ui.help1();
+            } else if (userCommand.equals("help2")) {
+                return ui.help2();
+            } else if (userCommand.equals("bye")) {
+                storage.saveTasks();
                 return ui.bye();
             } else if (userCommand.equals("hello")) {
                 return ui.greet();
             } else if (userCommand.equals("list")) {
                 return ui.showTaskList();
-            } else {
+            } else if (userCommand.equals("exit")) {
+            }
+            else {
                 // Get all the words the user has typed
                 String[] words = userCommand.split(" ");
                 // Check if user wants to mark task
-                if (Parser.isMarkTask(words)) {
-                    int taskNumber = Integer.parseInt(words[1]);
-                    return markTask(taskNumber, taskArrayList);
-                    // Checks if user wants to unmark task
-                } else if (Parser.isUnmarkTask(words)) {
-                    int taskNumber = Integer.parseInt(words[1]);
-                    return unmarkTask(taskNumber, taskArrayList);
-                    // Check if user wants to delete a task
-                } else if (Parser.isDeleteTask(words)) {
-                    int taskNumber = Integer.parseInt(words[1]);
-                    return deleteTask(taskNumber, taskArrayList);
-                } else {
-                    // User is trying to add a new to-do / deadline / event
-                    if (Parser.isAddTodoTask(words)) {
-                        return createAndAddTodo(words);
-                    } else if (Parser.isAddDeadlineTask(words)) {
-                        return createAndAddDeadline(words);
-                    } else if (Parser.isAddEventTask(words)) {
-                        return createAndAddEvent(words);
-                    } else if (Parser.isFindTask(words)) {
-                        String keywords = Parser.joinString(words, 1);
-                        keywords = keywords.substring(0, keywords.length() - 1);
-                        String[] allKeywords = keywords.split(" ");
-                        return findMatchingTasks(taskArrayList, allKeywords);
-                    } else {
-                        return "I don't know what you mean, did you type an invalid command?\n";
-                    }
-                }
+                return checkTaskCommands(words, taskArrayList);
             }
         } catch (DukeException dukeException) {
             System.out.println(dukeException.getMessage());
@@ -98,6 +80,56 @@ public class Duke {
             storage.saveTasks();
         }
         return "Invalid command";
+    }
+
+    /**
+     * Commands involved when user wants to mark, unmark or delete a task
+     * @param words the array of words the user has entered
+     * @param taskArrayList the current task array list
+     * @return a String representing the task
+     * @throws DukeException the exception to be thrown
+     */
+    public String checkTaskCommands(String[] words, List<Task> taskArrayList) throws DukeException {
+        if (Parser.isMarkTask(words)) {
+            int taskNumber = Integer.parseInt(words[1]);
+            return markTask(taskNumber, taskArrayList);
+            // Checks if user wants to unmark task
+        } else if (Parser.isUnmarkTask(words)) {
+            int taskNumber = Integer.parseInt(words[1]);
+            return unmarkTask(taskNumber, taskArrayList);
+            // Check if user wants to delete a task
+        } else if (Parser.isDeleteTask(words)) {
+            int taskNumber = Integer.parseInt(words[1]);
+            return deleteTask(taskNumber, taskArrayList);
+        } else {
+            // User is trying to add a new to-do / deadline / event
+            return  taskAddingFinding(words, taskArrayList);
+        }
+    }
+
+    /**
+     * Commands involved when user wants to create a task or find a task
+     * @param words the array of words the user has entered
+     * @param taskArrayList the current task array list
+     * @return a String representing the task
+     * @throws DukeException the exception to be thrown
+     */
+    public String taskAddingFinding (String[] words, List<Task> taskArrayList) throws DukeException {
+        if (Parser.isAddTodoTask(words)) {
+            return createAndAddTodo(words);
+        } else if (Parser.isAddDeadlineTask(words)) {
+            return createAndAddDeadline(words);
+        } else if (Parser.isAddEventTask(words)) {
+            return createAndAddEvent(words);
+        } else if (Parser.isFindTask(words)) {
+            String keywords = Parser.joinString(words, 1);
+            keywords = keywords.substring(0, keywords.length() - 1);
+            String[] allKeywords = keywords.split(" ");
+            return findMatchingTasks(taskArrayList, allKeywords);
+        } else {
+            return "I don't know what you mean, did you type an invalid command?\n";
+        }
+
     }
 
     /**
