@@ -1,14 +1,17 @@
-package Testing;
+package testing;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
 import dukeprogram.parser.DateTimeParser;
 
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Tests involving the DateTimeParser class
+ */
 public class DateTimeParsingTests {
 
     /**

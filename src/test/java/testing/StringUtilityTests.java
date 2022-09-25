@@ -1,8 +1,8 @@
-package Testing;
-
-import org.junit.jupiter.api.Test;
+package testing;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import org.junit.jupiter.api.Test;
 
 import utilities.StringUtilities;
 
