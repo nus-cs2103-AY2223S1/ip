@@ -31,10 +31,6 @@ public class Parser {
      */
     public static Command parse(String userInput) throws DukeException {
         String commandWord = userInput.trim().split(" ", 2)[0];
-        String arguments;
-        Task task;
-        int taskNumber;
-
         switch (commandWord) {
         case AddCommand.ADD_TODO:
             return parseToDo(userInput);
@@ -45,27 +41,15 @@ public class Parser {
         case DeleteCommand.DELETE_COMMAND:
             return parseDeleteTask(userInput);
         case MarkCommand.MARK_COMMAND:
-            arguments = userInput.trim().split(" ", 2)[1];
-            taskNumber = Integer.parseInt(arguments);
-            return new MarkCommand(taskNumber - 1);
-
+            return parseMarkTask(userInput);
         case UnmarkCommand.UNMARK_COMMAND:
-            arguments = userInput.trim().split(" ", 2)[1];
-            taskNumber = Integer.parseInt(arguments);
-            return new UnmarkCommand(taskNumber - 1);
-
+            return parseUnmarkTask(userInput);
         case FindCommand.FIND_COMMAND:
-            arguments = userInput.trim().split(" ", 2)[1];
-            Set<String> keywords = new HashSet<>();
-            keywords.add(arguments);
-            return new FindCommand(keywords);
-
+            return parseFindTask(userInput);
         case ExitCommand.EXIT_COMMAND:
             return new ExitCommand();
-
         case ListCommand.LIST_COMMAND:
             return new ListCommand();
-
         default:
             throw new DukeException("Hey! Take me seriously!! What are you trying to say?");
         }
@@ -120,6 +104,37 @@ public class Parser {
             return new DeleteCommand(taskNumber - 1);
         } catch (Exception e) {
             throw new DukeException("What is it you want to delete?");
+        }
+    }
+
+    private static Command parseMarkTask(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            int taskNumber = Integer.parseInt(arguments);
+            return new MarkCommand(taskNumber - 1);
+        } catch (Exception e) {
+            throw new DukeException("Mark what? Definitely not Mark NCT right? HAHA!");
+        }
+    }
+
+    private static Command parseUnmarkTask(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            int taskNumber = Integer.parseInt(arguments);
+            return new UnmarkCommand(taskNumber - 1);
+        } catch (Exception e) {
+            throw new DukeException("Unmark what? Still not sure no need to unmark ;)");
+        }
+    }
+
+    private static Command parseFindTask(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            Set<String> keywords = new HashSet<>();
+            keywords.add(arguments);
+            return new FindCommand(keywords);
+        } catch (Exception e) {
+            throw new DukeException("Cannot find if you don't tell me what to find :'(");
         }
     }
 }
