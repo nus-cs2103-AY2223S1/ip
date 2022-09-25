@@ -1,11 +1,14 @@
 package Testing;
 
+import org.junit.jupiter.api.Test;
+
 import dukeprogram.facilities.Loan;
 import dukeprogram.facilities.LoanCollection;
 import exceptions.KeyNotFoundException;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoansTests {
 

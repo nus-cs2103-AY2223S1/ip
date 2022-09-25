@@ -1,13 +1,19 @@
 package Testing;
 
+import org.junit.jupiter.api.Test;
+
 import dukeprogram.facilities.TaskList;
 import dukeprogram.tasks.Deadline;
 import dukeprogram.tasks.Event;
 import dukeprogram.tasks.Task;
 import dukeprogram.tasks.ToDo;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 
 /**
  * Testcases that involve task list manipulation
