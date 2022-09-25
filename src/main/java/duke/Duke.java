@@ -270,7 +270,6 @@ public class Duke {
                 dateTimeArray = by.split(" ");
                 // Cut down a white spacing at the end
                 by = dateTimeArray[1];
-                System.out.println(by);
             }
             // Assert dateTimeArray not null
             assert dateTimeArray != null;

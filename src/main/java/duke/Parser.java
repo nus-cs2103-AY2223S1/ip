@@ -60,8 +60,7 @@ public class Parser {
             month = currDateWords[1].length() < 2 ? "0" + currDateWords[1] : currDateWords[1];
             day = currDateWords[2].length() < 2 ? "0" + currDateWords[2] : currDateWords[2];
             currDateString = year + '-' + month + '-' + day;
-        }
-        else {
+        } else {
             currDateWords = stringDate.split("/");
             year = currDateWords[2];
             month = currDateWords[1].length() < 2 ? "0" + currDateWords[1] : currDateWords[1];

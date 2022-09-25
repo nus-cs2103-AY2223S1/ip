@@ -2,6 +2,7 @@ package duke;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -38,14 +39,14 @@ public class Storage {
      */
     public void saveTasks() throws IOException {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
-        FileWriter fileWriter = new FileWriter(fileDestination);
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileDestination));
         String tasksString = "";
         for (Task task: taskArrayList) {
             tasksString += task.saveToDisk() + "\n";
         }
 
-        fileWriter.write(tasksString);
-        fileWriter.close();
+        bufferedWriter.write(tasksString);
+        bufferedWriter.close();
     }
 
     /**
@@ -106,7 +107,6 @@ public class Storage {
             // Remaining description are the words after the task description
             remainingDescription = Parser.joinString(keywords, 1);
             remainingWords = remainingDescription.split("by: ");
-            System.out.println(remainingWords);
             description = remainingWords[0].replace("(", "");
             description = description.substring(0, description.length() - 1);
             by = remainingWords[1];
@@ -116,7 +116,6 @@ public class Storage {
             by = by.substring(0, by.length() - 1);
         }
         assert dateTimeArray != null;
-        System.out.println(dateTimeArray[0].strip());
         LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
         Deadline newDeadline = new Deadline(description, byDate, by);
 
