@@ -29,7 +29,7 @@ Tasks are saved to a log file when the user enters the bye command, these tasks 
 
 ### Feature-6: Archiving tasks
 
-Tasks can be archived by the user to different archives, allowing users to save task configurations and load them at will. These archives are named by the user so that they may track them easier. Users may also list out all archive names so they don't lose track.
+Tasks can be archived by the user to different archives, allowing users to save task configurations and load them at will. These archives are named by the user so that they may track them easier. Users may also list out all archive names so they don't lose track. Users may also clear all archives once they are done.
 
 ## Usage
 
@@ -276,4 +276,21 @@ lists all the archives the program is tracking, that being the "MyArchive" archi
 ```
 Archive list:
 1. MyArchive
+```
+### 'clear'
+
+Clears all the archives in the archive list, deleting the files as well
+
+Example of usage: 
+
+```
+archive MyArchive
+clear
+```
+
+Expected outcome:
+clears the archive list and deletes the "MyArchive" file.
+
+```
+Cleared 1 archives
 ```
