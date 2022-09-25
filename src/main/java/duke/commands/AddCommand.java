@@ -66,7 +66,7 @@ public class AddCommand extends Command {
      */
     private boolean hasDuplicateTask(Set<String> commandDescription, List tasks) {
         for (Task task : tasks.getTaskList()) {
-            java.util.List<String> descriptionWords = Arrays.asList(task.getDescription().split("\\s+"));
+            java.util.List<String> descriptionWords = java.util.List.of(task.getDescription().toUpperCase());
             final Set<String> wordsInDescription = new HashSet<>(descriptionWords);
             if (wordsInDescription.containsAll(commandDescription)) {
                 duplicatedTask = task;

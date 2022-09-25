@@ -3,6 +3,7 @@ package duke.parser;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import duke.commands.AddCommand;
@@ -61,7 +62,7 @@ public class Parser {
             String arguments = userInput.trim().split(" ", 2)[1];
             Task task = new ToDo(arguments);
             Set<String> toDoCommand = new HashSet<>();
-            toDoCommand.add(arguments);
+            toDoCommand.add(arguments.toUpperCase());
             return new AddCommand(task, toDoCommand);
         } catch (Exception e) {
             throw new DukeException("Need more description for your todo! Do what??");
@@ -76,7 +77,7 @@ public class Parser {
             LocalDate date = LocalDate.parse(by);
             Task task = new Deadline(deadline, date);
             Set<String> deadlineCommand = new HashSet<>();
-            deadlineCommand.add(deadline);
+            deadlineCommand.add(deadline.toUpperCase());
             return new AddCommand(task, deadlineCommand);
         } catch (Exception e) {
             throw new DukeException("Eh I don't understand :( "
@@ -91,7 +92,7 @@ public class Parser {
             String at = arguments.split(" /at ")[1];
             Task task = new Event(event, at);
             Set<String> eventCommand = new HashSet<>();
-            eventCommand.add(event);
+            eventCommand.add(event.toUpperCase());
             return new AddCommand(task, eventCommand);
         } catch (Exception e) {
             throw new DukeException("Hmm seems like your event format is wrong?");
@@ -131,7 +132,7 @@ public class Parser {
     private static Command parseFindTask(String userInput) throws DukeException {
         try {
             String arguments = userInput.trim().split(" ", 2)[1];
-            java.util.List<String> descriptionWords = Arrays.asList(arguments.split("\\s+"));
+            List<String> descriptionWords = Arrays.asList(arguments.split("\\s+"));
             Set<String> keywords = new HashSet<>(descriptionWords);
             return new FindCommand(keywords);
         } catch (Exception e) {
