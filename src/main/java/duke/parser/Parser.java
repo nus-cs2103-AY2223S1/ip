@@ -38,11 +38,7 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.ADD_TODO:
-            arguments = userInput.trim().split(" ", 2)[1];
-            task = new ToDo(arguments);
-            Set<String> toDoCommand = new HashSet<>();
-            toDoCommand.add(arguments);
-            return new AddCommand(task, toDoCommand);
+            return parseToDo(userInput);
 
         case AddCommand.ADD_DEADLINE:
             arguments = userInput.trim().split(" ", 2)[1];
@@ -92,6 +88,18 @@ public class Parser {
 
         default:
             throw new DukeException("Hey! Take me seriously!! What are you trying to say?");
+        }
+    }
+
+    private static Command parseToDo(String userInput) throws DukeException {
+        try {
+            String arguments = userInput.trim().split(" ", 2)[1];
+            Task task = new ToDo(arguments);
+            Set<String> toDoCommand = new HashSet<>();
+            toDoCommand.add(arguments);
+            return new AddCommand(task, toDoCommand);
+        } catch (Exception e) {
+            throw new DukeException("Need more description! Do what??");
         }
     }
 }
