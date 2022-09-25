@@ -30,13 +30,10 @@ public class Storage {
     public Storage() throws DukeException {
         try {
             File parentDirectory = new File(DIRECTORY);
-
             if (!parentDirectory.exists()) {
                 parentDirectory.mkdir();
             }
-
             dukeFile = new File(FILE_PATH);
-
             if (!dukeFile.exists()) {
                 dukeFile.createNewFile();
             }
@@ -64,37 +61,13 @@ public class Storage {
 
                 switch (taskType) {
                 case "D":
-                    String[] deadlineDescription = taskDescription.split("by:");
-                    String deadlineName = deadlineDescription[0]
-                            .substring(0, deadlineDescription[0].length() - 1)
-                            .trim();
-                    String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    LocalDate date = LocalDate.parse(by, formatter);
-                    Task deadline = new Deadline(deadlineName, date);
-                    if (taskStatus.equals("X")) {
-                        deadline.markTaskAsDone();
-                    }
-                    tasks.addTask(deadline);
+                    loadDeadline(taskDescription, taskStatus);
                     break;
                 case "E":
-                    String[] eventDescription = taskDescription.split("at:");
-                    String eventName = eventDescription[0]
-                            .substring(0, eventDescription[0].length() - 1)
-                            .trim();
-                    String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
-                    Task event = new Event(eventName, at);
-                    if (taskStatus.equals("X")) {
-                        event.markTaskAsDone();
-                    }
-                    tasks.addTask(event);
+                    loadEvent(taskDescription, taskStatus);
                     break;
                 default:
-                    Task toDo = new ToDo(taskDescription);
-                    if (taskStatus.equals("X")) {
-                        toDo.markTaskAsDone();
-                    }
-                    tasks.addTask(toDo);
+                    loadToDo(taskDescription, taskStatus);
                     break;
                 }
             }
@@ -120,6 +93,42 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Sorry! I think I cannot write your file.");
         }
+    }
+
+    private void loadDeadline(String taskDescription, String taskStatus) throws DukeException {
+        String[] deadlineDescription = taskDescription.split("by:");
+        String deadlineName = deadlineDescription[0]
+                .substring(0, deadlineDescription[0].length() - 1)
+                .trim();
+        String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        LocalDate date = LocalDate.parse(by, formatter);
+        Task deadline = new Deadline(deadlineName, date);
+        if (taskStatus.equals("X")) {
+            deadline.markTaskAsDone();
+        }
+        tasks.addTask(deadline);
+    }
+
+    private void loadEvent(String taskDescription, String taskStatus) throws DukeException {
+        String[] eventDescription = taskDescription.split("at:");
+        String eventName = eventDescription[0]
+                .substring(0, eventDescription[0].length() - 1)
+                .trim();
+        String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
+        Task event = new Event(eventName, at);
+        if (taskStatus.equals("X")) {
+            event.markTaskAsDone();
+        }
+        tasks.addTask(event);
+    }
+
+    private void loadToDo(String taskDescription, String taskStatus) throws DukeException {
+        Task toDo = new ToDo(taskDescription);
+        if (taskStatus.equals("X")) {
+            toDo.markTaskAsDone();
+        }
+        tasks.addTask(toDo);
     }
 
 }

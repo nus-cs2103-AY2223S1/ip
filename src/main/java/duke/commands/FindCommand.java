@@ -13,7 +13,7 @@ import duke.ui.Ui;
 /**
  * Finds and lists all tasks in the list whose description contains any of the
  * argument keywords.
- * Keyword matching is case sensitive.
+ * Keyword matching is case-sensitive.
  */
 public class FindCommand extends Command {
     public static final String FIND_COMMAND = "find";
