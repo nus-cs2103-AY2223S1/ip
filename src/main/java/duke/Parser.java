@@ -77,7 +77,7 @@ public class Parser {
             taskList.addTask(taskEvent);
             return (ui.printAddedTask(taskEvent.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a Deadline " +
+            throw new DukeException(("OOPS!!! The description of an Event " +
                     "cannot be empty/incomplete.\n" +
                     "The format is event <event_name> /at yyyy-mm-dd"));
         }

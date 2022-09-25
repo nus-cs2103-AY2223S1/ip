@@ -25,7 +25,7 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  /\n"
                 + "|____/ \\,_|_|\\_\\___|\n";
-        return "Hello I'm\n" + logo + "What can I do for you?\n";
+        return "Hello I'm Duke\n" + "What can I do for you?\n";
     }
 
     /**

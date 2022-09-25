@@ -14,6 +14,4 @@ public class DeadlineTest {
 
         assertEquals(expectedString, actualString);
     }
-
-
 }

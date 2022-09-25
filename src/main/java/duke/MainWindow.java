@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  /\n"
                 + "|____/ \\,_|_|\\_\\___|\n";
-        String intro = "Hello I'm\n" + logo + "What can I do for you?\n";
+        String intro = "Hello I'm Duke.\n"  + "What can I do for you?\n";
 
         assert userImage != null : "userImage cannot be null!";
         assert dukeImage != null : "dukeImage cannot be null!";
