@@ -61,4 +61,10 @@ public abstract class Task {
         }
         return "[] " + this.description;
     }
+
+    /**
+     * Saves the task to the storage
+     * @return a string representation of the task to be saved
+     */
+    public abstract String saveToDisk();
 }

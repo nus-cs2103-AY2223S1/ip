@@ -36,9 +36,9 @@ public class Event extends Task {
      * A string representation to write to the file
      * @return a string that represents what to write to the file
      */
+    @Override
     public String saveToDisk() {
-        String alreadyDone = super.getStatusIcon();
-        return "E | " + alreadyDone + " | " + super.getDescription() + "\n";
+        return "[E]" + super.toString() + " (at: " + at + ")";
     }
 
 }

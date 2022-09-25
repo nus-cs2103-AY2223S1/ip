@@ -9,7 +9,6 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -106,7 +105,7 @@ public class Duke {
             return deleteTask(taskNumber, taskArrayList);
         } else {
             // User is trying to add a new to-do / deadline / event
-            return  taskAddingFinding(words, taskArrayList);
+            return taskAddingFinding(words, taskArrayList);
         }
     }
 
@@ -117,7 +116,7 @@ public class Duke {
      * @return a String representing the task
      * @throws DukeException the exception to be thrown
      */
-    public String taskAddingFinding (String[] words, List<Task> taskArrayList) throws DukeException {
+    public String taskAddingFinding(String[] words, List<Task> taskArrayList) throws DukeException {
         if (Parser.isAddTodoTask(words)) {
             return createAndAddTodo(words);
         } else if (Parser.isAddDeadlineTask(words)) {
@@ -130,8 +129,8 @@ public class Duke {
             String[] allKeywords = keywords.split(" ");
             return findMatchingTasks(taskArrayList, allKeywords);
         } else {
-            return "I don't know what you mean, did you type an invalid command?\n" +
-                    "Enter 'help1' or 'help2' to see the list of commands again";
+            return "I don't know what you mean, did you type an invalid command?\n"
+                    + "Enter 'help1' or 'help2' to see the list of commands again";
         }
 
     }
@@ -143,7 +142,7 @@ public class Duke {
      * @return a string representing the task that has been marked
      * @throws DukeException the exception to be thrown
      */
-    public String markTask(int taskNumber, List<Task> taskArrayList ) throws DukeException {
+    public String markTask(int taskNumber, List<Task> taskArrayList) throws DukeException {
         // Check if user enters a number out of range
         if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
             throw new DukeException("Number out of range!");
@@ -270,7 +269,8 @@ public class Duke {
                 by = remainingWords[1];
                 dateTimeArray = by.split(" ");
                 // Cut down a white spacing at the end
-                by = by.substring(0, by.length() - 1);
+                by = dateTimeArray[1];
+                System.out.println(by);
             }
             // Assert dateTimeArray not null
             assert dateTimeArray != null;

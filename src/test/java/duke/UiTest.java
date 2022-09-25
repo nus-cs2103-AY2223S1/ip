@@ -7,7 +7,7 @@ public class UiTest {
 
     @Test
     public void helloTest() throws DukeException {
-        String expectedString = "Hello! I'm Duke! What can I do for you?";
+        String expectedString = "Hello! I'm Dukity Duke! What can I do for you?";
 
         assertEquals(new Ui().greet(), expectedString);
     }

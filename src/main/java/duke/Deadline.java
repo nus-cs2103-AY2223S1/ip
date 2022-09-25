@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class is responsible for creating and manipulating Deadlines
@@ -36,15 +37,19 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + byTime.toString() + ")";
+        System.out.println(byDate);
+        String dueDate = this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+        return "[D]" + super.toString() + " (by: " + dueDate + " " + byTime.toString() + ")";
     }
 
     /**
      * A string representation of the deadline task to be saved
      * @return a string representing the description and the due date of the deadline task to be saved
      */
+    @Override
     public String saveToDisk() {
         String alreadyDone = super.getStatusIcon();
-        return "D | " + alreadyDone + " | " + super.getDescription() + "\n";
+        return "[D]" + super.toString() + " (by: " + this.byDate + " " + this.byTime.toString() + ")";
     }
 }

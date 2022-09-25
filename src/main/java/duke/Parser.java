@@ -49,11 +49,25 @@ public class Parser {
      * @return a local date object representing the date
      */
     public static LocalDate createLocalDate(String stringDate) {
-        String[] currDateWords = stringDate.split("/");
-        String year = currDateWords[2];
-        String month = currDateWords[1].length() < 2 ? "0" + currDateWords[1] : currDateWords[1];
-        String day = currDateWords[0].length() < 2 ? "0" + currDateWords[0] : currDateWords[0];
-        String currDateString = year + '-' + month + '-' + day;
+        String[] currDateWords;
+        String year;
+        String month;
+        String day;
+        String currDateString;
+        if (stringDate.contains("-")) {
+            currDateWords = stringDate.split("-");
+            year = currDateWords[0];
+            month = currDateWords[1].length() < 2 ? "0" + currDateWords[1] : currDateWords[1];
+            day = currDateWords[2].length() < 2 ? "0" + currDateWords[2] : currDateWords[2];
+            currDateString = year + '-' + month + '-' + day;
+        }
+        else {
+            currDateWords = stringDate.split("/");
+            year = currDateWords[2];
+            month = currDateWords[1].length() < 2 ? "0" + currDateWords[1] : currDateWords[1];
+            day = currDateWords[0].length() < 2 ? "0" + currDateWords[0] : currDateWords[0];
+            currDateString = year + '-' + month + '-' + day;
+        }
         return LocalDate.parse(currDateString);
     }
 

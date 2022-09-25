@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class Storage {
         FileWriter fileWriter = new FileWriter(fileDestination);
         String tasksString = "";
         for (Task task: taskArrayList) {
-            tasksString += task.toString() + "\n";
+            tasksString += task.saveToDisk() + "\n";
         }
 
         fileWriter.write(tasksString);
@@ -107,12 +106,14 @@ public class Storage {
             // Remaining description are the words after the task description
             remainingDescription = Parser.joinString(keywords, 1);
             remainingWords = remainingDescription.split("by: ");
+            System.out.println(remainingWords);
             description = remainingWords[0].replace("(", "");
             description = description.substring(0, description.length() - 1);
             by = remainingWords[1];
             dateTimeArray = by.split(" ");
-            // Cut down a white spacing and bracket at the end
-            by = by.substring(0, by.length() - 2);
+            // Cut down a white spacing at the end
+            by = dateTimeArray[1];
+            by = by.substring(0, by.length() - 1);
         }
         assert dateTimeArray != null;
         System.out.println(dateTimeArray[0].strip());

@@ -32,11 +32,10 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
-    private Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user2.png")));
-
-    private final String STARTING_TEXT = "Hello! I'm Dukity Duke! Type 'help1' to see " +
-            "a list of useful commands, and 'help2' to see a list of commands to create tasks! Type 'bye' to quit!";
+    private Image userImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/user.png")));
+    private Image dukeImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/user2.png")));
 
     /**
      * Initialise the window
@@ -58,9 +57,11 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getStyleClass().add("color-palette");
         dialogContainer.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        String userText = userInput.getText();
+        String startingText = "Hello! I'm Dukity Duke! Type 'help1' to see "
+                + "a list of useful commands, and "
+                + "'help2' to see a list of commands to create tasks! Type 'bye' to quit!";
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(STARTING_TEXT, dukeImage)
+                DialogBox.getDukeDialog(startingText, dukeImage)
         );
         userInput.clear();
     }
