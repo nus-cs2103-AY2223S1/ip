@@ -87,8 +87,11 @@ public class Parser {
         case ExitCommand.EXIT_COMMAND:
             return new ExitCommand();
 
-        default:
+        case ListCommand.LIST_COMMAND:
             return new ListCommand();
+
+        default:
+            throw new DukeException("Hey! Take me seriously!! What are you trying to say?");
         }
     }
 }
