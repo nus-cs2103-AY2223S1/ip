@@ -24,7 +24,7 @@ import javafx.util.Duration;
 public class Duke {
 
     // Attributes of a Duke object
-    private static final String FILEDESTINATION = "./duke.txt";
+    private static final String FILEDESTINATION = "storage/duke.txt";
     private Ui ui;
     private Storage storage;
     private TaskList taskList;

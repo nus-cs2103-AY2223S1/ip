@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,14 +27,14 @@ public class Storage {
      * @param fileDestination the destination filepath of the file
      */
     public Storage(String fileDestination) throws IOException {
+        Path filePath = Paths.get(fileDestination);
         this.fileDestination = fileDestination;
-        File file = new File(fileDestination);
-        if (file.exists()) {
+        if (Files.exists(filePath)) {
             return;
         }
-        // Create File if doesn't exist
-        file.getParentFile().mkdirs();
-        file.createNewFile();
+        File newFile = new File(fileDestination);
+        newFile.getParentFile().mkdir();
+        newFile.createNewFile();
     }
 
     /**
