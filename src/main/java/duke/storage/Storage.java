@@ -61,13 +61,13 @@ public class Storage {
 
                 switch (taskType) {
                 case "D":
-                    loadDeadline(taskDescription, taskStatus);
+                    loadDeadline(taskDescription, taskStatus, tasks);
                     break;
                 case "E":
-                    loadEvent(taskDescription, taskStatus);
+                    loadEvent(taskDescription, taskStatus, tasks);
                     break;
                 default:
-                    loadToDo(taskDescription, taskStatus);
+                    loadToDo(taskDescription, taskStatus, tasks);
                     break;
                 }
             }
@@ -95,7 +95,7 @@ public class Storage {
         }
     }
 
-    private void loadDeadline(String taskDescription, String taskStatus) throws DukeException {
+    private void loadDeadline(String taskDescription, String taskStatus, List tasks) throws DukeException {
         String[] deadlineDescription = taskDescription.split("by:");
         String deadlineName = deadlineDescription[0]
                 .substring(0, deadlineDescription[0].length() - 1)
@@ -110,7 +110,7 @@ public class Storage {
         tasks.addTask(deadline);
     }
 
-    private void loadEvent(String taskDescription, String taskStatus) throws DukeException {
+    private void loadEvent(String taskDescription, String taskStatus, List tasks) throws DukeException {
         String[] eventDescription = taskDescription.split("at:");
         String eventName = eventDescription[0]
                 .substring(0, eventDescription[0].length() - 1)
@@ -123,7 +123,7 @@ public class Storage {
         tasks.addTask(event);
     }
 
-    private void loadToDo(String taskDescription, String taskStatus) throws DukeException {
+    private void loadToDo(String taskDescription, String taskStatus, List tasks) throws DukeException {
         Task toDo = new ToDo(taskDescription);
         if (taskStatus.equals("X")) {
             toDo.markTaskAsDone();

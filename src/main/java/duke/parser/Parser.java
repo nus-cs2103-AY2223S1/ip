@@ -1,6 +1,7 @@
 package duke.parser;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -130,8 +131,8 @@ public class Parser {
     private static Command parseFindTask(String userInput) throws DukeException {
         try {
             String arguments = userInput.trim().split(" ", 2)[1];
-            Set<String> keywords = new HashSet<>();
-            keywords.add(arguments);
+            java.util.List<String> descriptionWords = Arrays.asList(arguments.split("\\s+"));
+            Set<String> keywords = new HashSet<>(descriptionWords);
             return new FindCommand(keywords);
         } catch (Exception e) {
             throw new DukeException("Cannot find if you don't tell me what to find :'(");
