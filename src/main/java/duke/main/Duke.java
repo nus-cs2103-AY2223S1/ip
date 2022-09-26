@@ -1,3 +1,9 @@
+package duke.main;
+
+import duke.commandword.CommandWord;
+import duke.exception.DukeException;
+import duke.task.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;

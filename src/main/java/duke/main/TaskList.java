@@ -1,3 +1,9 @@
+package duke.main;
+
+import duke.exception.DukeException;
+import duke.commandword.CommandWord;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 /**

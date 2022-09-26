@@ -1,3 +1,7 @@
+package duke.commandword;
+
+import duke.exception.DukeException;
+
 /**
  * Enum for the command word
  */

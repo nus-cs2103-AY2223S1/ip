@@ -1,3 +1,8 @@
+package duke.main;
+
+import duke.exception.DukeException;
+import duke.task.*;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

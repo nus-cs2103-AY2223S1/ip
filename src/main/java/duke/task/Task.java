@@ -1,8 +1,8 @@
+package duke.task;
+
 public class Task {
     protected String name;
     private boolean isCompleted;
-    private String time;
-    private String deadline;
 
     /**
      * Constructor for the Task class.
@@ -47,12 +47,4 @@ public class Task {
     public String changeFormat() {
         return String.format("[%s] | %s", getStatus(), name);
     };
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
-    }
 }
