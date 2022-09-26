@@ -10,6 +10,7 @@ import iana.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
+    /** Task index in task list */
     private String taskNum;
     
     /**

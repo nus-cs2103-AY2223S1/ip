@@ -9,6 +9,8 @@ import iana.tasks.TaskList;
  * User interface that will interact with user.
  */
 public class Ui {
+
+    /** Scanner to read input from user */
     private Scanner sc;
 
     /**

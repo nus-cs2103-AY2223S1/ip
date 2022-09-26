@@ -8,6 +8,8 @@ import iana.utils.DateTime;
  * Deadline task.
  */
 public class Deadline extends Task implements Serializable {
+
+    /** The time that the deadline is over */
     protected String endTime;
 
     /**
@@ -22,9 +24,6 @@ public class Deadline extends Task implements Serializable {
         this.endTime = DateTime.parseToString(endTime);
     }
 
-    /**
-     * Returns string representation of deadline to be saved in storage.
-     */
     @Override
     public String toFileData() {
         return "D | " + super.toFileData() + "| " + this.endTime;

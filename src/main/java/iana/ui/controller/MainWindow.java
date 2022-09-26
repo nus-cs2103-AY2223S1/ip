@@ -23,13 +23,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    /** An instance of Iana */
     private Iana iana;
 
+    /** Profile picture of user */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+
+    /** Profile picture of Iana */
     private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/Iana.jpg"));
 
     /**
-     * Initialize main window.
+     * Initializes main window.
      */
     @FXML
     public void initialize() {
@@ -37,7 +41,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Initialize Iana.
+     * Initializes Iana.
      */
     public void setIana(Iana i) {
         iana = i;

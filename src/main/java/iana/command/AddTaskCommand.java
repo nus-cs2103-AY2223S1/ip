@@ -10,6 +10,7 @@ import iana.ui.Ui;
  */
 public class AddTaskCommand extends Command {
 
+    /** Input of task to add */
     private String taskInput;
 
     /**

@@ -9,6 +9,8 @@ import iana.exception.IanaException;
  * Represents the list that contains and manage all the current tasks.
  */
 public class TaskList implements Serializable {
+
+    /** Array list of tasks */
     private ArrayList<Task> taskList;
 
     /**
@@ -28,7 +30,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Get the number of tasks in the task list.
+     * Returns the number of tasks in the task list.
      * 
      * @return number of tasks.
      */
@@ -37,7 +39,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Add a new task into the task list.
+     * Adds a new task into the task list.
      * 
      * @param newTask new task to be added.
      */
@@ -84,7 +86,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Find tasks with specified keyword.
+     * Finds tasks with specified keyword.
      * 
      * @param keyword keyword of task.
      * @return a list of all tasks with the keyword.
@@ -112,7 +114,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Return string representation of task.
+     * Returns string representation of task.
      * 
      * @param taskNumber id of task to be printed.
      * @return string representation of task.
@@ -122,7 +124,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Return string representation of task list to be stored in storage.
+     * Returns string representation of task list to be stored in storage.
      * 
      * @return string representation of task list.
      */

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
+
+    /** An instance of Iana */
     private Iana iana = new Iana();
 
     @Override

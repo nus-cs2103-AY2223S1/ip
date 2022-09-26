@@ -8,7 +8,11 @@ import iana.utils.DateTime;
  * Event task.
  */
 public class Event extends Task implements Serializable {
+
+    /** Time that the event starts */
     protected String eventTime;
+
+    /** The event description */
     protected String event;
 
     /**
@@ -23,9 +27,6 @@ public class Event extends Task implements Serializable {
         this.eventTime = DateTime.parseToString(eventTime);
     }
 
-    /**
-     * String representation of event to be saved in storage.
-     */
     @Override
     public String toFileData() {
         return "E | " + super.toFileData() + "| " + this.eventTime;

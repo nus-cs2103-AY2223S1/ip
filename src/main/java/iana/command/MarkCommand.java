@@ -9,6 +9,7 @@ import iana.ui.Ui;
  */
 public class MarkCommand extends Command {
 
+    /** Task index in the task list */
     private String taskNum;
     
     /**

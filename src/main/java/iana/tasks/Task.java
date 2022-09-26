@@ -9,8 +9,13 @@ import iana.exception.IanaException;
  */
 public class Task implements Serializable {
 
+    /** Task description */
     protected final String task;
+
+    /** Type of task */
     protected final String taskType;
+
+    /** The truth value of whether task is completed */
     private boolean isCompleted;
 
     /**
@@ -27,7 +32,7 @@ public class Task implements Serializable {
     }
 
     /**
-     * Factory method to create a new task.
+     * Creates a new task.
      * 
      * @param taskString user input of task description.
      * @param isCompleted true if task has been completed.
@@ -107,7 +112,7 @@ public class Task implements Serializable {
     }
     
     /**
-     * Change whether task is completed.
+     * Changes whether task is completed.
      * 
      * @param isCompleted true if task is completed.
      */

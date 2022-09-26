@@ -22,7 +22,7 @@ public class Storage {
     private static final String FILE_STRING = "data/DataStorage.txt";
 
     /**
-     * Initialise a storage space to store tasks.
+     * Initialises a storage space to store tasks.
      * 
      * @throws IanaException if file cannot store tasks.
      */

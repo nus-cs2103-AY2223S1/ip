@@ -12,7 +12,10 @@ import iana.ui.Ui;
  */
 public class Iana {
 
+    /** Task list */
     private TaskList tasks;
+
+    /** Ui to show the program's response to user input */
     private Ui ui;
 
     /**
@@ -29,7 +32,7 @@ public class Iana {
     }
 
     /**
-     * Get response from Iana given user input.
+     * Returns response from Iana given user input.
      *
      * @param input the user input to be responded to.
      * @return IANA's response.
@@ -44,7 +47,7 @@ public class Iana {
     }
 
     /**
-     * Get a welcome message from Iana.
+     * Returns a welcome message from Iana.
      *
      * @return the welcome message.
      */
@@ -53,7 +56,7 @@ public class Iana {
     }
 
     /**
-     * Get help for app usage from Iana.
+     * Returns help for app usage from Iana.
      *
      * @return string of available commands to input.
      */

@@ -17,9 +17,6 @@ public class Todo extends Task implements Serializable {
         super(task, "todo", isCompleted);
     }
 
-    /**
-     * Returns string representation of todo to be stored in storage.
-     */
     @Override
     public String toFileData() {
         return "T | " + super.toFileData();

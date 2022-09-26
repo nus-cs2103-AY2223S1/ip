@@ -9,6 +9,7 @@ import iana.ui.Ui;
  */
 public class FindCommand extends Command {
 
+    /** Keyword to find tasks */
     private String keyword;
 
     /**
