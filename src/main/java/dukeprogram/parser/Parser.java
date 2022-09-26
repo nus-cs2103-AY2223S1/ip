@@ -91,6 +91,7 @@ public class Parser {
             @Override
             public void run() {
                 Platform.exit();
+                System.exit(0);
             }
         }, 1300);
         duke.sendMessage("Goodbye!");

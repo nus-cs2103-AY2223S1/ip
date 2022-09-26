@@ -41,11 +41,12 @@ public class WidgetTaskLabel extends HBox {
                 new CornerRadii(5),
                 Insets.EMPTY
         )));
-        this.setStyle("-fx-border-width: 0 0 1 0; -fx-border-radius: 5; -fx-border-color: white;");
+        this.setStyle("-fx-border-width: 0 0 1 0; -fx-border-radius: 5; -fx-border-color: #002654;");
         taskInfoBox.getChildren().add(typeLabel);
 
         CheckBox checkBox = new CheckBox();
         checkBox.getStylesheets().add("css/CheckBox.css");
+        checkBox.setDisable(true);
         checkBox.disarm();
         checkBox.setSelected(isComplete);
 
