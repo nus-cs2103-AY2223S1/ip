@@ -86,6 +86,21 @@ Nice! I've marked this task as done:
 [X] borrow book 
 ```
 
+### `unmark` - Unmark a task
+
+Unmark a completed task
+
+Example of usage:
+
+`unmark 1`
+
+Expected outcome:
+
+```
+OK, I've marked this task as not done yet:
+[ ] borrow book 
+```
+
 ### `delete` - Delete a task
 
 Delete a task from your list
