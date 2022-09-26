@@ -1,0 +1,4 @@
+todo Crosscountry
+deadline complete the assignment /by 8.18
+event National Day /at 10.1
+bye
