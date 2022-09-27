@@ -3,6 +3,9 @@
 /out/
 /*.iml
 
+# Save Data
+/data
+
 # Gradle build files
 /.gradle/
 /build/

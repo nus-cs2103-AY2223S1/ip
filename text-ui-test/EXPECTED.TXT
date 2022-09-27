@@ -1,7 +1,122 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+
+-----------------------------------------
+Hello! I'm the Magical ChatBot, duke.duke!
+What can I help you with today?
+-----------------------------------------
+
+
+-----------------------------------------
+Got it. I've added this task:
+[T][ ]  eat
+Now you have 1 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+Got it. I've added this task:
+[E][ ]  sleep (at: Dec 12 2012 12pm)
+Now you have 2 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+Got it. I've added this task:
+[D][ ]  wake (by: Dec 12 2012 12am)
+Now you have 3 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+Nice! I've marked this task as done:
+    [T][X]  eat
+-----------------------------------------
+
+
+-----------------------------------------
+Nice! I've marked this task as done:
+    [E][X]  sleep (at: Dec 12 2012 12pm)
+-----------------------------------------
+
+
+-----------------------------------------
+Ok! I've marked this task as not done yet:
+    [E][ ]  sleep (at: Dec 12 2012 12pm)
+-----------------------------------------
+
+
+-----------------------------------------
+Here are the tasks in your list
+1.[T][X]  eat
+2.[E][ ]  sleep (at: Dec 12 2012 12pm)
+3.[D][ ]  wake (by: Dec 12 2012 12am)
+-----------------------------------------
+
+
+-----------------------------------------
+Here are the list of available commands
+List: List all tasks
+Command: list
+
+Mark: marks selected task as completed
+Command: mark (index of task)
+
+Unmark: unmarks selected task as not completed
+Command: unmark (index of task)
+
+Delete: Delete selected task
+Command: delete (index of task)
+
+duke.task.ToDo: adds a Todo duke.task.task
+Command: Todo (description)
+
+duke.task.Deadline: adds a duke.task.Deadline duke.task.task
+Command: duke.task.Deadline (description) /by (YYYY-MM-DD 24hr)
+
+duke.task.Deadline: adds a duke.task.Event duke.task.task
+Command: duke.task.Event (description) /at (YYYY-MM-DD 24hr)
+
+-----------------------------------------
+
+
+-----------------------------------------
+Noted. I've removed this task:
+    [T][X]  eat
+Now you have 2 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+Noted. I've removed this task:
+    [E][ ]  sleep (at: Dec 12 2012 12pm)
+Now you have 1 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+Noted. I've removed this task:
+    [D][ ]  wake (by: Dec 12 2012 12am)
+Now you have 0 tasks in the list.
+-----------------------------------------
+
+
+-----------------------------------------
+OOPS!!! The description of a todo cannot be empty.
+-----------------------------------------
+
+
+-----------------------------------------
+OOPS!!! The description of a deadline cannot be empty!
+Remember to add a /by (time)!!
+-----------------------------------------
+
+
+-----------------------------------------
+OOPS!!! The description of a event cannot be empty!
+Remember to add a /at (time)!!
+-----------------------------------------
+
+
+-----------------------------------------
+Bye Bye! Hope to see you again soon!
+-----------------------------------------
 

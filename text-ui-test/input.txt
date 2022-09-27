@@ -1,0 +1,16 @@
+todo eat
+event sleep /at 2012-12-12 1200
+deadline wake /by 2012-12-12 0000
+mark 1
+mark 2
+unmark 2
+list
+help
+delete 1
+delete 1
+delete 1
+todo
+deadline
+event
+bye
+
