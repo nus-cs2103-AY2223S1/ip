@@ -1,9 +1,8 @@
-package cwq;
+package cwq.parser;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import cwq.parser.*;
-import java.util.*;
+
 
 public class ParserTest {
     @Test

@@ -1,12 +1,10 @@
-
-package cwq;
+package cwq.task;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import cwq.task.*;
 import java.util.*;
-public class TasksControllerTest {
 
+public class TasksControllerTest {
     @Test
     public void getTasksTest() {
         ToDo task1 = new ToDo("CS2103T");
