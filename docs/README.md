@@ -118,6 +118,7 @@ Exits the program.
 Format: ```bye```
 
 ## Command Summary
+
 | Action      | Format, Examples |
 | ----------- | ----------- |
 | List        | ```list```       |
