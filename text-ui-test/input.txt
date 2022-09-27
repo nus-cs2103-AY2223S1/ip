@@ -1,0 +1,13 @@
+todo Run
+list
+event Race /at 3pm
+list
+deadline Homework /by Monday
+list
+mark 2
+list
+mark 3
+list
+unmark 2
+list
+bye

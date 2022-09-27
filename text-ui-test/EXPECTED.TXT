@@ -5,3 +5,36 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Welcome to unc.Unc
+
+added:
+ [T][ ] Run
+Now you have 1 tasks on the list.
+1. [T][ ] Run
+added:
+ [E][ ] Race (at: 3pm)
+Now you have 2 tasks on the list.
+1. [T][ ] Run
+2. [E][ ] Race (at: 3pm)
+added:
+ [D][ ] Homework (by: Monday)
+Now you have 3 tasks on the list.
+1. [T][ ] Run
+2. [E][ ] Race (at: 3pm)
+3. [D][ ] Homework (by: Monday)
+Marked as done:
+[E][X] Race (at: 3pm)
+1. [T][ ] Run
+2. [E][X] Race (at: 3pm)
+3. [D][ ] Homework (by: Monday)
+Marked as done:
+[D][X] Homework (by: Monday)
+1. [T][ ] Run
+2. [E][X] Race (at: 3pm)
+3. [D][X] Homework (by: Monday)
+Marked as not done:
+[E][ ] Race (at: 3pm)
+1. [T][ ] Run
+2. [E][ ] Race (at: 3pm)
+3. [D][X] Homework (by: Monday)
+Bye
