@@ -11,12 +11,12 @@ import duke.ui.Ui;
  */
 public class UnknownCommand extends Command {
 
-    private static final String MESSAGE = "\tI am sorry, but I do " +
+    private static final String MESSAGE = "I am sorry, but I do " +
             "not understand this command";
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.displayMessage(MESSAGE);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.displayMessage(MESSAGE);
     }
 
     @Override

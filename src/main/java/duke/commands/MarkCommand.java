@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MarkCommand extends Command {
 
     protected int index;
-    private final String MESSAGE = "\tExcellent! I have marked " +
+    private final String MESSAGE = "Excellent! I have marked " +
             "the task as done: ";
 
     /**
@@ -26,11 +26,11 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markTask(index);
         storage.saveTaskList(taskList);
         String text = MESSAGE + "\n " + taskList.getTaskString(index);
-        ui.displayMessage(text);
+        return ui.displayMessage(text);
     }
 
     @Override

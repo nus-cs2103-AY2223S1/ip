@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AddCommand extends Command {
 
     protected Task task;
-    private final String MESSAGE = "\tGot it. I just added the " +
+    private final String MESSAGE = "Got it. I just added the " +
             "task: ";
 
     /**
@@ -27,12 +27,12 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(task);
         storage.saveTaskList(taskList);
-        String text = MESSAGE + "\n\t" + task.toString() + "\n" +
+        String text = MESSAGE + "\n" + task.toString() + "\n" +
                 taskList.displayNumTasks();
-        ui.displayMessage(text);
+        return ui.displayMessage(text);
 
     }
 

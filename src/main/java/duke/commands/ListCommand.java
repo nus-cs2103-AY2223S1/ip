@@ -11,9 +11,9 @@ import duke.ui.Ui;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
 
-        ui.displayMessage(taskList.taskListString());
+        return ui.displayMessage(taskList.taskListString());
     }
 
     @Override

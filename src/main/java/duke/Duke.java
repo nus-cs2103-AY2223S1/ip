@@ -4,13 +4,10 @@ import duke.commands.Command;
 import duke.parser.Parser;
 import duke.tasks.Task;
 import duke.ui.Ui;
+import duke.ui.DialogBox;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 /**
  * Initalises and runs the duke program
@@ -33,22 +30,24 @@ public class Duke {
 	/**
 	 * Runs the program unitl exit is issued
 	 */
-	public void run() {
-		ui.displayWelcomeMessage();
-		boolean isExit = false;
-		while(!isExit) {
-			String userInput = ui.getUserInput();
-			Command command = Parser.parse(userInput);
-			command.execute(taskList, ui, storage);
-			isExit = command.isExit();
+//	public void run() {
+//		System.out.println(ui.displayWelcomeMessage());
+//		boolean isExit = false;
+//		while(!isExit) {
+//			String userInput = ui.getUserInput();
+//			Command command = Parser.parse(userInput);
+//			command.execute(taskList, ui, storage);
+//			isExit = command.isExit();
+//
+//		}
+//	}
 
-		}
+	public String getResponse(String input) {
+		Command command = Parser.parse(input);
+		return command.execute(taskList, ui, storage);
 	}
-
-	public static void main(String[] args) {
-
-		new Duke().run();
-	}
-
-
 }
+
+
+
+

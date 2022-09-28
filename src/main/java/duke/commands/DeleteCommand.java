@@ -13,7 +13,7 @@ import java.io.IOException;
 public class DeleteCommand extends Command {
 
     protected int index;
-    private final String MESSAGE = "\tNoted. I've remove this task: ";
+    private final String MESSAGE = "Noted. I've remove this task: ";
 
     /**
      * Constructs a delete command
@@ -25,12 +25,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task task = taskList.deleteTask(index);
         storage.saveTaskList(taskList);
-        String text = MESSAGE + "\n\t" + task.toString() +
+        String text = MESSAGE + "\n" + task.toString() +
                 "\n" + taskList.displayNumTasks();
-        ui.displayMessage(text);
+        return ui.displayMessage(text);
     }
 
     @Override

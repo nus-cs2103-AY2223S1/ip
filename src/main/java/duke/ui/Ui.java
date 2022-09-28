@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Ui {
 
     private final String LINE = "------------------------------" +
-            "----------------------------------";
-    private final String WELCOME = "\tHello I'm Duke" + "!!\n" +
+            "--------------------";
+    private final String WELCOME = "Hello I'm Duke" + "!!\n" +
             "What do you wanna chat about today?";
-    private final String EXIT = "\t Bye. Looking forward to chating " +
+    private final String EXIT = "Bye. Looking forward to chating " +
             "with you soon again!";
 
     private final Scanner sc;
@@ -17,14 +17,16 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    public void displayMessage(String message) {
-        System.out.println(LINE);
-        System.out.println(message);
-        System.out.println(LINE);
+    public String displayMessage(String message) {
+        String text = "";
+        text += LINE + "\n";
+        text += message + "\n";
+        text += LINE + "\n";
+        return text;
     }
 
-    public void displayWelcomeMessage() {
-        displayMessage(WELCOME);
+    public String displayWelcomeMessage() {
+        return displayMessage(WELCOME);
     }
 
     public String getUserInput() {
@@ -33,9 +35,9 @@ public class Ui {
         return userInput;
     }
 
-    public void displayExitMessage() {
-        displayMessage(EXIT);
+    public String displayExitMessage() {
         sc.close();
+        return EXIT;
     }
 
 }
