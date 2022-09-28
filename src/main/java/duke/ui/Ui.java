@@ -19,9 +19,7 @@ public class Ui {
 
     public String displayMessage(String message) {
         String text = "";
-        text += LINE + "\n";
         text += message + "\n";
-        text += LINE + "\n";
         return text;
     }
 

@@ -19,9 +19,5 @@ public class UnknownCommand extends Command {
         return ui.displayMessage(MESSAGE);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
 }

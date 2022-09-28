@@ -8,11 +8,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+import javafx.application.Platform;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
+
+
 public class MainWindow extends AnchorPane {
+
+    private final String WELCOME = "Hello I'm Duke" + "!!\n" +
+            "What do you wanna chat about today?";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -31,7 +39,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog("Welcome" ,
+                DialogBox.getDukeDialog(WELCOME ,
                         dukeImage));
     }
 
@@ -52,6 +60,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        if (input.toLowerCase().equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
         userInput.clear();
     }
 }

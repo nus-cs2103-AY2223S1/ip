@@ -32,8 +32,4 @@ public class UnmarkCommand extends Command {
         return ui.displayMessage(text);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

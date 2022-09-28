@@ -33,8 +33,4 @@ public class MarkCommand extends Command {
         return ui.displayMessage(text);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

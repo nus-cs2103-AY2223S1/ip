@@ -36,8 +36,5 @@ public class AddCommand extends Command {
 
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
+
 }

@@ -27,21 +27,6 @@ public class Duke {
 		taskList = new TaskList(storage.convertToTaskList());
 	}
 
-	/**
-	 * Runs the program unitl exit is issued
-	 */
-//	public void run() {
-//		System.out.println(ui.displayWelcomeMessage());
-//		boolean isExit = false;
-//		while(!isExit) {
-//			String userInput = ui.getUserInput();
-//			Command command = Parser.parse(userInput);
-//			command.execute(taskList, ui, storage);
-//			isExit = command.isExit();
-//
-//		}
-//	}
-
 	public String getResponse(String input) {
 		Command command = Parser.parse(input);
 		return command.execute(taskList, ui, storage);

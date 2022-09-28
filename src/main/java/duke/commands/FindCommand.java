@@ -21,9 +21,6 @@ public class FindCommand extends  Command {
         return ui.displayMessage(searchMatchList.taskListString());
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
+
 
 }

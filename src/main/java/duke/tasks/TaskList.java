@@ -43,7 +43,7 @@ public class TaskList {
 
             for (int i = 0; i < this.taskList.size(); i++) {
 
-                text += "\t" + (i + 1) + ". " +
+                text +=  (i + 1) + ". " +
                         this.taskList.get(i).toString() + "\n";
             }
         }

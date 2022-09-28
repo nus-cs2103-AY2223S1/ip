@@ -16,8 +16,4 @@ public class ListCommand extends Command {
         return ui.displayMessage(taskList.taskListString());
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

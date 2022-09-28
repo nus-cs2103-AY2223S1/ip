@@ -19,8 +19,4 @@ public class ExitCommand extends Command {
         return ui.displayExitMessage();
     }
 
-    @Override
-    public boolean isExit() {
-        return true;
-    }
 }
