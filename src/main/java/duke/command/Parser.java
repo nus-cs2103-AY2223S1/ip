@@ -21,26 +21,30 @@ public class Parser {
         if (strInput.equalsIgnoreCase("list")) {
             return new ListCommand();
         } else if (isATodo(strInput)) {
-            checkForNullTask(strInput.substring(4), "todo");
+            checkForNullTaskDescription(strInput.substring(4), "todo");
             checkForMultipleTasks(strInput.substring(4));
             return new AddCommand(new Todo(strInput.substring(5)));
         } else if (isADeadline(strInput)) {
-            checkForNullTask(strInput.substring(8), "deadline");
+            checkForNullTaskDescription(strInput.substring(8), "deadline");
             checkForMultipleTasks(strInput.substring(8));
             return new AddCommand(new Deadline(strInput.substring(9, strInput.indexOf("/") - 1),
                     strInput.substring(strInput.indexOf("/by") + 4), false));
         } else if (isAEvent(strInput)) {
-            checkForNullTask(strInput.substring(5), "event");
+            checkForNullTaskDescription(strInput.substring(5), "event");
             checkForMultipleTasks(strInput.substring(5));
             return new AddCommand(new Event(strInput.substring(6, strInput.indexOf("/") - 1),
                     strInput.substring(strInput.indexOf("/at") + 4), false));
         } else if (strInput.contains("delete") && strInput.substring(0, 6).equals("delete")) {
+            checkForInvalidTaskID(strInput.substring(6));
             return new DeleteCommand(Integer.parseInt(strInput.substring(7)));
         } else if (strInput.contains("unmark") && strInput.substring(0, 6).equals("unmark")) {
+            checkForInvalidTaskID(strInput.substring(6));
             return new MarkingCommand(false, Integer.parseInt(strInput.substring(7)));
         } else if (strInput.contains("mark") && strInput.substring(0, 4).equals("mark")) {
+            checkForInvalidTaskID(strInput.substring(4));
             return new MarkingCommand(true, Integer.parseInt(strInput.substring(5)));
         } else if (strInput.contains("find") && strInput.substring(0, 4).equals("find")) {
+            checkForNullTaskDescription(strInput.substring(4), "finding task");
             return new FindCommand(strInput.substring(5));
         } else if (strInput.contains("count completed") && strInput.substring(0, 15).equals("count completed")) {
             return new CountCommand(true);
@@ -52,24 +56,59 @@ public class Parser {
     }
 
     /**
-     * Checks if there is task description.
+     * Checks if task ID is a number and is non-null.
+     *
+     * @param taskID ID of task.
+     * @throws DukeException if task ID is invalid
+     */
+    public static void checkForInvalidTaskID(String taskID) throws DukeException {
+        if (taskID.isBlank()) {
+            throw new DukeException("There must be a task ID specified.");
+        }
+        if (!isInteger(taskID)) {
+            throw new DukeException("Please specify a valid int taskID.");
+        }
+    }
+
+    /**
+     * Checks if the String is integer.
+     * @param strNum String.
+     * @return True if String is an integer.
+     */
+    public static boolean isInteger(String strNum) {
+        if (strNum.equals(null)) {
+            return false;
+        }
+        try {
+            String st = strNum.replaceAll("\\s+",
+                    "");
+            Integer d = Integer.parseInt(st);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * Checks if task description is null.
      *
      * @param description task description.
-     * @param typeOfTask todo, deadline, or event.
+     * @param type todo, deadline, event tasks and find command.
      * @throws DukeException if there is no task description.
      */
-    public static void checkForNullTask(String description, String typeOfTask) throws DukeException {
+    public static void checkForNullTaskDescription(String description, String type) throws DukeException {
         if (description.isBlank()) {
-            throw new DukeException("There must be a task description for " + typeOfTask);
+            throw new DukeException("There must be a task description for " + type);
         }
-        if (typeOfTask.equals("deadline")) {
+        if (type.equals("deadline")) {
             if (!description.contains("/by")) {
-                throw new DukeException("There must be a deadline date for " + typeOfTask
+                throw new DukeException("There must be a deadline date for " + type
                         + ". Format must be event <description> /by dd/mm/yyyy <time> with time being 24h.");
             }
-        } else if (typeOfTask.equals("event")) {
+        } else if (type.equals("event")) {
             if (!description.contains("/at")) {
-                throw new DukeException("There must be a date for " + typeOfTask
+                throw new DukeException("There must be a date for " + type
                         + ". Format must be event <description> /at dd/mm/yyyy <time> with time being 24h.");
             }
         }

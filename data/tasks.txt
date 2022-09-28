@@ -1,5 +1,5 @@
-T | 1 |             proj
-D | 1 |             return work             |             12 Oct 2022 10:00 AM
-E | 0 |           meeting           |           12 Dec 2022 10:00 AM
-D | 1 |           chem hw           |           12 Dec 2022 15:00 PM
-T | 0 |         chores
+T | 1 |               proj
+D | 1 |               return work               |               12 Oct 2022 10:00 AM
+E | 0 |             meeting             |             12 Dec 2022 10:00 AM
+D | 1 |             chem hw             |             12 Dec 2022 15:00 PM
+T | 1 |           chores
