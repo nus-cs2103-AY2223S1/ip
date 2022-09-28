@@ -1,6 +1,4 @@
-# LishBot User Guide
-
-![photo](https://github.com/albertarielw/ip/blob/master/docs/Ui.png)
+![Ui Example](Ui.png)
 
 ## Table of Contents
 
