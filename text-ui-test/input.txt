@@ -1,0 +1,11 @@
+list
+todo read book
+todo breakfast
+list
+mark 3
+mark 2
+mark 1
+unmark 1
+deadline homework /by today 2359
+event concert /at Sunday 1700
+bye
