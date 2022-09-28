@@ -1,3 +1,5 @@
+# LishBot User Guide
+
 ![Ui Example](Ui.png)
 
 ## Table of Contents
