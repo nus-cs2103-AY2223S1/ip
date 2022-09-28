@@ -72,7 +72,7 @@ public class Parser {
         }
 
         // Exits program
-        if (input.startsWith("exit")) {
+        if (input.startsWith("bye")) {
             return new ExitCommand();
         }
 

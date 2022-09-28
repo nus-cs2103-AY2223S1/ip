@@ -44,7 +44,9 @@ to keep track of completion progression
 Undoes the previous command
 
 
+### Exit
 
+Exits Duke
 
 ## Usage
 
@@ -132,4 +134,14 @@ undo
 [T][X] Read book
 [D][ ] Return Book (by: Monday 2pm)
 [E][ ] Meeting (at: Monday 2pm-4pm)
+```
+
+### bye - Exits Duke
+
+Example of usage:
+> bye
+
+Expected outcome:
+```
+Bye. Hope to see you again soon!
 ```
