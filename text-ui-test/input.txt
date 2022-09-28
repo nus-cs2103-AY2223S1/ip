@@ -1,0 +1,9 @@
+todo do homework
+event project meeting /at Mon 2-4pm
+deadline return book /by Sunday
+list
+mark 1
+mark 2
+unmark 1
+list
+bye
