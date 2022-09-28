@@ -54,7 +54,7 @@ public class TaskList {
 
         String text = "";
         for (Task task : this.taskList) {
-            text += task.fileString() + "\n";
+            text += task.fileString();
         }
         return text;
     }

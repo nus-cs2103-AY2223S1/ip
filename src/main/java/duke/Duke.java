@@ -31,13 +31,6 @@ public class Duke {
 		Command command = Parser.parse(input);
 		return command.execute(taskList, ui, storage);
 	}
-
-	public String getTaskList() {
-
-		String text = "Here are your tasks: \n";
-		text += this.taskList.taskListString();
-		return text;
-	}
 }
 
 
