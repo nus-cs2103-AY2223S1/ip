@@ -73,8 +73,4 @@ public class TaskList {
         return searchMatchList;
     }
 
-    public int getTaskListSize() {
-        return this.taskList.size();
-    }
-
 }

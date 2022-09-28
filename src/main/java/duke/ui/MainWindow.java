@@ -20,7 +20,7 @@ import javafx.application.Platform;
 public class MainWindow extends AnchorPane {
 
     private final String WELCOME = "Hello I'm Duke" + "!!\n" +
-            "What do you wanna chat about today?\n";
+            "What do you wanna chat about today?";
     @FXML
     private ScrollPane scrollPane;
     @FXML
