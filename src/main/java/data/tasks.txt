@@ -1,0 +1,4 @@
+[T][1] buildCage
+[E][1] aviaryOpening (at: 2022-10-10)
+[T][ ] t1
+[T][ ] t1
