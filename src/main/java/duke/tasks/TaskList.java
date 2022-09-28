@@ -54,7 +54,7 @@ public class TaskList {
 
         String text = "";
         for (Task task : this.taskList) {
-            text += task.fileString();
+            text += task.fileString() + "\n";
         }
         return text;
     }
@@ -71,6 +71,10 @@ public class TaskList {
             }
         }
         return searchMatchList;
+    }
+
+    public int getTaskListSize() {
+        return this.taskList.size();
     }
 
 }
