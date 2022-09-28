@@ -1,13 +1,17 @@
 package bob.commands;
 
-import bob.*;
-
 import java.time.format.DateTimeParseException;
+
+import bob.BobException;
+import bob.Storage;
+import bob.Task;
+import bob.TaskList;
+import bob.Ui;
 
 /**
  * UpdateCommand class to handle "update" keyword
  */
-public class UpdateCommand extends Command{
+public class UpdateCommand extends Command {
 
     private int index;
     private String updateInfo;

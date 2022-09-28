@@ -1,4 +1,4 @@
-D | 0 | sleep | 2019-12-12
 E | 0 | work  | 2020-12-12
-D | 0 | business submission | 1999-02-04
+D | 1 | business submission | 1999-02-04
 T | 0 | sleep
+D | 0 | masterplan | 2022-09-19

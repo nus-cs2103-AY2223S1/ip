@@ -1,6 +1,19 @@
 package bob;
 
-import bob.commands.*;
+import bob.commands.ByeCommand;
+import bob.commands.Command;
+import bob.commands.DeadlineCommand;
+import bob.commands.EventCommand;
+import bob.commands.FilterCommand;
+import bob.commands.FindCommand;
+import bob.commands.HelpCommand;
+import bob.commands.ListCommand;
+import bob.commands.MarkCommand;
+import bob.commands.RemoveCommand;
+import bob.commands.TodoCommand;
+import bob.commands.UnmarkCommand;
+import bob.commands.UpdateCommand;
+
 
 /**
  * Represents Parser object, to read and respond to user input

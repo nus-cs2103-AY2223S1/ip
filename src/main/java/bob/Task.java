@@ -1,7 +1,5 @@
 package bob;
 
-import java.time.format.DateTimeParseException;
-
 /**
  * Represents Task object, something for the user to take note of
  */

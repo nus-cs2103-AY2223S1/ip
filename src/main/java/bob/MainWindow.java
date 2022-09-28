@@ -48,6 +48,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = bob.getResponse(input);
+        dialogContainer.prefWidthProperty().bind(scrollPane.widthProperty());
+        dialogContainer.prefHeightProperty().bind(scrollPane.heightProperty());;
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getBobDialog(response, bobImage)
