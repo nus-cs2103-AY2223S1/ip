@@ -51,3 +51,13 @@ shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null
 }
+
+run{
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'duke.Duke'
+    }
+}

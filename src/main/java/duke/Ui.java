@@ -34,6 +34,11 @@ public class Ui extends Application {
             this.getClass().getResourceAsStream("/images/pikachu.png")));
 
     /**
+     * Default constructor for Ui.
+     */
+    public Ui() {}
+
+    /**
      * Shows a message to the user.
      *
      * @param message a relevant message to be displayed by the Ui.
