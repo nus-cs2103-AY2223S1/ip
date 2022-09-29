@@ -4,6 +4,9 @@ import duke.main.DateTime;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class for Deadline-type Tasks.
+ */
 public class Deadline extends Task {
     private LocalDateTime deadline;
 
@@ -25,6 +28,10 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + String.format("(by: %s)", DateTime.printDate(deadline));
     }
 
+    /**
+     * Returns the format of Deadline object in format to be saved.
+     * @return String of Deadline object to be saved.
+     */
     @Override
     public String changeFormat() {
         return String.format("D | %s | %s | %s", getStatus(), name, DateTime.changeFormat(this.deadline));

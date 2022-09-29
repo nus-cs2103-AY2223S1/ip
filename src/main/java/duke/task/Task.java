@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Class for Duke Tasks.
+ */
 public class Task {
     protected String name;
     private boolean isCompleted;
@@ -44,6 +47,10 @@ public class Task {
         return String.format("[%s] %s ", getStatus(), name);
     }
 
+    /**
+     * Returns the format of Task object in format to be saved. 
+     * @return String of Task object to be saved.
+     */
     public String changeFormat() {
         return String.format("[%s] | %s", getStatus(), name);
     };

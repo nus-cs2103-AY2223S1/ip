@@ -8,11 +8,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main Duke class.
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for Duke class.
+     */
     private Duke() {
         // Initialising the field variables
         storage = new Storage();
@@ -27,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes the logic flow of Duke.
+     */
     public void run() {
         ui.greetUser();
         boolean isExit = false;
@@ -103,6 +112,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method of Duke class.
+     * @param args Main input arguments from user.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

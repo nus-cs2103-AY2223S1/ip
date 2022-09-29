@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Class for Todo-type Tasks.
+ */
 public class Todo extends Task{
 
     /**
@@ -19,6 +22,10 @@ public class Todo extends Task{
         return String.format("[T][%s] %s", getStatus(), name);
     }
 
+    /**
+     * Returns the format of Todo object in format to be saved. 
+     * @return String of Todo object to be saved.
+     */
     @Override
     public String changeFormat() {
         return String.format("T | %s | %s", getStatus(), name);
