@@ -1,0 +1,22 @@
+todo borrow book
+deadline return book /by 2019-10-15 1800
+event project meeting /at Mon 2-4pm
+mark 1
+mark 2
+unmark 2
+list
+todo
+deadline
+event
+blah
+mark 100
+unmark 100
+delete 3
+list
+delete 3
+save
+save ./save/test.txt
+load 
+list
+date 2019-10-15 1800
+bye
