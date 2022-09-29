@@ -50,6 +50,9 @@ public class UI {
      * @param title Title of printed TaskList.
      */
     public String getTaskListResponse(TaskList ls, String title) {
+        if (ls == null || ls.getSize() == 0) {
+            return "You don't have any task.";
+        }
         String mess = title + "\n";
         for (int i = 0; i < ls.getSize(); i++) {
             mess += (i + 1) + ". " + ls.taskToString(i) + "\n";
