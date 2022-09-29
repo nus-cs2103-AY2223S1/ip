@@ -15,9 +15,11 @@ import command.DeleteCommand;
 import command.EchoCommand;
 import command.EventCommand;
 import command.FindCommand;
+import command.HelpCommand;
 import command.InteractCommand;
 import command.ListCommand;
 import command.MarkCommand;
+import command.TeachCommand;
 import command.TentativeCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
@@ -79,24 +81,31 @@ public class Parser {
             return handleFindCommand(args);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand(args);
         case TentativeCommand.COMMAND_WORD:
             return handleTentativeCommand(args);
 
+        // fallthrough intended as these commands all use indexes
         case MarkCommand.COMMAND_WORD:
         case UnmarkCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
             return handleTaskEditCommand(command, args);
 
+        // fallthrough intended as these commands all use date and time
         case TodoCommand.COMMAND_WORD:
         case DeadlineCommand.COMMAND_WORD:
         case EventCommand.COMMAND_WORD:
             return handleTaskCommand(command, args);
+
+        case TeachCommand.COMMAND_WORD:
+            return handleTeachCommand(args);
         default:
-            return handleInteraction(text);
+            return new InteractCommand(text);
         }
     }
 
-    private Command handleInteraction(String args) {
+    private Command handleTeachCommand(String args) {
         String response = chatSession.multisentenceRespond(args);
         while (response.contains("&lt;")) {
             response = response.replace("&lt;", "<");
@@ -105,7 +114,7 @@ public class Parser {
             response = response.replace("&gt;", ">");
         }
         response = response.replaceAll(" {2}", " ");
-        return new InteractCommand(response);
+        return new TeachCommand(response);
     }
 
     private String[] performTextGrouping(String text) {
@@ -159,14 +168,14 @@ public class Parser {
         if (Integer.parseInt(args) < 0) {
             throw new HenryException(TextUtils.MUST_BE_POSITIVE_ERROR);
         }
-
+        int index = Integer.parseInt(args.trim()) - 1;
         switch (command) {
         case MarkCommand.COMMAND_WORD:
-            return new MarkCommand(Integer.parseInt(args));
+            return new MarkCommand(index);
         case UnmarkCommand.COMMAND_WORD:
-            return new UnmarkCommand(Integer.parseInt(args.trim()));
+            return new UnmarkCommand(index);
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommand(Integer.parseInt(args.trim()));
+            return new DeleteCommand(index);
         default:
             throw new HenryException(TextUtils.MALFORMED_COMMAND_ERROR);
         }
