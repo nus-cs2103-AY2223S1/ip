@@ -1,0 +1,6 @@
+D | 0 | CS2103T IP | 2022-09-16 2359 | happy
+T | 0 | Pack clothes | 
+T | 0 | Buy groceries | mdmdm
+T | 0 | 3 | 
+T | 0 | 45 | 
+T | 0 | Buy Lunch | 
