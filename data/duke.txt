@@ -1,7 +1,4 @@
 [T][ ] have a drink
-[E][X] wake up (at: Oct 28 2022)
-[D][X] cs2103 (by: Sep 19 2022)
-[D][ ] cs2103 ip (by: Sep 19 2022)
-[D][ ] make user guide (by: Sep 22 2022)
 [E][X] have a rest (at: Sep 23 2022)
 [T][X] have a fruit
+[T][X] fix bug

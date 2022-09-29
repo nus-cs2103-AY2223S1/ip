@@ -13,7 +13,7 @@ plugins {
 }
 
 application {
-    mainClass = 'duke.Duke'
+    mainClassName = "duke.Duke"
 }
 
 test {
@@ -45,4 +45,9 @@ repositories {
 
 checkstyle {
     toolVersion = '10.2'
+}
+
+shadowJar {
+    archiveBaseName = "duke"
+    archiveClassifier = null
 }

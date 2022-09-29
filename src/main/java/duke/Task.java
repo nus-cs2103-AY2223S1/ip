@@ -86,10 +86,10 @@ class Task {
     /**
      * Obtain the appropriate Task instance from a user entry.
      *
+     * @param <T> Task and its children.
      * @param entry the entry entered by the user to record a Task.
      * @param type the character representing the type of Task.
      * @return an appropriate instance of Task.
-     * @param <T> Task and its children.
      */
     public static <T extends Task> Task parseEntry(String entry, char type) {
         T task = null;
@@ -121,6 +121,7 @@ class Task {
             String fullStrE = frontStrE + Event.DELIMITER + dateStrE;
             task = (T) new Event(String.format("%s%s", Parser.TASK_KEYWORD_EVENT, fullStrE));
             break;
+        default:
         }
 
         if (Task.isMarked(entry)) {

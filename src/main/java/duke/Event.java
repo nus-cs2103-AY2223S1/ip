@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
  * The Event class represents a Task that will occur at a specified date.
  */
 class Event extends Task {
-    private final char tag = 'E';
     public static final String DELIMITER = " /at ";
+    private final char tag = 'E';
     private String time;
     private LocalDate date;
 

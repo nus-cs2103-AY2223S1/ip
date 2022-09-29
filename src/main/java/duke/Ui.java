@@ -1,17 +1,19 @@
 package duke;
 
+import java.util.Objects;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * The Ui class handles the different interactions with the user.
@@ -26,19 +28,14 @@ public class Ui extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/chimchar.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/pikachu.png"));
-
-    /**
-     * Shows a pre-defined farewell to the user.
-     */
-    public static void sayGoodbye() {
-        System.out.println(Ui.FAREWELL);
-    }
+    private final Image userImage = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/chimchar.png")));
+    private final Image dukeImage = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/pikachu.png")));
 
     /**
      * Shows a message to the user.
-     * 
+     *
      * @param message a relevant message to be displayed by the Ui.
      */
     public static void echo(String message) {
@@ -49,9 +46,9 @@ public class Ui extends Application {
      * Starts the GUI.
      *
      * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
+     *              the application scene can be set.
+     *              Applications may create other stages, if needed,
+     *              but they will not be primary stages.
      */
     @Override
     public void start(Stage stage) {

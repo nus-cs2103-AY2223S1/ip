@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
  * The Deadline class represents a Task that has to be done by a given deadline.
  */
 class Deadline extends Task {
-    private final char tag = 'D';
     public static final String DELIMITER = " /by ";
+    private final char tag = 'D';
     private String time;
     private LocalDate date;
 

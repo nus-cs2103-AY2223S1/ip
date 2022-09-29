@@ -1,9 +1,13 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.Files;
 
 /**
  * The Storage class manages write and read operations into the data file "duke.txt".
@@ -37,7 +41,7 @@ class Storage {
     public static void createDataFile() {
         boolean dataFileExists = Files.exists(Storage.dataFilePath);
 
-        if(!dataFileExists) {
+        if (!dataFileExists) {
             try {
                 Files.createFile(Storage.dataFilePath);
             } catch (IOException ex) {
@@ -86,7 +90,7 @@ class Storage {
         // create archive file if it does not exist
         boolean archiveFileExists = Files.exists(Storage.archiveFilePath);
 
-        if(!archiveFileExists) {
+        if (!archiveFileExists) {
             try {
                 Files.createFile(Storage.archiveFilePath);
             } catch (IOException ex) {

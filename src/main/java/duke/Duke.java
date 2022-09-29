@@ -64,6 +64,7 @@ class Duke {
                 case Parser.MARK_KEYWORD_DELETE:
                     reply = Duke.tasks.deleteTask(id);
                     break;
+                default:
                 }
 
                 Storage.updateData(Duke.tasks);
@@ -88,12 +89,13 @@ class Duke {
                     }
                     Duke.tasks.add(new Event(entry));
                     break;
+                default:
                 }
 
                 Storage.updateData(Duke.tasks);
 
-                reply = "Added task:" +
-                        Duke.tasks.getLast().printTask();
+                reply = "Added task:"
+                        + Duke.tasks.getLast().printTask();
             } catch (DukeException ex) {
                 Ui.echo("Incorrect use of " + Parser.getNonexactKeyword(entry));
             }
@@ -148,9 +150,9 @@ class Duke {
      * @param id the id of the task.
      */
     public static String unmarkTask(int id) {
-        String str = "";
+        String str;
 
-        Task task  = tasks.get(id - 1);
+        Task task = tasks.get(id - 1);
         task.markAsNotDone();
         str = String.format("Task %d [%s] marked as not done!",
                 id,
