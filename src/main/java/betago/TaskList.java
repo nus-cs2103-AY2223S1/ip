@@ -1,6 +1,7 @@
 package betago;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class TaskList {
      * Marks or unmarks the Task in the specific index of the TaskList.
      *
      * @param str Mark or Unmark command that the user provided.
+     * @return Output to the user that task has been marked/unmarked.
      * @throws DukeException If user inputs an empty or invalid task number.
      */
     public String markUnmarkItems(String str) throws DukeException {
@@ -102,6 +104,7 @@ public class TaskList {
      * Adds a Todo Task in the ArrayList.
      *
      * @param str Add todo command that the user provided.
+     * @return Output to the user that the todo task has been added.
      * @throws DukeException If no description is provided.
      */
     public String addTodo(String str) throws DukeException {
@@ -120,18 +123,19 @@ public class TaskList {
      * Adds a Deadline Task in the ArrayList.
      *
      * @param str Add deadline command that the user provided.
+     * @return Output to the user that the deadline task has been added.
      * @throws DukeException If no description or deadline provided.
      */
     public String addDeadline(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description for your Deadline task"
-                    + " in this format: 'deadline (description) /by (date) (time)'\n");
+                    + " in this format: 'deadline (description) /by (date)'\n");
         }
         String[] when = inputs[1].split(" /by ", 2);
         if (when.length != 2) {
             throw new DukeException("Please indicate a valid deadline for your Deadline task "
-                    + "in this format: 'deadline (description) /by (date) (time)'\n"
+                    + "in this format: 'deadline (description) /by (date)'\n"
                     + "Please enter the date in one of the following format:"
                     + " yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
         }
@@ -146,18 +150,24 @@ public class TaskList {
      * Adds an Event Task in the ArrayList.
      *
      * @param str Add event command that the user provided.
+     * @return Output to the user that the event task has been added.
      * @throws DukeException If no description or location provided.
      */
     public String addEvent(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description for your Event task"
-                    + " in this format: 'deadline (description) /at (date) (time)'\n");
+                    + " in this format: 'event (description) /at (date) (time)'\n");
         }
         String[] when = inputs[1].split(" /at ", 2);
         if (when.length != 2) {
             throw new DukeException("Please indicate a valid date and time for your Event task!\n"
-                    + "Do enter the command in this format: 'deadline (description) /at (date) (time)'\n");
+                    + "Do enter the command in this format: 'event (description) /at (date) (time)'\n");
+        }
+        String[] dateTime = when[1].split(" ", 2);
+        if (dateTime.length != 2) {
+            throw new DukeException("Please indicate a valid date and time for your Event task!\n"
+                    + "Do enter the command in this format: 'event (description) /at (date) (time)'\n");
         }
         Event temp = new Event(when[0], when[1]);
         this.list.add(temp);
@@ -170,6 +180,7 @@ public class TaskList {
      * Deletes the Task in the specific index of the ArrayList.
      *
      * @param str Delete command that the user provided.
+     * @return Output to the user that the task has been deleted.
      * @throws DukeException If no task number is provided or task number is out of range.
      */
     public String deleteItem(String str) throws DukeException {
@@ -228,13 +239,9 @@ public class TaskList {
             throw new DukeException("Invalid Input from Data File: Insufficient details");
         }
         try {
-            String[] dateTime = inputs[3].split(",", 2);
-            String deadlineDateTime = convertDate(dateTime[0]);
-            if (dateTime.length == 2) {
-                deadlineDateTime = deadlineDateTime + dateTime[1];
-            }
-            assert dateTime.length == 1 : "There should be only one date for Deadline task in data file.";
-            Deadline temp = new Deadline(inputs[2], deadlineDateTime);
+            assert inputs.length == 4 : "The data file deadline entry should have all the required fields";
+            String deadlineDate = convertDate(inputs[3]);
+            Deadline temp = new Deadline(inputs[2], deadlineDate);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
             } else if (inputs[1].equalsIgnoreCase("0")) {
@@ -247,7 +254,7 @@ public class TaskList {
             throw new DukeException(
                     "Invalid Input from Data File: Invalid Deadline Task");
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid Input from Data File: Incorrect Date/Time");
+            throw new DukeException("Invalid Input from Data File: Incorrect Date");
         }
     }
 
@@ -258,17 +265,13 @@ public class TaskList {
      * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
      */
     public void loadEvent(String str) throws DukeException {
-        String[] inputs = str.split(" , ", 4);
-        if (inputs.length != 4) {
+        String[] inputs = str.split(" , ", 5);
+        if (inputs.length != 5) {
             throw new DukeException("Invalid Input from Data File: Insufficient details");
         }
+        assert inputs.length == 5 : "The data file event entry should have all the required fields";
         try {
-            String[] dateTime = inputs[3].split(",", 2);
-            String eventDateTime = convertDate(dateTime[0]);
-            if (dateTime.length == 2) {
-                eventDateTime = eventDateTime + dateTime[1];
-            }
-            assert dateTime.length == 1 : "There should be only one date for Event task in data file.";
+            String eventDateTime = convertDate(inputs[3]) + " " + convertTime(inputs[4]);
             Event temp = new Event(inputs[2], eventDateTime);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
@@ -289,6 +292,7 @@ public class TaskList {
      * Converts date in the format "MMM d yyyy" to "yyyy-MM-dd".
      *
      * @param date Date that is to be converted.
+     * @return Date in the "yyyy-MM-dd" format.
      * @throws DateTimeParseException If date is in an incorrect format.
      */
     public String convertDate(String date) throws DateTimeParseException {
@@ -297,9 +301,22 @@ public class TaskList {
         return deadlineDate;
     }
     /**
+     * Converts time in the format "hhmm aa" to "HHmm".
+     *
+     * @param time Time that is to be converted.
+     * @return Time in the "HHmm" format.
+     * @throws DateTimeParseException If date is in an incorrect format.
+     */
+    public String convertTime(String time) throws DateTimeParseException {
+        LocalTime t = LocalTime.parse(time, DateTimeFormatter.ofPattern("hhmma"));
+        String deadlineTime = t.format(DateTimeFormatter.ofPattern("HHmm"));
+        return deadlineTime;
+    }
+    /**
      * Finds tasks that match the keyword inputted by user.
      *
      * @param str Line of text command from user including keyword to search.
+     * @return Output to the user of the tasks found.
      * @throws DukeException If no keyword is provided.
      */
     public String findTasks(String str) throws DukeException {

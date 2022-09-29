@@ -14,8 +14,8 @@ public class DeadlineTest {
     @Test
     public void newDeadlineTest() {
         try {
-            Deadline temp = new Deadline("do this task", "2012-01-21 6pm");
-            assertEquals("[D][ ] do this task (by: Jan 21 2012, 6pm)", temp.toString());
+            Deadline temp = new Deadline("do this task", "2012-01-21");
+            assertEquals("[D][ ] do this task (by: Jan 21 2012)", temp.toString());
         } catch (DukeException e) {
             //This should not happen from the above input
         }

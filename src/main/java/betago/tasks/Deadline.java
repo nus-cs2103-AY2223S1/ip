@@ -12,7 +12,7 @@ import betago.DukeException;
  */
 public class Deadline extends Task {
 
-    private String byDateTime;
+    private String byDate;
 
     /**
      * Constructor for Deadline task.
@@ -20,27 +20,23 @@ public class Deadline extends Task {
      * into "MMM d yyyy" to be stored in the byDateTime variable.
      *
      * @param description Description of the task.
-     * @param by Due date and time for the task.
+     * @param by Due date for the task.
      * @throws DukeException If date is given in the wrong format.
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
-        String[] inputs = by.split(" ", 2);
         String[] formatPatterns = {"yyyy-MM-dd", "dd-MMM-yyyy", "dd/MM/yyyy"};
         for (int i = 0; i < formatPatterns.length; i++) {
             try {
-                LocalDate d = LocalDate.parse(inputs[0], DateTimeFormatter.ofPattern(formatPatterns[i]));
-                this.byDateTime = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                LocalDate d = LocalDate.parse(by, DateTimeFormatter.ofPattern(formatPatterns[i]));
+                this.byDate = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 break;
             } catch (DateTimeParseException e) {
                 if (i == formatPatterns.length - 1) {
-                    throw new DukeException("Please enter the date and time in these format:\n"
+                    throw new DukeException("Please enter the date in this format:\n"
                             + "yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
                 }
             }
-        }
-        if (inputs.length == 2) {
-            this.byDateTime = this.byDateTime + ", " + inputs[1];
         }
     }
 
@@ -51,7 +47,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D][" + this.getStatusIcon() + "] " + this.getTaskDescription() + " (by: " + byDateTime + ")";
+        return "[D][" + this.getStatusIcon() + "] " + this.getTaskDescription() + " (by: " + byDate + ")";
     }
 
     /**
@@ -67,6 +63,6 @@ public class Deadline extends Task {
         } else {
             icon = "0";
         }
-        return "D , " + icon + " , " + this.description + " , " + this.byDateTime + "\n";
+        return "D , " + icon + " , " + this.description + " , " + this.byDate + "\n";
     }
 }

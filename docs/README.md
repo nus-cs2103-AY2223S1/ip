@@ -17,8 +17,8 @@ your various tasks!
 
 BetaGo can keep track of three different types of tasks:
 - **_Todo_** : A general task represented with a description
-- **_Deadline_** : A deadline task represented with a description and date/time that it should be completed by
-- **_Event_** : An event task represented with a description and date/time that the event is happening at
+- **_Deadline_** : A deadline task represented with a description and date that it should be completed by
+- **_Event_** : An event task represented with a description, date and time that the event is happening at
 
 ### Task List Management
 
@@ -31,12 +31,12 @@ Betago allows you to easily:
 
 ## Usage
 Notes about the command format:
-- Words in brackets `()` refer to fields that require the respective input from the user
-- Words in square brackets `[]` are optional fields
+- Words in brackets `()` refer to fields that are **compulsory** and require the respective input from the user
 - Fields that require a date input should be in one of the following formats:
   - `yyyy-MM-dd`
   - `dd-MMM-yyyy`
   - `dd/MM/yyyy`
+- Fields that require a time input should be in the 2400 time format eg. `1800` or `0230`
 - Index fields refer to the specific index of the task in the current list
 
 ### `load` - Load a data file
@@ -72,12 +72,12 @@ Adds a deadline task into the task list.
 
 Format:
 
-`deadline (description) /by (date) [time]`
+`deadline (description) /by (date)`
 
 Example:
 
 ```
-deadline return a book /by 2023-10-25 5pm
+deadline return a book /by 2023-10-25
 ```
 
 ### `event` - Adds an event task
@@ -86,12 +86,12 @@ Adds an event task into the task list.
 
 Format:
 
-`event (description) /at (date) [time]`
+`event (description) /at (date) (time)`
 
 Example:
 
 ```
-event library fair /at 2023-10-25 5pm
+event library fair /at 2023-10-25 1700
 ```
 
 ### `list` - View all tasks
@@ -171,15 +171,15 @@ Data is automatically saved into the `betago.txt` or the loaded file after every
 
 ## Command Summary
 
-| Command  | Format                                     | Example                             |
-|----------|--------------------------------------------|-------------------------------------|
-| load     | `load (filename)`                          | load newdata.txt                    |
-| todo     | `todo (description)`                       | todo return book                    |
-| deadline | `deadline (description) /by (date) [time]` | deadline return book /by 2023-08-09 |
-| event    | `event (description) /at (date) [time]`    | event book fair /at 2023-08-09      |
-| list     | `list`                                     | list                                |
-| delete   | `delete (index)`                           | delete 1                            |
-| mark     | `mark (index)`                             | mark 2                              |
-| unmark   | `unmark (index)`                           | unmark 2                            |
-| find     | `find (keyword)`                           | find book                           |
-| bye      | `bye`                                      | bye                                 |
+| Command  | Format                                  | Example                             |
+|----------|-----------------------------------------|-------------------------------------|
+| load     | `load (filename)`                       | load newdata.txt                    |
+| todo     | `todo (description)`                    | todo return book                    |
+| deadline | `deadline (description) /by (date)`     | deadline return book /by 2023-08-09 |
+| event    | `event (description) /at (date) (time)` | event book fair /at 2023-08-09 1700 |
+| list     | `list`                                  | list                                |
+| delete   | `delete (index)`                        | delete 1                            |
+| mark     | `mark (index)`                          | mark 2                              |
+| unmark   | `unmark (index)`                        | unmark 2                            |
+| find     | `find (keyword)`                        | find book                           |
+| bye      | `bye`                                   | bye                                 |

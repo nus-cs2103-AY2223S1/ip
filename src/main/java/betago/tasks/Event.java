@@ -1,6 +1,7 @@
 package betago.tasks;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -12,7 +13,8 @@ import betago.DukeException;
  */
 public class Event extends Task {
 
-    private String at;
+    private String atDate;
+    private String atTime;
 
     /**
      * Constructor for Event task.
@@ -24,21 +26,26 @@ public class Event extends Task {
     public Event(String description, String at) throws DukeException {
         super(description);
         String[] inputs = at.split(" ", 2);
-        String[] formatPatterns = {"yyyy-MM-dd", "dd-MMM-yyyy", "dd/MM/yyyy"};
-        for (int i = 0; i < formatPatterns.length; i++) {
+        assert inputs.length == 2 : "Event command input by user should have a date and time.";
+        String[] dateFormatPatterns = {"yyyy-MM-dd", "dd-MMM-yyyy", "dd/MM/yyyy"};
+        for (int i = 0; i < dateFormatPatterns.length; i++) {
             try {
-                LocalDate d = LocalDate.parse(inputs[0], DateTimeFormatter.ofPattern(formatPatterns[i]));
-                this.at = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                LocalDate d = LocalDate.parse(inputs[0], DateTimeFormatter.ofPattern(dateFormatPatterns[i]));
+                this.atDate = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 break;
             } catch (DateTimeParseException e) {
-                if (i == formatPatterns.length - 1) {
-                    throw new DukeException("Please enter the date and time in these format:\n"
+                if (i == dateFormatPatterns.length - 1) {
+                    throw new DukeException("Please enter the date in one of these formats:\n"
                             + "yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
                 }
             }
         }
-        if (inputs.length == 2) {
-            this.at = this.at + ", " + inputs[1];
+        try {
+            LocalTime t = LocalTime.parse(inputs[1], DateTimeFormatter.ofPattern("HHmm"));
+            this.atTime = t.format(DateTimeFormatter.ofPattern("hhmma"));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please enter the time in the 24-hour time format "
+                    + "eg. '2330' for 11.30pm or '0100' for 1am\n");
         }
     }
 
@@ -49,7 +56,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E][" + this.getStatusIcon() + "] " + this.getTaskDescription() + " (at: " + at + ")";
+        return "[E][" + this.getStatusIcon() + "] " + this.getTaskDescription()
+                + " (at: " + this.atDate + " " + this.atTime + ")";
     }
 
     /**
@@ -65,6 +73,6 @@ public class Event extends Task {
         } else {
             icon = "0";
         }
-        return "E , " + icon + " , " + this.description + " , " + this.at + "\n";
+        return "E , " + icon + " , " + this.description + " , " + this.atDate + " , " + this.atTime + "\n";
     }
 }
