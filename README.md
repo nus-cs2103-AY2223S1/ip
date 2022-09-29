@@ -47,7 +47,7 @@ Examples:
 ***
 
 ### Adding an Event : `event`
-Adds an todo task into the tasklist.
+Adds an event task into the tasklist.
 
 Format:  `event priority description /on date time-time`
 
