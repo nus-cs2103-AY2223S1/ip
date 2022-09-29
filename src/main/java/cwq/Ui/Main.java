@@ -1,6 +1,8 @@
-package cwq;
+package cwq.Ui;
 
 import java.io.IOException;
+
+import cwq.CWQ;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

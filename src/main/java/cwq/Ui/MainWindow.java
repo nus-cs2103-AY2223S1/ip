@@ -1,4 +1,4 @@
-package cwq;
+package cwq.Ui;
 
 import cwq.CWQ;
 import javafx.fxml.FXML;

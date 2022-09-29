@@ -1,4 +1,4 @@
-package cwq;
+package cwq.Ui;
 
 import java.io.IOException;
 import java.util.Collections;
