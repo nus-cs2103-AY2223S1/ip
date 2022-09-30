@@ -25,8 +25,8 @@ Be able to find certain tasks based on keyword
 ## Usage
 
 ### `todo <description>`: Add a todo task to the task list.
-      - Usage: `todo homework`
-      - Format: `todo <description>`
+    - Usage: `todo homework`
+    - Format: `todo <description>`
 
 ### `deadline <description> /by <date>`: Add a deadline task to the task list. (Using formatted dates)
     - Usage: `deadline homework /by 2020-08-08`
