@@ -9,6 +9,7 @@ import duke.comparator.NameComparator;
 import duke.comparator.TaskTypeComparator;
 import duke.exception.ContentNotFoundException;
 import duke.exception.DateNotFoundException;
+import duke.exception.InvalidIndexException;
 import duke.exception.TaskNotFoundException;
 import duke.tools.CommandParser;
 import duke.tools.TaskParser;
@@ -99,22 +100,31 @@ public class TaskList {
         return Ui.printList(tasks);
     }
 
-    public Task markTask(Integer n) {
+    public Task markTask(Integer n) throws InvalidIndexException {
         assert n > 0 : "n starts indexing from 1";
+        if (n < 1 || n > tasks.size()) {
+            throw new InvalidIndexException(n.toString());
+        }
         Task taskMark = tasks.get(n.intValue() - 1);
         taskMark.markAsDone();
         return taskMark;
     }
 
-    public Task unmarkTask(Integer n) {
+    public Task unmarkTask(Integer n) throws InvalidIndexException {
         assert n > 0 : "n starts indexing from 1";
+        if (n < 1 || n > tasks.size()) {
+            throw new InvalidIndexException(n.toString());
+        }
         Task taskMark = tasks.get(n.intValue() - 1);
         taskMark.markAsNotDone();
         return taskMark;
     }
 
-    public Task deleteTask(Integer n) {
+    public Task deleteTask(Integer n) throws InvalidIndexException {
         assert n > 0 : "n starts indexing from 1";
+        if (n < 1 || n > tasks.size()) {
+            throw new InvalidIndexException(n.toString());
+        }
         Task deletedTask = tasks.remove(n.intValue() - 1);
         return deletedTask;
     }

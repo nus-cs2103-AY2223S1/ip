@@ -53,7 +53,7 @@ public class TaskParser extends Parser {
      * @throws ContentNotFoundException When user input a task command without any content.
      */
     public String getTaskInfo() throws ContentNotFoundException {
-        if (keywords.length <= 1) {
+        if (keywords.length <= 1 || keywords[1].isBlank()) {
             throw new ContentNotFoundException(
                     "Input error: no content found after task type.");
         }
