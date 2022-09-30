@@ -32,7 +32,3 @@ jobs:
 
       - name: Build and check with Gradle
         run: ./gradlew check
-      
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.1
-
