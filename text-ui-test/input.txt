@@ -1,0 +1,14 @@
+todo This is a Todo Task
+deadline This is a Deadline Task /by Tomorrow
+event This is an Event Task /at Saturday 2-4pm
+mark 3
+mark 1
+mark 2
+list
+unmark 3
+unmark 1
+unmark 2
+list
+mark 1
+list
+bye
