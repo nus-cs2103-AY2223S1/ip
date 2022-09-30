@@ -42,6 +42,7 @@ Understood, my Lord. I have added this duty:
 ### Format: `deadline <description> /by <time>` 
 
 Adds a Deadline task to the task list with the given description and time as deadline.
+If deadline is given in `yyyy-MM-dd` format, it will be automatically converted to `MMM dd yyyy` format.
 
 **Example of usage:** 
 
@@ -59,16 +60,17 @@ Understood, my Lord. I have added this duty:
 ### Format: `event <description> /at <time>` 
 
 Adds an Event task to the task list with the given description and time of occurrence.
+If deadline is given in `yyyy-MM-dd` format, it will be automatically converted to `MMM dd yyyy` format.
 
 **Example of usage:** 
 
-`event party /at Sunday night`
+`event party /at 2022-09-13`
 
 **Example output:**
 
 ```
 Understood, my Lord. I have added this duty:
-[E][ ] party (at: Sunday night)
+[E][ ] party (at: Sep 13 2022)
 ```
 
 ## **Mark a task as done**
