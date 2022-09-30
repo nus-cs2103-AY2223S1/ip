@@ -190,3 +190,9 @@ Updates the task with the given ID with the new time.
 Right away my Lord, here is the amended duty:
 [D][ ] homework (by: Thursday 2359)
 ```
+
+## **Exit application**
+
+### Format: `bye` 
+
+Closes the application.
