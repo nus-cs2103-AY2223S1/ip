@@ -1,7 +1,69 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Welcome, my friend!
+I once wandered these halls, centuries ago. I am Duke Aemon of Old.
+Indeed, my memory is long when I am but a ghost of a memory myself...
+But you are young blood. What brings you to these ancient halls?
+***********************************************************************
+'Tis a new sky for you to scale! Here! 
+[T][ ] finish tasks for week 2
+You now have 1 tasks to do!
+***********************************************************************
+Mark this on your calendar! 
+[D][ ] complete renaming Duke (by: Sunday)
+You now have 2 tasks to do!
+***********************************************************************
+Another moment to mark... 
+[E][ ] attend lecture (at: Friday, 4-6pm)
+You now have 3 tasks to do!
+***********************************************************************
+Did you say...hi Duke!?
+The shadow of my memory is long...State what you would ask clearly.
 
+***********************************************************************
+'Tis a new sky for you to scale! Here! 
+[T][ ] complete Quiz2
+You now have 4 tasks to do!
+***********************************************************************
+Another moment to mark... 
+[E][ ] relax! (at: Today, 7-9pm)
+You now have 5 tasks to do!
+***********************************************************************
+Very well! One less burden to bear! I have marked this complete:
+[E][X] attend lecture (at: Friday, 4-6pm)
+
+***********************************************************************
+These are the tasks on your list!
+1.[T][ ] finish tasks for week 2
+2.[D][ ] complete renaming Duke (by: Sunday)
+3.[E][X] attend lecture (at: Friday, 4-6pm)
+4.[T][ ] complete Quiz2
+5.[E][ ] relax! (at: Today, 7-9pm)
+
+***********************************************************************
+Very well! One less burden to bear! I have marked this complete:
+[T][X] finish tasks for week 2
+
+***********************************************************************
+These are the tasks on your list!
+1.[T][X] finish tasks for week 2
+2.[D][ ] complete renaming Duke (by: Sunday)
+3.[E][X] attend lecture (at: Friday, 4-6pm)
+4.[T][ ] complete Quiz2
+5.[E][ ] relax! (at: Today, 7-9pm)
+
+***********************************************************************
+Hmm....I have marked this incomplete:
+[E][ ] attend lecture (at: Friday, 4-6pm)
+
+***********************************************************************
+These are the tasks on your list!
+1.[T][X] finish tasks for week 2
+2.[D][ ] complete renaming Duke (by: Sunday)
+3.[E][ ] attend lecture (at: Friday, 4-6pm)
+4.[T][ ] complete Quiz2
+5.[E][ ] relax! (at: Today, 7-9pm)
+
+***********************************************************************
+Ah! And so we part here today.
+ We may yet meet again...Farewell, my friend!
+
+***********************************************************************
