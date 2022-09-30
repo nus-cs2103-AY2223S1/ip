@@ -6,6 +6,7 @@ import java.util.EnumMap;
 
 import duke.exception.ContentNotFoundException;
 import duke.exception.DateNotFoundException;
+import duke.exception.InvalidIndexException;
 import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 
@@ -53,6 +54,16 @@ public class Ui {
         System.err.println(e.getMessage());
         System.out.println("Oops, I'm not sentient enough to understand that...");
         return "Oops, I'm not sentient enough to understand that...";
+    }
+
+    /**
+     * Prints error message for InvalidIndexException.
+     * @param e InvalidIndexException that was thrown.
+     * @return A string for InvalidIndexException toast.
+     */
+    public static String InvalidIndexExceptionToast(InvalidIndexException e) {
+        System.err.println(e.getMessage());
+        return "Oops the number you've keyed in is not in range. Please try again.";
     }
 
     /**
@@ -190,6 +201,9 @@ public class Ui {
      * @return Task sort result header string.
      */
     public static String sortTaskToast(String criteria) {
+        if (criteria.isBlank()) {
+            criteria = "no order";
+        }
         System.out.println("Here are the tasks, sorted by " + criteria);
         return "Here are the tasks, sorted by " + criteria;
     }

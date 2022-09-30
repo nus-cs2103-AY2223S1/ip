@@ -37,7 +37,8 @@ public class CommandParser extends Parser {
         DATES,
         NAME,
         TASK,
-        DONE
+        DONE,
+        DEFAULT
     }
 
     /**
@@ -78,7 +79,7 @@ public class CommandParser extends Parser {
      * @return Integer order of the task.
      */
     public int getTaskNo() {
-        if (keywords.length < 2) {
+        if (keywords.length < 2 || keywords[1].isBlank()) {
             return 0;
         }
         return Integer.parseInt(this.keywords[1].substring(0, 1));
@@ -89,6 +90,9 @@ public class CommandParser extends Parser {
      * @return Word that is searched for.
      */
     public String getWord() {
+        if (keywords.length < 2) {
+            return "";
+        }
 
         return this.keywords[1];
     }
@@ -98,6 +102,10 @@ public class CommandParser extends Parser {
      * @return Criteria for sorting
      */
     public Sorting getSortCriteria() {
+
+        if (keywords.length < 2 || keywords[1].isBlank()) {
+            return Sorting.DEFAULT;
+        }
 
         return Sorting.valueOf(this.keywords[1].toUpperCase(Locale.ROOT));
     }

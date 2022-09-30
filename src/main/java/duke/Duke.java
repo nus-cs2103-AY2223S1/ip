@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import duke.exception.ContentNotFoundException;
 import duke.exception.DateNotFoundException;
+import duke.exception.InvalidIndexException;
 import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -50,16 +51,31 @@ public class Duke {
         case LIST:
             return tasks.list();
         case MARK:
-            Task doneTask = tasks.markTask(keywordParser.getTaskNo());
-            storage.saveTasks(tasks);
+            Task doneTask;
+            try {
+                doneTask = tasks.markTask(keywordParser.getTaskNo());
+                storage.saveTasks(tasks);
+            } catch (InvalidIndexException e) {
+                return Ui.InvalidIndexExceptionToast(e);
+            }
             return Ui.congrats(doneTask);
         case UNMARK:
-            Task undoneTask = tasks.unmarkTask(keywordParser.getTaskNo());
-            storage.saveTasks(tasks);
+            Task undoneTask;
+            try {
+                undoneTask = tasks.unmarkTask(keywordParser.getTaskNo());
+                storage.saveTasks(tasks);
+            } catch (InvalidIndexException e) {
+                return Ui.InvalidIndexExceptionToast(e);
+            }
             return Ui.undoneToast(undoneTask);
         case DELETE:
-            Task deleted = tasks.deleteTask(keywordParser.getTaskNo());
-            storage.saveTasks(tasks);
+            Task deleted;
+            try {
+                deleted = tasks.deleteTask(keywordParser.getTaskNo());
+                storage.saveTasks(tasks);
+            } catch (InvalidIndexException e) {
+                return Ui.InvalidIndexExceptionToast(e);
+            }
             return Ui.deleteTaskToast(deleted, tasks.size());
         case FIND:
             ArrayList<Task> result = tasks.findTasks(keywordParser.getWord());
