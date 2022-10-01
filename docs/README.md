@@ -52,7 +52,9 @@ Update tasks previously stored in Duke
 
 ## Features Usage
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Notes about the command format:**<br>
+
 * Words in `< >` are parameters to be supplied by the user.<br>
   e.g. in `todo <description>`, `description` is a parameter which can be used as `todo cs2103 ip`.
 * Extraneous parameters for commands that do not take in parameters (such as `exit` and `list`) will be ignored.<br>
@@ -61,117 +63,141 @@ Update tasks previously stored in Duke
 
 ### `todo` - Creates a new todo task
 
-Example of usage:
+Creates a new todo task with a given description. Description cannot be empty
+
+Format:
 
 `todo <description>`
 
-Expected outcome:
+Examples:
 
-Creates a new todo
-
-
+* `todo ip project`
+* `todo watch football`
 
 ### `deadline` - Creates a new deadline task
 
-Example of usage:
+Creates a new deadline task with a given description and deadline. Description and deadline cannot be empty.
+If deadline provided is of the following formats:
 
-`deadline <description> /by <date>`
+* yyyy-mm-dd HHmm
+* dd-mm-yyyy HHmm
+* yyyy-mm-dd
+* dd-mm-yyyy
 
-Expected outcome:
+Duke will help you to convert it into a dd-MM-yyyy format
 
-Creates a new deadline
+Format:
 
+`deadline <description> /by <deadline>`
 
+Examples:
+
+* `deadline ip project /by 18-09-2022 2359`
+* `deadline ip peer evaluation /by 2022-10-08 2359`
 
 ### `event` - Creates a new event task
 
-Example of usage:
+Creates a new event task with a given description and place. Description and place cannot be empty.
+
+Format:
 
 `event <description> /at <place>`
 
-Expected outcome:
+Examples:
 
-Creates a new event
+* `event CS2102 exam /at mpsh2A`
+
 
 ### `list` - List all tasks
 
-Example of usage: 
+Duke will display a list of tasks previously created
+
+Format:
 
 `list`
 
-Expected outcome:
-
-Duke will display a list of tasks previously created
-
-
-
 ### `find` - Find tasks matching the query
-
-Example of usage: 
-
-`find <query>`
-
-Expected outcome:
 
 Duke will display a list of tasks matching the query (case-sensitive)
 
+Format:
+
+`find <query>`
+
+Examples:
+
+* `find exam`
+* `find`
 
 
 ### `mark` - Mark a task as completed
 
-Example of usage: 
+Mark the task at the given index in the **full list of tasks** as completed. Index provided must be valid.
+If more than one valid index is provided. Duke will only mark the task at the first index provided.
+
+Format:
 
 `mark <index>`
 
-Expected outcome:
+Examples:
 
-Mark a task as completed 
-
+* `mark 1`
 
 
 ### `unmark` - Mark a task as incomplete
 
-Example of usage: 
+Mark the task at the given index in the **full list of tasks** as incomplete. Index provided must be valid.
+If more than one valid index is provided. Duke will only unmark the task at the first index provided.
 
-`mark <index>`
+Format:
 
-Expected outcome:
+`unmark <index>`
 
-Unmark a completed task
+Examples:
 
+* `unmark 1`
 
 
 ### `remove` / `delete` - Delete a task from Duke
 
-Example of usage: 
+Delete a task from Duke at the given index in the **full list of tasks**. Index provided must be valid.
+If more than one valid index is provided. Duke will only delet the task at the first index provided.
+
+Format:
+
 `remove <index>`
 `delete <index>`
 
-Expected outcome:
+Examples:
 
-Delete a task from Duke
-
+* `remove 1`
+* `delete 2`
 
 
 ### `update` - Update a task description
 
-Example of usage: 
+Update the description of a task the given index in the **full list of tasks**. Index provided must be valid.
+New description of task cannot be empty.
+
+Format:
 
 `update <index> <new description>`
 
-Expected outcome:
+Examples:
+* `update 1 watch united vs city`
+* `update 3 cs2102 exam /at mpsh2B`
 
-Update the description of a task
 
 
 ### `quit` / `exit` / `bye` - Quit the application
 
-Example of usage: 
+Quit the application
 
+Format:
 `quit`
 `exit`
 `bye`
 
-Expected outcome:
 
-Quit the application
+
+
