@@ -134,7 +134,7 @@ public class DukeTaskManager {
             String str = dukeTasks.get(i).toString();
             DukeUi.dukePrint(String.format("Nice! I've marked this task as done:\n %s\n", str));
         } else {
-            DukeUi.dukePrint("Error. duke.task.Task is not in the list\n");
+            DukeUi.dukePrint("Error. Task is not in the list\n");
         }
     }
 
