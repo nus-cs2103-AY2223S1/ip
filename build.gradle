@@ -16,7 +16,7 @@ checkstyle {
 }
 
 dependencies {
-    String javaFxVersion = '11.0.2'
+    String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -46,11 +46,6 @@ test {
         showStackTraces true
         showStandardStreams = false
     }
-}
-
-javafx {
-    version = "11.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 application {
