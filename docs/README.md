@@ -7,7 +7,7 @@ Welcome to Duke! This simple chat bot will allow you to store, view, and keep tr
 ## Quick start
 
 1. Ensure you have Java 11 or above installed.
-2. Download the latest duke.jar from here.
+2. Download the latest duke.jar from [here](https://github.com/arnav-ag/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for Duke.
 4. Double-click the file to start the app.
 5. Enter a command in the command box to execute it.
