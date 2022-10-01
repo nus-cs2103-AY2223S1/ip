@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Shiba"
+    mainClassName = "Launcher"
 }
 
 shadowJar {

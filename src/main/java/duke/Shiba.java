@@ -30,9 +30,9 @@ public class Shiba {
      */
     public Shiba() {
         ui = new Ui();
-        storage = new Storage();
         parser = new Parser();
         try {
+            storage = new Storage();
             tasks = new TaskList(storage.retrieveTasks());
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());

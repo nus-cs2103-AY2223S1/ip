@@ -22,16 +22,58 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static final String PATH = "src/main/data/userTasks.txt";
+    private static final String HOME_DIRECTORY = System.getProperty("user.dir");
+    private static final String TARGET_DIRECTORY = HOME_DIRECTORY + "/src/main/data";
+    private static final String PATH = TARGET_DIRECTORY + "/userTasks.txt";
 
     private final File f;
     private ArrayList<String> stringArray;
 
     /**
      * Initialises the Storage class with a specified PATH constant
+     *
+     * @throws DukeException if the file cannot be created
      */
-    public Storage() {
-        f = new File(PATH);
+    public Storage() throws DukeException {
+        f = initialize();
+    }
+
+    /**
+     * Initialises the user tasks file for the storage directory
+     *
+     * @return A file containing the user tasks
+     * @throws DukeException if the file cannot be created
+     */
+    public File initialize() throws DukeException {
+        try {
+
+            File srcDirectory = new File(HOME_DIRECTORY + "/src");
+            if (!srcDirectory.exists()) {
+                srcDirectory.mkdir();
+            }
+
+            File mainDirectory = new File(HOME_DIRECTORY + "/src/main");
+            if (!mainDirectory.exists()) {
+                mainDirectory.mkdir();
+            }
+
+            File parentDirectory = new File(TARGET_DIRECTORY);
+
+            if (!parentDirectory.exists()) {
+                parentDirectory.mkdir();
+            }
+
+            File userTasks = new File(PATH);
+
+            if (!userTasks.exists()) {
+                userTasks.createNewFile();
+            }
+
+            return userTasks;
+
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
     }
 
     /**
