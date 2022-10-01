@@ -15,6 +15,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+checkstyleMain {
+    enabled = gradle.startParameter.taskNames.contains('checkstyleMain')
+}
+
 dependencies {
     String javaFxVersion = '11'
 
