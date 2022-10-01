@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 import duke.util.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+
+
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -25,8 +29,10 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     private Duke duke;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/plane.jpg"));
-    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/doomba.jpg"));
+    private final Image userImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/plane.png")));
+    private final Image dukeImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/doomba.png")));
 
     /**
      * Sets up the GUI.
