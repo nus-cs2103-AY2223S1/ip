@@ -1,0 +1,52 @@
+todo
+event
+deadline
+list
+mark
+unmark
+todo
+todo a b c
+deadline
+deadline a /by
+deadline     /by a
+deadline b z    /by c d
+deadline a b /at c d
+list
+event
+event a /at
+event     /at a
+event b z    /at c d
+event a b /by c d
+todo d e f
+list
+mark 0
+mark 1
+mark 3
+mark 9
+event gio /at 798 hiouh
+mark 4
+list
+unmark 3
+unmark 2
+list
+unmark 3
+list
+unmark 0
+unmark 99
+a
+
+delete a
+delete
+delete 2
+delete 3
+delete 4
+list
+delete 3
+delete 0
+delete 1
+delete 2
+delete 1
+delete 1
+delete 0
+delete 1
+list
