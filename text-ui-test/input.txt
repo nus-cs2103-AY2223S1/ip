@@ -1,0 +1,13 @@
+deadline return book /by 2/12/2019 1800
+event Anime convention /by 27/11/2022 0800
+todo borrow book
+event CS2103 Finals /by 25/11/2022 0900
+event new year /by 01/01/2022 0000
+mark 2
+unmark 2
+mark 3
+find Anime
+updateTime 2 /to 26/11/2022 0800
+updateTask 1 /to borrow another book
+list
+bye
