@@ -21,7 +21,6 @@ public class Parser {
     public Parser() {
     }
 
-
     /**
      * Processes the user input and calls a corresponding method. Meant for JavaFX.
      *
@@ -159,7 +158,8 @@ public class Parser {
             String needMoreInfo = "Please add a task after 'event'!";
             throw new DukeException(needMoreInfo);
         } else if (!input.contains("/at")) {
-            String needMoreInfo = "Please add a date and/or time for the event";
+            String needMoreInfo = "Please add a {date} AND/OR {time} for the event, " +
+                    "in the format: '/at {YYYY-MM-DD} {HH:MM}'";
             throw new DukeException(needMoreInfo);
         } else {
             int separatorPosition = input.indexOf("/");
@@ -180,7 +180,8 @@ public class Parser {
             String needMoreInfo = "Please add a task after 'deadline'!";
             throw new DukeException(needMoreInfo);
         } else if (!input.contains("/by")) {
-            String needMoreInfo = "Please add a date and/or time for the deadline";
+            String needMoreInfo = "Please add a {date} AND/OR {time} for the deadline task, " +
+                    "in the format: '/by {YYYY-MM-DD} {HH:MM}'";
             throw new DukeException(needMoreInfo);
         } else {
             int separatorPosition = input.indexOf("/");
@@ -240,7 +241,10 @@ public class Parser {
      */
     private void updateTask() throws DukeException {
         if (input.length() == 0) {
-            String needMoreInfo = "Please indicate task number and/or details for the update after 'update'!";
+            String needMoreInfo = "Please indicate task number and details for the update after 'update'!\n" +
+                    "\nTo edit description of task, type it as 'update {new task description}'\n" +
+                    "\nTo edit date and/or time for event, type it as 'update /at {YYYY-MM-DD} {HH:MM}'\n" +
+                    "\nTo edit date and/or time for deadline, type it as 'update /by {YYYY-MM-DD} {HH:MM}'";
             throw new DukeException(needMoreInfo);
         } else {
             int taskNumber = Integer.parseInt(input.substring(0, 1)) - 1;

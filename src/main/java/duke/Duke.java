@@ -46,7 +46,8 @@ public class Duke {
     public void sendWelcomeMessage(VBox dialogContainer, Image dukeImage) {
         String greetings = "Good day to you! I'm Bob!\n"
                 + "I will help you to keep track of your tasks!\n"
-                + "The following are your saved tasks:";
+                + "Do remember to tell me 'bye' before you leave to save your tasks!\n"
+                + "\nThe following are your saved tasks:";
         for (Task t : this.tasks.getTasks()) {
             greetings = greetings + "\n       " + t.toString();
         }
