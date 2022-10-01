@@ -7,7 +7,7 @@ plugins {
 }
 
 javafx {
-    version = "19"
+    version = "11"
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
@@ -30,10 +30,8 @@ repositories {
 
 dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
 
-    String javaFxVersion = '19'
+    String javaFxVersion = '11'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
@@ -46,6 +44,13 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+
+    testImplementation (group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0') {
+        exclude group:'org.hamcrest'
+    }
+    testRuntimeOnly (group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0') {
+        exclude group:'org.hamcrest'
+    }
 }
 
 test {
@@ -64,25 +69,29 @@ test {
 
 application {
     mainClassName = "duke.Launcher"
+    mainModule.set("ip.main")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "naruto"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
-    enableAssertions = true
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'duke.Launcher' // replace with you main class
+                'Main-Class': 'duke.Launcher'
         )
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+apply plugin: 'java'
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }

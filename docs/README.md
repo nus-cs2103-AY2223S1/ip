@@ -1,3 +1,4 @@
+
 #Naruto Chatbot
 
 Part-time Hokage Wannabe full-time virtual assistant, Naruto is here to help you organise your day.
@@ -94,3 +95,7 @@ bye
 | delete [Index]                 |
 | find [Name]                    |
 | bye                            |
+
+## ACKNOWLEDGMENTS
+This Project uses [`JSON.simple`](https://mkyong.com/java/json-simple-example-read-and-write-json/)
+in accordance to its use policy to serialise data into JSON.
