@@ -44,6 +44,15 @@ public class Duke {
         }
     }
 
+    /**
+     * Indicates whether the application is shutting down.
+     *
+     * @return A boolean on whether Duke is shutting down
+     */
+    public boolean isExit() {
+        return this.isExit;
+    }
+
     private void run() {
         assert this.ui instanceof TextUi : "`Duke::run` should only be used with a TextUI";
         while (!isExit) {
