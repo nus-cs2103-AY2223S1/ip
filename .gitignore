@@ -5,6 +5,7 @@
 
 # Gradle build files
 /.gradle/
+/src/main/java/.gradle/
 /build/
 src/main/resources/docs/
 
@@ -14,4 +15,11 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+/text-ui-test/EXPECTED-UNIX.TXT
+
+*.class
+
+#Data files
+/src/main/java/data
+text-ui-test/data
+/data/
