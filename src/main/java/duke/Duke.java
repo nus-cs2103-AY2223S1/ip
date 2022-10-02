@@ -2,8 +2,16 @@ package duke;
 
 import duke.data.LocalStorage;
 import duke.exceptions.DukeException;
-import duke.handlers.*;
-import duke.models.*;
+import duke.handlers.ByeHandler;
+import duke.handlers.DeadlineHandler;
+import duke.handlers.DeleteHandler;
+import duke.handlers.EventHandler;
+import duke.handlers.FindHandler;
+import duke.handlers.ListHandler;
+import duke.handlers.MarkHandler;
+import duke.handlers.TodoHandler;
+import duke.handlers.UnmarkHandler;
+import duke.models.TaskList;
 import duke.services.Parser;
 import duke.utils.Commands;
 import javafx.scene.Scene;

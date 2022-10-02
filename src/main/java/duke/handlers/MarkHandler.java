@@ -1,7 +1,11 @@
 package duke.handlers;
 
 import duke.exceptions.DukeException;
-import duke.models.*;
+import duke.models.Deadline;
+import duke.models.Event;
+import duke.models.FormattedDate;
+import duke.models.Task;
+import duke.models.TaskList;
 import duke.utils.Interval;
 
 /**
@@ -9,7 +13,7 @@ import duke.utils.Interval;
  */
 public class MarkHandler {
     /**
-     * Handles the MARK Duke command.
+     * Handles the MARK Duke commandß.
      * Marks a Task as done from the provided list based on position index provided in input.
      *
      * @param list TaskList containing the Tasks to mark.
