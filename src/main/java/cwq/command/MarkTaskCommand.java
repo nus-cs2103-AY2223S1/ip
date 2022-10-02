@@ -1,8 +1,9 @@
 package cwq.command;
 
+import cwq.exception.NoSuchTaskException;
 import cwq.storage.Storage;
 import cwq.task.TasksController;
-import cwq.exception.NoSuchTaskException;
+
 /**
  * MarkTaskCommand will execute the command of marking a task.
  */

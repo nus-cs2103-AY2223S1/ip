@@ -1,30 +1,28 @@
 package cwq.parser;
 
-import cwq.command.CreateToDoCommand;
-import cwq.command.CreateEventCommand;
-import cwq.command.CreateDeadlineCommand;
-import cwq.command.ShowTasksCommand;
-import cwq.command.DeleteTaskCommand;
-import cwq.command.MarkTaskCommand;
-import cwq.command.UnmarkTaskCommand;
-import cwq.command.SortTasksCommand;
-import cwq.command.ExitCommand;
-import cwq.command.FindCommand;
-import cwq.command.RemindDeadlineCommand;
-
-import cwq.exception.InvalidTimeException;
-import cwq.exception.TooManyKeywordsException;
-import cwq.exception.InvalidCommandException;
-import cwq.exception.InvalidTaskException;
-import cwq.exception.EmptyContentException;
-
-import cwq.command.Command;
-import cwq.storage.Storage;
-import cwq.task.TasksController;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import cwq.command.Command;
+import cwq.command.CreateDeadlineCommand;
+import cwq.command.CreateEventCommand;
+import cwq.command.CreateToDoCommand;
+import cwq.command.DeleteTaskCommand;
+import cwq.command.ExitCommand;
+import cwq.command.FindCommand;
+import cwq.command.MarkTaskCommand;
+import cwq.command.RemindDeadlineCommand;
+import cwq.command.ShowTasksCommand;
+import cwq.command.SortTasksCommand;
+import cwq.command.UnmarkTaskCommand;
+import cwq.exception.EmptyContentException;
+import cwq.exception.InvalidCommandException;
+import cwq.exception.InvalidTaskException;
+import cwq.exception.InvalidTimeException;
+import cwq.exception.TooManyKeywordsException;
+import cwq.storage.Storage;
+import cwq.task.TasksController;
 
 /**
  * Parser classes parse user's input of commands
@@ -33,6 +31,9 @@ public class Parser {
     private final ArrayList<String> legalCommands = new ArrayList<>();
     private final ArrayList<String> legalTasks = new ArrayList<>();
 
+    /**
+     * Create a parser.
+     */
     public Parser() {
         legalCommands.add("add");
         legalCommands.add("delete");

@@ -1,8 +1,9 @@
 package cwq.command;
 
+import cwq.exception.NoSuchTaskException;
 import cwq.storage.Storage;
 import cwq.task.TasksController;
-import cwq.exception.NoSuchTaskException;
+
 /**
  * DeleteCommand will execute the command of deleting a task.
  */

@@ -1,8 +1,8 @@
-package cwq.Ui;
+package cwq.ui;
 
 import java.io.IOException;
 
-import cwq.CWQ;
+import cwq.Cwq;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private final CWQ cwq = new CWQ();
+    private final Cwq cwq = new Cwq();
     private final String logo =
               " _______ \t                     \t    ________ \n"
             + "|      \\ \t  \\      /\\      /\t   |        |\n"

@@ -13,6 +13,10 @@ import cwq.exception.NoSuchTaskException;
 public class TasksController {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Create a task controller
+     * @param tasks task list
+     */
     public TasksController(ArrayList<Task> tasks) {
         assert tasks != null : "Tasks should not be null!";
         this.tasks = tasks;
@@ -102,7 +106,7 @@ public class TasksController {
      */
     public ArrayList<Task> sortTasksByTime() {
         ArrayList<Task> sortedTasks = new ArrayList<>();
-        for(Task task: tasks) {
+        for (Task task: tasks) {
             if (task instanceof Event || task instanceof Deadline) {
                 sortedTasks.add(task);
             }
@@ -129,7 +133,7 @@ public class TasksController {
     public ArrayList<Task> getDeadlines() {
         LocalDateTime now = LocalDateTime.now();
         ArrayList<Task> deadlines = new ArrayList<>();
-        for(Task task: tasks) {
+        for (Task task: tasks) {
             if (task instanceof Deadline) {
                 if (task.getTime().isAfter(now)) {
                     deadlines.add(task);

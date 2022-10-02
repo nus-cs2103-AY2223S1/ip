@@ -1,10 +1,14 @@
 package cwq.command;
 
+import java.util.ArrayList;
+
 import cwq.storage.Storage;
 import cwq.task.Task;
 import cwq.task.TasksController;
-import java.util.ArrayList;
 
+/**
+ * Remind users wof their upcoming deadline
+ */
 public class RemindDeadlineCommand extends Command {
     /**
      * Execute RemindDeadlineCommand

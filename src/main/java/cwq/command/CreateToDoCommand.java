@@ -1,8 +1,9 @@
 package cwq.command;
 
 import cwq.storage.Storage;
-import cwq.task.ToDo;
 import cwq.task.TasksController;
+import cwq.task.ToDo;
+
 /**
  * CreatToDoCommand will execute the command of creating a new todo.
  */

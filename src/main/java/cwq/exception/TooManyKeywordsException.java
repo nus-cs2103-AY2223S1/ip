@@ -1,5 +1,8 @@
 package cwq.exception;
 
+/**
+ * TooManyKeywordsException
+ */
 public class TooManyKeywordsException extends DukeExceptions {
 
     /**

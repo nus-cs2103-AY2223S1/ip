@@ -1,10 +1,10 @@
 package cwq.command;
 
+import java.util.ArrayList;
+
 import cwq.storage.Storage;
 import cwq.task.Task;
 import cwq.task.TasksController;
-
-import java.util.ArrayList;
 
 /**
  * FindCommand class will execute the find command.

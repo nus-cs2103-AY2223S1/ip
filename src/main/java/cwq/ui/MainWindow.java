@@ -1,6 +1,6 @@
-package cwq.Ui;
+package cwq.ui;
 
-import cwq.CWQ;
+import cwq.Cwq;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private CWQ CWQ;
+    private Cwq cwq;
 
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private final Image cwqImage = new Image(this.getClass().getResourceAsStream("/images/cwq.png"));
@@ -32,8 +32,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(CWQ d) {
-        CWQ = d;
+    public void setDuke(Cwq d) {
+        cwq = d;
     }
 
     /**
@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = CWQ.getResponse(input);
+        String response = cwq.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, cwqImage)
