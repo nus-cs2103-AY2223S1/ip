@@ -12,7 +12,6 @@
 * update datetime for event and deadline tasks
 * list available tasks
 
-
 ## Commands
 * `todo <taskName>` 
   * e.g. todo sleep
