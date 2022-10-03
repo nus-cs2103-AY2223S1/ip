@@ -1,6 +1,16 @@
-# Sakura project template
+# 🌸 Sakura 🌸 
+**Sakura** is an ALL-IN-ONE task manager application that can help you track and manage all your efficiently 
+via a Command Line Interface and aesthetic Graphical User Interfact (GUI).
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Why should you use Sakura?
+1. Easy to Use
+2. Comprises of all the information you need
+3. Fast
+4. Saves your information so that when you return, your tasks are still present!
+
+So what are you waiting for? Download Sakura [here](https://github.com/Kok-je/ip) and get started on your tasks! („• ◡ •„) ♡
+
+Here's a screenshot of Sakura in action:<br>![](/ip/images/Ui.PNG)
 
 ## Setting up in Intellij
 
