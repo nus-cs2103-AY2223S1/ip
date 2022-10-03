@@ -1,0 +1,4 @@
+1. [E][ ] return book (at: morning)
+2. [D][ ] return book (by: Dec 12 2022)
+3. [T][ ] make bed
+4. [D][ ] return me (by: Dec 12 2022)
