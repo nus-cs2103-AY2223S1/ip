@@ -1,6 +1,6 @@
 # 🌸 Sakura 🌸 
 **Sakura** is an ALL-IN-ONE task manager application that can help you track and manage all your efficiently 
-via a Command Line Interface and aesthetic Graphical User Interfact (GUI).
+via a Command Line Interface and aesthetic Graphical User Interface (GUI).
 
 Why should you use Sakura?
 1. Easy to Use
