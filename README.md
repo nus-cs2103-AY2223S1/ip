@@ -10,7 +10,7 @@ Why should you use Sakura?
 
 So what are you waiting for? Download Sakura [here](https://github.com/Kok-je/ip) and get started on your tasks! („• ◡ •„) ♡
 
-Here's a screenshot of Sakura in action:<br>![](/ip/images/Ui.PNG)
+Here's a screenshot of Sakura in action:<br>![](/images/Ui.PNG)
 
 ## Setting up in Intellij
 
