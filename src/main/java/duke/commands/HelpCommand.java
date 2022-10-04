@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
             + "remember your tasks, all for the low cost of having to deal with her attitude. "
             + "KarenBot is best suited for the quick typist, maximising "
             + "your productivity by spending less time on handling your tasks!\n";
-
+    public static final String WARNING = "Note: | (pipe character) should not be used as an input.\n";
 
     /**
      * {@inheritDoc}
@@ -27,6 +27,7 @@ public class HelpCommand extends Command {
         return new CommandResult(
                 INTRO + "\n"
                      + DESCRIPTION + "\n"
+                     + WARNING + "\n"
                      + AddCommand.MESSAGE_USAGE + "\n"
                      + ListCommand.MESSAGE_USAGE + "\n"
                      + MarkCommand.MESSAGE_USAGE + "\n"

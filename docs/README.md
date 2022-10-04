@@ -52,6 +52,7 @@ corrupted files already, _KarenBot_ will not overwrite `duke-corrupt.txt`. Inste
 appropriate values as specified.
 - All time values have to be formatted in this specific format: `yyyy-mm-dd HH:MM`.   
 Allowed delimiter characters are: `-:.|/`.
+- `|` (pipe character) should never be used as an input, as it is used as a delimiter for data storing purposes. 
 
 ### `help`: Viewing list of all possible commands
 Displays a list of all possible commands.  
