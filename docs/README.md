@@ -108,3 +108,10 @@ Expected outcome:
 ### `bye`
 Instantly closes the app.
 
+Example of usage:
+
+`bye`
+
+Expected outcome:
+The app should close instantly.
+
