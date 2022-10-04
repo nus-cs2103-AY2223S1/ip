@@ -105,3 +105,6 @@ Expected outcome:
 
 ![findExample](https://user-images.githubusercontent.com/93211040/189960107-91b669a6-f9df-4f31-8eaf-4752c19286e1.png)
 
+### `bye`
+Instantly closes the app.
+
