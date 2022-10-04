@@ -1,0 +1,5 @@
+T | O | sleep more
+T | O | wedding
+T | O | return book
+T | X | sing song
+E | O | wedding | Oct 27 2022 | 17:00
