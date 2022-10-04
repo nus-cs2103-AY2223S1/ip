@@ -32,7 +32,7 @@ The chatbot allows you to find saved tasks that contains a keyword/phrase.
 
 To add and save a todo task, type the command as such:
 
-"todo _description of task_"
+"todo `description of task`"
 
 Example of usage: 
 
@@ -54,7 +54,7 @@ You now have a total of 1 tasks!
 
 To add and save a event task, type the command as such:
 
-"event _description of task_ /at _date in YYYY-MM-DD format_ _time in HH:MM format_"
+"event `description of task` /at `date in YYYY-MM-DD format` `time in HH:MM format`"
 
 For date and time of event, at least one of them must be stated when saving the event task.
 
@@ -76,7 +76,7 @@ You now have a total of 1 tasks!
 
 To add and save a deadline task, type the command as such:
 
-"deadline _description of task_ /by _date in YYYY-MM-DD format_ _time in HH:MM format_"
+"deadline `description of task` /by `date in YYYY-MM-DD format` `time in HH:MM format`"
 
 For date and time of deadline task, at least one of them must be stated when saving the deadline task.
 
@@ -119,7 +119,7 @@ The following are your saved tasks:
 
 To indicate that a task has been completed, type the command as such:
 
-"mark _the number of the task as indicated in the list displayed after typing the 'list' command_"
+"mark `the number of the task as indicated in the list displayed after typing the 'list' command`"
 
 Example of usage: 
 
@@ -138,7 +138,7 @@ Task has been marked as done!:
 
 To indicate that a task has not been completed, type the command as such:
 
-"unmark _the number of the task as indicated in the list displayed after typing the 'list' command_"
+"unmark `the number of the task as indicated in the list displayed after typing the 'list' command`"
 
 Example of usage: 
 
@@ -157,11 +157,11 @@ Task has been marked as NOT done!:
 
 To update an event task, type the command as such:
 
-"update _the number of the task in the list_ _new description of the task_ /at _new date_ _new time_"
+"update `the number of the task in the list` `new description of the task` /at `new date` `new time`"
 
 To update a deadline task, type the command as such:
 
-"update _the number of the task in the list_ _new description of the task_ /by _new date_ _new time_"
+"update `the number of the task in the list` `new description of the task` /by `new date` `new time`"
 
 You must include at least a new description/date/time for an update. 
 
@@ -184,7 +184,7 @@ Task has been updated!:
 
 To delete a saved task, type the command as such:
 
-"delete _the number of the task in the list_"
+"delete `the number of the task in the list`"
 
 Example of usage: 
 
@@ -204,7 +204,7 @@ You now have a total of 2 tasks!
 
 To find a task based on a keyword/phrase, type the command as such:
 
-"find _word/phrase that you want in the saved tasks_"
+"find `word/phrase that you want in the saved tasks`"
 
 Example of usage: 
 
