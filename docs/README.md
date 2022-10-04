@@ -6,7 +6,7 @@ Welcome to Duke, your personal task manager!
 2. Search for any task in the list that you need.
 3. Mark a task as done or unmark it if it is undone.
 4. Delete any unwanted tasks!
-5. Duplication detection where you will be warned if there is a duplicate task added to the list.
+5. Duplication detection where you will be warned if there is a duplicate task added to the list. Duplicated tasks will not be added to the list.
 
 ### `todo <description>`
 Adds a todo task with the description as its content into your list.
