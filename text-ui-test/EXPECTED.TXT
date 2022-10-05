@@ -1,7 +1,24 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+DoiMoiBot: Hello! I'm doimoibot
+What can I do you for?
+Okay! created ToDo!
+[T] bang the drum [ ]
+Okay! created ToDo!
+[D] bang the triangle [ ] (by tomorrow)
+Okay! created ToDo!
+[E] bang the cowbell [ ] (at tuesday)
+Please specify the timeline!
+1: [T] bang the drum [ ]
+2: [D] bang the triangle [ ] (by tomorrow)
+3: [E] bang the cowbell [ ] (at tuesday)
+Okay! marked as done!
+[D] bang the triangle [X] (by tomorrow)
+Okay! marked as done!
+[E] bang the cowbell [X] (at tuesday)
+1: [T] bang the drum [ ]
+2: [D] bang the triangle [X] (by tomorrow)
+3: [E] bang the cowbell [X] (at tuesday)
+Okay! marked as not done!
+[E] bang the cowbell [ ] (at tuesday)
+1: [T] bang the drum [ ]
+2: [D] bang the triangle [X] (by tomorrow)
+3: [E] bang the cowbell [ ] (at tuesday)

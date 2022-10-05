@@ -1,0 +1,10 @@
+todo bang the drum
+deadline bang the triangle /by tomorrow
+event bang the cowbell /at tuesday
+event bang /by
+list
+mark 2
+mark 3
+list
+unmark 3
+list
