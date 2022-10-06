@@ -8,7 +8,7 @@ package util;
 public class TextUtils {
 
     // ERROR MESSAGES
-    public static final String UNKNOWN_COMMAND_ERROR = "UNKNOWN COMMAND!";
+    public static final String UNKNOWN_COMMAND_ERROR = "UNKNOWN COMMAND! USE \"HELP\" TO SEE A LIST OF COMMANDS!";
     public static final String FIND_COMMAND_ERROR = "PLEASE PREFIX YOUR SEARCH TERMS WITH \"--\"!";
     public static final String TENTATIVE_COMMAND_ERROR = "INVALID TENTATIVE COMMAND!";
     public static final String DATE_IN_PAST_ERROR = "DATE IS IN THE PAST!";

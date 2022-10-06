@@ -101,7 +101,7 @@ public class Parser {
         case TeachCommand.COMMAND_WORD:
             return handleTeachCommand(args);
         default:
-            return new InteractCommand(text);
+            throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
         }
     }
 
