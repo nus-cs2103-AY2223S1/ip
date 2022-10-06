@@ -16,7 +16,6 @@ import command.EchoCommand;
 import command.EventCommand;
 import command.FindCommand;
 import command.HelpCommand;
-import command.InteractCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.TeachCommand;
