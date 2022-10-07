@@ -1,0 +1,10 @@
+todo borrow book
+deadline return book /by Sunday
+event project meeting /at 2022-08-25 1845
+list
+mark 1
+mark 3
+unmark 3
+list
+sdfdfcgdfgdfgdfg
+bye
