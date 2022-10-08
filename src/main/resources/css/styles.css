@@ -1,0 +1,6 @@
+#dialog{
+    -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 90% , reflect, #0019f2, #5edad6 75% , #28fb18);
+    -fx-background-radius: 20;
+    -fx-text-fill:"white"
+}
+
