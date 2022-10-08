@@ -17,6 +17,7 @@ traditional GUI apps.
     - [Listing all tasks : `list`](#listing-all-tasks--list)
     - [Sorting the tasks by date : `sort`](#sorting-the-tasks-by-date--sort)
     - [Deleting a task : `delete`](#deleting-a-task--delete)
+    - [Find task by keyword : `find`](#finding-a-task--find)
     - [Exiting the program : `bye`](#exiting-the-program--bye)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
@@ -103,6 +104,13 @@ Sorts the task list by date. \
 `sort ascending` \
 `sort descending`
 
+### Finding a task : `find`
+Find all the tasks that contains a specified keyword. \
+**Format:** `find KEYWORD` 
+
+**Example:** \
+`find test` \
+`find submit`
 
 ### Deleting a task : `delete`
 Deletes the selected task in the list. \
