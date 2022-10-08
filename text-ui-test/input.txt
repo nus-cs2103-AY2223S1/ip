@@ -1,0 +1,28 @@
+mark 1
+todo asdf
+deadline ghjk /by 19:00
+event tyui /at Aug 8, 2pm - 4pm
+list
+mark 1
+list
+unmark 1
+mark 5
+deadline a
+event b
+todo
+list
+deadline  /by
+event  /at
+list
+delete 1
+delete 1
+delete
+delete
+delete 3
+todo a
+todo b
+todo c
+delete 4
+mark 1
+delete 1
+bye
