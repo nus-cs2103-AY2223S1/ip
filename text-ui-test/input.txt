@@ -1,0 +1,20 @@
+todo task 1
+event task 2 /at noon
+deadline task 3 /by midnight
+list
+mark 2
+mark 3
+list
+unmark 3
+list
+blah
+mark
+mark -1
+todo
+deadline
+event
+deadline something
+event something
+delete
+delete -1
+bye
