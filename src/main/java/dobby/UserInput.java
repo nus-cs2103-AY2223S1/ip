@@ -10,6 +10,7 @@ public class UserInput {
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_FIND = "find";
+    private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
     private static final String COMMAND_SIMPLIFY = "simplify";
@@ -19,6 +20,7 @@ public class UserInput {
     private static final String DEADLINE_COMMAND = "by";
     private static final String EVENT_COMMAND = "at";
     private static String mark = "m";
+    private static String list = "l";
     private static String unmark = "um";
     private static String delete = "del";
     private static String todo = "t";
@@ -28,7 +30,7 @@ public class UserInput {
     private static String simplify = "s";
     private static String[] commandList =
         {COMMAND_MARK, COMMAND_UNMARK, COMMAND_DELETE, COMMAND_TODO, COMMAND_FIND, DEADLINE_COMMAND, COMMAND_EVENT,
-            COMMAND_SIMPLIFY, mark, unmark, delete, todo, find, deadline, event, simplify};
+            COMMAND_SIMPLIFY, COMMAND_LIST, list, mark, unmark, delete, todo, find, deadline, event, simplify};
     private static String newCmd;
     private static String initialCmd;
     private String taskType;
@@ -48,10 +50,12 @@ public class UserInput {
         try {
 
             if (!input.contains(" ")) {
-                if (input.contains(COMMAND_SIMPLIFY)) {
+                if (checkTaskType(input, COMMAND_SIMPLIFY, simplify)) {
                     setTaskType(COMMAND_SIMPLIFY);
                     initialCmd = "missingInitialCommand";
                     newCmd = "missingNewCommand";
+                } else if (checkTaskType(input, COMMAND_LIST, list)) {
+                    setTaskType(COMMAND_LIST);
                 } else {
                     taskType = input;
                 }
@@ -237,9 +241,21 @@ public class UserInput {
         this.taskType = taskType;
     }
 
+    /**
+     * Checks if user command task type is a valid command type
+     *
+     * @param taskTypeConst original task types
+     * @param taskTypeSimplified simplified task types
+     * @return true if user command is valid, false otherwise
+     */
     private boolean checkTaskType(String taskTypeConst, String taskTypeSimplified) {
         return this.taskType.equals(taskTypeConst) || this.taskType.equals(taskTypeSimplified);
     }
+
+    private boolean checkTaskType(String taskType, String taskTypeConst, String taskTypeSimplified) {
+        return taskType.equals(taskTypeConst) || taskType.equals(taskTypeSimplified);
+    }
+
 
     /**
      * Checks of string is a valid input to be simplified
@@ -280,6 +296,9 @@ public class UserInput {
             break;
         case "simplify":
             simplify = newCmd;
+            break;
+        case "list":
+            list = newCmd;
             break;
         default:
             DobbyChat.unknown();
