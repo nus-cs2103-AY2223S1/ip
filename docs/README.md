@@ -8,7 +8,7 @@ Greg is your friendly companion and helps you remember your important tasks and 
 
 All you need to do is:
 1. download it from [here](https://github.com/kynapy/ip/releases/download/A-Release/duke-v0.2.jar)
-2. double-click it.
+2. open the terminal where the file is and type in java -jar duke-v0.2.jar
 3. add your tasks and expenses.
 4. let it manage your tasks and expenses for you 😄 
 
