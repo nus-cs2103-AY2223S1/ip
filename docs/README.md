@@ -92,7 +92,7 @@ Nice! I've marked this task as done:
 [D][X] assignment (by Sep 20 2022)  
 ```
 
-### `Mark `
+### `Unmark `
 Unmarks a task as done.
 
 **Example of usage:**
@@ -114,7 +114,7 @@ and outputs all such tasks to the user.
 
 **Example of usage:**
 
-`find assingment`
+`find assignment`
 
 
 **Expected output**:
