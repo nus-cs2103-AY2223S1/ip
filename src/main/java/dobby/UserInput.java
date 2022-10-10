@@ -1,5 +1,6 @@
 package dobby;
 
+import java.util.Arrays;
 /**
  * UserInput is a class that deals with interactions with the user.
  */
@@ -25,6 +26,9 @@ public class UserInput {
     private static String deadline = "d";
     private static String event = "e";
     private static String simplify = "s";
+    private static String[] commandList =
+        {COMMAND_MARK, COMMAND_UNMARK, COMMAND_DELETE, COMMAND_TODO, COMMAND_FIND, DEADLINE_COMMAND, COMMAND_EVENT,
+            COMMAND_SIMPLIFY, mark, unmark, delete, todo, find, deadline, event, simplify};
     private static String newCmd;
     private static String initialCmd;
     private String taskType;
@@ -46,76 +50,132 @@ public class UserInput {
             if (!input.contains(" ")) {
                 if (input.contains(COMMAND_SIMPLIFY)) {
                     setTaskType(COMMAND_SIMPLIFY);
-                    initialCmd = "";
-                    newCmd = "";
+                    initialCmd = "missingInitialCommand";
+                    newCmd = "missingNewCommand";
                 } else {
                     taskType = input;
                 }
             } else {
                 taskType = Parser.getTaskType(input);
                 rest = Parser.getRestOfCommand(input);
-                if (checkTaskType(COMMAND_MARK) | checkTaskType(mark)) {
-                    setTaskType(COMMAND_MARK);
-                    ind = Integer.parseInt(rest);
+                if (checkTaskType(COMMAND_MARK, mark)) {
+                    setMarkCommand();
+                } else if (checkTaskType(COMMAND_UNMARK, unmark)) {
+                    setUnmarkCommand();
 
-                } else if (checkTaskType(COMMAND_UNMARK) | checkTaskType(unmark)) {
-                    setTaskType(COMMAND_UNMARK);
-                    ind = Integer.parseInt(rest);
+                } else if (checkTaskType(COMMAND_DELETE, delete)) {
+                    setDeleteCommand();
 
-                } else if (checkTaskType(COMMAND_DELETE) | checkTaskType(delete)) {
-                    setTaskType(COMMAND_DELETE);
-                    ind = Integer.parseInt(rest);
+                } else if (checkTaskType(COMMAND_TODO, todo)) {
+                    setTodoCommand();
 
-                } else if (checkTaskType(COMMAND_TODO) | checkTaskType(todo)) {
-                    setTaskType(COMMAND_TODO);
-                    desc = rest;
+                } else if (checkTaskType(COMMAND_FIND, find)) {
+                    setFindCommand();
 
-                } else if (checkTaskType(COMMAND_FIND) | checkTaskType(find)) {
-                    setTaskType(COMMAND_FIND);
-                    desc = rest;
+                } else if (checkTaskType(COMMAND_SIMPLIFY, simplify)) {
+                    setSimplifyCommand();
 
-                } else if (checkTaskType(COMMAND_SIMPLIFY) | checkTaskType(simplify)) {
-                    setTaskType(COMMAND_SIMPLIFY);
-                    initialCmd = Parser.getInitialCommand(rest);
-                    newCmd = Parser.getNewCommand(rest);
+                } else if (checkTaskType(COMMAND_DEADLINE, deadline)) {
+                    setDeadlineCommand();
 
-                } else if (checkTaskType(COMMAND_DEADLINE) | checkTaskType(deadline)) {
-                    setTaskType(COMMAND_DEADLINE);
-                    String dateType = Parser.getDateType(rest);
-                    if (dateType.equals(NO_DATE_ERROR)) {
-                        date = NO_DATE_ERROR;
-                        desc = Parser.getDesc(rest);
+                } else if (checkTaskType(COMMAND_EVENT, event)) {
+                    setEventCommand();
 
-                    } else if (!(dateType.equals(DEADLINE_COMMAND))) {
-                        date = WRONG_DEADLINE_FORMAT;
-                        desc = Parser.getDesc(rest);
-
-                    } else {
-                        date = Parser.getDate(rest);
-                        desc = Parser.getDesc(rest);
-                    }
-
-                } else if (checkTaskType(COMMAND_EVENT) | checkTaskType(event)) {
-                    setTaskType(COMMAND_EVENT);
-                    String dateType = Parser.getDateType(rest);
-                    if (dateType.equals(NO_DATE_ERROR)) {
-                        date = NO_DATE_ERROR;
-                        desc = Parser.getDesc(rest);
-
-                    } else if (!(dateType.equals(EVENT_COMMAND))) {
-                        date = WRONG_EVENT_FORMAT;
-                        desc = Parser.getDesc(rest);
-
-                    } else {
-                        date = Parser.getDate(rest);
-                        desc = Parser.getDesc(rest);
-                    }
                 }
             }
         } catch (java.lang.NumberFormatException e) {
             DobbyChat.noNumber();
         }
         return taskType;
+    }
+
+    /**
+     * Method to update variables for a Mark command
+     */
+    public void setMarkCommand() {
+        setTaskType(COMMAND_MARK);
+        ind = Integer.parseInt(rest);
+    }
+
+    /**
+     * Method to update variables for a Unmark command
+     */
+    public void setUnmarkCommand() {
+        setTaskType(COMMAND_UNMARK);
+        ind = Integer.parseInt(rest);
+    }
+
+    /**
+     * Method to update variables for a Delete command
+     */
+    public void setDeleteCommand() {
+        setTaskType(COMMAND_DELETE);
+        ind = Integer.parseInt(rest);
+    }
+
+    /**
+     * Method to update variables for a Todo command
+     */
+    public void setTodoCommand() {
+        setTaskType(COMMAND_TODO);
+        desc = rest;
+    }
+
+    /**
+     * Method to update variables for a Find command
+     */
+    public void setFindCommand() {
+        setTaskType(COMMAND_FIND);
+        desc = rest;
+    }
+
+    /**
+     * Method to update variables for a Simplify command
+     */
+    public void setSimplifyCommand() {
+        setTaskType(COMMAND_SIMPLIFY);
+        initialCmd = Parser.getInitialCommand(rest);
+        newCmd = Parser.getNewCommand(rest);
+    }
+
+    /**
+     * Method to update variables for a Deadline command
+     */
+    public void setDeadlineCommand() {
+        setTaskType(COMMAND_DEADLINE);
+        String dateType = Parser.getDateType(rest);
+        if (dateType.equals(NO_DATE_ERROR)) {
+            date = NO_DATE_ERROR;
+            desc = Parser.getDesc(rest);
+
+        } else if (!(dateType.equals(DEADLINE_COMMAND))) {
+            date = WRONG_DEADLINE_FORMAT;
+            desc = Parser.getDesc(rest);
+
+        } else {
+            date = Parser.getDate(rest);
+            desc = Parser.getDesc(rest);
+        }
+    }
+
+    /**
+     * Method to update variables for a Event command
+     */
+    public void setEventCommand() {
+        setTaskType(COMMAND_EVENT);
+        String dateType = Parser.getDateType(rest);
+        if (dateType.equals(NO_DATE_ERROR)) {
+            date = NO_DATE_ERROR;
+            desc = Parser.getDesc(rest);
+
+        } else if (!(dateType.equals(EVENT_COMMAND))) {
+            date = WRONG_EVENT_FORMAT;
+            desc = Parser.getDesc(rest);
+
+        } else {
+            date = Parser.getDate(rest);
+            desc = Parser.getDesc(rest);
+        }
     }
 
     /**
@@ -177,12 +237,23 @@ public class UserInput {
         this.taskType = taskType;
     }
 
-    private boolean checkTaskType(String taskType) {
-        return this.taskType.equals(taskType);
+    private boolean checkTaskType(String taskTypeConst, String taskTypeSimplified) {
+        return this.taskType.equals(taskTypeConst) || this.taskType.equals(taskTypeSimplified);
     }
 
     /**
-     * Simplifies the command from initialCmd to newCmd.a
+     * Checks of string is a valid input to be simplified
+     *
+     * @param command User input command to be simplified
+     * @return True if command to be simplified was an intitial command, false if not
+     */
+    public boolean isCommandType(String command) {
+        boolean contains = Arrays.asList(commandList).contains(command);
+        return contains;
+    }
+
+    /**
+     * Simplifies the command from initialCmd to newCmd.
      */
     public static void setSimplifiedCommand() {
         switch (initialCmd) {

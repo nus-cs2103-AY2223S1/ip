@@ -31,16 +31,16 @@ public class DobbyChat {
 
     public static void getCommands() {
         printChat("Here are some commands Dobby understands:\n"
-                + "\t1. todo [task name]\n"
-                + "\t2. deadline [task name] /by [YYYY-MM-DD HHMM]\n"
-                + "\t3. event [task name] /at [YYYY-MM-DD HHMM]\n"
-                + "\t4. list\n"
-                + "\t5. done [task number]\n"
-                + "\t6. delete [task number]\n"
-                + "\t7. find [keyword]\n"
-                + "\t8. date [date]\n"
-                + "\t9. simplify [old command] [new command]\n"
-                + "\t10. bye\n");
+            + "\t1. todo [task name]\n"
+            + "\t2. deadline [task name] /by [YYYY-MM-DD HHMM]\n"
+            + "\t3. event [task name] /at [YYYY-MM-DD HHMM]\n"
+            + "\t4. list\n"
+            + "\t5. done [task number]\n"
+            + "\t6. delete [task number]\n"
+            + "\t7. find [keyword]\n"
+            + "\t8. date [date]\n"
+            + "\t9. simplify [old command] [new command]\n"
+            + "\t10. bye\n");
     }
 
     /**
@@ -92,7 +92,7 @@ public class DobbyChat {
             String taskString = task.toString() + "\n";
 
             String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n"
-                    + "Dobby has removed this task: \n\n\t";
+                + "Dobby has removed this task: \n\n\t";
             String length = "\nMaster has only " + (list.getLength() - 1) + " task(s) left.";
             printChat(deleted + taskString + length);
         }
@@ -129,7 +129,7 @@ public class DobbyChat {
      */
     public static void simplified(String initialCmd, String newCmd) {
         String simplified = "Yes master, from now on dobby will do [" + initialCmd + "] when dobby sees [" + newCmd
-                + "].";
+            + "].";
         printChat(simplified);
     }
 
@@ -152,7 +152,7 @@ public class DobbyChat {
      */
     public static void unknown() {
         printChat("Dobby doesn't understand what you're saying...press commands to see all commands that Dobby "
-                + "understands!");
+            + "understands!");
     }
 
     /**
@@ -238,5 +238,9 @@ public class DobbyChat {
 
     public static void noCommandToSimplify() {
         printChat("Please tell dobby which command you wish to simplify.");
+    }
+
+    public static void wrongCommandToSimplify() {
+        printChat("Dobby doesn't recognize this command, please try simplifying a valid command!");
     }
 }

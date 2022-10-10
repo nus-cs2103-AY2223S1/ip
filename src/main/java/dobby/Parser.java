@@ -124,7 +124,7 @@ public class Parser {
     public static String getInitialCommand(String rest) {
         assert rest != null : "string input cannot be null!";
         if (rest.isBlank()) {
-            return "";
+            return "missingInitialCommand";
         } else {
             String oldCommand = rest.split(TASKTYPE_AND_REST_SEPERATOR)[0];
             return oldCommand;
@@ -140,7 +140,7 @@ public class Parser {
     public static String getNewCommand(String rest) {
         assert rest != null : "string input cannot be null!";
         if (rest.isBlank()) {
-            return "";
+            return "missingNewCommand";
         } else {
             String newCommand = rest.split(TASKTYPE_AND_REST_SEPERATOR)[1];
             return newCommand;
