@@ -28,10 +28,10 @@
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][ ] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][ ] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 '----------------------------------------------------------------
@@ -71,10 +71,10 @@
 | Here, your tasks:
 | 1.[T][X] homework
 | 2.[E][X] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][ ] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][ ] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -93,10 +93,10 @@
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][ ] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][ ] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -105,16 +105,16 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Marked your task as done:
-| [E][X] meet people at dinner (at: 6:25 pm)
+| [E][X] meet people at dinner (at: 31 Dec 1200 2359)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][ ] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -123,16 +123,16 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Marked your task as done:
-| [E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][ ] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -147,10 +147,10 @@
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -159,16 +159,16 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Marked your task as done:
-| [D][X] /by mysterious number 2 (by: [unknown])
+| [D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][X] /by mysterious number 2 (by: [unknown])
+| 6.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -191,10 +191,10 @@
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][X] /by mysterious number 2 (by: [unknown])
+| 6.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -220,10 +220,10 @@
 | Here, your tasks:
 | 1.[T][ ] homework
 | 2.[E][ ] meet friends (at: 31 Dec 1950 2359)
-| 3.[E][X] meet people at dinner (at: 6:25 pm)
-| 4.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 3.[E][X] meet people at dinner (at: 31 Dec 1200 2359)
+| 4.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 5.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 6.[D][X] /by mysterious number 2 (by: [unknown])
+| 6.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 7.[D][ ] rush this please (by: when?)
 | 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
@@ -243,15 +243,15 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | It seems you didn't need this task anymore, so I removed it:
-| [E][X] meet people at dinner (at: 6:25 pm)
+| [E][X] meet people at dinner (at: 31 Dec 1200 2359)
 | You have 15 tasks left.
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 2.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 3.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 4.[D][X] /by mysterious number 2 (by: [unknown])
+| 4.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 5.[D][ ] rush this please (by: when?)
 | 6.[E][ ]  wow  much  space (at: 10am)
 | 7.[T][ ] homework
@@ -283,9 +283,9 @@
 ,----------------------------------------------------------------
 | Here, your tasks:
 | 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 2.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 3.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 4.[D][X] /by mysterious number 2 (by: [unknown])
+| 4.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 5.[D][ ] rush this please (by: when?)
 | 6.[E][ ]  wow  much  space (at: 10am)
 | 7.[T][ ] homework
@@ -314,7 +314,7 @@
 ,----------------------------------------------------------------
 | Here are the tasks that you might be looking for:
 | 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 2.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 7.[T][ ] homework
 | 8.[T][ ] other homework
 | 10.[E][ ] meet friends (at: [unknown])
@@ -323,9 +323,9 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here are the tasks that you might be looking for:
-| 2.[E][X] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 2.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
 | 3.[D][X] /at mysterious (by: 31 Dec 1960 2359)
-| 4.[D][X] /by mysterious number 2 (by: [unknown])
+| 4.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
 | 5.[D][ ] rush this please (by: when?)
 | 8.[T][ ] other homework
 | 9.[T][ ] project 12
@@ -335,6 +335,131 @@
 | 13.[D][ ] /at mysterious (by: [unknown])
 | 14.[D][ ] /by mysterious number 2 (by: [unknown])
 | 15.[D][ ] rush this please (by: when?)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here, your tasks:
+| 1.[T][ ] homework
+| 2.[E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+| 3.[D][X] /at mysterious (by: 31 Dec 1960 2359)
+| 4.[D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
+| 5.[D][ ] rush this please (by: when?)
+| 6.[E][ ]  wow  much  space (at: 10am)
+| 7.[T][ ] homework
+| 8.[T][ ] other homework
+| 9.[T][ ] project 12
+| 10.[E][ ] meet friends (at: [unknown])
+| 11.[E][ ] meet people at dinner (at: 6:25 pm)
+| 12.[E][ ] meet people at function x/y/z whatever (at: 07 Nov 1524 0712)
+| 13.[D][ ] /at mysterious (by: [unknown])
+| 14.[D][ ] /by mysterious number 2 (by: [unknown])
+| 15.[D][ ] rush this please (by: when?)
+| 16.[E][ ]  wow  much  space (at: 10am)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number -1, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number -1, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number -1, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number -1, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand a, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand a, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand a, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, I didn't understand a, please give me a number.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 0, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 0, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 0, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Sorry, the number 0, wasn't in the range.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| That's a todo, it doesn't have a date.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| That's a todo, it doesn't have a date.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| That's a todo, it doesn't have a date.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| That's a todo, it doesn't have a date.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /at for events.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /at for events.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][X] meet people at function x/y/z whatever (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /by for deadlines.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [D][X] /at mysterious (by: 31 Dec 1000 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /by for deadlines.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [D][X] /by mysterious number 2 (by: 31 Dec 1000 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /by for deadlines.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [D][ ] rush this please (by: 31 Dec 1000 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| I have rescheduled your task!
+| [E][ ]  wow  much  space (at: 31 Dec 1200 2359)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Do specify /at for events.
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Added your note about hello.

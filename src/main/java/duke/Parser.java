@@ -170,8 +170,8 @@ public class Parser {
                 }
                 newTask = new Event(task.getDescription(), map.get("at"), task.isTaskDone());
             } else if (task instanceof Deadline) {
-                if (!map.containsKey("at")) {
-                    return new DukeResponse("Do specify /by for events.");
+                if (!map.containsKey("by")) {
+                    return new DukeResponse("Do specify /by for deadlines.");
                 }
                 newTask = new Deadline(task.getDescription(), map.get("by"), task.isTaskDone());
             } else {

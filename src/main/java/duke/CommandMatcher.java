@@ -10,8 +10,6 @@ import duke.exception.DukeExceptionFunction;
  * as a matching process and an action.
  */
 public class CommandMatcher extends StringMatcher<DukeResponse> {
-    private Predicate<String> shouldRunAction;
-    private Function<String, DukeResponse> action;
 
     /**
      * Constructs an object that handles checking and executing a command.
