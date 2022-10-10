@@ -116,7 +116,7 @@ public class Main extends Application {
      * @return String
      */
     private String getResponse(String str) {
-        Parser ps = new Parser(new Duke("src/main/files/taskset.txt"));
+        Parser ps = new Parser(new Duke());
         return ps.run(str);
     }
 

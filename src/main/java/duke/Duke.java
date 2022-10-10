@@ -19,11 +19,10 @@ public class Duke {
     /**
      * The constructor for duke.
      *
-     * @param filePath the path of the .txt file
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("./src/main/files/taskset.txt");
         try {
             tasks = new TaskList(storage.extractFile());
             assert tasks.getSize() >= 0 : "Errors happened with your file.";
@@ -143,7 +142,7 @@ public class Duke {
      * @throws WrongMessageException potential exception
      */
     public String showList() throws WrongMessageException {
-        String s = "";
+        String s = "Your tasks are following: " + "\n";
         for (int i = 1; i <= tasks.getSize(); i++) {
             Task temp = tasks.getTask(i);
             s += (i) + "." + temp.toString() + "\n";
