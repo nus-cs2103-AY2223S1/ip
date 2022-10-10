@@ -1,4 +1,1 @@
-T|N|Putu
-T|N|Plum
-T|N|hi
 T|N|hi

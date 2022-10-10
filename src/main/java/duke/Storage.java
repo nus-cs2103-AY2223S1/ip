@@ -49,6 +49,7 @@ class Storage {
         File file = new File(filePath);
         if (!file.exists()) {
             try {
+                file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
