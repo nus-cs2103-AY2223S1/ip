@@ -31,6 +31,16 @@ Mark a task as un done.
 Expected outcome: A task specified by the given index will be marked as undone.
 
 ## Feature
+Find a task.
+### Usage
+### `find <name of task>`
+
+- Example Usage
+    - `find test`
+
+Expected outcome: A tasks which contains the substring.
+
+## Feature
 Delete a task
 ### Usage
 ### `delete <index of task shown in the list>`
@@ -56,7 +66,7 @@ Create a new Deadline task.
 ### `deadline <describe deadline> /by <LocalDateTime string>`
 
 - Example Usage
-  - `deadline Submit cheque to heaven /by 1234 12 Dec 2024`
+  - `deadline Submit cheque to heaven /by 12 Dec 2024`
 
 Expected outcome: An unmarked deadline task will be created and stored in the list.
 
@@ -66,7 +76,7 @@ Create a new Event task.
 ### `event <describe event> /at <LocalDateTime string>`
 
 - Example Usage
-  - `event Heaven Homecoming /at 2359 24 Dec 2022`
+  - `event Heaven Homecoming /at 24 Dec 2022`
 
 Expected outcome: An unmarked event task will be created and stored in the list.
 
@@ -87,5 +97,5 @@ Exit the program
 
 ## Supported LocalDateTime strings
 ```
-"dd-MMM-YYYY"
+"dd MMM YYYY"
 ```
