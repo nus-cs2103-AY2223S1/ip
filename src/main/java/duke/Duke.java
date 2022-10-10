@@ -11,6 +11,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Parser parser;
 
     /**
      * Constructs Duke object.
@@ -19,6 +20,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         storage = new Storage();
+        parser = new Parser();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -38,7 +40,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
+                Command c = parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
@@ -51,7 +53,7 @@ public class Duke {
 
     public String handleUserInput(String input) {
         try {
-            Command c = Parser.parse(input);
+            Command c = parser.parse(input);
             String result = c.execute(tasks, ui, storage);
             return result;
         } catch (DukeException e) {

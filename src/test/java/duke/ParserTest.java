@@ -23,7 +23,8 @@ public class ParserTest {
         Command expected = new DeleteCommand(indices);
         String inputCommand = "delete 2, 3,4,        5";
         try {
-            Command actual = Parser.parse(inputCommand);
+            Parser parser = new Parser();
+            Command actual = parser.parse(inputCommand);
             assertEquals(expected, actual);
         } catch (DukeException e) {
             fail(e.getMessage());
@@ -34,7 +35,8 @@ public class ParserTest {
     public void parse_deleteCommandWithoutIndex_exceptionThrown() {
         String inputCommand = "delete";
         try {
-            Parser.parse(inputCommand);
+            Parser parser = new Parser();
+            parser.parse(inputCommand);
             fail("Parser did not throw correct error when parsing invalid delete command.");
         } catch (DukeException e) {
             String actualError = e.getMessage();
@@ -51,7 +53,8 @@ public class ParserTest {
         Command expected = new MarkCommand(indices);
         String inputCommand = "mark 2,               3";
         try {
-            Command actual = Parser.parse(inputCommand);
+            Parser parser = new Parser();
+            Command actual = parser.parse(inputCommand);
             assertEquals(expected, actual);
         } catch (DukeException e) {
             fail(e.getMessage());
