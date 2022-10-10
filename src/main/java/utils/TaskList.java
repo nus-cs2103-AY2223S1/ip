@@ -51,6 +51,16 @@ public class TaskList {
         }
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
+
+        processDeadline(inputs, deadlineName, endDateTime);
+
+        Deadline newDeadline = obtainNewDeadline(deadlineName, endDateTime);
+        assert Objects.equals(newDeadline.getName(), deadlineName.toString().trim());
+        return "Quack! I've added this task:\n" + "  "
+                + newDeadline + "\n" + Ui.printNumberOfTasks(tasks);
+    }
+
+    private void processDeadline(String[] inputs, StringBuilder deadlineName, StringBuilder endDateTime) {
         boolean isReadingDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/by")) {
@@ -63,20 +73,25 @@ public class TaskList {
                 endDateTime.append(inputs[i]).append(" ");
             }
         }
+        checkDeadlineEdgeCase(inputs, deadlineName, endDateTime, isReadingDateTime);
+    }
+
+    private void checkDeadlineEdgeCase(String[] inputs, StringBuilder deadlineName,
+                                       StringBuilder endDateTime, boolean isReadingDateTime) {
         // Edge case: When name or date is only one string, they are not captured by the loop above.
         if (!isReadingDateTime) {
             deadlineName.append(inputs[inputs.length - 1]);
         } else {
             endDateTime.append(inputs[inputs.length - 1]);
         }
+    }
 
+    private Deadline obtainNewDeadline(StringBuilder deadlineName, StringBuilder endDateTime) {
         Deadline newDeadline = new Deadline(
                 deadlineName.toString().trim(),
                 endDateTime.toString().trim());
-        assert Objects.equals(newDeadline.getName(), deadlineName.toString().trim());
         tasks.add(newDeadline);
-        return "Quack! I've added this task:\n" + "  "
-                + newDeadline + "\n" + Ui.printNumberOfTasks(tasks);
+        return newDeadline;
     }
 
     /**
@@ -89,6 +104,17 @@ public class TaskList {
         }
         StringBuilder eventName = new StringBuilder();
         StringBuilder periodDateTime = new StringBuilder();
+
+        processEvent(inputs, eventName, periodDateTime);
+
+        Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
+        tasks.add(newEvent);
+        assert Objects.equals(newEvent.getName(), eventName.toString().trim());
+        return "Quack! I've added this task:\n" + "  "
+                + newEvent + "\n" + Ui.printNumberOfTasks(tasks);
+    }
+
+    private void processEvent(String[] inputs, StringBuilder eventName, StringBuilder periodDateTime) {
         boolean isReadingDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/at")) {
@@ -101,18 +127,17 @@ public class TaskList {
                 periodDateTime.append(inputs[i]).append(" ");
             }
         }
+        checkEventEdgeCase(inputs, eventName, periodDateTime, isReadingDateTime);
+    }
+
+    private void checkEventEdgeCase(String[] inputs, StringBuilder eventName,
+                                       StringBuilder periodDateTime, boolean isReadingDateTime) {
         // Edge case: When name or date is only one string, they are not captured by the loop above.
         if (!isReadingDateTime) {
             eventName.append(inputs[inputs.length - 1]);
         } else {
             periodDateTime.append(inputs[inputs.length - 1]);
         }
-
-        Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
-        assert Objects.equals(newEvent.getName(), eventName.toString().trim());
-        tasks.add(newEvent);
-        return "Quack! I've added this task:\n" + "  "
-                + newEvent + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     /**

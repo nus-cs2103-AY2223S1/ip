@@ -74,16 +74,21 @@ public class Deadline extends Task {
                 continue;
             }
 
-            // Build the string for the relevant StringBuilder
-            if (currentlyAnalyzing.equals(Calendar.DAY)) {
-                day.append(endDateTime.charAt(i));
-            } else if (currentlyAnalyzing.equals(Calendar.MONTH)) {
-                month.append(endDateTime.charAt(i));
-            } else if (currentlyAnalyzing.equals(Calendar.YEAR)) {
-                year.append(endDateTime.charAt(i));
-            } else if (currentlyAnalyzing.equals(Calendar.TIME)) {
-                time.append(endDateTime.charAt(i));
-            }
+            parseAppend(i, endDateTime, currentlyAnalyzing, day, month, year, time);
+        }
+    }
+
+    private void parseAppend(int i, String endDateTime, Calendar currentlyAnalyzing, StringBuilder day,
+                             StringBuilder month, StringBuilder year, StringBuilder time) {
+        // Build the string for the relevant StringBuilder
+        if (currentlyAnalyzing.equals(Calendar.DAY)) {
+            day.append(endDateTime.charAt(i));
+        } else if (currentlyAnalyzing.equals(Calendar.MONTH)) {
+            month.append(endDateTime.charAt(i));
+        } else if (currentlyAnalyzing.equals(Calendar.YEAR)) {
+            year.append(endDateTime.charAt(i));
+        } else if (currentlyAnalyzing.equals(Calendar.TIME)) {
+            time.append(endDateTime.charAt(i));
         }
     }
 

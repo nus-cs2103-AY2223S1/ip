@@ -31,41 +31,50 @@ public class Storage {
         while (sc.hasNext()) {
             String[] dataChunk = sc.nextLine().split(" \\| ");
             switch (dataChunk[0]) {
-            // Task is a Todo
             case "T": {
-                // "1" means done, "0" means not done
-                Boolean isDone = dataChunk[1].equals("1");
-                String name = dataChunk[2];
-                tasks.add(new Todo(name, isDone));
+                loadTodo(tasks, dataChunk);
                 break;
             }
-            // Task is a Deadline
             case "D": {
-                // "1" means done, "0" means not done
-                boolean isDone = dataChunk[1].equals("1");
-                String name = dataChunk[2] + " ";
-                String endDateTime = dataChunk[3];
-                Deadline curr = new Deadline(name, endDateTime);
-                tasks.add(curr);
-                if (isDone) {
-                    curr.markAsDone();
-                }
+                loadDeadline(tasks, dataChunk);
                 break;
             }
-            // Task is an Event
             case "E": {
-                // "1" means done, "0" means not done
-                boolean isDone = dataChunk[1].equals("1");
-                String name = dataChunk[2] + " ";
-                String periodDateTime = dataChunk[3];
-                Event curr = new Event(name, periodDateTime);
-                tasks.add(curr);
-                if (isDone) {
-                    curr.markAsDone();
-                }
+                loadEvent(tasks, dataChunk);
                 break;
             }
             }
+        }
+    }
+
+    private void loadTodo(List<Task> tasks, String[] dataChunk) {
+        // "1" means done, "0" means not done
+        Boolean isDone = dataChunk[1].equals("1");
+        String name = dataChunk[2];
+        tasks.add(new Todo(name, isDone));
+    }
+
+    private void loadDeadline(List<Task> tasks, String[] dataChunk) {
+        // "1" means done, "0" means not done
+        boolean isDone = dataChunk[1].equals("1");
+        String name = dataChunk[2] + " ";
+        String endDateTime = dataChunk[3];
+        Deadline curr = new Deadline(name, endDateTime);
+        tasks.add(curr);
+        if (isDone) {
+            curr.markAsDone();
+        }
+    }
+
+    private void loadEvent(List<Task> tasks, String[] dataChunk) {
+        // "1" means done, "0" means not done
+        boolean isDone = dataChunk[1].equals("1");
+        String name = dataChunk[2] + " ";
+        String periodDateTime = dataChunk[3];
+        Event curr = new Event(name, periodDateTime);
+        tasks.add(curr);
+        if (isDone) {
+            curr.markAsDone();
         }
     }
 
