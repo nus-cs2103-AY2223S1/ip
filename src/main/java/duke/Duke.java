@@ -2,6 +2,13 @@ package duke;
 
 import java.util.Scanner;
 
+import duke.excecption.EmptyInputException;
+import duke.excecption.InvalidInputException;
+import duke.task.TaskList;
+import duke.ui.Ui;
+import duke.utils.Parser;
+import duke.utils.Storage;
+
 /**
  * Main Class for Duke
  */
@@ -43,6 +50,7 @@ public class Duke {
                 int result = this.parser.parse(line, tasks);
 
                 if (result == 1) {
+                    System.exit(0);
                     break;
                 }
             } catch (RuntimeException e) {
@@ -59,9 +67,9 @@ public class Duke {
         try {
             String response = this.parser.execute(input, tasks);
             return response;
-        } catch (Parser.EmptyInputException e) {
+        } catch (EmptyInputException e) {
             return e.getMessage();
-        } catch (Parser.InvalidInputException e) {
+        } catch (InvalidInputException e) {
             return e.getMessage();
         }
     }
