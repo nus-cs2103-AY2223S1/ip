@@ -10,7 +10,7 @@ Retrieve all tasks from storage.
 
 Expected outcome: All tasks will be displayed, regardless whether it is marked or not.
 
-## Feature
+## Feature - Mark Done
 Mark a task as done.
 ### Usage
 ### `mark <index of task shown in the list>`
@@ -20,7 +20,7 @@ Mark a task as done.
 
 Expected outcome: A task specified by the given index will be marked as done
 
-## Feature
+## Feature - Mark Undone
 Mark a task as un done.
 ### Usage
 ### `unmark <index of task shown in the list>`
@@ -30,7 +30,7 @@ Mark a task as un done.
 
 Expected outcome: A task specified by the given index will be marked as undone.
 
-## Feature
+## Feature - Find
 Find a task.
 ### Usage
 ### `find <name of task>`
@@ -40,7 +40,7 @@ Find a task.
 
 Expected outcome: A tasks which contains the substring.
 
-## Feature
+## Feature - Delete
 Delete a task
 ### Usage
 ### `delete <index of task shown in the list>`
