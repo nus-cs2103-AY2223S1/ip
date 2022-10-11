@@ -23,7 +23,7 @@ What are you waiting for? Start using Ado today! 🐼
 Icon | Meaning
 :--------:|:------------------
 ❗ | Important notes to take note of when using Ado Chatbot
-💡 | Extra information for better undertsanding
+💡 | Extra information for better understanding
 
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
