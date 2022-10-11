@@ -21,7 +21,7 @@ What are you waiting for? Start using Ado today! 🐼
 
 ## Icon legend <br>
 Icon | Meaning
---------|------------------
+:--------:|:------------------
 ❗ | Important notes to take note of when using Ado Chatbot
 💡 | Extra information for better undertsanding
 
