@@ -27,7 +27,7 @@ public class EventCommand extends Command {
         if (taskName == null || time == null) {
             throw new KirbyMissingArgumentException("event");
         }
-        this.event = new Event(taskName, time);
+        this.event = new Event(taskName, time, false);
     }
 
     /**

@@ -25,7 +25,7 @@ public class ToDoCommand extends Command {
         if (argument == null) {
             throw new KirbyMissingArgumentException("todo");
         }
-        this.todo = new Todo(argument);
+        this.todo = new Todo(argument, false);
     }
     /**
      * {@inheritDoc}

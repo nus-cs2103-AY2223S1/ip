@@ -18,11 +18,14 @@ public class Event extends Task {
      * @param description Description of the task.
      * @param at Argument of the task which contains the event date.
      */
-    public Event(String description, String at) {
+    public Event(String description, String at, boolean isDone) {
         super(description);
         this.at = at;
         if (HandleTime.isValidDate(at)) {
             this.localDate = LocalDate.parse(at);
+        }
+        if (isDone) {
+            this.setCompleted();
         }
     }
 
@@ -52,6 +55,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.tasks.Event~" + this.description + "~" + this.at;
+        return "kirby.tasks.Event~" + this.description + "~" + this.at + "~" + this.getStatusIcon();
     }
 }

@@ -18,11 +18,14 @@ public class Deadline extends Task {
      * @param description Description of the task.
      * @param by Argument of the task which contains the deadline date.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by, boolean isDone) {
         super(description);
         this.by = by;
         if (HandleTime.isValidDate(by)) {
             this.localDate = LocalDate.parse(by);
+        }
+        if (isDone) {
+            this.setCompleted();
         }
     }
 
@@ -53,6 +56,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.tasks.Deadline~" + this.description + "~" + this.by;
+        return "kirby.tasks.Deadline~" + this.description + "~" + this.by + "~" + this.getStatusIcon();
     }
 }

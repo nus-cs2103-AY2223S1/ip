@@ -10,8 +10,11 @@ public class Todo extends Task {
      *
      * @param description Description of the Todo task.
      */
-    public Todo(String description) {
+    public Todo(String description, boolean isDone) {
         super(description);
+        if (isDone) {
+            this.setCompleted();
+        }
     }
 
     /**
@@ -36,6 +39,6 @@ public class Todo extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.tasks.Todo~" + this.description;
+        return "kirby.tasks.Todo~" + this.description + "~" + this.getStatusIcon();
     }
 }

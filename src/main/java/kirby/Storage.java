@@ -73,6 +73,19 @@ public class Storage {
     }
 
     /**
+     * Converts the status icon into boolean isCompleted.
+     *
+     * @param statusIcon the String form of a status icon.
+     * @return true if the task is completed, otherwise false.
+     */
+    public static boolean convertToIsCompleted(String statusIcon) {
+        if (statusIcon.equals("[ ]")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    /**
      * Reads from a file and returns the list of tasks that is written in the file.
      *
      * @throws FileNotFoundException If the file does not exist.
@@ -85,13 +98,13 @@ public class Storage {
                 String[] parts = line.split("~");
                 switch (parts[0]) {
                 case "kirby.tasks.Todo":
-                    previousTasks.add(new Todo(parts[1]));
+                    previousTasks.add(new Todo(parts[1], convertToIsCompleted(parts[2])));
                     break;
                 case "kirby.tasks.Deadline":
-                    previousTasks.add(new Deadline(parts[1], parts[2]));
+                    previousTasks.add(new Deadline(parts[1], parts[2], convertToIsCompleted(parts[3])));
                     break;
                 case "kirby.tasks.Event":
-                    previousTasks.add(new Event(parts[1], parts[2]));
+                    previousTasks.add(new Event(parts[1], parts[2], convertToIsCompleted(parts[3])));
                     break;
                 default:
                     throw new IOException();

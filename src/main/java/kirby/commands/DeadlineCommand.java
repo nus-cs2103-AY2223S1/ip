@@ -27,7 +27,7 @@ public class DeadlineCommand extends Command {
         if (taskName == null || time == null) {
             throw new KirbyMissingArgumentException("deadline");
         }
-        this.deadline = new Deadline(taskName, time);
+        this.deadline = new Deadline(taskName, time, false);
     }
 
     /**
