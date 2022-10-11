@@ -22,21 +22,25 @@ public class Parser {
             }
 
             case "mark": {
+                checkForMissingDescription(splitInput);
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.mark(index);
             }
 
             case "unmark": {
+                checkForMissingDescription(splitInput);
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.unmark(index);
             }
 
             case "todo": {
+                checkForMissingDescription(splitInput);
                 String description = splitInput[1].trim();
                 return duke.setToDo(description);
             }
 
             case "deadline": {
+                checkForMissingDescription(splitInput);
                 String string = splitInput[1].trim();
                 String description = string.substring(0, string.indexOf("/") - 1);
                 String by = string.substring(string.indexOf("/") + 4);
@@ -44,6 +48,7 @@ public class Parser {
             }
 
             case "event": {
+                checkForMissingDescription(splitInput);
                 String string = splitInput[1].trim();
                 String description = string.substring(0, string.indexOf("/") - 1);
                 String at = string.substring(string.indexOf("/") + 4);
@@ -51,11 +56,13 @@ public class Parser {
             }
 
             case "delete": {
+                checkForMissingDescription(splitInput);
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.delete(index);
             }
 
             case "find": {
+                checkForMissingDescription(splitInput);
                 String string = splitInput[1].trim();
                 return duke.find(string);
             }
@@ -76,5 +83,14 @@ public class Parser {
             return ui.printErrorMessage(exception.getMessage());
         }
     }
+
+    //Solution below adapted from https://github.com/24Donovan24/ip/blob/master/src/main/java/duke/Parser.java
+    public void checkForMissingDescription(String[] input) throws DukeException {
+        if (input.length == 1) {
+            throw new DukeException("Hey! What are you trying to do? " +
+                    "Please refer to the user guide if you need help using the commands!");
+        }
+    }
+
 
 }
