@@ -104,4 +104,26 @@ public class TaskList {
     public int getSize() {
         return this.taskList.size();
     }
+
+    public void findTask(String s) throws DukeException{
+        int count = 1;
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currTask = taskList.get(i);
+            if (currTask.toString().contains(s)) {
+                System.out.println(String.format("%d. %s", count, currTask));
+                count++;
+            }
+        }
+
+        // If the task list is empty
+        if (taskList.size() == 0) {
+            throw new DukeException("Hmm... I don't think you have any tasks as of now!");
+        }
+
+        // If there are no matches in the task list
+        if (count <= 1) {
+            throw new DukeException("Hmm... I don't think you have such tasks in the list!");
+        }
+    }
+
 }

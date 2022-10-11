@@ -13,6 +13,7 @@ public enum CommandWord {
     DEADLINE("deadline"),
     EVENT("event"),
     DELETE("delete"),
+    FIND("find"),
     BYE("bye");
 
     // String field for comparing to the input to the enum

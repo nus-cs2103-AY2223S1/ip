@@ -66,9 +66,13 @@ public class Duke {
                     break;
                 }
                 case DELETE: {
-                    taskList.deleteTask(description);
                     Task deletedTask = taskList.getTask(description);
                     ui.deleteTaskMessage(deletedTask, taskList);
+                    taskList.deleteTask(description);
+                    break;
+                }
+                case FIND: {
+                    taskList.findTask(description);
                     break;
                 }
                 case TODO: {
