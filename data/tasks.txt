@@ -1,4 +1,0 @@
-T| |Feed cat
-E|X|Team meeting|2022-09-22@19:30
-D| |Do assignment|2022-10-02
-T| |Read notes

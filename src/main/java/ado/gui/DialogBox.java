@@ -75,7 +75,8 @@ public class DialogBox extends HBox {
         db.flip();
 
         if (response.isErrorResponse()) {
-            //Reused from https://stackoverflow.com/questions/14370554/how-to-programmatically-set-the-color-or-texture-of-a-tab-label-in-javafx
+            //Reused from https://stackoverflow.com/questions/14370554/how-to-programmatically-set-the-color
+            // -or-texture-of-a-tab-label-in-javafx
             // with minor modifications
             db.dialog.setStyle(db.dialog.getStyle() + "-fx-background-color: #e94b3c;");
         } else {

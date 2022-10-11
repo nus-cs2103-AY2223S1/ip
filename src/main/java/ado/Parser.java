@@ -34,17 +34,13 @@ public class Parser {
         String[] inputSegments = fullCommand.split(" ", 2);
         String commandFirstWord = inputSegments[0].toLowerCase().trim();
         String commandDetails = (inputSegments.length <= 1) ? "" : inputSegments[1];
-
         switch (commandFirstWord) {
         case "list":
-            validateSingleCommand(commandDetails);
-            return new ListCommand();
+            return getListCommand(commandDetails);
         case "bye":
-            validateSingleCommand(commandDetails);
-            return new ByeCommand();
+            return getByeCommand(commandDetails);
         case "help":
-            validateSingleCommand(commandDetails);
-            return new HelpCommand();
+            return getHelpCommand(commandDetails);
         case "todo":
             return validateTodoCommand(commandDetails);
         case "deadline":
@@ -52,24 +48,108 @@ public class Parser {
         case "event":
             return validateEventCommand(fullCommand);
         case "mark":
-            validateMultipleCommand(fullCommand);
-            assert (inputSegments[1] != null) : "Missing index";
-            return new MarkCommand(Integer.parseInt(inputSegments[1].trim()));
+            return getMarkCommand(fullCommand, inputSegments);
         case "unmark":
-            validateMultipleCommand(fullCommand);
-            assert (inputSegments[1] != null) : "Missing index";
-            return new UnmarkCommand(Integer.parseInt(inputSegments[1].trim()));
+            return getUnmarkCommand(fullCommand, inputSegments);
         case "delete":
-            validateMultipleCommand(fullCommand);
-            assert (inputSegments[1] != null) : "Missing index";
-            return new DeleteCommand(Integer.parseInt(inputSegments[1].trim()));
+            return getDeleteCommand(fullCommand, inputSegments);
         case "find":
-            validateMultipleCommand(fullCommand);
-            assert (inputSegments[1] != null) : "Missing find keyword";
-            return new FindCommand(inputSegments[1].trim());
+            return getFindCommand(fullCommand, inputSegments);
         default:
             throw new AdoException(commandFirstWord + Constants.INVALID_COMMAND_MESSAGE);
         }
+    }
+
+    /**
+     * Handles the creation of List Command object
+     *
+     * @param commandDetails the description for initialising a list command
+     * @return the command of initialising a list command
+     * @throws AdoException If command is invalid.
+     */
+    static ListCommand getListCommand(String commandDetails) throws AdoException {
+        validateSingleCommand(commandDetails);
+        return new ListCommand();
+    }
+
+    /**
+     * Handles the creation of Bye Command object
+     *
+     * @param commandDetails the description for initialising a Bye command
+     * @return the command of initialising a bye command
+     * @throws AdoException If command is invalid.
+     */
+    static ByeCommand getByeCommand(String commandDetails) throws AdoException {
+        validateSingleCommand(commandDetails);
+        return new ByeCommand();
+    }
+
+    /**
+     * Handles the creation of Help Command object
+     *
+     * @param commandDetails the description for initialising a Help command
+     * @return the command of initialising a help command
+     * @throws AdoException If command is invalid.
+     */
+    static HelpCommand getHelpCommand(String commandDetails) throws AdoException {
+        validateSingleCommand(commandDetails);
+        return new HelpCommand();
+    }
+
+    /**
+     * Handles the creation of Mark Command object
+     *
+     * @param fullCommand the description for initialising a Mark command
+     * @param inputSegments an array input split by spaces
+     * @return the command of initialising a Mark command
+     * @throws AdoException If command is invalid.
+     */
+    static MarkCommand getMarkCommand(String fullCommand, String[] inputSegments) throws AdoException {
+        validateMultipleCommand(fullCommand);
+        assert (inputSegments[1] != null) : "Missing index";
+        return new MarkCommand(Integer.parseInt(inputSegments[1].trim()));
+    }
+
+    /**
+     * Handles the creation of Unmark Command object
+     *
+     * @param fullCommand the description for initialising a Unmark command
+     * @param inputSegments an array input split by spaces
+     * @return the command of initialising a unmark command
+     * @throws AdoException If command is invalid.
+     */
+    static UnmarkCommand getUnmarkCommand(String fullCommand, String[] inputSegments) throws AdoException {
+        validateMultipleCommand(fullCommand);
+        assert (inputSegments[1] != null) : "Missing index";
+        return new UnmarkCommand(Integer.parseInt(inputSegments[1].trim()));
+    }
+
+    /**
+     * Handles the creation of Delete Command object
+     *
+     * @param fullCommand the description for initialising a Delete command
+     * @param inputSegments an array input split by spaces
+     * @return the command of initialising a delete command
+     * @throws AdoException If command is invalid.
+     */
+    static DeleteCommand getDeleteCommand(String fullCommand, String[] inputSegments) throws AdoException {
+        validateMultipleCommand(fullCommand);
+        assert (inputSegments[1] != null) : "Missing index";
+        return new DeleteCommand(Integer.parseInt(inputSegments[1].trim()));
+    }
+
+    /**
+     * Handles the creation of Find Command object
+     *
+     * @param fullCommand the description for initialising a Find command
+     * @param inputSegments an array input split by spaces
+     * @return the command of initialising a find command
+     * @throws AdoException If command is invalid.
+     */
+    static FindCommand getFindCommand(String fullCommand, String[] inputSegments) throws AdoException {
+        validateMultipleCommand(fullCommand);
+        assert (inputSegments[1] != null) : "Missing find keyword";
+        return new FindCommand(inputSegments[1].trim());
     }
 
     /**
@@ -120,15 +200,15 @@ public class Parser {
         validateMultipleCommand(commandDetails);
 
         String[] deadlineSegments = commandDetails.split("/by", 2);
-        boolean DateIsMissing = deadlineSegments.length < 2 && !deadlineSegments[0].contains("/by");
-        boolean DescriptionIsMissing = deadlineSegments.length == 2 && deadlineSegments[0].trim().isEmpty();
+        boolean dateIsMissing = deadlineSegments.length < 2 && !deadlineSegments[0].contains("/by");
+        boolean descriptionIsMissing = deadlineSegments.length == 2 && deadlineSegments[0].trim().isEmpty();
 
         //Handles missing date in input
-        if (DateIsMissing) {
+        if (dateIsMissing) {
             throw new AdoException(Constants.MISSING_DEADLINEDATE_MESSAGE);
         }
         //Handles empty description in input
-        if (DescriptionIsMissing) {
+        if (descriptionIsMissing) {
             throw new AdoException(Constants.MISSING_DESCRIPTION_MESSAGE);
         }
 
@@ -158,15 +238,15 @@ public class Parser {
         validateMultipleCommand(commandDetails);
 
         String[] deadlineSegments = commandDetails.split("/at", 2);
-        boolean DateIsMissing = deadlineSegments.length < 2 && !deadlineSegments[0].contains("/at");
-        boolean DescriptionIsMissing = deadlineSegments.length == 2 && deadlineSegments[0].trim().isEmpty();
+        boolean dateIsMissing = deadlineSegments.length < 2 && !deadlineSegments[0].contains("/at");
+        boolean descriptionIsMissing = deadlineSegments.length == 2 && deadlineSegments[0].trim().isEmpty();
 
         //Handles missing date in input
-        if (DateIsMissing) {
+        if (dateIsMissing) {
             throw new AdoException(Constants.MISSING_EVENTDATE_MESSAGE);
         }
         //Handles empty description in input
-        if (DescriptionIsMissing) {
+        if (descriptionIsMissing) {
             throw new AdoException(Constants.MISSING_DESCRIPTION_MESSAGE);
         }
 

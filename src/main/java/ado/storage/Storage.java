@@ -89,62 +89,73 @@ public class Storage {
      * @param savedTaskString
      */
     public void addTaskFromString(String savedTaskString, List<Task> loadedTasks) {
-
         String[] taskSegment = savedTaskString.split("\\|");
         String taskType = taskSegment[0];
         String taskStatus = taskSegment[1];
         String taskDescription = taskSegment[2];
 
-        //To store date from deadline tasks
-        LocalDate taskLocalDate = null;
-        LocalDateTime taskLocalDateTime = null;
+        Task currentSavedTask = null;
 
         boolean isDeadlineTask = taskSegment.length >= 4 && taskType.equals("D");
         boolean isEventTask = taskSegment.length >= 4 && taskType.equals("E");
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
 
         if (isDeadlineTask) {
-            try {
-                String date = stringToMediumDateFormat(taskSegment[3]);
-                taskLocalDate = LocalDate.parse(date, formatterDate);
-            } catch (Exception ex) {
-                System.out.println("Error in converting deadline date " + ex.getMessage());
-            }
+            currentSavedTask = handleIsDeadlineTask(taskSegment, taskDescription, formatterDate);
         } else if (isEventTask) {
-            String[] dateSplit = taskSegment[3].split("@", 2);
-            try {
-                String date = stringToMediumDateFormat(dateSplit[0]);
-                taskLocalDate = LocalDate.parse(date, formatterDate);
-
-                String[] timeSplit = dateSplit[1].split(":", 2);
-                taskLocalDateTime = taskLocalDate
-                        .atTime(Integer.parseInt(timeSplit[0]), Integer.parseInt(timeSplit[1]));
-            } catch (Exception ex) {
-                System.out.println("Error in converting event date " + ex.getMessage());
-            }
-        }
-
-        Task currentSavedTask = null;
-        switch(taskType) {
-        case "T":
+            currentSavedTask = handleIsEventTask(taskSegment, taskDescription, formatterDate);
+        } else if (taskType.equals("T")) {
             currentSavedTask = new Todo(taskDescription);
-            break;
-        case "D":
-            currentSavedTask = new Deadline(taskDescription, taskLocalDate);
-            break;
-        case "E":
-            currentSavedTask = new Event(taskDescription, taskLocalDateTime);
-            break;
-        default: assert false : "Unknown taskType: " + taskType;
-            break;
         }
 
         if (taskStatus.equals("X")) {
             currentSavedTask.markAsDone();
         }
-
         loadedTasks.add(currentSavedTask);
     }
+
+    /**
+     * Handles creating a Deadline Task to from storage.
+     * @param taskSegment An array of existing saved tasks split by "|".
+     * @param formatterDate The format which the date should be saved.
+     * @return Deadline task.
+     */
+    public Task handleIsDeadlineTask(String[] taskSegment, String taskDescription, DateTimeFormatter formatterDate) {
+        LocalDate taskLocalDate;
+        try {
+            String date = stringToMediumDateFormat(taskSegment[3]);
+            taskLocalDate = LocalDate.parse(date, formatterDate);
+            return new Deadline(taskDescription, taskLocalDate);
+        } catch (Exception ex) {
+            System.out.println("Error in converting deadline date " + ex.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * Handles creating an Event Task to from storage.
+     * @param taskSegment An array of existing saved tasks split by "|".
+     * @param formatterDate The format which the date should be saved.
+     * @return Deadline task.
+     */
+    public Task handleIsEventTask(String[] taskSegment, String taskDescription, DateTimeFormatter formatterDate) {
+        LocalDate taskLocalDate = null;
+        LocalDateTime taskLocalDateTime = null;
+        String[] dateSplit = taskSegment[3].split("@", 2);
+        try {
+            String date = stringToMediumDateFormat(dateSplit[0]);
+            taskLocalDate = LocalDate.parse(date, formatterDate);
+
+            String[] timeSplit = dateSplit[1].split(":", 2);
+            taskLocalDateTime = taskLocalDate
+                    .atTime(Integer.parseInt(timeSplit[0]), Integer.parseInt(timeSplit[1]));
+            return new Event(taskDescription, taskLocalDateTime);
+        } catch (Exception ex) {
+            System.out.println("Error in converting event date " + ex.getMessage());
+        }
+        return null;
+    }
+
 
     /**
      * Converts string from data.txt to a parsable string to LocalDate.
