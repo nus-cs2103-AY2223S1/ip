@@ -27,34 +27,48 @@ public class FileHandler {
         this.fileName = fileName;
     }
 
-    private CalendarEntry parseTodoEntry(String line) throws Exception{
-        List<String> tags= GuiEventDispatcher.parseTags(line);
+    private static String parseTitleFromFileLine(String line) {
+        line=line.substring(7);
+        if (line.indexOf("#") != -1) {
+            line = line.substring(0, line.indexOf("#"));
+        }
+        if (line.indexOf(" (by: ") != -1) {
+            line = line.substring(0, line.indexOf(" (by: "));
+        }
+        if (line.indexOf(" (at: ") != -1) {
+            line = line.substring(0, line.indexOf(" (at: "));
+        }
+        return line;
+    }
+
+    private CalendarEntry parseTodoEntry(String line) throws Exception {
+        List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
-        ans = new CalendarEntryTodo(line.substring(7), tags);
+        ans = new CalendarEntryTodo(parseTitleFromFileLine(line), tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }
         return ans;
     }
 
-    private CalendarEntry parseDeadlineEntry(String line) throws Exception{
-        List<String> tags= GuiEventDispatcher.parseTags(line);
+    private CalendarEntry parseDeadlineEntry(String line) throws Exception {
+        List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
-        ans = new CalendarEntryDeadline(line.substring(7, line.indexOf(" (by: ")), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1), tags);
+        ans = new CalendarEntryDeadline(parseTitleFromFileLine(line), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1), tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }
         return ans;
     }
 
-    private CalendarEntry parseEventEntry(String line) throws Exception{
-        List<String> tags= GuiEventDispatcher.parseTags(line);
+    private CalendarEntry parseEventEntry(String line) throws Exception {
+        List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
         String time = line.substring(line.indexOf(" (at: ") + 6);
         String startTime = time.split(" - ")[0];
         String endTime = time.split(" - ")[1];
         endTime = endTime.substring(0, endTime.length() - 1);
-        ans = new CalendarEntryEvent(line.substring(7, line.indexOf(" (at: ")), startTime, endTime, tags);
+        ans = new CalendarEntryEvent(parseTitleFromFileLine(line), startTime, endTime, tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }
@@ -64,11 +78,9 @@ public class FileHandler {
     private CalendarEntry parseEntry(String line) throws Exception {
         if (line.substring(0, 3).equals("[T]")) {
             return this.parseTodoEntry(line);
-        }
-        else if (line.substring(0, 3).equals("[D]") && line.indexOf(" (by: ") != -1) {
+        } else if (line.substring(0, 3).equals("[D]") && line.indexOf(" (by: ") != -1) {
             return this.parseDeadlineEntry(line);
-        }
-        else if (line.substring(0, 3).equals("[E]") && line.indexOf(" (at: ") != -1 && line.substring(line.indexOf(" (at: ")).indexOf(" - ") != -1) {
+        } else if (line.substring(0, 3).equals("[E]") && line.indexOf(" (at: ") != -1 && line.substring(line.indexOf(" (at: ")).indexOf(" - ") != -1) {
             return this.parseEventEntry(line);
         }
 

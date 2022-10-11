@@ -14,127 +14,173 @@ import org.Olivia.calendar.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class GuiEventDispatcher {
 
-    private Calendar table;
-    private FileHandler disk;
+    private final Calendar table;
+    private final FileHandler disk;
 
     public GuiEventDispatcher(Calendar table, FileHandler disk) {
         this.table = table;
         this.disk = disk;
     }
 
-    private String help() {
-        return UiHandler.generateHelpMsg();
+    //==============================HELPER METHODS========================================================
+
+    private static void validateCommand(String input) throws Exception {
+        if (input == null) {
+            throw new InvalidParameterException("command string array is not expected to be null, internal error");
+        }
+        if (input.length() == 0) {
+            throw new IllegalArgumentException("Sorry, command length cannot be zero");
+        }
     }
 
-    private String list() {
-        return this.table.toString();
+    private static String[] tokenizeCommand(String input) throws Exception {
+        String[] splited_input = input.toLowerCase().split(" ");
+        if (splited_input.length == 0) {
+            throw new IllegalArgumentException("Sorry, I don't seem to understand you");
+        }
+        return splited_input;
     }
 
-    private String markAsDoneUndone(String input) throws Exception {
-        String[] args = input.toLowerCase().split(" ");
-        if (args.length != 2) {
-            throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
-            //return 400;
-        }
-        if (args[0].equals("mark")) {
-            int status = this.table.markAsDone(Integer.parseInt(args[1]));
-            if (status == 200 || status == 208) {
-                disk.syncToFile(this.table);
-                return "Jawohl, I have marked the following event as completed:\n     " +
-                        this.table.getEntry(Integer.parseInt(args[1])) + "\n";
-            }
-
-        }
-        if (args[0].equals("unmark")) {
-            int status = this.table.markAsUndone(Integer.parseInt(args[1]));
-            if (status == 200 || status == 208) {
-                disk.syncToFile(this.table);
-                return "Jawohl, I have marked the following event as incomplete:\n     " +
-                        this.table.getEntry(Integer.parseInt(args[1])) + "\n";
-            }
-        }
-        throw new RuntimeException("Sorry, there seems to be some difficulties processing your command, could you check the syntax and try again later?");
-    }
-
-    private String delete(String input) throws Exception {
-        String[] args = input.toLowerCase().split(" ");
-        if (args.length != 2) {
-            throw new InvalidParameterException("Sorry, which entry do you want me to delete?");
-            //return 400;
-        }
-        disk.syncToFile(this.table);
-        return "Jawohl, I have removed the following entry from your calendar:\n     " +
-                this.table.deleteEntry(Integer.parseInt(args[1])) + "\n";
-    }
-
-    public static List<String> parseTags(String input){
-        if (input.indexOf("#")==-1){
-            return new ArrayList<>();
-        }
-        input=input.substring(input.indexOf("#"));
-        List<String> ans=new ArrayList<>();
-        String[] tags=input.split("#");
-
-        for (String tag: tags){
-            tag=tag.trim();
-            if (!tag.equals("")){
-                ans.add(tag);
+    public static List<String> parseTags(String input) {
+        List<String> ans = new ArrayList<>();
+        String[] splited_input = input.toLowerCase().split(" ");
+        for (String s : splited_input) {
+            if (s.length()>1 && s.charAt(0) == '#') {
+                ans.add(s.substring(1));
             }
         }
         return ans;
     }
 
-    private String addEntryToCalendar(String input) throws Exception {
+    public static String parseEventTitleInputLine(String line) {
+        line = line.trim().toLowerCase();
+        //strip the command
+        if (line.indexOf("todo") == 0) {
+            line=line.substring(5);
+        }
+        else if (line.indexOf("deadline") == 0) {
+            line=line.substring(9);
+        }
+        else if (line.indexOf("event") == 0) {
+            line=line.substring(6);
+        }
+        //strip the tags
+        if (line.indexOf("#") != -1) {
+            line = line.substring(0, line.indexOf("#"));
+        }
+        //strip the time
+        if (line.indexOf(" /at ") != -1) {
+            line = line.substring(0, line.indexOf(" /at "));
+        }
+        if (line.indexOf(" /by ") != -1) {
+            line = line.substring(0, line.indexOf(" /by "));
+        }
+        return line.trim();
+    }
+
+    //=========================MARK AND UNMARK===============================================================
+
+    private String markEntry(String[] args) throws Exception {
+        int status = this.table.markAsDone(Integer.parseInt(args[1]));
+        if (status == 200 || status == 208) {
+            disk.syncToFile(this.table);
+            return "Jawohl, I have marked the following event as completed:\n     " +
+                    this.table.getEntry(Integer.parseInt(args[1])) + "\n";
+        }
+        throw new RuntimeException(
+                "Sorry, there seems to be some difficulties processing your command, could you check the syntax and try again later?"
+        );
+    }
+
+    private String unmarkEntry(String[] args) throws Exception {
+        int status = this.table.markAsUndone(Integer.parseInt(args[1]));
+        if (status == 200 || status == 208) {
+            disk.syncToFile(this.table);
+            return "Jawohl, I have marked the following event as incomplete:\n     " +
+                    this.table.getEntry(Integer.parseInt(args[1])) + "\n";
+        }
+        throw new RuntimeException(
+                "Sorry, there seems to be some difficulties processing your command, could you check the syntax and try again later?"
+        );
+    }
+
+    private String toggleStatus(String input) throws Exception {
         String[] args = input.toLowerCase().split(" ");
-        List<String> tags=parseTags(input);
-        if (args[0].equals("todo") && args.length >= 2) {
-            CalendarEntryTodo entry = new CalendarEntryTodo(input.substring(5), tags);
-            int status = this.table.addEntry(entry);
-            if (status == 200) {
-                disk.syncToFile(this.table);
-                return "Verstehe, added: " + entry.toString() + "\n";
-            }
-
+        if (args.length != 2) {
+            throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
         }
-        else if (args[0].equals("deadline") && args.length >= 4) {
-            if (input.indexOf("/by") == -1) {
-                throw new InvalidParameterException("Sorry, what is the exact time of the deadline?\nCheck the help message for information on command syntax");
-                //return 500;
-            }
-            input = input.substring(9);
-            String time = input.substring(input.indexOf("/by") + 4);
-            String title = input.substring(0, input.indexOf("/by") - 1);
-            CalendarEntryDeadline entry = new CalendarEntryDeadline(title, time, tags);
-            int status = this.table.addEntry(entry);
-            if (status == 200) {
-                disk.syncToFile(this.table);
-                return "Verstehe, added: " + entry.toString() + "\n";
-            }
-
+        if (args[0].equals("mark")) {
+            return markEntry(args);
         }
-        else if (args[0].equals("event") && args.length >= 4) {
-            if (input.indexOf("/at") == -1 || input.indexOf(" - ") == -1) {
-                throw new InvalidParameterException("Sorry, what is the exact time of the event?\nCheck the help message for information on command syntax");
-                //return 500;
-            }
-            input = input.substring(6);
-            String time = input.substring(input.indexOf("/at") + 4);
-            String title = input.substring(0, input.indexOf("/at") - 1);
-            CalendarEntryEvent entry = new CalendarEntryEvent(title, time.split(" - ")[0], time.split(" - ")[1], tags);
-            int status = this.table.addEntry(entry);
-            if (status == 200) {
-                disk.syncToFile(this.table);
-                return "Verstehe, added: " + entry.toString() + "\n";
-            }
+        if (args[0].equals("unmark")) {
+            return unmarkEntry(args);
+        }
+        throw new RuntimeException("Sorry, there seems to be some difficulties processing your command, could you check the syntax and try again later?");
+    }
 
+    //==============================ADD========================================================
+
+    private String addTodo(String input, List<String> tags) throws Exception {
+        CalendarEntryTodo entry = new CalendarEntryTodo(parseEventTitleInputLine(input), tags);
+        int status = this.table.addEntry(entry);
+        if (status == 200) {
+            disk.syncToFile(this.table);
+            return "Verstehe, added: " + entry + "\n";
         }
         throw new InvalidParameterException("Sorry, I don't seem to understand you");
-        //return 500;
     }
+
+    private String addDeadline(String input, List<String> tags) throws Exception {
+        if (input.indexOf("/by") == -1) {
+            throw new InvalidParameterException(
+                    "Sorry, what is the exact time of the deadline?\nCheck the help message for information on command syntax"
+            );
+        }
+        input = input.substring(9);
+        String time = input.substring(input.indexOf("/by") + 4);
+        CalendarEntryDeadline entry = new CalendarEntryDeadline(parseEventTitleInputLine(input), time, tags);
+        int status = this.table.addEntry(entry);
+        if (status == 200) {
+            disk.syncToFile(this.table);
+            return "Verstehe, added: " + entry + "\n";
+        }
+        throw new InvalidParameterException("Sorry, I don't seem to understand you");
+    }
+
+    private String addEvent(String input, List<String> tags) throws Exception {
+        if (input.indexOf("/at") == -1 || input.indexOf(" - ") == -1) {
+            throw new InvalidParameterException("Sorry, what is the exact time of the event?\nCheck the help message for information on command syntax");
+        }
+        input = input.substring(6);
+        String time = input.substring(input.indexOf("/at") + 4);
+        CalendarEntryEvent entry = new CalendarEntryEvent(parseEventTitleInputLine(input), time.split(" - ")[0], time.split(" - ")[1], tags);
+        int status = this.table.addEntry(entry);
+        if (status == 200) {
+            disk.syncToFile(this.table);
+            return "Verstehe, added: " + entry + "\n";
+        }
+        throw new InvalidParameterException("Sorry, I don't seem to understand you");
+    }
+
+    private String addEntryToCalendar(String input) throws Exception {
+        String[] args = input.toLowerCase().split(" ");
+        List<String> tags = parseTags(input);
+        if (args[0].equals("todo") && args.length >= 2) {
+            return addTodo(input, tags);
+        } else if (args[0].equals("deadline") && args.length >= 4) {
+            return addDeadline(input, tags);
+        } else if (args[0].equals("event") && args.length >= 4) {
+            return addEvent(input, tags);
+        }
+        throw new InvalidParameterException("Sorry, I don't seem to understand you");
+    }
+
+    //==============================FIND======================================================
 
     private String find(String input) {
         input = input.substring(5);
@@ -149,6 +195,29 @@ public class GuiEventDispatcher {
         return content;
     }
 
+    //==============================OTHERS========================================================
+
+    private String help() {
+        return UiHandler.generateHelpMsg();
+    }
+
+    private String list() {
+        return this.table.toString();
+    }
+
+    private String delete(String input) throws Exception {
+        String[] args = input.toLowerCase().split(" ");
+        if (args.length != 2) {
+            throw new InvalidParameterException("Sorry, which entry do you want me to delete?");
+            //return 400;
+        }
+        disk.syncToFile(this.table);
+        return "Jawohl, I have removed the following entry from your calendar:\n     " +
+                this.table.deleteEntry(Integer.parseInt(args[1])) + "\n";
+    }
+
+    //==============================MAIN PARSER========================================================
+
     /**
      * calls corresponding functions based on the input command
      *
@@ -156,29 +225,17 @@ public class GuiEventDispatcher {
      * @return status code (adapted from http, with exceptions such as status 0 represents exit)
      */
     public String dispatchCommand(String input) throws Exception {
-        if (input == null) {
-            throw new InvalidParameterException("command string array is not expected to be null, internal error");
-        }
-        if (input.length() == 0) {
-            throw new IllegalArgumentException("Sorry, command length cannot be zero");
-            //return 400; //Bad request
-        }
-        if (input.toLowerCase().equals("exit") || input.toLowerCase().equals("bye")) {
-            return "Bis später!"; //NOT http status code, exit
-        }
-        if (input.toLowerCase().equals("list") || input.toLowerCase().equals("ls")) {
-            return list();
-        }
+        validateCommand(input);
+        String[] splited_input = tokenizeCommand(input);
 
-        String[] splited_input = input.toLowerCase().split(" ");
-        if (splited_input.length == 0) {
-            throw new IllegalArgumentException("Sorry, I don't seem to understand you");
+        if (splited_input[0].equals("list") || splited_input[0].equals("ls")) {
+            return list();
         }
         if (splited_input[0].equals("help")) {
             return help();
         }
         if (splited_input[0].equals("mark") || splited_input[0].equals("unmark")) {
-            return markAsDoneUndone(input);
+            return toggleStatus(input);
         }
         if (splited_input[0].equals("todo") || splited_input[0].equals("event") || splited_input[0].equals("deadline")) {
             return addEntryToCalendar(input);
@@ -190,7 +247,6 @@ public class GuiEventDispatcher {
             return find(input);
         }
         throw new IllegalArgumentException("Sorry, I don't seem to understand you");
-        //return 500; //not implemented
     }
 
     public void initialize() throws Exception {
