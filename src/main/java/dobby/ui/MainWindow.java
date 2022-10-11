@@ -63,10 +63,14 @@ public class MainWindow extends AnchorPane {
             termination.setOnFinished(event -> Platform.exit());
             termination.play();
         }
-        dialogContainer.getChildren().addAll(
+        if (input.isBlank()) {
+            userInput.clear();
+        } else {
+            dialogContainer.getChildren().addAll(
                 UserDialogBox.getUserDialog(input, userImage),
                 DobbyDialogBox.getDobbyDialog(response, dobbyImage)
-        );
+            );
+        }
         userInput.clear();
     }
 
@@ -77,7 +81,7 @@ public class MainWindow extends AnchorPane {
     private void printCommands() {
         String response = dobby.getCommands();
         dialogContainer.getChildren().addAll(
-                DobbyDialogBox.getDobbyDialog(response, dobbyImage)
+            DobbyDialogBox.getDobbyDialog(response, dobbyImage)
         );
     }
 
@@ -87,7 +91,7 @@ public class MainWindow extends AnchorPane {
     private void printGreeting() {
         String response = dobby.getGreetings();
         dialogContainer.getChildren().addAll(
-                DobbyDialogBox.getDobbyDialog(response, dobbyImage)
+            DobbyDialogBox.getDobbyDialog(response, dobbyImage)
         );
     }
 }
