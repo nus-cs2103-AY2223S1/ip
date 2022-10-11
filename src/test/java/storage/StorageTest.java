@@ -22,16 +22,4 @@ public class StorageTest {
         assertTrue(Files.exists(p));
     }
 
-    @Test
-    public void isLineAppended_appendLine_lineIsAppended() {
-        assertTrue(emptyTaskFile.isLineAppended("newLine"));
-        Path p = Path.of("src/test/java/data/emptyTaskFile.txt");
-        try {
-            assertTrue(Files.readAllLines(p).size() != 0);
-            Files.writeString(p, "");
-        } catch (IOException ioe) {
-            fail();
-        }
-    }
-
 }
