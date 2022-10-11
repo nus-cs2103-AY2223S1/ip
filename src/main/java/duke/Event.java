@@ -1,8 +1,5 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /**
  * A task of the type event, with a specified time of occurence.
  */
