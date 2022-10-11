@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     /**
-     * Method to add a task to the task list.
+     * Adds a task to the task list.
      *
      * @param task
      * @return message
@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * Method to get a task from the task list.
+     * Gets a task from the task list.
      *
      * @param index
      */
@@ -51,7 +51,7 @@ public class TaskList {
     }
 
     /**
-     * Method to remove a task from the task list.
+     * Removes a task from the task list.
      *
      * @param index
      * @return message
@@ -64,7 +64,7 @@ public class TaskList {
     }
 
     /**
-     * Method to check if the task list is empty.
+     * Checks if the task list is empty.
      *
      * @return isEmpty
      */
@@ -73,7 +73,7 @@ public class TaskList {
     }
 
     /**
-     * Method to return the size of the task list.
+     * Returns the size of the task list.
      *
      * @return size
      */
@@ -99,7 +99,7 @@ public class TaskList {
     }
 
     /**
-     * Sort deadlines and return a new TaskList with the sorted deadlines.
+     * Sorts deadlines and return a new TaskList with the sorted deadlines.
      *
      * @return taskList sorted TaskList
      */

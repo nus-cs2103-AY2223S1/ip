@@ -14,7 +14,7 @@ public class Ui {
     }
 
     /**
-     * Method that returns a greeting to the user.
+     * Returns a greeting to the user.
      *
      * @return helloMessage
      */
@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /**
-     * Method to returns an exit message to the user.
+     * Returns an exit message to the user.
      *
      * @return exitMessage
      */
@@ -32,7 +32,7 @@ public class Ui {
     }
 
     /**
-     * Generic method to print a message.
+     * Prints a message.
      *
      * @param strs vaars of String.
      * @return message
@@ -50,7 +50,7 @@ public class Ui {
     }
 
     /**
-     * Method to wrap a message for printing after a new task is added.
+     * Wraps a message for printing after a new task is added.
      *
      * @param str
      * @param taskDescription

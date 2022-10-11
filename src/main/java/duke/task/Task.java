@@ -10,7 +10,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Initialise the task object.
+     * Initialises the task object.
      *
      * @param description
      */
@@ -20,7 +20,7 @@ public abstract class Task {
     }
 
     /**
-     * Initialise the task object.
+     * Initialises the task object.
      *
      * @param description
      * @param isDone
@@ -31,7 +31,7 @@ public abstract class Task {
     }
 
     /**
-     * Method that returns the boolean isDone of the task.
+     * Returns the boolean isDone of the task.
      *
      * @return isDone
      */
@@ -40,7 +40,7 @@ public abstract class Task {
     }
 
     /**
-     * Method that returns the description of the task.
+     * Returns the description of the task.
      *
      * @return description
      */
@@ -49,7 +49,7 @@ public abstract class Task {
     }
 
     /**
-     * Method to obtain the status icon.
+     * Obtains the status icon.
      *
      * @return statusIcon
      */
@@ -58,7 +58,7 @@ public abstract class Task {
     }
 
     /**
-     * Method to mark task as done.
+     * Marks task as done.
      */
     public void markAsDone() {
         this.isDone = true;
@@ -72,7 +72,7 @@ public abstract class Task {
     }
 
     /**
-     * Method to return the task as a string.
+     * Returns the task as a string.
      *
      * @return string
      */
@@ -81,7 +81,7 @@ public abstract class Task {
     }
 
     /**
-     * Method to return the task for saving and loading.
+     * Returns the task for saving and loading.
      *
      * @return strArray
      */
