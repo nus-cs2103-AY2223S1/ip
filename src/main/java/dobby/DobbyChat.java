@@ -35,10 +35,10 @@ public class DobbyChat {
             + "\t2. deadline [task name] /by [YYYY-MM-DD HHMM]\n"
             + "\t3. event [task name] /at [YYYY-MM-DD HHMM]\n"
             + "\t4. list\n"
-            + "\t5. done [task number]\n"
-            + "\t6. delete [task number]\n"
-            + "\t7. find [keyword]\n"
-            + "\t8. date [date]\n"
+            + "\t5. mark [task number]\n"
+            + "\t6. unmark [date]\n"
+            + "\t7. delete [task number]\n"
+            + "\t8. find [keyword]\n"
             + "\t9. simplify [old command] [new command]\n"
             + "\t10. bye\n");
     }
