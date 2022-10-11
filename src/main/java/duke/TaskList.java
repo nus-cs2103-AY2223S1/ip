@@ -242,7 +242,7 @@ public class TaskList {
      * @throws DukeException
      */
     public String undo() throws DukeException {
-        if(isUndoable) {
+        if (isUndoable) {
             switch(storeUndoCommand) {
             case "addTask":
                 return deleteTask(String.valueOf(getLength()));
@@ -250,7 +250,7 @@ public class TaskList {
                 String confirmation = "Got it. I've added this task:\n  ";
                 String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
                 tasks.add(numTasks, this.storeTask);
-                numTasks ++;
+                numTasks++;
                 storeUndoCommand = "addTask";
                 return (confirmation + tasks.get(numTasks - 1) + number);
             case "markTask":
