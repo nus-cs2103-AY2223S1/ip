@@ -1,6 +1,6 @@
 package duke.duke;
 
-import duke.UI.UIText;
+import duke.ui.UIText;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;

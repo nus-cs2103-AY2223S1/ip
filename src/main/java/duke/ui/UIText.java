@@ -1,4 +1,4 @@
-package duke.UI;
+package duke.ui;
 
 public class UIText {
     public static String GREETING = "Hello, I'm LishBot!\n" + "How may I help you today?\n";

@@ -1,6 +1,6 @@
 package duke.tasklist;
 
-import duke.UI.UIText;
+import duke.ui.UIText;
 import duke.exception.DukeException;
 import duke.task.Task;
 

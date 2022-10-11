@@ -1,6 +1,6 @@
 package duke.storage;
 
-import duke.UI.UIText;
+import duke.ui.UIText;
 import duke.exception.DukeException;
 import duke.tasklist.TaskList;
 import duke.task.Deadline;
