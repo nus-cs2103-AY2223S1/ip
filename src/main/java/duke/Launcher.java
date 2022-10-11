@@ -7,7 +7,7 @@ import javafx.application.Application;
 public class Launcher {
 
     /**
-     * The call to the main application function.
+     * Calls the main application function.
      *
      * @param args Arguments passed into the main function
      */
