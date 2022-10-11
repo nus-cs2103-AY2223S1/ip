@@ -68,12 +68,12 @@ Create event by simply providing a description and date. The date **MUST** be in
 Format: `deadline {DESCRIPTION} /at {YYYY-MM-DD}`
 
 Example of usage: 
-`event Summer CS Intership Interview /by 2022-09-10`
+`event Summer CS Intership Interview /at 2022-09-10`
 
 Expected Outcome:
 ```
 Got it nya. I've added this task:
-[E][] Summer CS Internship Interview (by: Sep 10 2022)
+[E][] Summer CS Internship Interview (at: Sep 10 2022)
 Now you have 3 tasks in the list
 ```
 
