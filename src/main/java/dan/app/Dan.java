@@ -29,9 +29,8 @@ public class Dan {
      * Initialises the chat bot, Dan.
      * The application reads the data file specified at its default storage location to generate it's list of tasks
      * If the file is not found, a new data file is created.
-     *
+     * <p>
      * default storage location: src/main/data
-     *
      */
     public Dan() {
         tlr = new TaskListReader(dataFileName);
@@ -78,6 +77,7 @@ public class Dan {
         }
         // writes list every iteration
     }
+
     /**
      * Saves the task list into the save datafile.
      */

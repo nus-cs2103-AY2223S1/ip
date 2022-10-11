@@ -1,11 +1,12 @@
 package dan.parser;
 
-import dan.task.TaskList;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import dan.task.TaskList;
 
 class ParserTest {
 

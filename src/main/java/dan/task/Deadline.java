@@ -13,10 +13,10 @@ public class Deadline extends Task {
     protected LocalDateTime dateString;
 
     /**
-     * A task with an associated description and deadline
+     * Creates a task with an associated description and deadline
      *
      * @param description The description of the task
-     * @param dateString A String representing a date-time in the pattern "dd/MM/yyyy HHmm"
+     * @param dateString  A String representing a date-time in the pattern "dd/MM/yyyy HHmm"
      * @throws DateTimeParseException If the date-time string is not part of its regular pattern
      */
     public Deadline(String description, String dateString) throws DateTimeParseException {

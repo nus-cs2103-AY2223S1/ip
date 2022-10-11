@@ -1,16 +1,20 @@
 package dan.task;
 
-import dan.exceptions.DanException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
+import dan.exceptions.DanException;
+
+
+
+
 
 class TaskListTest {
 
@@ -119,15 +123,15 @@ class TaskListTest {
     @Test
     public void addTask_allTaskTypes_success() {
         List<Task> tasks = new ArrayList<>();
-        ToDo t_task = new ToDo("test todo");
-        Event e_task = new Event("test event", "20/04/1999 1200");
-        Deadline d_task = new Deadline("test deadline", "20/04/1999 1200");
-        tasks.add(t_task);
-        tasks.add(e_task);
-        tasks.add(d_task);
+        ToDo todoTask = new ToDo("test todo");
+        Event eventTask = new Event("test event", "20/04/1999 1200");
+        Deadline deadlineTask = new Deadline("test deadline", "20/04/1999 1200");
+        tasks.add(todoTask);
+        tasks.add(eventTask);
+        tasks.add(deadlineTask);
         TaskList tl = new TaskList(tasks);
-        assertEquals(t_task, tl.getTasks().get(0));
-        assertEquals(e_task, tl.getTasks().get(1));
-        assertEquals(d_task, tl.getTasks().get(2));
+        assertEquals(todoTask, tl.getTasks().get(0));
+        assertEquals(eventTask, tl.getTasks().get(1));
+        assertEquals(deadlineTask, tl.getTasks().get(2));
     }
 }

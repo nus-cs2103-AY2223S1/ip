@@ -6,12 +6,14 @@ import java.util.stream.Stream;
 import dan.exceptions.DanException;
 import dan.task.TaskList;
 import dan.ui.Ui;
+
 /**
  * A parser to help parse and execute command-line inputs by the user
  */
 public class Parser {
     private TaskList tasks;
     private boolean isExit = false;
+
     /**
      * Constructor method. Associates the parser to its list of tasks to perform actions on.
      *
@@ -73,6 +75,7 @@ public class Parser {
         return stream.mapToInt(x -> Integer.parseInt(x))
                 .toArray();
     }
+
     private String[] convertToStringArray(Stream<String> stream) {
         return stream.toArray(String[]::new);
     }
