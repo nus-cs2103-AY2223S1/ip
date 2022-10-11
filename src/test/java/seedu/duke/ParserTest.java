@@ -27,7 +27,7 @@ public class ParserTest {
 
             assertEquals(testOutput2, parse("deadline eat /by tomorrow").execute(list));
             assertEquals(testOutput2, addTaskParser("deadline", "eat /by tomorrow").execute(list));
-            
+
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
