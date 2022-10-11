@@ -27,8 +27,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to user input.
+     *
+     * @param input input by user.
+     * @return response from PAL.
      */
     protected String getResponse(String input) {
         Parser parser = new Parser(listOfTasks, ui, storage);

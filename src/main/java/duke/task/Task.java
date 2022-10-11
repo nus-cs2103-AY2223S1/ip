@@ -7,7 +7,7 @@ package duke.task;
 public abstract class Task {
 
     /** Status of this task */
-    private boolean done;
+    private boolean isDone;
 
     /** Name of this task */
     private String name;
@@ -18,7 +18,7 @@ public abstract class Task {
      * @param description of the task.
      */
     public Task(String description) {
-        this.done = false;
+        this.isDone = false;
         this.name = description;
     }
 
@@ -27,11 +27,11 @@ public abstract class Task {
     }
 
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
