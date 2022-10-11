@@ -20,7 +20,7 @@ public class Storage {
     private String notesFilePath;
 
     /**
-     * Create a new Storage object to handle saving and loading of list objects.
+     * Creates a new Storage object to handle saving and loading of list objects.
      *
      * @param tasksFilePath path to the save file for tasks
      * @param notesFilePath path to the save file for notes

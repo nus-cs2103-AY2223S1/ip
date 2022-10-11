@@ -70,14 +70,14 @@ public class Task {
     }
 
     /**
-     * Mark a Task as done.
+     * Marks a Task as done.
      */
     public void markDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark a Task as undone.
+     * Marks a Task as undone.
      */
     public void unmarkDone() {
         this.isDone = false;
