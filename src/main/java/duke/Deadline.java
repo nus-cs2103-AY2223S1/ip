@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * A task with a specified deadline.
@@ -17,10 +18,14 @@ public class Deadline extends Task {
      * @param time The time of the deadline.
      * @param done Whether the task has been done.
      */
-    public Deadline(String title, String time, boolean done) {
+    public Deadline(String title, String time, boolean done) throws DukeException {
         super(title, "deadline", done);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.time = LocalDate.parse(time, formatter);
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            this.time = LocalDate.parse(time, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please make sure that the date format is: 'yyyy-MM-dd'");
+        }
     }
 
     /**

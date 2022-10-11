@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    private LocalDate time;
+    private String time;
 
     /**
      * Constructs an event object.
@@ -19,23 +19,20 @@ public class Event extends Task {
      */
     public Event(String title, String time, boolean done) {
         super(title, "event", done);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.time = LocalDate.parse(time, formatter);
+        this.time = time;
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return (super.toString() + " (at: " + this.time.format(formatter) + ")");
+        return (super.toString() + " (at: " + this.time + ")");
     }
 
     /**
-     * Gets the time of the deadline in format of "yyyy-MM-dd".
+     * Gets the time of the event.
      *
-     * @return The time of the deadline as a string.
+     * @return The time of the event as a string.
      */
     public String getTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return this.time.format(formatter);
+        return this.time;
     }
 }

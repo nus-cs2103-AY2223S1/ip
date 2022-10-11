@@ -46,21 +46,21 @@ public class TaskList {
         String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
 
         if (noType == "") {
-            throw new DukeException("☹ OOPS!!! The description of a " + type + " cannot be empty.");
+            throw new DukeException(":( OOPS!!! The description of a " + type + " cannot be empty.");
         }
 
         if (type.equals("deadline")) {
             String[] split = noType.split(" /by ");
             if (split.length != 2) {
-                throw new DukeException("☹ OOPS!!! A single deadline must be specified."
-                        + "e.g. deadline finish work /by June 9th");
+                throw new DukeException(":( OOPS!!! A single deadline must be specified."
+                        + "e.g. deadline finish work /by 2022-09-10");
             }
             tasks.add(numTasks, new Deadline(split[0], split[1], isDone));
             numTasks++;
         } else if (type.equals("event")) {
             String[] split = noType.split(" /at ");
             if (split.length != 2) {
-                throw new DukeException("☹ OOPS!!! A single timeframe must be specified."
+                throw new DukeException("OOPS!!! A single timeframe must be specified."
                         + "e.g. event meeting /at Thursday 2-4pm");
             }
             tasks.add(numTasks, new Event(split[0], split[1], isDone));
@@ -87,9 +87,9 @@ public class TaskList {
      */
     public String deleteTask(String index) throws DukeException {
         if (!index.matches("\\d+")) {
-            throw new DukeException("☹ OOPS!!! Please specify an integer index.");
-        } else if (Integer.valueOf(index) > numTasks) {
-            throw new DukeException("☹ OOPS!!! The index specified is out of range.");
+            throw new DukeException(":( OOPS!!! Please specify a positive integer index.");
+        } else if (Integer.valueOf(index) > numTasks || Integer.valueOf(index) < 1) {
+            throw new DukeException(":( OOPS!!! The index specified is out of range.");
         }
         Task task = tasks.get(Integer.valueOf(index) - 1);
         tasks.remove(Integer.valueOf(index) - 1);
@@ -110,9 +110,9 @@ public class TaskList {
     public String markTask(String index)
             throws DukeException {
         if (!index.matches("\\d+")) {
-            throw new DukeException("☹ OOPS!!! Please specify an integer index.");
-        } else if (Integer.valueOf(index) > numTasks) {
-            throw new DukeException("☹ OOPS!!! The index specified is out of range.");
+            throw new DukeException(":( OOPS!!! Please specify a positive integer index.");
+        } else if (Integer.valueOf(index) > numTasks || Integer.valueOf(index) < 1) {
+            throw new DukeException(":( OOPS!!! The index specified is out of range.");
         }
         Task task = tasks.get(Integer.valueOf(index) - 1);
         task.mark();
@@ -131,9 +131,9 @@ public class TaskList {
             throws DukeException {
         //Note potential exception: Duke.Task index exceeded
         if (!index.matches("\\d+")) {
-            throw new DukeException("☹ OOPS!!! Please specify an integer index.");
-        } else if (Integer.valueOf(index) > numTasks) {
-            throw new DukeException("☹ OOPS!!! The index specified is out of range.");
+            throw new DukeException(":( OOPS!!! Please specify a positive integer index.");
+        } else if (Integer.valueOf(index) > numTasks || Integer.valueOf(index) < 1) {
+            throw new DukeException(":( OOPS!!! The index specified is out of range.");
         }
         Task task = tasks.get(Integer.valueOf(index) - 1);
         task.unmark();
