@@ -1,4 +1,4 @@
-# User Guide
+# User Guide 📖
 
 Ado is a **desktop chatbot app for managing and storing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
 What are you waiting for? Start using Ado today! 🐼
@@ -19,12 +19,19 @@ What are you waiting for? Start using Ado today! 🐼
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
+## Icon legend <br>
+Icon | Meaning
+--------|------------------
+❗ | Important notes to take note of when using Ado Chatbot
+💡 | Extra information for better undertsanding
+
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ado.jar` file from [here](https://github.com/jovitaanderson/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the home folder for your task list.
-4. Double-click the file to start the app. If done correctly, the GUI should be similar as below. <br>
-<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_startup.png?raw=true" alt="AdoStartUp"/> <br>
+4. Double-click the file to start the app. <br>
+This is a sample output of Ado chatbot <br>
+<img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_demo_2.gif?raw=true" alt="AdoStartUp" height="720"/> <br>
 5. Type the command in the command box and press Enter to execute it. You can try the follow example commands:
     - `list` : Lists all the tasks.
     - `deadline submit assignment /by 25 Sep 2022` : Adds a deadline task `submit assignment (by:25 Sep 2022)` to the list.
@@ -35,7 +42,7 @@ What are you waiting for? Start using Ado today! 🐼
     - `bye` : Exits the app.
 6. Refer to the [Features](#Features) below for details of each command.
 
-##  Features 
+##  Features
 💡 Notes about the command format: <br>
 Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
 e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
