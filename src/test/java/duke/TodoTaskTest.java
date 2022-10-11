@@ -10,13 +10,13 @@ public class TodoTaskTest {
     @Test
     public void newTodoTest() {
         TodoTask todo = new TodoTask("Test description");
-        assertEquals(todo.toString(), "[T][ ] Test description");
+        assertEquals("[T][ ] Test description", todo.toString() );
     }
 
     @Test
     public void markTodoTest() {
         TodoTask todo = new TodoTask("Test description");
         todo.markDone();
-        assertEquals(todo.toString(), "[T][X] Test description");
+        assertEquals("[T][X] Test description", todo.toString());
     }
 }
