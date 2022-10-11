@@ -29,6 +29,13 @@ public class GuiEventDispatcher {
 
     //==============================HELPER METHODS========================================================
 
+    /**
+     * Basic validity check of a command, return false if the command is null or empty
+     * If invalid, the method would directly throw an Exception
+     * otherwise it would do nothing
+     * @param input the whole line of user input
+     * @throws Exception
+     */
     private static void validateCommand(String input) throws Exception {
         if (input == null) {
             throw new InvalidParameterException("command string array is not expected to be null, internal error");
@@ -38,6 +45,12 @@ public class GuiEventDispatcher {
         }
     }
 
+    /**
+     * split the user input using blank spaces as delimiter
+     * @param input the whole line of user input
+     * @return the separated array of tokens
+     * @throws Exception
+     */
     private static String[] tokenizeCommand(String input) throws Exception {
         String[] splited_input = input.toLowerCase().split(" ");
         if (splited_input.length == 0) {
@@ -46,28 +59,36 @@ public class GuiEventDispatcher {
         return splited_input;
     }
 
+    /**
+     * Parse out the tags in a command
+     * @param input user input, either partial or whole
+     * @return a List of recognized tags
+     */
     public static List<String> parseTags(String input) {
         List<String> ans = new ArrayList<>();
         String[] splited_input = input.toLowerCase().split(" ");
         for (String s : splited_input) {
-            if (s.length()>1 && s.charAt(0) == '#') {
+            if (s.length() > 1 && s.charAt(0) == '#') {
                 ans.add(s.substring(1));
             }
         }
         return ans;
     }
 
+    /**
+     * Parse out the entry title in a command
+     * @param line user input, either partial or whole
+     * @return the title
+     */
     public static String parseEventTitleInputLine(String line) {
         line = line.trim().toLowerCase();
         //strip the command
         if (line.indexOf("todo") == 0) {
-            line=line.substring(5);
-        }
-        else if (line.indexOf("deadline") == 0) {
-            line=line.substring(9);
-        }
-        else if (line.indexOf("event") == 0) {
-            line=line.substring(6);
+            line = line.substring(5);
+        } else if (line.indexOf("deadline") == 0) {
+            line = line.substring(9);
+        } else if (line.indexOf("event") == 0) {
+            line = line.substring(6);
         }
         //strip the tags
         if (line.indexOf("#") != -1) {
@@ -85,6 +106,12 @@ public class GuiEventDispatcher {
 
     //=========================MARK AND UNMARK===============================================================
 
+    /**
+     * mark an entry as done
+     * @param args tokenized user input
+     * @return The string representation of the marked entry
+     * @throws Exception
+     */
     private String markEntry(String[] args) throws Exception {
         int status = this.table.markAsDone(Integer.parseInt(args[1]));
         if (status == 200 || status == 208) {
@@ -97,6 +124,12 @@ public class GuiEventDispatcher {
         );
     }
 
+    /**
+     * mark an entry as undone
+     * @param args tokenized user input
+     * @return The string representation of the unmarked entry
+     * @throws Exception
+     */
     private String unmarkEntry(String[] args) throws Exception {
         int status = this.table.markAsUndone(Integer.parseInt(args[1]));
         if (status == 200 || status == 208) {
@@ -109,6 +142,12 @@ public class GuiEventDispatcher {
         );
     }
 
+    /**
+     * Change an entry's status to done/undone
+     * @param input user input line
+     * @return The string representation of the affected entry
+     * @throws Exception
+     */
     private String toggleStatus(String input) throws Exception {
         String[] args = input.toLowerCase().split(" ");
         if (args.length != 2) {
@@ -125,6 +164,12 @@ public class GuiEventDispatcher {
 
     //==============================ADD========================================================
 
+    /**
+     * add a to-do entry to the calendar
+     * @param input the user input line
+     * @return a string representing the added entry
+     * @throws Exception
+     */
     private String addTodo(String input, List<String> tags) throws Exception {
         CalendarEntryTodo entry = new CalendarEntryTodo(parseEventTitleInputLine(input), tags);
         int status = this.table.addEntry(entry);
@@ -135,6 +180,12 @@ public class GuiEventDispatcher {
         throw new InvalidParameterException("Sorry, I don't seem to understand you");
     }
 
+    /**
+     * add a deadline entry to the calendar
+     * @param input the user input line
+     * @return a string representing the added entry
+     * @throws Exception
+     */
     private String addDeadline(String input, List<String> tags) throws Exception {
         if (input.indexOf("/by") == -1) {
             throw new InvalidParameterException(
@@ -152,6 +203,12 @@ public class GuiEventDispatcher {
         throw new InvalidParameterException("Sorry, I don't seem to understand you");
     }
 
+    /**
+     * add an event entry to the calendar
+     * @param input the user input line
+     * @return a string representing the added entry
+     * @throws Exception
+     */
     private String addEvent(String input, List<String> tags) throws Exception {
         if (input.indexOf("/at") == -1 || input.indexOf(" - ") == -1) {
             throw new InvalidParameterException("Sorry, what is the exact time of the event?\nCheck the help message for information on command syntax");
@@ -167,6 +224,12 @@ public class GuiEventDispatcher {
         throw new InvalidParameterException("Sorry, I don't seem to understand you");
     }
 
+    /**
+     * add an entry to the calendar
+     * @param input the user input line
+     * @return a string representing the added entry
+     * @throws Exception
+     */
     private String addEntryToCalendar(String input) throws Exception {
         String[] args = input.toLowerCase().split(" ");
         List<String> tags = parseTags(input);
@@ -182,6 +245,11 @@ public class GuiEventDispatcher {
 
     //==============================FIND======================================================
 
+    /**
+     * Search for entries contain a keyword in the calendar
+     * @param input the user input line
+     * @return a string contains all the entries containing the keyword
+     */
     private String find(String input) {
         input = input.substring(5);
         List<CalendarEntry> entries = this.table.getEntriesContains(input);
@@ -197,14 +265,26 @@ public class GuiEventDispatcher {
 
     //==============================OTHERS========================================================
 
+    /**
+     * @return The help message as a string
+     */
     private String help() {
         return UiHandler.generateHelpMsg();
     }
 
+    /**
+     * @return The string representing all events in the list
+     */
     private String list() {
         return this.table.toString();
     }
 
+    /**
+     * delete an entry from the calendar
+     * @param input the entire line of the user input
+     * @return the string representing the deleted event
+     * @throws Exception
+     */
     private String delete(String input) throws Exception {
         String[] args = input.toLowerCase().split(" ");
         if (args.length != 2) {

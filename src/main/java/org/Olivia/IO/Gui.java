@@ -26,14 +26,14 @@ public class Gui {
     private Image olivia;
     private AnchorPane mainLayout;
 
-    public Gui(Stage stage, GuiEventDispatcher dispatcher){
-        assert stage!=null;
-        assert dispatcher!=null;
-        this.stage=stage;
-        this.dispatcher=dispatcher;
+    public Gui(Stage stage, GuiEventDispatcher dispatcher) {
+        assert stage != null;
+        assert dispatcher != null;
+        this.stage = stage;
+        this.dispatcher = dispatcher;
     }
 
-    public void initialize(){
+    public void initialize() {
         this.initializeIcons();
         this.initializeScene();
         this.initializeStage();
@@ -41,12 +41,12 @@ public class Gui {
         this.setUpEventHandling();
     }
 
-    private void initializeIcons(){
+    private void initializeIcons() {
         user = GuiApplicationInitializer.getUserIcon();
         olivia = GuiApplicationInitializer.getOliviaIcon();
     }
 
-    private void initializeScene(){
+    private void initializeScene() {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -64,8 +64,8 @@ public class Gui {
     /**
      * Can only be called after this.initializeScene()
      */
-    private void initializeStage(){
-        assert stage!=null;
+    private void initializeStage() {
+        assert stage != null;
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Olivia");
@@ -73,21 +73,21 @@ public class Gui {
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
 
-        assert mainLayout!=null;
+        assert mainLayout != null;
         mainLayout.setPrefSize(400.0, 600.0);
 
-        assert scrollPane!=null;
+        assert scrollPane != null;
         scrollPane.setPrefSize(400, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        assert dialogContainer!=null;
+        assert dialogContainer != null;
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
     }
 
-    private void initializeInputs(){
+    private void initializeInputs() {
         userInput.setPrefWidth(325.0);
 
         sendButton.setPrefWidth(55.0);
@@ -102,7 +102,7 @@ public class Gui {
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
     }
 
-    private void setUpEventHandling(){
+    private void setUpEventHandling() {
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
@@ -132,8 +132,7 @@ public class Gui {
     private String getResponse(String input) {
         try {
             return dispatcher.dispatchCommand(input);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return e.getMessage();
         }
     }

@@ -19,6 +19,7 @@ public class CalendarTime {
 
     // The constructors are set to public for ease of testing
     // should not be used in actual production
+    // set to Deprecated since this is only used in tests
     @Deprecated
     public CalendarTime(LocalDate date) {
         this.date = date;
@@ -47,6 +48,12 @@ public class CalendarTime {
         return input;
     }
 
+    /**
+     * parse a String representing a time of day to a LocalTime Object
+     * @param input the input string representing the time of day
+     * @return an LocalTime object
+     * @throws Exception
+     */
     private static LocalTime parseTime(String input) throws Exception {
         String[] splitedInput = input.split(":");
         if (splitedInput.length != 2) {
@@ -71,13 +78,14 @@ public class CalendarTime {
     /**
      * Take in a string in "DD/MM/YYYY", "hh:mm", or "DD/MM/YYYY hh:mm" format
      * and parse that string into a time, return as a CalendarTime object
+     *
      * @param input e input string
      * @return a CalendarTime object
      * @throws Exception cannot parse e input string
      */
     public static CalendarTime parseInput(String input) throws Exception {
-        if (input.indexOf("#")!=-1) {
-            input = input.substring(0,input.indexOf("#"));
+        if (input.indexOf("#") != -1) {
+            input = input.substring(0, input.indexOf("#"));
         }
         input = stripPaddingBlanks(input);
         //both date (/) and time(:) are present but no blank is present

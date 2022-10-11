@@ -27,8 +27,13 @@ public class FileHandler {
         this.fileName = fileName;
     }
 
+    /**
+     * isolate the title substring from a line in the data file
+     * @param line a line read from the file
+     * @return the title for the entry in the line
+     */
     private static String parseTitleFromFileLine(String line) {
-        line=line.substring(7);
+        line = line.substring(7);
         if (line.indexOf("#") != -1) {
             line = line.substring(0, line.indexOf("#"));
         }
@@ -41,6 +46,11 @@ public class FileHandler {
         return line;
     }
 
+    /**
+     * parse a line from file that represents a to-do entry
+     * @param line a line read from the file
+     * @return a CalendarEntry object represented by the input line
+     */
     private CalendarEntry parseTodoEntry(String line) throws Exception {
         List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
@@ -51,6 +61,11 @@ public class FileHandler {
         return ans;
     }
 
+    /**
+     * parse a line from file that represents a deadline entry
+     * @param line a line read from the file
+     * @return a CalendarEntry object represented by the input line
+     */
     private CalendarEntry parseDeadlineEntry(String line) throws Exception {
         List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
@@ -61,6 +76,11 @@ public class FileHandler {
         return ans;
     }
 
+    /**
+     * parse a line from file that represents an event entry
+     * @param line a line read from the file
+     * @return a CalendarEntry object represented by the input line
+     */
     private CalendarEntry parseEventEntry(String line) throws Exception {
         List<String> tags = GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
@@ -75,6 +95,11 @@ public class FileHandler {
         return ans;
     }
 
+    /**
+     * parse a line from file that represents an entry
+     * @param line a line read from the file
+     * @return a CalendarEntry object represented by the input line
+     */
     private CalendarEntry parseEntry(String line) throws Exception {
         if (line.substring(0, 3).equals("[T]")) {
             return this.parseTodoEntry(line);
@@ -87,6 +112,12 @@ public class FileHandler {
         throw new IOException("File: " + this.fileName + " unreadable, possibly corrupted");
     }
 
+    /**
+     * Sync all content in c to disk
+     * @param c a Calendar object
+     * @return an int representing the status of execution (200 for OK)
+     * @throws Exception
+     */
     public int syncFromFile(Calendar c) throws Exception {
         File fd = new File(this.fileName);
         if (!fd.exists()) {
@@ -102,6 +133,12 @@ public class FileHandler {
         return 200;
     }
 
+    /**
+     * Sync all content in the file to c
+     * @param c a Calendar object
+     * @return an int representing the status of execution (200 for OK)
+     * @throws Exception
+     */
     public int syncToFile(Calendar c) throws Exception {
         File fd = new File(this.fileName);
         fd.delete();
