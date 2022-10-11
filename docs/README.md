@@ -2,28 +2,140 @@
 
 ## Features 
 
-### Feature-ABC
+### Create tasks
 
-Description of the feature.
+Allows you to create tasks, of different kinds. Namely, todos, deadlines and events
 
-### Feature-XYZ
+### Mark and un-mark tasks
 
-Description of the feature.
+You're able to keep track of tasks you've done and tasks you've realised need additional work.
+
+### Delete tasks
+
+Delete tasks you're no longer tracking.
+
+### Undo creation/deletion
+
+Made a mistake? Undo your latest action. Realise that it's actually right? Redo it.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - Adds a todo
 
-Describe the action and its outcome.
+The todo command creates a simple task with only a title.
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`todo Film a project video`
 
 Expected outcome:
 
-Description of the outcome.
+A message informing you of a successful task creation.
 
 ```
-expected output
+Got it. I've added this task:
+  [T][ ] Film a project video
+Now you have 1 tasks in the list.
+```
+
+### `deadline` - Adds a task with a deadline
+
+The todo command creates a simple task with a title and deadline. The deadline must be in the format: yyyy-MM-dd
+
+Example of usage:
+
+`deadline Collect laptop /by 2022-10-10`
+
+Expected outcome:
+
+A message informing you of a successful deadline creation.
+
+```
+Got it. I've added this task:
+  [D][ ] Collect laptop (by: Oct 10 2022 )
+Now you have 2 tasks in the list.
+```
+### `event` - Adds a task with a date
+
+The todo command creates a simple task with a title and date.
+
+Example of usage:
+
+`events Forum /at Wednesday 2-3pm`
+
+Expected outcome:
+
+A message informing you of a successful event creation.
+
+```
+Got it. I've added this task:
+  [E][ ] Forum (at: Wednesday 2-3pm )
+Now you have 3 tasks in the list.
+```
+
+### `list` - Lists out tasks
+
+The list commands informs you of all current tasks.
+
+Example of usage:
+
+`list`
+
+Expected outcome:
+
+A message informing you of all existing tasks.
+
+```
+Here are the tasks in your list:
+(tasks)
+```
+
+### `mark` - Mark a certain task as done
+
+The list commands marks a specified task as done.
+
+Example of usage:
+
+`mark (index)`
+
+Expected outcome:
+
+A message informing you of a successful change.
+
+```
+Nice! I've marked this task as done:
+  [D][X] (task details)
+```
+### `unmark` - Mark a certain task as un-done
+
+The list commands marks a specified task as un-done.
+
+Example of usage:
+
+`unmark (index)`
+
+Expected outcome:
+
+A message informing you of a successful change.
+
+```
+OK, I've marked this task as not done yet:
+  [D][] (task details)
+```
+
+### `undo` - Undo/redo the most recent command
+
+The undo command undoes the previous non-undo command, or reverts a recent
+undo (redo).
+
+Example of usage:
+
+`undo`
+
+Expected outcome:
+
+A message informing you of what command was undone and the result.
+
+```
+(depends on the previous command)
 ```
