@@ -1,12 +1,16 @@
 package duke.main;
 
-import duke.commandword.CommandWord;
-import duke.exception.DukeException;
-import duke.task.*;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.commandword.CommandWord;
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.Todo;
+
+
 
 /**
  * Main Duke class.
@@ -106,6 +110,10 @@ public class Duke {
                     Task newTask = new Deadline(taskDescription, dateTime);
                     taskList.addTask(newTask);
                     ui.addTaskMessage(newTask, taskList);
+                    break;
+                }
+                default: {
+                    System.out.print("Oops... This is a rare error!");
                     break;
                 }
                 }
