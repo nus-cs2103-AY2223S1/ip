@@ -33,7 +33,7 @@ What are you waiting for? Start using Ado today! 🐼
     - `delete 1` : Deletes the first at index `2` on the list.
     - `find cat` : Finds a task with the matching keyword `cat`
     - `bye` : Exits the app.
- 6. Refer to the [Features](#Features) below for details of each command.
+6. Refer to the [Features](#Features) below for details of each command.
 
 ##  Features 
 💡 Notes about the command format: <br>
