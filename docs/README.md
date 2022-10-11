@@ -26,7 +26,7 @@ The todo command creates a simple task with only a title.
 
 Example of usage: 
 
-`todo (title)`
+`todo Film a project video`
 
 Expected outcome:
 
@@ -34,7 +34,7 @@ A message informing you of a successful task creation.
 
 ```
 Got it. I've added this task:
-  [T][ ] (title)
+  [T][ ] Film a project video
 Now you have 1 tasks in the list.
 ```
 
@@ -44,7 +44,7 @@ The todo command creates a simple task with a title and deadline. The deadline m
 
 Example of usage:
 
-`deadline (title) /by (deadline)`
+`deadline Collect laptop /by 2022-10-10`
 
 Expected outcome:
 
@@ -52,7 +52,7 @@ A message informing you of a successful deadline creation.
 
 ```
 Got it. I've added this task:
-  [D][ ] (title) (by: (deadline) )
+  [D][ ] Collect laptop (by: Oct 10 2022 )
 Now you have 2 tasks in the list.
 ```
 ### `event` - Adds a task with a date
@@ -61,7 +61,7 @@ The todo command creates a simple task with a title and date.
 
 Example of usage:
 
-`events (title) /at (date)`
+`events Forum /at Wednesday 2-3pm`
 
 Expected outcome:
 
@@ -69,7 +69,7 @@ A message informing you of a successful event creation.
 
 ```
 Got it. I've added this task:
-  [E][ ] (title) (at: (date) )
+  [E][ ] Forum (at: Wednesday 2-3pm )
 Now you have 3 tasks in the list.
 ```
 
