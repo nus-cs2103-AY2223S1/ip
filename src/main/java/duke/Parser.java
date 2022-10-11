@@ -360,9 +360,9 @@ public class Parser {
             throw new DukeException("Task number must be an integer!\n"
                     + "   mark [TASK NUMBER]\n");
         }
-        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
-        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
-        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
+        Boolean isTaskNumberNegativeOrZero = taskNumber <= 0;
+        Boolean isTaskNumberLargerThanTaskCount = taskNumber > size;
+        if (isTaskNumberNegativeOrZero || isTaskNumberLargerThanTaskCount) {
             throw new DukeException("Task number is invalid."
                     + String.format("You have %d tasks!\n", size)
                     + "   mark [TASK NUMBER]\n");
@@ -389,9 +389,9 @@ public class Parser {
             throw new DukeException("Task number must be an integer!\n"
                     + "   unmark [TASK NUMBER]\n");
         }
-        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
-        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
-        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
+        Boolean isTaskNumberNegativeOrZero = taskNumber <= 0;
+        Boolean isTaskNumberLargerThanTaskCount = taskNumber > size;
+        if (isTaskNumberNegativeOrZero || isTaskNumberLargerThanTaskCount) {
             throw new DukeException("Task number is invalid.\n"
                     + String.format("You have %d tasks!\n", size)
                     + "   mark [TASK NUMBER]\n");
