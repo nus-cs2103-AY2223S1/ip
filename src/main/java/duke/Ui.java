@@ -63,6 +63,10 @@ public class Ui {
         return builder.toString();
     }
 
+    public String printErrorMessage(String msg) {
+        return msg;
+    }
+
     public String printHelp() {
         StringBuilder builder = new StringBuilder();
         builder.append("These are the commands available for use:");

@@ -72,7 +72,8 @@ public class Parser {
                 throw new DukeException("I'm sorry, but I don't know what that means.");
             }
         } catch (DukeException exception) {
-            return exception.toString();
+            Ui ui = new Ui();
+            return ui.printErrorMessage(exception.getMessage());
         }
     }
 
