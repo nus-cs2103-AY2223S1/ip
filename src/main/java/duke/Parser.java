@@ -74,9 +74,11 @@ public class Parser {
         }
         if (command.split(" ")[0].equals("tag")) {
             try {
-                return new Tag(arrayList, Integer.parseInt(command.split(" ")[1]) - 1);
+                return new Tag(arrayList, Integer.parseInt(command.split(" ")[1]) - 1,
+                        command.split(" ")[2]);
             } catch (Exception e) {
-                throw new DukeException("Sorry. The format for 'tag' command should be tag + space + number");
+                throw new DukeException("Sorry. The format for 'tag' command should be tag + space + number " +
+                        "+ space + content");
             }
         }
         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");

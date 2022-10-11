@@ -49,7 +49,7 @@ public class Duke {
     }
 
     /**
-     * PrintCommand function to print out the current command.
+     * Prints out the current command.
      *
      * @param command String command.
      * @return String

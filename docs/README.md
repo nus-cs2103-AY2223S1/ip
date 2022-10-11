@@ -296,3 +296,42 @@ Here are the matching tasks in your list:
 ***************************************
 ```
 
+### 10. `tag` - Tag a task as something
+DUKE will tag a task as something.
+
+Format:
+
+`tag <Index> contents`
+
+Example of usage in sequence:
+
+`list`, `tag 2 interesting`, `list`
+
+Outcomes in sequence:
+
+`> list`
+```
+***************************************
+Here are the tasks in your list:
+1. [T][ ] read book
+2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+***************************************
+```
+`> tag 2 interesting`
+```
+***************************************
+OK! I have tagged:
+[E][ ] read chapter 2 (at: 2022-10-01 11:22) as #interesting
+***************************************
+```
+`> list`
+```
+***************************************
+Here are the tasks in your list:
+1. [T][ ] read book
+2. [E][ ] read chapter 2 (at: 2022-10-01 11:22) as #interesting
+3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+***************************************
+```
+

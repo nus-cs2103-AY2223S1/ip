@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Tag extends Parser {
     private String tag;
+    private String content;
 
-    public Tag(ArrayList<String> arrayList, int num) {
+    public Tag(ArrayList<String> arrayList, int num, String content) {
         super(arrayList.get(num));
         this.tag = arrayList.get(num);
-        arrayList.set(num, arrayList.get(num) + " #fun");
+        this.content = content;
+        arrayList.set(num, arrayList.get(num) + " #" + content);
     }
 
     /**
@@ -28,6 +30,6 @@ public class Tag extends Parser {
      */
     @Override
     public String toString() {
-        return "OK! I have tagged:\n" + this.tag + " as #fun";
+        return "OK! I have tagged:\n" + this.tag + " as #" + content;
     }
 }
