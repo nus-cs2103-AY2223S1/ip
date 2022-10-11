@@ -16,8 +16,8 @@ traditional GUI applications.
 - [Unmarking a Task: unmark](#unmark)
 - [Find a Task: find](#find)
 - [Deletes a Task: delete](#delete)
-- [Add Tentative Date: tentative](#tentative)
-- [Interact: interact with Henry](#interact)
+- [Add a Tentative Date to an Event: tentative](#tentative)
+- [Teach: teach Henry a new word](#teach)
 
 
 ## Usage
@@ -221,9 +221,9 @@ Can either add a tentative date or confirm a tentative date for an Event type ta
 ![tentative expected outcome](https://user-images.githubusercontent.com/89738860/190916863-e25a47f1-5e42-4e1d-896c-37494e7952ea.png)
 
 
-### <span style="color: orange" id="interact">Interact with Henry - `interact`</span>
+### <span style="color: orange" id="teach">Teach Henry a new word - `teach`</span>
 
-Interact with Henry. Currently, this feature only supports teaching Henry new words.
+Teach Henry new words.
 
 **Format:**
 
