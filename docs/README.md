@@ -19,9 +19,10 @@ What are you waiting for? Start using Ado today! 🐼
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-## Icon legend <br>
+## Icon legend
+
 Icon | Meaning
---------|------------------
+:--------:|:------------------
 ❗ | Important notes to take note of when using Ado Chatbot
 💡 | Extra information for better understanding
 
