@@ -29,6 +29,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren()
+                .addAll(DialogBox
+                        .getDukeDialog("To all Subjects of Ymir. My name is Eren Yeager. How can I help you?", dukeImage));
     }
 
     public void setDuke(Duke d) {
