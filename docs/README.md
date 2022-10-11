@@ -96,7 +96,7 @@ The list commands marks a specified task as done.
 
 Example of usage:
 
-`mark (index)`
+`mark 2`
 
 Expected outcome:
 
@@ -112,7 +112,7 @@ The list commands marks a specified task as un-done.
 
 Example of usage:
 
-`unmark (index)`
+`unmark 2`
 
 Expected outcome:
 
