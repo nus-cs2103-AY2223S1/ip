@@ -61,7 +61,7 @@ The todo command creates a simple task with a title and date.
 
 Example of usage:
 
-`events Forum /at Wednesday 2-3pm`
+`event Forum /at Wednesday 2-3pm`
 
 Expected outcome:
 
@@ -87,7 +87,9 @@ A message informing you of all existing tasks.
 
 ```
 Here are the tasks in your list:
-(tasks)
+1.[T][ ] Film a project video
+2.[D][ ] Collect laptop (by: Oct 10 2022)
+3.[E][ ] Forum (at: Wednesday 2-3pm)
 ```
 
 ### `mark` - Mark a certain task as done
@@ -104,7 +106,7 @@ A message informing you of a successful change.
 
 ```
 Nice! I've marked this task as done:
-  [D][X] (task details)
+  [D][X] Collect laptop (by: Oct 10 2022)
 ```
 ### `unmark` - Mark a certain task as un-done
 
@@ -120,7 +122,7 @@ A message informing you of a successful change.
 
 ```
 OK, I've marked this task as not done yet:
-  [D][] (task details)
+  [D][] Collect laptop (by: Oct 10 2022)
 ```
 
 ### `undo` - Undo/redo the most recent command
@@ -134,8 +136,10 @@ Example of usage:
 
 Expected outcome:
 
-A message informing you of what command was undone and the result.
+A message informing you of that the command was undone and the corresponding message.
 
 ```
-(depends on the previous command)
+(if the previous command was unmark)
+Nice! I've marked this task as done:
+  [D][X] Collect laptop (by: Oct 10 2022)
 ```
