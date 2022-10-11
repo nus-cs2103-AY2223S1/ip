@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane
+        xmlns:fx="http://javafx.com/fxml"
+        xmlns="http://javafx.com/javafx"
+        fx:controller="duke.ui.GuiUi"
+        maxWidth="600"
+>
+    <TextField
+            fx:id="userInput"
+            onAction="#handleUserInput"
+            style="-fx-background-color: #ccbbcc; -fx-background-radius: 10;"
+            AnchorPane.leftAnchor="5"
+            AnchorPane.rightAnchor="110"
+            AnchorPane.bottomAnchor="4"
+            prefHeight="30"
+    />
+    <Button
+            fx:id="sendButton"
+            onAction="#handleUserInput"
+            mnemonicParsing="false"
+            text="Meow"
+            style="-fx-background-color: #ccbbcc; -fx-background-radius: 10;"
+            AnchorPane.rightAnchor="5"
+            AnchorPane.bottomAnchor="5"
+            prefHeight="30"
+            prefWidth="100"
+    />
+    <ScrollPane
+            fx:id="scrollPane"
+            hbarPolicy="NEVER"
+            hvalue="1.0"
+            vvalue="1.0"
+            AnchorPane.topAnchor="0"
+            AnchorPane.rightAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.bottomAnchor="40"
+    >
+        <VBox
+                fx:id="dialogContainer"
+                style="-fx-background-image: url('images/bg.jpg');
+                       -fx-background-size: cover;"
+                prefHeight="800"
+                prefWidth="400"
+                opacity="0.9"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.leftAnchor="0"
+        />
+    </ScrollPane>
+</AnchorPane>
