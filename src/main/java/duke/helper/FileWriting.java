@@ -6,11 +6,11 @@ import java.io.IOException;
 import duke.task.TaskList;
 
 /**
- * Class to update .txt file
+ * Encapsulates a method that updates .txt file given
  */
 public class FileWriting {
     /**
-     * Method to update the taskList based on any changes
+     * Updates the taskList based on any changes
      *
      * @param filePath the path of the file to be updated
      * @param list the taskList to be updated

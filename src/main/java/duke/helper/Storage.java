@@ -11,7 +11,8 @@ import duke.task.Task;
 import duke.task.TaskCreator;
 
 /**
- * Main class used to create/update storage of list
+ * Encapsulates a storage system
+ * Creates/updates storage of list
  */
 public class Storage {
     protected File file;
@@ -37,7 +38,7 @@ public class Storage {
     }
 
     /**
-     * Method to load, create and return an ArrayList of tasks from a .txt
+     * Loads, creates and returns an ArrayList of tasks from a .txt
      *
      * @return the ArrayList of tasks load
      */

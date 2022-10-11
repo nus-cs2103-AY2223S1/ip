@@ -1,11 +1,11 @@
 package duke.exception;
 
 /**
- * Exception for invalid command
+ * Encapsulates an Exception for invalid command
  */
 public class InvalidCommandException extends Exception {
     /**
-     * Method to return a string representation of the exception
+     * Returns a string representation of the exception
      * @return string representation of the exception
      */
     @Override

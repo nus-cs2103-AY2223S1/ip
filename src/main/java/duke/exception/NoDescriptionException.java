@@ -1,11 +1,11 @@
 package duke.exception;
 
 /**
- * Exception for input with no description
+ * Encapsulates an Exception for input with no description
  */
 public class NoDescriptionException extends Exception {
     /**
-     * Method to return a string representation of the exception
+     * Returns a string representation of the exception
      * @return string representation of the exception
      */
     @Override

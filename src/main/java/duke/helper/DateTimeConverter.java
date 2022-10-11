@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 /**
- * Main class to convert date and time from "yyyy-mm-dd"
+ * Encapsulates a converter of date and time from "yyyy-mm-dd"
  * eg. (2022-2-2 1800 -> Feb 2 2022 6:00 PM)
  */
 public class DateTimeConverter {
@@ -28,7 +28,7 @@ public class DateTimeConverter {
     }
 
     /**
-     * Method to convert dateTime from "yyyy-mm-dd"
+     * Converts dateTime from "yyyy-mm-dd"
      * eg. (2022-2-2 1800 -> Feb 2 2022 6:00 PM)
      *
      * @param dateTime the date and time to be converted
@@ -53,7 +53,7 @@ public class DateTimeConverter {
     }
 
     /**
-     * Method to check if the date given is valid
+     * Checks if the date given is valid
      *
      * @param date the date to be converted
      * @return boolean stating whether the date is valid

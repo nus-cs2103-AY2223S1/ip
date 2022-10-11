@@ -8,7 +8,7 @@ import duke.helper.Ui;
 import duke.task.TaskList;
 
 /**
- * Main class used to handle inputs
+ * Encapsulates the Main class used to handle inputs
  */
 public class Duke {
     private TaskList list;
@@ -26,7 +26,7 @@ public class Duke {
     }
 
     /**
-     * This method runs the duke program
+     * Returns the duke welcome message
      */
     public static void run() {
         Ui.welcome();
@@ -37,7 +37,7 @@ public class Duke {
     }
 
     /**
-     * Main method to run Duke
+     * Initialises duke
      *
      * @param args the args for the main method
      */

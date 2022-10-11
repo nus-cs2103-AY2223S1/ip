@@ -15,7 +15,7 @@ import duke.task.TaskList;
 public class Command {
 
     /**
-     * Method to find task given a String and TaskList
+     * Finds task given a String and TaskList
      *
      * @param in the input command given
      * @param list the list to find the task from
@@ -27,7 +27,7 @@ public class Command {
     }
 
     /**
-     * Method to clear the list given
+     * Clears the list given
      *
      * @param list the list to be cleared
      * @return the string message of clear
@@ -37,7 +37,7 @@ public class Command {
     }
 
     /**
-     * Method to list out the tasks in the list given
+     * Lists out the tasks in the list given
      *
      * @param list the list to be listed out
      * @return the string of the list
@@ -51,7 +51,7 @@ public class Command {
     }
 
     /**
-     * Method to mark a task given a String and TaskList
+     * Marks a task given a String and TaskList
      *
      * @param in the input command given
      * @param list the list to mark the task from
@@ -63,7 +63,7 @@ public class Command {
     }
 
     /**
-     * Method to unmark a task given a String and TaskList
+     * Unmarks a task given a String and TaskList
      *
      * @param in the input command given
      * @param list the list to unmark the task from
@@ -75,7 +75,7 @@ public class Command {
     }
 
     /**
-     * Method to delete a task given a String and TaskList
+     * Deletes a task given a String and TaskList
      *
      * @param in the input command given
      * @param list the list to delete the task from
@@ -100,7 +100,7 @@ public class Command {
     }
 
     /**
-     * Method to create Task
+     * Creates a task given a String and TaskList
      *
      * @param in the input string given
      * @param list the tasklist to add the task to

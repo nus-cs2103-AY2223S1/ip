@@ -3,12 +3,12 @@ package duke.helper;
 import duke.task.TaskList;
 
 /**
- * Class to parse inputs
+ * Encapsulates a parser that parses inputs
  */
 public class Parser {
 
     /**
-     * Method to parse any of command given and call the respective functions
+     * Parses any of command given and call the respective functions
      *
      * @param in the input command line given
      * @param list the taskList being used

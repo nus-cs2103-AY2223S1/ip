@@ -1,11 +1,11 @@
 package duke.exception;
 
 /**
- * Exception for invalid time for deadline
+ * Encapsulates an Exception for invalid time for deadline
  */
 public class InvalidTimeException extends Exception {
     /**
-     * Method to return a string representation of the exception
+     * Returns a string representation of the exception
      * @return string representation of the exception
      */
     @Override

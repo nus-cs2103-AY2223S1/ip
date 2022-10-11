@@ -1,11 +1,11 @@
 package duke.exception;
 
 /**
- * Exception for input with invalid date/time
+ * Encapsulates an Exception for input with invalid date/time
  */
 public class InvalidDateException extends Exception {
     /**
-     * Method to return a string representation of the exception
+     * Returns a string representation of the exception
      * @return string representation of the exception
      */
     @Override

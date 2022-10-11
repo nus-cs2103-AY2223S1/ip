@@ -4,11 +4,11 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Child containing default messages
+ * Encapsulates a child containing default messages
  */
 public class Ui {
     /**
-     * Method to return welcome message
+     * Returns welcome message
      */
     public static String welcome() {
         return "\nHello from Phil\n"
@@ -17,14 +17,14 @@ public class Ui {
     }
 
     /**
-     * Method to return bye message
+     * Returns bye message
      */
     public static String bye() {
         return "I shall take my leave in 3 seconds! See you later alligator!";
     }
 
     /**
-     * Method to return add task message
+     * Returns add task message
      *
      * @param task the task to be added
      */
@@ -34,21 +34,21 @@ public class Ui {
     }
 
     /**
-     * Method to return mark task message
+     * Returns mark task message
      */
     public static String mark() {
         return "Roger sir the task has been marked!";
     }
 
     /**
-     * Method to return unmark task message
+     * Returns unmark task message
      */
     public static String unmark() {
         return "Aww okay the task has been unmarked.";
     }
 
     /**
-     * Method to return delete task message
+     * Returns delete task message
      *
      * @param task the task to be deleted
      */
@@ -58,7 +58,7 @@ public class Ui {
     }
 
     /**
-     * Method to return count task message
+     * Returns count task message
      *
      * @param list the list to be counted
      */
@@ -68,28 +68,28 @@ public class Ui {
     }
 
     /**
-     * Method to return clear list message
+     * Returns clear list message
      */
     public static String clear() {
         return "The list has been successfully cleared!";
     }
 
     /**
-     * Method to return task found message
+     * Returns task found message
      */
     public static String taskFound() {
         return "Woohoo here are some matches found!";
     }
 
     /**
-     * Method to return no task found message
+     * Returns no task found message
      */
     public static String noTaskFound() {
         return "Ohno I could not find any tasks fitting the keywords...";
     }
 
     /**
-     * Method to return invalid command message
+     * Returns invalid command message
      */
     public static String invalidCommand() {
         return "Invalid command, please try again.";
