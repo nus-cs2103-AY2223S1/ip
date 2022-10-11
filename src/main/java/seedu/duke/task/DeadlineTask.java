@@ -37,6 +37,10 @@ public class DeadlineTask extends Task {
         }
     }
 
+    /**
+     * Changes the date
+     * @param date
+     */
     public void editTime(String date) {
         try {
             this.date = LocalDate.parse(date);

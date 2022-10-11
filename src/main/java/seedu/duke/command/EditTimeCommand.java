@@ -8,6 +8,9 @@ import seedu.duke.task.DeadlineTask;
 import seedu.duke.task.EventTask;
 import seedu.duke.task.Task;
 
+/**
+ * Class for executing Edit Time command
+ */
 public class EditTimeCommand extends Command {
     private int index;
     private String newTime;
@@ -17,6 +20,12 @@ public class EditTimeCommand extends Command {
         this.newTime = newTime;
     }
 
+    /**
+     * Changes the deadline/event time for the given task
+     * @param list
+     * @return
+     * @throws DukeException
+     */
     @Override
     public String execute(TaskList list) throws DukeException {
         int len = list.size();

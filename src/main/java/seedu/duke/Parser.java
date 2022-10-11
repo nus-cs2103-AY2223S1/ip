@@ -33,9 +33,9 @@ public class Parser {
             if (splitInput.length == 2 && COMMANDS.contains(splitInput[0])) {
                 String commandWord = splitInput[0];
                 String details = splitInput[1];
-                if (commandWord.equals("todo") ||
-                    commandWord.equals("deadline") ||
-                    commandWord.equals("event")) {
+                if (commandWord.equals("todo")
+                        || commandWord.equals("deadline")
+                        || commandWord.equals("event")) {
                     return addTaskParser(commandWord, details);
 
                 } else if (commandWord.equals("edit")) {
@@ -77,6 +77,13 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Separate method for parsing add task commands (todo, deadline or event)
+     * @param commandWord
+     * @param details
+     * @return
+     * @throws DukeException
+     */
     public static Command addTaskParser(String commandWord, String details) throws DukeException {
         if (commandWord.equals("todo")) {
             if (details.length() <= 1) {
@@ -113,6 +120,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Separate method for parsing 'edit' command
+     * @param details user input, omitting the 'edit' word
+     * @return
+     * @throws DukeException
+     */
     public static Command editParser(String details) throws DukeException {
         String[] taskDesc = details.split(" ", 3);
         int index;
