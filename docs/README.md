@@ -33,11 +33,11 @@ Chick Bot can be used with the following 10 commands.
 
 Add a deadline task to the task list managed by Chick Bot.
 
-*Format*: `deadline {task_name} \by {yyyy-MM-dd}`
+*Format*: `deadline {task_name} /by {yyyy-MM-dd}`
 
 **Example of usage:**
 
-`deadline ip \by 2022-09-16`
+`deadline ip /by 2022-09-16`
 
 **Expected outcome:**
 
@@ -52,11 +52,11 @@ Added:
 
 Add an event task to the task list managed by Chick Bot.
 
-*Format*: `event {task_name} \at {yyyy-MM-dd}`
+*Format*: `event {task_name} /at {yyyy-MM-dd}`
 
 **Example of usage:**
 
-`event project meeting \at 2022-09-21`
+`event project meeting /at 2022-09-21`
 
 **Expected outcome:**
 
