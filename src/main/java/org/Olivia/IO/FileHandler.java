@@ -29,6 +29,7 @@ public class FileHandler {
 
     /**
      * isolate the title substring from a line in the data file
+     *
      * @param line a line read from the file
      * @return the title for the entry in the line
      */
@@ -48,6 +49,7 @@ public class FileHandler {
 
     /**
      * parse a line from file that represents a to-do entry
+     *
      * @param line a line read from the file
      * @return a CalendarEntry object represented by the input line
      */
@@ -63,6 +65,7 @@ public class FileHandler {
 
     /**
      * parse a line from file that represents a deadline entry
+     *
      * @param line a line read from the file
      * @return a CalendarEntry object represented by the input line
      */
@@ -78,6 +81,7 @@ public class FileHandler {
 
     /**
      * parse a line from file that represents an event entry
+     *
      * @param line a line read from the file
      * @return a CalendarEntry object represented by the input line
      */
@@ -97,6 +101,7 @@ public class FileHandler {
 
     /**
      * parse a line from file that represents an entry
+     *
      * @param line a line read from the file
      * @return a CalendarEntry object represented by the input line
      */
@@ -114,6 +119,7 @@ public class FileHandler {
 
     /**
      * Sync all content in c to disk
+     *
      * @param c a Calendar object
      * @return an int representing the status of execution (200 for OK)
      * @throws Exception
@@ -135,6 +141,7 @@ public class FileHandler {
 
     /**
      * Sync all content in the file to c
+     *
      * @param c a Calendar object
      * @return an int representing the status of execution (200 for OK)
      * @throws Exception

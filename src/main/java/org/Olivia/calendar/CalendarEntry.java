@@ -16,6 +16,7 @@ public class CalendarEntry {
 
     /**
      * Construct a CalendarEntry object with only a title
+     *
      * @param title
      */
     public CalendarEntry(String title) {
@@ -26,6 +27,7 @@ public class CalendarEntry {
 
     /**
      * Construct a CalendarEntry object with a title and tags
+     *
      * @param title
      * @param tags
      */
@@ -37,6 +39,7 @@ public class CalendarEntry {
 
     /**
      * mark self as completed
+     *
      * @return status for operation (200 for OK)
      */
     public int markAsCompleted() {
@@ -52,6 +55,7 @@ public class CalendarEntry {
 
     /**
      * mark self as incompleted
+     *
      * @return status for operation (200 for OK)
      */
     public int markAsIncomplete() {
@@ -64,6 +68,7 @@ public class CalendarEntry {
 
     /**
      * get the title of this entry
+     *
      * @return the title
      */
     public String getTitle() {
@@ -72,6 +77,7 @@ public class CalendarEntry {
 
     /**
      * get the tags of this entry
+     *
      * @return the tags
      */
     public List<String> getTags() {
@@ -81,6 +87,7 @@ public class CalendarEntry {
     /**
      * get the tags of this entry
      * concatenate all tags into a string
+     *
      * @return a string representing the tags
      */
     public String getTagsAsString() {

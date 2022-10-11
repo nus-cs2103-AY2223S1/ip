@@ -33,6 +33,7 @@ public class GuiEventDispatcher {
      * Basic validity check of a command, return false if the command is null or empty
      * If invalid, the method would directly throw an Exception
      * otherwise it would do nothing
+     *
      * @param input the whole line of user input
      * @throws Exception
      */
@@ -47,6 +48,7 @@ public class GuiEventDispatcher {
 
     /**
      * split the user input using blank spaces as delimiter
+     *
      * @param input the whole line of user input
      * @return the separated array of tokens
      * @throws Exception
@@ -61,6 +63,7 @@ public class GuiEventDispatcher {
 
     /**
      * Parse out the tags in a command
+     *
      * @param input user input, either partial or whole
      * @return a List of recognized tags
      */
@@ -77,6 +80,7 @@ public class GuiEventDispatcher {
 
     /**
      * Parse out the entry title in a command
+     *
      * @param line user input, either partial or whole
      * @return the title
      */
@@ -108,6 +112,7 @@ public class GuiEventDispatcher {
 
     /**
      * mark an entry as done
+     *
      * @param args tokenized user input
      * @return The string representation of the marked entry
      * @throws Exception
@@ -126,6 +131,7 @@ public class GuiEventDispatcher {
 
     /**
      * mark an entry as undone
+     *
      * @param args tokenized user input
      * @return The string representation of the unmarked entry
      * @throws Exception
@@ -144,6 +150,7 @@ public class GuiEventDispatcher {
 
     /**
      * Change an entry's status to done/undone
+     *
      * @param input user input line
      * @return The string representation of the affected entry
      * @throws Exception
@@ -166,6 +173,7 @@ public class GuiEventDispatcher {
 
     /**
      * add a to-do entry to the calendar
+     *
      * @param input the user input line
      * @return a string representing the added entry
      * @throws Exception
@@ -182,6 +190,7 @@ public class GuiEventDispatcher {
 
     /**
      * add a deadline entry to the calendar
+     *
      * @param input the user input line
      * @return a string representing the added entry
      * @throws Exception
@@ -205,6 +214,7 @@ public class GuiEventDispatcher {
 
     /**
      * add an event entry to the calendar
+     *
      * @param input the user input line
      * @return a string representing the added entry
      * @throws Exception
@@ -226,6 +236,7 @@ public class GuiEventDispatcher {
 
     /**
      * add an entry to the calendar
+     *
      * @param input the user input line
      * @return a string representing the added entry
      * @throws Exception
@@ -247,6 +258,7 @@ public class GuiEventDispatcher {
 
     /**
      * Search for entries contain a keyword in the calendar
+     *
      * @param input the user input line
      * @return a string contains all the entries containing the keyword
      */
@@ -281,6 +293,7 @@ public class GuiEventDispatcher {
 
     /**
      * delete an entry from the calendar
+     *
      * @param input the entire line of the user input
      * @return the string representing the deleted event
      * @throws Exception
