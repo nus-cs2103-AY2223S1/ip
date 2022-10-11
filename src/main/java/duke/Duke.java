@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Main class that contains duke,
@@ -35,8 +36,13 @@ public class Duke {
 
     }
 
-    String helpResponse() {
-        return "Refer to the user guide below for more details:https://Bahamas20.github.io/ip/";
+    String helpResponse() throws IOException {
+        // adapted from Stackoverflow
+        // Reference : https://stackoverflow.com/questions/748895/how-do-you-open-web-pages-in-java
+
+        java.awt.Desktop.getDesktop().browse(URI.create("https://bahamas20.github.io/ip/"));
+        return "Refer to the webpage for more details";
+
     }
 
     String hiResponse() {

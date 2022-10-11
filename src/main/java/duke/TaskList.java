@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 
 /**
@@ -51,11 +52,16 @@ public class TaskList {
      * Adds a task to the list
      * @param task Task that needs to be added
      */
-    public String add(Task task) {
-        lst.add(task);
-        return "I gotchu, I've added this task\n" +
-                task.toString()  + "\n" +
-                "Now you gots" + " " + lst.size() + " " + "tasks in list";
+    public String add(Task task) throws DateTimeException {
+        String s = task.toString();
+        if (task.description.equals("invalid")) {
+            return "Wrong format for date fam !";
+        } else {
+            lst.add(task);
+            return "I gotchu, I've added this task\n" +
+                    s + "\n" +
+                    "Now you gots" + " " + lst.size() + " " + "tasks in list";
+        }
     }
 
     /**
@@ -96,7 +102,7 @@ public class TaskList {
         for (Task item:lst) {
             String taskName = item.description;
             if (taskName.contains(searchTask)) {
-               found += taskName + "\n";
+               found += item + "\n";
             }
         }
         return found;

@@ -34,7 +34,8 @@ public class Deadline extends Task {
             return "[D]" + super.toString() + " (by: " + deadline + ")";
 
         } catch (DateTimeParseException e) {
-            return "[D]" + super.toString() + by ;
+           this.description = "invalid";
+            return "[D]" + super.toString();
         }
     }
 
