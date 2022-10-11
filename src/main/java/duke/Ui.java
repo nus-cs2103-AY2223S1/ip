@@ -11,10 +11,17 @@ public class Ui {
     private static final String BYE = "Bye! Hope to see you again soon!";
     private Scanner sc;
 
+    /**
+     * Constructor for UI
+     */
     Ui() {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * Exits the programme
+     * @return String as user response
+     */
     public String sayBye() {
         new Timer().schedule(new TimerTask() {
             @Override

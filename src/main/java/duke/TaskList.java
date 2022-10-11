@@ -31,12 +31,23 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds new task to the Tasklist
+     * @param task Task to add
+     * @param storage Storage to be updated
+     */
     public void addNewTask(Task task, Storage storage) {
         this.lst.add(task);
         updateStorage(storage);
     }
 
-
+    /**
+     * Deletes task with specified index from the TaskList
+     * @param index Index of task to be deleted
+     * @param storage Storage to be updated
+     * @return String for user response
+     * @throws DukeException If index specified is out of bounds
+     */
     public String deleteTask(int index, Storage storage) throws DukeException {
         if (index > lst.size() - 1 || index < 0) {
             throw new DukeException("There is no such task");
@@ -48,18 +59,29 @@ public class TaskList {
                 + lst.size() + " tasks in the list.");
     }
 
+    /**
+     * Getter method for size of TaskList
+     * @return size of TaskList
+     */
     public int size() {
         return this.lst.size();
     }
 
-    public void set(int index, Task task) {
-        this.lst.set(index, task);
-    }
-
+    /**
+     * Getter method of the TaskList
+     * @param index Index of task
+     * @return Task specified by index
+     */
     public Task get(int index) {
         return this.lst.get(index);
     }
 
+    /**
+     * Marks task in the TaskList
+     * @param index Index of task to be marked
+     * @param storage Storage to be updated
+     * @return String for user response
+     */
     public String markTask(int index, Storage storage) {
         Task t = lst.get(index);
         t.markAsDone();
@@ -69,6 +91,12 @@ public class TaskList {
 
     }
 
+    /**
+     * Unmarks task in the TaskList
+     * @param index Index of task to be unmarked
+     * @param storage Storage to be updated
+     * @return String for user response
+     */
     public String unmarkTask(int index, Storage storage) {
         Task t = lst.get(index);
         t.unMark();
@@ -78,6 +106,10 @@ public class TaskList {
 
     }
 
+    /**
+     * Updates storage when changes are made to the TaskList
+     * @param storage Storage to be updated
+     */
     public void updateStorage(Storage storage) {
         System.out.println(lst.size());
         if (lst.size() == 0) {
@@ -96,6 +128,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds task with given keyword in the TaskList
+     * @param toFind keyword specified by user
+     * @return List of tasks with given keyword
+     */
     public ArrayList<String> findTasks(String toFind) {
         ArrayList<String> result = new ArrayList<String>();
 
@@ -107,6 +144,10 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Finds all Todo tasks in the TaskList
+     * @return List of tasks in Todo category
+     */
     public ArrayList<String> findTodo() {
         ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < lst.size(); i++) {
@@ -118,6 +159,10 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Finds all Event tasks in the TaskList
+     * @return List of tasks in Event category
+     */
     public ArrayList<String> findEvent() {
         ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < lst.size(); i++) {
@@ -129,6 +174,10 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Finds all Deadline tasks in the TaskList
+     * @return List of tasks in Deadline category
+     */
     public ArrayList<String> findDeadline() {
         ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < lst.size(); i++) {
