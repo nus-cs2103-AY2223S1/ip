@@ -24,8 +24,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Method that overrides Java.toString() method to convert the Deadline
-     * task as a string.
+     * Method that overrides Java.toString() method to convert the Deadline task as a string.
      * @return A string of the Deadline task.
      */
     @Override
@@ -34,8 +33,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Method to obtain the date as an attribute of its own rather than a string
-     * in the format of "MMM d yyyy".
+     * Method to obtain the date as an attribute of its own rather than a string in the format of "MMM d yyyy".
      */
     public void getDate() throws Exception {
         try {

@@ -69,31 +69,7 @@ public class Storage {
                 throw new DukeException ("File is Empty!");
 
             } else {
-                while (scanner.hasNextLine()) {
-                    String task = scanner.nextLine();
-                    String type = String.valueOf(task.charAt(1));
-                    assert type.equals("T") || type.equals("E") || type.equals("D");
-
-                    if (type.equals("T")) {
-                        String currTask = task.substring(9);
-                        Task td = new Todo(" " + currTask);
-                        inputList.add(td);
-                    } else if (type.equals("E")) {
-                        int splitter = task.indexOf(" (at: ");
-                        String currTask = task.substring(9, splitter);
-                        String time = task.substring(splitter + 6, task.indexOf(")"));
-                        Task ev = new Event(" " + currTask, time);
-                        inputList.add(ev);
-                    } else if (type.equals("D")) {
-                        int splitter = task.indexOf(" (by: ");
-                        String currTask = task.substring(9, splitter);
-                        String time = task.substring(splitter + 6, task.indexOf(")"));
-                        Task dl = new Deadline(" " + currTask, time);
-                        inputList.add(dl);
-                    } else {
-                        break;
-                    }
-                }
+                readLines(scanner);
             }
         } catch (FileNotFoundException e) {
             File file = new File(filePath);
@@ -102,5 +78,37 @@ public class Storage {
             throw new DukeException ("File is empty!");
         }
         return inputList;
+    }
+
+    /**
+     * Method to analyse the lines.
+     * @param scanner Input from the user.
+     */
+    public void readLines(Scanner scanner) {
+        while (scanner.hasNextLine()) {
+            String task = scanner.nextLine();
+            String type = String.valueOf(task.charAt(1));
+            assert type.equals("T") || type.equals("E") || type.equals("D");
+
+            if (type.equals("T")) {
+                String currTask = task.substring(9);
+                Task td = new Todo(" " + currTask);
+                inputList.add(td);
+            } else if (type.equals("E")) {
+                int splitter = task.indexOf(" (at: ");
+                String currTask = task.substring(9, splitter);
+                String time = task.substring(splitter + 6, task.indexOf(")"));
+                Task ev = new Event(" " + currTask, time);
+                inputList.add(ev);
+            } else if (type.equals("D")) {
+                int splitter = task.indexOf(" (by: ");
+                String currTask = task.substring(9, splitter);
+                String time = task.substring(splitter + 6, task.indexOf(")"));
+                Task dl = new Deadline(" " + currTask, time);
+                inputList.add(dl);
+            } else {
+                break;
+            }
+        }
     }
 }

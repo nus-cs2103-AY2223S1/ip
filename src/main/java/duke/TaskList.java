@@ -43,7 +43,10 @@ public class TaskList {
      * @param index The index of the task in the list that has to be removed.
      * @throws IOException
      */
-    public String delete(int index) throws IOException {
+    public String delete(int index) throws IOException, DukeException {
+        if (index < 0 || index > inputList.size()) {
+            throw new DukeException("Invalid input.");
+        }
         Task deletedTask = inputList.remove(index - 1);
         Integer newSize = inputList.size();
         String response = "Noted I have removed this task:\n" + deletedTask
@@ -55,8 +58,11 @@ public class TaskList {
     /**
      * Method to mark a task as done.
      */
-    public String mark(int index) throws IOException {
+    public String mark(int index) throws IOException, DukeException {
         assert index < inputList.size() || index > 0;
+        if (index < 0 || index > inputList.size()) {
+            throw new DukeException("Invalid input.");
+        }
         inputList.get(index - 1).mark();
         String response = "Nice! I've marked this task as done:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
@@ -66,8 +72,12 @@ public class TaskList {
     /**
      * Method to mark a task as undone.
      */
-    public String unmark(int index) throws IOException {
+    public String unmark(int index) throws IOException, DukeException {
         assert index < inputList.size() || index > 0;
+        if (index < 0 || index > inputList.size()) {
+            throw new DukeException("Invalid input.");
+        }
+
         inputList.get(index - 1).unmark();
         String response = "Nice! I've marked this task as undone:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
@@ -149,9 +159,10 @@ public class TaskList {
 
     /**
      * Method to search for tasks that have the keyword that is given by user.
-     * @param str Keyword given by user.
+     * @param string Keyword given by user.
      */
-    public String find(String str) {
+    public String find(String string) {
+        String str = string.replace("find", "");
         ArrayList<Task> list = new ArrayList<>();
         for (int i = 0; i < inputList.size(); i++) {
             if (inputList.get(i).toString().contains(str)) {
