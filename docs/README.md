@@ -43,8 +43,8 @@ You can use any of the 3 commands to add task
 
 Example: 
 - `todo read book`
-- `deadline return book /by 30092022 1800`
-- `event project meeting /at 17092022 1800`
+- `deadline return book /by 30/09/2022 1800`
+- `event project meeting /at 17/09/2022 1800`
 
 
 ### Delete Task
