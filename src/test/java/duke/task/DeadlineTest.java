@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class DeadlineTest {
     @Test
-    public void deadlineChangeFormatTest_Success() {
+    public void changeFormat__Success() {
         Deadline d1 = new Deadline("This is a Test Deadline", LocalDateTime.of(2022, 9, 4, 12, 00));
         Deadline d2 = new Deadline("This is also a Test Deadline", LocalDateTime.of(2022, 4, 9, 16, 00));
         d2.mark();
