@@ -122,7 +122,7 @@ public class TaskList {
     }
 
     /**
-     * Return a string representation of all tasks.
+     * Returns a string representation of all tasks.
      *
      * @return String representation of all tasks
      */
