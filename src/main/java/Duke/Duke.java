@@ -59,6 +59,9 @@ public class Duke extends Application {
         storage = new Storage("data/Duke.txt");
     }
 
+    /**
+     * Start the launcher
+     */
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
@@ -165,6 +168,9 @@ public class Duke extends Application {
         userInput.clear();
     }
 
+    /**
+     * Get the response from the user.
+     */
     private Label getResponse(String input) {
         boolean isExit = false;
         String res = "";
@@ -186,6 +192,11 @@ public class Duke extends Application {
 
     // abstractions
 
+    /**
+     * Encapsulates all UI.
+     * <p>
+     * This class contain the read and write of ui components
+     */
     private class Ui {
         private Scanner sc;
 
@@ -193,11 +204,17 @@ public class Duke extends Application {
             sc = new Scanner(System.in);
         }
 
+        /**
+         * Display welcome message
+         */
         public void welcome() {
             System.out.println("Hello! I am Duke");
             System.out.println("What can I do for you?");
         }
 
+        /**
+         * Read command from prompt
+         */
         public String readCommand() {
             if (sc.hasNext()) {
                 return sc.nextLine();
@@ -214,11 +231,19 @@ public class Duke extends Application {
             System.out.println(s);
         }
 
+        /**
+         * Display result after sort.
+         * @return a string representing the return message
+         */
         public String sorted() {
             System.out.println("sorted!");
             return "";
         }
 
+        /**
+         * Display result after mark.
+         * @return a string representing the return message
+         */
         public String marked(Task task) {
             System.out.println("Nice! I've marked this task as done:");
             System.out.println(task.toString());
@@ -226,6 +251,10 @@ public class Duke extends Application {
             return str;
         }
 
+        /**
+         * Display result after unmark.
+         * @return a string representing the return message
+         */
         public String unmarked(Task task) {
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println(task.toString());
@@ -233,6 +262,10 @@ public class Duke extends Application {
             return str;
         }
 
+        /**
+         * Display result after add.
+         * @return a string representing the return message
+         */
         public String added(Task task) {
             System.out.println("Got it. I've added this task:");
             System.out.printf("  added: %s\n", task.toString());
@@ -242,6 +275,10 @@ public class Duke extends Application {
             return str;
         }
 
+        /**
+         * Display result after delete.
+         * @return a string representing the return message
+         */
         public String deleted(Task task) {
             System.out.println("Got it. I've deleted this task:");
             System.out.printf("  added: %s\n", task.toString());
@@ -260,6 +297,11 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates the task list.
+     * <p>
+     * This class handles the add and delete of tasks in the task list
+     */
     private class TaskList {
         private ArrayList<Task> all;
 
@@ -267,6 +309,9 @@ public class Duke extends Application {
             all = new ArrayList<>();
         }
 
+        /**
+         * Displays the list
+         */
         public String displayList() {
             String res = "Here are the tasks in your list:\n";
             System.out.println("Here are the tasks in your list:");
@@ -277,6 +322,9 @@ public class Duke extends Application {
             return res;
         }
 
+        /**
+         * Find the target task in the list.
+         */
         public void findList(String target) {
             System.out.println("Here are the tasks in your list with the keyword:");
             for (int i = 0; i < count(); i++) {
@@ -365,6 +413,9 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Abstract class for command.
+     */
     private abstract class Command {
         /**
          * Execute the command based on its type.
@@ -379,6 +430,9 @@ public class Duke extends Application {
         public abstract boolean isExit();
     }
 
+    /**
+     * Encapsulates AddCommand.
+     */
     private class AddCommand extends Command {
         private TaskType type;
         private String description;
@@ -426,6 +480,9 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates ListCommand.
+     */
     private class ListCommand extends Command {
         public ListCommand() { super(); }
 
@@ -443,6 +500,9 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates FindCommand.
+     */
     private class FindCommand extends Command {
         private String target;
 
@@ -466,6 +526,9 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates MarkCommand.
+     */
     private class MarkCommand extends Command {
         private boolean isMark;
         private int index;
@@ -501,6 +564,9 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates DeleteCommand.
+     */
     private class DeleteCommand extends Command {
         private int index;
 
@@ -529,9 +595,16 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates ExitCommand.
+     */
     private class ExitCommand extends Command {
         public ExitCommand() { super(); }
 
+        /**
+         * Execute the command.
+         * @return a string representing the return message
+         */
         @Override
         public String execute() {
             ui.exit();
@@ -544,9 +617,16 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates SortCommand.
+     */
     private class SortCommand extends Command {
         public SortCommand() { super(); }
 
+        /**
+         * Execute the command.
+         * @return a string representing the return message
+         */
         @Override
         public String execute() {
 
@@ -577,12 +657,18 @@ public class Duke extends Application {
             ui.sorted();
             return "Sorted!";
         }
+
         @Override
         public boolean isExit() {
             return false;
         }
     }
 
+    /**
+     * Encapsulates Parser.
+     *
+     * This class handles the parsing of user inputs.
+     */
     private class Parser {
         private String list;
         private String todo;
@@ -608,6 +694,12 @@ public class Duke extends Application {
             sort = "sort";
         }
 
+        /**
+         * Parses the command.
+         *
+         * @param s the String of command
+         * @return the respective command
+         */
         public Command parse(String s) throws DukeException {
             int space = s.indexOf(" ");
             if (s.equals(list)) {
@@ -642,6 +734,12 @@ public class Duke extends Application {
             }
         }
 
+        /**
+         * Extracts the index from a command.
+         *
+         * @param s the String of command
+         * @return an int representing  the index
+         */
         public int extractIndex(String s) throws DukeException {
             int pos = s.indexOf(" ");
             if (pos == -1) {
@@ -657,6 +755,12 @@ public class Duke extends Application {
             return index;
         }
 
+        /**
+         * Extracts the date from a command.
+         *
+         * @param s the String of command
+         * @return a string representing  the date
+         */
         public LocalDate extractDate(String s) throws DukeException {
             int pos = s.indexOf("/by");
             if (pos == -1) {
@@ -668,6 +772,12 @@ public class Duke extends Application {
             return parseStringToDate(s.substring(pos + 4));
         }
 
+        /**
+         * Extracts the description from a command.
+         *
+         * @param s the String of command
+         * @return a string representing  the description
+         */
         public String extractDescription(String s) throws DukeException {
             int pos = s.indexOf("/by");
             if (pos == -1) {
@@ -679,10 +789,22 @@ public class Duke extends Application {
             return s.substring(0, pos - 1);
         }
 
+        /**
+         * Parses the string to a date.
+         *
+         * @param s the String to be converted
+         * @return a LocalDate represented by the String
+         */
         public LocalDate parseStringToDate(String s) {
             return LocalDate.parse(s.replace('/', '-'));
         }
 
+        /**
+         * Parses the date to a string.
+         *
+         * @param date the LocalDate to be converted
+         * @return a string representation of the date
+         */
         public String parseDateToString(LocalDate date) {
             return date.format(DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH));
 
@@ -767,6 +889,11 @@ public class Duke extends Application {
             return description;
         }
 
+        /**
+         * Returns the type of task.
+         *
+         * @return a TaskType representing the task.
+         */
         public TaskType getTaskType() {
             if (this.toString().indexOf(1) == 'T') {
                 return TaskType.TODO;
@@ -851,14 +978,13 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * Encapsulates all types of Exceptions for Duke.
+     */
     private class DukeException extends Exception {
         public DukeException(String message) {
             super("OOPS!!" + message);
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke().run();
     }
 
 }
