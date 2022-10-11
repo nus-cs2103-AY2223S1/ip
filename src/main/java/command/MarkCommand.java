@@ -1,9 +1,12 @@
 package command;
 
+import static utility.Parser.isValidIndex;
+
 import exceptions.DukeException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
+
 
 /**
  * Marks given task, and updates
@@ -17,6 +20,9 @@ public class MarkCommand extends Command {
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+        if (!isValidIndex(index, taskList.getSize())) {
+            throw new DukeException("Invalid index");
+        }
         taskList.markTask(index);
         String storeLine = taskList.getTask(index).toString() + "\n";
         if (isLineChanged(index, storeLine, storage)) {

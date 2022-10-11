@@ -94,7 +94,7 @@ public class Storage {
     /**
      * Creates file at path for disk storage.
      */
-    public void createFileIfDoesntExist(String location) {
+    private void createFileIfDoesntExist(String location) {
         try {
             getPath(location);
         } catch (IOException e) {

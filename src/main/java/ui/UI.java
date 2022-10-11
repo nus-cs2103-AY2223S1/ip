@@ -48,17 +48,9 @@ public class UI {
     public void showHelpMessage() {
         String msg = "Hi, it seems you are having trouble using Falcon, "
                 + "\ntry these command: "
-                + "\ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind";
+                + "\ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind. "
+                + "\nPlease see the user guide for more information on how to use these.";
         this.response = msg;
-    }
-
-    /**
-     * Returns line user has entered at System.in.
-     *
-     * @return User input line.
-     */
-    public String getCurrentInput() {
-        return currentInput;
     }
 
     public String getResponse() {
