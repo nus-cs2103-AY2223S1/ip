@@ -79,8 +79,8 @@ Adds an Event to the list of tasks. An Event is used to create tasks happening a
 
 Format: `add event <description> /at <time>`  
 Example:
-- `add deadline Gym /at 2022-09-17 18-00`
-- `add deadline Internship day /at 2022/09/14 11:00`
+- `add event Gym /at 2022-09-17 18-00`
+- `add event Internship day /at 2022/09/14 11:00`
 
 Note: `time` is formatted as `yyyy-mm-dd HH:MM`. Allowed delimiter characters are: `-:.|/`.
 
