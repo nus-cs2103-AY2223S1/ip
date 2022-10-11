@@ -14,18 +14,31 @@ public class CalendarEntry {
     private boolean isCompleted;
     private List<String> tags;
 
+    /**
+     * Construct a CalendarEntry object with only a title
+     * @param title
+     */
     public CalendarEntry(String title) {
         this.title = title;
         this.isCompleted = false;
         this.tags = new ArrayList<String>();
     }
 
+    /**
+     * Construct a CalendarEntry object with a title and tags
+     * @param title
+     * @param tags
+     */
     public CalendarEntry(String title, List<String> tags) {
         this.title = title;
         this.isCompleted = false;
         this.tags = tags;
     }
 
+    /**
+     * mark self as completed
+     * @return status for operation (200 for OK)
+     */
     public int markAsCompleted() {
         if (this.isCompleted) {
             //I know this is not what exactly http status code 208 means
@@ -37,6 +50,10 @@ public class CalendarEntry {
         return 200;
     }
 
+    /**
+     * mark self as incompleted
+     * @return status for operation (200 for OK)
+     */
     public int markAsIncomplete() {
         if (!this.isCompleted) {
             return 208;
@@ -45,14 +62,27 @@ public class CalendarEntry {
         return 200;
     }
 
+    /**
+     * get the title of this entry
+     * @return the title
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /**
+     * get the tags of this entry
+     * @return the tags
+     */
     public List<String> getTags() {
         return this.tags;
     }
 
+    /**
+     * get the tags of this entry
+     * concatenate all tags into a string
+     * @return a string representing the tags
+     */
     public String getTagsAsString() {
         String ans = "";
         for (String tag : tags) {

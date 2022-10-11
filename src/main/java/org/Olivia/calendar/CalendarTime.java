@@ -64,6 +64,12 @@ public class CalendarTime {
         return LocalTime.of(hr, min);
     }
 
+    /**
+     * parse a String representing a date to a LocalDate Object
+     * @param input the input string representing the date
+     * @return an LocalDate object
+     * @throws Exception
+     */
     private static LocalDate parseDate(String input) throws Exception {
         String[] splitedInput = input.split("/");
         if (splitedInput.length != 3) {
