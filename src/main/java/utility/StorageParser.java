@@ -2,6 +2,7 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
 
 import exceptions.DukeException;
 import task.Deadline;
@@ -20,8 +21,8 @@ public class StorageParser {
     private static final String START_OF_DATE_STRING = ": ";
     private static final int START_OF_DATE_STRING_OFFSET = 2;
     private static final int DATE_LENGTH = 10;
-    private static final char UNMARKED_SYMBOL = ' ';
     private static final int INDEX_OF_TYPE_CHAR = 1;
+    private static final char VALID_MARK_SYMBOL = '1';
 
     /**
      * Converts line in disk file to corresponding Task.
@@ -29,42 +30,71 @@ public class StorageParser {
      * @param line String stored in file.
      * @return Task object.
      */
-    public static Task fileLineToTask(String line) throws DukeException {
-        char type = typeOfRecord(line);
-        boolean isMarked = isTaskMarked(line);
-        String[] dateAndDescription;
-        Task t = null;
-        switch(type) {
-        case 'T':
-            String taskDescription = getTaskDescription(line);
-            t = createTask(taskDescription, isMarked);
-            break;
-        case 'D':
-            dateAndDescription = getDateAndDescription(line);
-            t = createDeadline(dateAndDescription[DESCRIPTION],
-                    dateAndDescription[DATE], isMarked);
-            break;
-        case 'E':
-            dateAndDescription = getDateAndDescription(line);
-            t = createEvent(dateAndDescription[DESCRIPTION],
-                    dateAndDescription[DATE], isMarked);
-            break;
-        default:
-            // do nothing
+    public static Task fileLineToTask(String line) {
+        try {
+            char type = typeOfRecord(line);
+            boolean isMarked = isTaskMarked(line);
+            String[] dateAndDescription;
+            Task t = null;
+            switch (type) {
+            case 'T':
+                String taskDescription = getTaskDescription(line);
+                t = createTask(taskDescription, isMarked);
+                break;
+            case 'D':
+                dateAndDescription = getDateAndDescription(line);
+                t = createDeadline(dateAndDescription[DESCRIPTION],
+                        dateAndDescription[DATE], isMarked);
+                break;
+            case 'E':
+                dateAndDescription = getDateAndDescription(line);
+                t = createEvent(dateAndDescription[DESCRIPTION],
+                        dateAndDescription[DATE], isMarked);
+                break;
+            default:
+                // do nothing
+            }
+            return t;
+        } catch (DukeException de) {
+            return null;
         }
-        return t;
     }
 
-    private static boolean isTaskMarked(String task) {
-        return task.charAt(MARKED_STATUS) != UNMARKED_SYMBOL;
+    private static boolean isTaskMarked(String task) throws DukeException {
+        try {
+            String regex = "\\[.\\]";
+            Pattern p = Pattern.compile(regex);
+            boolean isValidFormat = p.matcher(task.substring(3, 6)).matches();
+            if (!isValidFormat) {
+                throw new DukeException("Corrupt line");
+            }
+            return task.charAt(MARKED_STATUS) == VALID_MARK_SYMBOL;
+        } catch (StringIndexOutOfBoundsException sioobe) {
+            throw new DukeException("Corrupt line");
+        }
     }
 
-    private static char typeOfRecord(String record) {
-        return record.charAt(INDEX_OF_TYPE_CHAR);
+    private static char typeOfRecord(String record) throws DukeException {
+        try {
+            String regex = "\\[[T,E,D]\\]";
+            Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            String typeSectionString = record.substring(0, 3);
+            boolean isValidFormat = p.matcher(typeSectionString).matches();
+            if (!isValidFormat) {
+                throw new DukeException("Corrupt line");
+            }
+            return Character.toUpperCase(record.charAt(INDEX_OF_TYPE_CHAR));
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new DukeException("Corrupt line");
+        }
     }
 
-    private static String getTaskDescription(String record) {
-        return record.substring(START_OF_DESCRIPTION_IN_TASK);
+    private static String getTaskDescription(String record) throws DukeException {
+        try {
+            return record.substring(START_OF_DESCRIPTION_IN_TASK);
+        } catch (StringIndexOutOfBoundsException sioobe) {
+            throw new DukeException("Corrupt line");
+        }
     }
     private static Task createTask(String description, boolean isMarked)
             throws DukeException {

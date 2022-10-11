@@ -1,6 +1,7 @@
 package utility;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,6 @@ import task.Deadline;
 import task.Event;
 import task.Task;
 
-
 /**
  * Handles all conversions required in the program.
  */
@@ -38,13 +38,13 @@ public class Parser {
      * required to determine String command used.
      *
      */
-    public static void initialiseCommandAliasesHashMap() {
+    private static void initialiseCommandAliasesHashMap() {
         String[] aliasRegexes = {"todo|task|t", "l|list", "deadline|d", "event|e",
-                "mark|m", "unmark|um","bye|b|quit|q|exit", "find|f", "longdesc", "istoday",
-                "help|h", "delete|remove|r"};
+                                 "mark|m", "unmark|um", "bye|b|quit|q|exit", "find|f", "longdesc", "istoday",
+                                 "help|h", "delete|remove|r"};
 
         String[] actualCommands = {"todo", "list", "deadline", "event", "mark",
-                "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
+                                   "unmark", "bye", "find", "longdesc", "istoday", "help", "delete"};
 
         if (commandAliasesHashMap.isEmpty()) {
             ArrayList<Pattern> patterns = makePatterns(aliasRegexes);
@@ -128,10 +128,15 @@ public class Parser {
         }
     }
 
+
     private static Task createTask(String[] userInput) throws DukeException {
         String description = getTaskDescription(userInput);
         Task task = new Task(description);
         return task;
+    }
+
+    public static boolean isValidIndex(int givenIndex, int maxIndex) {
+        return givenIndex <= maxIndex;
     }
 
     private static String getTaskDescription(String[] userInput) throws DukeException {
@@ -163,6 +168,9 @@ public class Parser {
             int startIndexOfDescription = 1;
             int endIndexOfDescription = getStartOfDate(userInput);
             String description = getStringBetweenIndices(startIndexOfDescription, endIndexOfDescription, userInput);
+            if (description.equals("")) {
+                throw new DukeException("Empty description not allowed");
+            }
             return description;
         } else {
             throw new DukeException("Invalid description provided");
@@ -179,12 +187,16 @@ public class Parser {
                 return i;
             }
         }
-        throw new DukeException("No date given");
+        throw new DukeException("Invalid date given");
     }
 
     private static LocalDate getEventDate(String[] userInput) throws DukeException {
-        int indexOfDate = getStartOfDate(userInput);
-        return LocalDate.parse(userInput[indexOfDate]);
+        try {
+            int indexOfDate = getStartOfDate(userInput);
+            return LocalDate.parse(userInput[indexOfDate]);
+        } catch (DateTimeParseException dtpe) {
+            throw new DukeException("Invalid date given");
+        }
     }
 
     private static Deadline createDeadline(String[] userInput) throws DukeException {
@@ -206,6 +218,7 @@ public class Parser {
         return findIntInStringArray(userInput);
     }
 
+
     private static int findIntInStringArray(String[] array) throws DukeException {
         String intRegex = "\\d*";
         for (String s: array) {
@@ -213,7 +226,7 @@ public class Parser {
                 return Integer.parseInt(s);
             }
         }
-        throw new DukeException("No index given");
+        throw new DukeException("Invalid index given");
     }
 
     private static String getKeyword(String[] userInput) {

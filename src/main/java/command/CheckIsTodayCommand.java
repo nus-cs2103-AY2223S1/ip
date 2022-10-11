@@ -1,9 +1,12 @@
 package command;
 
+import static utility.Parser.isValidIndex;
+
 import exceptions.DukeException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
+
 
 /**
  * Command that runs on dated tasks like
@@ -27,6 +30,9 @@ public class CheckIsTodayCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+        if (!isValidIndex(index, taskList.getSize())) {
+            throw new DukeException("Invalid index");
+        }
         if (isDueToday(index, taskList)) {
             ui.showMessage("Yes due today");
         } else {
@@ -34,7 +40,7 @@ public class CheckIsTodayCommand extends Command {
         }
     }
 
-    private boolean isDueToday(int index, TaskList taskList) {
+    private boolean isDueToday(int index, TaskList taskList) throws DukeException {
         return taskList.checkIsToday(index);
     }
 }

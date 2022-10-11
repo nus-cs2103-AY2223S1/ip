@@ -12,6 +12,7 @@ public class Task {
      * @param description Description of the Task.
      */
     public Task(String description) {
+        assert description != "";
         this.description = description;
         this.isDone = false;
     }
@@ -40,9 +41,9 @@ public class Task {
     public String longDescription() {
         String status;
         if (this.isDone) {
-            status = String.format("Task %s", this.description);
+            status = String.format("Task %s is completed", this.description);
         } else {
-            status = String.format("Task %s", this.description);
+            status = String.format("Task %s is not completed yet", this.description);
         }
         return status;
     }

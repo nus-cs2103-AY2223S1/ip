@@ -46,11 +46,7 @@ public class StorageReader {
     }
 
     private void addTaskToHistory(String currTask, TaskList history) {
-        try {
-            history.addTask(StorageParser.fileLineToTask(currTask));
-        } catch (DukeException de) {
-            System.out.println(de);
-        }
+        history.addTask(StorageParser.fileLineToTask(currTask));
     }
 
     private void loadAllLinesToHistory(TaskList history) throws IOException {

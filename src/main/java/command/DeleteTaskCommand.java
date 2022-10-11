@@ -1,9 +1,12 @@
 package command;
 
+import static utility.Parser.isValidIndex;
+
 import exceptions.DukeException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
+
 
 /**
  * Deletes task.
@@ -16,6 +19,9 @@ public class DeleteTaskCommand extends Command {
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+        if (!isValidIndex(index, taskList.getSize())) {
+            throw new DukeException("Invalid index");
+        }
         if (isLineDeleted(index, storage)) {
             taskList.deleteTask(index);
             ui.showMessage("Deleted task");

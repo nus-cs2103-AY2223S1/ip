@@ -2,6 +2,7 @@ package tasklist;
 
 import java.util.ArrayList;
 
+import exceptions.DukeException;
 import task.Task;
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
@@ -10,12 +11,14 @@ public class TaskList {
     private final ArrayList<Task> userInputHistoryList = new ArrayList<>();
 
     /**
-     * Adds Task to list.
+     * Adds Task to list if it is not null.
      *
      * @param t Task to add.
      */
     public void addTask(Task t) {
-        userInputHistoryList.add(t);
+        if (t != null) {
+            userInputHistoryList.add(t);
+        }
     }
 
     /**
@@ -23,8 +26,12 @@ public class TaskList {
      *
      * @param n Index to remove.
      */
-    public void deleteTask(int n) {
-        userInputHistoryList.remove(n - 1);
+    public void deleteTask(int n) throws DukeException {
+        try {
+            userInputHistoryList.remove(n - 1);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new DukeException("Invalid index");
+        }
     }
 
     /**
@@ -33,8 +40,12 @@ public class TaskList {
      * @param n Index of task to check date.
      * @return True if task due today.
      */
-    public boolean checkIsToday(int n) {
-        return userInputHistoryList.get(n - 1).isToday();
+    public boolean checkIsToday(int n) throws DukeException {
+        try {
+            return userInputHistoryList.get(n - 1).isToday();
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new DukeException("Invalid index");
+        }
     }
 
     /**
@@ -43,8 +54,12 @@ public class TaskList {
      * @param n Index of task to get long description of.
      * @return Long description of the task.
      */
-    public String getLongDescription(int n) {
-        return userInputHistoryList.get(n - 1).longDescription();
+    public String getLongDescription(int n) throws DukeException {
+        try {
+            return userInputHistoryList.get(n - 1).longDescription();
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new DukeException("Invalid index");
+        }
     }
 
     /**
@@ -94,8 +109,12 @@ public class TaskList {
      * @param n Index to return.
      * @return Task/Event/Deadline.
      */
-    public Task getTask(int n) {
-        return userInputHistoryList.get(n - 1);
+    public Task getTask(int n) throws DukeException {
+        try {
+            return userInputHistoryList.get(n - 1);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new DukeException("Invalid index");
+        }
     }
 
     /**
