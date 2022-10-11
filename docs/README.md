@@ -47,7 +47,6 @@ This is a sample output of Ado chatbot <br>
 💡 Notes about the command format: <br>
 Words in `{curly brackets}` are the parameters to be supplied by the user. <br>
 e.g. in `todo {description}` , `{description}` is a parameter which can be used as `todo homework`
-  
 
 ### Viewing help: `help`
 Displays a list of available commands. <br>
@@ -127,11 +126,10 @@ Ado saves data automatically in the hard disk after any valid command that chang
 **A**: It means that you have entered an invalid command that Ado doesn't understand! To learn the proper usage of each command you can read [here](#features)
 <img src="https://github.com/jovitaanderson/ip/blob/master/docs/images/Ado_errorMessage.png?raw=true" alt="AdoErrorMessage"/> <br>
 
-
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+:--------:|------------------
 **Help** | `help`
 **Todo** | `todo {description}` <br> e.g., `todo do homework`
 **Deadline** | `deadline {description} /by {dd MMM yyyy}` <br> e.g., `deadline submit assignment /by 25 Sep`
