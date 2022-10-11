@@ -55,7 +55,7 @@ public class Parser {
             return "OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
         } catch (DukeException ex) {
-            return ex.toString();
+            return ex.getMessage();
         }
     }
 

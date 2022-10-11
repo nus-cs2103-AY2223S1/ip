@@ -1,6 +1,3 @@
-D - true - def - /by 2022-12-12
-T - false - cdf
-T - false - a
-T - false - b
-T - false - a
-D - false - a - /by 2000-12-12
+T - false - Eat food
+D - false - finish work - /by 2022-09-10
+E - false - meeting - /at 2pm Thursday

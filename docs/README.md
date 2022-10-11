@@ -14,6 +14,10 @@ You're able to keep track of tasks you've done and tasks you've realised need ad
 
 Delete tasks you're no longer tracking.
 
+### Undo creation/deletion
+
+Made a mistake? Undo your latest action. Realise that it's actually right? Redo it.
+
 ## Usage
 
 ### `todo` - Adds a todo
@@ -36,7 +40,7 @@ Now you have 1 tasks in the list.
 
 ### `deadline` - Adds a task with a deadline
 
-The todo command creates a simple task with a title and deadline.
+The todo command creates a simple task with a title and deadline. The deadline must be in the format: yyyy-MM-dd
 
 Example of usage:
 
@@ -44,7 +48,7 @@ Example of usage:
 
 Expected outcome:
 
-A message informing you of a successful task creation.
+A message informing you of a successful deadline creation.
 
 ```
 Got it. I've added this task:
@@ -57,11 +61,11 @@ The todo command creates a simple task with a title and date.
 
 Example of usage:
 
-`deadline (title) /at (date)`
+`events (title) /at (date)`
 
 Expected outcome:
 
-A message informing you of a successful task creation.
+A message informing you of a successful event creation.
 
 ```
 Got it. I've added this task:
@@ -121,8 +125,8 @@ OK, I've marked this task as not done yet:
 
 ### `undo` - Undo/redo the most recent command
 
-The undo command undoes the previous non-undo command, or reverts a reccent
-undo.
+The undo command undoes the previous non-undo command, or reverts a recent
+undo (redo).
 
 Example of usage:
 
