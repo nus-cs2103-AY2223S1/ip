@@ -33,6 +33,11 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+    }
+
+    private void setPurpleBackground() {
+        dialog.setStyle("-fx-background-color: mediumpurple; ");
     }
 
     /**
@@ -46,12 +51,15 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.setPurpleBackground();
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.setPurpleBackground();
         return db;
     }
 
