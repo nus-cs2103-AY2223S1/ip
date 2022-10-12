@@ -87,8 +87,8 @@ Marks the task at a given index as done
 
 Example of usage: 
 
-todo homework
-mark 1
+`todo homework
+mark 1`
 
 Expected outcome:
 
@@ -104,9 +104,9 @@ Unmarks the task at a given index as not done
 
 Example of usage: 
 
-todo task
+`todo task
 mark 1
-unmark 1
+unmark 1`
 
 Expected outcome:
 
@@ -123,9 +123,9 @@ Displays all the tasks in ur tasklist
 
 Example of usage: 
 
-todo laundry
+`todo laundry
 deadline homework /by 2022-09-22
-event birthday party /at 2022-09-25
+event birthday party /at 2022-09-25`
 
 Expected outcome:
 
@@ -144,10 +144,10 @@ Displays all the tasks matching a keyword
 
 Example of usage: 
 
-todo laundry
+`todo laundry
 deadline homework /by 2022-09-22
 event birthday party /at 2022-09-25
-find laundry
+find laundry`
 
 Expected outcome:
 
@@ -164,12 +164,12 @@ Sorts all the tasks based on the date provided.
 
 Example of usage: 
 
-todo laundry
+`todo laundry
 deadline homework /by 2022-09-22
 event birthday party /at 2022-09-25
 deadline coding assignment /by 2022-08-22
 sort
-list
+list`
 
 Expected outcome:
 
