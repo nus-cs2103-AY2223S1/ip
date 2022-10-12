@@ -11,6 +11,11 @@ public class Deadline extends Task {
     protected String by;
     protected LocalDate date;
 
+    /**
+     * Initializes a new Deadline object which is a subclass of Task.
+     * @param description Description of the Deadline task.
+     * @param by Due of task
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
@@ -28,7 +33,7 @@ public class Deadline extends Task {
             this.date = localDate;
             this.by = localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             return true;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

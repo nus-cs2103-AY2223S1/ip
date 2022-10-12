@@ -58,7 +58,7 @@ public class Parser {
                 ui.print(printStatement);
                 continue;
             }
-            if(userInput.split(" ", 2)[0].equals("find")) {
+            if (userInput.split(" ", 2)[0].equals("find")) {
                 String search = userInput.split(" ", 2)[1];
                 printStatement = tasks.find(search);
                 ui.print(printStatement);
@@ -123,7 +123,7 @@ public class Parser {
             int inputTaskIndex = getTaskIndex(userInput);
             return tasks.deleteTask(inputTaskIndex);
         }
-        if(userInput.split(" ", 2)[0].equals("find")) {
+        if (userInput.split(" ", 2)[0].equals("find")) {
             String search = userInput.split(" ", 2)[1];
             return tasks.find(search);
         }
