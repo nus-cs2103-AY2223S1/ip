@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 /**
- * Is an interactive chatbot that keep tracks of to-do inputted by the user.
+ * Is an interactive chatbot that keep tracks of tasks inputted by the user.
  */
 public class Duke {
 
@@ -13,6 +13,9 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Class constructor.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage("src/main/data/duke.txt");
@@ -26,6 +29,13 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns a string response based on user's input.
+     *
+     * @param input String input entered by user.
+     * @param duke Duke object.
+     * @return String response associated with the input.
+     */
     public String getResponse(String input, Duke duke) {
         Parser parser = new Parser(duke);
         return parser.initialise(input);
@@ -41,9 +51,12 @@ public class Duke {
         return ui.printList(tasks);
     }
 
+
     /**
-     * Calls TaskList object to handle a ToDo task inputted by the user.
-     * @param description String description of the task.
+     * Handles the addition of a new Todo task inputted by the user.
+     *
+     * @param description String description of Todo task.
+     * @return String response corresponding to user's todo input.
      * @throws DukeException
      */
     public String setToDo(String description) throws DukeException {
@@ -58,9 +71,11 @@ public class Duke {
     }
 
     /**
-     * Calls TaskList object to handle a DeadLine task inputted by the user.
-     * @param description String description of the task.
-     * @param by String representation of the deadline of the task.
+     * Handles the addition of a new Deadline task inputted by the user.
+     *
+     * @param description String description of Deadline task.
+     * @param by String representation of date and time of the Deadline task.
+     * @return String response corresponding to user's deadline input
      */
     public String setDeadLine(String description, String by) {
         Task deadLine = new Deadline(description, by);
@@ -71,9 +86,11 @@ public class Duke {
     }
 
     /**
-     * Calls TaskList object to handle a Event task inputted by the user.
-     * @param description String description of the task.
-     * @param at String representation of when the task will happen.
+     * Handles the addition of a new Event task inputted by the user.
+     *
+     * @param description String description of Event task.
+     * @param at String representation of date and time of the Event task.
+     * @return String response corresponding to user's event input.
      */
     public String setEvent(String description, String at) {
         Task event = new Event(description, at);
@@ -83,9 +100,12 @@ public class Duke {
         return ui.printEvent(event, size);
     }
 
+
     /**
-     * Calls TaskList object to handle the marking of a task.
+     * Calls TaskList and Ui objects to handle the marking of a task.
+     *
      * @param index Index of the task to be marked.
+     * @return String response corresponding to user's mark input.
      * @throws DukeException
      */
     public String mark(int index) throws DukeException {
@@ -96,8 +116,10 @@ public class Duke {
     }
 
     /**
-     * Calls TaskList object to handle the unmarking of a task.
+     * Calls TaskList and Ui objects to handle the unmarking of a task.
+     *
      * @param index Index of the task to be unmarked.
+     * @return String response corresponding to user's unmark input.
      * @throws DukeException
      */
     public String unmark(int index) throws DukeException {
@@ -107,9 +129,12 @@ public class Duke {
         return ui.printUnMark(unmarkedTask);
     }
 
+
     /**
-     * Calls TaskList object to handle the deletion of a task.
+     * Calls TaskList and Ui objects to handle the deletion of a task.
+     *
      * @param index Index of the task to be deleted.
+     * @return String response corresponding to the user's delete input.
      * @throws DukeException
      */
     public String delete(int index) throws  DukeException {
@@ -119,6 +144,12 @@ public class Duke {
         return ui.printDelete(taskToDelete, size);
     }
 
+    /**
+     * Filters the task list based on the specified keyword and display the list of filtered task(s).
+     *
+     * @param keyword Keyword to be used for filtering the list.
+     * @return String response corresponding to the user's find input.
+     */
     public String find(String keyword) {
         ArrayList<Task> taskList = tasks.getAllTasks();
         ArrayList<Task> filteredTasks = new ArrayList<>();
@@ -131,10 +162,20 @@ public class Duke {
        return ui.printFind(filteredTasks);
     }
 
+    /**
+     * Returns goodbye message to the user.
+     *
+     * @return String of goodbye message.
+     */
     public String sayBye() {
         return ui.goodBye();
     }
 
+    /**
+     * Returns a list of all available commands usable in Duke to the user.
+     *
+     * @return String representation of help list.
+     */
     public String sendHelp() {
         return ui.printHelp();
     }
