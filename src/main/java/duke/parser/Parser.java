@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Parser {
 
+    private static final String NUMBER_FORMAT_ERROR = "Please enter an integer";
+
     /**
      * Parses the user input into various commands
      *
@@ -51,15 +53,27 @@ public class Parser {
     }
 
     private static Command parseMark(String[] input) {
-        return new MarkCommand(Integer.parseInt(input[1].trim()) - 1);
+        try {
+            return new MarkCommand(Integer.parseInt(input[1].trim()) - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException(NUMBER_FORMAT_ERROR);
+        }
     }
 
     private static Command parseUnmark(String[] input) {
-        return new UnmarkCommand(Integer.parseInt(input[1].trim()) - 1);
+        try {
+            return new UnmarkCommand(Integer.parseInt(input[1].trim()) - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException(NUMBER_FORMAT_ERROR);
+        }
     }
 
     private static Command parseDelete(String[] input) {
-        return new DeleteCommand(Integer.parseInt(input[1].trim()) - 1);
+        try {
+            return new DeleteCommand(Integer.parseInt(input[1].trim()) - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException(NUMBER_FORMAT_ERROR);
+        }
     }
 
     private static Command parseDeadline(String[] input) {

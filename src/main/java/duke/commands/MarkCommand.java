@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.tasks.Task;
@@ -15,6 +16,9 @@ public class MarkCommand extends Command {
     protected int index;
     private final String MESSAGE = "Excellent! I have marked " +
             "the task as done: ";
+    private final String OUT_OF_BOUNDS_ERROR = "Please enter a positive integer " +
+            "less than ";
+
 
     /**
      * Constrcuts a mark command
@@ -27,10 +31,14 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.markTask(index);
-        storage.saveTaskList(taskList);
-        String text = MESSAGE + "\n " + taskList.getTaskString(index);
-        return ui.displayMessage(text);
+        try {
+            taskList.markTask(index);
+            storage.saveTaskList(taskList);
+            String text = MESSAGE + "\n " + taskList.getTaskString(index);
+            return ui.displayMessage(text);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(OUT_OF_BOUNDS_ERROR + taskList.getSize() + ".");
+        }
     }
 
 }

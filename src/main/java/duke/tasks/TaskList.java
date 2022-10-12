@@ -10,6 +10,10 @@ public class TaskList {
         this.taskList = taskList;
     }
 
+    public int getSize() {
+        return this.taskList.size();
+    }
+
     public String displayNumTasks() {
         String text = "Now you have " + this.taskList.size() +
                 " tasks in the list.";

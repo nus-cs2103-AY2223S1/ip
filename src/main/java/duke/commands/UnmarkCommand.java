@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.tasks.Task;
@@ -15,6 +16,8 @@ public class UnmarkCommand extends Command {
     protected int index;
     private final String MESSAGE =  "Noted! I have marked " +
             "the task as not done yet:";
+    private final String OUT_OF_BOUNDS_ERROR = "Please enter a positive integer " +
+            "less than ";
 
     /**
      * Construct an unmark command
@@ -26,10 +29,14 @@ public class UnmarkCommand extends Command {
     }
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.unmarkTask(index);
-        storage.saveTaskList(taskList);
-        String text = MESSAGE + "\n " + taskList.getTaskString(index);
-        return ui.displayMessage(text);
+        try {
+            taskList.unmarkTask(index);
+            storage.saveTaskList(taskList);
+            String text = MESSAGE + "\n " + taskList.getTaskString(index);
+            return ui.displayMessage(text);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(OUT_OF_BOUNDS_ERROR + taskList.getSize() + ".");
+        }
     }
 
 }
