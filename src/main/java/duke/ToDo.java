@@ -14,7 +14,7 @@ public class ToDo extends Task {
         super(description);
     }
 
-    
+
     @Override
     public String saveString() {
         return "T | " + (this.isDone ? "1 | " : "0 | ") + this.description;
