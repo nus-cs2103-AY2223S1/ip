@@ -11,6 +11,7 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
+     * Class constructor.
      *
      * @param description Description of deadline task.
      * @param by Date and time of the deadline task.
