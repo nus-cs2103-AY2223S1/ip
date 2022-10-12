@@ -129,7 +129,9 @@ public class Parser {
 
     private String parseTodo(String[] command) {
         try {
-            Todo t = new Todo(command[1]);
+            String cmd = command[1].trim();
+            System.out.println("cmd:" + cmd);
+            Todo t = new Todo(cmd);
             return tasks.add(t);
         } catch (ArrayIndexOutOfBoundsException err) {
             return "oops the description of a todo cannot be empty!";
@@ -140,11 +142,10 @@ public class Parser {
         try {
             String[] desc = command[1].split("/at ", 2);
             assert desc[1] != null;
-            String[] dl = command[1].split("/by ", 2);
-            Event e = new Event(dl[0], LocalDate.parse(dl[1]));
+            Event e = new Event(desc[0], LocalDate.parse(desc[1]));
             return tasks.add(e);
         } catch (ArrayIndexOutOfBoundsException aie) {
-            return "Invalid time specified. You can specify a time with /at";
+            return "Invalid time specified. You can specify a time with /at YYYY-MM-DD";
         }
     }
 
