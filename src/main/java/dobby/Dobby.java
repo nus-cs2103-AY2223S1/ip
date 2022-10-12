@@ -67,14 +67,14 @@ public class Dobby {
     }
 
     /**
-     * Set the output stream for the Duke program.
+     * Method to set the output message
      */
     public void setOut() {
         System.setOut(new PrintStream(outputStream, true, StandardCharsets.UTF_8));
     }
 
     /**
-     * Gets the greeting message.
+     * Returns the greeting message upon launching the program.
      */
     public String getGreetings() {
         outputStream.reset();
@@ -83,7 +83,7 @@ public class Dobby {
     }
 
     /**
-     * Gets the list of commands.
+     * Returns the list of commands.
      */
     public String getCommands() {
         outputStream.reset();

@@ -11,7 +11,6 @@ import dobby.tasks.Deadline;
 import dobby.tasks.Event;
 import dobby.tasks.Todo;
 
-
 /**
  * Class that adds new tasks to the list.
  */
@@ -47,37 +46,33 @@ public class TaskCommand extends Command {
                     DobbyStorage.save(dl, Dobby.getFilePath());
                 } else {
                     date = ui.getDate();
-                    //if date has the wrong format
+                    /* if date has the wrong format */
                     if (date.equals(WRONG_DATE_FORMAT)) {
                         DobbyChat.wrongDateFormat();
-                        //if user didn't use the /by command for a deadline
+                        /* if user didn't use the /by command for a deadline */
                     } else if (date.equals(WRONG_DATETYPE_DEADLINE)) {
                         DobbyChat.noDeadlineDate();
-                        //if user didn't use the /at command for an event
+                        /* if user didn't use the /at command for an event */
                     } else if (date.equals(WRONG_DATETYPE_EVENT)) {
                         DobbyChat.noEventDate();
-                        //if user didn't include the date
-                    } else if (date.equals(NO_DATE)) {
-                        if (cmd.equals(COMMAND_EVENT)) {
-                            DobbyChat.noEventDate();
-                        } else {
-                            DobbyChat.noDeadlineDate();
-                        }
-                        //user entered everything correctly
-                    } else if (desc.equals(NO_DESCRIPTION)) {
-                        DobbyChat.noTaskDesc();
+                        /* if user didn't include the date */
+                    } else if (date.equals(NO_DATE) && cmd.equals(COMMAND_EVENT)) {
+                        DobbyChat.noEventDate();
+                    } else if (date.equals(NO_DATE) && cmd.equals(COMMAND_DEADLINE)) {
+                        DobbyChat.noDeadlineDate();
+                        /* user entered everything correctly */
+                    } else if (cmd.equals(COMMAND_DEADLINE)) {
+                        Deadline newDeadline = new Deadline(desc, date);
+                        dl.add(newDeadline);
+                        DobbyChat.added(newDeadline, dl);
+                        DobbyStorage.save(dl, Dobby.getFilePath());
+                    } else if (cmd.equals(COMMAND_EVENT)) {
+                        Event newEvent = new Event(desc, date);
+                        dl.add(newEvent);
+                        DobbyChat.added(newEvent, dl);
+                        DobbyStorage.save(dl, Dobby.getFilePath());
                     } else {
-                        if (cmd.equals(COMMAND_DEADLINE)) {
-                            Deadline newDeadline = new Deadline(desc, date);
-                            dl.add(newDeadline);
-                            DobbyChat.added(newDeadline, dl);
-                            DobbyStorage.save(dl, Dobby.getFilePath());
-                        } else {
-                            Event newEvent = new Event(desc, date);
-                            dl.add(newEvent);
-                            DobbyChat.added(newEvent, dl);
-                            DobbyStorage.save(dl, Dobby.getFilePath());
-                        }
+                        DobbyChat.unknown();
                     }
                 }
             }

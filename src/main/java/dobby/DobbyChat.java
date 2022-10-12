@@ -232,15 +232,25 @@ public class DobbyChat {
         printChat("Master, please write dates using the YYYY-MM-DD HHMM format");
     }
 
+    /**
+     * Message when no previous task is found.
+     */
     public static void noFileToLoadFrom() {
         printChat("Dobby can't find any previous tasks to load from");
     }
 
+    /**
+     * Error message when user does not input parameter of simplify.
+     */
     public static void noCommandToSimplify() {
         printChat("Please tell dobby which command you wish to simplify.");
     }
 
+    /**
+     * Error message when user tries to simplify a non-existent command.
+     */
     public static void wrongCommandToSimplify() {
         printChat("Dobby doesn't recognize this command, please try simplifying a valid command!");
     }
+
 }
