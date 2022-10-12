@@ -45,9 +45,11 @@ public class DeadlineCommand extends Command {
             storage.save();
             return output.toString();
         } catch (InvalidFormatException e) {
-            return "Please format your Deadline request with a /{deadline}";
+            return "Please format your Deadline request with a /datetime";
         } catch (DateTimeParseException e) {
-            return "Looks like your date time formatting is wrong, please format it like so: \"yyyy-mm-dd hh:mm\"";
+            return "Looks like your deadline formatting is wrong, please format your command like so: \"deadline <description> " +
+                    "/yyyy-mm-dd hh:mm\"";
+
         } catch (Exception e) {
             return "Something went wrong in DeadlineCommand" + e;
         }
