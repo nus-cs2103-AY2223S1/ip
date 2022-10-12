@@ -124,7 +124,7 @@ public class Storage {
     }
 
     /**
-     * Decode the tasks from the file and creates the corresponding task.
+     * Decodes the tasks from the file and creates the corresponding task.
      *
      * @param encodedTask The task to be decoded.
      * @return The corresponding task object from the encoded task.
