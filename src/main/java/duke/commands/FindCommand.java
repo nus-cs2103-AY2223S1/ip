@@ -18,6 +18,10 @@ public class FindCommand extends  Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList searchMatchList = new TaskList(taskList.findTasks(search));
+        if (searchMatchList.getSize() == 0) {
+            return ui.displayMessage("You currently have no tasks matching that " +
+                    "description");
+        }
         return ui.displayMessage(searchMatchList.taskListString());
     }
 

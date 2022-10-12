@@ -70,10 +70,10 @@ public class TaskList {
         return this.taskList.get(index).toString();
     }
 
-    public ArrayList<Task> findTasks(String search) {
+    public ArrayList<Task> findTasks(String word) {
         ArrayList searchMatchList = new ArrayList<Task>();
         for(Task task : taskList) {
-            if (task.getDescription().contains(search)) {
+            if (task.getDescription().contains(word)) {
                 searchMatchList.add(task);
             }
         }
