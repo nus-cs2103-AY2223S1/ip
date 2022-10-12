@@ -93,7 +93,7 @@ public class Storage {
             FileWriter fw = new FileWriter(filePath);
             String output = "";
             for (Task item : textToAlter) {
-                output += (textToAlter.indexOf(item) + 1) + "." + item  + "\n";
+                output += (textToAlter.indexOf(item) + 1) + "." + item + "\n";
             }
 
             fw.write(output);

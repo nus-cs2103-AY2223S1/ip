@@ -40,7 +40,6 @@ public class TaskList {
     public String addTask(String userInput) {
         Task t = new Task(userInput);
         storeTasks.add(t);
-//        storage.appendToFile(t.description);
         storage.writeToFile(storeTasks);
         return "added: " + t.description;
     }
@@ -54,7 +53,6 @@ public class TaskList {
         String printStatement = "";
         printStatement += "Noted. I've removed this task: \n";
         printStatement += "\t" + storeTasks.get(taskIndex).toString() + "\n";
-//        storage.removeLineInText(storeTasks.get(taskIndex).toString());
         storeTasks.remove(taskIndex);
         storage.writeToFile(storeTasks);
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
@@ -82,16 +80,16 @@ public class TaskList {
      */
     public String find(String search) {
         int count = 0;
-        for(int i = 0; i < storeTasks.size(); i++) {
-            if(storeTasks.get(i).description.contains(search)) {
+        for (int i = 0; i < storeTasks.size(); i++) {
+            if (storeTasks.get(i).description.contains(search)) {
                 count++;
-                if(count == 1) {
+                if (count == 1) {
                     printStatement = "Here are the matching tasks in your list:\n";
                 }
                 printStatement += i + 1 + ". " + storeTasks.get(i).toString() + "\n";
             }
         }
-        if(count == 0) {
+        if (count == 0) {
             printStatement = "No tasks match the search term";
         }
         return printStatement;
@@ -106,7 +104,6 @@ public class TaskList {
         String oldText = storeTasks.get(taskIndex).toString();
         printStatement = storeTasks.get(taskIndex).markAsDone();
         String newText = storeTasks.get(taskIndex).toString();
-//        storage.editTextInFile(newText, oldText);
         storage.writeToFile(storeTasks);
         return printStatement;
     }
@@ -121,7 +118,6 @@ public class TaskList {
         String oldText = storeTasks.get(taskIndex).toString();
         printStatement = storeTasks.get(taskIndex).markAsNotDone();
         String newText = storeTasks.get(taskIndex).toString();
-//        storage.editTextInFile(newText, oldText);
         storage.writeToFile(storeTasks);
         return printStatement;
     }
@@ -138,14 +134,13 @@ public class TaskList {
         if (userInput.isEmpty()) {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         }
-        if(duplicateCheck(todo)) {
+        if (duplicateCheck(todo)) {
             return "Duplicate item entered";
         }
         storeTasks.add(todo);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + todo.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-//        storage.appendToFile(todo.toString());
         storage.writeToFile(storeTasks);
         return printStatement;
 
@@ -161,14 +156,13 @@ public class TaskList {
     public String deadline(String userInput, String by) {
         Deadline deadline = new Deadline(userInput, by);
         dateProcessor(deadline);
-        if(duplicateCheck(deadline)) {
+        if (duplicateCheck(deadline)) {
             return "Duplicate item entered";
         }
         storeTasks.add(deadline);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + deadline.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-//        storage.appendToFile(deadline.toString());
         storage.writeToFile(storeTasks);
         return printStatement;
     }
@@ -182,14 +176,13 @@ public class TaskList {
      */
     public String event(String userInput, String duration) {
         Event event = new Event(userInput, duration);
-        if(duplicateCheck(event)) {
+        if (duplicateCheck(event)) {
             return "Duplicate item entered";
         }
         storeTasks.add(event);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + event.toString() + "\n";
         printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
-//        storage.appendToFile(event.toString());
         storage.writeToFile(storeTasks);
         return printStatement;
     }
@@ -208,7 +201,7 @@ public class TaskList {
         if (userInput.split(" ", 2).length == 1) {
             throw new DukeException("\t ☹ OOPS!!! The description of a " + firstCommand + " cannot be empty.");
         }
-        if((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
+        if ((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
             throw new DukeException("\t ☹ OOPS!!! The time due or needed cannot be empty.");
         }
     }
