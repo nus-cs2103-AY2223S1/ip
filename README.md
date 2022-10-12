@@ -1,29 +1,34 @@
-Duke
-“Your mind is for having ideas, not holding them.” – David Allen
+## DukePro
 
-A project which frees your mind of holding to the tasks you need to do. Duke is
+>"Forgive my manners, call me the Duke. Now to business. Weapons, ammunition, healing salves – anything you desire, I can provide." - [The Duke Resident Evil](https://residentevil.fandom.com/wiki/The_Duke/quotes)
 
-Text-based: Suitable for people who type fast
-User friendly: easy to remember commands
-FREE to use
+DukePro frees your mind of having to remember things you need to do. It's,
+
+- text-based
+- easy to learn
+- ~~FAST~~ _SUPER_ FAST to use
+
 All you need to do is:
 
-Download lastest version of Duke from here.
-Run Duke.
-Add your tasks and you are good to go.
-Try to get yourself familiar with Sheep
+1. download it [here](https://github.com/gabyang/ip)
+2. double-click it.
+3. add your tasks.
+4. let it manage your tasks for you 😉
 
- todo Do something to add a todo task
- deadline Deadline /by 2022-08-31 to add add deadline
- event Event /at 2022-08-31 to add an event
- list to list out all the tasks
- mark 1 to mark the 1st task as done
- unmark 1 to unmark the 1st task
- delete 1 to delete the 1st task
- bye to close Duke and store all ongoing tasks 👋
-If you want to load a list of tasks, you can load it by replacing ./data/tasks.txt with your file path in main() of file Duke.java
+And it is **FREE**!
 
+Features:
+
+- [x] Managing tasks
+- [ ] Managing deadlines
+- [ ] Reminders (coming soon)
+
+If you are a Java programmer, you can use it to practice Java too. Here's the `main` method:
+
+``
+public class Main {
 public static void main(String[] args) {
-    new Duke("./data/tasks.txt").run();
+Application.launch(MainApp.class, args);
 }
-Hope you have good experience with Duke!!!
+}
+``

@@ -1,7 +1,8 @@
 package task;
 
 /**
- * Represent a Event task
+ * Represent a generic event task format that is used by Duke. The event task is constrained by
+ * any type of time limit that the user defines.
  */
 public class DukeTaskEvent extends DukeTask{
     
@@ -13,7 +14,7 @@ public class DukeTaskEvent extends DukeTask{
     }
 
     /**
-     * Print out a format of event task
+     * Print out a format of event task.
      * @return String
      */
     @Override
@@ -31,7 +32,7 @@ public class DukeTaskEvent extends DukeTask{
     }
 
     /**
-     * Return time
+     * Return time.
      * @return String
      */
     public String getTime() {

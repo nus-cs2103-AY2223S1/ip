@@ -1,12 +1,12 @@
 package duke;
 
 /**
- * Represent the responses that Duke says
+ * This class represents the responses that Duke says in the GUI.
  */
 public class Ui {
 
     /**
-     * Creates the Ui
+     * Creates the Ui.
      */
     public Ui() {}
 
@@ -23,6 +23,6 @@ public class Ui {
      * @return Exit message.
      */
     public static String printExit() {
-        return "Bye, I hope i never see you again you beggar";
+        return "Bye, I hope i never see you again you beggar. \n\n\n                  Press Any Key to Exit";
     }
 }

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
- * Represent a find command
+ * Command that filters out TaskList and prints out those with matching keywords.
+ * It is able to filter multiple types of field such as tasklist number, the type of task
+ * or the name of the task.
  */
 public class FindCommand extends Command {
     private String cmd;

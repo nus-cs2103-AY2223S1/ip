@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represents a Command
+ * Abstract class representing commands that Duke program can run.
+ * Each and every other command will inherit from Command super class.
  */
 public abstract class Command {
     /**

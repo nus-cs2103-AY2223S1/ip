@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Represent a generic task
+ * Represent a generic task format that is used by Duke.
  */
 public class DukeTask {
     private String task;
@@ -27,7 +27,7 @@ public class DukeTask {
     }
 
     /**
-     * Print out a format of the task
+     * Prints out a format of the task.
      * @return String
      */
     @Override
@@ -44,7 +44,7 @@ public class DukeTask {
     }
 
     /**
-     * set task as marked or unmarked
+     * Sets task as marked or unmarked.
      * @param mark
      */
     public void setMark (boolean mark) {
@@ -52,7 +52,7 @@ public class DukeTask {
     }
 
     /**
-     * Return the task type of task
+     * Return the task type of task.
      * @return char
      */
     public char getTaskType () {

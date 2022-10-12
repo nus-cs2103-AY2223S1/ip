@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent an unmark command
+ * Command to unmark a Task as uncompleted. This is used normally when the user wants to unmark a marked task.
+ * Inherits from Command abstract class.
  */
 public class UnmarkCommand extends Command {
     private String cmd;

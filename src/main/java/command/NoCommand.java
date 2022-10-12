@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent a command that does not fall into any other categories
+ * Represent a command that does not fall into any other categories.
+ * It executes when the user inputs something that is not a command.
  */
 public class NoCommand extends Command {
     /**

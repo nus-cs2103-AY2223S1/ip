@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent a todo command
+ * Basic Command to add a Task to the TaskList.
+ * Inherits from Command abstract class.
  */
 public class ToDoCommand extends Command {
     private String cmd;

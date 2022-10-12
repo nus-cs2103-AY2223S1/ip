@@ -3,7 +3,8 @@ package task;
 import java.time.LocalDateTime;
 
 /**
- * Represent a deadline task
+ * Represent a generic deadline task format that is used by Duke. The dateline task is constrained by
+ * LocalDateTime object.
  */
 public class DukeTaskDeadline extends DukeTask {
     
@@ -15,7 +16,7 @@ public class DukeTaskDeadline extends DukeTask {
     }
 
     /**
-     * Print out a format of deadline task
+     * Prints out a format of deadline task.
      * @return String
      */
     @Override
@@ -33,7 +34,7 @@ public class DukeTaskDeadline extends DukeTask {
     }
 
     /**
-     * return the local date time
+     * Returns the local date time.
      * @return LocalDateTime
      */
     public LocalDateTime getLDT() {

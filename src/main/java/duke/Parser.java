@@ -3,12 +3,12 @@ package duke;
 import command.*;
 
 /**
- * Parse user inputs in Duke to return command object
+ * Parse user inputs in Duke to return command object.
  */
 public class Parser {
     
     /**
-     * Parse user input and returns a command
+     * Parse user input and returns a command.
      */
     public static Command parse(String fullCommand) {
 
@@ -17,7 +17,6 @@ public class Parser {
 
         switch (inst) {
         case "bye":
-        // for now all of the strings will be fullCommand until further updates
             return new ByeCommand();            
 
         case "list":

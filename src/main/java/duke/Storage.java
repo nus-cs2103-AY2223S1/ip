@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- * A class that writes and read from files
+ * A class that writes and read from files.
  */
 public class Storage {
 
@@ -23,7 +23,7 @@ public class Storage {
     Storage() {}
 
     /**
-     * Set FILEPATH and tasklist
+     * Set FILEPATH and tasklist.
      * @param lst
      * @param filePath
      */
@@ -33,7 +33,7 @@ public class Storage {
     }
 
     /**
-     * Read list from available file
+     * Read list from available file.
      */
     public void read() {
         try {
@@ -60,7 +60,7 @@ public class Storage {
     }
 
     /**
-     * Save current list items into file
+     * Save current list items into file.
      */
     public void save() {
         try {

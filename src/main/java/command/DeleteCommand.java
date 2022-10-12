@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent a delete command
+ * Command to delete a Task from the TaskList.
+ * Inherits from Command abstract class.
  */
 public class DeleteCommand extends Command {
     private String cmd;

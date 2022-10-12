@@ -9,7 +9,8 @@ import task.DukeTaskEvent;
 import java.util.ArrayList;
 
 /**
- * Represent an Event command
+ * Command to set any constrain for a Task from the TaskList.
+ * Inherits from Command abstract class.
  */
 public class EventCommand extends Command {
     private String cmd;

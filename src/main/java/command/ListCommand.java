@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent a List command
+ * Command to list all Tasks in the TaskList.
+ * Inherits from Command abstract class.
  */
 public class ListCommand extends Command {
     private String cmd;

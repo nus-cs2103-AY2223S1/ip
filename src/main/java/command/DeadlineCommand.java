@@ -12,7 +12,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
- * Represents a deadline command
+ * Command to set a deadline (date) constrained Task from the TaskList.
+ * Inherits from Command abstract class.
  */
 public class DeadlineCommand extends Command {
     private String cmd;

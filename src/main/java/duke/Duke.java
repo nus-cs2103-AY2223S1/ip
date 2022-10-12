@@ -1,27 +1,21 @@
 package duke;
 
-import command.ByeCommand;
-import command.Command;
-import duke.DialogBox;
 import task.DukeTask;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
- * A chat bot that tracks your tasks!
+ * Main class for Duke program.
+ * Keeps track of tasks for user.
+ *
+ * @author Gabriel Yang
  */
 public class Duke {
     private Storage storage;
@@ -37,12 +31,15 @@ public class Duke {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
     public static boolean isterminated = false;
 
-
+    /**
+     * Creates the Duke class to initialise program.
+     * Initialises the TaskList, Ui, and Storage.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage();
         tasklist = new ArrayList<DukeTask>();
-        Storage.setOnce(tasklist, "data/list.txt");
+        Storage.setOnce(tasklist, "src/data/list.txt");
         storage.read();
     }
 

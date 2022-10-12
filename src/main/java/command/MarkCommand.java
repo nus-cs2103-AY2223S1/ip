@@ -8,7 +8,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Represent a mark commmand
+ * Command to mark a Task as completed.
+ * Inherits from Command abstract class.
  */
 public class MarkCommand extends Command {
     private String cmd;

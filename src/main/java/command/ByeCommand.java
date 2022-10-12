@@ -9,7 +9,8 @@ import task.DukeTask;
 import java.util.ArrayList;
 
 /**
- * Exit Command
+ * Command to end the Duke program.
+ * Inherits from Command abstract class.
  */
 public class ByeCommand extends Command {
     /**
