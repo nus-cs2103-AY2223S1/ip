@@ -150,8 +150,8 @@ Displays all the tasks matching a keyword
 
 Example of usage: 
 
-``
-`todo laundry
+```
+todo laundry
 deadline homework /by 2022-09-22
 event birthday party /at 2022-09-25
 find laundry
