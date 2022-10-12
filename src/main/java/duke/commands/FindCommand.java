@@ -8,8 +8,10 @@ import duke.ui.Ui;
 public class FindCommand extends  Command {
 
     protected String search;
-    private static final String MESSAGE = "\tHere are the mathces from " +
-            "your list";
+    private static final String MESSAGE = "Here are the mathces from " +
+            "your list:\n";
+    private final String NO_MATCH = "You currently have no tasks matching that " +
+            "description";
 
     public FindCommand(String search) {
         this.search = search;
@@ -19,10 +21,9 @@ public class FindCommand extends  Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList searchMatchList = new TaskList(taskList.findTasks(search));
         if (searchMatchList.getSize() == 0) {
-            return ui.displayMessage("You currently have no tasks matching that " +
-                    "description");
+            return ui.displayMessage(NO_MATCH);
         }
-        return ui.displayMessage(searchMatchList.taskListString());
+        return ui.displayMessage(MESSAGE + searchMatchList.taskListString());
     }
 
 
