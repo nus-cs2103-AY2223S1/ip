@@ -1,8 +1,12 @@
 package duke;
 
+import duke.commands.Command;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.io.IOException;
+import javafx.application.Platform;
 
 /**
  * A program that manages and stores tasks inputted by a user
@@ -28,6 +32,9 @@ public class Duke {
         } catch (IOException err) {
             ui.printLoadingError(filePath);
             tasks = new TaskList(new ArrayList<>(), storage);
+        } catch (DateTimeParseException err) {
+            ui.printCorruptedError();
+            tasks = new TaskList(new ArrayList<>(), storage);
         }
     }
 
@@ -40,11 +47,10 @@ public class Duke {
         while (!this.tasks.getTaskListStatus()) {
             try {
                 String inputCommand = ui.readInput();
-                response = Parser.parse(inputCommand, tasks);
+                Command command = Parser.parse(inputCommand, tasks);
+                response = command.execute(storage, tasks);
             } catch (DukeException err) {
                 ui.printError(err.getMessage());
-            } catch (IOException err) {
-                ui.printError("\n:( OOPS! I can't refresh the task file!");
             }
         }
         ui.printExitMessage();
@@ -54,19 +60,23 @@ public class Duke {
         return "Hello, my name is Duke!\nHow can I help you today?";
     }
 
-    public String getExitMessage() {
-        return "Goodbye! Looking forward to see you again soon!";
-    }
-
-    public String getResponse(String input) throws DukeException, IOException {
+    public String getResponse(String input) {
         String response = null;
         try {
-            response = Parser.parse(input, tasks);
-        } catch (DukeException err) {
-            response = err.getMessage();
+            Command command = Parser.parse(input, tasks);
+            response = command.execute(storage, tasks);
+        } catch (DukeException dukeErr) {
+            response = dukeErr.getMessage();
+        } catch (DateTimeParseException dtErr) {
+            response = "I don't recognise this time format."
+                    + "\nThe format of the DateTime should be as follows:"
+                    + "\nFor Deadlines --> dd/MM/yyyy[ HHmm]"
+                    + "\nFor Events --> dd/MM/yyyy HHmm";
+        } catch (AssertionError assertErr) {
+            response = assertErr.getMessage();
         }
         if (tasks.getTaskListStatus()) {
-            response = getExitMessage();
+            Platform.exit();
         }
         return response;
     }

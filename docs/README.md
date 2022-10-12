@@ -9,10 +9,11 @@ Duke is not just your average application to add tasks into a list. The extremel
 
 Want to use it? Follow these steps below:
 
-1. Download it from [this website](https://github.com/TYKCodes/ip/releases)
-2. Run the program
-3. Add your tasks
-4. Control the app's ability to manage your tasks
+1. Download the .JAR file from [this website](https://github.com/TYKCodes/ip/releases)
+2. Place it into a folder
+3. Open command prompt from the folder
+4. Run the following command: `java -jar Duke.jar`
+5. Start adding and controlling your tasks
 
 ## Features 
 
@@ -166,7 +167,7 @@ Changes the datetime of the task
 
 Example of usage:
 
-`snooze 1 /by 01/04/2022 2359`
+`snooze 1 /to 01/04/2022 2359`
 
 Expected outcome:
 

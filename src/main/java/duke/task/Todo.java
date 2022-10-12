@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Represents a task that needs to be done

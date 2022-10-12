@@ -1,4 +1,6 @@
-package duke;
+package duke.task;
+
+import duke.DukeException;
 
 /**
  * Represents a task that a user has

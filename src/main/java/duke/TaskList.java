@@ -1,7 +1,13 @@
 package duke;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +31,10 @@ public class TaskList {
         this.isClosed = false;
     }
 
+    public void addTask(Task t) {
+        this.tasks.add(t);
+    }
+
     /**
      * Obtains the number of tasks in the <code>TaskList</code>
      *
@@ -32,6 +42,15 @@ public class TaskList {
      */
     public int getSize() {
         return this.tasks.size();
+    }
+
+    /**
+     * Obtains the list of tasks that is stored in the <code>TaskList</code>
+     *
+     * @return The list of tasks
+     */
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 
     /**
@@ -61,13 +80,10 @@ public class TaskList {
      * @return Message to display
      * @throws IOException If the task index is invalid
      */
-    public String markTask(int index) throws IOException {
+    public Task markTask(int index) throws IndexOutOfBoundsException {
         Task taskChosen = this.tasks.get(index);
         taskChosen.markAsDone();
-        String response = "Okay, I have marked this task as done: \n"
-                + taskChosen.toString();
-        storage.refreshList(this.tasks);
-        return response;
+        return taskChosen;
     }
 
     /**
@@ -77,13 +93,10 @@ public class TaskList {
      * @return Message to display
      * @throws IOException If the task index is invalid
      */
-    public String unmarkTask(int index) throws IOException {
+    public Task unmarkTask(int index) throws IndexOutOfBoundsException {
         Task taskChosen = this.tasks.get(index);
         taskChosen.markAsUndone();
-        String response = "Okay, I have marked this task as not done: \n"
-                + taskChosen.toString();
-        storage.refreshList(this.tasks);
-        return response;
+        return taskChosen;
     }
 
     /**
@@ -141,17 +154,12 @@ public class TaskList {
      * Deletes a specific task in the list of tasks
      *
      * @param index The specific task number
-     * @return Message to display
-     * @throws IOException If the task index is invalid
+     * @return The task that is deleted
      */
-    public String deleteTask(int index) throws IOException{
+    public Task deleteTask(int index) throws IndexOutOfBoundsException {
         Task taskToRemove = this.tasks.get(index);
         this.tasks.remove(index);
-        String response = "Okay, I have removed this task from the list:\n  "
-                + taskToRemove.toString()
-                + "\nNow you have " + getSize() + " tasks in the list.";
-        storage.refreshList(this.tasks);
-        return response;
+        return taskToRemove;
     }
 
     /**
@@ -160,40 +168,44 @@ public class TaskList {
      * @param keyword Keyword to match
      * @return Message response to display
      */
-    public String findTask(String keyword) {
-        String response = null;
-        int numOfMatchingTasks = 0;
+    public List<Task> findTasks(String keyword) throws DukeException {
         if (this.tasks.size() == 0) { // List is empty
-            response = "Your list is empty! Why not add a task to it first?";
-        } else {
-            response = "Here are the matching tasks in your list:\n";
-            for (int i = 0; i < this.tasks.size(); i++) {
-                Task curTask = this.tasks.get(i);
-                if (curTask.getDescription().contains(keyword)) {
-                    numOfMatchingTasks++;
-                    response = response.concat((i + 1) + "." + curTask.toString() + "\n");
-                }
+            throw new DukeException("Your list is empty! Why not add a task to it first?");
+        }
+        List<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task curTask = this.tasks.get(i);
+            String taskDescription = curTask.getDescription().toUpperCase();
+            if (taskDescription.contains(keyword)) {
+                matchingTasks.add(curTask);
+            } else {
+                matchingTasks.add(null);
             }
         }
-        if (numOfMatchingTasks == 0) {
-            response = "There is no matching task with your keyword";
-        }
-        return response;
+
+        return matchingTasks;
     }
 
     /**
      * Snooze a task that has a datetime
      *
-     * @param desc The description of the task
+     * @param index The index of the task
+     * @param newDateTime The new DateTime to set
      * @return Message to display
      * @throws IOException If the task description cannot be interpreted
      * @throws DukeException If
      */
-    public String snoozeTask(String[] desc) throws IOException, DukeException, DateTimeParseException {
-        String response = null;
-        int taskNum = Integer.parseInt(desc[0].replaceAll("\\s", "")) - 1;
-        Task chosenTask = this.tasks.get(taskNum);
-        response = chosenTask.setDatetime(desc[1]);
+    public String snoozeTask(int index, String newDateTime) throws DukeException, DateTimeParseException {
+        String response;
+        Task chosenTask = this.tasks.get(index);
+        try {
+            response = chosenTask.setDatetime(newDateTime);
+        } catch (DateTimeParseException err) {
+            response = "I don't recognise this time format."
+                    + "\nThe format for your new DateTime should be as followed below"
+                    + "\nFor Events: dd/MM/yyyy HHmm"
+                    + "\nFor Deadlines: dd/MM/yyyy[ HHmm]";
+        }
         storage.refreshList(this.tasks);
         return response;
     }

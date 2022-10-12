@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 import java.util.Scanner;
 
 /**
@@ -53,6 +55,11 @@ public class Ui {
      */
     public void printLoadingError(String fileName) {
         System.out.println("Failed to find the task file: " + fileName + "\nCreating a new task file...");
+    }
+
+    public void printCorruptedError() {
+        System.out.println("The data file is corrupted! (Eg. Illegal/unknown text)"
+            + "\nResetting the task file...");
     }
 
     /**
