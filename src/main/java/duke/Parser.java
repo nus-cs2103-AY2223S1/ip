@@ -38,40 +38,21 @@ public class Parser {
         if (arr[0].equals("find")) {
             List<String> matchlist = tasklist.findMatches(str.substring(5));
             stringReturned = bot.printMatches2(matchlist);
-        }
-        else if (str.equals("sort")) {
+        }  else if (str.equals("sort")) {
             tasklist.sort();
             stringReturned = "tasks have been sorted";
-
-        }
-        else if (arr[0].equals("delete")) {
+        } else if (arr[0].equals("delete")) {
             System.out.println(arr[1]);
             int index = Integer.parseInt(arr[1]);
             Task deleted = tasklist.removeTask(index);
             stringReturned = bot.removeTask2(tasklist.size(), deleted);
         } else if (arr[0].equals("deadline")) {
-            String description = "";
-            String dateline="";
-            int counter = 1;
-            for(int i = 1; i < arr.length; i++){
-                if(arr[i].equals("/by")){
-                    break;
-                } else {
-                    description = description + arr[i]+ " ";
-                    counter++;
-                }
-            }
-            dateline = arr[counter + 1];
-            LocalDate d1 = LocalDate.parse(dateline);
-            Task task = new Deadline(description, d1);
+            Task task = parseDeadline(arr);
             tasklist.addTask(task);
             int total = tasklist.size();
             stringReturned = bot.addTask2(total,task);
         } else if (arr[0].equals("todo")) {
-            String todoDes = "";
-            for(int i = 1; i<arr.length; i++){
-                todoDes = todoDes + arr[i] + " ";
-            }
+            String todoDes = parseTodo(arr);
             if (todoDes.equals("")) {
                 bot.displayError();
             } else {
@@ -81,20 +62,7 @@ public class Parser {
                 stringReturned = bot.addTask2(total,task);
             }
         } else if (arr[0].equals("event")) {
-            String description = "";
-            String time = "";
-            int counter = 1;
-            for(int i = 1; i < arr.length; i++){
-                if(arr[i].equals("/at")){
-                    break;
-                } else {
-                    description = description + arr[i]+ " ";
-                    counter++;
-                }
-            }
-            time = arr[counter + 1];
-            LocalDate d1 = LocalDate.parse(time);
-            Task task = new Event(description, d1);
+            Task task = parseEvent(arr);
             tasklist.addTask(task);
             int total = tasklist.size();
             stringReturned = bot.addTask2(total,task);
@@ -103,31 +71,114 @@ public class Parser {
         } else if (arr[0].equals("unmark")) {
             String strnum = arr[1];
             int num = Integer.valueOf(strnum);
-            Task task;
-                task = tasklist.getOldTask(num-1);
-                task.markUndone();;
-                tasklist.setOldTasks(num-1,task);
-                stringReturned = bot.markTask2(false);
-                stringReturned += task.toString();
-            } else if (arr[0].equals("mark")) {
-                String strnum = arr[1];
-                int num = Integer.valueOf(strnum);
-                Task task;
-                task = tasklist.getOldTask(num-1);
-                task.markDone();
-                tasklist.setOldTasks(num-1, task);
-                stringReturned = bot.markTask2(true);
-                stringReturned += task;
-            } else if (str.equals("bye")) {
-                stringReturned = bot.goodBye2();
-                Platform.exit();
-            } else{
-                bot.displayError();
-            }
+            stringReturned = unmarkTask(num);
+        } else if (arr[0].equals("mark")) {
+            String strnum = arr[1];
+            int num = Integer.valueOf(strnum);
+                stringReturned = markTask(num);
+        } else if (str.equals("bye")) {
+            stringReturned = bot.goodBye2();
+            Platform.exit();
+        } else{
+            bot.displayError();
+        }
         storage.replaceTasks(pathName, tasklist.getOldTasks()); //make sure to replace the task after every action
         return stringReturned;
    }
 
+    /**
+     * Unmarks a task in the tasklist.
+     *
+     * @param num Index of task to unmark.
+     * @return String description of task unmarked.
+     */
+    public String unmarkTask(int num) {
+        String str;
+        Task task;
+        task = tasklist.getOldTask(num-1);
+        task.markUndone();
+        tasklist.setOldTasks(num-1,task);
+        str = bot.markTask2(false);
+        str += task.toString();
+        return str;
+    }
+    /**
+     * Marks a task in the tasklist.
+     *
+     * @param num Index of task to mark.
+     * @return String description of task unmarked.
+     */
+    public String markTask(int num) {
+        String str;
+        Task task;
+        task = tasklist.getOldTask(num-1);
+        task.markDone();
+        tasklist.setOldTasks(num-1, task);
+        str = bot.markTask2(true);
+        str += task;
+        return str;
+    }
+
+    /**
+     * Parses a to do task.
+     *
+     * @param arr User input.
+     * @return String representation of to do task being added.
+     */
+    public String parseTodo(String[] arr) {
+        String todoDes = "";
+        for(int i = 1; i<arr.length; i++){
+            todoDes = todoDes + arr[i] + " ";
+        }
+        return todoDes;
+    }
+
+    /**
+     * Parses a deadline task.
+     *
+     * @param arr User input.
+     * @return Deadline object based on user input.
+     */
+    public Task parseDeadline(String[] arr) {
+        String description = "";
+        String dateline="";
+        int counter = 1;
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i].equals("/by")){
+                break;
+            } else {
+                description = description + arr[i]+ " ";
+                counter++;
+            }
+        }
+        dateline = arr[counter + 1];
+        LocalDate d1 = LocalDate.parse(dateline);
+        Task task = new Deadline(description, d1);
+        return task;
+    }
+
+    /**
+     * Parses a event task.
+     * @param arr User input.
+     * @return Event object based on user input.
+     */
+    public Task parseEvent(String[] arr) {
+        String description = "";
+        String time = "";
+        int counter = 1;
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i].equals("/at")){
+                break;
+            } else {
+                description = description + arr[i]+ " ";
+                counter++;
+            }
+        }
+        time = arr[counter + 1];
+        LocalDate d1 = LocalDate.parse(time);
+        Task task = new Event(description, d1);
+        return task;
+    }
 
 
 }

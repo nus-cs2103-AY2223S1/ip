@@ -22,7 +22,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: "+ at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E]" + super.toString() + "(at: "+ at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
     //super.toString() will return [] description
 }
