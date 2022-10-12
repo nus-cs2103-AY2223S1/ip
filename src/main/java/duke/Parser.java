@@ -48,85 +48,112 @@ public class Parser {
      * @return true if the command is by, else returns false
      */
     public String parse(String[] command) {
-        String result = "";
         try {
             Command cmd = Command.valueOf(command[0]);
-            int index;
             switch (cmd) {
             case bye:
-                result = "Bye! Shutting Down...";
-                storage.write(tasks);
-                CompletableFuture.runAsync(() -> {
-                    try {
-                        Thread.sleep(1500);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Platform.exit();
-                });
-                return result;
+                return parseBye();
             case list:
-                result = tasks.list();
-                break;
+                return parseList();
             case mark:
-                index = Integer.parseInt(command[1]) - 1;
-                result = tasks.mark(index);
-                break;
+                return parseMark(command);
             case event:
-                try {
-                    String[] desc = command[1].split("/at ", 2);
-                    assert desc[1] != null;
-                    Event e = new Event(desc[0], desc[1]);
-                    result = tasks.add(e);
-                } catch (ArrayIndexOutOfBoundsException aie) {
-                    result = "Invalid time specified. You can specify a time with /at";
-                }
-                break;
-
+                return parseEvent(command);
             case todo:
-                try {
-                    Todo t = new Todo(command[1]);
-                    result += tasks.add(t);
-                } catch (ArrayIndexOutOfBoundsException err) {
-                    result = "oops the description of a todo cannot be empty!";
-                }
-                break;
+                return parseTodo(command);
             case delete:
-                if (command.length < 2) {
-                    throw new DukeException("please specify which item to delete");
-                }
-                index = Integer.parseInt(command[1]) - 1;
-                result = tasks.delete(index);
-                break;
+                return parseDelete(command);
             case unmark:
-                index = Integer.parseInt(command[1]) - 1;
-                result = tasks.unMark(index);
-                break;
+                return parseUnmark(command);
             case deadline:
-                try {
-                    String[] dl = command[1].split("/by ", 2);
-                    Deadline d = new Deadline(dl[0], LocalDate.parse(dl[1]));
-                    result = tasks.add(d);
-                } catch (ArrayIndexOutOfBoundsException arrException) {
-                    return "Invalid Format for deadline";
-                } catch (DateTimeParseException dte) {
-                    return "Invalid Date Entered";
-                }
-                break;
+                return parseDeadline(command);
             case find:
-                String item = command[1];
-                result = tasks.find(item);
-                break;
+                return parseFind(command);
             case remind:
-                result = tasks.dueSoon();
-                break;
+                return parseRemind();
             default:
-                result = "Invalid Command";
+                return "Invalid Command";
             }
-
         } catch (IllegalArgumentException e) {
             return "Invalid Command";
         }
+    }
+
+    private String parseList() {
+        return tasks.list();
+    }
+
+    private String parseBye() {
+        String result = "Bye! Shutting Down...";
+        storage.write(tasks);
+        CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(1500);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Platform.exit();
+        });
         return result;
+    }
+
+    private String parseMark(String[] command) {
+        int index = Integer.parseInt(command[1]) - 1;
+        return tasks.mark(index);
+    }
+
+    private String parseUnmark(String[] command) {
+        int index = Integer.parseInt(command[1]) - 1;
+        return tasks.unMark(index);
+    }
+
+    private String parseDelete(String[] command) {
+        if (command.length < 2) {
+            throw new DukeException("please specify which item to delete");
+        }
+        int index = Integer.parseInt(command[1]) - 1;
+        return tasks.delete(index);
+    }
+
+    private String parseDeadline(String[] command) {
+        try {
+            String[] dl = command[1].split("/by ", 2);
+            Deadline d = new Deadline(dl[0], LocalDate.parse(dl[1]));
+            return tasks.add(d);
+        } catch (ArrayIndexOutOfBoundsException arrException) {
+            return "Invalid Format for deadline";
+        } catch (DateTimeParseException dte) {
+            return "Invalid Date Entered";
+        }
+    }
+
+    private String parseTodo(String[] command) {
+        try {
+            Todo t = new Todo(command[1]);
+            return tasks.add(t);
+        } catch (ArrayIndexOutOfBoundsException err) {
+            return "oops the description of a todo cannot be empty!";
+        }
+    }
+
+    private String parseEvent(String[] command) {
+        try {
+            String[] desc = command[1].split("/at ", 2);
+            assert desc[1] != null;
+            String[] dl = command[1].split("/by ", 2);
+            Event e = new Event(dl[0], LocalDate.parse(dl[1]));
+            return tasks.add(e);
+        } catch (ArrayIndexOutOfBoundsException aie) {
+            return "Invalid time specified. You can specify a time with /at";
+        }
+    }
+
+    private String parseFind(String[] command) {
+        String item = command[1];
+        return tasks.find(item);
+    }
+
+    private String parseRemind() {
+        return tasks.dueSoon();
     }
 }

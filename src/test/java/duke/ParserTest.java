@@ -8,13 +8,19 @@ public class ParserTest {
     @Test
     public void testBye() {
         Duke duke = new Duke();
-        assertEquals(duke.getResponse("bye"), "Bye! Don't Come back!");
+        assertEquals("Bye! Shutting Down...", duke.getResponse("bye"));
     }
 
     @Test
     public void testDeadline() {
         Duke duke = new Duke();
-        assertEquals(duke.getResponse("deadline test /by 134123"), "Invalid Date Entered");
+        assertEquals("Invalid Date Entered", duke.getResponse("deadline test /by 134123"));
+    }
+
+    @Test
+    public void testEvent() {
+        Duke duke = new Duke();
+        assertEquals(duke.getResponse("Event test /at abcd"), "Invalid Command");
     }
 
 

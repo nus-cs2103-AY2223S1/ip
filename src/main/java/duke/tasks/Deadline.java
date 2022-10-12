@@ -41,6 +41,10 @@ public class Deadline extends Task {
         return "[D]" + s + " \n   (by: " + time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
+    /**
+     * Converts the Deadline object to a shorter version of string to be stored
+     * @return shortened string form of deadline object
+     */
     public String toShortString() {
         String s = super.toString();
         return "[D]" + s;
@@ -56,7 +60,12 @@ public class Deadline extends Task {
         return "D," + s + "," + time;
     }
 
+    /**
+     * returns the current time of deadline
+     */
     public LocalDate getDeadline() {
         return this.time;
     }
+
+
 }

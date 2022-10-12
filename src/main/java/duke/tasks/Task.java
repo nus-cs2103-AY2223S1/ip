@@ -68,6 +68,17 @@ public abstract class Task {
         return String.format(s, getStatusIcon(), description);
     }
 
+    /**
+     * Checks the status of current task
+     * @return true if task is done and false if is not
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
+     * @return true if description contains s false otherwise
+     */
     public boolean contains(String s) {
         return description.contains(s);
     }

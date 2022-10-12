@@ -64,7 +64,7 @@ now you have xxx tasks in the list
 
 Example of usage: 
 
-`event (item) /at (time)`
+`event (item) /at (YYYY-MM-DD)`
 
 Expected outcome:
 
@@ -110,7 +110,7 @@ I have marked this task as not done:
 
 Example of usage: 
 
-`deadline`
+`remind`
 
 Expected outcome:
 

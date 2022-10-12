@@ -38,7 +38,7 @@ public class TaskList {
                         tasks.add(new Todo(task[1].equals("X"), task[2]));
                     }
                     if (task[0].equals("E")) {
-                        tasks.add(new Event(task[1].equals("X"), task[2], task[3]));
+                        tasks.add(new Event(task[1].equals("X"), task[2], LocalDate.parse(task[3])));
                     }
                     if (task[0].equals("D")) {
                         tasks.add(new Deadline(task[1].equals("X"), task[2], LocalDate.parse(task[3])));
@@ -204,7 +204,10 @@ public class TaskList {
                 LocalDate soon = LocalDate.now().plusWeeks(1);
                 LocalDate dueDate = deadline.getDeadline();
                 if (dueDate.isBefore(soon)) {
-                    result += deadline + "\n";
+                    if (!deadline.isDone()) {
+                        result += deadline + "\n";
+                    }
+
                 }
             }
         }

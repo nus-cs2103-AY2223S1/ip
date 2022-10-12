@@ -8,6 +8,7 @@ public class TasksTest {
     @Test
     public void testDelete() {
         Duke duke = new Duke();
+        duke.getResponse("todo read book");
         assertEquals(duke.getResponse("delete 1"),
                 "Noted. I have removed this task: \n" + "[T][ ] read book");
     }
