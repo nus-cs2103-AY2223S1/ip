@@ -24,7 +24,8 @@ public class Parser {
     private static final String DEADLINE_FORMAT = "deadline <description> /by <dd/mm/YYYY HHmm>";
     private static final String EVENT_FORMAT = "event <description> /at <dd/mm/YYYY HHmm>";
     private static final String TODO_FORMAT = "todo <description>";
-    private static final String FIND_ERROR = "Missing ";
+    private static final String FIND_ERROR = "Invalid format! Missing keyword!\n" +
+            "Please use the following format:\nfind <keyword>";
 
     /**
      * Parses the user input into various commands
@@ -114,12 +115,26 @@ public class Parser {
     }
 
     private static Command parseToDo(String[] input) {
-        String description = input[1];
-        return new AddCommand(new ToDo(description));
+        try {
+            String description = input[1].trim();
+            if (description.equals("")) {
+                throw new DukeException(MISSING_DESCRIPTION + TODO_FORMAT);
+            }
+            return new AddCommand(new ToDo(description));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(MISSING_DESCRIPTION + TODO_FORMAT);
+        }
     }
 
     private static Command parseFind(String[] input) {
-        String search = input[1];
-        return new FindCommand(search);
+        try {
+            String search = input[1].trim();
+            if (search.equals("")) {
+                throw new DukeException(FIND_ERROR);
+            }
+            return new FindCommand(search);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(FIND_ERROR);
+        }
     }
 }
