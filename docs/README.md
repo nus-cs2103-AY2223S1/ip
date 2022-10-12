@@ -87,10 +87,7 @@ Marks the task at a given index as done
 
 Example of usage: 
 
-```
-todo homework
-mark 1
-```
+`mark 1`
 
 Expected outcome:
 
@@ -106,15 +103,11 @@ Unmarks the task at a given index as not done
 
 Example of usage: 
 
-```
-todo task
-mark 1
-unmark 1
-```
+`unmark 1`
 
 Expected outcome:
 
-The previously marked task will be marked as undone and the following output will be displayed:
+The second task will be marked as undone and the following output will be displayed:
 
 ```
 OK, I've marked this task as not done yet:
@@ -127,11 +120,7 @@ Displays all the tasks in ur tasklist
 
 Example of usage: 
 
-```
-todo laundry
-deadline homework /by 2022-09-22
-event birthday party /at 2022-09-25
-```
+`list`
 
 Expected outcome:
 
@@ -150,12 +139,7 @@ Displays all the tasks matching a keyword
 
 Example of usage: 
 
-```
-todo laundry
-deadline homework /by 2022-09-22
-event birthday party /at 2022-09-25
-find laundry
-```
+`find laundry`
 
 Expected outcome:
 
@@ -172,14 +156,7 @@ Sorts all the tasks based on the date provided.
 
 Example of usage: 
 
-```
-todo laundry
-deadline homework /by 2022-09-22
-event birthday party /at 2022-09-25
-deadline coding assignment /by 2022-08-22
-sort
-list
-```
+`sort`
 
 Expected outcome:
 
