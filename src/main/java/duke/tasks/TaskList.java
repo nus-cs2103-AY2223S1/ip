@@ -48,7 +48,10 @@ public class TaskList {
             for (int i = 0; i < this.taskList.size(); i++) {
 
                 text +=  (i + 1) + ". " +
-                        this.taskList.get(i).toString() + "\n";
+                        this.taskList.get(i).toString();
+                if (i != this.taskList.size() - 1) {
+                    text += "\n";
+                }
             }
         }
         return text;
