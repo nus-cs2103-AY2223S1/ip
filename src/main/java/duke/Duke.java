@@ -58,7 +58,7 @@ public class Duke {
     }
 
     /**
-     * Main method where the application is launched.
+     * Initiates application launch.
      *
      * @param args Unused parameter
      */

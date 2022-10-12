@@ -65,7 +65,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Add a text bubble design for user text.
+     * Adds a text bubble design for user text.
      */
     public void addUserTextDesign() {
         this.dialog.setStyle("-fx-background-color: #0096FF;"
@@ -80,7 +80,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Add a text bubble design for bot text.
+     * Adds a text bubble design for bot text.
      */
     public void addBotTextDesign() {
         this.dialog.setStyle("-fx-background-color: #DCDCDC;"
