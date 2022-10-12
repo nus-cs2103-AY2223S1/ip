@@ -1,3 +1,0 @@
-T | 0 | watch formula 1
-E | 0 | presentation | 29/09/2022 1800
-D | 0 | assignment | 01/10/2022 2359
