@@ -25,33 +25,17 @@ public class Storage {
         if(f.length() == 0) {
             return lst;
         }
-        while (filescanner.hasNextLine()) {
+        while (filescanner.hasNextLine() ) {
             String task = filescanner.nextLine();
-            if(task.charAt(1) == 'D') {
-                int startIndex = task.indexOf('(');
-                String description = task.substring(7,startIndex);
-                int endIndex = task.indexOf(')');
-                String str = task.substring(startIndex+5,endIndex);
-                int month = convertToInt(str.substring(0,3));
-                int day = Integer.parseInt(str.substring(4,6));
-                int year = Integer.parseInt(str.substring(7));
-                LocalDate d1 = LocalDate.of(year,month,day);
-                Task task1 = new Deadline(description,d1);
+            if (task.charAt(1) == 'D') {
+                Task task1 = deadlineTask(task);
                 char c = task.charAt(4);
                 if(c == 'X'){
                     task1.markDone();
                 }
                 lst.add(task1);
-            } else if(task.charAt(1)=='E') {
-                int startIndex = task.indexOf('(');
-                String description = task.substring(7,startIndex);
-                int endIndex = task.indexOf(')');
-                String str = task.substring(startIndex+5,endIndex);
-                int month = convertToInt(str.substring(0,3));
-                int day = Integer.parseInt(str.substring(4,6));
-                int year = Integer.parseInt(str.substring(7));
-                LocalDate d1 = LocalDate.of(year,month,day);
-                Task task1 = new Event(description,d1);
+            } else if (task.charAt(1)=='E') {
+                Task task1 = eventTask(task);
                 char c = task.charAt(4);
                 if(c == 'X'){
                     task1.markDone();
@@ -67,6 +51,32 @@ public class Storage {
             }
         }
         return lst;
+    }
+
+    public Task deadlineTask(String task) {
+        int startIndex = task.indexOf('(');
+        String description = task.substring(7,startIndex);
+        int endIndex = task.indexOf(')');
+        String str = task.substring(startIndex+5,endIndex);
+        int month = convertToInt(str.substring(0,3));
+        int day = Integer.parseInt(str.substring(4,6));
+        int year = Integer.parseInt(str.substring(7));
+        LocalDate d1 = LocalDate.of(year,month,day);
+        Task task1 = new Deadline(description,d1);
+        return task1;
+    }
+
+    public Task eventTask(String task) {
+        int startIndex = task.indexOf('(');
+        String description = task.substring(7,startIndex);
+        int endIndex = task.indexOf(')');
+        String str = task.substring(startIndex+5,endIndex);
+        int month = convertToInt(str.substring(0,3));
+        int day = Integer.parseInt(str.substring(4,6));
+        int year = Integer.parseInt(str.substring(7));
+        LocalDate d1 = LocalDate.of(year,month,day);
+        Task task1 = new Event(description,d1);
+        return task1;
     }
 
     /**
