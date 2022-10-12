@@ -19,7 +19,6 @@ public class Deadline extends Task {
         super(description);
         this.by = LocalDateTime.parse(by); //Obtains an instance of LocalDateTime from a text string such as 2007-12-03T10:15:30.
     }
-
     
     @Override
     public String saveString() {
