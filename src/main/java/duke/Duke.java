@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Duke {
     private TaskList tasks;
     private ArrayList<String> arrayList = new ArrayList<>();
+    private Storage storage;
     private int num = 1;
 
     public String hello = "Hello from\n" + " ____        _        \n"
@@ -21,27 +22,28 @@ public class Duke {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    String getResponse(String command, Duke duke, Storage storage) {
+    String getResponse(String command) {
         try {
             if (command.equals("bye")) {
                 return "Bye. Hope to see you again soon!";
             }
             if (command.equals("list")) {
-                return duke.getList();
+                return getList();
             } else {
-                storage.push(duke.getList());
-                duke.tasks.set(storage.load());
-                return duke.printCommand(command);
+                storage.push(tasks.get());
+                //tasks.set(storage.load());
+                return printCommand(command);
             }
         } catch (DukeException | IOException e) {
             return e.toString();
         }
     }
 
-    public Duke() {
+    public Duke(Storage storage) {
         Ui ui = new Ui();
+        this.storage = storage;
         try {
-            tasks = new TaskList();
+            tasks = new TaskList(arrayList);
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
