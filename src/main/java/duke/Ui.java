@@ -6,9 +6,8 @@ public class Ui {
     /**
      * Prints welcome message.
      */
-    public void welcome() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+    public static String welcome() {
+        return "Hello! I'm Duke\n What can I do for you?" ;
     }
 
     /**
