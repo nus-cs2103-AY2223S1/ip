@@ -36,7 +36,7 @@ Examples:
 ### `deadline` - Add a 'Deadline' task
 
 Adds a task to task list that needs to be completed within a certain date.
-Dates follow a YYYY-MM-DD format.
+Dates follow a YYYY-MM-DD format. Other formats of dates and time will not be properly formatted.
 
 Format: `deadline [TASK_NAME] /by [END_DATE]`
 
@@ -44,7 +44,7 @@ Examples:
 - `deadline SUbmit Assignment 1 /by 2022-10-11`
 
 ### `event` - Add a 'Event' task
-Add a task to task list with a start date/time and an end date/time
+Add a task to task list with a start date/time and an end date/time. Date and time formatting not supported yet. 
 
 Format: `event [TASK_NAME] /at [START_DATE] [START_TIME] to [END_DATE] [END_TIME]`
 

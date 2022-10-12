@@ -69,7 +69,7 @@ public class TaskList {
     public String list() {
         printStatement = "Here are the tasks in your list:\n";
         for (int i = 0; i < storeTasks.size(); i++) {
-            printStatement += i + 1 + ". " + storeTasks.get(i).toString() + "\n";
+            printStatement += i + 1 + ". " + storeTasks.get(i) + "\n";
         }
         return printStatement;
     }
