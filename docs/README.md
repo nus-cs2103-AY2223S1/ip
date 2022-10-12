@@ -28,7 +28,7 @@ Update tasks previously stored in Duke
 
 Example of usage:
 
-list
+`list`
 
 Expected outcome:
 
@@ -40,9 +40,9 @@ Duke will display a list of tasks previously created
 
 Example of usage:
 
-find <task name>
-find <task index>
-find <task type>
+`find <task name>`
+`find <task index>`
+`find <task type>`
 
 Expected outcome:
 Duke will display a list of tasks matching the query (case-sensitive)
@@ -53,7 +53,7 @@ Duke will display a list of tasks matching the query (case-sensitive)
 
 Example of usage:
 
-mark <index>
+`mark <index>`
 
 Expected outcome:
 
@@ -65,7 +65,7 @@ Mark a task as completed
 
 Example of usage:
 
-mark <index>
+`unmark <index>`
 
 Expected outcome:
 
@@ -76,7 +76,7 @@ Unmark a completed task
 ### `delete` - Delete a task from Duke
 
 Example of usage:
-delete <index>
+`delete <index>`
 
 Expected outcome:
 
@@ -89,7 +89,7 @@ Delete a task from Duke
 
 Example of usage:
 
-todo <description>
+`todo <description>`
 
 Expected outcome:
 
@@ -101,7 +101,7 @@ Creates a new todo
 
 Example of usage:
 
-deadline <description> /by <date>
+`deadline <description> /by <date>`
 
 Expected outcome:
 
@@ -113,7 +113,7 @@ Creates a new deadline
 
 Example of usage:
 
-event <description> /at <place>
+`event <description> /at <place>`
 
 Expected outcome:
 
@@ -126,7 +126,7 @@ Creates a new event
 
 Example of usage:
 
-bye
+`bye`
 
 Expected outcome:
 
