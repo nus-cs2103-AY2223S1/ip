@@ -16,7 +16,8 @@ Currently, **Henry** supports the following commands:
 - **Unmark:** marks a task as incomplete
 - **Delete:** deletes a task from the task list
 - **Find:** finds any matching tasks given a key word
-- **Interact:** rudimentary interaction feature that supports learning and memory
+- **Tentative:** adds a tentative date to any event task 
+- **Teach:** interaction feature that supports learning and memory
 
 **Henry** is able to store a task list to the user's desktop. When **Henry** starts up, the following occurs:
 
