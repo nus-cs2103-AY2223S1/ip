@@ -28,7 +28,7 @@ public class Storage {
 
     /**
      * Checks if the save file exists.
-     * @throws IOException
+     * @throws IOException if the file does not exist.
      */
     public void checkFileExists() throws IOException {
         //Create save file
@@ -49,7 +49,7 @@ public class Storage {
 
     /**
      * Saves the current task list into the save file.
-     * @throws IOException
+     * @param taskList Task list to be saved.
      */
     public void save(ArrayList taskList) {
         this.taskList = taskList;
@@ -70,8 +70,8 @@ public class Storage {
 
     /**
      * Loads task list from the save file.
+     * @param txt File to be loaded
      * @return ArrayList of tasks
-     * @throws IOException
      */
     public ArrayList<Task> parseSaveFile(File txt) {
         try {
@@ -81,7 +81,7 @@ public class Storage {
             e.printStackTrace();
         }
 
-        Scanner sc = null;
+        Scanner sc;
         try {
             sc = new Scanner(txt);
             while (sc.hasNextLine()) {
@@ -94,58 +94,81 @@ public class Storage {
 
                 switch (firstChar) {
                 case "T":
-                    String taskName = split[2];
-
-                    Task todo = new ToDo(taskName);
-                    taskList.add(todo);
-
-                    boolean isDone = Boolean.parseBoolean(split[1]);
-                    if (isDone) {
-                        todo.markAsDone();
-                    }
+                    addTodo(split);
                     break;
 
                 case "D":
-                    taskName = split[2];
-
-                    LocalDateTime date = LocalDateTime.parse(split[3]);
-
-                    Task deadline = new Deadline(taskName, date);
-                    taskList.add(deadline);
-
-                    isDone = Boolean.parseBoolean(split[1]);
-                    if (isDone) {
-                        deadline.markAsDone();
-                    }
+                    addDeadline(split);
                     break;
 
                 case "E":
-                    taskName = split[2];
-
-                    String time = split[3];
-
-                    Task event = new Event(taskName, time);
-                    taskList.add(event);
-
-                    isDone = Boolean.parseBoolean(split[1]);
-                    if (isDone) {
-                        event.markAsDone();
-                    }
+                    addEvent(split);
                     break;
                 default:
                     break;
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return taskList;
     }
 
     /**
+     * Adds a todo task to the task list.
+     * @param split String array of todo task
+     */
+    public void addTodo(String[] split) {
+        String taskName = split[2];
+
+        Task todo = new ToDo(taskName);
+        taskList.add(todo);
+
+        boolean isDone = Boolean.parseBoolean(split[1]);
+        if (isDone) {
+            todo.markAsDone();
+        }
+    }
+
+    /**
+     * Adds a deadline task to the task list.
+     * @param split String array of deadline task
+     */
+    public void addDeadline(String[] split) {
+        String taskName = split[2];
+
+        LocalDateTime date = LocalDateTime.parse(split[3]);
+
+        Task deadline = new Deadline(taskName, date);
+        taskList.add(deadline);
+
+        boolean isDone = Boolean.parseBoolean(split[1]);
+        if (isDone) {
+            deadline.markAsDone();
+        }
+    }
+
+    /**
+     * Adds an event task to the task list.
+     * @param split String array of event task
+     */
+    public void addEvent(String[] split) {
+        String taskName = split[2];
+
+        String time = split[3];
+
+        Task event = new Event(taskName, time);
+        taskList.add(event);
+
+        boolean isDone = Boolean.parseBoolean(split[1]);
+        if (isDone) {
+            event.markAsDone();
+        }
+    }
+
+    /**
      * Checks if the save file exists and loads the task list from the save file if it exists.
      * @return ArrayList of tasks
-     * @throws IOException
      */
     public ArrayList<Task> load() {
         try {

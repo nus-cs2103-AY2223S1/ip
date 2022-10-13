@@ -16,6 +16,8 @@ public abstract class Command {
      * @param tasks the task list to be operated on by the command.
      * @param ui the user interface to be used by the command.
      * @param storage the storage to be used by the command.
+     *
+     * @return String result of the command.
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 

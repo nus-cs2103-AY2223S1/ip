@@ -13,7 +13,7 @@ public class Ui {
      */
     public String showWelcome() {
         //Chatbot intro segment
-        String name = "MeowMeow (=^ↀWↀ^=)";
+        String name = "MeowMeow (=^0W0^=)";
 
         String intro = "Hewwo! I'm" + name + "\nWhat do you need meow to do for you today?";
         return intro;

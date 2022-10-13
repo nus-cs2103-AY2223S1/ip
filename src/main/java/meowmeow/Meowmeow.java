@@ -25,6 +25,7 @@ public class Meowmeow {
      * Returns the program's response to the user's input.
      *
      * @param input the user input.
+     * @return String the program's response.
      */
     public String getResponse(String input) {
         assert input != "" : "Input cannot be empty";

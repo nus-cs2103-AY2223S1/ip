@@ -44,7 +44,7 @@ public class MainWindow extends AnchorPane {
      *          The main application is used to access the task list and the user interface.
      */
     public void setMeowmeow(Meowmeow m) {
-        dialogContainer.getChildren().add(DialogBox.getMeowmeowDialog("Hewwo! I'm MeowMeow (=^ↀWↀ^=)"
+        dialogContainer.getChildren().add(DialogBox.getMeowmeowDialog("Hewwo! I'm MeowMeow (=^0W0^=)"
                 + "\nWhat do you need meow to do for you today?", dukeImage));
         meowmeow = m;
     }

@@ -51,65 +51,136 @@ public class Parser {
 
         switch (cmdWord) {
         case "mark":
-            try {
-                int taskNum = Integer.parseInt(splitUserInput[1]);
-                return new MarkCommand(true, taskNum);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to mark!");
-            }
+            return parseMark(splitUserInput[1]);
 
         case "unmark":
-            try {
-                int taskNum = Integer.parseInt(splitUserInput[1]);
-                return new MarkCommand(false, taskNum);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to unmark!");
-            }
+            return parseUnmark(splitUserInput[1]);
 
         case "todo":
-            try {
-                String taskName = splitUserInput[1];
-                return new AddCommand('T', taskName);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= Meowmeow needs a name for the todo you want to add!");
-            }
+            return parseToDo(splitUserInput[1]);
 
         case "deadline":
-            try {
-                String nameAndLocalDateTime = splitUserInput[1];
-                return new AddCommand('D', nameAndLocalDateTime);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= To add a deadline type it in in this format: "
-                        + "deadline (name) /by (YYYY-MM-DDTHH:MM:SS)");
-            }
+            return parseDeadline(splitUserInput[1]);
 
         case "event":
-            try {
-                String nameAndTime = splitUserInput[1];
-                return new AddCommand('E', nameAndTime);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= To add an event type it in in this format: event (name) /at (time)");
-            }
+            return parseEvent(splitUserInput[1]);
 
         case "delete":
-            try {
-                int taskToDelete = Integer.parseInt(splitUserInput[1]);
-                return new DeleteCommand(taskToDelete);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to delete!");
-            }
+            return parseDelete(splitUserInput[1]);
 
         case "find":
-            try {
-                String taskToFind = splitUserInput[1];
-                return new FindCommand(taskToFind);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DefaultCommand("=0w0= Meowmeow needs a name for the task you want to find!");
-            }
+            return parseFind(splitUserInput[1]);
 
         default:
             return new DefaultCommand("Sowwie meowmeow doesn't understand what you said uwu ♥ \n"
                     + "Try typing something else! owo");
         }
     }
+
+    /**
+     * Parses the user's input for the mark command.
+     *
+     * @param userInput the user's input.
+     * @return a MarkCommand that corresponds to the user's input.
+     */
+    public static Command parseMark(String userInput) {
+        try {
+            int taskNum = Integer.parseInt(userInput);
+            return new MarkCommand(true, taskNum);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to mark!");
+        }
+    }
+
+    /**
+     * Parses the user's input for the unmark command.
+     *
+     * @param userInput the user's input.
+     * @return a MarkCommand that corresponds to the user's input.
+     */
+    public static Command parseUnmark(String userInput) {
+        try {
+            int taskNum = Integer.parseInt(userInput);
+            return new MarkCommand(false, taskNum);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to unmark!");
+        }
+    }
+
+    /**
+     * Parses the user's input for the todo command.
+     *
+     * @param userInput the user's input.
+     * @return an AddCommand that corresponds to the user's input.
+     */
+    public static Command parseToDo(String userInput) {
+        try {
+            String taskName = userInput;
+            return new AddCommand('T', taskName);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= Meowmeow needs a name for the todo you want to add!");
+        }
+    }
+
+    /**
+     * Parses the user's input for the deadline command.
+     *
+     * @param userInput the user's input.
+     * @return an AddCommand that corresponds to the user's input.
+     */
+    public static Command parseDeadline(String userInput) {
+        try {
+            String nameAndLocalDateTime = userInput;
+            return new AddCommand('D', nameAndLocalDateTime);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= To add a deadline type it in in this format: "
+                    + "deadline (name) /by (YYYY-MM-DDTHH:MM:SS)");
+        }
+    }
+
+    /**
+     * Parses the user's input for the event command.
+     *
+     * @param userInput the user's input.
+     * @return an AddCommand that corresponds to the user's input.
+     */
+    public static Command parseEvent(String userInput) {
+        try {
+            String nameAndTime = userInput;
+            return new AddCommand('E', nameAndTime);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= To add an event type it in in this format: event (name) /at (time)");
+        }
+    }
+
+    /**
+     * Parses the user's input for the delete command.
+     *
+     * @param userInput the user's input.
+     * @return a DeleteCommand that corresponds to the user's input.
+     */
+    public static Command parseDelete(String userInput) {
+        try {
+            int taskToDelete = Integer.parseInt(userInput);
+            return new DeleteCommand(taskToDelete);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= Meowmeow needs a number for the task you want to delete!");
+        }
+    }
+
+    /**
+     * Parses the user's input for the find command.
+     *
+     * @param userInput the user's input.
+     * @return a FindCommand that corresponds to the user's input.
+     */
+    public static Command parseFind(String userInput) {
+        try {
+            String taskToFind = userInput;
+            return new FindCommand(taskToFind);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DefaultCommand("=0w0= Meowmeow needs a name for the task you want to find!");
+        }
+    }
+
 }
