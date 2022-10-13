@@ -1,0 +1,10 @@
+todo Buy Grapes
+deadline Submit Homework by tonight
+event Go for lecture at 9am tomorrow
+list
+mark 1
+mark 3
+unmark 1
+delete 2
+list
+bye
