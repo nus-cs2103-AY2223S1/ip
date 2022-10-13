@@ -20,7 +20,7 @@ import javafx.application.Platform;
 public class MainWindow extends AnchorPane {
 
     private final String WELCOME = "Hello I'm Duke" + "!!\n" +
-            "What do you wanna chat about today?";
+            "What can I do for you?";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -45,9 +45,6 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(Duke d) {
         duke = d;
-        dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(duke.getTaskList(), dukeImage)
-        );
     }
 
 
