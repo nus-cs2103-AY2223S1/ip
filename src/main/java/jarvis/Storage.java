@@ -56,7 +56,6 @@ public class Storage {
         assert this.dataFile.exists() : "Data file should exist before writing";
         TaskList taskList = new TaskList(this);
         try {
-            //checkFileExists();
 
             Scanner taskScanner = new Scanner(dataFile);
             while (taskScanner.hasNextLine()) {
