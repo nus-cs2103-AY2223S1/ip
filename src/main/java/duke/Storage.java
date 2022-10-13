@@ -69,7 +69,7 @@ class Storage {
                         Task task = Event.fromFileDescription(temp);
                         list.add(task);
                     } else if (type.equals("D")) {
-                        Task task = Event.fromFileDescription(temp);
+                        Task task = Deadline.fromFileDescription(temp);
                         list.add(task);
                     } else {
                         throw new WrongMessageException();
