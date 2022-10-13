@@ -1,5 +1,9 @@
 package sally.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import sally.command.AddDeadlineCommand;
 import sally.command.AddEventCommand;
 import sally.command.AddTodoCommand;
@@ -12,10 +16,6 @@ import sally.command.ListCommand;
 import sally.command.MarkCommand;
 import sally.command.UnmarkCommand;
 import sally.exception.SallyException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Parser class to parse inputs into commands.
@@ -35,119 +35,181 @@ public class Parser {
     public static Command parseCommand(String command) throws SallyException {
         assert !command.isEmpty();
 
-        // Bye
         if (command.equals("bye")) {
             return new ByeCommand();
-        }
-
-        // List
-        else if (command.startsWith("list")) {
+        } else if (command.startsWith("list")) {
             return new ListCommand();
-        }
-
-        // Delete
-        else if (command.startsWith("delete")) {
-            if (command.length() > 7 && command.substring(7).trim().chars().allMatch(Character::isDigit)) {
-                int taskNum = Integer.parseInt(command.substring(7).trim()) - 1;
-                checkDeleteValidity(taskNum);
-                return new DeleteCommand(taskNum);
-            } else {
-                throw new SallyException("Oops! I don't understand that, make sure to enter 'delete <index> :)");
-            }
-        }
-
-        // Unmark
-        else if (command.startsWith("unmark")) {
-            if (command.equals("unmark")) {
-                throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
-            }
-            String taskNumString = command.replace("unmark ", "");
-            if (taskNumString == "") {
-                throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
-            }
-            int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
-            assert taskNum >= 0;
-            checkUnmarkValidity(taskNum);
-            return new UnmarkCommand(taskNum);
-        }
-
-        // Mark
-        else if (command.startsWith("mark")) {
-            if (command.equals("mark")) {
-                throw new SallyException("Oops! Make sure to enter 'mark <index>'");
-            }
-            String taskNumString = command.replace("mark ", "");
-            if (taskNumString == "") {
-                throw new SallyException("Oops! Make sure to enter 'mark <index>'");
-            }
-            int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
-            checkMarkValidity(taskNum);
-            return new MarkCommand(taskNum);
-        }
-
-        // Find
-        else if (command.startsWith("find")) {
-            String keyword = command.replace("find ", "");
-            if (keyword.isEmpty()) {
-                throw new SallyException("Oops! I don't understand that, make sure to enter 'find <keyword> :)");
-            }
-            return new FindCommand(keyword);
-        }
-
-        // Help
-        else if (command.startsWith("help")) {
-            if (command.length() <= 4) {
-                return new HelpCommand();
-            }
-            String keyword = command.replace("help ", "");
-            return new HelpCommand(keyword);
-        }
-
-        // sally.task.Task Commands
-        else {
-            // ToDos
-            if (command.startsWith("todo")) {
-                String todo = command.replace("todo ", "");
-                checkTodoValidity(todo);
-                assert !todo.isEmpty();
-                return new AddTodoCommand(todo);
-            }
-
-            // Deadlines
-            else if (command.startsWith("deadline")) {
-                String description = command.substring(9, command.indexOf("/by") - 1);
-                String by = command.substring(command.indexOf("/by") + 4);
-                if (isDate(by)) {
-                    LocalDate byDate;
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
-                    try {
-                        byDate = LocalDate.parse(by, formatter);
-                    } catch (DateTimeParseException e) {
-                        throw new SallyException(e.getMessage());
-                    }
-                    assert isDate(by);
-                    return new AddDeadlineCommand(description, byDate);
-                } else {
-                    return new AddDeadlineCommand(description, by);
-                }
-            }
-
-            // Events
-            else if (command.startsWith("event")) {
-                String description, at;
-                if (command.length() <= 5) {
-                    throw new SallyException("Oops! I don't understand that, make sure to enter 'event <venue> :)");
-                } else if (command.contains("/at ")) {
-                    description = command.substring(6, command.indexOf("/at") - 1);
-                    at = command.substring(command.indexOf("/at") + 4);
-                    return new AddEventCommand(description, at);
-                } else {
-                    throw new SallyException("Oops! I don't understand that, make sure to enter 'event <venue> :)");
-                }
-            }
-
-            // Any other messages
+        } else if (command.startsWith("delete")) {
+            return parseDelete(command);
+        } else if (command.startsWith("unmark")) {
+            return parseUnmark(command);
+        } else if (command.startsWith("mark")) {
+            return parseMark(command);
+        } else if (command.startsWith("find")) {
+            return parseFind(command);
+        } else if (command.startsWith("help")) {
+            return parseHelp(command);
+        } else if (command.startsWith("todo")) {
+            return parseToDo(command);
+        } else if (command.startsWith("event")) {
+            return parseEvent(command);
+        } else if (command.startsWith("deadline")) {
+            return parseDeadline(command);
+        } else {
             throw new SallyException("Sorry, I am still learning and don't understand that :<");
+        }
+    }
+
+    /**
+     * Parses the given command and invokes DeleteCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return DeleteCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseDelete(String command) throws SallyException {
+        if (command.length() > 7 && command.substring(7).trim().chars().allMatch(Character::isDigit)) {
+            int taskNum = Integer.parseInt(command.substring(7).trim()) - 1;
+            checkDeleteValidity(taskNum);
+            return new DeleteCommand(taskNum);
+        } else {
+            throw new SallyException("Oops! I don't understand that, make sure to enter 'delete <index> :)");
+        }
+    }
+
+    /**
+     * Parses the given command and invokes UnmarkCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return UnmarkCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseUnmark(String command) throws SallyException {
+        if (command.equals("unmark")) {
+            throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
+        }
+        String taskNumString = command.replace("unmark ", "");
+        if (taskNumString.equals("")) {
+            throw new SallyException("Oops! Make sure to enter 'unmark <index>'");
+        }
+        int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
+        assert taskNum >= 0;
+        checkUnmarkValidity(taskNum);
+        return new UnmarkCommand(taskNum);
+    }
+
+    /**
+     * Parses the given command and invokes MarkCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return MarkCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseMark(String command) throws SallyException {
+        if (command.equals("mark")) {
+            throw new SallyException("Oops! Make sure to enter 'mark <index>'");
+        }
+        String taskNumString = command.replace("mark ", "");
+        if (taskNumString.equals("")) {
+            throw new SallyException("Oops! Make sure to enter 'mark <index>'");
+        }
+        int taskNum = Integer.parseInt(taskNumString) - 1; // -1 so that index is constant
+        checkMarkValidity(taskNum);
+        return new MarkCommand(taskNum);
+    }
+
+    /**
+     * Parses the given command and invokes FindCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return FindCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseFind(String command) throws SallyException {
+        String keyword = command.replace("find ", "");
+        if (keyword.isEmpty()) {
+            throw new SallyException("Oops! I don't understand that, make sure to enter 'find <keyword>' :)");
+        }
+        return new FindCommand(keyword);
+    }
+
+    /**
+     * Parses the given command and invokes HelpCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return HelpCommand
+     * @throws SallyException when invalid input is parsed in
+     */
+    public static Command parseHelp(String command) throws SallyException {
+        if (command.length() <= 4) {
+            return new HelpCommand();
+        }
+        String keyword = command.replace("help ", "");
+        return new HelpCommand(keyword);
+    }
+
+    /**
+     * Parses the given command and invokes AddTodoCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return AddTodoCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseToDo(String command) throws SallyException {
+        String todo = command.replace("todo ", "");
+        checkTodoValidity(todo);
+        assert !todo.isEmpty();
+        return new AddTodoCommand(todo);
+    }
+
+    /**
+     * Parses the given command and invokes AddEventCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return AddEventCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseEvent(String command) throws SallyException {
+        if (command.length() <= 5) {
+            throw new SallyException("Oops! "
+                    + "I don't understand that, make sure to enter 'event <description> /at <venue> :)");
+        } else if (command.contains("/at ")) {
+            String description = command.substring(6, command.indexOf("/at") - 1);
+            String at = command.substring(command.indexOf("/at") + 4);
+            return new AddEventCommand(description, at);
+        } else {
+            throw new SallyException("Oops! "
+                    + "I don't understand that, make sure to enter 'event <description> /at <venue>' :)");
+        }
+    }
+
+    /**
+     * Parses the given command and invokes AddDeadlineCommand when conditions are fulfilled.
+     *
+     * @param command input
+     * @return AddDeadlineCommand
+     * @throws SallyException when invalid or incomplete input is parsed in
+     */
+    public static Command parseDeadline(String command) throws SallyException {
+        String[] splitCommand = command.split(" ");
+        if (splitCommand.length < 3) {
+            throw new SallyException("Oops! I don't understand that, make sure to enter "
+                    + "'deadline <description> /by <d-MM-yyyy>' or 'deadline <description> /by <time>' :)");
+        }
+        String description = splitCommand[1];
+        String by = splitCommand[3];
+        if (isDate(by)) {
+            LocalDate byDate;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
+            try {
+                byDate = LocalDate.parse(by, formatter);
+            } catch (DateTimeParseException e) {
+                throw new SallyException(e.getMessage());
+            }
+            assert isDate(by);
+            return new AddDeadlineCommand(description, byDate);
+        } else {
+            return new AddDeadlineCommand(description, by);
         }
     }
 
@@ -194,7 +256,7 @@ public class Parser {
      * @throws SallyException when invalid input is encountered
      */
     public static void checkTodoValidity(String todo) throws SallyException {
-        if (todo.isEmpty()) {
+        if (todo.isEmpty() || todo.equals("todo")) {
             throw new SallyException("Oops! I don't understand that, make sure to enter 'todo <description> :)\"");
         }
     }

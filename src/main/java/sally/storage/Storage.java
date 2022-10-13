@@ -3,6 +3,8 @@ package sally.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -99,11 +101,39 @@ public class Storage {
      * @param tasks tasks to be updated.
      */
     public void loadDeadline(String[] splitInput, ArrayList<Task> tasks) {
-        Deadline deadline = new Deadline(splitInput[2], splitInput[3]);
+        System.out.println("splitInput[2]: " + splitInput[2]);
+        System.out.println("splitInput[3]: " + splitInput[3]);
+        Deadline deadline;
+        String date = splitInput[3];
+        if (isDate(date)) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
+            String splitDate[] = date.split("-");
+            String stringDate = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0];
+            LocalDate byDate = LocalDate.parse(stringDate, formatter);
+            deadline = new Deadline(splitInput[2], byDate);
+        } else {
+            deadline = new Deadline(splitInput[2], date);
+        }
+
         if (Integer.parseInt(splitInput[1]) == 1) {
             deadline.markAsDone();
         }
         tasks.add(deadline);
+    }
+
+    /**
+     * Returns true if deadline entered is date, returns false otherwise.
+     *
+     * @param by deadline parsed in
+     * @return true if deadline parsed is valid date.
+     */
+    protected static boolean isDate(String by) {
+        // Expected input date format: d-MM-yyyy
+        String[] splitBy = by.split("-");
+        if (splitBy.length != 3) {
+            return false;
+        }
+        return true;
     }
 
     /**

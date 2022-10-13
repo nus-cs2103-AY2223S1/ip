@@ -1,7 +1,4 @@
-D | 1 | finish iP | 2022-09-16
-E | 0 | CS2103T tp meeting | COM3
+D | 1 | finish iP | Sep 16 2022
+E | 1 | CS2103T tp meeting | COM3
 T | 0 | brainstorm on CS2101
-D | 0 | submit iP | 2022-09-16
-T | 0 | todo
-T | 0 | hi
-T | 1 | 1
+D | 0 | testdeadline | tonight
