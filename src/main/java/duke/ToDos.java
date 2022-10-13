@@ -7,6 +7,12 @@ public class ToDos extends Command {
     private String command;
     private int num;
 
+    /**
+     * Creates an object of ToDos.
+     *
+     * @param description
+     * @param num
+     */
     public ToDos(String description, int num) {
         this.command = description;
         this.num = num;

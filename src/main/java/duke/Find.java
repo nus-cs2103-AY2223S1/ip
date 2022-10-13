@@ -2,11 +2,20 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the find command.
+ */
 public class Find extends Command {
     private String target;
     private ArrayList<String> list = new ArrayList<>();
     private ArrayList<String> arrayList;
 
+    /**
+     * Creates an object of find.
+     *
+     * @param target
+     * @param list
+     */
     public Find(String target, ArrayList<String> list) {
         this.target = target;
         this.arrayList = list;

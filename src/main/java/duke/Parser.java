@@ -9,7 +9,11 @@ public class Parser {
     protected String description;
     protected boolean isDone;
 
-
+    /**
+     * Creates an object of Parser.
+     *
+     * @param description
+     */
     public Parser(String description) {
         this.description = description;
         this.isDone = false;
@@ -67,8 +71,8 @@ public class Parser {
                 int num = Integer.parseInt(command.split(" ")[1]) - 1;
                 return new Delete(arrayList.get(num), number, num, arrayList);
             } catch (Exception e) {
-                throw new DukeException("Sorry. The format for 'delete' command should be delete + space + " +
-                        "number");
+                throw new DukeException("Sorry. The format for 'delete' command should be delete + space + "
+                        + "number");
             }
         }
         if (command.split(" ")[0].equals("tag")) {
@@ -76,8 +80,8 @@ public class Parser {
                 return new Tag(arrayList, Integer.parseInt(command.split(" ")[1]) - 1,
                         command.split(" ")[2]);
             } catch (Exception e) {
-                throw new DukeException("Sorry. The format for 'tag' command should be tag + space + number " +
-                        "+ space + content");
+                throw new DukeException("Sorry. The format for 'tag' command should be tag + space + number "
+                        + "+ space + content");
             }
         }
         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");

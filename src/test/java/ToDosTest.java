@@ -1,10 +1,12 @@
-import duke.ToDos;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import duke.ToDos;
 
 public class ToDosTest {
 
-    ToDos todos = new ToDos("run", 1);
+    private ToDos todos = new ToDos("run", 1);
 
     @Test
     public void testTodos() {

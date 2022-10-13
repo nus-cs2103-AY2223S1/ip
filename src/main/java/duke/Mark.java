@@ -10,6 +10,13 @@ public class Mark extends Command {
     private int num;
     private ArrayList<String> arrayList;
 
+    /**
+     * Creates an object of Mark.
+     *
+     * @param description
+     * @param arrayList
+     * @param num
+     */
     public Mark(String description, ArrayList<String> arrayList, int num) {
         try {
             this.command = description;

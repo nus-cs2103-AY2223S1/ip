@@ -13,6 +13,13 @@ public class Events extends Command {
     private String time;
     private ArrayList<String> arrayList;
 
+    /**
+     * Creates an object of Events.
+     *
+     * @param description
+     * @param num
+     * @param arrayList
+     */
     public Events(String description, int num, ArrayList<String> arrayList) {
         try {
             this.command = description.split("/")[0].substring(6);

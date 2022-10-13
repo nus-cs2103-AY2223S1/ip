@@ -7,22 +7,40 @@ import java.util.ArrayList;
  * Represents a robot which can react to different commands.
  */
 public class Duke {
-    private TaskList tasks;
-    private ArrayList<String> arrayList = new ArrayList<>();
-    private Storage storage;
-    private int num = 1;
-
-    public String hello = "Hello from\n" + " ____        _        \n"
+    private static String hello = "Hello from\n" + " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    private TaskList tasks;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private Storage storage;
+    private int num = 1;
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Creates a object of Duke.
+     *
+     * @param storage
      */
-    String getResponse(String command) {
+    public Duke(Storage storage) {
+        Ui ui = new Ui();
+        this.storage = storage;
+        try {
+            tasks = new TaskList(arrayList);
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    /**
+     * Prints out the response.
+     *
+     * @param command
+     * @return String
+     */
+    public String getResponse(String command) {
         try {
             if (command.equals("bye")) {
                 return "Bye. Hope to see you again soon!";
@@ -35,17 +53,6 @@ public class Duke {
             }
         } catch (DukeException | IOException e) {
             return e.toString();
-        }
-    }
-
-    public Duke(Storage storage) {
-        Ui ui = new Ui();
-        this.storage = storage;
-        try {
-            tasks = new TaskList(arrayList);
-        } catch (DukeException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
         }
     }
 
@@ -65,6 +72,15 @@ public class Duke {
             num--;
         }
         return commands.toString();
+    }
+
+    /**
+     * Returns a String representation of the hello greeting command.
+     *
+     * @return String
+     */
+    public static String greet() {
+        return hello;
     }
 
     /**

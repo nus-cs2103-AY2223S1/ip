@@ -13,6 +13,13 @@ public class Deadlines extends Command {
     private String time;
     private ArrayList<String> arrayList;
 
+    /**
+     * Creates an object of Deadlines.
+     *
+     * @param description
+     * @param num
+     * @param arrayList
+     */
     public Deadlines(String description, int num, ArrayList<String> arrayList) {
         try {
             this.command = description.split("/")[0].substring(9);

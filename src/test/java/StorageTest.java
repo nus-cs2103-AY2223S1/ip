@@ -1,12 +1,14 @@
-import duke.Storage;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import duke.Storage;
+
 
 public class StorageTest {
-    Storage storage = new Storage("D:\\cs2103t\\duke.txt");
+    private Storage storage = new Storage("D:\\cs2103t\\duke.txt");
 
     public StorageTest() throws IOException {
     }

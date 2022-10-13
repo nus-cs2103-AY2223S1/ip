@@ -11,6 +11,11 @@ public class TaskList {
 
     public TaskList() {}
 
+    /**
+     * Creates an object of TaskList.
+     *
+     * @param arrayList
+     */
     public TaskList(ArrayList<String> arrayList) {
         this.arrayList = arrayList;
         this.list = getList();

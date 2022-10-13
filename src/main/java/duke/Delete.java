@@ -11,6 +11,14 @@ public class Delete extends Command {
     private ArrayList<String> arrayList;
     private int number;
 
+    /**
+     * Creates an object of Delete.
+     *
+     * @param description
+     * @param number
+     * @param num
+     * @param arrayList
+     */
     public Delete(String description, int number, int num, ArrayList<String> arrayList) {
         this.command = description;
         this.number = number - 2;
