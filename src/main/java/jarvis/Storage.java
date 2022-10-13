@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import jarvis.task.Deadline;
 import jarvis.task.Event;
-import jarvis.task.Task;
 import jarvis.task.Todo;
 
 
@@ -20,7 +19,7 @@ public class Storage {
 
     /**
      * Constructor for a storage(data reader and writer)
-     * @param file_path path of database file
+     * @param filePath path of database file
      */
     public Storage(String filePath) {
         File file = new File(filePath);
@@ -31,19 +30,6 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Exception in Storage when creating data file");
         }
-
-    }
-
-    /**
-     * Save the added task to database
-     * @param task The task to store
-     * @throws IOException If something went wrong when writing file
-     */
-    public void saveAddedTask(Task task) throws IOException {
-        assert this.dataFile.exists() : "Data file should exist before writing";
-        FileWriter fw = new FileWriter(dataFile, true);
-        fw.write(task.toDataForm());
-        fw.close();
     }
 
     /**

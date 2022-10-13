@@ -37,6 +37,7 @@ public class Parser {
     /**
      * Parse the user input as different actions
      * @param input The whole line of users' input
+     * @return a String, the result of parsing (execution of the command)
      */
     public String parse(String input) {
         try {
