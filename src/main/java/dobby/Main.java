@@ -33,9 +33,11 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setMinWidth(730);
             stage.getIcons().add(applicationLogo);
             stage.setTitle(applicationTitle);
             stage.setScene(scene);
+            stage.setAlwaysOnTop(true);
             fxmlLoader.<MainWindow>getController().setDobby(dobby);
             stage.show();
         } catch (IOException e) {

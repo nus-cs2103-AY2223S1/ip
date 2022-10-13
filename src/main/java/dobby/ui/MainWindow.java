@@ -32,6 +32,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
+        scrollPane.setFitToWidth(true);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
