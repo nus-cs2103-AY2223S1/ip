@@ -52,7 +52,6 @@ public class Event extends Task {
                 this.end = LocalDateTime.parse(startNEnd[1].trim());
             }
         } catch (DateTimeParseException e) {
-            //System.out.println("Wrong date format");
             throw e;
         }
     }

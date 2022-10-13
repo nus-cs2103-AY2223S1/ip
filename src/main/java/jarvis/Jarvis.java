@@ -21,7 +21,6 @@ public class Jarvis {
         } catch (JarvisException e) {
             taskList = new TaskList();
         }
-        //ui = new Ui(taskList, storage);
         parser = new Parser(taskList);
     }
 

@@ -87,8 +87,8 @@ public class TaskList {
 
     /**
      * Mark a task as not done yet
-     * @param taskNum index of the task to mark
-     * @return Marking message
+     * @param taskNum index of the task to unmark
+     * @return message of unmarking
      * @throws IOException Exception when saving task list
      */
     public String markTaskAsUnDone(int taskNum) throws IOException {
@@ -96,7 +96,7 @@ public class TaskList {
             return "There is no task with index " + (taskNum + 1);
         }
         taskList.get(taskNum).markAsUnDone();
-        String msg = "Nice! I've marked this task as done:\n";
+        String msg = "Nice! I've unmarked this task as not done yet:\n";
         msg += taskList.get(taskNum);
         storage.saveTaskList(this);
         return msg;
