@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     /**
-     * Gets all tasks from task list in ArrayList<Task>
+     * Gets all tasks from task list in the form of ArrayList
      *
      * @return task list in the form of ArrayList
      */

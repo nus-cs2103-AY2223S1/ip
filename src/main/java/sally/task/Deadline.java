@@ -1,7 +1,7 @@
 package sally.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Deadline class to represent new Deadline task
@@ -41,14 +41,15 @@ public class Deadline extends Task {
      * @return output string for save to file
      */
     public String getOutput() {
-        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description,
-                (byDate == null) ? moreInfo : byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, (byDate == null)
+                ? moreInfo : byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
     }
 
     @Override
     public String toString() {
         if (byDate != null) {
-            return "[D]" + super.toString() + " (by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+            return "[D]" + super.toString() + " (by: "
+                    + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         } else {
             return "[D]" + super.toString() + " (by: " + moreInfo + ")";
         }

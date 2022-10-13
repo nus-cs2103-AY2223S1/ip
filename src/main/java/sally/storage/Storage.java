@@ -107,7 +107,7 @@ public class Storage {
         String date = splitInput[3];
         if (isDate(date)) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
-            String splitDate[] = date.split("-");
+            String []splitDate = date.split("-");
             String stringDate = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0];
             LocalDate byDate = LocalDate.parse(stringDate, formatter);
             deadline = new Deadline(splitInput[2], byDate);

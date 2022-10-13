@@ -2,9 +2,9 @@ package sally.command;
 
 import java.util.ArrayList;
 
+import sally.storage.Storage;
 import sally.task.Task;
 import sally.task.TaskList;
-import sally.storage.Storage;
 import sally.ui.Ui;
 
 /**

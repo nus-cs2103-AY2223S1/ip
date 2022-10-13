@@ -1,13 +1,13 @@
 package sally.ui;
 
-import sally.main.MainWindow;
-import sally.task.Task;
-import sally.task.TaskList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import sally.main.MainWindow;
+import sally.task.Task;
+import sally.task.TaskList;
 
 /**
  * Ui class where all ui is handled.
@@ -16,10 +16,8 @@ import java.util.stream.Collectors;
  */
 
 public class Ui {
-    protected String BORDER ="-------------------------------------------------------------------------------------";
-    private Scanner sc;
-    private MainWindow mainWindow;
-    private static final String[] COMMANDS = {
+    protected final String border = "---------------------------------------------------------------------------------";
+    private final static String[] COMMANDS = {
         "todo",
         "deadline",
         "event",
@@ -31,7 +29,9 @@ public class Ui {
         "bye",
         "help"
     };
-    private static final String TOTAL_COMMANDS = Arrays.stream(COMMANDS).collect(Collectors.joining("\n"));
+    private final static String TOTAL_COMMANDS = Arrays.stream(COMMANDS).collect(Collectors.joining("\n"));
+    private Scanner sc;
+    private MainWindow mainWindow;
 
     /**
      * Constructor for Ui Class
@@ -46,9 +46,9 @@ public class Ui {
      * @param s messages to be displayed with borders
      */
     public void printWithBorder(String s) {
-        System.out.println(BORDER);
+        System.out.println(border);
         System.out.println(s);
-        System.out.println(BORDER);
+        System.out.println(border);
     }
 
     /**
@@ -159,7 +159,8 @@ public class Ui {
         String message = (taskNum == 1)
             ? "Now you have 1 task in your list."
             : "Now you have " + taskNum + " tasks in your list.";
-        displaySally("Got it. I've added this task:\n" + tasks.getTask(taskNum - 1).toString() + "\nto your list! " + message);
+        displaySally("Got it. I've added this task:\n"
+                + tasks.getTask(taskNum - 1).toString() + "\nto your list! " + message);
     }
 
     /**
@@ -178,6 +179,11 @@ public class Ui {
         displaySally(error);
     }
 
+    /**
+     * Shows tasks containing keyword.
+     *
+     * @param foundTasks list of tasks containing matching keyword
+     */
     public void showFoundTasks(ArrayList<Task> foundTasks) {
         String output = "";
         for (int i = 0; i < foundTasks.size(); i++) {
@@ -195,8 +201,12 @@ public class Ui {
         this.mainWindow = mw;
     }
 
+    /**
+     * Displays help command
+     */
     public void showHelpList() {
-        displaySally("Here are the list of commands Sally understands!\n" + TOTAL_COMMANDS + "\nFor more information on each command, type 'help <command>'");
+        displaySally("Here are the list of commands Sally understands!\n" + TOTAL_COMMANDS
+                + "\nFor more information on each command, type 'help <command>'");
     }
 
     public String getTodoHelp() {
@@ -204,14 +214,17 @@ public class Ui {
     }
 
     public String getDeadlineHelp() {
-        return "written in: deadline DESCRIPTION /by TIME, where DESCRIPTION is the deadline description, and TIME is the given deadline.\n\n"
-                + "TIME using dates must be written in the form of dd-mm-yyyy, otherwise can be written without any format.\n\n"
+        return "written in: deadline DESCRIPTION /by TIME, where DESCRIPTION is the deadline description, "
+                + "and TIME is the given deadline.\n\n"
+                + "TIME using dates must be written in the form of dd-mm-yyyy, otherwise can be written"
+                + "without any format.\n\n"
                 + "Example: deadline do CS2103T quiz /by 16-09-2022 or deadline do CS2103T quiz /by tonight";
     }
 
     public String getEventHelp() {
-        return "written in: event DESCRIPTION /at VENUE, where DESCRIPTION is the event description, and VENUE is the event venue.\n\n" +
-                "Example: event tP meeting /at COM3";
+        return "written in: event DESCRIPTION /at VENUE, where DESCRIPTION is the event description,"
+                + "and VENUE is the event venue.\n\n"
+                + "Example: event tP meeting /at COM3";
     }
 
     public String getListHelp() {
@@ -219,63 +232,67 @@ public class Ui {
     }
 
     public String getMarkHelp() {
-        return "marks a task based on the given number.\n\n" +
-                "written in: mark INDEX where INDEX is the task number to be marked as done.\n\n" +
-                "Example: mark 2";
+        return "marks a task based on the given number.\n\n"
+                + "written in: mark INDEX where INDEX is the task number to be marked as done.\n\n"
+                + "Example: mark 2";
     }
 
     public String getUnmarkHelp() {
-        return "unmarks a task based on the given number.\n\n" +
-                "written in: unmark INDEX where INDEX is the task number to be unmarked.\n\n" +
-                "Example: unmark 3";
+        return "unmarks a task based on the given number.\n\n"
+                + "written in: unmark INDEX where INDEX is the task number to be unmarked.\n\n"
+                + "Example: unmark 3";
     }
 
     public String getDeleteHelp() {
-        return "deletes a task based on the given number.\n\n" +
-                "written in: delete INDEX where INDEX is the task number to be deleted.\n\n" +
-                "Example: delete 2";
+        return "deletes a task based on the given number.\n\n"
+                + "written in: delete INDEX where INDEX is the task number to be deleted.\n\n"
+                + "Example: delete 2";
     }
 
     public String getFindHelp() {
-        return "finds a task containing the given keyword.\n\n" +
-                "written in: find KEYWORD where KEYWORD is the keyword used to filter tasks.\n\n" +
-                "Example: find meeting";
+        return "finds a task containing the given keyword.\n\n"
+                + "written in: find KEYWORD where KEYWORD is the keyword used to filter tasks.\n\n"
+                + "Example: find meeting";
     }
 
     public String getByeHelp() {
-        return "bid farewell to Sally to save your list\n\n" +
-                "Example: bye";
+        return "bid farewell to Sally to save your list\n\n"
+                + "Example: bye";
     }
 
+    /**
+     * Handles display method to call according to command.
+     * @param command input parsed in
+     */
     public void showHelpFor(String command) {
         switch (command) {
-            case "todo":
-                displaySally(getTodoHelp());
-                break;
-            case "deadline":
-                displaySally(getDeadlineHelp());
-                break;
-            case "event":
-                displaySally(getEventHelp());
-                break;
-            case "list":
-                displaySally(getListHelp());
-                break;
-            case "mark":
-                displaySally(getMarkHelp());
-                break;
-            case "unmark":
-                displaySally(getUnmarkHelp());
-                break;
-            case "delete":
-                displaySally(getDeleteHelp());
-                break;
-            case "find":
-                displaySally(getFindHelp());
-                break;
-            case "bye":
-                displaySally(getByeHelp());
-                break;
+        case "todo":
+            displaySally(getTodoHelp());
+            break;
+        case "deadline":
+            displaySally(getDeadlineHelp());
+            break;
+        case "event":
+            displaySally(getEventHelp());
+            break;
+        case "list":
+            displaySally(getListHelp());
+            break;
+        case "mark":
+            displaySally(getMarkHelp());
+            break;
+        case "unmark":
+            displaySally(getUnmarkHelp());
+            break;
+        case "delete":
+            displaySally(getDeleteHelp());
+            break;
+        case "find":
+            displaySally(getFindHelp());
+            break;
+        case "bye":
+            displaySally(getByeHelp());
+            break;
         }
     }
 }

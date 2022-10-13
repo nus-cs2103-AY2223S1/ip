@@ -21,7 +21,7 @@ public class UnmarkCommand extends Command {
      * @param index of the task to be unmarked
      */
     public UnmarkCommand(int index) {
-        this.index= index;
+        this.index = index;
     }
 
     @Override
