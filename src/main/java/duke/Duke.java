@@ -2,6 +2,7 @@ package duke;
 
 import task.DukeTask;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.scene.Scene;
@@ -39,8 +40,13 @@ public class Duke {
         ui = new Ui();
         storage = new Storage();
         tasklist = new ArrayList<DukeTask>();
-        Storage.setOnce(tasklist, "src/data/list.txt");
-        storage.read();
+        try {
+            Storage.setOnce(tasklist, "data/list.txt");
+            storage.read();
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+
     }
 
     protected String getResponse(String input) {
@@ -51,6 +57,7 @@ public class Duke {
                 return "Sorry something went wrong: " + e;
             }
         }
+//        storage.save();
         System.exit(0);
         return null;
     }

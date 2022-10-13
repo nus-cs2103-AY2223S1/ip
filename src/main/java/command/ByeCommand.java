@@ -23,6 +23,7 @@ public class ByeCommand extends Command {
     @Override
     public String deconstruct(ArrayList<DukeTask> taskList, Ui ui, Storage storage) throws InvalidFormatException {
         Duke.isterminated = true;
+
         return Ui.printExit();
     }
     

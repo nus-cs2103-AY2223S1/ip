@@ -101,7 +101,9 @@ Creates a new todo
 
 Example of usage:
 
-`deadline <description> /by <date>`
+`deadline <description> /<date-time>`
+
+`/<date-time>` will be of the format `/yyyy-mm-dd HH:mm`
 
 Expected outcome:
 

@@ -4,11 +4,7 @@ import task.DukeTask;
 import task.DukeTaskDeadline;
 import task.DukeTaskEvent;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -17,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Storage {
 
-    private static String FILEPATH;
+    private static File FILEPATH;
     private static ArrayList<DukeTask> tasklist;
     
     Storage() {}
@@ -27,9 +23,20 @@ public class Storage {
      * @param lst
      * @param filePath
      */
-    public static void setOnce(ArrayList<DukeTask> lst, String filePath) {
+    public static void setOnce(ArrayList<DukeTask> lst, String filePath) throws IOException {
         tasklist = lst;
-        FILEPATH = filePath;
+        String[] parts = filePath.split("/");
+
+        File folder = new File(parts[0]);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FILEPATH = file;
     }
 
     /**
