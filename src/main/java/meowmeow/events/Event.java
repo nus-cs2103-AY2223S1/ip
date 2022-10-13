@@ -22,7 +22,7 @@ public class Event extends Task {
     }
 
     /**
-     * Method that returns a String showing the time and completion status of the task.
+     * Returns a String showing the time and completion status of the task.
      * @return a String showing the time and completion status of the task.
      */
     @Override
@@ -31,7 +31,7 @@ public class Event extends Task {
     }
 
     /**
-     * Method that returns the time and completion status of the task in a special format for creating a save file.
+     * Returns the time and completion status of the task in a special format for creating a save file.
      * @return a String showing the time and completion status of the task.
      */
     @Override

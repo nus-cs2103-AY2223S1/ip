@@ -24,7 +24,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Method that executes the MarkCommand.
+     * Executes the MarkCommand.
      *
      * @param tasks the task list to be operated on by the command.
      *              The task list is used to mark the task as completed or incomplete.
@@ -43,7 +43,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * isExit method that returns false for MarkCommand.
+     * Returns false for MarkCommand.
      * @return false for MarkCommand.
      */
     @Override

@@ -4,10 +4,15 @@ import meowmeow.Storage;
 import meowmeow.TaskList;
 import meowmeow.Ui;
 
+/**
+ * <p>Class UndoCommand is a concrete class that implements the Command interface.</p>
+ * <p>This class is used to undo the user's last command.</p>
+ * <p>This class is a concrete class because it has an implementation.</p>
+ */
 public class UndoCommand extends Command {
 
     /**
-     * Method that executes the UndoCommand.
+     * Executes the UndoCommand.
      *
      * @param tasks the task list to be operated on by the command.
      *              The task list is used to undo the last command.
@@ -22,7 +27,7 @@ public class UndoCommand extends Command {
     }
 
     /**
-     * isExit method that returns false for UndoCommand.
+     * Returns false for UndoCommand.
      * @return false for UndoCommand.
      */
     @Override

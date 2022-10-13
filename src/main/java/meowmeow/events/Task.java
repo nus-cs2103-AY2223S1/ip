@@ -20,21 +20,21 @@ public class Task {
     }
 
     /**
-     * Method that marks the task as done.
+     * Marks the task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Method that marks the task as not done.
+     * Marks the task as undone.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
     /**
-     * Method that returns a boolean showing whether the task is done or not.
+     * Returns the completion status of the task.
      *
      * @return a boolean showing whether the task is done or not.
      */
@@ -43,7 +43,7 @@ public class Task {
     }
 
     /**
-     * Method that returns the name and completion status of the task.
+     * Returns the name and completion status of the task as a String.
      *
      * @return the name and completion status of the task.
      */
@@ -57,7 +57,7 @@ public class Task {
     }
 
     /**
-     * Method that returns the name and completion status of the task in a special format for creating a save file.
+     * Returns the name and completion status of the task in a special format for creating a save file.
      *
      * @return the name and completion status of the task.
      */

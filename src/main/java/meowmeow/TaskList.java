@@ -8,6 +8,9 @@ import meowmeow.events.Event;
 import meowmeow.events.Task;
 import meowmeow.events.ToDo;
 
+/**
+ * Represents a storage object that deals with loading tasks from the file and saving tasks in the file.
+ */
 public class TaskList {
     //Initialising task array for list cmd
     private static int numOfInputs = 0;
@@ -27,6 +30,10 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Prints the list of tasks.
+     * @return String of list of tasks
+     */
     public String printTaskList() {
         String output = "Here are your tasks =0w0= \n";
         Task task;
@@ -39,6 +46,11 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Deletes a task from the list.
+     * @param taskNum Index of task to be deleted
+     * @return String message of deleted task
+     */
     public String deleteTask(int taskNum) {
         try {
             if (taskNum >= numOfInputs || taskNum < 0) {
@@ -59,6 +71,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a todo task to the list.
+     * @param taskName Name of task
+     * @return String message of added todo task
+     */
     public String addTodo(String taskName) {
         try {
             if (taskName == null || taskName.equals("")) {
@@ -77,6 +94,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a deadline task to the list.
+     * @param userInput String containing task name and date
+     * @return String message of added deadline task
+     */
     public String addDeadline(String userInput) {
         try {
             String[] splitB = userInput.split("/by ");
@@ -99,6 +121,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds an event task to the list.
+     * @param userInput String containing task name and time
+     * @return String message of added event task
+     */
     public String addEvent(String userInput) {
         try {
             String[] splitA = userInput.split("/at");
@@ -120,6 +147,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as done.
+     * @param taskNum Index of task to be marked as done
+     * @return String message of marked task
+     */
     public String finishTask(int taskNum) {
         Task task;
         try {
@@ -138,6 +170,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as undone.
+     * @param taskNum Index of task to be marked as undone
+     * @return String message of unmarked task
+     */
     public String unfinishTask(int taskNum) {
         Task task;
         try {
@@ -157,6 +194,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds tasks with matching keyword.
+     * @param userInput Keyword to be matched
+     * @return String list of matching tasks
+     */
     public String findTask(String userInput) {
         try {
             int numMatchingTasks = 0;
@@ -178,6 +220,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Undoes the last command.
+     * @return String message of undone command
+     */
     public String undo() {
         switch(lastCmdType) {
         case "delete":
@@ -205,6 +251,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Restore a deleted task.
+     * @param deletedSaveData String containing task name and date of deleted task
+     */
     public void restoreDeletedTask(String deletedSaveData) {
         String[] split = deletedSaveData.split(" \\| ");
         String firstChar = split[0];

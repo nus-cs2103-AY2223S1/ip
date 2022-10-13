@@ -11,7 +11,7 @@ import meowmeow.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Method that executes the ListCommand.
+     * Executes the ListCommand.
      * Prints out the tasks in the task list to the user interface.
      *
      * @param tasks the task list to be operated on by the command.
@@ -27,7 +27,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * isExit method that returns false for ListCommand.
+     * Returns false for ListCommand.
      * @return false for ListCommand.
      */
     @Override

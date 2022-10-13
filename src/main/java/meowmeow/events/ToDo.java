@@ -19,7 +19,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Method that returns a String showing the completion status of the task.
+     * Returns a String showing the completion status of the task.
      * @return a String showing the completion status of the task.
      */
     @Override
@@ -28,7 +28,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Method that returns the completion status of the task in a special format for creating a save file.
+     * Returns the completion status of the task in a special format for creating a save file.
      * @return a String showing the completion status of the task.
      */
     @Override

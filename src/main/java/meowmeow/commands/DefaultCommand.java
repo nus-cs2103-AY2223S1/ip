@@ -17,7 +17,7 @@ public class DefaultCommand extends Command {
     }
 
     /**
-     * Method that executes the DefaultCommand.
+     * Executes the DefaultCommand.
      *
      * @param tasks the task list to be operated on by the command.
      *              The task list is used to add the task to the task list.
@@ -34,7 +34,7 @@ public class DefaultCommand extends Command {
     }
 
     /**
-     * isExit method that returns false for DefaultCommand.
+     * Returns false for DefaultCommand.
      *
      * @return false for DefaultCommand.
      */

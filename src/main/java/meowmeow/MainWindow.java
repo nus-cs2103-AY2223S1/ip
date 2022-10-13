@@ -27,6 +27,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initializes the main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -35,6 +38,11 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Sets the main application.
+     * @param m the main application.
+     *          The main application is used to access the task list and the user interface.
+     */
     public void setMeowmeow(Meowmeow m) {
         dialogContainer.getChildren().add(DialogBox.getMeowmeowDialog("Hewwo! I'm MeowMeow (=^ↀWↀ^=)"
                 + "\nWhat do you need meow to do for you today?", dukeImage));

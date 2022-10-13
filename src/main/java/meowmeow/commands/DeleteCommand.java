@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Method that executes the DeleteCommand.
+     * Executes the DeleteCommand.
      *
      * @param tasks the task list to be operated on by the command.
      *              The task list is used to delete the task from the task list.
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * isExit method that returns false for DeleteCommand.
+     * Returns false for DeleteCommand.
      * @return false for DeleteCommand.
      */
     @Override

@@ -16,6 +16,12 @@ import meowmeow.commands.UndoCommand;
  */
 public class Parser {
 
+    /**
+     * Parses the user's input and returns a Command.
+     *
+     * @param userInput the user's input.
+     * @return a Command that corresponds to the user's input.
+     */
     public static Command parse(String userInput) {
 
         userInput = userInput.trim();

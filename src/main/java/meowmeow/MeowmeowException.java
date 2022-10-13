@@ -18,8 +18,8 @@ public class MeowmeowException extends Exception {
     }
 
     /**
-     * Method that returns the message to be displayed to the user.
-     * @return the message to be displayed to the user.
+     * Returns the message to be displayed to the user.
+     * @return String message to be displayed to the user.
      */
     @Override
     public String toString() {

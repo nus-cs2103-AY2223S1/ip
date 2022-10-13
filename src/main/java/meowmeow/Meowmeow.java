@@ -22,7 +22,7 @@ public class Meowmeow {
     }
 
     /**
-     * Method that gets the response from the chatbot.
+     * Returns the program's response to the user's input.
      *
      * @param input the user input.
      */

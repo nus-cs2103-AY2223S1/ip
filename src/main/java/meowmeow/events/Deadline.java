@@ -24,17 +24,17 @@ public class Deadline extends Task {
     }
 
     /**
-     * Method that returns a String showing the date and time of the task.
+     * Returns a String showing the date and time of the task.
      * @return a String showing the date and time and completion status of the task.
      */
     @Override
     public String toString() {
-        return "[D] " + super.toString() + "(by:"
+        return "[D] " + super.toString() + " (by:"
                 + date.format(DateTimeFormatter.ofPattern(" hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
 
     /**
-     * Method that returns the date and time of the task in a special format for creating a save file.
+     * Returns the date and time of the task in a special format for creating a save file.
      * @return a String showing the date and time and completion status of the task.
      */
     @Override

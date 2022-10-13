@@ -15,7 +15,7 @@ import meowmeow.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Method that executes the ExitCommand.
+     * Executes the ExitCommand.
      * Prints a goodbye message to the user interface.
      *
      * @param tasks the task list to be operated on by the command.
@@ -38,7 +38,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * isExit method that returns true for ExitCommand.
+     * Returns true for ExitCommand.
      * @return true for ExitCommand.
      */
     @Override

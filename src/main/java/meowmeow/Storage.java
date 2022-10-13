@@ -13,6 +13,9 @@ import meowmeow.events.Event;
 import meowmeow.events.Task;
 import meowmeow.events.ToDo;
 
+/**
+ * Represents a storage object that deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
 
     private static File saveFile;
@@ -23,6 +26,10 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Checks if the save file exists.
+     * @throws IOException
+     */
     public void checkFileExists() throws IOException {
         //Create save file
         try {
@@ -40,6 +47,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the current task list into the save file.
+     * @throws IOException
+     */
     public void save(ArrayList taskList) {
         this.taskList = taskList;
         PrintWriter printWriter = null;
@@ -57,6 +68,11 @@ public class Storage {
         printWriter.close();
     }
 
+    /**
+     * Loads task list from the save file.
+     * @return ArrayList of tasks
+     * @throws IOException
+     */
     public ArrayList<Task> parseSaveFile(File txt) {
         try {
             txt.getAbsolutePath();
@@ -126,6 +142,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Checks if the save file exists and loads the task list from the save file if it exists.
+     * @return ArrayList of tasks
+     * @throws IOException
+     */
     public ArrayList<Task> load() {
         try {
             checkFileExists();

@@ -11,7 +11,7 @@ import meowmeow.Ui;
 public abstract class Command {
 
     /**
-     * Method that executes the command.
+     * Executes the command.
      *
      * @param tasks the task list to be operated on by the command.
      * @param ui the user interface to be used by the command.
@@ -20,8 +20,8 @@ public abstract class Command {
     public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
-     * Method that returns true if the command is an exit command.
-     * @return true if the command is an exit command.
+     * Returns true if the command is an exit command.
+     * @return boolean isExit.
      *
      */
     public abstract boolean isExit();
