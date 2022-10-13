@@ -57,6 +57,8 @@ public class Parser {
             return parseDelete(input);
         case "find":
             return parseFind(input);
+        case "help":
+            return new HelpCommand();
         default:
             return new UnknownCommand();
         }
