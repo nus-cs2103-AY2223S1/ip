@@ -7,22 +7,41 @@ import java.util.ArrayList;
 /**
  * Represents the Deadlines command.
  */
-public class Deadlines extends Parser {
+public class Deadlines extends Command {
     private String command;
     private int num;
     private String time;
+    private ArrayList<String> arrayList;
 
     public Deadlines(String description, int num, ArrayList<String> arrayList) {
-        super(description);
-        this.command = description.split("/")[0].substring(9);
-        this.num = num;
-        String time = description.split("/")[1].substring(3);
-        LocalDate date = LocalDate.parse(time);
-        String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        this.time = tranTime;
-        arrayList.add("[D][ ] " + description.split("/")[0].substring(9) + "(by: " + tranTime + ")");
+        try {
+            this.command = description.split("/")[0].substring(9);
+            this.num = num;
+            this.arrayList = arrayList;
+            String time = description.split("/")[1].substring(3);
+            LocalDate date = LocalDate.parse(time);
+            String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.time = tranTime;
+        } catch (Exception e) {
+            throw new DukeException("Sorry. The format for 'deadline' command should be deadline + space + task"
+                    + " + /by MMM d yyyy");
+        }
     }
 
+    @Override
+    public void execute() {
+        arrayList.add("[D][ ] " + command + "(by: " + this.time + ")");
+    }
+
+    /**
+     * Checks if the command should be added to the list.
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean addToList() {
+        return true;
+    }
     /**
      * Returns a String representing the command Deadlines.
      *

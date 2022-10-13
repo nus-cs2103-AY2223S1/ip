@@ -24,7 +24,7 @@ public class Parser {
      * @return Parser
      * @throws DukeException if duke cannot identify the command.
      */
-    public static Parser of(String command, ArrayList<String> arrayList, int number) throws DukeException {
+    public static Command of(String command, ArrayList<String> arrayList, int number) throws DukeException {
         if (command.split(" ")[0].equals("mark")) {
             try {
                 int num = Integer.parseInt(command.substring(5)) - 1;
@@ -50,26 +50,25 @@ public class Parser {
             }
         }
         if (command.split(" ")[0].equals("deadline")) {
-            try {
-                return new Deadlines(command, number, arrayList);
-            } catch (Exception e) {
-                throw new DukeException("Sorry. The format for 'deadline' command should be deadline + space + task"
-                        + " + /by MMM d yyyy");
-            }
+            return new Deadlines(command, number, arrayList);
         }
         if (command.split(" ")[0].equals("event")) {
-            try {
-                return new Events(command, number, arrayList);
-            } catch (Exception e) {
-                throw new DukeException("Sorry. The format for 'event' command should be event + space + task"
-                        + " + /at time");
-            }
+            return new Events(command, number, arrayList);
         }
         if (command.split(" ")[0].equals("find")) {
             try {
                 return new Find(command.split(" ")[1], arrayList);
             } catch (Exception e) {
                 throw new DukeException("Sorry. The format for 'find' command should be find + space + task");
+            }
+        }
+        if (command.split(" ")[0].equals("delete")) {
+            try {
+                int num = Integer.parseInt(command.split(" ")[1]) - 1;
+                return new Delete(arrayList.get(num), number, num, arrayList);
+            } catch (Exception e) {
+                throw new DukeException("Sorry. The format for 'delete' command should be delete + space + " +
+                        "number");
             }
         }
         if (command.split(" ")[0].equals("tag")) {
@@ -82,15 +81,6 @@ public class Parser {
             }
         }
         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
-    }
-
-    /**
-     * Checks if the command should be added to the list.
-     *
-     * @return boolean
-     */
-    public boolean addToList() {
-        return true;
     }
 
     /**

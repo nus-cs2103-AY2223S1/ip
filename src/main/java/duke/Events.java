@@ -7,20 +7,40 @@ import java.util.ArrayList;
 /**
  * Represents the Event command.
  */
-public class Events extends Parser {
+public class Events extends Command {
     private String command;
     private int num;
     private String time;
+    private ArrayList<String> arrayList;
 
     public Events(String description, int num, ArrayList<String> arrayList) {
-        super(description);
-        this.command = description.split("/")[0].substring(6);
-        this.num = num;
-        String time = description.split("/")[1].substring(3);
-        LocalDate date = LocalDate.parse(time);
-        String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        this.time = tranTime;
-        arrayList.add("[E][ ] " + description.split("/")[0].substring(6) + "(at: " + tranTime + ")");
+        try {
+            this.command = description.split("/")[0].substring(6);
+            this.num = num;
+            this.arrayList = arrayList;
+            String time = description.split("/")[1].substring(3);
+            LocalDate date = LocalDate.parse(time);
+            String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.time = tranTime;
+        } catch (Exception e) {
+            throw new DukeException("Sorry. The format for 'event' command should be event + space + task"
+                    + " + /at time");
+        }
+    }
+
+    @Override
+    public void execute() {
+        arrayList.add("[E][ ] " + command + "(at: " + time + ")");
+    }
+
+    /**
+     * Checks if the command should be added to the list.
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean addToList() {
+        return true;
     }
 
     /**

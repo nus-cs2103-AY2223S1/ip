@@ -31,7 +31,6 @@ public class Duke {
                 return getList();
             } else {
                 storage.push(tasks.get());
-                //tasks.set(storage.load());
                 return printCommand(command);
             }
         } catch (DukeException | IOException e) {
@@ -57,19 +56,15 @@ public class Duke {
      * @return String
      */
     public String printCommand(String command) {
-        if (command.split(" ")[0].equals("delete")) {
-            int number = Integer.parseInt(command.split(" ")[1]) - 1;
-            num--;
-            Delete task = new Delete(arrayList.get(number), num);
-            arrayList.remove(number);
-            return task.toString();
-        } else {
-            Parser parser = Parser.of(command, arrayList, num);
-            if (parser.addToList()) {
-                num++;
-            }
-            return parser.toString();
+        Command commands = Parser.of(command, arrayList, num);
+        commands.execute();
+        if (commands.addToList()) {
+            num++;
         }
+        if (command.split(" ")[0].equals("delete")) {
+            num--;
+        }
+        return commands.toString();
     }
 
     /**

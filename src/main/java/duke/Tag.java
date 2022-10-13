@@ -2,17 +2,23 @@ package duke;
 
 import java.util.ArrayList;
 
-public class Tag extends Parser {
+public class Tag extends Command {
     private String tag;
     private String content;
+    private int num;
+    private ArrayList<String> arrayList;
 
     public Tag(ArrayList<String> arrayList, int num, String content) {
-        super(arrayList.get(num));
         this.tag = arrayList.get(num);
         this.content = content;
-        arrayList.set(num, arrayList.get(num) + " #" + content);
+        this.num = num;
+        this.arrayList = arrayList;
     }
 
+    @Override
+    public void execute() {
+        arrayList.set(num, arrayList.get(num) + " #" + content);
+    }
     /**
      * Checks if the command should be added to the list.
      *

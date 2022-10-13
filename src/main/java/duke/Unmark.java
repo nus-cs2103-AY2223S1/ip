@@ -5,12 +5,23 @@ import java.util.ArrayList;
 /**
  * Represents the unmark command.
  */
-public class Unmark extends Parser {
+public class Unmark extends Command {
     private String command;
+    private ArrayList<String> arrayList;
+    private int num;
 
     public Unmark(String description, ArrayList<String> arrayList, int num) {
-        super(description);
-        this.command = description;
+        try {
+            this.command = description;
+            this.arrayList = arrayList;
+            this.num = num;
+        } catch (Exception e) {
+            throw new DukeException("Sorry. The format for 'unmark' command should be unmark + space + number");
+        }
+    }
+
+    @Override
+    public void execute() {
         arrayList.set(num, arrayList.get(num).substring(0, 3) + "[ ]" + arrayList.get(num).substring(6));
     }
 
@@ -19,7 +30,6 @@ public class Unmark extends Parser {
      *
      * @return boolean
      */
-    @Override
     public boolean addToList() {
         return false;
     }

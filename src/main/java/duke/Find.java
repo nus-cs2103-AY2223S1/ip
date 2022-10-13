@@ -2,16 +2,21 @@ package duke;
 
 import java.util.ArrayList;
 
-public class Find extends Parser {
+public class Find extends Command {
     private String target;
     private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> arrayList;
 
     public Find(String target, ArrayList<String> list) {
-        super(target);
         this.target = target;
-        for (int k = 0; k < list.size(); k++) {
-            if (list.get(k).contains(target)) {
-                this.list.add(list.get(k));
+        this.arrayList = list;
+    }
+
+    @Override
+    public void execute() {
+        for (int k = 0; k < arrayList.size(); k++) {
+            if (arrayList.get(k).contains(target)) {
+                this.list.add(arrayList.get(k));
             }
         }
     }
