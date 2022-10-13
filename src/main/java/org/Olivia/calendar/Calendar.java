@@ -10,15 +10,33 @@ public class Calendar {
         this.cache = new ArrayList<>();
     }
 
+    /**
+     * add an entry to the calendar
+     *
+     * @param to_add
+     * @return
+     */
     public int addEntry(CalendarEntry to_add) {
         this.cache.add(to_add);
         return 200;
     }
 
+    /**
+     * return an entry marked by the index
+     *
+     * @param index index of the entry, start from 1
+     * @return
+     */
     public CalendarEntry getEntry(int index) {
         return cache.get(index - 1);
     }
 
+    /**
+     * delete an entry from the calendar
+     *
+     * @param index
+     * @return
+     */
     public CalendarEntry deleteEntry(int index) {
         if (index > this.cache.size()) {
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event " + index + " in the current calendar\n");
@@ -26,6 +44,12 @@ public class Calendar {
         return this.cache.remove(index - 1);
     }
 
+    /**
+     * mark an entry in the calendar as complete
+     *
+     * @param index index of the event, starting from 1
+     * @return
+     */
     public int markAsDone(int index) {
         if (index > this.cache.size()) {
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event " + index + " in the current calendar\n");
@@ -34,6 +58,12 @@ public class Calendar {
         return this.getEntry(index).markAsCompleted();
     }
 
+    /**
+     * mark an entry in the calendar as incomplete
+     *
+     * @param index index of the event, starting from 1
+     * @return
+     */
     public int markAsUndone(int index) {
         if (index > this.cache.size()) {
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event " + index + " in the current calendar\n");
@@ -42,11 +72,23 @@ public class Calendar {
         return this.getEntry(index).markAsIncomplete();
     }
 
+    /**
+     * Delete all entries in the calendar
+     * !!!DESTRUCTIVE!!!
+     *
+     * @return
+     */
     public int clearAllEntries() {
         this.cache.clear();
         return 200;
     }
 
+    /**
+     * return all entries that contains a keywords
+     *
+     * @param keyword
+     * @return a list of CalendarEntry
+     */
     public List<CalendarEntry> getEntriesContains(String keyword) {
         List<CalendarEntry> ans = new ArrayList<>();
         for (CalendarEntry e : this.cache) {
