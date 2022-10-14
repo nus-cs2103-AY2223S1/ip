@@ -48,7 +48,6 @@ public class UserInput {
      */
     public String readCommand(String input) {
         try {
-
             if (!input.contains(" ")) {
                 if (checkTaskType(input, COMMAND_SIMPLIFY, simplify)) {
                     setTaskType(COMMAND_SIMPLIFY);
@@ -62,35 +61,39 @@ public class UserInput {
             } else {
                 taskType = Parser.getTaskType(input);
                 rest = Parser.getRestOfCommand(input);
-                if (checkTaskType(COMMAND_MARK, mark)) {
-                    setMarkCommand();
-                } else if (checkTaskType(COMMAND_UNMARK, unmark)) {
-                    setUnmarkCommand();
-
-                } else if (checkTaskType(COMMAND_DELETE, delete)) {
-                    setDeleteCommand();
-
-                } else if (checkTaskType(COMMAND_TODO, todo)) {
-                    setTodoCommand();
-
-                } else if (checkTaskType(COMMAND_FIND, find)) {
-                    setFindCommand();
-
-                } else if (checkTaskType(COMMAND_SIMPLIFY, simplify)) {
-                    setSimplifyCommand();
-
-                } else if (checkTaskType(COMMAND_DEADLINE, deadline)) {
-                    setDeadlineCommand();
-
-                } else if (checkTaskType(COMMAND_EVENT, event)) {
-                    setEventCommand();
-
-                }
+                setCommand();
             }
         } catch (java.lang.NumberFormatException e) {
             DobbyChat.noNumber();
         }
         return taskType;
+    }
+
+    /**
+     * Sets the commands based on user input.
+     */
+    private void setCommand() {
+        if (checkTaskType(COMMAND_MARK, mark)) {
+            setMarkCommand();
+        } else if (checkTaskType(COMMAND_UNMARK, unmark)) {
+            setUnmarkCommand();
+        } else if (checkTaskType(COMMAND_DELETE, delete)) {
+            setDeleteCommand();
+        } else if (checkTaskType(COMMAND_TODO, todo)) {
+            setTodoCommand();
+        } else if (checkTaskType(COMMAND_FIND, find)) {
+            setFindCommand();
+        } else if (checkTaskType(COMMAND_SIMPLIFY, simplify)) {
+            setSimplifyCommand();
+        } else if (checkTaskType(COMMAND_DEADLINE, deadline)) {
+            setDeadlineCommand();
+        } else if (checkTaskType(COMMAND_EVENT, event)) {
+            setEventCommand();
+        }
+    }
+
+    public void setShortCommand(String input) {
+
     }
 
     /**
