@@ -24,11 +24,12 @@ public class Parser {
         Integer result = null;
         try {
             result = Integer.valueOf(str);
+            return result;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             System.out.println("Conversion from String to Integer failed. Please check!");
+            return 0;
         }
-        return result;
     }
 
 

@@ -247,21 +247,19 @@ public class Duke {
                     if (!task.isDone()) {
                         Ui.mark(task);
                     } else {
-                        System.out.println("     :( OOPS!!! The task specified is already done");
-                        throw new TaskCompletionException("");
+                        System.out.println(":( OOPS!!! The task specified is already done");
                     }
                     break;
                 case UNMARK:
                     if (task.isDone()) {
                         Ui.unmark(task);
                     } else {
-                        System.out.println("     :( OOPS!!! The task specified is not done yet");
-                        throw new TaskCompletionException("");
+                        System.out.println(":( OOPS!!! The task specified is not done yet");
                     }
                     break;
                 default:
-                    throw new NoSuchCommandException(
-                            "     :( Unfortunately, but I cannot understand what that means :-(");
+                    System.out.println(
+                            ":( Unfortunately, but I cannot understand what that means :-(");
                 }
                 break;
 
@@ -307,28 +305,30 @@ public class Duke {
                 break;
 
             default:
-                throw new NoSuchCommandException(
-                        "     :( Unfortunately, but I cannot understand what that means :-(");
+                System.out.println(":( Unfortunately, but I cannot understand what that means :-(");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             if (command.equals("mark") || command.equals("unmark")) {
-                System.out.println("     :( OOPS!!! The index of a task cannot be empty.");
+                System.out.println(":( OOPS!!! The index of a task cannot be empty.");
                 suggestion = "Try again with a task index";
             } else {
-                System.out.println("     :( OOPS!!! The description of a task cannot be empty.");
+                System.out.println(":( OOPS!!! The description of a task cannot be empty.");
                 suggestion = "Try again with a task description that you wanna track";
             }
-            throw new IncompleteCommandException(e.getMessage(), suggestion);
-
-            //IndexOutOfBoundsException mark 1 > totalNumber
-            //check mark/ unmark
+            System.out.println(e.getMessage() + "\n" + suggestion);
         } catch (IndexOutOfBoundsException e) {
-            if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
-                System.out.println("     :( OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
+            if (taskIndex == -1) {
+                suggestion = "Try again with a task index, the index must a valid integer < length of task list.";
+                System.out.println(e.getMessage() + "\n" + suggestion);
+            } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
+                System.out.println(":( OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
                 suggestion = "Try again with a task index";
-                throw new TaskOutOfBoundException(e.getMessage(), suggestion);
+                System.out.println(e.getMessage() + "\n" + suggestion);
+            } else {
+                System.out.println(e.getMessage() + "\n");
             }
-            throw new TaskOutOfBoundException(e.getMessage(), "");
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage() + "\n");
         }
 
         String stop = OutputRedirector.stop();

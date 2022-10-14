@@ -16,7 +16,8 @@ public enum CommandType {
     DELETE,
     FIND,
     LIST,
-    UNDO;
+    UNDO,
+    INVALID;
 
     /**
      * Helper function to incorporate enum so that the input could be case-insensitive.
@@ -31,7 +32,11 @@ public enum CommandType {
         for (i = 0; i < inputList.length; i++) {
             mapping.put(inputList[i], commandList[i]);
         }
-
-        return mapping.get(str.toLowerCase());
+        CommandType commandType = mapping.get(str.toLowerCase());
+        if (commandType != null) {
+            return commandType;
+        } else {
+            return INVALID;
+        }
     }
 }

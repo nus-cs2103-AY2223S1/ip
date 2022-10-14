@@ -1,5 +1,5 @@
 T | 1 | borrow book
-D | 1 | return book | 2022-06-06
+D | 0 | return book | 2022-06-06
 E | 0 | project meeting | 2022-08-06 14:00
 T | 1 | join sports club
 T | 1 | HSBC ot

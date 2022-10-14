@@ -98,7 +98,8 @@ public class Cache {
 
             return new TaskList(taskList);
         } catch (FileNotFoundException e) {
-            throw new DukeException("     :( OOPS!!! Cannot be read cos the file doesn't exist");
+            System.out.println(":( OOPS!!! Cannot be read cos the file doesn't exist");
+            return null;
         }
     }
 
@@ -117,7 +118,7 @@ public class Cache {
             writer.write(builder.toString());
             writer.close();
         } catch (IOException e) {
-            throw new DukeException("     :( OOPS!!! Cannot be written cos the file doesn't exist");
+            System.out.println(":( OOPS!!! Cannot be written cos the file doesn't exist");
         }
     }
 
@@ -196,13 +197,14 @@ public class Cache {
                     }
                     taskList.add(task);
                 } else {
-                    throw new TypeNotExistException("");
+                    System.out.println(":( OOPS!!! No such task type.");
                 }
             }
 
             return new TaskList(taskList);
         } catch (FileNotFoundException e) {
-            throw new DukeException("     :( OOPS!!! Cannot be read cos the file doesn't exist");
+            System.out.println(" :( OOPS!!! Cannot be read cos the file doesn't exist");
+            return null;
         }
     }
 }
