@@ -40,9 +40,8 @@ public class DukeTest {
         Ui ui = new Ui();
 
         ui.printTaskList(tasks);
-        String expected = "Here are the tasks in your list:\r\n"
-                + "1.[T][ ] return book\r\n"
-                + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
+        String expected = "Here are the duties in your list:\r\n"
+                + "1.[T][ ] return book\r\n";
 
         assertEquals(expected, outContent.toString());
     }
@@ -57,7 +56,7 @@ public class DukeTest {
         Ui ui = new Ui();
 
         ui.printNoOfTasks(tasks);
-        String expected = "Now you have 2 tasks in your list.\r\n";
+        String expected = "You now have 2 duties in your list.\r\n";
 
         assertEquals(expected, outContent.toString());
     }
@@ -68,8 +67,7 @@ public class DukeTest {
         Ui ui = new Ui();
 
         ui.printErrorMessage(new InvalidCommandException("hello"), tasks);
-        String expected = ":( Sorry I don't understand the command: \"hello\"\r\n"
-                + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
+        String expected = "Sorry my Lord, I do not understand what you mean by \"hello\"\r\n";
 
         assertEquals(expected, outContent.toString());
     }
