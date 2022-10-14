@@ -73,7 +73,7 @@ public class Parser {
             checkDeleteValidity(taskNum);
             return new DeleteCommand(taskNum);
         } else {
-            throw new SallyException("Oops! I don't understand that, make sure to enter 'delete <index> :)");
+            throw new SallyException("Oops! I don't understand that, make sure to enter 'delete <index>' :)");
         }
     }
 
@@ -170,11 +170,13 @@ public class Parser {
      * @throws SallyException when invalid or incomplete input is parsed in
      */
     public static Command parseEvent(String command) throws SallyException {
-        if (command.length() <= 5) {
+        if (command.length() <= 5 || !command.contains("/at ")) {
             throw new SallyException("Oops! "
-                    + "I don't understand that, make sure to enter 'event <description> /at <venue> :)");
-        } else if (command.contains("/at ")) {
-            String description = command.substring(6, command.indexOf("/at") - 1);
+                    + "I don't understand that, make sure to enter 'event <description> /at <venue>' :)");
+        }
+        String description = command.substring(5, command.indexOf("/at") - 1);
+        System.out.println("description: " + description + description.isEmpty());
+        if (!description.isEmpty()) {
             String at = command.substring(command.indexOf("/at") + 4);
             return new AddEventCommand(description, at);
         } else {
@@ -191,13 +193,21 @@ public class Parser {
      * @throws SallyException when invalid or incomplete input is parsed in
      */
     public static Command parseDeadline(String command) throws SallyException {
-        String[] splitCommand = command.split(" ");
-        if (splitCommand.length < 3) {
+        if (!command.contains("/by ")) {
             throw new SallyException("Oops! I don't understand that, make sure to enter "
                     + "'deadline <description> /by <d-MM-yyyy>' or 'deadline <description> /by <time>' :)");
         }
-        String description = splitCommand[1];
-        String by = splitCommand[3];
+        String description = command.substring(8, command.indexOf("/by") - 1);
+        if (description.isEmpty()) {
+            throw new SallyException("Oops! I don't understand that, make sure to enter "
+                    + "'deadline <description> /by <d-MM-yyyy>' or 'deadline <description> /by <time>' :)");
+        }
+        String by = command.substring(command.indexOf("/by") + 4);
+        if (by.isEmpty()) {
+            throw new SallyException("Oops! I don't understand that, make sure to enter "
+                    + "'deadline <description> /by <d-MM-yyyy>' or 'deadline <description> /by <time>' :)");
+
+        }
         if (isDate(by)) {
             LocalDate byDate;
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
@@ -257,7 +267,7 @@ public class Parser {
      */
     public static void checkTodoValidity(String todo) throws SallyException {
         if (todo.isEmpty() || todo.equals("todo")) {
-            throw new SallyException("Oops! I don't understand that, make sure to enter 'todo <description> :)\"");
+            throw new SallyException("Oops! I don't understand that, make sure to enter 'todo <description>' :)");
         }
     }
 
