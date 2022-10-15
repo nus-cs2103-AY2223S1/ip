@@ -66,7 +66,7 @@ public class Storage {
             return data;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return "error";
+            return "There are no tasks in your list.";
         }
     }
 }
