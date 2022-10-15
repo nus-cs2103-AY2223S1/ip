@@ -7,6 +7,7 @@ import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
+import javafx.application.Platform;
 
 public class Duke {
 
@@ -24,21 +25,29 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-        Parser parser = new Parser(this.path, this.taskList);
+        Parser parser = new Parser(this.taskList);
         String response = "";
+        String storageErrorMessage = "";
+
         try {
             response = parser.parseInput(input);
         } catch (DukeException e) {
             return e.getMessage();
         }
-        if (response.equals("Bye. Hope to see you again soon!")) {
-            try {
-                Storage.writeData(this.taskList, this.path);
-            } catch (IOException e) {
-                response += "Unfortunately, saving of data has failed.";
-            }
+
+        //Save tasks to file after every valid input.
+        try {
+            Storage.writeData(this.taskList, this.path);
+        } catch (IOException e) {
+            storageErrorMessage = System.lineSeparator() 
+                    + "Saving of tasks has failed. " + e.getMessage();
         }
-        return response;
+
+        //Check for exit response.
+        if (response.equals("Bye. Hope to see you again soon!")) {
+            Platform.exit();
+        }
+        return response + storageErrorMessage;
     }
 }
 

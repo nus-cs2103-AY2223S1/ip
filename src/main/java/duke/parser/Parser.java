@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
-import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
 /**
@@ -13,11 +12,9 @@ import duke.tasklist.TaskList;
  */
 public class Parser {
 
-    private String path;
     private TaskList taskList;
 
-    public Parser(String path, TaskList taskList) {
-        this.path = path;
+    public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
@@ -56,7 +53,7 @@ public class Parser {
         }
 
         if (numCommandArgs < 2) {
-            throw new DukeException("Invalid number of arguments.");
+            throw new DukeException("Invalid command or invalid number of arguments.");
         }
         switch (command) {
             case "unmark":

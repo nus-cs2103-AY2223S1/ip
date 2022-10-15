@@ -10,7 +10,7 @@ import duke.tasklist.TaskList;
 public class ParserTest {
     @Test
     public void byeTest() {
-        Parser parser = new Parser("", new TaskList());
+        Parser parser = new Parser(new TaskList());
         String result = "";
         try {
             result = parser.parseInput("bye");
