@@ -24,9 +24,10 @@ public class Duke {
     }
 
     public String getResponse(String input) {
+        Parser parser = new Parser(this.path, this.taskList);
         String response = "";
         try {
-            response = Parser.parseInput(input, this.taskList);
+            response = parser.parseInput(input);
         } catch (DukeException e) {
             return e.getMessage();
         }

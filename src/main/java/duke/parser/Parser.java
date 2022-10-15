@@ -5,12 +5,21 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
 /**
- * Class containing static methods for parsing user input and calling required TaskList commands.
+ * Class containing methods for parsing user input and calling required TaskList commands.
  */
 public class Parser {
+
+    private String path;
+    private TaskList taskList;
+
+    public Parser(String path, TaskList taskList) {
+        this.path = path;
+        this.taskList = taskList;
+    }
 
     /**
      * Types of tasks that can be added.
@@ -31,11 +40,10 @@ public class Parser {
      * 
      * 
      * @param input String input from user to parse.
-     * @param taskList taskList object to handle the command instructions.
      * @return String representing the response after command is executed.
      * @throws DukeException if string input is incorrectly formatted or cannot be understood.
      */
-    public static String parseInput(String input, TaskList taskList) throws DukeException {
+    public String parseInput(String input) throws DukeException {
         String[] commands = input.split(" ", 2);
         String command = commands[0];
         int numCommandArgs = commands.length;
@@ -52,22 +60,22 @@ public class Parser {
         }
         switch (command) {
             case "unmark":
-            return parseIndexCommand(commands[1], IndexCommands.UNMARK, taskList);
+            return parseIndexCommand(commands[1], IndexCommands.UNMARK);
 
             case "mark":
-            return parseIndexCommand(commands[1], IndexCommands.MARK, taskList);
+            return parseIndexCommand(commands[1], IndexCommands.MARK);
 
             case "todo":
-            return parseTask(commands[1], TaskType.TODO, taskList);
+            return parseTask(commands[1], TaskType.TODO);
 
             case "deadline":
-            return parseTask(commands[1], TaskType.DEADLINE, taskList);
+            return parseTask(commands[1], TaskType.DEADLINE);
 
             case "event":
-            return parseTask(commands[1], TaskType.EVENT, taskList);
+            return parseTask(commands[1], TaskType.EVENT);
 
             case "delete":
-            return parseIndexCommand(commands[1], IndexCommands.DELETE, taskList);
+            return parseIndexCommand(commands[1], IndexCommands.DELETE);
 
             case "find":
                 String content = commands[1];
@@ -75,7 +83,7 @@ public class Parser {
 
             case "tag":
                 String tagContent = commands[1];
-                return parseTag(tagContent, taskList);
+                return parseTag(tagContent);
             
             default:
             throw new DukeException("I'm sorry, but I don't know what that means.");
@@ -87,11 +95,10 @@ public class Parser {
      * 
      * @param content String representation of index of task in taskList to modify.
      * @param type Enum type of command to perform on taskList.
-     * @param taskList taskList object to handle the command instructions.
      * @return String representing the response after command is executed. 
      * @throws DukeException if string representation of index cannot be parsed into an integer.
      */
-    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) 
+    public String parseIndexCommand(String content, IndexCommands type) 
             throws DukeException {
         int index = -1;
         try {
@@ -102,13 +109,13 @@ public class Parser {
 
         switch(type) {
             case UNMARK:
-            return taskList.unMarkTask(index);
+            return this.taskList.unMarkTask(index);
 
             case MARK:
-            return taskList.markTask(index);
+            return this.taskList.markTask(index);
 
             case DELETE:
-            return taskList.deleteTask(index);
+            return this.taskList.deleteTask(index);
 
             default:
             throw new DukeException("I'm sorry, but I don't know what that means.");
@@ -120,11 +127,10 @@ public class Parser {
      * 
      * @param content String representing the details of the task to be added.
      * @param type Enum type of task to be added.
-     * @param taskList taskList object to add the task into.
      * @return String representing the response after the task has been added.
      * @throws DukeException if formatting of task details is incorrect.
      */
-    public static String parseTask(String content, TaskType type, TaskList taskList) 
+    public String parseTask(String content, TaskType type) 
             throws DukeException {
         if (content.length() == 0) {
             throw new DukeException("The description of a task cannot be empty.");
@@ -133,7 +139,7 @@ public class Parser {
         String[] contents;
         switch (type) {
             case TODO:
-            return taskList.addToDo(content);
+            return this.taskList.addToDo(content);
 
             case DEADLINE:
             if (!content.contains(" by ")) {
@@ -177,10 +183,10 @@ public class Parser {
 
         switch(type) {
             case DEADLINE:
-            return taskList.addDeadline(desc, date, time);
+            return this.taskList.addDeadline(desc, date, time);
 
             case EVENT:
-            return taskList.addEvent(desc, date, time);
+            return this.taskList.addEvent(desc, date, time);
 
             default:
             throw new DukeException("Something went wrong here.");
@@ -191,11 +197,10 @@ public class Parser {
      * Parses tag and adds tag to specified task.
      * 
      * @param content String representing tag and task index.
-     * @param taskList taskList object to add the task into.
      * @return String representing the response after the tag had been added.
      * @throws DukeException if formatting of tag or task index is incorrect.
      */
-    public static String parseTag(String content, TaskList taskList) throws DukeException {
+    public String parseTag(String content) throws DukeException {
         String[] tagSplit = content.split(" ", 2);
         if (tagSplit.length < 2) {
             throw new DukeException("Formatting of tag command is incorrect.");
@@ -213,6 +218,6 @@ public class Parser {
             throw new DukeException("Please enter a valid task number.");
         }
 
-        return taskList.tagTask(index, tag);
+        return this.taskList.tagTask(index, tag);
     }
 }

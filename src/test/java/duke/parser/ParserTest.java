@@ -10,9 +10,10 @@ import duke.tasklist.TaskList;
 public class ParserTest {
     @Test
     public void byeTest() {
+        Parser parser = new Parser("", new TaskList());
         String result = "";
         try {
-            result = Parser.parseInput("bye", new TaskList());
+            result = parser.parseInput("bye");
         } catch (DukeException e) {
             System.out.println("Valid input failed.");
         }
