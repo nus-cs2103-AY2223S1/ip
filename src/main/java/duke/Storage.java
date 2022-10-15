@@ -28,43 +28,29 @@ public class Storage {
             } else if (firsttask.equals("D")) {
                 int status = reader.nextInt();
                 String skipSpaceDeadline =reader.next();
-                String addtask = reader.next().trim();
-                String bar = "|";
-                String tocheck = "";
-                int i = 0;
-                while (true) {
-                    String toappend = reader.next().trim();
-                    tocheck = toappend;
-                    addtask = addtask + " " + toappend;
-                    i++;
-                    if(!tocheck.equals(bar)){
-                        break;
-                    }
-                }
-                String skipSpaceDeadline2 = reader.next();
-                String deadLineDay =  reader.nextLine().trim();
-                Deadlines d = new Deadlines(addtask, deadLineDay);
+                String readRemainingText = reader.nextLine().trim();
+                String[] arrOfStrDeadline = readRemainingText.split("@", 2);
+                String task = arrOfStrDeadline[0];
+                String deadLineDay = arrOfStrDeadline[1];
+
+                Deadlines d = new Deadlines(task, deadLineDay);
+
                 if (status == 1){
                     d.setStatus();
                 }
                 storage.add(d);
+
+
             } else {
                 int status = reader.nextInt();
-                String Skipbar =reader.next();
-                String addTask = reader.next().trim();
-                String bar = "|";
-                String toBeChecked = "";
-                while (true) {
-                    String toAppend = reader.next().trim();
-                    toBeChecked = toAppend;
-                    addTask = addTask + " " + toAppend;
-                    if(!toBeChecked.equals(bar)){
-                        break;
-                    }
-                }
-                String skipbar2 = reader.next();
-                String deadLineDay =  reader.nextLine().trim();
-                Events t = new Events(addTask, deadLineDay);
+                String skipSpaceEvent =reader.next();
+                String test = reader.nextLine().trim();
+                String[] arrOfEvent = test.split("@", 2);
+                String addTask = arrOfEvent[0];
+                String eventTime = arrOfEvent[1];
+
+
+                Events t = new Events(addTask, eventTime);
                 if (status == 1){
                     t.setStatus();
                 }
@@ -95,12 +81,12 @@ public class Storage {
                 String task = (((Deadlines) storage.get(i)).getDeadLineTask()).trim();
                 String date = (((Deadlines) storage.get(i)).getDeadLine());
                 int itemStatus = (((Deadlines) storage.get(i)).getStatusint());
-                pw.println("D " + itemStatus + " | " + task + " | "+ date);
+                pw.println("D " + itemStatus + " | " + task + " @ "+ date);
             }else{
                 String task = (((Events) storage.get(i)).getEventsDescription()).trim();
                 String date = (((Events) storage.get(i)).getEvent());
                 int itemStatus = (((Events) storage.get(i)).getStatusint());
-                pw.println("E " + itemStatus +" | " + task +" | " + date );
+                pw.println("E " + itemStatus +" | " + task +" @ " + date );
             }
         }
         pw.close();
