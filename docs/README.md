@@ -59,19 +59,19 @@ DUKE will add the event Task to the task list.
 
 Format:
 
-`event <Task Information> /at <Time in yyyy-mm-dd hh:mm>`
+`event <Task Information> /at <Time in yyyy-mm-dd>`
 
 
 Example of usage:
 
-`event read chapter 2 /at 2022-10-01 11:22`
+`event read chapter 2 /at 2022-10-01`
 
 Output:
 
 ```
 ***************************************
 Got it. I've added this task:
-[E][ ] read chapter 2 (at: 2022-10-01 11:22)
+[E][ ] read chapter 2 (at: 2022-10-01)
 Now you have 2 tasks in the list.
 ***************************************
 ```
@@ -83,19 +83,19 @@ DUKE will add the deadline Task to the task list.
 
 Format:
 
-`deadline <Task Information> /by <Time in yyyy-mm-dd hh:mm>`
+`deadline <Task Information> /by <Time in yyyy-mm-dd>`
 
 
 Example of usage:
 
-`deadline chapter 2 refelction /by 2022-10-07 18:26`
+`deadline chapter 2 refelction /by 2022-10-07`
 
 Output:
 
 ```
 ***************************************
 Got it. I've added this task:
-[D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+[D][ ] chapter 2 refelction (by: 2022-10-07)
 Now you have 3 tasks in the list.
 ***************************************
 ```
@@ -122,8 +122,8 @@ Output:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 
@@ -149,15 +149,15 @@ Outputs in sequence:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 `> mark 2`
 ```
 ***************************************
 Nice! I've marked this task as done:
-[E][X] read chapter 2 (at: 2022-10-01 11:22)
+[E][X] read chapter 2 (at: 2022-10-01)
 ***************************************
 ```
 `> list`
@@ -165,8 +165,8 @@ Nice! I've marked this task as done:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][X] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][X] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 Where `[ ]` indicates that this task is not done, and `[X]` indicates that this task is done.
@@ -193,15 +193,15 @@ Outputs in sequence:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][X] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][X] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 `> unmark 2`
 ```
 ***************************************
 Nice! I've marked this task as not done:
-[E][ ] read chapter 2 (at: 2022-10-01 11:22)
+[E][ ] read chapter 2 (at: 2022-10-01)
 ***************************************
 ```
 `> list`
@@ -209,8 +209,8 @@ Nice! I've marked this task as not done:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 Where `[ ]` indicates that this task is not done.
@@ -234,8 +234,8 @@ Outputs in sequence:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 `> delete 1`
@@ -250,8 +250,8 @@ Now you have 2 tasks in the list.
 ```
 ***************************************
 Here are the tasks in your list:
-1. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-2. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+1. [E][ ] read chapter 2 (at: 2022-10-01)
+2. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 Note: The indices of Task 2 and 3 changed to 1 and 2 when original Task 1 is deleted.
@@ -273,8 +273,8 @@ Outcomes in sequence:
 ```
 ***************************************
 Here are the tasks in your list:
-1. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-2. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+1. [E][ ] read chapter 2 (at: 2022-10-01)
+2. [D][ ] chapter 2 refelction (by: 2022-10-07)
 3. [T][ ] open the first page of chapter 3
 4. [T][ ] read chapter 3
 ***************************************
@@ -283,15 +283,15 @@ Here are the tasks in your list:
 ```
 ***************************************
 Here are the matching tasks in your list:
-1. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-2. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+1. [E][ ] read chapter 2 (at: 2022-10-01)
+2. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 `> find read`
 ```
 ***************************************
 Here are the matching tasks in your list:
-1. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
+1. [E][ ] read chapter 2 (at: 2022-10-01)
 2. [T][ ] read chapter 3
 ***************************************
 ```
@@ -314,15 +314,15 @@ Outcomes in sequence:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22)
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01)
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 `> tag 2 interesting`
 ```
 ***************************************
 OK! I have tagged:
-[E][ ] read chapter 2 (at: 2022-10-01 11:22) as #interesting
+[E][ ] read chapter 2 (at: 2022-10-01) as #interesting
 ***************************************
 ```
 `> list`
@@ -330,8 +330,8 @@ OK! I have tagged:
 ***************************************
 Here are the tasks in your list:
 1. [T][ ] read book
-2. [E][ ] read chapter 2 (at: 2022-10-01 11:22) as #interesting
-3. [D][ ] chapter 2 refelction (by: 2022-10-07 18:26)
+2. [E][ ] read chapter 2 (at: 2022-10-01) as #interesting
+3. [D][ ] chapter 2 refelction (by: 2022-10-07)
 ***************************************
 ```
 
