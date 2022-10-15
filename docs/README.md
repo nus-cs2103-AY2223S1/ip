@@ -26,16 +26,16 @@ Now you have 1 tasks in the list.
 
 Adds a Deadline task.
 
-`deadline DESCRIPTION by YYYY-MM-DD HH:MM`
+`deadline DESCRIPTION /by YYYY-MM-DD HH:MM`
 
 Example of usage: 
 
-`deadline Assignment Submission by 2022-08-17 23:59`
+`deadline Assignment Submission /by 2022-08-17 23:59`
 
 Expected outcome:
 
 ```
-deadline Assignment Submission by 2022-08-17 23:59
+deadline Assignment Submission /by 2022-08-17 23:59
 Got it. I've added this task:
 [D][ ] Assignment Submission (by: Aug 17 2022 11:59PM)
 Now you have 2 tasks in the list.
@@ -45,16 +45,16 @@ Now you have 2 tasks in the list.
 
 Adds an Event task.
 
-`event DESCRIPTION at YYYY-MM-DD HH:MM`
+`event DESCRIPTION /at YYYY-MM-DD HH:MM`
 
 Example of usage: 
 
-`event Dinner at 2022-08-19 18:00`
+`event Dinner /at 2022-08-19 18:00`
 
 Expected outcome:
 
 ```
-event Dinner at 2022-08-19 18:00
+event Dinner /at 2022-08-19 18:00
 Got it. I've added this task:
 [E][ ] Dinner (by: Aug 19 2022 06:00PM)
 Now you have 3 tasks in the list.

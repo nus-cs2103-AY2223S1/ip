@@ -139,17 +139,17 @@ public class Parser {
             return this.taskList.addToDo(content);
 
             case DEADLINE:
-            if (!content.contains(" by ")) {
+            if (!content.contains(" /by ")) {
                 throw new DukeException("Formatting of deadline is incorrect.");
             }
-            contents = content.split(" by ", 2);
+            contents = content.split(" /by ", 2);
             break;
 
             case EVENT:
-            if (!content.contains(" at ")) {
+            if (!content.contains(" /at ")) {
                 throw new DukeException("Formatting of event is incorrect.");
             }
-            contents = content.split(" at ", 2);
+            contents = content.split(" /at ", 2);
             break;
 
             default:
