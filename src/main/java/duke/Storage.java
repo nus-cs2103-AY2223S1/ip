@@ -9,17 +9,16 @@ import java.util.Scanner;
 public class Storage {
     /**
      *Read the files into the computer
-     * @param readfile
+     * @param reader
      * @param storage
      */
-    public static void readfilez(Scanner readfile, List<Task> storage) {
-        while(readfile.hasNextLine()) {
-            String firsttask = readfile.next();
+    public static void readFile(Scanner reader, List<Task> storage) {
+        while(reader.hasNextLine()) {
+            String firsttask = reader.next();
             if (firsttask.equals("T")) {
-                int status = readfile.nextInt();
-                String Skipbar =readfile.next();
-                String task = readfile.nextLine();
-
+                int status = reader.nextInt();
+                String skipSpaceToDo =reader.next();
+                String task = reader.nextLine();
                 ToDos t = new ToDos(task);
                 if (status == 1){
                     t.setStatus();
@@ -27,14 +26,14 @@ public class Storage {
                 storage.add(t);
 
             } else if (firsttask.equals("D")) {
-                int status = readfile.nextInt();
-                String Skipbar =readfile.next();
-                String addtask = readfile.next().trim();
+                int status = reader.nextInt();
+                String skipSpaceDeadline =reader.next();
+                String addtask = reader.next().trim();
                 String bar = "|";
                 String tocheck = "";
                 int i = 0;
                 while (true) {
-                    String toappend = readfile.next().trim();
+                    String toappend = reader.next().trim();
                     tocheck = toappend;
                     addtask = addtask + " " + toappend;
                     i++;
@@ -42,30 +41,30 @@ public class Storage {
                         break;
                     }
                 }
-                String skipbar2 = readfile.next();
-                String deadlineday =  readfile.nextLine().trim();
-                Deadlines d = new Deadlines(addtask, deadlineday);
+                String skipSpaceDeadline2 = reader.next();
+                String deadLineDay =  reader.nextLine().trim();
+                Deadlines d = new Deadlines(addtask, deadLineDay);
                 if (status == 1){
                     d.setStatus();
                 }
                 storage.add(d);
             } else {
-                int status = readfile.nextInt();
-                String Skipbar =readfile.next();
-                String addtask = readfile.next().trim();
+                int status = reader.nextInt();
+                String Skipbar =reader.next();
+                String addTask = reader.next().trim();
                 String bar = "|";
-                String tocheck = "";
+                String toBeChecked = "";
                 while (true) {
-                    String toappend = readfile.next().trim();
-                    tocheck = toappend;
-                    addtask = addtask + " " + toappend;
-                    if(!tocheck.equals(bar)){
+                    String toAppend = reader.next().trim();
+                    toBeChecked = toAppend;
+                    addTask = addTask + " " + toAppend;
+                    if(!toBeChecked.equals(bar)){
                         break;
                     }
                 }
-                String skipbar2 = readfile.next();
-                String deadlineday =  readfile.nextLine().trim();
-                Events t = new Events(addtask, deadlineday);
+                String skipbar2 = reader.next();
+                String deadLineDay =  reader.nextLine().trim();
+                Events t = new Events(addTask, deadLineDay);
                 if (status == 1){
                     t.setStatus();
                 }
@@ -76,13 +75,13 @@ public class Storage {
 
     /**
      *Update the file when requested. E.g When just add an item to the list
-     * @param thefile
+     * @param workingFile
      * @param storage
      * @throws IOException
      */
-    public static void UpdateFile (File thefile,List<Task> storage) throws IOException {
+    public static void updateFile(File workingFile, List<Task> storage) throws IOException {
 
-        FileWriter fw = new FileWriter(thefile);
+        FileWriter fw = new FileWriter(workingFile);
         PrintWriter pw = new PrintWriter(fw);
 
         int LengthOfArrayList;
@@ -90,22 +89,20 @@ public class Storage {
         for (int i = 0; i < LengthOfArrayList; i++) {
             if (storage.get(i) instanceof ToDos) {
                 String task = (((ToDos) storage.get(i)).getToDoDescirption()).trim();
-                int statusofITEM = (((ToDos) storage.get(i)).getStatusint());
-                pw.println("T " + statusofITEM + " | " + task);
+                int itemStatus = (((ToDos) storage.get(i)).getStatusint());
+                pw.println("T " + itemStatus + " | " + task);
             }else if (storage.get(i) instanceof Deadlines) {
                 String task = (((Deadlines) storage.get(i)).getDeadLineTask()).trim();
                 String date = (((Deadlines) storage.get(i)).getDeadLine());
-                int statusofITEM = (((Deadlines) storage.get(i)).getStatusint());
-                pw.println("D " + statusofITEM + " | " + task + " | "+ date);
+                int itemStatus = (((Deadlines) storage.get(i)).getStatusint());
+                pw.println("D " + itemStatus + " | " + task + " | "+ date);
             }else{
                 String task = (((Events) storage.get(i)).getEventsDescription()).trim();
                 String date = (((Events) storage.get(i)).getEvent());
-                int statusofITEM = (((Events) storage.get(i)).getStatusint());
-                pw.println("E " + statusofITEM +" | " + task +" | " + date );
+                int itemStatus = (((Events) storage.get(i)).getStatusint());
+                pw.println("E " + itemStatus +" | " + task +" | " + date );
             }
-
         }
-
         pw.close();
     }
 
@@ -113,7 +110,7 @@ public class Storage {
      *Its the same as list comment.Everything will be displayed
      * @param ListofMessages
      */
-    public static String DisplayListOfMessages(List<Task> ListofMessages) {
+    public static String displayListOfMessages(List<Task> ListofMessages) {
         int LengthOfArrayList;
         String response = "";
         LengthOfArrayList = ListofMessages.size();
@@ -125,7 +122,6 @@ public class Storage {
                 response += finalmessage;
                 response += "\n";
             }else if (ListofMessages.get(i) instanceof Deadlines) {
-                String ToManipulate = ListofMessages.get(i).getStatusIcon();
                 String ItemType = ((Deadlines) ListofMessages.get(i)).getItem();
                 String GetDateLine = ((Deadlines) ListofMessages.get(i)).getDeadLine();//Type casting
                 String TaskName = ((Deadlines) ListofMessages.get(i)).getDeadLineTask();
@@ -134,23 +130,18 @@ public class Storage {
                 response += "\n";
 
             }else if (ListofMessages.get(i) instanceof Events) {
-                String ToManipulate = ListofMessages.get(i).getStatusIcon();
                 String ItemType = ((Events) ListofMessages.get(i)).getItem();
                 String GetDateLine = ((Events) ListofMessages.get(i)).getEvent();
                 String TaskName = ((Events) ListofMessages.get(i)).getEventsDescription();
                 String finalmessage = NumberToDisplay + "." + ItemType + "[" + ListofMessages.get(i).getStatusIcon() + "] " + TaskName + "(at: " + GetDateLine + ")";
                 response += finalmessage;
                 response += "\n";
-
             } else {
                 String finalmessage = NumberToDisplay + ".[" + ((ListofMessages.get(i)).getStatusIcon()) + "]" + " " + ((ListofMessages.get(i)).getTask());
                 response += finalmessage;
                 response += "\n";
-
             }
         }
         return response;
     }
-
-
 }

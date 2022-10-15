@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class Events extends Task {
@@ -28,7 +27,7 @@ public class Events extends Task {
      *Helps in the creation of date
      * @return
      */
-    public LocalDate getDateonlyE() {
+    public LocalDate getDateOnlyEvents() {
         String str = this.Eventsdeadlineby;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateTime = LocalDate.parse(str, formatter);
@@ -40,7 +39,7 @@ public class Events extends Task {
      * @return the date in a different format
      * @throws ParseException
      */
-    public String getDateonlyEnewformat() throws ParseException {
+    public String getDateOnlyEventsNewFormat() throws ParseException {
         final String OLD_FORMAT = "dd/MM/yyyy";
         final String NEW_FORMAT = "yyyy/MM/dd";
 
@@ -57,7 +56,7 @@ public class Events extends Task {
      * @return local date time for event
      */
 
-    public LocalDateTime getDateTimeE() {
+    public LocalDateTime getDateTimeEvents() {
         String str = this.Eventsdeadlineby;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
@@ -95,9 +94,5 @@ public class Events extends Task {
     public String getItem() {
         return "[E]";
     }
-
-
-
-
 
 }

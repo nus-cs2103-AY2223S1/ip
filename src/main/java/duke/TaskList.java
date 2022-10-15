@@ -116,8 +116,6 @@ public class TaskList {
         String response = "";
         String Tobedisplayed = "  " + item + "[ ]" + " " + deadlinetask + " (by: "+ deadline + ")";
         removeItem(nextvalue,storage);
-
-
         response += "Noted. I've removed this task:";
         response += "\n";
         response += Tobedisplayed;
@@ -137,11 +135,8 @@ public class TaskList {
      */
     public static String deleteevents (int nextvalue,String symbol, String eventdescription,String item,List<Task> storage) {
         String response = "";
-//        System.out.println("Noted. I've removed this task:");
         String Tobedisplayed = "  " + symbol + "[ ]" + " " + eventdescription + "(at: "+ item + ")";
-//        System.out.println(Tobedisplayed);
         removeItem(nextvalue,storage);
-//        System.out.println(NumberOfItemsInList(storage));
         response += "Noted. I've removed this task:";
         response += "\n";
         response += Tobedisplayed;
@@ -153,7 +148,6 @@ public class TaskList {
 
 
     public static void mark () {}
-
 
     /**
      * Check number of items in the list

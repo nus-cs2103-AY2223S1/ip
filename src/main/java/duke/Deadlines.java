@@ -20,21 +20,21 @@ public class Deadlines extends Task {
         this.deadlineby = deadlineby;
     }
 
-    public LocalDate getDateonlyd() {
+    public LocalDate getDateOnlyDeadLine() {
         String str = this.deadlineby;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateTime = LocalDate.parse(str, formatter);
         return dateTime;
     }
 
-    public LocalDateTime getDateTimeD() {
+    public LocalDateTime getDateTimeDeadLine() {
         String str = this.deadlineby;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
         return dateTime;
     }
 
-    public String getDateonlyDnewformat() throws ParseException {
+    public String getDateOnlyDeadLineNewFormat() throws ParseException {
         final String OLD_FORMAT = "dd/MM/yyyy";
         final String NEW_FORMAT = "yyyy/MM/dd";
 
