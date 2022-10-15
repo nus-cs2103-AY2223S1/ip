@@ -8,10 +8,13 @@ import java.nio.file.StandardOpenOption;
 import javafx.application.Application;
 
 /**
- * Main class that calls the launching of the Main class
+ * Represents the Duke application.
  */
 public class Duke {
 
+    /**
+     * Constructs Duke object.
+     */
     public Duke() {
         try {
             Storage.load();
@@ -20,11 +23,19 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point of Duke application.
+     */
     public static void main(String[] args) {
         Application.launch(Launcher.class,args);
     }
 
 
+    /**
+     * Returns string output for user's input in the CLI.
+     *
+     * @return String output for user's response.
+     */
     public String getResponse(String input) {
         return Parser.startParse(input);
     }

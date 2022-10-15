@@ -14,7 +14,7 @@ Expected outcome:
 
 ```
 Got it! I'v added this task:
-[T][]football
+[T][O]football
 Now you have one tasks in the list.
 ```
 ### Feature - `Deadline`
@@ -23,13 +23,13 @@ Allows you to add a deadline for something that you have to complete by then
 
 Example of usage:
 
-`deadline assignment1 /by 2022-09-08 7pm`
+`deadline assignment1 /by 2022-09-08 14:00`
 
 Expected outcome:
 
 ```
 Got it! I'v added this task:
-[D][]assignment1 (by 8th September 2022 7pm)
+[D][O]assignment1 (by 8th September 2022 14:00)
 Now you have 2 tasks in the list.
 ```
 
@@ -39,13 +39,13 @@ Allows you to add a event that is upcoming for you
 
 Example of usage:
 
-`event tournament /at 2022-09-08 7pm`
+`event tournament /at 2022-09-08 14:00`
 
 Expected outcome:
 
 ```
 Got it! I'v added this task:
-[E][]tournament (at 8th September 2022 7pm)
+[E][O]tournament (at 8th September 2022 14:00)
 Now you have 3 tasks in the list.
 ```
 
@@ -91,7 +91,7 @@ Expected outcome:
 
 ```
 Noted, I have removed this task:
-[T][] football
+[T][O] football
 ```
 
 ### Feature - `list`
@@ -105,7 +105,7 @@ Example of usage:
 Expected outcome:
 
 ```
-1. [T][ ] Football
+1. [T][O] Football
 2. [D][X] Assignment (by: Sep 08 2022 7pm)
 ```
 
@@ -120,7 +120,7 @@ Example of usage:
 Expected outcome:
 
 ```
-1. [T][ ] Football
+1. [T][O] Football
 ```
 
 

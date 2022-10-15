@@ -1,11 +1,15 @@
 package duke;
 
+/**
+ * Parent of all specific Tasks
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Constructor that initializes a task object.
+     * Returns a task object.
+     *
      * @param description short description of the task.
      */
     public Task(String description) {
@@ -16,23 +20,26 @@ public class Task {
 
 
     /**
-     * Method to return date of a particular task.
-     * @return String representation of date
+     * Returns string representation of the task's date.
+     *
+     * @return String representation of date.
      */
     public String date() {
         return "";
     }
 
     /**
-     * Method to return timing of a particular task.
-     * @return String representation of the task timing
+     * Returns string representation of the timing of the task.
+     *
+     * @return String representation of the task timing.
      */
     public String timing() {
         return "";
     }
 
     /**
-     * tells us if a particular task is done or not.
+     * Returns an icon representing if the tasks has been done or not.
+     *
      * @return cross represents done, otherwise blank space means not done.
      */
     public String getStatusIcon() {
@@ -40,22 +47,23 @@ public class Task {
     }
 
     /**
-     * marks a specific task object as done.
+     * Marks a specific task object as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * marks a specific task object as not done.
+     * Marks a specific task object as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
     /**
-     * returns String representation.
-     * @return String representation of Task
+     * Returns string representation of the task.
+     *
+     * @return String representation of Task.
      */
     public String toString() {
         return this.description;

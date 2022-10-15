@@ -1,13 +1,17 @@
 package duke;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
-
+/**
+ * Represents database of Duke.
+ */
 public class Storage {
 
     /**
-     * stores the tasklist into a file.
+     * Stores the tasklist into a file.
      *
      * @param array represents the list of tasks
      */
@@ -29,17 +33,17 @@ public class Storage {
     }
 
     /**
-     * checks if the file exists or not.
+     * Checks if the file exists or not.
      *
      * @return boolean value that tells us if the file exists or not
      */
     public static boolean fileExists() {
-        File f = new File("./duke.txt");
-        return f.exists();
+        File file = new File("./duke.txt");
+        return file.exists();
     }
 
     /**
-     * clears the file of all its contents.
+     * Clears the file of all its contents.
      */
     public static void clearFile() {
         FileWriter fwOb = null;
@@ -59,17 +63,18 @@ public class Storage {
     }
 
     /**
-     * loads the tasks in the file onto the array.
+     * Loads the tasks in the file onto the array.
+     *
      * @throws  FileNotFoundException if the file has not been made yet.
      */
     public static void load() throws FileNotFoundException {
-        BufferedReader br = new BufferedReader(new FileReader("./duke.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("./duke.txt"));
         while (true) {
             try {
-                String taskString = br.readLine();
+                String taskString = reader.readLine();
                 if (taskString == null) {
                     // EOF reached
-                    br.close();
+                    reader.close();
                     break;
                 }
 
@@ -79,17 +84,15 @@ public class Storage {
                 } else if (array[0].equals("T") && array[2].equals("X")) {
                     Parser.listOfTasks.add(new Todo(array[1], true));
                 } else if (array[0].equals("D") && array[2].equals("O")) {
-                    Parser.listOfTasks.add(new Deadline(array[1], array[3], array[4], false));
+                    Parser.listOfTasks.add(new Deadline(array[1], LocalDate.parse(array[3]), LocalTime.parse(array[4]), false));
                 } else if (array[0].equals("D") && array[2].equals("X")) {
-                    Parser.listOfTasks.add(new Deadline(array[1], array[3], array[4], true));
+                    Parser.listOfTasks.add(new Deadline(array[1], LocalDate.parse(array[3]), LocalTime.parse(array[4]), true));
                 } else if (array[0].equals("E") && array[2].equals("O")) {
-                    Parser.listOfTasks.add(new Event(array[1], array[3], array[4], false));
+                    Parser.listOfTasks.add(new Event(array[1], LocalDate.parse(array[3]), LocalTime.parse(array[4]), false));
                 } else if (array[0].equals("E") && array[2].equals("X")) {
-                    Parser.listOfTasks.add(new Event(array[1], array[3], array[4], true));
+                    Parser.listOfTasks.add(new Event(array[1], LocalDate.parse(array[3]), LocalTime.parse(array[4]), true));
                 }
 
-
-                //Parser.listOfTasks
             } catch (IOException e) {
                 e.printStackTrace();
             }
