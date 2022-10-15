@@ -1,0 +1,9 @@
+todo run
+deadline push /by Mon
+event pull /at nine
+mark 1
+unmark 1
+list
+delete 1
+list
+bye
