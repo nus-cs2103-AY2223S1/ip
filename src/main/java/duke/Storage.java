@@ -5,13 +5,13 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.nio.file.Path;
-import java.nio.file.Files;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages the file where all the tasks are read or written into
@@ -69,40 +69,28 @@ public class Storage {
         List<Task> inputTasks = new ArrayList<>();
         BufferedReader reader = Files.newBufferedReader(this.outputFile);
         String taskLine = reader.readLine();
+        Task loadTask = null;
         while (taskLine != null) {
             String[] taskDetails = taskLine.split("\\s\\|\\s");
             switch (taskDetails[0]) {
             case "Event":
-                Task loadEvent = new Event(taskDetails[2], taskDetails[3]);
-                if (taskDetails[1].equals("0")) {
-                    loadEvent.markAsUndone();
-                } else {
-                    loadEvent.markAsDone();
-                }
-                inputTasks.add(loadEvent);
-                taskLine = reader.readLine();
+                loadTask = new Event(taskDetails[2], taskDetails[3]);
                 break;
             case "Deadline":
-                Task loadDeadline = new Deadline(taskDetails[2], taskDetails[3]);
-                if (taskDetails[1].equals("0")) {
-                    loadDeadline.markAsUndone();
-                } else {
-                    loadDeadline.markAsDone();
-                }
-                inputTasks.add(loadDeadline);
-                taskLine = reader.readLine();
+                loadTask = new Deadline(taskDetails[2], taskDetails[3]);
                 break;
             case "Todo":
-                Task loadTodo = new Todo(taskDetails[2]);
-                if (taskDetails[1].equals("0")) {
-                    loadTodo.markAsUndone();
-                } else {
-                    loadTodo.markAsDone();
-                }
-                inputTasks.add(loadTodo);
-                taskLine = reader.readLine();
-                break;
+                loadTask = new Todo(taskDetails[2]);
+                // Fallthrough
             }
+
+            if (taskDetails[1].equals("0")) {
+                loadTask.markAsUndone();
+            } else {
+                loadTask.markAsDone();
+            }
+            inputTasks.add(loadTask);
+            taskLine = reader.readLine();
         }
         return inputTasks;
     }

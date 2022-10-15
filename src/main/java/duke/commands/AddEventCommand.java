@@ -8,18 +8,28 @@ import duke.task.Event;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+/**
+ * A <code>Command</code> class that handles the adding of an <code>Event</code>
+ */
 public class AddEventCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>AddEventCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public AddEventCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException, DateTimeParseException {
         String[] taskDesc = Arrays.copyOfRange(arguments, 1, arguments.length);
         taskDesc = String.join(" ", taskDesc).split(" /at ");
-        System.out.println(taskDesc[0]);
         if (taskDesc.length < 2 || taskDesc[0].equals(" ")) {
             throw new DukeException("You're missing some details!\nRemember to include the description "
                     + "followed by '/at dd/MM/yyyy HHmm'");

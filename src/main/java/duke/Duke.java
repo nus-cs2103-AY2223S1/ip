@@ -47,7 +47,7 @@ public class Duke {
         while (!this.tasks.getTaskListStatus()) {
             try {
                 String inputCommand = ui.readInput();
-                Command command = Parser.parse(inputCommand, tasks);
+                Command command = Parser.parse(inputCommand);
                 response = command.execute(storage, tasks);
             } catch (DukeException err) {
                 ui.printError(err.getMessage());
@@ -63,15 +63,14 @@ public class Duke {
     public String getResponse(String input) {
         String response = null;
         try {
-            Command command = Parser.parse(input, tasks);
+            Command command = Parser.parse(input);
             response = command.execute(storage, tasks);
         } catch (DukeException dukeErr) {
             response = dukeErr.getMessage();
         } catch (DateTimeParseException dtErr) {
             response = "I don't recognise this time format."
-                    + "\nThe format of the DateTime should be as follows:"
-                    + "\nFor Deadlines --> dd/MM/yyyy[ HHmm]"
-                    + "\nFor Events --> dd/MM/yyyy HHmm";
+                    + "\nThe format of the DateTime should be as follows: "
+                    + "dd/MM/yyyy HHmm";
         } catch (AssertionError assertErr) {
             response = assertErr.getMessage();
         }

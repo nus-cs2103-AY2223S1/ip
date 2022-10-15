@@ -5,13 +5,24 @@ import duke.task.Task;
 import duke.TaskList;
 import duke.Storage;
 
+/**
+ * A <code>Command</code> class that handles the marking of a <code>Task</code> (as done)
+ */
 public class MarkCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>MarkCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public MarkCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException, AssertionError {
         if (arguments.length < 2) {

@@ -6,8 +6,14 @@ import duke.Storage;
 
 import java.util.List;
 
+/**
+ * A <code>Command</code> class that handles the listing of all <code>Task</code>
+ */
 public class ListCommand extends Command {
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) {
         List<Task> listOfTasks = tl.getTasks();

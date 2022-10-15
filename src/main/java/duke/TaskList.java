@@ -1,11 +1,7 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
-import duke.task.Todo;
 
-import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +27,11 @@ public class TaskList {
         this.isClosed = false;
     }
 
+    /**
+     * Adds a <code>Task</code> to the list of tasks
+     *
+     * @param t Task to add
+     */
     public void addTask(Task t) {
         this.tasks.add(t);
     }
@@ -54,31 +55,20 @@ public class TaskList {
     }
 
     /**
-     * Prints out all the tasks in the <code>TaskList</code>
+     * Obtain the status of the <code>TaskList</code>
      *
-     * @return Message to display
-     * @throws DukeException If there is a Duke-specific error encountered
+     * @return True if the <code>TaskList</code> is closed; otherwise false
      */
-    public String listTask() throws DukeException {
-        String response = null;
-        if (this.tasks.size() == 0) { // List is empty
-            response = "Your list is empty! Why not add a task to it first?";
-        } else {
-            response = "Here are the tasks in your list:\n";
-            for (int i = 0; i < this.tasks.size(); i++) {
-                Task curTask = this.tasks.get(i);
-                response = response.concat((i + 1) + "." + curTask.toString() + "\n");
-            }
-        }
-        return response;
+    public boolean getTaskListStatus() {
+        return this.isClosed;
     }
 
     /**
      * Marks a specific task in the list of tasks as done
      *
      * @param index The specific task number
-     * @return Message to display
-     * @throws IOException If the task index is invalid
+     * @return Task that is marked as done
+     * @throws IndexOutOfBoundsException If the task index is invalid
      */
     public Task markTask(int index) throws IndexOutOfBoundsException {
         Task taskChosen = this.tasks.get(index);
@@ -90,8 +80,8 @@ public class TaskList {
      * Marks a specific task in the list of tasks as not done
      *
      * @param index The specific task number
-     * @return Message to display
-     * @throws IOException If the task index is invalid
+     * @return Task that is marked as not done
+     * @throws IndexOutOfBoundsException If the task index is invalid
      */
     public Task unmarkTask(int index) throws IndexOutOfBoundsException {
         Task taskChosen = this.tasks.get(index);
@@ -100,61 +90,11 @@ public class TaskList {
     }
 
     /**
-     * Creates a <code>Todo</code> task
-     *
-     * @param desc The description of the task
-     * @return Message to display
-     * @throws IOException If the task description cannot be interpreted
-     */
-    public String createToDo(String[] desc) throws IOException {
-        Todo newToDo = new Todo(String.join(" ", desc));
-        this.tasks.add(newToDo);
-        String response = "Got it! I have added this task to your list:\n  "
-                + newToDo.toString()
-                + "\nNow you have " + getSize() + " tasks in the list.";
-        storage.refreshList(this.tasks);
-        return response;
-    }
-
-    /**
-     * Creates a <code>Deadline</code> task
-     *
-     * @param desc The description of the task
-     * @return Message to display
-     * @throws IOException If the task description cannot be interpreted
-     */
-    public String createDeadline(String[] desc) throws IOException {
-        Deadline newDeadline = new Deadline(desc[0], desc[1]);
-        this.tasks.add(newDeadline);
-        String response = "Got it! I have added this task to your list:\n  "
-                + newDeadline.toString()
-                + "\nNow you have " + getSize() + " tasks in the list.";
-        storage.refreshList(this.tasks);
-        return response;
-    }
-
-    /**
-     * Creates a <code>Event</code> task
-     *
-     * @param desc The description of the task
-     * @return Message to display
-     * @throws IOException If the task description cannot be interpreted
-     */
-    public String createEvent(String[] desc) throws IOException {
-        Event newEvent = new Event(desc[0], desc[1]);
-        this.tasks.add(newEvent);
-        String response = "Got it! I have added this task to your list:\n  "
-                + newEvent.toString()
-                + "\nNow you have " + getSize() + " tasks in the list.";
-        storage.refreshList(this.tasks);
-        return response;
-    }
-
-    /**
      * Deletes a specific task in the list of tasks
      *
      * @param index The specific task number
      * @return The task that is deleted
+     * @throws IndexOutOfBoundsException If the task index is invalid
      */
     public Task deleteTask(int index) throws IndexOutOfBoundsException {
         Task taskToRemove = this.tasks.get(index);
@@ -166,7 +106,8 @@ public class TaskList {
      * Finds all tasks that has descriptions containing the keyword
      *
      * @param keyword Keyword to match
-     * @return Message response to display
+     * @return List of all tasks that has descriptions containing the keyword
+     * @throws DukeException If the <code>TaskList</code> is empty
      */
     public List<Task> findTasks(String keyword) throws DukeException {
         if (this.tasks.size() == 0) { // List is empty
@@ -187,34 +128,33 @@ public class TaskList {
     }
 
     /**
-     * Snooze a task that has a datetime
+     * Snooze a task that has a DateTime
      *
      * @param index The index of the task
      * @param newDateTime The new DateTime to set
      * @return Message to display
-     * @throws IOException If the task description cannot be interpreted
-     * @throws DukeException If
+     * @throws DateTimeParseException If the DateTime cannot be parsed correctly
+     * @throws DukeException If the DateTime cannot be set correctly
      */
-    public String snoozeTask(int index, String newDateTime) throws DukeException, DateTimeParseException {
+    public String snoozeTask(int index, String newDateTime) throws DateTimeParseException, DukeException {
         String response;
         Task chosenTask = this.tasks.get(index);
         try {
             response = chosenTask.setDatetime(newDateTime);
         } catch (DateTimeParseException err) {
             response = "I don't recognise this time format."
-                    + "\nThe format for your new DateTime should be as followed below"
-                    + "\nFor Events: dd/MM/yyyy HHmm"
-                    + "\nFor Deadlines: dd/MM/yyyy[ HHmm]";
+                    + "\nThe format for your new DateTime should be as follows: "
+                    + "dd/MM/yyyy HHmm";
         }
         storage.refreshList(this.tasks);
         return response;
     }
 
+    /**
+     * Marks the status of the <code>TaskList</code> as closed
+     */
     public void closeTaskList() {
         this.isClosed = true;
     }
 
-    public boolean getTaskListStatus() {
-        return this.isClosed;
-    }
 }

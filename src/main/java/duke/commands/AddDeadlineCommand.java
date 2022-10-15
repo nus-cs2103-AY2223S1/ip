@@ -8,13 +8,24 @@ import duke.task.Deadline;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+/**
+ * A <code>Command</code> class that handles the adding of a <code>Deadline</code>
+ */
 public class AddDeadlineCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>AddDeadlineCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public AddDeadlineCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException, DateTimeParseException {
         String[] taskDesc = Arrays.copyOfRange(arguments, 1, arguments.length);

@@ -7,13 +7,24 @@ import duke.Storage;
 
 import java.util.List;
 
+/**
+ * A <code>Command</code> class that handles the finding of <code>Task</code> descriptions
+ */
 public class FindCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>FindCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public FindCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException {
         if (arguments.length < 2) {
@@ -30,6 +41,7 @@ public class FindCommand extends Command {
         for (Task t : matchingTasks) {
             if (t != null) {
                 isNullList = false;
+                break;
             }
         }
         if (matchingTasks.isEmpty() || isNullList) {

@@ -5,13 +5,24 @@ import duke.task.Task;
 import duke.TaskList;
 import duke.Storage;
 
+/**
+ * A <code>Command</code> that handles the marking of a <code>Task</code> (as not done)
+ */
 public class UnmarkCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>UnmarkCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public UnmarkCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException, AssertionError {
         if (arguments.length < 2) {

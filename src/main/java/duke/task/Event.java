@@ -20,7 +20,7 @@ public class Event extends Task {
      */
     public Event(String description, String dt) throws DateTimeParseException {
         super(description);
-        DateTimeFormatter parserFormats = DateTimeFormatter.ofPattern("[dd/MM/yyyy HHmm][dd MMMM yyyy HH:mm");
+        DateTimeFormatter parserFormats = DateTimeFormatter.ofPattern("[dd/MM/yyyy HHmm][dd MMMM yyyy HH:mm]");
         LocalDateTime dtFormatted = LocalDateTime.parse(dt, parserFormats);
         this.dateTime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
     }

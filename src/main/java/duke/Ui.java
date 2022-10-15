@@ -1,7 +1,5 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
 
 /**
@@ -77,97 +75,12 @@ public class Ui {
     }
 
     /**
-     * Prints out a message upon inputting an unknown command
-     */
-    public void printUnknownCommandMessage() {
-        printLine();
-        System.out.print("I'm sorry, but I don't know what that means");
-        printLine();
-    }
-
-    /**
      * Prints out an error message
      * @param message The error message
      */
     public void printError(String message) {
         printLine();
         System.out.print(message);
-        printLine();
-    }
-
-    /**
-     * Prints out a message upon printing the task list that is empty
-     */
-    public void printEmptyListMessage() {
-        System.out.println(Ui.LINE + "\nYour list is empty! Why not add a task to it first?" + Ui.LINE);
-    }
-
-    /**
-     * Prints out a success message upon marking a task as done
-     *
-     * @param t The task to be marked
-     */
-    public void printTaskMarked(Task t) {
-        printLine();
-        System.out.println("\nOkay, I have marked this task as done: \n" + t.toString());
-        printLine();
-    }
-
-    /**
-     * Prints out a success message upon marking a task as not done
-     * @param t The task to be marked
-     */
-    public void printTaskUnmarked(Task t) {
-        printLine();
-        System.out.println("\nOkay, I have marked this task as not done: \n" + t.toString());
-        printLine();
-    }
-
-    /**
-     * Prints out a success message upon creating a Todo task
-     * @param t The task created
-     * @param s The total number of tasks in the list of tasks
-     */
-    public void printToDoCreated(Task t, int s) {
-        printLine();
-        System.out.println("\nGot it! I have added this task to your list:\n  " + t.toString()
-                + "\nNow you have " + s + " tasks in the list.");
-        printLine();
-    }
-
-    /**
-     * Prints out a success message upon creating a Deadline task
-     * @param t The task created
-     * @param s The total number of tasks in the list of tasks
-     */
-    public void printDeadlineCreated(Task t, int s) {
-        printLine();
-        System.out.println("\nGot it! I have added this task to your list:\n  " + t.toString()
-                + "\nNow you have " + s + " tasks in the list.");
-        printLine();
-    }
-
-    /**
-     * Prints out a success message upon creating an Event task
-     * @param t The task created
-     * @param s The total number of tasks in the list of tasks
-     */
-    public void printEventCreated(Task t, int s) {
-        printLine();
-        System.out.println("\nGot it! I have added this task to your list:\n  " + t.toString()
-                + "\nNow you have " + s + " tasks in the list.");
-        printLine();
-    }
-
-    /**
-     * Prints out a success message upon deleting a task from the list
-     * @param t The specific task to be deleted
-     * @param s The total number of tasks left in the list of tasks
-     */
-    public void printTaskDeleted(Task t, int s) {
-        printLine();
-        System.out.println("\nOkay, I have removed this task from the list:\n  " + t.toString()
-                + "\nNow you have " + s + " tasks in the list.");
         printLine();
     }
 }

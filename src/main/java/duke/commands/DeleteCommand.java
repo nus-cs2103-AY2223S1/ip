@@ -5,13 +5,24 @@ import duke.task.Task;
 import duke.TaskList;
 import duke.Storage;
 
+/**
+ * A <code>Command</code> class that handles the deleting of a <code>Task</code>
+ */
 public class DeleteCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>DeleteCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public DeleteCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException, AssertionError {
         if (arguments.length < 2) {

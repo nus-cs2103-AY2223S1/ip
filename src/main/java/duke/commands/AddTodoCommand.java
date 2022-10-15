@@ -7,13 +7,24 @@ import duke.task.Todo;
 
 import java.util.Arrays;
 
+/**
+ * A <code>Command</code> class that handles the adding of a <code>Todo</code>
+ */
 public class AddTodoCommand extends Command {
     private final String[] arguments;
 
+    /**
+     * A constructor for the <code>AddTodoCommand</code> class
+     *
+     * @param args Arguments from user input
+     */
     public AddTodoCommand(String[] args) {
         this.arguments = args;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String execute(Storage storage, TaskList tl) throws DukeException {
         if (arguments.length < 2) {
