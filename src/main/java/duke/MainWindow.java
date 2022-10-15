@@ -50,13 +50,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws IOException {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        if (input.equals("bye")) {
+            Main.exit();
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        if (input.equals("bye")) {
-            System.exit(0);
-        }
+
     }
 }

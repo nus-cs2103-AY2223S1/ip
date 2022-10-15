@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Contains the task list.
  */
 public class TaskList {
-    private String list;
     private ArrayList<String> arrayList;
 
     public TaskList() {}
@@ -18,16 +17,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<String> arrayList) {
         this.arrayList = arrayList;
-        this.list = getList();
-    }
-
-    /**
-     * Sets the list to be current list.
-     *
-     * @param list A list that is of type String.
-     */
-    public void set(String list) {
-        this.list = list;
     }
 
     /**
@@ -36,7 +25,7 @@ public class TaskList {
      * @return String
      */
     public String get() {
-        return this.list;
+        return getList();
     }
 
     /**

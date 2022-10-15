@@ -46,10 +46,11 @@ public class Duke {
                 return "Bye. Hope to see you again soon!";
             }
             if (command.equals("list")) {
-                return getList();
+                return storage.load();
             } else {
+                String result = printCommand(command);
                 storage.push(tasks.get());
-                return printCommand(command);
+                return result;
             }
         } catch (DukeException | IOException e) {
             return e.toString();

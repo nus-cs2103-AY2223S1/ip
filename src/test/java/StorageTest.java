@@ -8,7 +8,7 @@ import duke.Storage;
 
 
 public class StorageTest {
-    private Storage storage = new Storage("D:\\cs2103t\\duke.txt");
+    private Storage storage = new Storage("data/tasks.txt");
 
     public StorageTest() throws IOException {
     }
@@ -16,6 +16,6 @@ public class StorageTest {
     @Test
     public void storageTest() throws IOException {
         storage.push("deadline return book /by 2019-5-29");
-        assertEquals("deadline return book /by 2019-5-29", storage.load());
+        assertEquals("deadline return book /by 2019-5-29\n", storage.load());
     }
 }

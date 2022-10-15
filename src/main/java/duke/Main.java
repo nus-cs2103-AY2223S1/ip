@@ -3,6 +3,7 @@ package duke;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            duke = new Duke(new Storage("D:\\cs2103t\\duke.txt"));
+            duke = new Duke(new Storage("data/tasks.txt"));
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
@@ -27,6 +28,18 @@ public class Main extends Application {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Exits the programme.
+     */
+    public static void exit() {
+        try {
+            Thread.sleep(1000);
+            Platform.exit();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }
