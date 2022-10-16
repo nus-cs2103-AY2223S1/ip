@@ -114,8 +114,6 @@ public class Parser {
                 if (inputArray.length >= 2) {
                     String keywordsStr = userInput.substring(5);
                     String[] keywords = keywordsStr.split(", ");
-                    //String keyword = split[1];
-                    //return new FindCommand(keyword);
                     return new FindCommand(keywords);
                 } else {
                     throw new ChachaException("Please enter valid search keyword.");
