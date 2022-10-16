@@ -25,11 +25,50 @@ public class Parser {
      */
     public Command parse(String input) {
         String commandString = input.split(" ")[0].toUpperCase();
-        Command command = Command.DEFAULT;
+        Command command;
         if (stringOfCommands.contains(commandString)) {
-            command = Command.valueOf(commandString);
-        }
-        return command;
+            int index = stringOfCommands.indexOf(commandString);
+            switch(index) {
 
+            case 0:
+                command = new ByeCommand();
+                break;
+            case 1:
+                command = new DeadlineCommand();
+                break;
+            case 2:
+                command = new DeleteCommand();
+                break;
+            case 3:
+                command = new EventCommand();
+                break;
+            case 4:
+                command = new FindCommand();
+                break;
+            case 5:
+                command = new ListCommand();
+                break;
+            case 6:
+                command = new MarkCommand();
+                break;
+            case 7:
+                command = new TagCommand();
+                break;
+            case 8:
+                command = new TodoCommand();
+                break;
+            case 9:
+                command = new UnmarkCommand();
+                break;
+
+            default:
+                command = new IllegalCommand();
+            }
+
+        } else {
+            command = new IllegalCommand();
+        }
+
+        return command;
     }
 }

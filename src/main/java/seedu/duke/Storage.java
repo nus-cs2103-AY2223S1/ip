@@ -47,58 +47,36 @@ public class Storage {
                 char action = data.charAt(1);
                 assert action == 'T' || action == 'E' || action == 'D' : "Tasks not stored properly!";
                 Task task;
-
                 if (action == 'T') {
                     task = new Todo(data.substring(7));
 
+                } else if (action == 'E') {
+                    int symbol = data.indexOf("(");
+                    LocalDateTime date = getDate(symbol, data);
+                    task = new Event(data.substring(7, symbol), date);
+
+                } else if (action == 'D') {
+                    int symbol = data.indexOf("(");
+                    LocalDateTime date = getDate(symbol, data);
+                    task = new Deadline(data.substring(7, symbol), date);
 
                 } else {
-                    int symbol = data.indexOf("(");
-                    int dash = data.indexOf("-");
-                    int secondDash = data.indexOf("-", dash + 1);
-                    int colon = data.indexOf(":", secondDash + 1);
-                    Month month = Month.valueOf(data.substring(symbol + 5, dash));
-                    int dayOfMonth = Integer.parseInt(data.substring(dash + 1, secondDash));
-                    int year = Integer.parseInt(data.substring(secondDash + 1, secondDash + 5));
-                    int hour = Integer.parseInt(data.substring(colon - 2, colon));
-                    int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
-                    LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
-
-                    if (action == 'E') {
-                        task = new Event(data.substring(7, symbol), date);
-                    } else if (action == 'D') {
-                        task = new Deadline(data.substring(7, symbol), date);
-                    } else {
-                        reader.close();
-                        throw new DukeException("Task loaded is not of the right format");
-
-                    }
-
-
+                    reader.close();
+                    throw new DukeException("Task loaded is not of the right format");
                 }
-
                 char isDone = data.charAt(4);
                 assert isDone == 'X'
                     || isDone == ' ' : "The state of whether the task is completed is not stored properly";
                 tasks.add(task);
                 if (isDone == 'X') {
                     task.setDone();
-
                 }
-
-
             }
             reader.close();
             return tasks;
-
-
-        } catch (IOException e) {
-            return tasks;
-
-        } catch (DukeException e) {
+        } catch (IOException | DukeException e) {
             return tasks;
         }
-
     }
 
     /**
@@ -120,6 +98,19 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    private LocalDateTime getDate(int symbol, String data) {
+        int dash = data.indexOf("-");
+        int secondDash = data.indexOf("-", dash + 1);
+        int colon = data.indexOf(":", secondDash + 1);
+        Month month = Month.valueOf(data.substring(symbol + 5, dash));
+        int dayOfMonth = Integer.parseInt(data.substring(dash + 1, secondDash));
+        int year = Integer.parseInt(data.substring(secondDash + 1, secondDash + 5));
+        int hour = Integer.parseInt(data.substring(colon - 2, colon));
+        int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
+        LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
+        return date;
     }
 
 

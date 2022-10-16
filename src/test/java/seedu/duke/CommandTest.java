@@ -1,9 +1,10 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
 
 public class CommandTest {
     @Test
@@ -12,12 +13,13 @@ public class CommandTest {
         TaskList tasklist = new TaskList(tasks);
         Ui ui = new Ui();
         Storage storage = new Storage("");
-        Command command = Command.TODO;
+        Command command = new TodoCommand();
         String input = "todo this";
         try {
             command.execute(tasklist, ui, storage, input);
         } catch (DukeException e) {
-
+            //should not reach here
+            e.getStackTrace();
         }
         assertEquals(1, tasks.size());
     }
@@ -29,12 +31,13 @@ public class CommandTest {
         TaskList tasklist = new TaskList(tasks);
         Ui ui = new Ui();
         Storage storage = new Storage("");
-        Command command = Command.DELETE;
+        Command command = new DeleteCommand();
         String input = "delete 1";
         try {
             command.execute(tasklist, ui, storage, input);
         } catch (DukeException e) {
-
+            //should not reach here
+            e.getStackTrace();
         }
         assertEquals(0, tasks.size());
     }
