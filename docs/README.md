@@ -12,7 +12,7 @@ Sally is a desktop application as a **daily task manager bot**.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sally.jar` ([here](releases/download/A-Release-2/sally.jar)).
+2. Download the latest `sally.jar` ([here](https://github.com/liviamil/ip/releases/download/A-Release-2/sally.jar)).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Sally.
 
