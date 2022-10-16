@@ -1,12 +1,19 @@
 package duke.main;
 
-import duke.exception.DukeException;
-import duke.task.*;
-
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.nio.file.*;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 
 /**
  * Class dealing with loading tasks from the save file and saving tasks into the file.
@@ -22,7 +29,7 @@ public class Storage {
      * Saves input task list to the save file.
      * @param taskList TaskList to be saved.
      */
-    public static void saveTaskList(TaskList taskList) throws DukeException{
+    public static void saveTaskList(TaskList taskList) throws DukeException {
         // Create directory if it does not exist
         if (!directoryExists) {
             try {
@@ -40,7 +47,8 @@ public class Storage {
                 for (int i = 1; i <= taskList.getSize(); i++) {
                     Task task = taskList.getTask(Integer.toString(i));
                     String reformattedTask = task.changeFormat();
-                    Files.write(SAVE_FILE_PATH, (reformattedTask + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
+                    Files.write(SAVE_FILE_PATH, (reformattedTask + System.lineSeparator()).getBytes(),
+                            StandardOpenOption.APPEND);
                 }
             } else {
                 // Create new file and save
@@ -48,7 +56,8 @@ public class Storage {
                 for (int i = 1; i <= taskList.getSize(); i++) {
                     Task task = taskList.getTask(Integer.toString(i));
                     String reformattedTask = task.changeFormat();
-                    Files.write(SAVE_FILE_PATH, (reformattedTask + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
+                    Files.write(SAVE_FILE_PATH, (reformattedTask + System.lineSeparator()).getBytes(),
+                            StandardOpenOption.APPEND);
                 }
             }
         } catch (IOException e) {
@@ -75,12 +84,12 @@ public class Storage {
      */
     public static ArrayList<Task> loadTaskList() throws DukeException {
         try {
-        ArrayList<Task> tempTaskList = new ArrayList<>();
-        String[] linesArr = Files.lines(SAVE_FILE_PATH).toArray(String[]::new);
+            ArrayList<Task> tempTaskList = new ArrayList<>();
+            String[] linesArr = Files.lines(SAVE_FILE_PATH).toArray(String[]::new);
             for (String l : linesArr) {
                 tempTaskList.add(parseString(l));
             }
-        return tempTaskList;
+            return tempTaskList;
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Hmm... looks like you don't have an existing save file, let's make one!");
         }
@@ -93,7 +102,7 @@ public class Storage {
      * @return Task created with details from the input.
      * @throws DukeException If there is error parsing the output task.
      */
-    private static Task parseString(String taskString) throws DukeException{
+    private static Task parseString(String taskString) throws DukeException {
         // Split the string into an array of properties
         String[] taskProperties = taskString.split(" \\| ", 4);
         try {
@@ -107,18 +116,19 @@ public class Storage {
                 task = new Todo(taskDescription);
                 break;
             }
-
             case "E": {
                 String taskDateTime = taskProperties[3];
                 LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
                 task = new Event(taskDescription, dateTime);
                 break;
             }
-
             case "D": {
                 String taskDateTime = taskProperties[3];
                 LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
                 task = new Deadline(taskDescription, dateTime);
+                break;
+            }
+            default: {
                 break;
             }
             }
