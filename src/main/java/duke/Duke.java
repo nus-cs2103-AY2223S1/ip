@@ -69,7 +69,7 @@ public class Duke {
      */
     public static void cliRun() throws DukeException, FileNotFoundException {
         Scanner in = new Scanner(System.in);
-        boolean lastCommandOrNot = false;
+        boolean isLastCommandOrNot = false;
         Task task;
         String command;
         String suggestion;
@@ -78,7 +78,7 @@ public class Duke {
         CommandType type;
 
         Ui.greet();
-        while (!lastCommandOrNot) {
+        while (!isLastCommandOrNot) {
             command = in.nextLine().trim();
             commandList = command.split(" ", 2);
             command = (Parser.hasMultipleVariables(commandList[0])) ? commandList[0] : command;
@@ -88,7 +88,7 @@ public class Duke {
                 switch (type) {
                 case BYE:
                     Ui.bye();
-                    lastCommandOrNot = true;
+                    isLastCommandOrNot = true;
                     break;
 
                 case MARK:
