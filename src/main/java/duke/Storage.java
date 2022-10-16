@@ -47,8 +47,7 @@ public class Storage {
                 default:
                     throw new DukeException(String.format("corrupt file: %s", FILE_PATH));
                 }
-
-                if (taskInfo[1] == "1") {
+                if (Integer.parseInt(taskInfo[1]) == 1) {
                     task.mark();
                 }
                 tasks.add(task);

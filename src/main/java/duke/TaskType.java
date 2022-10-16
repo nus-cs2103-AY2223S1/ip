@@ -1,9 +1,9 @@
 package duke;
 
 public enum TaskType {
-    TODO("t ", "task"),
-    DEADLINE("d ", "deadline"),
-    EVENT("e ", "event");
+    TODO("t", "task"),
+    DEADLINE("d", "deadline"),
+    EVENT("e", "event");
 
     public final String command;
     public final String name;

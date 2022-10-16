@@ -6,12 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TodoTest {
     @Test
-    public void dummyTest() {
-        assertEquals(2, 2);
-    }
+    public void test() {
+        Task todo = new Todo("hi");
+        assertEquals(todo.isDone, false);
 
-    @Test
-    public void anotherDummyTest() {
-        assertEquals(4, 4);
+        todo.mark();
+        assertEquals(todo.isDone, true);
     }
 }

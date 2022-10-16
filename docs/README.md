@@ -28,7 +28,7 @@ Expected outcome:
 Example of usage: 
 
 ```
-t {todo name}
+t {todo description}
 t walk dog
 ```
 
@@ -39,12 +39,12 @@ Expected outcome:
 ```
 
 
-### `event` - add event task
+### `e` - add event task
 
 Example of usage: 
 
 ```
-event {event name} /at {date}
+event {description} /at {date}
 event gina's wedding /at 2022-09-19
 ```
 
@@ -60,7 +60,7 @@ Expected outcome:
 Example of usage: 
 
 ```
-deadline {deadline name} /by {date}
+deadline {description} /by {date}
 deadline chem assignment /by 2022-09-19
 ```
 

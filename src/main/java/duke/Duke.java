@@ -97,11 +97,11 @@ public class Duke {
                 return markTask(input, false);
             } else if (input.startsWith("delete ")) {
                 return deleteTask(input);
-            } else if (input.startsWith(TaskType.TODO.command)) {
+            } else if (input.startsWith(TaskType.TODO.command + " ")) {
                 return addTask(input, TaskType.TODO);
-            } else if (input.startsWith(TaskType.DEADLINE.command)) {
+            } else if (input.startsWith(TaskType.DEADLINE.command + " ")) {
                 return addTask(input, TaskType.DEADLINE);
-            } else if (input.startsWith(TaskType.EVENT.command)) {
+            } else if (input.startsWith(TaskType.EVENT.command + " ")) {
                 return addTask(input, TaskType.EVENT);
             } else if (input.startsWith("find ")) {
                 return searchTask(input);
@@ -163,9 +163,5 @@ public class Duke {
             }
         }
         return String.join("\n", result);
-    }
-
-    public static void main(String[] args) {
-        Launcher.main(args);
     }
 }
