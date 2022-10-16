@@ -40,10 +40,10 @@ public class Ui {
     public void printList(TaskList taskList) {
         String res = "";    
         for (int i = 0; i < taskList.getSize();i++) {
-            Task t = taskList.get(i);	      
+            Task t = taskList.get(i);
             res = res + (i + 1) +
                 ". " +
-                t.toString() + "\n"; 		
+                t.toString() + "\n";
         } 
         response = res;  
     }
@@ -100,7 +100,7 @@ public class Ui {
         } else {
             String res = "";    
             for (int i = 0; i < taskList.getSize();i++) {
-                Task t = taskList.get(i);	      
+                Task t = taskList.get(i);
                 res = res + (i + 1) +
                     ". " +
                     t.toString() + "\n"; 		
@@ -115,7 +115,7 @@ public class Ui {
      * @param message Custom error message to be printed.
      */
     public void printError(String message) {
-            response = "Chacha Error: " + message;
+        response = "Chacha Error: " + message;
     }
 
     public void printExit() {
