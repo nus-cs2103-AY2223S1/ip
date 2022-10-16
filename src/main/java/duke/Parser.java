@@ -17,6 +17,8 @@ class Parser {
     public static final String MARK_KEYWORD_DELETE = "delete ";
     public static final String FIND_KEYWORD = "find ";
     public static final String ARCHIVE_KEYWORD = "archive";
+    public static final String DEADLINE_PATTERN = "deadline (.*) /by ([0-9]{4})-([0-9]{2})-([0-9]{2})";
+    public static final String EVENT_PATTERN = "event (.*) /at ([0-9]{4})-([0-9]{2})-([0-9]{2})";
     private static final LinkedList<String> listOfExactKeywords = new LinkedList<>(
             List.of(Parser.EXACT_KEYWORD_BYE,
                     Parser.EXACT_KEYWORD_LIST)
@@ -153,5 +155,25 @@ class Parser {
         }
 
         return specifier;
+    }
+
+    /**
+     * Checks if the entry is the correct pattern.
+     *
+     * @param entry the user entry
+     * @return true if the pattern is correct, false otherwise
+     */
+    public static boolean matchesDeadlinePattern(String entry) {
+        return entry.matches(Parser.DEADLINE_PATTERN);
+    }
+
+    /**
+     * Checks if the entry is the correct pattern.
+     *
+     * @param entry the user entry
+     * @return true if the pattern is correct, false otherwise
+     */
+    public static boolean matchesEventPattern(String entry) {
+        return entry.matches(Parser.EVENT_PATTERN);
     }
 }

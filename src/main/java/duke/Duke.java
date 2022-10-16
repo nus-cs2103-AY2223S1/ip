@@ -72,33 +72,29 @@ class Duke {
                 reply = "Index is out of bounds!";
             }
         } else if (Parser.containsTaskKeyword(entry)) {
-            try {
-                switch (Parser.getNonexactKeyword(entry)) {
-                case Parser.TASK_KEYWORD_TODO:
-                    Duke.tasks.add(new Todo(entry));
-                    break;
-                case Parser.TASK_KEYWORD_DEADLINE:
-                    if (!entry.contains(Deadline.DELIMITER)) {
-                        throw new DukeException("Missing Deadline delimiter!");
-                    }
-                    Duke.tasks.add(new Deadline(entry));
-                    break;
-                case Parser.TASK_KEYWORD_EVENT:
-                    if (!entry.contains(Event.DELIMITER)) {
-                        throw new DukeException("Missing Event delimiter!");
-                    }
-                    Duke.tasks.add(new Event(entry));
-                    break;
-                default:
+            switch (Parser.getNonexactKeyword(entry)) {
+            case Parser.TASK_KEYWORD_TODO:
+                Duke.tasks.add(new Todo(entry));
+                break;
+            case Parser.TASK_KEYWORD_DEADLINE:
+                if (!Parser.matchesDeadlinePattern(entry)) {
+                    return Ui.WRONG_USAGE_DEADLINE;
                 }
-
-                Storage.updateData(Duke.tasks);
-
-                reply = "Added task:"
-                        + Duke.tasks.getLast().printTask();
-            } catch (DukeException ex) {
-                Ui.echo("Incorrect use of " + Parser.getNonexactKeyword(entry));
+                Duke.tasks.add(new Deadline(entry));
+                break;
+            case Parser.TASK_KEYWORD_EVENT:
+                if (!Parser.matchesEventPattern(entry)) {
+                    return Ui.WRONG_USAGE_EVENT;
+                }
+                Duke.tasks.add(new Event(entry));
+                break;
+            default:
             }
+
+            Storage.updateData(Duke.tasks);
+
+            reply = "Added task:"
+                    + Duke.tasks.getLast().printTask();
         } else if (Parser.containsFindKeyword(entry)) {
             reply = listMatchingTasks(entry);
         } else if (Parser.containsArchiveKeyword(entry)) {

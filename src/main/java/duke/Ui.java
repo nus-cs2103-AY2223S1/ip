@@ -23,6 +23,8 @@ public class Ui extends Application {
     public static final String GREETING = "Hi friend! How may I help you?";
     public static final String FAREWELL = "See you soon, friend!";
     public static final String CONFUSED = "I can't understand. Please enter a proper command, friend!";
+    public static final String WRONG_USAGE_DEADLINE = "Wrong usage of deadline command!";
+    public static final String WRONG_USAGE_EVENT = "Wrong usage of event command!";
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
