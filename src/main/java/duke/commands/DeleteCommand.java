@@ -6,7 +6,6 @@ import duke.tasks.TaskList;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Deletes a command from the tasklist.

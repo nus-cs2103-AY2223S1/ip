@@ -1,12 +1,10 @@
 package duke.commands;
 
-import duke.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Adds a task to the tasklist.

@@ -2,10 +2,8 @@ package duke.commands;
 
 import duke.storage.Storage;
 import duke.tasks.TaskList;
-import duke.tasks.Task;
 import duke.ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Exits the program execution
