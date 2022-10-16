@@ -73,14 +73,7 @@ public class Chacha {
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
-            if (command.isExit()) {
-                try {
-                    storage.saveToFile(taskList);
-                    command.execute(taskList, ui, storage);
-                } catch (IOException e) {
-                    System.out.println("Unable to save file");
-                }
-            }
+            saveAll(command);
             command.execute(taskList, ui, storage);
 
         } catch (ChachaException e) {
@@ -92,5 +85,16 @@ public class Chacha {
     public String getInitMessage() {
         ui.printWelcome();
         return ui.buildResponse();
+    }
+
+    public void saveAll(Command command) {
+        if (command.isExit()) {
+            try {
+                storage.saveToFile(taskList);
+                command.execute(taskList, ui, storage);
+            } catch (IOException e) {
+                System.out.println("Unable to save file");
+            }
+        }
     }
 }
