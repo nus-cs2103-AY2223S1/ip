@@ -3,6 +3,8 @@ package duke.ui;
 import java.io.IOException;
 
 import duke.Duke;
+import duke.command.ExitCommand;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -66,5 +68,8 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage));
         userInput.clear();
+        if (response == ExitCommand.EXIT_RESPONSE) {
+            Platform.exit();
+        }
     }
 }

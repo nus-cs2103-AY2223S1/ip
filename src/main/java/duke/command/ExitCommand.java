@@ -8,6 +8,8 @@ import duke.ui.Ui;
  * Encapsulates a command to terminate Duke.
  */
 public class ExitCommand extends Command {
+    public static final String EXIT_RESPONSE = "bye...";
+
     /**
      * Executes the ExitCommand to terminate Duke.
      *
@@ -17,7 +19,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return "bye...";
+        return EXIT_RESPONSE;
     }
 
     /**
