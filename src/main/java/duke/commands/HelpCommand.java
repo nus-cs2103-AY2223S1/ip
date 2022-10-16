@@ -4,6 +4,9 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents a help command
+ */
 public class HelpCommand extends Command {
 
     private final String HELP_MESSAGE = "Given below are the commands that can be " +

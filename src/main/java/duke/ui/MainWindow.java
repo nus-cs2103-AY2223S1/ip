@@ -16,7 +16,8 @@ import javafx.application.Platform;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 
-
+//@author:{garfield-oo7}
+// {reused code with slight modifications from @kxrt}
 public class MainWindow extends AnchorPane {
 
     private final String WELCOME = "Hello I'm Duke" + "!!\n" +

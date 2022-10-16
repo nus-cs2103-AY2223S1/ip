@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import java.io.IOException;
 import java.util.Collections;
 
+//@author:{garfield-oo7}
+// {reused code with slight modifications from @kxrt}
+
 public class DialogBox extends HBox {
 
     @FXML

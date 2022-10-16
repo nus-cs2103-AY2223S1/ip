@@ -1,5 +1,8 @@
 package duke.tasks;
 
+/**
+ * Represents a generic task.
+ */
 public class Task {
 
     protected String description;
