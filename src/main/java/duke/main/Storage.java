@@ -91,7 +91,7 @@ public class Storage {
             }
             return tempTaskList;
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Hmm... looks like you don't have an existing save file, let's make one!");
+            throw new DukeException("Purr... looks like you don't have an existing save file, let's make one!");
         }
 
     }

@@ -26,7 +26,7 @@ public class DateTime {
             LocalDateTime parsedDate = LocalDateTime.parse(date, inputFormat);
             return parsedDate;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Hmm... your date and time has to be in YYYY-MM-DD HHmm format!");
+            throw new DukeException("Purr... your date and time has to be in YYYY-MM-DD HHmm format!");
         }
     }
 

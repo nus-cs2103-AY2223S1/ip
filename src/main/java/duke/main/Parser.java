@@ -29,7 +29,7 @@ public class Parser {
         } catch (DukeException de) {
             throw de;
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Hmm... Seems like you did not add a task description or number!");
+            throw new DukeException("Purr... Seems like you did not add a task description or number!");
         }
     }
 
@@ -111,7 +111,7 @@ public class Parser {
         try {
             Integer.parseInt(description);
         } catch (NumberFormatException e) {
-            throw new DukeException("Hmm... Did you add a wrong task number?");
+            throw new DukeException("Purr... Did you add a wrong task number?");
         }
     }
 

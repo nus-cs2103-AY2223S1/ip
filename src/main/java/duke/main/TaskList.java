@@ -55,7 +55,7 @@ public class TaskList {
             Task currTask = this.taskList.get(index - 1); // Throws AIOOBE
             return currTask;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException("Hmm... Seems like that's an invalid task number :(");
+            throw new DukeException("Purr... Seems like that's an invalid task number :(");
         }
     }
 
@@ -65,7 +65,7 @@ public class TaskList {
     public String printList() {
         String output = "";
         if (!this.taskList.isEmpty()) {
-            output += "These are your current tasks! :)\n";
+            output += "Meow! These are your current tasks! :)\n";
             int i = 1;
             for (Task t : taskList) {
                 String s = String.format("%d. %s\n", i, t);
@@ -111,7 +111,7 @@ public class TaskList {
      */
     public String findTask(String s) {
         if (taskList.size() == 0) { // If task list is empty
-            return "Hmm... I don't think you have any tasks as of now!";
+            return "Purr... I don't think you have any tasks as of now!";
         } else { // if not empty, search
             return searchTaskList(s);
         }
@@ -149,7 +149,7 @@ public class TaskList {
         if (count > 1) {
             return output;
         } else {
-            return "Hmm... I don't think you have such tasks in the list!";
+            return "Purr... I don't think you have such tasks in the list!";
         }
     }
 }

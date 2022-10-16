@@ -18,14 +18,14 @@ public class Ui {
      * Returns the greeting message
      */
     public static String greetUser() {
-        return "Hello! I'm Jukebox :)\n" + "What can I do for you today?";
+        return "Meow! I'm Toothless :)\n" + "What can I do for you today?";
     }
 
     /**
      * Returns the exit message.
      */
     public String exitJukebox() {
-        return "Aww... OK, Hope to see you again!";
+        return "Purr...Ok, Hope to see you again!";
     }
 
     /**
@@ -49,8 +49,8 @@ public class Ui {
      * @param taskList Task list that the task was added into.
      */
     public String addTaskMessage(Task task, TaskList taskList) {
-        return "Okay!\n" + "Added: " + task + "\n"
-                + String.format("You now have %d task(s) in your task list!", taskList.getSize());
+        return "Meow!\n" + "Added: " + task + "\n"
+                + String.format("You meow have %d task(s) in your task list!", taskList.getSize());
     }
 
     /**
@@ -61,13 +61,13 @@ public class Ui {
     public String markUnmarkTaskMessage(Task task, CommandWord command) throws DukeException {
         switch (command) {
         case MARK: {
-            return "Goodjob! This task is now completed :)\n" + task;
+            return "Goodjob! This task is meow completed :)\n" + task;
         }
         case UNMARK: {
-            return "Oh... OK, I'll mark this task as uncompleted!\n" + task;
+            return "Oh... OK, I'll meow-rk this task as uncompleted!\n" + task;
         }
         default: {
-            throw new DukeException("Hmm...I'm unable to mark/unmark this task...");
+            throw new DukeException("Purr...I'm unable to mark/unmark this task...");
         }
         }
     }
@@ -78,10 +78,10 @@ public class Ui {
      * @param taskList Task list that the task was deleted from.
      */
     public String deleteTaskMessage(Task task, TaskList taskList) {
-        return "Ok! I've removed this task: \n" + task;
+        return "Meow! I've re-meow-ved this task: \n" + task;
     }
 
     public String addedNote(String note) {
-        return "Ok! I've added \"" + note + "\" to the task!";
+        return "Meow! I've added \"" + note + "\" to the task!";
     }
 }
