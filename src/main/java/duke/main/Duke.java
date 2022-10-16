@@ -103,6 +103,14 @@ public class Duke {
                     storage.saveTaskList(taskList); // Save to file
                     return ui.addTaskMessage(newTask, taskList);
                 }
+                case NOTE: {
+                    String[] descriptionArr = description.split(" ", 2);
+                    String taskNumber = descriptionArr[0];
+                    String taskNote = descriptionArr[1];
+                    taskList.noteTask(taskNumber, taskNote);
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.addedNote(taskNote);
+                }
                 default: {
                     return "Oops... This is a rare error!";
                 }

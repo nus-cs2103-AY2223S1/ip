@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Class for Todo-type Tasks.
  */
-public class Todo extends Task{
+public class Todo extends Task {
 
     /**
      * Constructor for the Todo task.
@@ -19,15 +19,15 @@ public class Todo extends Task{
      */
     @Override
     public String toString() {
-        return String.format("[T][%s] %s", getStatus(), name);
+        return String.format("[T]%s", super.toString());
     }
 
     /**
-     * Returns the format of Todo object in format to be saved. 
+     * Returns the format of Todo object in format to be saved.
      * @return String of Todo object to be saved.
      */
     @Override
     public String changeFormat() {
-        return String.format("T | %s | %s", getStatus(), name);
+        return String.format("T | %s | %s | %s", getStatus(), name, getNote());
     }
 }

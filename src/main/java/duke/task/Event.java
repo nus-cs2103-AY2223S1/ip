@@ -1,13 +1,14 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
 import duke.main.DateTime;
 
-import java.time.LocalDateTime;
 
 /**
  * Class for Event-type Tasks.
  */
-public class Event extends Task{
+public class Event extends Task {
     private LocalDateTime time;
     /**
      * Constructor for the Event task.
@@ -25,15 +26,15 @@ public class Event extends Task{
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + String.format("(at: %s)", DateTime.printDate(time));
+        return "[E]" + super.toString() + String.format(" (at: %s)", DateTime.printDate(time));
     }
 
     /**
-     * Returns the format of Event object in format to be saved. 
+     * Returns the format of Event object in format to be saved.
      * @return String of Event object to be saved.
      */
     @Override
     public String changeFormat() {
-        return String.format("E | %s | %s | %s", getStatus(), name, DateTime.changeFormat(this.time));
+        return String.format("E | %s | %s | %s | %s", getStatus(), name, getNote(), DateTime.changeFormat(this.time));
     }
 }

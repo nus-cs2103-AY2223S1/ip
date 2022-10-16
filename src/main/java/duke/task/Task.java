@@ -5,6 +5,7 @@ package duke.task;
  */
 public class Task {
     protected String name;
+    protected String note;
     private boolean isCompleted;
 
     /**
@@ -17,13 +18,20 @@ public class Task {
     }
 
     /**
-     * Gets the completion status of the task
+     * Gets the completion status of the Task
      * @return A status icon if its completed/uncompleted
      */
     public String getStatus() {
         return isCompleted ? "X" : " ";
     }
 
+    /**
+     * Gets icon or note description of the Task.
+     * @return An icon or note description of Task.
+     */
+    public String getNote() {
+        return note == null ? "-" : note;
+    }
     /**
      * Marks the task to show completed
      */
@@ -44,14 +52,30 @@ public class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s ", getStatus(), name);
+        if (note == null) {
+            return String.format("[%s] %s", getStatus(), name);
+        } else {
+            return String.format("[%s] %s [Note: %s]", getStatus(), name, note);
+        }
     }
 
     /**
-     * Returns the format of Task object in format to be saved. 
+     * Returns the format of Task object in format to be saved.
      * @return String of Task object to be saved.
      */
     public String changeFormat() {
-        return String.format("[%s] | %s", getStatus(), name);
+        if (note == null) {
+            return String.format("[%s] | %s", getStatus(), name);
+        } else {
+            return String.format("[%s] | %s [Note: %s]", getStatus(), name, note);
+        }
     };
+
+    /**
+     * Adds a note to Task object.
+     * @param note String note to be added.
+     */
+    public void addNote(String note) {
+        this.note = note;
+    }
 }

@@ -68,7 +68,7 @@ public class TaskList {
             output += "These are your current tasks! :)\n";
             int i = 1;
             for (Task t : taskList) {
-                String s = String.format("%d.%s\n", i, t);
+                String s = String.format("%d. %s\n", i, t);
                 output += s;
                 i++;
             }
@@ -117,6 +117,20 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a note to Task at given index.
+     * @param index Index of Task to add a note to.
+     * @param note Given note to add to the Task.
+     * @throws DukeException If the given index is invalid.
+     */
+    public void noteTask(String index, String note) throws DukeException {
+        try {
+            Task taskToNote = getTask(index);
+            taskToNote.addNote(note);
+        } catch (DukeException de) {
+            throw de;
+        }
+    }
     /**
      * Searches task list for tasks that contain the given input.
      * @param input Input string to search the task list with.

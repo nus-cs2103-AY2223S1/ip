@@ -54,6 +54,10 @@ public class Parser {
             checkIndex(description);
             break;
         }
+        case NOTE: {
+            checkNote(description);
+            break;
+        }
         default: {
             break;
         }
@@ -101,13 +105,31 @@ public class Parser {
     /**
      * Checks if index given by user is valid.
      * @param description Description field of MARK/UNMARK/DELETE command calls.
-     * @throws DukeException If the
+     * @throws DukeException If the given task number is invalid.
      */
     public static void checkIndex(String description) throws DukeException {
         try {
             Integer.parseInt(description);
         } catch (NumberFormatException e) {
             throw new DukeException("Hmm... Did you add a wrong task number?");
+        }
+    }
+
+    /**
+     * Checks if the index given by user is valid.
+     * @param description Description field of NOTE command calls.
+     * @throws DukeException If the given task number is invalid
+     */
+    public static void checkNote(String description) throws DukeException {
+        String[] descriptionArr = description.split(" ", 2);
+        try {
+            String taskIndex = descriptionArr[0];
+            String taskNote = descriptionArr[1]; // Throws AIOOBE
+            checkIndex(taskIndex); // Throws DukeException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please write the note you want to add!");
+        } catch (DukeException de) {
+            throw de;
         }
     }
 

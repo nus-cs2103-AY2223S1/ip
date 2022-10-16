@@ -95,7 +95,6 @@ public class Storage {
         }
 
     }
-
     /**
      * Parses a Task according to the details from the String.
      * @param taskString String containing details of the task.
@@ -104,11 +103,12 @@ public class Storage {
      */
     private static Task parseString(String taskString) throws DukeException {
         // Split the string into an array of properties
-        String[] taskProperties = taskString.split(" \\| ", 4);
+        String[] taskProperties = taskString.split(" \\| ", 5);
         try {
             String taskType = taskProperties[0];
             String taskDone = taskProperties[1];
             String taskDescription = taskProperties[2];
+            String taskNote = taskProperties[3];
             Task task = null;
 
             switch (taskType) {
@@ -117,13 +117,13 @@ public class Storage {
                 break;
             }
             case "E": {
-                String taskDateTime = taskProperties[3];
+                String taskDateTime = taskProperties[4];
                 LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
                 task = new Event(taskDescription, dateTime);
                 break;
             }
             case "D": {
-                String taskDateTime = taskProperties[3];
+                String taskDateTime = taskProperties[4];
                 LocalDateTime dateTime = DateTime.parseDate(taskDateTime);
                 task = new Deadline(taskDescription, dateTime);
                 break;
@@ -135,6 +135,9 @@ public class Storage {
 
             if (taskDone.equals("X") && task != null) {
                 task.mark();
+            }
+            if (!taskNote.equals("-") && task != null) {
+                task.addNote(taskNote);
             }
             return task;
         } catch (ArrayIndexOutOfBoundsException e) {
