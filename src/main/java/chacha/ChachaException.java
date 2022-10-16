@@ -5,7 +5,7 @@ package chacha;
  */
 public class ChachaException extends Exception {
     /**
-     * Constructor for ChachaException with custom message.
+     * Constructs ChachaException with custom message.
      * 
      * @param message Custom error message to be printed.
      */

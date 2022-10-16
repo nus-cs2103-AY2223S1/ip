@@ -3,12 +3,12 @@ package chacha;
 import javafx.application.Application;
 
 /**
- * Launcher clas to launch app.
+ * Launcher class to launch app.
  */
 public class Launcher {
 
     /**
-     * Launch main class.
+     * Launches main class.
      * 
      * @param args Arguments.
      */

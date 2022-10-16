@@ -83,6 +83,8 @@ public class Storage {
 
     
     /** 
+     * Converts text to a task.
+     * 
      * @param text
      * @return Task
      */

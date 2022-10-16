@@ -13,14 +13,14 @@ public class TaskList {
         private List<Task> tasks;
         
         /**
-         * Constructor for new task list.
+         * Constructs new task list.
          */
         public TaskList() {
             this.tasks = new ArrayList<>();
         }
     
         /**
-         * Constructor for task list with tasks.
+         * Constructos task list with tasks.
          * 
          * @param inputTasks List of tasks to input into task list.
          */
@@ -88,6 +88,11 @@ public class TaskList {
             return newTasks;
         }
 
+        /**
+         * Sorts all tasks in chronological order.
+         * 
+         * @return New task list with sorted tasks.
+         */
         public List<Task> sort() {
             List<Task> newTasks = new ArrayList<>();
             for (Task task : tasks) {
@@ -96,6 +101,4 @@ public class TaskList {
             Collections.sort(newTasks, new DateComparator());
             return newTasks;
         }
-
-
 }

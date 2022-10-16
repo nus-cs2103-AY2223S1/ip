@@ -12,7 +12,7 @@ public class UnmarkCommand extends Command {
     private int taskIndex;
 
     /**
-     * Constructor with task index to unmark.
+     * Constructs UnmarkCommand with task index to unmark.
      * 
      * @param task Task index of task to unmark.
      */

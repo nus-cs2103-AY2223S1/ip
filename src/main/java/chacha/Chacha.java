@@ -17,7 +17,7 @@ public class Chacha {
     boolean isExit;
 
     /**
-     * Constructor for Chacha.
+     * Constructs Chacha.
      * 
      * @param filePath File path to save data to and load data from.
      */
@@ -34,7 +34,7 @@ public class Chacha {
     }
     
     /** 
-     * Main method to initialise Chacha.
+     * Initialises Chacha.
      * 
      * @param args Command line arguments.
      */

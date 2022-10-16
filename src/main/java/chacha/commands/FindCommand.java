@@ -11,7 +11,7 @@ public class FindCommand extends Command {
     private String[] keywords;
 
     /**
-     * Constructor for FindCommand with keyword to find.
+     * Constructs FindCommand with keyword to find.
      * 
      * @param keywords Keyword to use in find.
      */

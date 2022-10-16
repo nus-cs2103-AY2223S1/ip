@@ -10,7 +10,7 @@ import chacha.Ui;
 public abstract class Command {
 
     /**
-     * Execute command.
+     * Executes command.
      * 
      * @param taskList Task list to perform command on.
      * @param ui Ui to print output message.
@@ -19,7 +19,7 @@ public abstract class Command {
     public abstract void execute(TaskList taskList, Ui ui, Storage storage);
 
     /**
-     * Check if Chacha can exit.
+     * Checks if Chacha can exit.
      * 
      * @return Boolean if Chacha can exit.
      */
