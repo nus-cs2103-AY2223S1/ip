@@ -1,8 +1,7 @@
-package Chacha;
+package chacha;
 
 import org.junit.jupiter.api.Test;
 
-import chacha.TaskList;
 import chacha.tasks.Task;
 import chacha.tasks.Todo;
 
