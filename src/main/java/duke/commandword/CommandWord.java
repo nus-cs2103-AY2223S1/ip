@@ -14,6 +14,7 @@ public enum CommandWord {
     EVENT("event"),
     DELETE("delete"),
     FIND("find"),
+    NOTE("note"),
     BYE("bye");
 
     // String field for comparing to the input to the enum

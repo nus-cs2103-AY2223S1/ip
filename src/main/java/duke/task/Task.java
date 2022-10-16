@@ -5,6 +5,7 @@ package duke.task;
  */
 public class Task {
     protected String name;
+    protected String note;
     private boolean isCompleted;
 
     /**
@@ -48,10 +49,18 @@ public class Task {
     }
 
     /**
-     * Returns the format of Task object in format to be saved. 
+     * Returns the format of Task object in format to be saved.
      * @return String of Task object to be saved.
      */
     public String changeFormat() {
         return String.format("[%s] | %s", getStatus(), name);
     };
+
+    /**
+     * Adds a note to Task object.
+     * @param note String note to be added.
+     */
+    public void addNote(String note) {
+        this.note = note;
+    }
 }

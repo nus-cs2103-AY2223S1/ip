@@ -135,4 +135,19 @@ public class TaskList {
         return "Hmm... I don't think you have any tasks as of now!";
     }
 
+    /**
+     * Adds a note to Task at given index.
+     * @param index Index of Task to add a note to.
+     * @param note Given note to add to the Task.
+     * @return
+     * @throws DukeException
+     */
+    public void noteTask(String index, String note) throws DukeException {
+        try {
+            Task taskToNote = getTask(index);
+            taskToNote.addNote(note);
+        } catch (DukeException de) {
+            throw de;
+        }
+    }
 }

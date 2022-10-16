@@ -39,23 +39,22 @@ public class Parser {
      * @throws DukeException If deadline/time/index fields are invalid.
      */
     public static void checkDescription(String description) throws DukeException {
-            switch (command) {
-            case DEADLINE: {
-                checkDeadline(description);
-                break;
-            }
-            case EVENT: {
-                checkTime(description);
-                break;
-            }
-            case MARK:
-            case UNMARK:
-            case DELETE: {
-                checkIndex(description);
-                break;
-            }
-
-
+        switch (command) {
+        case DEADLINE: {
+            checkDeadline(description);
+            break;
+        }
+        case EVENT: {
+            checkTime(description);
+            break;
+        }
+        case MARK:
+        case UNMARK:
+        case NOTE:
+        case DELETE: {
+            checkIndex(description);
+            break;
+        }
         }
     }
 

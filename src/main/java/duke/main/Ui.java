@@ -80,4 +80,8 @@ public class Ui {
     public String deleteTaskMessage(Task task, TaskList taskList) {
         return "Ok! I've removed this task: \n" + task;
     }
+
+    public String addedNote(String note) {
+        return "Ok! I've added " + note + " to the task!";
+    }
 }

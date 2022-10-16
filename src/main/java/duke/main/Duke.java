@@ -102,6 +102,10 @@ public class Duke {
                     storage.saveTaskList(taskList); // Save to file
                     return ui.addTaskMessage(newTask, taskList);
                 }
+                case NOTE: {
+                    String[] descriptionArr = description.split(" ");
+
+                }
                 default: {
                     return "Oops... This is a rare error!";
                 }
