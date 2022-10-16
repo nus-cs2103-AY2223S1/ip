@@ -23,16 +23,6 @@ public class Ui {
         return text;
     }
 
-    public String displayWelcomeMessage() {
-        return displayMessage(WELCOME);
-    }
-
-    public String getUserInput() {
-        System.out.println("Please enter your command below: ");
-        String userInput = sc.nextLine();
-        return userInput;
-    }
-
     public String displayExitMessage() {
         sc.close();
         return EXIT;

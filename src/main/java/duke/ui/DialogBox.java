@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -32,6 +33,8 @@ public class DialogBox extends HBox {
         }
         dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setPreserveRatio(true);
+        displayPicture.setFitHeight(55);
     }
 
 
