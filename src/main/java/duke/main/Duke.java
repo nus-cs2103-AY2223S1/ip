@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import duke.commandword.CommandWord;
 import duke.exception.DukeException;
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
@@ -97,7 +98,7 @@ public class Duke {
                     String[] descriptionArr = description.split(" /at ");
                     LocalDateTime dateTime = DateTime.parseDate(descriptionArr[1]);
                     String taskDescription = descriptionArr[0];
-                    Task newTask = new Deadline(taskDescription, dateTime);
+                    Task newTask = new Event(taskDescription, dateTime);
                     taskList.addTask(newTask);
                     storage.saveTaskList(taskList); // Save to file
                     return ui.addTaskMessage(newTask, taskList);

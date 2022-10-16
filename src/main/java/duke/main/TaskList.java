@@ -109,30 +109,33 @@ public class TaskList {
      * @param s Keyword to search the tasklist.
      * @throws DukeException If task list is empty or if there are no matches.
      */
-    public String findTask(String s) throws DukeException {
-        int count = 1;
-        if (!taskList.isEmpty()) {
-            String output = String.format("Here are the tasks that have \"%s\"!\n", s);
-            for (int i = 0; i < taskList.size(); i++) {
-                Task currTask = taskList.get(i);
-                if (currTask.toString().contains(s)) {
-                    output += String.format("%d. %s\n", count, currTask);
-                    count++;
-                }
-            }
-            return output;
+    public String findTask(String s) {
+        if (taskList.size() == 0) { // If task list is empty
+            return "Hmm... I don't think you have any tasks as of now!";
+        } else { // if not empty, search
+            return searchTaskList(s);
         }
-
-        // If the task list is empty
-        if (taskList.size() == 0) {
-            throw new DukeException("Hmm... I don't think you have any tasks as of now!");
-        }
-
-        // If there are no matches in the task list
-        if (count <= 1) {
-            throw new DukeException("Hmm... I don't think you have such tasks in the list!");
-        }
-        return "Hmm... I don't think you have any tasks as of now!";
     }
 
+    /**
+     * Searches task list for tasks that contain the given input.
+     * @param input Input string to search the task list with.
+     * @return String of matching tasks.
+     */
+    public String searchTaskList(String input) {
+        int count = 1;
+        String output = String.format("Here are the tasks that have \"%s\"!\n", input);
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currTask = taskList.get(i);
+            if (currTask.toString().contains(input)) {
+                output += String.format("%d. %s\n", count, currTask);
+                count++;
+            }
+        }
+        if (count > 1) {
+            return output;
+        } else {
+            return "Hmm... I don't think you have such tasks in the list!";
+        }
+    }
 }
