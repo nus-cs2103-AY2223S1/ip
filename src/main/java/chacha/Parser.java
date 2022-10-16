@@ -33,103 +33,143 @@ public class Parser {
         }
         switch (command) {
             case TODO:
-                try {
-                    String description = userInput.substring(userInput.indexOf("todo ") + 5);
-                    description.trim();
-                    Todo todo = new Todo(description);
-                    return new AddCommand(todo);
-                } catch(Exception e) {
-                    throw new ChachaException("The description of a todo cannot be empty.\n" + "Please try again with a description.");
-                }
+                return todoCommand(userInput);
             case DEADLINE:
-                try {
-                    String description = userInput.substring(0, userInput.indexOf("/") - 1);
-                    description = description.substring(userInput.indexOf("deadline ") + 9);
-                    description.trim();
-                    String date = userInput.substring(userInput.indexOf("/by ") + 4);
-                    date.trim();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-                    Deadline deadline = new Deadline(description, dateTime);
-                    return new AddCommand(deadline);
-                } catch(DateTimeParseException e) {
-                    throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
-                } catch(Exception e) {
-                    throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please try again with a description.");
-                }
+                return deadlineCommand(userInput);
             case EVENT:
-                try {
-                    String description = userInput.substring(0, userInput.indexOf("/") - 1);
-                    description = description.substring(userInput.indexOf("event ") + 6);
-                    System.out.println(description + "here");
-                    description.trim();
-                    String date = userInput.substring(userInput.indexOf("/at ") + 4);
-                    date.trim();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-                    Event event = new Event(description, dateTime);
-                    return new AddCommand(event);
-                } catch(DateTimeParseException e) {
-                    throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
-                } catch(Exception e) {
-                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please try again with a description.");
-                }
+                return eventCommand(userInput);
             case LIST:
-                if (inputArray.length == 1) {
-                    return new ListCommand();
-                } else {
-                    throw new ChachaException("Sorry, I don't recognise this command.");
-                }
+                return listCommand(inputArray);
             case MARK:
-                if (inputArray.length == 2) {
-                    String[] split = userInput.split("\\s+");
-                    int taskIndex = Integer.valueOf(split[1]) - 1;
-                    return new MarkCommand(taskIndex);
-                } else {
-                    throw new ChachaException("Please enter valid task number to mark.");
-                }
+                return markCommand(inputArray, userInput);
             case UNMARK:
-                if (inputArray.length == 2) {
-                    String[] split = userInput.split("\\s+");
-                    int taskIndex = Integer.valueOf(split[1]) - 1;
-                    return new UnmarkCommand(taskIndex);
-                } else {
-                    throw new ChachaException("Please enter valid task number to unmark.");
-                }
+                return unmarkCommand(inputArray, userInput);
             case DELETE:
-                if (inputArray.length == 2) {
-                    String[] split = userInput.split("\\s+");
-                    int taskIndex = Integer.valueOf(split[1]) - 1;
-                    return new DeleteCommand(taskIndex);
-                } else {
-                    throw new ChachaException("Please enter valid task number to delete.");
-                }
+                return deleteCommand(inputArray, userInput);
             case EXIT:
-                if (inputArray.length == 1) {
-                    return new ExitCommand();
-                } else {
-                    throw new ChachaException("Sorry, I don't recognise this command.");
-                }
+                return exitCommand(inputArray);
             case FIND:
-                if (inputArray.length >= 2) {
-                    String keywordsStr = userInput.substring(5);
-                    String[] keywords = keywordsStr.split(", ");
-                    return new FindCommand(keywords);
-                } else {
-                    throw new ChachaException("Please enter valid search keyword.");
-                }
+                return findCommand(inputArray, userInput);
             case SORT:
-                if (inputArray.length == 1) {
-                    return new SortCommand();
-                } else {
-                    throw new ChachaException("Sorry, I don't recognise this command.");
-                }
+                return sortCommand(inputArray);
             default:
                 throw new ChachaException("Invalid input. Please try again!");
 
 
         }
         
+    }
+
+    private static Command todoCommand(String userInput) throws ChachaException {
+        try {
+            String description = userInput.substring(userInput.indexOf("todo ") + 5);
+            description.trim();
+            Todo todo = new Todo(description);
+            return new AddCommand(todo);
+        } catch(Exception e) {
+            throw new ChachaException("The description of a todo cannot be empty.\n" + "Please try again with a description.");
+        }
+    }
+
+    private static Command deadlineCommand(String userInput) throws ChachaException {
+        try {
+            String description = userInput.substring(0, userInput.indexOf("/") - 1);
+            description = description.substring(userInput.indexOf("deadline ") + 9);
+            description.trim();
+            String date = userInput.substring(userInput.indexOf("/by ") + 4);
+            date.trim();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+            Deadline deadline = new Deadline(description, dateTime);
+            return new AddCommand(deadline);
+        } catch(DateTimeParseException e) {
+            throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
+        } catch(Exception e) {
+            throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please try again with a description.");
+        }
+    }
+
+    private static Command eventCommand(String userInput) throws ChachaException {
+        try {
+            String description = userInput.substring(0, userInput.indexOf("/") - 1);
+            description = description.substring(userInput.indexOf("event ") + 6);
+            System.out.println(description + "here");
+            description.trim();
+            String date = userInput.substring(userInput.indexOf("/at ") + 4);
+            date.trim();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+            Event event = new Event(description, dateTime);
+            return new AddCommand(event);
+        } catch(DateTimeParseException e) {
+            throw new ChachaException("The date should be in this format: yyyy-MM-dd HH:mm");
+        } catch(Exception e) {
+            throw new ChachaException("The description of an event cannot be empty.\n" + "Please try again with a description.");
+        }
+    }
+
+    private static Command listCommand(String[] inputArray) throws ChachaException {
+        if (inputArray.length == 1) {
+            return new ListCommand();
+        } else {
+            throw new ChachaException("Sorry, I don't recognise this command.");
+        }
+    }
+
+    private static Command markCommand(String[] inputArray, String userInput) throws ChachaException {
+        if (inputArray.length == 2) {
+            String[] split = userInput.split("\\s+");
+            int taskIndex = Integer.valueOf(split[1]) - 1;
+            return new MarkCommand(taskIndex);
+        } else {
+            throw new ChachaException("Please enter valid task number to mark.");
+        }
+    }
+
+    private static Command unmarkCommand(String[] inputArray, String userInput) throws ChachaException {
+        if (inputArray.length == 2) {
+            String[] split = userInput.split("\\s+");
+            int taskIndex = Integer.valueOf(split[1]) - 1;
+            return new UnmarkCommand(taskIndex);
+        } else {
+            throw new ChachaException("Please enter valid task number to unmark.");
+        }
+    }
+
+    private static Command deleteCommand(String[] inputArray, String userInput) throws ChachaException {
+        if (inputArray.length == 2) {
+            String[] split = userInput.split("\\s+");
+            int taskIndex = Integer.valueOf(split[1]) - 1;
+            return new DeleteCommand(taskIndex);
+        } else {
+            throw new ChachaException("Please enter valid task number to delete.");
+        }
+    }
+
+    private static Command exitCommand(String[] inputArray) throws ChachaException {
+        if (inputArray.length == 1) {
+            return new ExitCommand();
+        } else {
+            throw new ChachaException("Sorry, I don't recognise this command.");
+        }
+    }
+
+    private static Command findCommand(String[] inputArray, String userInput) throws ChachaException {
+        if (inputArray.length >= 2) {
+            String keywordsStr = userInput.substring(5);
+            String[] keywords = keywordsStr.split(", ");
+            return new FindCommand(keywords);
+        } else {
+            throw new ChachaException("Please enter valid search keyword.");
+        }
+    }
+
+    private static Command sortCommand(String[] inputArray) throws ChachaException {
+        if (inputArray.length == 1) {
+            return new SortCommand();
+        } else {
+            throw new ChachaException("Sorry, I don't recognise this command.");
+        }
     }
     
 }
