@@ -82,6 +82,6 @@ public class Ui {
     }
 
     public String addedNote(String note) {
-        return "Ok! I've added " + note + " to the task!";
+        return "Ok! I've added \"" + note + "\" to the task!";
     }
 }

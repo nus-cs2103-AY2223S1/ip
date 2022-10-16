@@ -1,10 +1,12 @@
 package duke.main;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.exception.DukeException;
 
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
-import java.time.format.DateTimeParseException;
+
 
 /**
  * Utility Class managing LocalDateTime inputs and outputs
@@ -34,6 +36,7 @@ public class DateTime {
      * @return String from the input LocalDateTime in its output format.
      */
     public static String printDate(LocalDateTime date) {
+        assert date != null : "Invalid LocalDateTime";
         return date.format(outputFormat);
     }
 
@@ -43,6 +46,7 @@ public class DateTime {
      * @return String from the input LocalDateTime in its input format.
      */
     public static String changeFormat(LocalDateTime date) {
+        assert date != null : "Invalid LocalDateTime";
         return date.format(inputFormat);
     }
 }

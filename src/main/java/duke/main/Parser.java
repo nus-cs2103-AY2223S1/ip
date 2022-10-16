@@ -1,7 +1,7 @@
 package duke.main;
 
-import duke.exception.DukeException;
 import duke.commandword.CommandWord;
+import duke.exception.DukeException;
 /**
  * Class dealing with logic of user commands.
  */
@@ -50,9 +50,15 @@ public class Parser {
         }
         case MARK:
         case UNMARK:
-        case NOTE:
         case DELETE: {
             checkIndex(description);
+            break;
+        }
+        case NOTE: {
+            checkNote(description);
+            break;
+        }
+        default: {
             break;
         }
         }
@@ -99,9 +105,9 @@ public class Parser {
     /**
      * Checks if index given by user is valid.
      * @param description Description field of MARK/UNMARK/DELETE command calls.
-     * @throws DukeException If the
+     * @throws DukeException If the given task number is invalid.
      */
-    public static void checkIndex(String description) throws DukeException{
+    public static void checkIndex(String description) throws DukeException {
         try {
             Integer.parseInt(description);
         } catch (NumberFormatException e) {
@@ -110,10 +116,29 @@ public class Parser {
     }
 
     /**
+     * Checks if the index given by user is valid.
+     * @param description Description field of NOTE command calls.
+     * @throws DukeException If the given task number is invalid
+     */
+    public static void checkNote(String description) throws DukeException {
+        String[] descriptionArr = description.split(" ", 2);
+        try {
+            String taskIndex = descriptionArr[0];
+            String taskNote = descriptionArr[1]; // Throws AIOOBE
+            checkIndex(taskIndex); // Throws DukeException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please write the note you want to add!");
+        } catch (DukeException de) {
+            throw de;
+        }
+    }
+
+    /**
      * Returns the CommandWord.
      * @return CommandWord command of this class.
      */
     public static CommandWord getCommand() {
+        assert command != null : "Command does not exist!";
         return command;
     }
 
@@ -122,6 +147,7 @@ public class Parser {
      * @return Description string of this class.
      */
     public static String getDescription() {
+        assert description != null : "Description does not exist!";
         return description;
     }
 }

@@ -25,7 +25,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + String.format("(by: %s)", DateTime.printDate(deadline));
+        return "[D]" + super.toString() + String.format(" (by: %s)", DateTime.printDate(deadline));
     }
 
     /**
@@ -34,6 +34,6 @@ public class Deadline extends Task {
      */
     @Override
     public String changeFormat() {
-        return String.format("D | %s | %s | %s", getStatus(), name, DateTime.changeFormat(this.deadline));
+        return String.format("D | %s | %s | %s | %s", getStatus(), name, getNote(), DateTime.changeFormat(this.deadline));
     }
 }

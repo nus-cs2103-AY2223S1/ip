@@ -18,13 +18,20 @@ public class Task {
     }
 
     /**
-     * Gets the completion status of the task
+     * Gets the completion status of the Task
      * @return A status icon if its completed/uncompleted
      */
     public String getStatus() {
         return isCompleted ? "X" : " ";
     }
 
+    /**
+     * Gets icon or note description of the Task.
+     * @return An icon or note description of Task.
+     */
+    public String getNote() {
+        return note == null ? "-" : note;
+    }
     /**
      * Marks the task to show completed
      */
@@ -45,7 +52,11 @@ public class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s ", getStatus(), name);
+        if (note == null) {
+            return String.format("[%s] %s", getStatus(), name);
+        } else {
+            return String.format("[%s] %s [Note: %s]", getStatus(), name, note);
+        }
     }
 
     /**
@@ -53,7 +64,11 @@ public class Task {
      * @return String of Task object to be saved.
      */
     public String changeFormat() {
-        return String.format("[%s] | %s", getStatus(), name);
+        if (note == null) {
+            return String.format("[%s] | %s", getStatus(), name);
+        } else {
+            return String.format("[%s] | %s [Note: %s]", getStatus(), name, note);
+        }
     };
 
     /**

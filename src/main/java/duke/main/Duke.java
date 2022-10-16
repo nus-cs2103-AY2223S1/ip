@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import duke.commandword.CommandWord;
 import duke.exception.DukeException;
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
@@ -97,14 +98,18 @@ public class Duke {
                     String[] descriptionArr = description.split(" /at ");
                     LocalDateTime dateTime = DateTime.parseDate(descriptionArr[1]);
                     String taskDescription = descriptionArr[0];
-                    Task newTask = new Deadline(taskDescription, dateTime);
+                    Task newTask = new Event(taskDescription, dateTime);
                     taskList.addTask(newTask);
                     storage.saveTaskList(taskList); // Save to file
                     return ui.addTaskMessage(newTask, taskList);
                 }
                 case NOTE: {
-                    String[] descriptionArr = description.split(" ");
-
+                    String[] descriptionArr = description.split(" ", 2);
+                    String taskNumber = descriptionArr[0];
+                    String taskNote = descriptionArr[1];
+                    taskList.noteTask(taskNumber, taskNote);
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.addedNote(taskNote);
                 }
                 default: {
                     return "Oops... This is a rare error!";
