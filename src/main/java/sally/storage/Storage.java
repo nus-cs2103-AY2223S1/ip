@@ -101,8 +101,6 @@ public class Storage {
      * @param tasks tasks to be updated.
      */
     public void loadDeadline(String[] splitInput, ArrayList<Task> tasks) {
-        System.out.println("splitInput[2]: " + splitInput[2]);
-        System.out.println("splitInput[3]: " + splitInput[3]);
         Deadline deadline;
         String date = splitInput[3];
         if (isDate(date)) {
