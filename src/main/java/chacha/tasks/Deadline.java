@@ -14,7 +14,7 @@ public class Deadline extends Task {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
-     * Constructor for deadline.
+     * Constructs a deadline.
      * 
      * @param description Description of the deadline.
      * @param date Date of the deadline.

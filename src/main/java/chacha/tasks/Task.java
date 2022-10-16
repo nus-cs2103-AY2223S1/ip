@@ -12,7 +12,7 @@ public class Task {
     private LocalDateTime date = LocalDateTime.MAX;
 
     /**
-     * Constructor for a task.
+     * Constructs a task.
      * 
      * @param description Description of task.
      */
@@ -27,14 +27,14 @@ public class Task {
     }
 
     /**
-     * Mark task as done.
+     * Marks task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
     
     /**
-     * Unmark task as done.
+     * Unmarks task as done.
      */
     public void unmarkAsDone() {
         this.isDone = false;

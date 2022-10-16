@@ -9,7 +9,7 @@ public class Todo extends Task {
     private String type;
 
     /**
-     * Constructor for todo.
+     * Constructs a todo.
      * 
      * @param description Description of the todo.
      *
