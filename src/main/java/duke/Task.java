@@ -84,7 +84,7 @@ class Task {
     }
 
     /**
-     * Obtain the appropriate Task instance from a user entry.
+     * Obtains the appropriate Task instance from a user entry.
      *
      * @param <T> Task and its children.
      * @param entry the entry entered by the user to record a Task.

@@ -9,7 +9,7 @@ class Duke {
     private static TaskList tasks = new TaskList();
 
     /**
-     * The main program.
+     * Starts the main program.
      *
      * @param args command line arguments.
      */
@@ -162,7 +162,7 @@ class Duke {
     }
 
     /**
-     * Clear all tasks and update the data file.
+     * Clears all tasks and update the data file.
      */
     public static void clearTasks() {
         Duke.tasks = new TaskList();
