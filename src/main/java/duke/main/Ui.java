@@ -64,7 +64,7 @@ public class Ui {
             return "Goodjob! This task is meow completed :)\n" + task;
         }
         case UNMARK: {
-            return "Oh... OK, I'll meow-rk this task as uncompleted!\n" + task;
+            return "Purr... Ok, I'll meow-rk this task as uncompleted!\n" + task;
         }
         default: {
             throw new DukeException("Purr...I'm unable to mark/unmark this task...");
@@ -81,7 +81,7 @@ public class Ui {
         return "Meow! I've re-meow-ved this task: \n" + task;
     }
 
-    public String addedNote(String note) {
-        return "Meow! I've added \"" + note + "\" to the task!";
+    public String addedNote(String note, Task task) {
+        return "Meow! I've added \"" + note + "\" to the task!\n" + task;
     }
 }

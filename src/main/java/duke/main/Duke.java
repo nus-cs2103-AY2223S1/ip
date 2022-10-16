@@ -107,9 +107,10 @@ public class Duke {
                     String[] descriptionArr = description.split(" ", 2);
                     String taskNumber = descriptionArr[0];
                     String taskNote = descriptionArr[1];
+                    Task task = taskList.getTask(taskNumber);
                     taskList.noteTask(taskNumber, taskNote);
                     storage.saveTaskList(taskList); // Save to file
-                    return ui.addedNote(taskNote);
+                    return ui.addedNote(taskNote, task);
                 }
                 default: {
                     return "Oops... This is a rare error!";

@@ -1,4 +1,6 @@
-T |   | Read  | -
-E |   |  | - | 1200-12-12 1200
-D |   | test | Test | 1200-12-12 1200
-T |   | Read | -
+E |   | Attend talk | IMPORTANT | 2022-10-19 1200
+D |   | 2103T Quiz | - | 2022-10-18 2359
+T |   | Run | Run fast
+T |   | Go for a run | -
+E |   | Attend talk | - | 2022-09-13 1200
+D |   | Homework | - | 2022-09-13 1400
