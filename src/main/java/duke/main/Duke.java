@@ -2,7 +2,6 @@ package duke.main;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.commandword.CommandWord;
 import duke.exception.DukeException;
@@ -23,7 +22,7 @@ public class Duke {
     /**
      * Constructor for Duke class.
      */
-    private Duke() {
+    public Duke() {
         // Initialising the field variables
         storage = new Storage();
         ui = new Ui();
@@ -40,20 +39,15 @@ public class Duke {
     /**
      * Executes the logic flow of Duke.
      */
-    public void run() {
+    String getResponse(String input) {
         ui.greetUser();
         boolean isExit = false;
         while (!isExit) {
-            // Variables
-            Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
-
             // If input is invalid, then print error message
             try {
                 Parser.parse(input);
             } catch (DukeException de) {
-                ui.printErrorMessage(de);
-                continue;
+                return ui.printErrorMessage(de);
             }
 
             // If input is valid
@@ -63,36 +57,32 @@ public class Duke {
             try {
                 switch (command) {
                 case BYE: {
-                    ui.exitJukebox();
                     isExit = true;
-                    break;
+                    return ui.exitJukebox();
                 }
                 case LIST: {
-                    taskList.printList();
-                    break;
+                    return taskList.printList();
                 }
                 case MARK:
                 case UNMARK: {
                     taskList.markUnmarkTask(command, description);
                     Task markedTask = taskList.getTask(description);
-                    ui.markUnmarkTaskMessage(markedTask, command);
-                    break;
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.markUnmarkTaskMessage(markedTask, command);
                 }
                 case DELETE: {
-                    Task deletedTask = taskList.getTask(description);
-                    ui.deleteTaskMessage(deletedTask, taskList);
-                    taskList.deleteTask(description);
-                    break;
+                    Task deletedTask = taskList.deleteTask(description);
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.deleteTaskMessage(deletedTask, taskList);
                 }
                 case FIND: {
-                    taskList.findTask(description);
-                    break;
+                    return taskList.findTask(description);
                 }
                 case TODO: {
                     Task newTask = new Todo(description);
                     taskList.addTask(newTask);
-                    ui.addTaskMessage(newTask, taskList);
-                    break;
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.addTaskMessage(newTask, taskList);
                 }
                 case DEADLINE: {
                     String[] descriptionArr = description.split(" /by ");
@@ -100,8 +90,8 @@ public class Duke {
                     String taskDescription = descriptionArr[0];
                     Task newTask = new Deadline(taskDescription, dateTime);
                     taskList.addTask(newTask);
-                    ui.addTaskMessage(newTask, taskList);
-                    break;
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.addTaskMessage(newTask, taskList);
                 }
                 case EVENT: {
                     String[] descriptionArr = description.split(" /at ");
@@ -109,27 +99,18 @@ public class Duke {
                     String taskDescription = descriptionArr[0];
                     Task newTask = new Deadline(taskDescription, dateTime);
                     taskList.addTask(newTask);
-                    ui.addTaskMessage(newTask, taskList);
-                    break;
+                    storage.saveTaskList(taskList); // Save to file
+                    return ui.addTaskMessage(newTask, taskList);
                 }
                 default: {
-                    System.out.print("Oops... This is a rare error!");
-                    break;
+                    return "Oops... This is a rare error!";
                 }
                 }
-                storage.saveTaskList(taskList);
             } catch (DukeException de) {
-                System.out.println(de.getMessage());
+                return de.getMessage();
             }
         }
-    }
-
-    /**
-     * Main method of Duke class.
-     * @param args Main input arguments from user.
-     */
-    public static void main(String[] args) {
-        new Duke().run();
+        return "Unhandled error";
     }
 }
 

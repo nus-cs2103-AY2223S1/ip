@@ -1,10 +1,10 @@
 package duke.main;
 
-import duke.exception.DukeException;
-import duke.commandword.CommandWord;
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.commandword.CommandWord;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * Class encapsulating the task list and its methods.
@@ -33,10 +33,11 @@ public class TaskList {
      * @param indexString String of the index of the task to be deleted.
      * @throws DukeException If the given string index is invalid.
      */
-    public void deleteTask(String indexString) throws DukeException {
+    public Task deleteTask(String indexString) throws DukeException {
         try {
             Task delTask = getTask(indexString); // Throws DE
             this.taskList.remove(delTask);
+            return delTask;
         } catch (DukeException e) {
             throw e;
         }
@@ -48,7 +49,7 @@ public class TaskList {
      * @return Task at the given index in the task list.
      * @throws DukeException If the given string index is invalid.
      */
-    public Task getTask(String indexString) throws DukeException{
+    public Task getTask(String indexString) throws DukeException {
         try {
             int index = Integer.parseInt(indexString);
             Task currTask = this.taskList.get(index - 1); // Throws AIOOBE
@@ -61,21 +62,19 @@ public class TaskList {
     /**
      * Prints the tasks in the task list.
      */
-    public void printList() {
+    public String printList() {
+        String output = "";
         if (!this.taskList.isEmpty()) {
-            System.out.println("These are your current tasks! :)");
+            output += "These are your current tasks! :)\n";
             int i = 1;
             for (Task t : taskList) {
-                String s = String.format("%d.%s", i, t);
-                System.out.println(s);
+                String s = String.format("%d.%s\n", i, t);
+                output += s;
                 i++;
-                // End of list
-                if (t == null) {
-                    break;
-                }
             }
+            return output;
         } else {
-            System.out.println("No tasks have been added yet!\n");
+            return "No tasks have been added yet!";
         }
     }
 
@@ -84,7 +83,7 @@ public class TaskList {
      * @param command Input command word.
      * @param description String array of the command word with the task number
      */
-    public void markUnmarkTask (CommandWord command, String description) throws DukeException {
+    public void markUnmarkTask(CommandWord command, String description) throws DukeException {
         try {
             Task task = getTask(description);
             if (command == CommandWord.MARK) {
@@ -105,14 +104,23 @@ public class TaskList {
         return this.taskList.size();
     }
 
-    public void findTask(String s) throws DukeException{
+    /**
+     * Find for tasks that contain keywords s.
+     * @param s Keyword to search the tasklist.
+     * @throws DukeException If task list is empty or if there are no matches.
+     */
+    public String findTask(String s) throws DukeException {
         int count = 1;
-        for (int i = 0; i < taskList.size(); i++) {
-            Task currTask = taskList.get(i);
-            if (currTask.toString().contains(s)) {
-                System.out.println(String.format("%d. %s", count, currTask));
-                count++;
+        if (!taskList.isEmpty()) {
+            String output = String.format("Here are the tasks that have \"%s\"!\n", s);
+            for (int i = 0; i < taskList.size(); i++) {
+                Task currTask = taskList.get(i);
+                if (currTask.toString().contains(s)) {
+                    output += String.format("%d. %s\n", count, currTask);
+                    count++;
+                }
             }
+            return output;
         }
 
         // If the task list is empty
@@ -124,6 +132,7 @@ public class TaskList {
         if (count <= 1) {
             throw new DukeException("Hmm... I don't think you have such tasks in the list!");
         }
+        return "Hmm... I don't think you have any tasks as of now!";
     }
 
 }

@@ -1,8 +1,8 @@
 package duke.main;
 
-import duke.exception.DukeException;
 import duke.commandword.CommandWord;
-import duke.task.*;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * Class encapsulating user interactions.
@@ -15,32 +15,32 @@ public class Ui {
     }
 
     /**
-     * Prints out the greeting message
+     * Returns the greeting message
      */
-    public void greetUser() {
-        System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?");
+    public static String greetUser() {
+        return "Hello! I'm Jukebox :)\n" + "What can I do for you today?";
     }
 
     /**
-     * Prints out the exit message.
+     * Returns the exit message.
      */
-    public void exitJukebox() {
-        System.out.println("Aww... OK, Hope to see you again!");
+    public String exitJukebox() {
+        return "Aww... OK, Hope to see you again!";
     }
 
     /**
      * Prints out error message of DukeException.
      * @param de DukeException of which message to print.
      */
-    public void printErrorMessage(DukeException de) {
-        System.out.println(de.getMessage());
+    public String printErrorMessage(DukeException de) {
+        return de.getMessage();
     }
 
     /**
      * Prints out message for a successful loading of save file.
      */
-    public void successLoadMessage() {
-        System.out.println("Loading save file... Done!");
+    public String successLoadMessage() {
+        return "Loading save file... Done!";
     }
 
     /**
@@ -48,11 +48,9 @@ public class Ui {
      * @param task Task that was added into the task list.
      * @param taskList Task list that the task was added into.
      */
-    public void addTaskMessage(Task task, TaskList taskList) {
-        if (task != null) {
-            System.out.println("Okay!\n" + "Added: " + task);
-            System.out.println(String.format("You now have %d task(s) in your task list!", taskList.getSize()));
-        }
+    public String addTaskMessage(Task task, TaskList taskList) {
+        return "Okay!\n" + "Added: " + task + "\n"
+                + String.format("You now have %d task(s) in your task list!", taskList.getSize());
     }
 
     /**
@@ -60,15 +58,16 @@ public class Ui {
      * @param task Task that was marked or unmarked.
      * @param command Command that is either MARK or UNMARK.
      */
-    public void markUnmarkTaskMessage(Task task, CommandWord command) {
+    public String markUnmarkTaskMessage(Task task, CommandWord command) throws DukeException {
         switch (command) {
         case MARK: {
-            System.out.println(String.format("Goodjob! This task is now completed :)\n" + "%s", task.toString()));
-            break;
+            return "Goodjob! This task is now completed :)\n" + task;
         }
         case UNMARK: {
-            System.out.println(String.format("Oh... OK, I'll mark this task as uncompleted!\n" + "%s", task.toString()));
-            break;
+            return "Oh... OK, I'll mark this task as uncompleted!\n" + task;
+        }
+        default: {
+            throw new DukeException("Hmm...I'm unable to mark/unmark this task...");
         }
         }
     }
@@ -78,10 +77,7 @@ public class Ui {
      * @param task Task that was deleted.
      * @param taskList Task list that the task was deleted from.
      */
-    public void deleteTaskMessage(Task task, TaskList taskList) {
-        if (task != null) {
-            System.out.println("Ok! I've removed this task: \n" + task);
-        }
+    public String deleteTaskMessage(Task task, TaskList taskList) {
+        return "Ok! I've removed this task: \n" + task;
     }
-
 }
