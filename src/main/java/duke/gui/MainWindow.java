@@ -1,9 +1,8 @@
-package Duke.gui;
+package duke.gui;
 
 import java.io.IOException;
 
-import Duke.*;
-import Duke.commands.Command;
+import duke.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -30,13 +29,6 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
 
-    private TaskList taskList;
-    private Storage storage;
-    private final Ui ui = new Ui();
-
-    public MainWindow() throws DukeException, IOException {
-    }
-
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -47,10 +39,19 @@ public class MainWindow extends AnchorPane {
     }
 
 
+    public void showWelcome() {
+        String logo = "MyDuke";
+        String welcome = "Hello from\n" + "DUKEPROMAX!";
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcome, dukeImage)
+        );
+    }
+
+
 
 
     /**
-         * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+         * Creates two dialog boxes, one echoing user input and the other containing duke's reply and then appends them to
          * the dialog container.
          */
     @FXML

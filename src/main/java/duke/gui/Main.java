@@ -1,14 +1,12 @@
-package Duke.gui;
+package duke.gui;
 
 import java.io.IOException;
-import Duke.*;
+import duke.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -16,8 +14,7 @@ public class Main extends Application {
     private Duke duke = new Duke();
 
 
-    public Main() throws IOException, DukeException {
-    }
+    public Main() {}
 
 
     @Override
@@ -29,6 +26,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setTitle("DukeProMax");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().showWelcome();
             stage.show();
 
         } catch (IOException e) {

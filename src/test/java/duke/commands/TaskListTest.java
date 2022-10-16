@@ -1,13 +1,11 @@
-package Duke.commands;
+package duke.commands;
 
-import Duke.Storage;
-import Duke.TaskList;
-import Duke.tasks.Task;
-import Duke.tasks.Todo;
+import duke.TaskList;
+import duke.tasks.Task;
+import duke.tasks.Todo;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,17 +16,14 @@ public class TaskListTest {
     public void add() {
         ArrayList<Task> tasks = new ArrayList<>();
         Task tempTask = new Todo("");
-        TaskList taskList = new TaskList(tasks);
-        Task addedTask = taskList.addTask(tempTask);
-        assertNotNull(taskList);
+        tasks.add(tempTask);
+        assertNotNull(tasks);
     }
 
     @Test
     public void isValidTaskNumbertest() {
-        TaskList taskList = new TaskList(Arrays.asList(null, null));
+        TaskList taskList = new TaskList();
         assertFalse(taskList.isValidTaskNumber(10));
     }
-
-
 }
 
