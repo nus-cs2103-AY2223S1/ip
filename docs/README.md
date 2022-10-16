@@ -1,17 +1,6 @@
 #https://github.com/24Donovan24/ip/blob/master/docs/README.md
 #@@24Donovan24 
 
-#Adapted @@24Donovan24 features portion
-
-#Adapted @@24Donovan24 usage portion -Rewrite and reused some
-
-#Used the above user guide for reference in helping me craft a better one
-
-#i will try to rewrite this if i have time later
-
-#for i will have to thank @@24Donovan24 for helping me craft a rough one
-
-
 # User Guide
 Here is Duke, a friendly task manager robot!
 
@@ -19,91 +8,112 @@ Here is Duke, a friendly task manager robot!
 Manage tasks
 Duke helps you to keep track of 3 types of tasks: Todos, Events and Deadlines. 
 You can add a new task or delete an old task. 
-You can also mark a task as completed or unmark it as uncompleted.
+You can also mark a task as completed.
+
+Delete task
+Once you are done with task you can remove it from the list by deleting it.
 
 Find tasks
-Duke can help you search for tasks stored in your task list based on the keyword you enter!
+Duke can search for a specific task stored in the task list based on the keyword that the user enters.
 
 Auto-Save
-Duke automatically saves your tasks in local storage, so you can always retrieve the data again even 
-after closing the application!
+Duke automatically saves all tasks in your local storage, you can be assured your task list will be saved when you close the application.
+It will automatically be loaded up when you open the application again!
 
-## Usage
+## Usages
 
 ### `Todo` - Creates a todo task
 
 Adds a new "todo" into your task list.
 
-Example of usage: todo go to gym
+Sample command: todo workout
 
-`Okay! I've added this task:
-[T][] go to gym
-Now you have 1 task(s) in the list.`
+```
+expected output
+```
+`Got it. I've added this task:
+[T][X] workout
+Now you have 1 tasks in the list.`
 
-### `event <description> /at <date>` - Creates an event
+### `event <description> /at String` - Creates an event task
 
 Adds a new event into your task list.
 
-Example of usage: event meeting /at 2023-12-12
+Sample command: event meeting john /at 8-8-2023
+
+```
+expected output
+```
+`Got it. I've added this task:
+[E][X] meeting john (at:8-8-2023)
+Now you have 2 task(s) in the list.`
+
+### `deadline <description> /by String` - Creates a deadline task
+
+Adds a new deadline into your task list.
+
+Sample command: deadline math homework /by 6-6-2023
 
 ```
 expected output
 ```
 `Okay! I've added this task:
-[E][] meeting (at: Dec 12 2023)
-Now you have 2 task(s) in the list.`
-
-### `deadline <description> /by <date>` - Creates a deadline
-
-Adds a new "todo" into your task list.
-
-Example of usage: deadline watch lecture /by 2023-12-12
-
-`Okay! I've added this task:
-[D][] watch lecture (by: Dec 12 2023)
+[D][X] math homework (by:6-6-2023)
 Now you have 3 task(s) in the list.`
 
 
 ### `List` - Show all current objects in the list
 
-List all objects in your task list
+List all objects in the task list.
 
-Example of usage: list
+Sample command: list
 
-`Here are the task(s) in your list so far!
-1. [T][] go to gym
-2. [E][] meeting (at: Dec 12 2023)
-3. [D][] watch lecture (by: Dec 12 2023)`
+```
+expected output
+```
+`1.[T][X] workout
+ 2.[E][X] meeting john (at:8-8-2023)
+ 3.[D][X] math homework (by:6-6-2023)`
 
 ### `mark` - mark a task
 
-Shows the task is done
+Marks a task as done by index.
 
-Example of usage: mark 1
+Sample command: mark 1
 
-`Okay! I've mark this task as done:
-[T][/] go to gym`
+```
+expected output
+```
+`Nice! I've mark this task as done:
+[/] workout`
 
-delete <index> - Deletes object from tasklist
+###  `delete` <index> - Delete an object of specific index from the list
 
-Removed an object that is already done
+Deletes a task by index from the list.
 
-Example of usage: delete 2
+Sample command: delete 2
 
-`Okay! I've remove this task:
-[T][] go to gym
-Now you have 1 task(s) in the list.`
+```
+expected output
+```
+`Noted. I've remove this task:
+[E][] meeting john (at:8-8-2023)
+Now you have 2 task(s) in the list.`
 
-find <keyword> - Searches for tasks
+## find <keyword> - Searches for tasks
 
 Search for a task that match the keyword
 
-Example:Find book
+Sample command: `find math`
 
+```
+expected output
+```
 Here are the task(s) with your keyword!
-1. [T][] return book
+`1.[D][X] math homework (by:6-6-2023)`
 
-bye - Quits the application
+### `bye` - Quits the application
+
 Exits the application
 
 
