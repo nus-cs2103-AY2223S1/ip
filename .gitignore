@@ -15,3 +15,16 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+src/out/production/Individual Project/Duke.class
+src/.idea/misc.xml
+src/.idea/modules.xml
+src/.idea/vcs.xml
+src/.idea/workspace.xml
+src/out/production/Individual Project/Task.class
+src/out/production/Individual Project/Deadline.class
+src/out/production/Individual Project/Event.class
+src/out/production/Individual Project/Todo.class
+dukeList.txt
+dukeList_Test.txt
+src/main/resources/META-INF/MANIFEST.MF
+META-INF/MANIFEST.MF

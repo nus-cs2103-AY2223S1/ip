@@ -1,0 +1,12 @@
+Buy books
+Run to the grocery store
+mark 1
+list
+unmark 1
+todo Buy a pen from Popular
+deadline Coding Project /by Sunday 12am
+event Book Club Meeting /at 11/08/2022 7pm - 8pm
+list
+mark 4
+list
+bye

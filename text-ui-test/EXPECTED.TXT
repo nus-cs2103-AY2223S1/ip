@@ -1,7 +1,82 @@
-Hello from
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+========================================================
+Hello, my name is Duke!
+How can I help you today?
+========================================================
+
+========================================================
+You have added: Buy books
+========================================================
+
+========================================================
+You have added: Run to the grocery store
+========================================================
+
+========================================================
+Okay, I have marked this task as done: 
+[X] Buy books
+========================================================
+
+========================================================
+Here are the tasks in your list:
+1.[X] Buy books
+2.[ ] Run to the grocery store
+
+========================================================
+
+========================================================
+Okay, I have marked this task as not done: 
+[ ] Buy books
+========================================================
+
+========================================================
+Got it! I have added this task to your list:
+  [T][ ] Buy a pen from Popular
+Now you have 3 tasks in the list.
+========================================================
+
+========================================================
+Got it! I have added this task to your list:
+  [D][ ] Coding Project  (by: Sunday 12am)
+Now you have 4 tasks in the list.
+========================================================
+
+========================================================
+Got it! I have added this task to your list:
+  [E][ ] Book Club Meeting  (at: 11/08/2022 7pm - 8pm)
+Now you have 5 tasks in the list.
+========================================================
+
+========================================================
+Here are the tasks in your list:
+1.[ ] Buy books
+2.[ ] Run to the grocery store
+3.[T][ ] Buy a pen from Popular
+4.[D][ ] Coding Project  (by: Sunday 12am)
+5.[E][ ] Book Club Meeting  (at: 11/08/2022 7pm - 8pm)
+
+========================================================
+
+========================================================
+Okay, I have marked this task as done: 
+[D][X] Coding Project  (by: Sunday 12am)
+========================================================
+
+========================================================
+Here are the tasks in your list:
+1.[ ] Buy books
+2.[ ] Run to the grocery store
+3.[T][ ] Buy a pen from Popular
+4.[D][X] Coding Project  (by: Sunday 12am)
+5.[E][ ] Book Club Meeting  (at: 11/08/2022 7pm - 8pm)
+
+========================================================
+
+========================================================
+Goodbye! Looking forward to see you again soon!
+========================================================
