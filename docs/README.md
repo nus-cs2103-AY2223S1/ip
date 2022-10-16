@@ -2,6 +2,27 @@
 
 Sally is a desktop application as a **daily task manager bot**.
 
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+2. Download the latest `sally.jar` ([here](releases/download/A-Release-2/sally.jar)).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your Sally.
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
+   ![Ui](Ui.png)
+
+5. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 
@@ -59,3 +80,7 @@ Sally is a desktop application as a **daily task manager bot**.
 
 - bid farewell to Sally to save your list
 - Example: `bye`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Have fun navigating through Sally!
