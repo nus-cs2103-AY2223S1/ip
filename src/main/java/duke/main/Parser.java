@@ -1,7 +1,7 @@
 package duke.main;
 
-import duke.exception.DukeException;
 import duke.commandword.CommandWord;
+import duke.exception.DukeException;
 /**
  * Class dealing with logic of user commands.
  */
@@ -39,23 +39,24 @@ public class Parser {
      * @throws DukeException If deadline/time/index fields are invalid.
      */
     public static void checkDescription(String description) throws DukeException {
-            switch (command) {
-            case DEADLINE: {
-                checkDeadline(description);
-                break;
-            }
-            case EVENT: {
-                checkTime(description);
-                break;
-            }
-            case MARK:
-            case UNMARK:
-            case DELETE: {
-                checkIndex(description);
-                break;
-            }
-
-
+        switch (command) {
+        case DEADLINE: {
+            checkDeadline(description);
+            break;
+        }
+        case EVENT: {
+            checkTime(description);
+            break;
+        }
+        case MARK:
+        case UNMARK:
+        case DELETE: {
+            checkIndex(description);
+            break;
+        }
+        default: {
+            break;
+        }
         }
     }
 
@@ -102,7 +103,7 @@ public class Parser {
      * @param description Description field of MARK/UNMARK/DELETE command calls.
      * @throws DukeException If the
      */
-    public static void checkIndex(String description) throws DukeException{
+    public static void checkIndex(String description) throws DukeException {
         try {
             Integer.parseInt(description);
         } catch (NumberFormatException e) {
@@ -115,6 +116,7 @@ public class Parser {
      * @return CommandWord command of this class.
      */
     public static CommandWord getCommand() {
+        assert command != null : "Command does not exist!";
         return command;
     }
 
@@ -123,6 +125,7 @@ public class Parser {
      * @return Description string of this class.
      */
     public static String getDescription() {
+        assert description != null : "Description does not exist!";
         return description;
     }
 }
