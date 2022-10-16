@@ -21,7 +21,7 @@ public class MarkCommand extends Command {
      * @param index of task to be marked
      */
     public MarkCommand(int index) {
-        this.index= index;
+        this.index = index;
     }
 
     @Override

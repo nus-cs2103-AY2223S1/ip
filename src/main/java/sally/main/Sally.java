@@ -1,7 +1,6 @@
 package sally.main;
 
 import javafx.scene.image.Image;
-
 import sally.command.Command;
 import sally.exception.SallyException;
 import sally.parser.Parser;
@@ -16,15 +15,15 @@ import sally.ui.Ui;
  */
 
 public class Sally {
-    private final Storage storage;
-    private TaskList tasks;
-    private final Ui ui;
     protected boolean isBye = false;
+    private TaskList tasks;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image sally = new Image(this.getClass().getResourceAsStream("/images/sally.png"));
 
     private static final String filePath = "data/Sally.txt";
+    private final Storage storage;
+    private final Ui ui;
 
     /**
      * Constructor for Sally

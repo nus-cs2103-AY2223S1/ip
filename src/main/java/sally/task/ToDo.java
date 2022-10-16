@@ -9,7 +9,7 @@ import java.time.LocalDate;
  */
 
 public class ToDo extends Task {
-    protected LocalDate TODAY = LocalDate.now();
+    protected LocalDate today = LocalDate.now();
     protected LocalDate createdBy;
 
     /**
@@ -36,7 +36,7 @@ public class ToDo extends Task {
     }
 
     public boolean isWithin(int days) {
-        return getCreatedBy().compareTo(TODAY) <= days;
+        return getCreatedBy().compareTo(today) <= days;
     }
 
     @Override
