@@ -47,7 +47,6 @@ public class Ui {
         String by = str.split(" /", 2)[1].split("by ", 2)[1];
 
         printLine();
-        System.out.println("     Got it. I've added this task:");
         Deadline task = Deadline.addTask(name, by);
         Deadline.countTaskLeft();
         printLine();
@@ -64,7 +63,6 @@ public class Ui {
         String at = str.split(" /", 2)[1].split("at ", 2)[1];
 
         printLine();
-        System.out.println("     Got it. I've added this task:");
         Event task = Event.addTask(name, at);
         Event.countTaskLeft();
         printLine();
@@ -78,7 +76,6 @@ public class Ui {
      */
     public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
-        System.out.println("     Got it. I've added this task:");
         ToDo task = ToDo.addTask(str);
         ToDo.countTaskLeft();
         printLine();
@@ -224,7 +221,6 @@ public class Ui {
     /**
      * Prints msg to show the user last command has been undone.
      * @param stack The taskList history of Duke for this run only.
-     * @return a boolean value indicating that if a undo can be done.
      */
     public static void undo(Stack<String> stack) {
         printLine();

@@ -19,6 +19,7 @@ public class ToDo extends Task {
      */
     public static ToDo addTask(String name) throws DateTimeFormatException {
         ToDo newToDo = new ToDo(name);
+        System.out.println("     Got it. I've added this task:");
         System.out.println("       " + newToDo.printSelf());
         return newToDo;
     }

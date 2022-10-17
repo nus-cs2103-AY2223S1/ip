@@ -54,13 +54,12 @@ public class Parser {
         String[] dateAndTime = dateTime.trim().split(" ");
         String hour;
         String min;
-        
         if (dateAndTime.length != 2) {
-            throw new DateTimeFormatException("The correct Format: YYYY-MM-DD HH:mm");
+            System.out.println("The correct Format: YYYY-MM-DD HH:mm");
         } else {
             String[] components = dateAndTime[1].strip().split(":", 2);
             if (components.length != 2) {
-                throw new DateTimeFormatException("The correct Format: HH:MM");
+                System.out.println("The correct Format: YYYY-MM-DD HH:mm");
             } else {
                 hour = components[0];
                 min = components[1];
@@ -70,13 +69,14 @@ public class Parser {
                         LocalTime time = LocalTime.parse(dateAndTime[1]);
                         return LocalDateTime.of(date, time);
                     } catch (DateTimeException e) {
-                        throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
+                        System.out.println("The correct Format: YYYY-MM-DD HH:mm");
                     }
                 } else {
-                    throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
+                    System.out.println("The correct Format: YYYY-MM-DD HH:mm");
                 }
             }
         }
+        return null;
     }
 
     /**
@@ -91,7 +91,7 @@ public class Parser {
         String month;
         String day;
         if (components.length != 3) {
-            throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
+            System.out.println("The correct Format: YYYY-MM-DD");
         } else {
             year = components[0];
             month = components[1];
@@ -100,12 +100,13 @@ public class Parser {
                 try {
                     return LocalDate.parse(date);
                 } catch (DateTimeException e) {
-                    throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
+                    System.out.println("The correct Format: YYYY-MM-DD");
                 }
             } else {
-                throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
+                System.out.println("The correct Format: YYYY-MM-DD");
             }
         }
+        return null;
     }
 
     public static String dateTimeToString(LocalDateTime dateTime) throws DateTimeFormatException {

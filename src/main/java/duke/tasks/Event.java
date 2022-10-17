@@ -33,6 +33,7 @@ public class Event extends Task {
      */
     public static Event addTask(String name, String at) throws DateTimeFormatException {
         Event newEvent = new Event(name, at);
+        System.out.println("     Got it. I've added this task:");
         System.out.println("       " + newEvent.printSelf());
         return newEvent;
     }

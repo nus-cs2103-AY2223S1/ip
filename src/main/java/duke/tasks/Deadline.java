@@ -33,6 +33,7 @@ public class Deadline extends Task {
      */
     public static Deadline addTask(String name, String by) throws DateTimeFormatException {
         Deadline newDdl = new Deadline(name, by);
+        System.out.println("     Got it. I've added this task:");
         System.out.println("       " + newDdl.printSelf());
         return newDdl;
     }

@@ -122,6 +122,12 @@ public class Cache {
         }
     }
 
+    /**
+     * Express the list of tasks using a String.
+     * @param taskList The task list needed to be saved.
+     * @return String that contains all the information of task list.
+     * @throws DukeException
+     */
     public static String listToString(TaskList taskList) throws DukeException {
         StringBuilder builder = new StringBuilder();
         for (Task task : taskList.getList()) {
@@ -131,6 +137,13 @@ public class Cache {
         return builder.toString();
     }
 
+    /**
+     * Save the task list to a file.
+     * @param str The string contains task information
+     * @param path The path that contains the cache file
+     * @return The file saved.
+     * @throws DukeException
+     */
     public static File saveFile(String str, String path) throws DukeException {
         try {
             // Create path if not exist
@@ -155,6 +168,13 @@ public class Cache {
         }
     }
 
+    /**
+     * Used for undo command, cancel the previous action.
+     * @param f The file previously saved.
+     * @return The task list restored.
+     * @throws DukeException
+     * @throws FileNotFoundException
+     */
     public static TaskList backToLastStep(File f) throws DukeException, FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         String[] commands;
