@@ -20,7 +20,7 @@ public class TaskList {
     public String displayNumTasks() {
 
         String text = "You now have " + taskList.size() +
-                " tasks left in the list.";
+                " task(s) left in the list.";
         return text;
     }
 
@@ -46,7 +46,7 @@ public class TaskList {
 
         if (this.taskList.size() == 0) {
 
-            return "You currently have no tasks in the list";
+            return "You currently have no task in the list";
         } else {
 
             text += "Here are the tasks currently stored in your list:\n";

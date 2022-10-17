@@ -33,7 +33,7 @@ public class Deadline extends Task {
     public String toString() {
 
         return "[D]" + super.toString() + " (by: " +
-                completeBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                completeBy.format(DateTimeFormatter.ofPattern("MMM d yyyy, HHmm"))
                 + ")";
 
     }
