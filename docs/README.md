@@ -150,9 +150,7 @@ If the first task exists in the list it is deleted.
 
 List all the task in the task list 
 
-Format:
-
-Example Usage 
+Example Usage: 
 
 ```
 list
@@ -172,14 +170,6 @@ List all the task from the task list.
 #### `Find`
 
 Given a keyowrd, return all the tasks from the task list containing the keyword
-
-
-Filling up the task list 
-```
-todo read book
-todo write book 
-todo understand book
-```
 
 Format:
 
@@ -204,7 +194,7 @@ All tasks which contain the word read are showm.
 
 Display a list of all the commands in the application. 
 
-Example Usage
+Example Usage:
 
 ```
 help
@@ -219,7 +209,7 @@ Shows the list of all the available commands.
 
 Terminates the execution of the program 
 
-Example Usage
+Example Usage:
 
 ```
 bye
