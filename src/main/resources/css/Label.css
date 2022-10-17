@@ -1,0 +1,8 @@
+#dialog {
+    -fx-background-color: #cfa9f5;
+    -fx-padding: 10px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #fcff42;
+    -fx-border-radius: 20px;
+    -fx-border-width: 3px;
+}
