@@ -167,6 +167,12 @@ Expected Outcome:
 
 Display a list of all the commands in the application. 
 
+Example Usage
+
+```
+help
+```
+
 ### Exit the Program 
 
 #### `Bye`
