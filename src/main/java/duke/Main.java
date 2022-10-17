@@ -1,9 +1,7 @@
 package duke;
 
-import java.io.IOException;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -35,15 +33,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        //first example
-//        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-//        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-//
-//        stage.setScene(scene); // Setting the stage to show our screen
-//        stage.show(); // Render the stage.
-
         //Step 1. Setting up required components
-
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -113,18 +103,6 @@ public class Main extends Application {
             handleUserInput();
         });
 
-        //below is about FXML
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-//            AnchorPane ap = fxmlLoader.load();
-//            //Label label = new Label("Hello World");
-//            Scene scene = new Scene(ap);
-//            stage.setScene(scene);
-//            fxmlLoader.<MainWindow>getController().setDuke(duke);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     /**
@@ -167,9 +145,6 @@ public class Main extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-//    private String getResponse(String input) {
-//        return "Nikki heard: " + input;
-//    }
     public String getResponse(String input, Duke duke) {
         Parser parser = new Parser(duke);
         return parser.start(input);
