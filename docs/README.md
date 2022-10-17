@@ -44,12 +44,12 @@ Got it. I've added this task:
 Creates a deadline and add it to your list of tasks.
 
 Example of usage: 
-`deadline CS2105 assignment /by Sunday 2359`
+`deadline CS2105 assignment /by 2022-01-01`
 
 A new deadline will be created and saved.
 ```
 Got it. I've added this deadline:
-    [D][ ] CS2105 assignment /by Sunday 2359
+    [D][ ] CS2105 assignment (by: Jan 1 2022)
 ```
 
 ### `list` - Be reminded of all your tasks
@@ -60,8 +60,9 @@ Example of usage:
 `list`
 
 ```
-Got it. I've added this deadline:
-    [D][ ] CS2105 assignment /by Sunday 2359
+Here are the tasks in your list:
+    1. [D][ ] CS2105 assignment (by: Oct 1 2022)
+    2. [E][ ] CS2109 tutorial (at: Oct 3 2022)
 ```
 
 ### `mark` - Mark a task as done
@@ -73,7 +74,7 @@ Example of usage:
 
 ```
 Nice! I've marked this task as done:
-    [D][X] CS2105 assignment /by Sunday 2359
+    [D][X] CS2105 assignment (by: Oct 1 2022)
 ```
 
 ### `unmark` - Mark a task as undone
@@ -85,7 +86,7 @@ Example of usage:
 
 ```
 OK, I've marked this task as not done yet:
-    [D][ ] CS2105 assignment /by Sunday 2359
+    [D][ ] CS2105 assignment (by: Oct 1 2022)
 ```
 
 ### `postpone` - Postpone a task
@@ -94,9 +95,9 @@ Postpone / change the time of a task.
 Requires task to be time-sensitive, i.e. only applicable to events and deadlines.
 
 Example of usage:
-`postpone 1 Monday 2359`
+`postpone 1 2022-12-31`
 
 ```
 OK, I've postponed this task:
-    [D][ ] CS2105 assignment /by Monday 2359
+    [D][ ] CS2105 assignment (by: Dec 31 2022)
 ```

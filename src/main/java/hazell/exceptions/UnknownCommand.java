@@ -6,6 +6,7 @@ package hazell.exceptions;
 public class UnknownCommand extends HazellException {
     @Override
     public String toString() {
-        return String.format("%s I'm sorry, but I don't know what that means :-(", super.toString());
+        return String.format("%s I'm sorry, but I don't know what that means."
+                + "Please ensure format is correct :-(", super.toString());
     }
 }
