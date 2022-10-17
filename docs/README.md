@@ -247,4 +247,10 @@ Bye. Looking forward to chating with you soon again!
 |Help|`help`|`help`|
 |Exit|`bye`|`bye`|
 
+## UI Screenshots 
+
+<p align="center">
+<img alt="UI" src="Ui-main.png">
+</p>
+
 
