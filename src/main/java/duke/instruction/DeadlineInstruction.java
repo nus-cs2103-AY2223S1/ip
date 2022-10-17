@@ -32,16 +32,16 @@ public class DeadlineInstruction implements Instruction {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.DateTimeException {
         String description = this.userInput.substring(9, userInput.lastIndexOf("/") - 1);
         String day = this.userInput.substring(userInput.lastIndexOf("/by") + 4);
         try {
             LocalDate.parse(day);
             this.newTask = new Deadline(description, day);
         } catch (DateTimeParseException exception) {
-            return DukeException.dateTimeException();
+            throw new DukeException.DateTimeException();
         } catch (DateTimeException exceptionTwo) {
-            return DukeException.dateTimeException();
+            throw new DukeException.DateTimeException();
         }
         this.taskList.addTask(this.newTask);
         return Ui.printDeadline(this.newTask);

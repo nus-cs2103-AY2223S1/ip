@@ -1,6 +1,7 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
+import duke.support.DukeException;
 import duke.tasks.Task;
 
 /**
@@ -11,7 +12,6 @@ import duke.tasks.Task;
 public class UnMarkInstruction implements Instruction {
 
     private TaskList taskList;
-    private String taskDescription;
     private int taskPos;
 
     /**
@@ -22,14 +22,17 @@ public class UnMarkInstruction implements Instruction {
      */
     public UnMarkInstruction(TaskList taskList, String taskDescription) {
         this.taskList = taskList;
-        this.taskDescription = taskDescription;
         char b = taskDescription.charAt(7);
         this.taskPos = Character.getNumericValue(b);
-        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.TaskPosException {
+        if (this.taskPos > Task.getNumberTasks() || this.taskPos <= 0) {
+            throw new DukeException.TaskPosException();
+        }
+        assert Task.getNumberTasks() > 0 : "There are no tasks in the list";
+        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
         return this.taskList.markIncomplete(taskPos);
     }
 }

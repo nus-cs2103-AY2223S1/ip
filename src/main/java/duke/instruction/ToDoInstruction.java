@@ -3,7 +3,7 @@ package duke.instruction;
 import duke.functions.TaskList;
 import duke.functions.Ui;
 import duke.support.DukeException;
-import duke.tasks.Todo;
+import duke.tasks.ToDo;
 
 /**
  * ToDoInstruction class to initiate a To Do command inputted by the user.
@@ -14,7 +14,7 @@ public class ToDoInstruction implements Instruction {
 
     private TaskList taskList;
     private String userInput;
-    private Todo newTask;
+    private ToDo newTask;
 
     /**
      * Constructor for the ToDoInstruction class.
@@ -28,14 +28,14 @@ public class ToDoInstruction implements Instruction {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.TodoException {
         try {
             this.userInput.substring(5);
         } catch (Exception StringIndexOutOfBoundsException) {
-            return DukeException.todoException();
+            throw new DukeException.TodoException();
         }
         String description = userInput.substring(5);
-        this.newTask = new Todo(description);
+        this.newTask = new ToDo(description);
         this.taskList.addTask(this.newTask);
         return Ui.printToDo(this.newTask);
     }

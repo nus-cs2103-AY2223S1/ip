@@ -37,9 +37,9 @@ public class FindInstruction implements Instruction {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.FindException {
         if (findList.equals("")) {
-            return DukeException.findException();
+            throw new DukeException.FindException();
         }
         return Ui.printFind() + "\n" + findList;
     }

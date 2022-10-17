@@ -1,7 +1,7 @@
 package duke.support;
 
 /**
- * The DukeException class holds methods that will handle
+ * The DukeException class holds exception subclasses that will handle
  * checked exceptions that may arise in the Duke class.
  *
  * @author lauralee
@@ -9,47 +9,99 @@ package duke.support;
 public class DukeException extends Exception {
 
     /**
-     * Todo exception handler.
+     * Constructs a Duke exception.
      *
-     * @return The description shown when a Todo task exception is detected.
+     * @param message shown when the respective task is thrown.
      */
-    public static String todoException() {
-        return "OOPS!!! The description of a todo cannot be empty.";
+    public DukeException(String message) {
+        super(message);
+    };
+
+    /**
+     * Todo exception handler class.
+     *
+     * @author lauralee
+     */
+    public static class TodoException extends DukeException {
+
+        /**
+         * Constructs a ToDo exception.
+         */
+        public TodoException() {
+            super("OOPS!!! The description of a todo cannot be empty.");
+        }
+
     }
 
     /**
-     * Task exception handler.
+     * Task exception handler class.
      *
-     * @return The description shown when a task exception is detected.
+     * @author lauralee
      */
-    public static String taskException() {
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static class TaskException extends DukeException {
+
+        /**
+         * Constructs a Task exception.
+         */
+        public TaskException() {
+            super("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
     }
 
     /**
      * Date time exception Handler.
      *
-     * @return The description shown when a date time exception is detected.
+     * @author lauralee
      */
-    public static String dateTimeException() {
-        return "OOPS!!! Please provide a valid date in yyyy-mm-dd format";
+    public static class DateTimeException extends DukeException {
+
+        /**
+         * Constructs a Date Time exception.
+         */
+        public DateTimeException() {
+            super("OOPS!!! Please provide a valid date in yyyy-mm-dd format");
+        }
     }
 
     /**
-     * Find exception handler.
+     * Find exception handler class.
      *
-     * @return The description shown when a find exception is detected.
+     * @author lauralee
      */
-    public static String findException() {
-        return "OOPS!!! This word cannot be found in any of the tasks in your task list.";
+    public static class FindException extends DukeException {
+        /**
+         * Constructs a Find exception.
+         */
+        public FindException() {
+            super("OOPS!!! This word cannot be found in any of the tasks in your task list.");
+        }
     }
 
     /**
-     * Snooze exception handler.
+     * Snooze exception handler class.
      *
-     * @return The description shown when a snooze exception is detected.
+     * @author lauralee
      */
-    public static String snoozeException() {
-        return "OOPS!!! This task cannot be snoozed.";
+    public static class SnoozeException extends DukeException {
+        /**
+         * Constructs a Snooze exception.
+         */
+        public SnoozeException() {
+            super("OOPS!!! This task cannot be snoozed.");
+        }
+    }
+
+    /**
+     * Task position out of bounds exception handler.
+     *
+     * @author lauralee
+     */
+    public static class TaskPosException extends DukeException {
+        /**
+         * Constructs a Task Position out of bounds exception.
+         */
+        public TaskPosException() {
+            super("OOPS!! There is no task at the specified task position.");
+        }
     }
 }

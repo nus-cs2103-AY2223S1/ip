@@ -1,10 +1,13 @@
 package duke;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import duke.functions.Storage;
 import duke.functions.TaskList;
 import duke.functions.Ui;
+import duke.functions.storage.Storage;
 import duke.gui.DialogBox;
 import duke.instruction.Instruction;
+import duke.support.DukeException;
 import duke.support.Parser;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -19,7 +22,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 //@@author leehuiyulaura-reused
 //Reused from https://se-education.org/guides/tutorials/javaFxPart3.html
 // with modifications
@@ -31,6 +33,7 @@ public class Duke extends Application {
     private TaskList userTaskList;
     private Storage data;
     private Parser parser;
+    private String filePath;
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -46,8 +49,10 @@ public class Duke extends Application {
      * @param filePath The filepath in which this user wants to store their list of tasks in.
      */
     public Duke(String filePath) {
+        this.filePath = filePath;
         this.userTaskList = new TaskList();
-        this.data = new Storage(this.userTaskList, filePath);
+        this.data = new Storage(this.userTaskList, this.filePath);
+        this.userTaskList = this.data.loadFile(this.userTaskList);
     }
     /**
     * Returns the specific TaskList created for this Duke instance.
@@ -171,7 +176,27 @@ public class Duke extends Application {
     */
     public String getResponse(String input, Parser parser) {
         Instruction instruction = parser.userInput(input);
-        return instruction.execute();
+        String message;
+        try {
+            message = instruction.execute();
+        } catch (DukeException exception) {
+            message = exception.getMessage();
+        }
+        return message;
+    }
+
+    /**
+     * Terminates Duke Programme when user inputs "bye".
+     */
+    public void exitDuke() {
+        data.saveFile(this.userTaskList, this.filePath);
+        TimerTask exitDuke = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        new Timer().schedule(exitDuke, 1000);
     }
 
 }

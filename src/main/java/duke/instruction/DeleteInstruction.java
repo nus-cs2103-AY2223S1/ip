@@ -1,6 +1,8 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
+import duke.functions.Ui;
+import duke.support.DukeException;
 import duke.tasks.Task;
 
 /**
@@ -30,7 +32,11 @@ public class DeleteInstruction implements Instruction {
     }
 
     @Override
-    public String execute() {
-        return this.taskList.deleteTask(this.taskPos, this.deletedTask);
+    public String execute() throws DukeException.TaskPosException {
+        if (this.taskPos > Task.getNumberTasks() || this.taskPos <= 0) {
+            throw new DukeException.TaskPosException();
+        }
+        this.taskList.deleteTask(this.taskPos);
+        return Ui.printDelete(this.deletedTask, Task.getNumberTasks());
     }
 }

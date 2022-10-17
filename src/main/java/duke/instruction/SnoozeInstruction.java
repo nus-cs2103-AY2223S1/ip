@@ -1,9 +1,7 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
-import duke.functions.Ui;
 import duke.support.DukeException;
-import duke.tasks.Event;
 import duke.tasks.Task;
 
 /**
@@ -34,7 +32,7 @@ public class SnoozeInstruction implements Instruction {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.SnoozeException {
         this.snoozedTask.snoozeTask(newTime);
         this.taskList.getTaskArr()[this.taskPos] = this.snoozedTask;
         return this.snoozedTask.snoozeTask(newTime);

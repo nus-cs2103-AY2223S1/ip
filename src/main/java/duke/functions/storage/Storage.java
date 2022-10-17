@@ -1,9 +1,12 @@
-package duke.functions;
+package duke.functions.storage;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
+import duke.functions.TaskList;
+import duke.functions.Ui;
 import duke.tasks.Task;
 
 /**
@@ -13,6 +16,10 @@ import duke.tasks.Task;
  */
 public class Storage {
 
+    private Scanner scanner;
+    private String filePath;
+    private TaskList taskList;
+
     /**
      * Constructor for storage class which initiates file saving process to store user input.
      *
@@ -20,7 +27,15 @@ public class Storage {
      * @param filePath
      */
     public Storage(TaskList taskList, String filePath) {
-        saveFile(taskList, filePath);
+        this.taskList = taskList;
+        this.filePath = filePath;
+        try {
+            File dukeFile = new File(this.filePath);
+            dukeFile.createNewFile();
+            scanner = new Scanner(dukeFile);
+        } catch (IOException ioException) {
+            Ui.printFileSavingError();
+        }
     }
 
     //Solution below is adapted from
@@ -34,14 +49,9 @@ public class Storage {
      * @param pathname The path which the user wants to store their file containing their lists
      *                 of task in.
      */
-    public static void saveFile(TaskList taskList, String pathname) {
-
+    public void saveFile(TaskList taskList, String pathname) {
+        Task[] taskArr = taskList.getTaskArr();
         try {
-            Task[] taskArr = taskList.getTaskArr();
-
-            File dukeFile = new File(pathname);
-            dukeFile.createNewFile();
-
             FileWriter fileWriter = new FileWriter(pathname);
             for (int i = 1; i <= Task.getNumberTasks(); i++) {
                 fileWriter.write(taskArr[i].output() + "\n");
@@ -50,7 +60,20 @@ public class Storage {
         } catch (IOException ioException) {
             Ui.printFileSavingError();
         }
-
     }
+
+    /**
+     * Loads Tasks from a previous TaskList saved in storage at the specified filepath
+     * into the Duke Bot's TaskList.
+     *
+     * @param taskList Duke's TaskList.
+     * @return The TaskList with the Tasks from the previous TaskList created and stored
+     *         at the specified file location.
+     */
+    public TaskList loadFile(TaskList taskList) {
+        return taskList.addFromStorage(scanner);
+    }
+
+
 
 }

@@ -1,6 +1,7 @@
 package duke.instruction;
 
 import duke.functions.TaskList;
+import duke.support.DukeException;
 import duke.tasks.Task;
 
 /**
@@ -23,13 +24,17 @@ public class MarkInstruction implements Instruction {
     public MarkInstruction(TaskList taskList, String userInput) {
         this.taskList = taskList;
         this.userInput = userInput;
-        char b = userInput.charAt(5);
+        char b = this.userInput.charAt(5);
         this.taskPos = Character.getNumericValue(b);
-        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
     }
 
     @Override
-    public String execute() {
+    public String execute() throws DukeException.TaskPosException {
+        if (this.taskPos > Task.getNumberTasks() || this.taskPos <= 0) {
+            throw new DukeException.TaskPosException();
+        }
+        assert Task.getNumberTasks() > 0 : "There are no tasks in the list";
+        assert this.taskPos <= Task.getNumberTasks() : "There is no task with the index number you have specified";
         return this.taskList.markComplete(taskPos);
     }
 }

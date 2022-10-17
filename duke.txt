@@ -1,0 +1,4 @@
+[T][ ] yes
+[T][ ] no
+[E][ ] study (at: sunday)
+[D][ ] eat (by: 10 October 2090)

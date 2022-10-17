@@ -5,14 +5,14 @@ package duke.tasks;
  *
  * @author lauralee
  */
-public class Todo extends Task {
+public class ToDo extends Task {
 
     /**
      * Constructor for the To Do class.
      *
      * @param name The description of the Todo task being added.
      */
-    public Todo(String name) {
+    public ToDo(String name) {
         super(name, "T");
     }
 

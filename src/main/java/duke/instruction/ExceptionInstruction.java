@@ -10,7 +10,7 @@ import duke.support.DukeException;
 public class ExceptionInstruction implements Instruction {
 
     @Override
-    public String execute() {
-        return DukeException.taskException();
+    public String execute() throws DukeException.TaskException {
+        throw new DukeException.TaskException();
     }
 }

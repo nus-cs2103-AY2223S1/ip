@@ -10,7 +10,7 @@ import duke.support.DukeException;
  */
 public class Task {
 
-    private static int NUMBER_TASKS = 0;
+    private static int numberTasks = 0;
     private String name;
     private String type;
 
@@ -27,8 +27,8 @@ public class Task {
         this.name = name;
         this.type = type;
         this.status = 0;
-        NUMBER_TASKS++;
-        assert(NUMBER_TASKS <= 100);
+        numberTasks++;
+        assert(numberTasks <= 100);
     }
 
     /**
@@ -38,10 +38,6 @@ public class Task {
      */
     public Task(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     /**
@@ -66,14 +62,14 @@ public class Task {
      * @return The number of Tasks that has been added by the user.
      */
     public static int getNumberTasks() {
-        return NUMBER_TASKS;
+        return numberTasks;
     }
 
     /**
      * Decrements the number of tasks by 1 when a task is deleted from the list.
      */
     public static void deleteTask() {
-        NUMBER_TASKS--;
+        numberTasks--;
     }
 
     /**
@@ -81,17 +77,21 @@ public class Task {
      *
      * @param time The new deadline of the task.
      */
-    public String snoozeTask(String time) {
+    public String snoozeTask(String time) throws DukeException.SnoozeException {
         if (this instanceof Event) {
             //Safe to typecast this to Event as this block will only run if this is an Event instance.
-            ((Event) this).snoozeDeadline(time);
+            @SuppressWarnings("unchecked")
+            Event snoozeEvent = (Event) this;
+            snoozeEvent.snoozeDeadline(time);
             return Ui.printSnoozeEvent(this);
         } else if (this instanceof Deadline) {
             //Safe to typecast this to Deadline as this block will only run if this is a Deadline instance.
-            ((Deadline) this).snoozeDeadline(time);
+            @SuppressWarnings("unchecked")
+            Deadline snoozeDeadline = (Deadline) this;
+            snoozeDeadline.snoozeDeadline(time);
             return Ui.printSnoozeDeadline(this);
         } else {
-            return DukeException.snoozeException();
+            throw new DukeException.SnoozeException();
         }
     }
 
