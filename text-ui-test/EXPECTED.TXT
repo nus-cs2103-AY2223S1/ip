@@ -1,7 +1,77 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+	----------------------------------------------
+	Hello! I'm Dobby
+	How can I help you?
+	----------------------------------------------
+	----------------------------------------------
+	Yes master, Dobby will add the following to the list: 
+	[T][ ] test1
+	You now have 1 tasks left.
 
+	----------------------------------------------
+	----------------------------------------------
+	Please add the deadline after the task name using /by
+	----------------------------------------------
+	----------------------------------------------
+	Yes master, Dobby will add the following to the list: 
+	[D][ ] test3 /by Sunday (by: Sunday)
+	You now have 2 tasks left.
+
+	----------------------------------------------
+	----------------------------------------------
+	Please add the event date after the task name using /at
+	----------------------------------------------
+	----------------------------------------------
+	Yes master, Dobby will add the following to the list: 
+	[E][ ] test5 /at Tue 4-6pm (at: Tue 4-6pm)
+	You now have 3 tasks left.
+
+	----------------------------------------------
+	----------------------------------------------
+	Well done master! Dobby has marked the following task as done: 
+	[T][X] test1
+	----------------------------------------------
+	----------------------------------------------
+	Well done master! Dobby has marked the following task as done: 
+	[E][X] test5 /at Tue 4-6pm (at: Tue 4-6pm)
+	----------------------------------------------
+	----------------------------------------------
+	OK, Dobby will take care of
+	[T][ ] test1
+	----------------------------------------------
+	----------------------------------------------
+	Here are the tasks in your list: 
+	1.[T][ ] test1
+	2.[D][ ] test3 /by Sunday (by: Sunday)
+	3.[E][X] test5 /at Tue 4-6pm (at: Tue 4-6pm)
+	
+	----------------------------------------------
+	----------------------------------------------
+	All tasks marked, master!
+	----------------------------------------------
+	----------------------------------------------
+	All tasks unmarked, master!
+	----------------------------------------------
+	----------------------------------------------
+	Here are the tasks in your list: 
+	1.[T][ ] test1
+	2.[D][ ] test3 /by Sunday (by: Sunday)
+	3.[E][ ] test5 /at Tue 4-6pm (at: Tue 4-6pm)
+	
+	----------------------------------------------
+	----------------------------------------------
+	Task deleted! Less work for master! Dobby is HAAAAAPPY!
+
+	Dobby has removed this task: 
+	[T][ ] test1
+	You now have 2 tasks in the list.
+
+	----------------------------------------------
+	----------------------------------------------
+	Here are the tasks in your list: 
+	1.[D][ ] test3 /by Sunday (by: Sunday)
+	2.[E][ ] test5 /at Tue 4-6pm (at: Tue 4-6pm)
+	
+	----------------------------------------------
+	----------------------------------------------
+	Byebye. Dobby will miss you!
+	----------------------------------------------

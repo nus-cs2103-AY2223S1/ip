@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="700.0" prefHeight="500.0" prefWidth="700.0"
+            xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dobby.ui.MainWindow">
+    <children>
+        <HBox alignment="CENTER_LEFT" layoutY="540.0" prefHeight="42.0" prefWidth="743.0" spacing="5.0"
+              AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+            <children>
+                <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="42.0" prefWidth="540.0"
+                           promptText="How can Dobby help you today?"
+                           style="-fx-background-color: white; -fx-background-radius: 15;" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="Ubuntu Mono" size="14.0"/>
+                    </font>
+                </TextField>
+                <Button fx:id="helpButton" mnemonicParsing="false" onAction="#printCommands" minHeight="36.0"
+                        minWidth="84.0" maxHeight="36.0" maxWidth="84.0" text="Commands"
+                        style="-fx-background-radius: 11; -fx-background-color: #e3e3e3"/>
+                <Button fx:id="sendButton" maxHeight="36.0" maxWidth="66.0" minHeight="36.0" minWidth="66.0"
+                        mnemonicParsing="false" onAction="#handleUserInput" text="Send"
+                        style="-fx-background-radius: 11; -fx-background-color: #e3e3e3"/>
+
+            </children>
+        </HBox>
+        <ScrollPane fx:id="scrollPane" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox fx:id="dialogContainer"/>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
