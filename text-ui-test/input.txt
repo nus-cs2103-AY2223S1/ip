@@ -1,0 +1,9 @@
+list
+todo eat
+deadline sleep /by now
+event breathe /at 1pm
+repeat
+mark 2
+list
+unmark 2
+bye
