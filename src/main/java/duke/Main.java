@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 
 /**
  * A GUI for Duke.
@@ -152,6 +154,11 @@ public class Main extends Application {
                 DialogBox.getDukeDialog(dukeText, new ImageView(ngo))
         );
         userInput.clear();
+        if (userText.getText().equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(event -> System.exit(0));
+            delay.play();
+        }
     }
 
 
