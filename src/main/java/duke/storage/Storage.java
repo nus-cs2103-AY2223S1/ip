@@ -21,7 +21,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private final File DATA_DIRECTORY = new File("./data");
+    private final File DATA_DIRECTORY = new File("data");
     private final File DATA_FILEPATH = new File("data/duke.txt");
 
     /**
