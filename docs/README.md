@@ -70,7 +70,7 @@ Expected Outcome:
 A new event task is added to the task list.
 ```
   Got it. I just added the task: 
-  [E][ ] meeting (at: Sep 22 2022, 2359)
+  [E][ ] meeting (at: Sep 22 2022, 1600)
   Now you have 2 tasks in the list.
 ```
 
