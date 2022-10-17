@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="duke:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/duke_jar</output-path>
+    <root id="archive" name="duke.jar">
+      <element id="module-output" name="duke" />
+    </root>
+  </artifact>
+</component>
