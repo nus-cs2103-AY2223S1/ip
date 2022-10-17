@@ -19,8 +19,8 @@ Expected Output
 
 ```
   Got it. I just added the task: 
-	[T][ ] read book 
-	Now you have 1 tasks in the list.
+  [T][ ] read book 
+  Now you have 1 tasks in the list.
 ```
 
 #### `Deadline`
@@ -37,8 +37,8 @@ Expected Output
 
 ```
   Got it. I just added the task: 
-	[D][ ] ip (by: Sep 22 2022)
-	Now you have 2 tasks in the list.
+  [D][ ] ip (by: Sep 22 2022, 2359)
+  Now you have 2 tasks in the list.
 ```
 
 #### `Event`
@@ -55,8 +55,8 @@ Expected Outcome
 
 ```
   Got it. I just added the task: 
-	[E][ ] meeting (at: Sep 22 2022)
-	Now you have 2 tasks in the list.
+  [E][ ] meeting (at: Sep 22 2022, 2359)
+  Now you have 2 tasks in the list.
 ```
 
 ### Marking a task 
@@ -112,8 +112,8 @@ Expected Outcome
 
 ```
  Noted. I've remove this task: 
-	[T][X] read book 
-	Now you have 2 tasks in the list.
+ [T][X] read book 
+ Now you have 2 tasks in the list.
 ```
 
 
@@ -131,7 +131,7 @@ Expected Outcome
 
 ```
   1. [E][ ] meeting (at: Sep 22 2022)
-	2. [D][ ] ip (by: Sep 22 2022)
+  2. [D][ ] ip (by: Sep 22 2022)
 ```
 
 
@@ -160,6 +160,12 @@ Expected Outcome:
 ```
 [T][] read book 
 ```
+
+### Help 
+
+#### `help`
+
+Display a list of all the commands in the application. 
 
 ### Exit the Program 
 
