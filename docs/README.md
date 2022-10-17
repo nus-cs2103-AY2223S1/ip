@@ -250,7 +250,7 @@ Bye. Looking forward to chating with you soon again!
 ## UI Screenshots 
 
 <p align="center">
-<img alt="UI" src="Ui-main.png">
+<img alt="UI" src="Ui.png">
 </p>
 
 
