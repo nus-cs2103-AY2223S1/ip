@@ -1,6 +1,5 @@
-package duke.commands;
+package duke;
 
-import duke.TaskList;
 import duke.tasks.Task;
 import duke.tasks.Todo;
 import org.junit.jupiter.api.Test;
