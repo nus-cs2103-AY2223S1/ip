@@ -152,6 +152,9 @@ public class Parser {
                 counter++;
             }
         }
+        if(description == "") {
+            throw new DukeException("Please enter a deadline description");
+        }
         try{
             dateline = arr[counter + 1];
         } catch(ArrayIndexOutOfBoundsException e) {
@@ -183,6 +186,9 @@ public class Parser {
                 description = description + arr[i]+ " ";
                 counter++;
             }
+        }
+        if(description == "") {
+            throw new DukeException("Please enter a event description");
         }
         try{
             time = arr[counter + 1];
