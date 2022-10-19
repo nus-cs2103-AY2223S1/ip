@@ -1,7 +1,38 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+----------------------
+Hello! I'm HelperBot
+What can I do for you?
+----------------------
 
+----------------------
+Ok Solid you got this work to do:
+[D][ ] do homework (by: no idea :-p)
+You have a total of 1 work to do
+----------------------
+
+----------------------
+Ok Solid you got this work to do:
+[T][ ] sleep
+You have a total of 2 work to do
+----------------------
+
+----------------------
+1.[D][ ] do homework (by: no idea :-p)
+2.[T][ ] sleep
+----------------------
+
+----------------------
+Congrats on completing :)
+[D][X] do homework (by: no idea :-p)
+----------------------
+
+----------------------
+One more mission ;)
+[D][ ] do homework (by: no idea :-p)
+----------------------
+
+----------------------
+Congrats on completing :)
+[T][X] sleep
+----------------------
+
+Thank you and ATB :)
