@@ -4,6 +4,7 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -139,7 +140,7 @@ public class Parser {
      * @param arr User input.
      * @return Deadline object based on user input.
      */
-    public Task parseDeadline(String[] arr) {
+    public Task parseDeadline(String[] arr) throws DukeException {
         String description = "";
         String dateline="";
         int counter = 1;
@@ -151,8 +152,17 @@ public class Parser {
                 counter++;
             }
         }
-        dateline = arr[counter + 1];
-        LocalDate d1 = LocalDate.parse(dateline);
+        try{
+            dateline = arr[counter + 1];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Format for deadline not proper");
+        }
+        LocalDate d1;
+        try{
+            d1 = LocalDate.parse(dateline);
+        } catch(DateTimeParseException e) {
+            throw new DukeException("invalid date received");
+        }
         Task task = new Deadline(description, d1);
         return task;
     }
@@ -162,7 +172,7 @@ public class Parser {
      * @param arr User input.
      * @return Event object based on user input.
      */
-    public Task parseEvent(String[] arr) {
+    public Task parseEvent(String[] arr) throws DukeException {
         String description = "";
         String time = "";
         int counter = 1;
@@ -174,8 +184,17 @@ public class Parser {
                 counter++;
             }
         }
-        time = arr[counter + 1];
-        LocalDate d1 = LocalDate.parse(time);
+        try{
+            time = arr[counter + 1];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Format for event not proper");
+        }
+        LocalDate d1;
+        try{
+            d1 = LocalDate.parse(time);
+        } catch(DateTimeParseException e) {
+            throw new DukeException("invalid date received");
+        }
         Task task = new Event(description, d1);
         return task;
     }
