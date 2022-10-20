@@ -15,7 +15,8 @@ public class Storage {
 
     /**
      * Reads tasks data from file at {@code FILE_PATH}
-     * @return list of Tasks
+     *
+     * @return list of Tasks, empty if could not read from file
      */
     public List<Task> readDataFile() {
         List<Task> tasks = new ArrayList<>();
@@ -66,7 +67,7 @@ public class Storage {
     /**
      * Writes tasks to file at {@code FILE_PATH}
      */
-    public void syncTasksToFile(List<Task> tasks) {
+    public void syncTasksToFile(TaskList taskList) {
         try {
             File file = new File(FILE_PATH);
             if (!file.exists()) {
@@ -76,14 +77,14 @@ public class Storage {
             }
 
             FileWriter writer = new FileWriter(FILE_PATH);
-            List<String> taskStrings = new ArrayList<>();
+            List<Task> tasks = taskList.getTasks();
+            StringBuilder taskStrings = new StringBuilder();
             for (Task task : tasks) {
                 String taskString = task.toFileString();
-                taskStrings.add(taskString);
+                taskStrings.append(String.format("%s\n", taskString));
             }
 
-            String fileString = String.join("\n", taskStrings);
-            writer.write(fileString);
+            writer.write(taskStrings.toString());
             writer.close();
         } catch (Exception e) {
             System.out.println("Error: could not write to file: ");
