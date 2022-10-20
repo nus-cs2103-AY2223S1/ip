@@ -1,6 +1,3 @@
-#https://github.com/24Donovan24/ip/blob/master/docs/README.md
-#@@24Donovan24 
-
 # User Guide
 Here is Duke, a friendly task manager robot!
 
@@ -19,6 +16,10 @@ Duke can search for a specific task stored in the task list based on the keyword
 Auto-Save
 Duke automatically saves all tasks in your local storage, you can be assured your task list will be saved when you close the application.
 It will automatically be loaded up when you open the application again!
+
+Dates 
+Duke is able to read and understand dates but specific commands must be used which is not written here.
+It is in the code base for now.
 
 ## Usages
 
