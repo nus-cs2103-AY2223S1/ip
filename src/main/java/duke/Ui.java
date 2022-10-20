@@ -101,4 +101,14 @@ public class Ui {
         Main.closeApplication();
         return "Bye. Hope to see you again soon!";
     }
+
+    /**
+     * Prints the messsage specified by the given Exception.
+     *
+     * @param e the Exception.
+     * @return String that contains the message specified by the given Exception.
+     */
+    public String printErrorMessage(Exception e) {
+        return e.getMessage();
+    }
 }

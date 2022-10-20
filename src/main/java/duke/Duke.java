@@ -11,12 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.time.format.DateTimeParseException;
 
 /**
  * The class for a Duke, which also contains the main method which the program is run from.
@@ -33,8 +31,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/docs/src/main/resources/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/docs/src/main/resources/images/DaDuke.png"));
 
     /**
      * Public constructor for a Duke.
@@ -135,8 +133,8 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
+     *
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
@@ -148,7 +146,6 @@ public class Duke extends Application {
 
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
@@ -162,13 +159,12 @@ public class Duke extends Application {
         userInput.clear();
     }
 
-    String getResponse(String input) throws DukeException {
-        boolean isExit = false;
-        if (!isExit) {
+    String getResponse(String input) {
+        try {
             Command command = Parser.parseInput(input);
             return command.execute(this.tasks, this.ui);
-        } else {
-            return "bye";
+        } catch (DukeException e) {
+            return ui.printErrorMessage(e);
         }
     }
 }

@@ -21,7 +21,7 @@ Duke supports 3 types of tasks:
 
 ``` event <description> /at <YYYY-MM-DD> ``` - Adds an **event** with the given date to the list of tasks
 
-![This is an image](/src/main/resources/images/todo_deadline_ss.png)
+![`add` command usage](src/main/resources/images/todo_deadline_ss.png)
 
 ### Tasks can be added with a note.
 Adding ```/note``` allows you to add the task, **with an accompanying note**, to the list.
@@ -34,7 +34,7 @@ Adding ```/note``` allows you to add the task, **with an accompanying note**, to
 
 Adds a todo, deadline or event respectively to the list, with the accompanying <note>.
 
-![This is an image](/src/main/resources/images/event_note_ss.png)
+![`note` command usage](src/main/resources/images/event_note_ss.png)
 
 ## Delete Tasks
 
@@ -42,44 +42,44 @@ Adds a todo, deadline or event respectively to the list, with the accompanying <
 
 ``` delete <task index> ``` - deletes the task with the given index from the list.
 
-![This is an image](/src/main/resources/images/delete_ss.png)
+![`delete` command usage](src/main/resources/images/delete_ss.png)
 
 ## Mark and Unmark tasks
 Mark tasks as done, or unmark them if they are not.
 
 ``` mark <task index> ``` - marks the task with the given index as done.
 
-![This is an image](/src/main/resources/images/mark_ss.png)
+![`mark` command usage](src/main/resources/images/mark_ss.png)
 
 ``` unmark <task index> ``` - unmarks the task with the given index.
 
-![This is an image](/src/main/resources/images/unmark_ss.png)
+![`unmark` command usage](src/main/resources/images/unmark_ss.png)
 
 ## Search tasks
 **Search for tasks in the list that contain the given string.**
 
 ``` find <string> ``` - searches for tasks in the current task list which contain the given string.
 
-![This is an image](/src/main/resources/images/find_ss.png)
+![`find` command usage](src/main/resources/images/find_ss.png)
 
 ## Edit/Delete task notes
 **Edit the note of a task by using the ``` note ``` command.**
 
 ``` note /task <task index> /edit <new note> ``` - edits the note of the task with the given index to the new note.
 
-![This is an image](/src/main/resources/images/edit_note_ss.png)
+![`edit note` command usage](src/main/resources/images/edit_note_ss.png)
 
 the ``` note ``` command can also be used to **delete** a note.
 
 ``` note /task <task index> /delete ``` - deletes the existing note of the task with the given index.
 
-![This is an image](/src/main/resources/images/delete_note_ss.png)
+![`delete note` command usage](src/main/resources/images/delete_note_ss.png)
 
 ## List all tasks
 **View all the tasks in the list.**
 ``` list ``` - lists down all the current tasks, with their status (whether they are done) and notes.
 
-![This is an image](/src/main/resources/images/list_ss.png)
+![`list` command usage](src/main/resources/images/list_ss.png)
 
 ## Exit the application
 ``` bye ``` - exits the application.
