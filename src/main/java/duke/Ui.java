@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Scanner;
+
 /**
  * User Interface for the Duke Chat Robot.
  *
@@ -7,6 +9,8 @@ package duke;
  */
 public class Ui {
     private static final String BREAK_LINE = "    ____________________________________________________________";
+
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Welcome Message: greet the user
@@ -32,6 +36,15 @@ public class Ui {
     }
 
     /**
+     * Obtains user input via System.in.
+     *
+     * @return Raw input from the user in String format.
+     */
+    public String readCommand() {
+        return sc.nextLine();
+    }
+
+    /**
      * Error Message: remind the user
      */
     public void showLoadingError() {
@@ -41,5 +54,9 @@ public class Ui {
                 "\n" +
                 BREAK_LINE +
                 "\n");
+    }
+
+    public void showLine() {
+        System.out.println(BREAK_LINE);
     }
 }

@@ -18,11 +18,9 @@ import java.util.ArrayList;
  */
 
 public class Duke {
-    private final static String PATH = "src/main/java/data/duke.txt";
-
-    private final Storage storage;
+    private Storage storage;
     private TaskList tasks;
-    private final Ui ui;
+    private Ui ui;
 
 //    private ScrollPane scrollPane;
 //    private VBox dialogContainer;
@@ -32,11 +30,10 @@ public class Duke {
 
     /**
      * Duke Constructor
-     * @param filePath the file path where user would like to store the .txt file consisting of list of tasks
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage();
         try {
             this.tasks = new TaskList(storage.loadData());
         } catch (DukeException e) {
@@ -46,19 +43,29 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(PATH).run();
+        new Duke().run();
     }
 
     private void run() {
         ui.showWelcome();
-        //storage.saveData(this.tasks);
-        //ui.farewell();
+
+        storage.saveData(this.tasks);
+        boolean isBye = false;
+        while (!isBye) {
+            String input = ui.readCommand();
+            new Parser(this.tasks).parser(input);
+            storage.saveData(this.tasks);
+            isBye = input.equals("bye");
+            ui.showLine();
+        }
+        ui.farewell();
     }
 
+
     public String getResponse(String input) {
-        if (input.equals("bye")) {
-            storage.saveData(this.tasks);
-        }
+//        if (input.equals("bye")) {
+//            storage.saveData(this.tasks);
+//        }
         return new Parser(this.tasks).parser(input);
     }
 

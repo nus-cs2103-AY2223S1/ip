@@ -13,15 +13,8 @@ import java.util.Scanner;
  */
 public class Storage {
     private static final String BREAK_LINE = "    ____________________________________________________________";
-    private String path;
+    private static final String PATH  = "./duke.txt";
 
-    /**
-     * Storage Constructor
-     * @param path file path where the .txt file is stored
-     */
-    public Storage(String path) {
-        this.path = path;
-    }
 
     /**
      * Loads data in a .txt file into an ArrayList of tasks
@@ -31,7 +24,7 @@ public class Storage {
     public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
-            File taskFile = new File(this.path);
+            File taskFile = new File(PATH);
             Scanner sc = new Scanner(taskFile);
             while (sc.hasNext()) {
                 String input = sc.nextLine();
@@ -79,7 +72,7 @@ public class Storage {
      */
     public void saveData(TaskList tasks) {
         try {
-            FileWriter fw = new FileWriter(this.path);
+            FileWriter fw = new FileWriter(PATH);
             for(int i = 0; i < tasks.getSize(); i++) {
                 fw.write(tasks.getTask(i).toSave());
             }
