@@ -5,6 +5,7 @@ import duke.exception.DukeException;
 import duke.task.TaskList;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,8 +32,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/docs/src/main/resources/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/docs/src/main/resources/images/DaDuke.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Public constructor for a Duke.
@@ -161,7 +162,11 @@ public class Duke extends Application {
 
     String getResponse(String input) {
         try {
+            boolean isExit = false;
             Command command = Parser.parseInput(input);
+                if (isExit) {
+                    return "bye";
+                }
             return command.execute(this.tasks, this.ui);
         } catch (DukeException e) {
             return ui.printErrorMessage(e);
