@@ -2,14 +2,27 @@ package duke;
 
 import duke.commands.Command;
 import duke.parser.DukeParser;
+import duke.ui.Ui;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class Duke {
-    final Storage storage = new Storage();
-    final TaskList taskList;
-    final DukeParser parser = new DukeParser();
+public class Duke extends Application {
+    private Storage storage;
+    private TaskList taskList;
+    private DukeParser parser;
+    private Ui ui;
 
-    Duke() {
+    @Override
+    public void init() {
+        storage = new Storage();
         taskList = new TaskList(storage);
+        parser = new DukeParser();
+        ui = new Ui(this);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        ui.start(primaryStage);
     }
 
     /**
@@ -27,9 +40,5 @@ public class Duke {
         } catch (DukeException e) {
             return (e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        Launcher.main(args);
     }
 }
