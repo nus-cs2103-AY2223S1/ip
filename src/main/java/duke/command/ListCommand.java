@@ -14,7 +14,7 @@ public class ListCommand extends Command {
      * Executes the ListCommand by printing the current list of tasks.
      *
      * @param taskList A list of tasks
-     * @param ui An ui responsible for printing output to the user
+     * @param ui       An ui responsible for printing output to the user
      */
     @Override
     public String execute(TaskList taskList, Ui ui) {
