@@ -1,19 +1,24 @@
 package duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class DeadlinesTest {
-
     @Test
-    public void assertEquals(){
-        try {
-            assertEquals(new Deadlines("sample"));
-        } catch (Exception e) {
-            System.out.println("Exception'd");
-        }
+    public void ValidARGs() {
+        Deadlines dummyDeadline = new Deadlines("sample");
+        String expectedOutcome = "sample";
+        String testOutcome = dummyDeadline.getDeadLineTask();
+        assertEquals(testOutcome, expectedOutcome);
     }
 
-    private void assertEquals(Deadlines sample) {
+    @Test
+    public void invalidValidARGs() {
+        Deadlines dummyDeadline = new Deadlines("sample");
+        String expectedOutcome = "Won't Work";
+        String testOutcome = dummyDeadline.getDeadLineTask();
+        assertNotEquals(testOutcome, expectedOutcome);
     }
 }
