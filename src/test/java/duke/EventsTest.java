@@ -1,16 +1,27 @@
 package duke;
 
+import org.junit.jupiter.api.Test;
+
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 public class EventsTest {
-    public void anotherDummyTest(){
-        try {
-            assertEquals(new Events("sample"));
-        } catch (Exception e) {
-            System.out.println("Exception'd");
-        }
+
+    @Test
+    public void ValidARGs() {
+        Events dummyEvent = new Events("sample");
+        String expectedOutcome = "null";
+        String testOutcome = dummyEvent.getEvent();
+        assertEquals(testOutcome,expectedOutcome);
     }
 
-    private void assertEquals(Events sample) {
-    }
+
+
+
+
+
+
 }
