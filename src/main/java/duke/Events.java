@@ -24,8 +24,8 @@ public class Events extends Task {
     }
 
     /**
-     *Helps in the creation of date
-     * @return
+     *Helps in the creation of date (Not implemented due to time constrain)
+     * @return converts date from string to date
      */
     public LocalDate getDateOnlyEvents() {
         String str = this.Eventsdeadlineby;
@@ -65,7 +65,7 @@ public class Events extends Task {
 
     /**
      *Gives the deadline as a string
-     * @return string
+     * @return event dateline as a string
      */
     public String getEventDeadlineString() {
         return this.Eventsdeadlineby;
@@ -73,7 +73,7 @@ public class Events extends Task {
 
     /**
      *The name of the event
-     * @return
+     * @return name of event
      */
     public String getEventsDescription() {
         return description;
@@ -81,7 +81,7 @@ public class Events extends Task {
 
     /**
      * Same as getEventDeadlineString
-     * @return
+     * @return event dateline as a string
      */
     public String getEvent() {
         return this.Eventsdeadlineby;
@@ -89,7 +89,7 @@ public class Events extends Task {
 
     /**
      * Gives u the symbol to store in text file
-     * @return String
+     * @return String which is [E]
      */
     public String getItem() {
         return "[E]";
