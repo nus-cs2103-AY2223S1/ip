@@ -1,0 +1,8 @@
+todo read book
+todo join sports club
+event mid autumn /at aug15
+list
+deadline return book /by 2023 01 01
+mark 3
+list
+bye
