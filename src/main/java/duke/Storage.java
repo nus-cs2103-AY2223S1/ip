@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Encapsulate the Storage of the program.
+ * Encapsulates the Storage of the program.
  */
 
 public class Storage {

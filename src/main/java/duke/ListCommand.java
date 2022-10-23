@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a command that allows user see all existing items in TaskList,
+ * Encapsulates a command that allows user see all existing items in TaskList,
  * which is-a Command.
  */
 public class ListCommand extends Command {

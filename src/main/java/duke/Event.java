@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Encapsulate an Event which is-a Task.
+ * Encapsulates an Event which is-a Task.
  */
 public class Event extends Task {
 

@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate Todo which is-a Task.
+ * Encapsulates Todo which is-a Task.
  */
 public class ToDo extends Task {
 

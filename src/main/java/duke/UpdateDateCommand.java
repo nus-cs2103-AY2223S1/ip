@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a command that allows user to update existing Tasks' date,
+ * Encapsulates a command that allows user to update existing Tasks' date,
  * which is-a Command.
  */
 public class UpdateDateCommand extends Command {
@@ -11,7 +11,7 @@ public class UpdateDateCommand extends Command {
     private String updatedDate;
 
     /**
-     *  Constructs an instance of UpdateCommand which inherits from Command.
+     * Constructs an instance of UpdateCommand which inherits from Command.
      *
      * @param taskNumber task number to update the date
      */

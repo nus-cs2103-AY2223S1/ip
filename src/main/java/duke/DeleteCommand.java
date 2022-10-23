@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate the command that allow users to delete existing task from the TaskList,
+ * Encapsulates the command that allow users to delete existing task from the TaskList,
  * which is-a Command.
  */
 public class DeleteCommand extends Command {

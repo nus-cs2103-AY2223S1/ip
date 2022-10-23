@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a command that allows user to mark existing Tasks as not done,
+ * Encapsulates a command that allows user to mark existing Tasks as not done,
  * which is-a Command.
  */
 public class UnmarkCommand extends Command {

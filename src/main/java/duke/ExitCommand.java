@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a command that allows user to exit the program,
+ * Encapsulates a command that allows user to exit the program,
  * which is-a Command.
  */
 public class ExitCommand extends Command {

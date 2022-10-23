@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Represent command that user can input.
+ * Represents command that user can input.
  */
 public abstract class Command {
 

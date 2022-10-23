@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a command that allows user to mark existing Tasks as done,
+ * Encapsulates a command that allows user to mark existing Tasks as done,
  * which is-a Command.
  */
 public class MarkCommand extends Command {

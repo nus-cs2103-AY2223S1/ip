@@ -71,7 +71,7 @@ public class TaskList {
     }
 
     /**
-     * Delete item for list.
+     * Deletes item for list.
      *
      * @param taskNumber item with the number user want to delete.
      * @return Task to be deleted.
@@ -92,7 +92,7 @@ public class TaskList {
     }
 
     /**
-     * Update task's date.
+     * Updates task's date.
      *
      * @param taskNumber item with the number user want to update.
      * @return Task to be updated.
