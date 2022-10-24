@@ -146,7 +146,7 @@ public class Parser {
     private String printTask(Task task) {
         String output = "     Got it. I've added this task:\n       "
                 + task;
-        output += String.format("     Now you have %d tasks in the list.", tasks.getSize());
+        output += String.format("\n     Now you have %d tasks in the list.", tasks.getSize());
         return output;
     }
 

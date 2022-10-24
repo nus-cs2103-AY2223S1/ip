@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Storage {
     private static final String BREAK_LINE = "    ____________________________________________________________";
-    private static final String PATH  = "./data/duke.txt";
+    private static final String PATH  = "./duke.txt";
 
 
     /**
