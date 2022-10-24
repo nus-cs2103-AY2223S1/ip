@@ -44,9 +44,8 @@ public class Parser {
                 }
                 task = tasks.getTask(number - 1);
                 task.markAsDone();
-                return BREAK_LINE + "\n"
-                        + "     Nice! I've marked this task as done:\n       "
-                        + task + "\n" + BREAK_LINE;
+                return "     Nice! I've marked this task as done:\n       "
+                        + task;
             case "unmark":
                 if (inputArr.length > 2 || inputArr.length == 1) {
                     throw new DukeException("The format should be: unmark <number>");
@@ -57,9 +56,8 @@ public class Parser {
                 }
                 task = tasks.getTask(number - 1);
                 task.markAsNotDone();
-                return BREAK_LINE + "\n"
-                        + "     Nice! I've marked this task as not done yet:\n       "
-                        + task + "\n" + BREAK_LINE;
+                return "     Nice! I've marked this task as not done yet:\n       "
+                        + task;
             case "todo":
                 if (input.substring(4).replaceAll("\\s+", "").equals("")) {
                     throw new DukeException("The description of a todo cannot be empty.");
@@ -99,9 +97,8 @@ public class Parser {
                 }
                 task = tasks.getTask(number - 1);
                 tasks.deleteTask(number - 1);
-                return BREAK_LINE + "\n"
-                        + "     Okay! I've removed this task from the list:\n       "
-                        + task + "\n" + BREAK_LINE + "\n";
+                return "     Okay! I've removed this task from the list:\n       "
+                        + task;
             case "find":
                 String keyWord = input.substring(5);
                 if (keyWord.replaceAll("\\s+", "").equals("")) {
@@ -136,53 +133,44 @@ public class Parser {
                     }
                 }
                 throw new DukeException("Cannot find an existing task matching the update");
+            case "bye":
+                return "     A happy moment is always transient.";
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException err) {
-            return BREAK_LINE + "\n" + "     ☹ OOPS!!! "
-                    + err + "\n" + BREAK_LINE + "\n";
+            return "     ☹ OOPS!!! " + err;
         }
     }
 
     private String printTask(Task task) {
-        String output = BREAK_LINE + "\n"
-                + "     Got it. I've added this task:\n       "
+        String output = "     Got it. I've added this task:\n       "
                 + task;
-        output += String.format("     Now you have %d tasks in the list.\n"
-                + BREAK_LINE + "\n", tasks.getSize());
+        output += String.format("     Now you have %d tasks in the list.", tasks.getSize());
         return output;
     }
 
     private String printList() {
         if (tasks.getSize() == 0) {
-            return BREAK_LINE + "\n"
-                    + "     There is no pending task for you."
-                    + "\n" + BREAK_LINE;
+            return "     There is no pending task for you.";
         } else {
             assert tasks.getSize() > 0 : "The size of the task list should be larger than 0";
-            StringBuilder output = new StringBuilder(BREAK_LINE + "\n"
-                    + "     Here are the tasks in your list:");
+            StringBuilder output = new StringBuilder("     Here are the tasks in your list:\n");
             for (int i = 0; i < tasks.getSize(); i++) {
                 output.append(String.format("     %d.%s\n", i + 1, tasks.getTask(i)));
             }
-            output.append(BREAK_LINE + "\n");
             return output.toString();
         }
     }
 
     private String printMatch(ArrayList<Task> matches) {
         if(matches.isEmpty()) {
-            return BREAK_LINE + "\n"
-                    + "     There is no task matching this key word."
-                    + "\n" + BREAK_LINE;
+            return "     There is no task matching this key word.";
         } else {
-            StringBuilder output = new StringBuilder(BREAK_LINE + "\n"
-                    + "     Okay! I've found these matches from the list:\n       ");
+            StringBuilder output = new StringBuilder("     Okay! I've found these matches from the list:\n       ");
             for (int i = 0; i < matches.size(); i++) {
                 output.append(String.format("     %d.%s\n", i + 1, matches.get(i)));
             }
-            output.append(BREAK_LINE + "\n");
             return output.toString();
         }
     }

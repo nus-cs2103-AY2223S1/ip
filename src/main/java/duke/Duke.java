@@ -1,5 +1,7 @@
 package duke;
 
+import duke.Storage;
+import duke.Parser;
 //import javafx.application.Application;
 //import javafx.scene.Scene;
 //import javafx.scene.control.Button;
@@ -48,12 +50,13 @@ public class Duke {
 
     private void run() {
         ui.showWelcome();
-
+        assert false;
         storage.saveData(this.tasks);
         boolean isBye = false;
         while (!isBye) {
             String input = ui.readCommand();
-            new Parser(this.tasks).parser(input);
+            ui.showLine();
+            System.out.println(new Parser(this.tasks).parser(input));
             storage.saveData(this.tasks);
             isBye = input.equals("bye");
             ui.showLine();
@@ -68,6 +71,7 @@ public class Duke {
 //        }
         return new Parser(this.tasks).parser(input);
     }
+
 
 //    @Override
 //    public void start(Stage stage) {
