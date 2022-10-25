@@ -2,28 +2,52 @@
 
 ## Features 
 
-### Feature-ABC
+### List
 
-Description of the feature.
+List the tasks
 
-### Feature-XYZ
+### Todo
 
-Description of the feature.
+Add one todo task into the task list
+
+### Deadline
+
+Add one deadline task with time into the task list
+
+### Event
+
+Add one event task with time into the task list
+
+### Delete
+
+Deletes one task at a specified index from the task list
+
+### Find
+
+Finds one task matching the key word
+
+### Update
+
+Modify one deadline or event task with an updated time
 
 ## Usage
 
-### `Keyword` - Describe action
+### `List` - List tasks
 
 Describe the action and its outcome.
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`List`
 
 Expected outcome:
 
-Description of the outcome.
+A list of tasks
 
 ```
-expected output
+    ____________________________________________________________
+     There is no pending task for you.
+     1. [T][] Read books
+     2. [E][] Watch movies (at: 24 Dec 2022)
+    ____________________________________________________________
 ```
