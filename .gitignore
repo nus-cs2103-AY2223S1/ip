@@ -13,5 +13,10 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Testing
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+# Data duke.storage.Storage
+data/
+/data/duke.txt
