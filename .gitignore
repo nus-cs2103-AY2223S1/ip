@@ -3,6 +3,10 @@
 /out/
 /*.iml
 
+# VSCode files
+/.vscode/
+java-style.xml
+
 # Gradle build files
 /.gradle/
 /build/
@@ -15,3 +19,6 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+# DB of tasks (should not be version controlled for user privacy)
+duke.txt
