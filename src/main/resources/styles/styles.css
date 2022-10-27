@@ -1,0 +1,6 @@
+#root {
+    -fx-background-image: url("../images/blueSnow.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: repeat-y;
+    -fx-background-size: contain;
+}
