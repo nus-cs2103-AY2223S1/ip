@@ -1,29 +1,95 @@
-# User Guide
+# Duke User Guide
+
+## About Duke
+Duke is a simple application that helps you keep track of your tasks.
+
+## Acknowledgments
+[Jeffry Lum's JavaFX tutorial](https://se-education.org/guides/tutorials/javaFx.html)
 
 ## Features 
 
-### Feature-ABC
+### `list`
 
-Description of the feature.
+Lists all recorded tasks.
+>##### Example Usage
+>```
+>list
+>```
 
-### Feature-XYZ
+### `todo`
 
-Description of the feature.
+Adds a generic task.
+>##### Example Usage
+>```
+>todo have a fruit
+>```
 
-## Usage
+### `deadline`
 
-### `Keyword` - Describe action
+Adds a task with a deadline.
 
-Describe the action and its outcome.
+Use the keyword `/by`.
 
-Example of usage: 
+Specify the date in the format yyyy-mm-dd.
+>##### Example Usage
+>```
+>deadline submit homework /by 2022-09-22
+>```
 
-`keyword (optional arguments)`
+### `event`
 
-Expected outcome:
+Adds a task occurring at a later date.
 
-Description of the outcome.
+Use the keyword `/at`.
 
-```
-expected output
-```
+Specify the date in the format yyyy-mm-dd.
+>##### Example Usage
+>```
+>event breakfast /at 2022-09-23
+>```
+
+### `delete`
+
+Deletes a recorded task.
+
+Specify the index of the task to be deleted.
+>##### Example Usage
+>```
+>delete 1
+>```
+
+### `mark`
+
+Marks a task as done.
+
+Specify the index of the task to be marked.
+>##### Example Usage
+>```
+>mark 1
+>```
+
+### `unmark`
+
+Marks a task as not done.
+
+Specify the index of the task to be unmarked.
+>##### Example Usage
+>```
+>unmark 1
+>```
+
+### `find`
+
+Finds all the tasks containing a specific term.
+>##### Example Usage
+>```
+>find breakfast
+>```
+
+### `archive`
+
+Archives all tasks into a file.
+>##### Example Usage
+>```
+>archive
+>```

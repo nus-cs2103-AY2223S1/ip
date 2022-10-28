@@ -1,0 +1,4 @@
+[T][ ] have a drink
+[E][X] have a rest (at: Sep 23 2022)
+[T][X] have a fruit
+[T][X] fix bug
