@@ -1,0 +1,68 @@
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'checkstyle'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
+    runtimeOnly "org.openjfx:javafx-graphics:11.0.2:win"
+    runtimeOnly "org.openjfx:javafx-graphics:11.0.2:linux"
+    runtimeOnly "org.openjfx:javafx-graphics:11.0.2:mac"
+    runtimeOnly "org.openjfx:javafx-controls:11.0.2:win"
+    runtimeOnly "org.openjfx:javafx-controls:11.0.2:linux"
+    runtimeOnly "org.openjfx:javafx-controls:11.0.2:mac"
+    runtimeOnly "org.openjfx:javafx-fxml:11.0.2:win"
+    runtimeOnly "org.openjfx:javafx-fxml:11.0.2:linux"
+    runtimeOnly "org.openjfx:javafx-fxml:11.0.2:mac"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+        vendor = JvmVendorSpec.AZUL
+    }
+}
+
+compileJava {
+    options.release = 11
+}
+
+javafx {
+  version = "11.0.2"
+  modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+}
+
+application {
+    mainClass.set("duke.Launcher")
+}
+
+shadowJar {
+    archiveBaseName = "duke"
+    archiveClassifier = null
+}
+
+run{
+    standardInput = System.in
+}
