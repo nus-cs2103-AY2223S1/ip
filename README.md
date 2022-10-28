@@ -1,24 +1,66 @@
-# Duke project template
+# Henry, the helpful chatbot
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+> The busy man is least busy with living. -
+> Seneca ([source](https://www.goodreads.com/quotes/9840711-there-is-nothing-the-busy-man-is-less-busied-with#:~:text=%E2%80%9CThere%20is%20nothing%20the%20busy%20man%20is%20less%20busied%20with,that%20is%20harder%20to%20learn.%E2%80%9D))
 
-## Setting up in Intellij
+## **Henry** is a chatbot that curates a task list for you based on text commands.
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+Currently, **Henry** supports the following commands:
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+- **Echo:** repeats the user's input to the console
+- **List:** displays the task list in the console
+- **Todo:** adds a "to-do" type task to the task list
+- **Deadline:** adds a "deadline" type task to the task list
+- **Event:** adds an "event" type task to the task list
+- **Mark:** marks a task as complete
+- **Unmark:** marks a task as incomplete
+- **Delete:** deletes a task from the task list
+- **Find:** finds any matching tasks given a key word
+- **Tentative:** adds a tentative date to any event task 
+- **Teach:** interaction feature that supports learning and memory
+
+**Henry** is able to store a task list to the user's desktop. When **Henry** starts up, the following occurs:
+
+1. The user's desktop is checked for an existing storage file. If no file exists, a new file is created.
+   (Note: **Henry** does this by using a reference to a user's desktop that will work for ANY **Windows** user)
+
+```java
+private static final String home = System.getProperty("user.home");
+private static final Path FILE_PATH = java.nio.file.Paths.get(home,"Desktop","henry.txt");
+```
+
+2. Tasks are parsed from the file to a list (or an empty list if the file is newly created).
+3. The UI is initialised.
+4. Start-up complete! 😃
+
+To run **Henry**, download the release from **releases**, then open command prompt. Input the following:
+
+```
+cd [the path where henry.jar is located]
+java -jar henry.jar
+```
+
+Note that the release is not updated to handle the "Find" command yet!
+
+This description contains the following formatting guidelines:
+
+- [x] a heading
+- [x] a bullet list
+- [x] a numbered list
+- [x] a fenced code block (with syntax highlighting)
+- [x] a task list
+- [x] an emoji
+- [x] a blockquote
+- [x] a hyper link
+- [x] inline code
+- [x] some text formatting: bold, italic, strikethrough etc.
+
+## **Acknowledgements**
+
+### **Third-party libraries**
+
+1) https://mvnrepository.com/artifact/org.goldrenard/ab (Project AB, an ALICE chatbot implementation)
+2) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku (Dependency for Project AB)
+3) https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex (Dependency for Project AB)
+4) https://mvnrepository.com/artifact/org.slf4j/slf4j-api (Dependency for Project AB)
+5) https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j (Dependency for Project AB)

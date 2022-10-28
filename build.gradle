@@ -1,0 +1,92 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+    version = '12'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+checkstyle {
+    toolVersion = '10.2'
+}
+
+repositories {
+    mavenCentral()
+    jcenter();
+    maven {
+        url 'https://nexus.bippo.co.id/nexus/content/groups/public/'
+    }
+}
+
+dependencies {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    String javaFxVersion = '11'
+
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
+    testImplementation "org.testfx:openjfx-monocle:jdk-11+26" // For Java 11
+
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
+
+    // https://mvnrepository.com/artifact/org.goldrenard/ab
+    implementation group: 'org.goldrenard', name: 'ab', version: '1.0.3'
+
+    // https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku
+    implementation group: 'net.reduls.sanmoku', name: 'sanmoku', version: '0.0.5'
+
+    // https://mvnrepository.com/artifact/net.reduls.sanmoku/sanmoku-feature-ex
+    implementation group: 'net.reduls.sanmoku', name: 'sanmoku-feature-ex', version: '0.0.1'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0'
+
+    // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+}
+
+application {
+    mainClassName = "Launcher"
+}
+
+shadowJar {
+    archiveBaseName = "henry"
+    archiveClassifier = null
+}
+
+run {
+    standardInput = System.in
+}

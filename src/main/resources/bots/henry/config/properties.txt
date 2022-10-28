@@ -1,0 +1,8 @@
+url:https://vercel.com/e1010101/personal-site-v1
+name:Henry
+email:ezratio15195@gmail.com
+gender:male
+botmaster:e1010101
+organization:NUS
+version:0.0.4
+
