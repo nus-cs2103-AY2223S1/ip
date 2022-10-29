@@ -1,6 +1,7 @@
 Hello! I'm duke.Duke
 What can I do for you?
 
+An error occurred 
 Got it. I've added this task:
   [T][ ]  borrow book
 Now you have 1 tasks in the list.

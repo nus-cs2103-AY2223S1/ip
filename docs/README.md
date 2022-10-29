@@ -1,29 +1,63 @@
-# User Guide
+# Duke User Guide
 
 ## Features 
 
-### Feature-ABC
+### Adding a todo
 
-Description of the feature.
+Add a todo to your task list.
 
-### Feature-XYZ
+Command format: `todo <todo description>`
 
-Description of the feature.
+### Adding a deadline
 
-## Usage
+Add a deadline to your task list.
 
-### `Keyword` - Describe action
+Command format: `deadline <description> /by <yyyy-mm-dd>`
 
-Describe the action and its outcome.
+### Adding a event
 
-Example of usage: 
+Add an event to your task list.
 
-`keyword (optional arguments)`
+Command format: `event <description> /at <event date>`
 
-Expected outcome:
+### List out the current task list
 
-Description of the outcome.
+Show your current task list.
 
-```
-expected output
-```
+Command format: `list`
+
+### Mark a task as done
+
+Mark a specified task as done.
+
+Command format: `mark <task-index>`
+
+### Mark a task as not done
+
+Mark a specified task as not done.
+
+Command format: `unmark <task-index>`
+
+### Delete a task
+
+Removes a task from the task list.
+
+Command format: `delete <task-index>`
+
+### Finding tasks
+
+Find tasks based on a string.
+
+Command format: `find <string>`
+
+### Tagging a task
+
+Tag a task.
+
+Command format: `tag <task-index> # <tag-name>`
+
+### Finding tasks with a specified tag
+
+Find tasks that have been tagged with a specified tag.
+
+Command format: `findtag <tag-name>`

@@ -1,0 +1,4 @@
+D |   | lecture vids|2022-09-11
+T | X | study code#todo
+E |   | concert| september 15th#fun
+T |   | buy groceries#todo
