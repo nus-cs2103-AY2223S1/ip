@@ -167,6 +167,9 @@ Here are the matching tasks in your list:
 
 Command format: `snooze <taskNumber>/<yyyy-mm-dd>`
 
+My warning paragraph.
+{: .alert .alert-warning}
+
 Example usage:
 
 ````
