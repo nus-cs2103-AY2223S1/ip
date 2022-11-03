@@ -1,0 +1,87 @@
+jude
+list
+todo task1
+todo task2
+list
+todo task3
+deadline task4 /by Monday
+deadline task4 /by 2022-08-22
+event task5 /at Monday 4pm-5pm
+event task5 /from 2022-08-12 4:00PM /to 2022-08-12 5:00PM
+mark 1
+list
+mark 2
+list
+mark 5
+list
+mark 4
+list
+mark 2
+list
+unmark 1
+list
+unmark 2
+list
+unmark 5
+list
+unmark 4
+list
+unmark 2
+list
+unmark 6
+unmark 0
+unmark -1
+mark 6
+mark 0
+mark -1
+todo
+deadline
+event
+deadline  /by
+event  /from
+deadline t /by
+event t /to
+deadline /by t
+event /from t
+deadline   /by t
+event   /from t
+event   /from t /to
+event   /from /to t
+deadline   Task 6 /by  Tuesday
+deadline   Task 6 /by  23 Aug 2022
+event   Task 7 /at  Tuesday 1am-2am
+event   Task 7 /at  2022-09-13 01:00-02:00
+event   Task 7 /from  2022-08-13 01:00 /to 2022-08-13 02:00
+list
+mark 2
+delete 2
+list
+delete 7
+delete 0
+delete -1
+list
+find 7
+find Task 6
+find Task 5
+mark 1
+mark 3
+mark 5
+find A
+find   tAsK
+find
+list
+remindme
+unmark 5
+remindme
+event task8 /from 2022-08-12 4:00PM /to 2022-08-12 3:00PM
+event task8 /from 2022-08-12 4:00PM /to 2021-08-12 5:00PM
+list
+delete
+mark
+unmark
+list
+mark abc
+unmark abc
+delete abc
+list
+bye
