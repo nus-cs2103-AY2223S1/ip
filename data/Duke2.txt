@@ -1,0 +1,9 @@
+[D][ ] homework(by: Mar 14 2022)
+[T][X] buy stuffs
+[E][ ] night fest (at: Mar 12 2019)
+[D][ ] homework (by: Mar 21 2019)
+[D][ ] coding assignment now (by: Mar 21 2018)
+[T][ ] buy stuff 
+[T][ ] eat shit 
+[D][ ] coding assignment (by: Sep 30 2019)
+[E][X] edm fest (at: Aug 22 2018)
