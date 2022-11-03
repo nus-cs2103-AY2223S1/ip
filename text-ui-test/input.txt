@@ -1,0 +1,19 @@
+todo borrow book
+deadline school /by 3pm
+event singapore /at tuesday
+mark 1
+list
+mark 3
+list
+unmark 1
+mark 15
+unmark 15
+delete 1
+list
+deadline
+event
+random command
+deadline random
+todo
+list
+bye

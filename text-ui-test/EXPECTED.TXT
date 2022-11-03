@@ -1,7 +1,109 @@
-Hello from
+____________________________________________________________
+duke.Duke says:
+Hello, I'm
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
-
+How can I help you today?
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Got it. I've added this task:
+	[T][ ] borrow book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Got it. I've added this task:
+	[D][ ] school (by: 3pm)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Got it. I've added this task:
+	[E][ ] singapore (at: tuesday)
+Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Nice! I've marked this task as done:
+[T][X] borrow book
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Here are the tasks in your list: 
+1. [T][X] borrow book
+2. [D][ ] school (by: 3pm)
+3. [E][ ] singapore (at: tuesday)
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Nice! I've marked this task as done:
+[E][X] singapore (at: tuesday)
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Here are the tasks in your list: 
+1. [T][X] borrow book
+2. [D][ ] school (by: 3pm)
+3. [E][X] singapore (at: tuesday)
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OK, I've marked this task as not done yet:
+[T][ ] borrow book
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! Please input a valid task number!
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! Please input a valid task number!
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Noted. I've removed this task:
+[T][ ] borrow book
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Here are the tasks in your list: 
+1. [D][ ] school (by: 3pm)
+2. [E][X] singapore (at: tuesday)
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! The description of a deadline cannot be empty.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! The description of a event cannot be empty.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! random is not a valid command.
+Please use the commands todo, deadline or event to add a task!
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! The description of the deadline command is invalid!
+Please add a /by to declare the time the deadline is meant to be set.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+OOPS!!! The description of a todo cannot be empty.
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Here are the tasks in your list: 
+1. [D][ ] school (by: 3pm)
+2. [E][X] singapore (at: tuesday)
+____________________________________________________________
+____________________________________________________________
+duke.Duke says:
+Goodbye! Hope to see you again!
+____________________________________________________________
