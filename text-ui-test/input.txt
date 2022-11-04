@@ -1,0 +1,46 @@
+list
+
+unknown
+mark 1
+todo CS2103T iP Level-4
+deadline ERRNO_TASK /by 1900-02-29
+deadline WHAT_TASK /by 20-02-3333
+deadline ERRRRR_TASK /by 21 Feb 2022
+deadline CS2105 HW /by 2022-08-21
+event ERRRR_TASK /at 21 Feb 2022
+event NUS SoC Career Fair /at 2022-08-17
+todo
+deadline
+event
+deadline test
+event testing
+deadline testing test /by
+event testing test /at
+mark
+mark asda
+list
+mark 1
+mark 1
+unmark 2
+mark 2
+list
+unmark 1
+mark 5
+unmark -1
+list
+delete 5
+delete -1
+delete ab
+delete
+delete 1
+list
+delete 3
+delete 2
+list
+event NEW_TASK /at 2022-08-20 2022-09-01
+event ERROR_TASK /at 2022-09-01 2022-08-20
+find W
+find Z
+find NEW
+find
+bye

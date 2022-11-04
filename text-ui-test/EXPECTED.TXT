@@ -1,7 +1,142 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+>> Loading save file.....
+!>> Uh-oh ☹! No save file found. A new save file is generated at data\save.txt.
+
+>> Hello! I'm TedBot ヾ(≧▽≦*)o
+   What do you want to do today?
+
+<< >> Here are your tasks that I have recorded:
+   Congratulations, you don't need to do anything right now!
+
+<< !>> Uh-oh ☹! Sorry, I don't know what that means.
+    Did you make a mistake? Please note that commands are case-sensitive.
+
+<< !>> Uh-oh ☹! Sorry, I don't know what that means.
+    Did you make a mistake? Please note that commands are case-sensitive.
+
+<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+
+<< >> Gotcha! I added the following task to the list:
+     [T][ ] CS2103T iP Level-4
+   Currently, I have 1 tasks recorded
+
+<< !>> Uh-oh ☹! Please provide me a valid date in the following format:
+      YYYY-MM-DD
+    i.e. 29th February 2000 is 2000-02-29
+
+<< !>> Uh-oh ☹! Please provide me a valid date in the following format:
+      YYYY-MM-DD
+    i.e. 29th February 2000 is 2000-02-29
+
+<< !>> Uh-oh ☹! Please provide me a valid date in the following format:
+      YYYY-MM-DD
+    i.e. 29th February 2000 is 2000-02-29
+
+<< >> Gotcha! I added the following task to the list:
+     [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+   Currently, I have 2 tasks recorded
+
+<< !>> Uh-oh ☹! Please provide me valid date(s) in the following format:
+      YYYY1-MM1-DD1 YYYY2-MM2-DD2
+    i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.
+
+<< >> Gotcha! I added the following task to the list:
+     [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+   Currently, I have 3 tasks recorded
+
+<< !>> Uh-oh ☹! The description of a Task must not be empty.
+
+<< !>> Uh-oh ☹! The description of a Task must not be empty.
+
+<< !>> Uh-oh ☹! The description of a Task must not be empty.
+
+<< !>> Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+
+<< !>> Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+
+<< !>> Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+
+<< !>> Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+
+<< !>> Uh-oh ☹! You must pass an index value.
+
+<< !>> Uh-oh ☹! You must pass an integer value. asda is not an integer.
+
+<< >> Here are your tasks that I have recorded:
+   01. [T][ ] CS2103T iP Level-4
+   02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+   03. [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+
+<< >> Noice! I've marked this task as done:
+     [T][✔] CS2103T iP Level-4
+
+<< >> Sorry, but it seems you have marked this task as done:
+     [T][✔] CS2103T iP Level-4
+
+<< >> Sorry, but it seems you haven't marked this task as done:
+     [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+
+<< >> Noice! I've marked this task as done:
+     [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+
+<< >> Here are your tasks that I have recorded:
+   01. [T][✔] CS2103T iP Level-4
+   02. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+   03. [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+
+<< >> Alright, I've marked this task as not done:
+     [T][ ] CS2103T iP Level-4
+
+<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+
+<< !>> Uh-oh ☹! You must pass a positive integer value. -1 is a non-positive integer value.
+
+<< >> Here are your tasks that I have recorded:
+   01. [T][ ] CS2103T iP Level-4
+   02. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+   03. [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+
+<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+
+<< !>> Uh-oh ☹! You must pass a positive integer value. -1 is a non-positive integer value.
+
+<< !>> Uh-oh ☹! You must pass an integer value. ab is not an integer.
+
+<< !>> Uh-oh ☹! You must pass an index value.
+
+<< >> Understood, I've deleted the following task:
+     [T][ ] CS2103T iP Level-4
+   You now have 2 tasks remaining.
+
+<< >> Here are your tasks that I have recorded:
+   01. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+   02. [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+
+<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+
+<< >> Understood, I've deleted the following task:
+     [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
+   You now have 1 tasks remaining.
+
+<< >> Here are your tasks that I have recorded:
+   01. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+
+<< >> Gotcha! I added the following task to the list:
+     [E][ ] NEW_TASK (at: Saturday, 20 August 2022 - Thursday, 01 September 2022)
+   Currently, I have 2 tasks recorded
+
+<< !>> Uh-oh ☹! The second date is prior to the first date.
+
+<< >> Here are the matching tasks I have found:
+   01. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+   02. [E][ ] NEW_TASK (at: Saturday, 20 August 2022 - Thursday, 01 September 2022)
+
+<< >> Here are the matching tasks I have found:
+   No tasks of the sort found.
+
+<< >> Here are the matching tasks I have found:
+   01. [E][ ] NEW_TASK (at: Saturday, 20 August 2022 - Thursday, 01 September 2022)
+
+<< !>> Uh-oh ☹! Please give me a keyword so I can find the tasks you want!
+
+<< >> Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ
 
