@@ -1,7 +1,29 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Jukebox :)
+What can I do for you today?
 
+Okay!
+Added: [D][ ] Return (by: tmr)
+
+Okay!
+Added: [E][ ] Eat (by: Sunday)
+
+Goodjob! This task is now completed :)
+[D][X] Return (by: tmr)
+
+Goodjob! This task is now completed :)
+[E][X] Eat (by: Sunday)
+
+Oh... OK, I'll mark this task as uncompleted!
+[D][ ] Return (by: tmr)
+
+These are your current tasks! :)
+1.[D][ ] Return (by: tmr)
+2.[E][X] Eat (by: Sunday)
+
+Ok! I've removed this task:
+[E][X] Eat (by: Sunday)
+
+These are your current tasks! :)
+1.[D][ ] Return (by: tmr)
+
+Aww... OK, Hope to see you again!
