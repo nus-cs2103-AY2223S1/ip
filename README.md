@@ -8,7 +8,7 @@
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest version from [here](https://github.com/lilythchu/ip/releases).
+2. Download the latest version [here](https://github.com/lilythchu/ip/releases).
 
 3. Copy the file to the folder you want to use as the home folder.
 
