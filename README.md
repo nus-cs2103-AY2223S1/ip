@@ -7,7 +7,9 @@
 
 ### Features
 
+**Rabbit** allows you to:
+
 * **add** tasks and keep track of them.
-* **edti** your tasks.
+* **edit** your tasks.
 * **find** your tasks.
 * **store** your tasks on your local computer.
