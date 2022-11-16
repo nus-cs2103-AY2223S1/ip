@@ -13,3 +13,4 @@
 * **edit** your tasks.
 * **find** your tasks.
 * **store** your tasks on your local computer.
+* change Rabbit's look
