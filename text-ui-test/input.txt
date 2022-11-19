@@ -1,0 +1,4 @@
+todo finish orbital
+deadline finish poster /by 2359
+event sleep /at 0600
+bye
