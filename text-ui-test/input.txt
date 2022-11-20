@@ -1,0 +1,41 @@
+hello
+todo
+todo borrow book
+list
+deadline
+deadline return book /by
+deadline return book /by 2000-12-12
+event
+event project meeting /at
+event project meeting /at 2000-10-10
+list
+deadline die /by 1999-09-10
+event hang out w/ friends /at 1900-02-24
+list
+mark
+mark 2 3
+mark 23
+mark 2
+mark 3
+mark 4
+list
+unmark
+unmark 2 3
+unmark 23
+unmark 3
+unmark 2
+list
+mark 2
+delete
+delete 2 3
+delete 23
+delete 3
+list
+unmark 3
+list
+delete 1
+delete 1
+delete 1
+delete 1
+list
+bye

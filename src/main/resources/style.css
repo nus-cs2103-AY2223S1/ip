@@ -1,0 +1,20 @@
+/* @@author xiongjya
+Reused from https://github.com/xiongjya/ip
+with minor modifications */
+.scroll-pane .viewport {
+    -fx-background-image: url("/images/starry_sky.png");
+    -fx-background-size: cover;
+    -fx-background-position:center;
+    -fx-background-repeat: no-repeat;
+}
+
+/* @@author xiongjya
+Reused from https://github.com/xiongjya/ip
+with minor modifications */
+.textBox {
+    -fx-background-color: rgba(173, 216, 230, 0.8);
+    -fx-border-color: rgb(106, 90, 205);
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
