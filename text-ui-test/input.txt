@@ -1,0 +1,17 @@
+todo write letter
+list
+deadline return book /by 2022-08-01
+event project meeting /at 2022-08-07
+deadline do homework /by 2022-08-07
+list
+mark 4
+list
+unmark 4
+list
+tian qing se deng yin yu er wo zai deng ni
+ni fa ru xue qi mei le li bie :) yay, Jay Chou my fav singer
+todo
+event
+deadline hey i am handsome
+event abc /at abc
+bye

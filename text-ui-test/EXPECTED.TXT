@@ -1,7 +1,82 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hey Dude here
+What can I do for you?
+________________
+Got it. I've added this task:
+[T][ ] write letter
+Now you have 1 tasks in the list.
+________________
+________________
+Here are the tasks in your list:
+1.[T][ ] write letter
+________________
+________________
+Got it. I've added this task:
+[D][ ] return book (by: Aug 1 2022)
+Now you have 2 tasks in the list.
+________________
+________________
+Got it. I've added this task:
+[E][ ] project meeting (at: Aug 7 2022)
+Now you have 3 tasks in the list.
+________________
+________________
+Got it. I've added this task:
+[D][ ] do homework (by: Aug 7 2022)
+Now you have 4 tasks in the list.
+________________
+________________
+Here are the tasks in your list:
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
+Nice! I've marked this task as done:
+[D][X] do homework (by: Aug 7 2022)
+________________
+________________
+Here are the tasks in your list:
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][X] do homework (by: Aug 7 2022)
+________________
+________________
+OK, I've marked this task as not done yet:
+[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
+Here are the tasks in your list:
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
+ERROR... I just died XP
+OOPS!!! I'm sorry, but I don't know what that means T.T
+________________
+________________
+ERROR... I just died XP
+OOPS!!! I'm sorry, but I don't know what that means T.T
+________________
+________________
+ERROR... I just died XP
+OOPS!!! The description of a todo cannot be empty!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Invalid input for event!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Invalid input for deadline!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Please give a valid date in YYYY-MM-DD format!
+________________
+________________
+Bye^2!! :p
+________________
