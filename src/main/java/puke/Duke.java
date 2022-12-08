@@ -109,7 +109,7 @@ public class Duke {
             return d.tasklist.find(temp);
 
         } else {
-            return "OOPS!!! I'm sorry, but I dont't know what that means\n";
+            return "OOPS!!!\nI'm sorry, but I dont't know what that means";
         }
     }
 }
