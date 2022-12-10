@@ -29,15 +29,13 @@ public class Parser {
             // Instruction has no arguments
             return Instruction.of(commandName, null, Map.of());
         }
-        String[] arguments = splitUserInput[1].split(FLAG_REGEX);
+        String[] arguments = splitUserInput[1].split(FLAG_REGEX, -1);
         String mainArgument = arguments[0].equals("") ? null : arguments[0];
         Matcher flagMatcher = Pattern.compile(FLAG_REGEX).matcher(splitUserInput[1]);
         Map<String, String> flagArgumentsMap = new HashMap<>();
         int i = 1;
         while (flagMatcher.find()) {
-            // If last flag has no value, Java does not keep the empty string after splitting
-            String arg = i == arguments.length ? "" : arguments[i++];
-            flagArgumentsMap.put(flagMatcher.group("flag"), arg);
+            flagArgumentsMap.put(flagMatcher.group("flag"), arguments[i++]);
         }
         return Instruction.of(commandName, mainArgument, flagArgumentsMap);
     }

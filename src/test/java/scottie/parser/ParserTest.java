@@ -65,6 +65,17 @@ public class ParserTest {
     }
 
     @Test
+    public void testAllFlagsWithNoValue() {
+        Map<String, String> flagArgumentsMap = Map.of("by", "", "desc", "");
+        try {
+            assertEquals(Instruction.of("sort", null, flagArgumentsMap),
+                    Parser.parse("sort /by /desc"));
+        } catch (InvalidCommandException e) {
+            fail("An unexpected exception occurred while running this test.");
+        }
+    }
+
+    @Test
     public void testExtraSpaces() {
         Map<String, String> flagArgumentsMap = Map.of("by", "12/12/12");
         try {
