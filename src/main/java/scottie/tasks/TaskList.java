@@ -90,7 +90,7 @@ public interface TaskList extends Iterable<Task> {
     void sortByDescription(boolean isReversed);
 
     /**
-     * Sorts the Tasks in this TaskList by their descriptions.
+     * Sorts the Tasks in this TaskList by their dates.
      * If the isReversed argument is true, sort them in the reversed order.
      * Tasks without a date are always sorted behind those with dates.
      *
