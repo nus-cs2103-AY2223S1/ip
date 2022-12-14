@@ -1,6 +1,4 @@
-# Cheese User Guide
-
-## Table of Contents
+# User Guide
 
 - [Features](#features)
 - [Commands](#commands)
@@ -17,15 +15,15 @@
 
 ## Features
 
-### Keep track of your tasks
+### :memo: Track your daily tasks
 
 Cheese features **storage** to store and retrieve your tasks, even after closing the application.
 
-### Add a variety of tasks
+### :rainbow: Add a variety of tasks
 
 Cheese supports a variety of tasks, including: **Todo**, **deadline**, and **event**.
 
-### Find tasks easily
+### :mag_right: Find tasks easily
 
 Cheese can help you find tasks with a search query.
 
