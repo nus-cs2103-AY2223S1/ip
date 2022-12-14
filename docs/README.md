@@ -15,15 +15,15 @@
 
 ## Features
 
-### :memo: Track your daily tasks
+### 📝 Track your daily tasks
 
 Cheese features **storage** to store and retrieve your tasks, even after closing the application.
 
-### :rainbow: Add a variety of tasks
+### 🌈 Add a variety of tasks
 
 Cheese supports a variety of tasks, including: **Todo**, **deadline**, and **event**.
 
-### :mag_right: Find tasks easily
+### 🔍 Find tasks easily
 
 Cheese can help you find tasks with a search query.
 
