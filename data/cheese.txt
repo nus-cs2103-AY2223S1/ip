@@ -1,3 +1,7 @@
-todo // F // read book
+todo // T // read book
 deadline // T // return book // 2022-28-08 12:30
 event // F // project meeting // 2022-01-09 14:00
+todo // F // Drink water
+deadline // F // Eat lunch // 2022-12-02 12:00
+todo // F // fadf
+deadline // F // Eat lunch // 2022-12-02 12:00
