@@ -1,0 +1,5 @@
+ #anchor {
+     -fx-background-image:url('../images/flowers.png');
+     -fx-background-size: 600 575;
+     -fx-background-position: center center;
+ }
