@@ -44,7 +44,7 @@ public class Duke {
     public String getResponse(String command) throws IOException {
         if ("hi".equals(command) || "hello".equals(command)) {
             return ui.greeting();
-        } else if ("bye".equals(command)) {
+        } else if ("bye".equals(command.toLowerCase())) {
             return Parser.echo("Aww going so soon :(( \nHope to see you again soon!");
         } else if ("list".equals(command)) {
             return Parser.echo(TaskList.printTaskList(tasks));
