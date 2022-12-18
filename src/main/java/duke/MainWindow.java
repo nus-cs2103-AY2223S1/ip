@@ -30,11 +30,15 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
     private static final String EXIT_STRING = "Aww going so soon :(( \nHope to see you again soon!";
+    private static final String WELCOME_STRING = "Hello! I'm Darwin :)\nWhat can I do for you?";
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(WELCOME_STRING, dukeImage));
     }
 
     public void setDuke(Duke d) {
