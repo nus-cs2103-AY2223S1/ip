@@ -67,4 +67,12 @@ public class DukeException extends Exception{
                 "E.g: event Party /at my place 3pm");
         return Parser.echo(errorText);
     }
+
+    /**
+     * Method that shows that index is missing from command
+     */
+    public static String IndexMissingMessage() {
+        String errorText = Parser.echo("OOPS!!! Please provide an index!");
+        return errorText;
+    }
 }

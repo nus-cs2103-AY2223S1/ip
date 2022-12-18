@@ -201,6 +201,8 @@ public class Duke {
             int n = getIndexInTaskList(command);
             if (n > tasks.size()){
                 return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
+            } else if (n == 0) {
+                return DukeException.IndexMissingMessage();
             }
             String taskStatus = getTaskStatus(n, command);
             return Parser.echo(taskStatus);
@@ -236,6 +238,9 @@ public class Duke {
      */
     public static int getIndexInTaskList(String command) {
         String number = command.replaceAll("[^\\d.]", "");
+        if (number.isEmpty()) {
+            return 0;
+        }
         int n = Integer.parseInt(number);
         return n-1;
     }
