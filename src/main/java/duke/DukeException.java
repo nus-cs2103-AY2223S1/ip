@@ -44,9 +44,15 @@ public class DukeException extends Exception{
     /**
      * Method that reminds user to use proper format for deadline object
      */
-    public static void DateTimeFormatErrorMessage() {
+    public static String DateTimeFormatErrorMessage() {
         String errorText = String.format("OOPS!!! Please input deadline in this format yyyy-MM-dd\n" +
                 "E.g: 2020-01-01");
-        Parser.echo(errorText);
+        return Parser.echo(errorText);
+    }
+
+    public static String DeadlineFormatErrorMessage() {
+        String errorText = String.format("OOPS!!! Please input deadline in this format\n" +
+                "E.g: deadline Project Submission /by 2021-07-24");
+        return Parser.echo(errorText);
     }
 }

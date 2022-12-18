@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 /**
  * Main class
@@ -141,14 +142,23 @@ public class Duke {
             String error = DukeException.taskErrorMessage(command);
             return Parser.echo(error);
         } else {
-            String[] parts = deadlineTask.split(" /by ", 2);
-            Deadline newTask = new Deadline(parts[0], parts[1]);
-            tasks.add(newTask);
-            String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
-                    "%s\n" +
-                    "Now you have %d tasks in the list.", newTask, tasks.size());
-            Parser.writeToFile(tasks);
-            return Parser.echo(taskStatus);
+            try {
+                String[] parts = deadlineTask.split(" /by ", 2);
+                Deadline newTask = new Deadline(parts[0], parts[1]);
+                tasks.add(newTask);
+                String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.", newTask, tasks.size());
+                Parser.writeToFile(tasks);
+                return Parser.echo(taskStatus);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorText = DukeException.DeadlineFormatErrorMessage();
+                return errorText;
+            } catch (DateTimeParseException e) {
+                String errorText = DukeException.DateTimeFormatErrorMessage();
+                return errorText;
+            }
+
         }
     }
 

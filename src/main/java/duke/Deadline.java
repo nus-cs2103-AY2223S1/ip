@@ -26,14 +26,10 @@ public class Deadline extends Task {
      * Method to convert deadline string to LocalDate object and to initialise deadlineDate attribute
      */
     public void stringToDate() {
-        try {
-            DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate deadlineDate = LocalDate.parse(this.deadlineDay, convertFormatter);
-            this.deadlineDateTime = deadlineDate;
-        } catch (Exception err) {
-            DukeException.DateTimeFormatErrorMessage();
-            System.out.println(err);
-        }
+        DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate deadlineDate = LocalDate.parse(this.deadlineDay, convertFormatter);
+        this.deadlineDateTime = deadlineDate;
+
     }
 
     /**
