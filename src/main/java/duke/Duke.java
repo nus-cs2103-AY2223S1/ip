@@ -122,7 +122,7 @@ public class Duke {
             return Parser.echo(error);
         } else {
             try {
-                String[] parts = eventTask.split(" /",2);
+                String[] parts = eventTask.split(" /at",2);
                 if (parts[1].equals("at")) {
                     return Parser.echo(DukeException.taskErrorMessage("event"));
                 }

@@ -108,7 +108,7 @@ public class Storage {
             String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
             String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
             // data in textfile contains : after at, to replace it with whitespace
-            String modEventTime = eventTime.replaceFirst(": ", " ");
+            String modEventTime = eventTime.replaceFirst("at: ", " ");
             Event newTask = new Event(description, modEventTime);
             tasklist.add(newTask);
         } else {
@@ -118,7 +118,7 @@ public class Storage {
             String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
             String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
             // data in textfile contains : after at, to replace it with whitespace
-            String modEventTime = eventTime.replaceFirst(": ", " ");
+            String modEventTime = eventTime.replaceFirst("at: ", " ");
             Event newTask = new Event(description, modEventTime);
             newTask.markAsDone();
             tasklist.add(newTask);
