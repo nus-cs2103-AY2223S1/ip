@@ -121,14 +121,22 @@ public class Duke {
             String error = DukeException.taskErrorMessage(command);
             return Parser.echo(error);
         } else {
-            String[] parts = eventTask.split(" /",2);
-            Task newTask = new Event(parts[0], parts[1]);
-            tasks.add(newTask);
-            String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
-                    "%s\n" +
-                    "Now you have %d tasks in the list.", newTask, tasks.size());
-            Parser.writeToFile(tasks);
-            return Parser.echo(taskStatus);
+            try {
+                String[] parts = eventTask.split(" /",2);
+                if (parts[1].equals("at")) {
+                    return Parser.echo(DukeException.taskErrorMessage("event"));
+                }
+                Task newTask = new Event(parts[0], parts[1]);
+                tasks.add(newTask);
+                String taskStatus = String.format("Oki, niceee. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.", newTask, tasks.size());
+                Parser.writeToFile(tasks);
+                return Parser.echo(taskStatus);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorText = DukeException.EventErrorMessage();
+                return errorText;
+            }
         }
     }
 

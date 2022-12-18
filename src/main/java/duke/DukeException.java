@@ -42,7 +42,7 @@ public class DukeException extends Exception{
     }
 
     /**
-     * Method that reminds user to use proper format for deadline object
+     * Method that reminds user to use proper date format for deadline object
      */
     public static String DateTimeFormatErrorMessage() {
         String errorText = String.format("OOPS!!! Please input deadline in this format yyyy-MM-dd\n" +
@@ -50,9 +50,21 @@ public class DukeException extends Exception{
         return Parser.echo(errorText);
     }
 
+    /**
+     * Method that shows user the full proper format for deadline command
+     */
     public static String DeadlineFormatErrorMessage() {
         String errorText = String.format("OOPS!!! Please input deadline in this format\n" +
                 "E.g: deadline Project Submission /by 2021-07-24");
+        return Parser.echo(errorText);
+    }
+
+    /**
+     * Method that shows user the full proper format for event command
+     */
+    public static String EventErrorMessage() {
+        String errorText = String.format("OOPS!!! Please input event in this format\n" +
+                "E.g: event Party /at my place 3pm");
         return Parser.echo(errorText);
     }
 }
