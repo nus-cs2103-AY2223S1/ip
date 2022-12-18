@@ -1,0 +1,22 @@
+.check-box .box {
+    -fx-background-color: transparent;
+    -fx-border-radius:3px;
+    -fx-border-color: WHITE;
+    -fx-padding: 0.5em;
+    -fx-opacity: 0.4;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #660033;
+}
+
+.check-box:selected .box {
+    -fx-background-color: LIGHTPINK;
+    -fx-border-radius:3px;
+    -fx-padding: 0.5em;
+    -fx-opacity: 1.0;
+}
+
+.check-box:disabled, .check-box:disabled > * {
+    -fx-opacity: 1.0;
+}

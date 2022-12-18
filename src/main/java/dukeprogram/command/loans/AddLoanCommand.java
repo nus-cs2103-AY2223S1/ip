@@ -1,0 +1,78 @@
+package dukeprogram.command.loans;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+import dukeprogram.Duke;
+import dukeprogram.command.Command;
+import dukeprogram.storage.SaveManager;
+import exceptions.IncompleteCommandException;
+import exceptions.InvalidCommandException;
+
+/**
+ * AddLoanCommand can add loans to the Loan Collection of the given duke instance
+ */
+public class AddLoanCommand extends Command {
+
+    private static final String DELIMITER = "/amount";
+
+    /**
+     * Creates a AddLoanCommand
+     *
+     * @param duke the instance of duke this is associated to
+     */
+    public AddLoanCommand(Duke duke) {
+        super(duke);
+    }
+
+    @Override
+    public void parse(Iterator<String> elements)
+            throws IncompleteCommandException, InvalidCommandException {
+        if (!elements.hasNext()) {
+            duke.sendMessage("Hmm, you need to tell me what you want to add...");
+            throw new IncompleteCommandException("Usage: add <person_name> -amount <amount_owed>");
+        }
+
+        String personName = fetchName(elements);
+        if (personName.equals("")) {
+            throw new InvalidCommandException("You need to specify the name of the creditor");
+        }
+
+        double amountOwed;
+        try {
+            String element = elements.next();
+            element = element.replace("$", "");
+
+            amountOwed = Double.parseDouble(element);
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException("The amount owed must be specified in numerics only");
+        } catch (NullPointerException | NoSuchElementException e) {
+            throw new InvalidCommandException("You need to specify the amount of money owed");
+        }
+
+        duke.getLoanCollection().add(personName, amountOwed);
+
+        SaveManager.save("loanCollection", duke.getLoanCollection());
+        duke.serializeToFile();
+        duke.sendMessage("Okay, I've updated the loan for " + personName);
+    }
+
+    private String fetchName(Iterator<String> elements) {
+        StringBuilder sb = new StringBuilder();
+
+        String next = elements.next();
+
+        while (!next.equals(DELIMITER)) {
+            sb.append(next);
+            if (!elements.hasNext()) {
+                break;
+            }
+            next = elements.next();
+            if (!next.equals(DELIMITER)) {
+                sb.append(" ");
+            }
+        }
+
+        return sb.toString();
+    }
+}

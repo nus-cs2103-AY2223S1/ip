@@ -1,0 +1,66 @@
+@font-face {
+    src: url("/fonts/Corbel_Bold.ttf");
+}
+
+@font-face {
+    src: url("/fonts/Corbel_Italic.ttf");
+}
+
+@font-face {
+    src: url("/fonts/Corbel_Bold_Italic.ttf");
+}
+
+@font-face {
+    src: url("/fonts/CORBEL.TTF");
+}
+
+@font-face {
+    src: url("/fonts/corbeli.ttf");
+}
+
+.regular {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-size: 14px;
+}
+
+.regular-large {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-size: 16px;
+}
+
+.header {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 15px;
+}
+
+.tag {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 12px;
+}
+
+.smaller-tag {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 10px;
+}
+
+.warning {
+    -fx-text-fill: #FF0000;
+    -fx-font-family: 'Corbel';
+    -fx-font-weight: bolder;
+    -fx-font-size: 14px;
+}
+
+#backgroundWindow {
+    -fx-background-image: url("../images/skyline_bg.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
