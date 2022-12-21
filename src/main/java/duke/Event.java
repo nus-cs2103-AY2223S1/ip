@@ -14,7 +14,11 @@ public class Event extends Task {
      */
     public Event (String description, String eventTime) {
         super(description);
-        this.eventTime = eventTime.replaceFirst(" ", "at: ");
+        if (eventTime.substring(0,3).equals("at:")) {
+            this.eventTime = eventTime;
+        } else {
+            this.eventTime = eventTime.replaceFirst(" ", "at: ");
+        }
     }
 
     @Override

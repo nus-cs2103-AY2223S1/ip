@@ -8,7 +8,7 @@ public class EventTest {
 
     @Test
     public void EventObjectTest() {
-        Event eventObject = new Event("Event", "at Monday 3pm");
+        Event eventObject = new Event("Event", " Monday 3pm");
         String actualOutput = "[E][ ] Event (at: Monday 3pm)";
         assertEquals(eventObject.toString(), actualOutput);
     }
