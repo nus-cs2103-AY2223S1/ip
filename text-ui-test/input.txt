@@ -1,0 +1,53 @@
+todo borrow book
+list
+deadline return book /by 2022/12/25
+deadline buy cookies /by 2022//12
+deadline buy cookies2 /by 2022/13/1
+event project meeting /at Mon 2-4pm
+todo feed cat
+deadline buy cat food /by tomorrow
+event submit ModReg appeals /at Sunday
+todo feed neighbour's cat
+list
+mark 1
+list
+unmark 1
+list
+mark 3
+mark 4
+list
+event go to pet fair /at 1st Nov
+mark 5
+unmark 3
+unmark 2
+unmark 2
+unmark 1
+blah
+blah /by
+blah blah /by
+deadline
+deadline deadline
+deadline deadline /at friday
+deadline deadline / friday
+event
+event event
+event event event /by NUS
+event event event / NUS
+todo
+todo todo /by /at
+mark
+mark mark
+mark 12
+mark 13
+list
+list list
+list 1
+delete 1
+delete 2
+list
+delete delete
+delete 1 2
+bye 1
+bye bye
+bye list
+bye
