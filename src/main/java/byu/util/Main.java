@@ -21,6 +21,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             VBox ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("BYU");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setByu(byu);
             stage.show();
