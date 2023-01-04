@@ -29,6 +29,10 @@ public abstract class Command {
      */
     public abstract boolean isExit();
 
+    public boolean isHelp() {
+        return false;
+    };
+
     /**
      * Generates the response of Byu to the command.
      *

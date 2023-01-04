@@ -12,7 +12,7 @@
     <children>
         <Label fx:id="dialog" style="-fx-background-color: #FFB6C1#FFB6C1; -fx-background-radius: 7;" text="Label" textFill="#1b1a1a" wrapText="true">
          <font>
-            <Font name="Chalkboard SE Light" size="12.0" />
+            <Font name="Chalkboard SE Light" size="14.0" />
          </font>
          <effect>
             <ColorAdjust />

@@ -24,7 +24,7 @@
          <children>
               <TextField fx:id="userInput" onAction="#handleUserInput" opacity="0.8" prefHeight="40.0" promptText="Enter your command..." style="-fx-background-color: #FFB6C1#FFB6C1 #FFB6C1#FFB6C1;" HBox.hgrow="ALWAYS">
                <font>
-                  <Font name="Chalkboard SE Light" size="14.0" />
+                  <Font name="Chalkboard SE Light" size="16.0" />
                </font>
                <effect>
                   <Glow />
@@ -35,7 +35,7 @@
             </TextField>
               <Button fx:id="sendButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="40.0" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Send" HBox.hgrow="ALWAYS">
                <font>
-                  <Font name="Chalkboard SE Light" size="14.0" />
+                  <Font name="Chalkboard SE Light" size="16.0" />
                </font>
                <HBox.margin>
                   <Insets />

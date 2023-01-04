@@ -12,6 +12,7 @@ import byu.commands.Command;
 import byu.commands.DeleteCommand;
 import byu.commands.ExitCommand;
 import byu.commands.FindCommand;
+import byu.commands.HelpCommand;
 import byu.commands.ListCommand;
 import byu.commands.MarkCommand;
 import byu.commands.UnmarkCommand;
@@ -65,6 +66,9 @@ public class Parser {
             break;
         case BYE:
             command = new ExitCommand();
+            break;
+        case HELP:
+            command = new HelpCommand();
             break;
         case LIST:
             command = new ListCommand();

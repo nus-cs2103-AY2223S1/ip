@@ -1,11 +1,18 @@
 package byu.util;
 
+import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * The controller for MainWindow. Provides the layout for the other controls.
@@ -47,11 +54,32 @@ public class MainWindow extends VBox {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = byu.getResponse(input);
-        dialogContainer.getChildren().addAll(
+        Response response = byu.getResponse(input);
+        if (response.isExit()) {
+            Platform.exit();
+        }
+        if (response.isHelp()) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/HelpWindow.fxml"));
+                AnchorPane ap = fxmlLoader.load();
+                Stage root = new Stage();
+                root.setMinHeight(300);
+                root.setMinWidth(500);
+                Scene scene = new Scene(ap);
+                root.setTitle("COMMAND SUMMARY");
+                root.setScene(scene);
+                // fxmlLoader.<HelpWindow>getController().setText();
+                root.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (!response.isExit() && !response.isHelp()) {
+            dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getByuDialog(response, byuImage)
-        );
+                DialogBox.getByuDialog(response.getOutput(), byuImage)
+            );
+        }
         userInput.clear();
     }
 }
