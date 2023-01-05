@@ -25,7 +25,7 @@ public class Storage {
     private final TaskList tasks;
 
     /**
-     * Creates a Storage with a file.
+     * Creates a {@code Storage} with a file.
      * Creates the file if the file is not found.
      *
      * @throws IOException if an I/O error occurs.
@@ -47,8 +47,8 @@ public class Storage {
     /**
      * Loads the data of tasks previously added from the file.
      *
-     * @return a TaskList that contains the tasks in the file.
-     * @throws IncorrectFileInputException if tasks in the file cannot be loaded to the TaskList.
+     * @return a {@code TaskList} that contains the tasks in the file.
+     * @throws IncorrectFileInputException if tasks in the file cannot be loaded to the {@code TaskList}.
      * @throws DuplicateException if two same tasks are found in the file.
      */
     public TaskList load() throws IncorrectFileInputException, DuplicateException {
@@ -62,7 +62,7 @@ public class Storage {
     }
 
     /**
-     * Updates the file with the current state of the TaskList.
+     * Updates the file with the current state of the {@code TaskList}.
      */
     public void save() {
         try {

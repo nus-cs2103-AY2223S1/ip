@@ -2,6 +2,7 @@ package byu.commands;
 
 import byu.exceptions.InvalidIndexException;
 import byu.task.Task;
+import byu.util.Response;
 import byu.util.TaskList;
 import byu.util.Ui;
 
@@ -25,13 +26,12 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         this.task = tasks.unmark(this.index);
-        String response = generateResponse(tasks);
-        ui.setOutput(response);
     }
 
     @Override
-    public String generateResponse(TaskList tasks) {
-        return String.format("Alright, this task is now marked as incomplete:\n%s\n", this.task)
+    public Response generateResponse(TaskList tasks) {
+        String output = String.format("Alright, this task is now marked as incomplete:\n%s\n", this.task)
                 + "Work on it soon..?\n";
+        return new Response(output, false, false);
     }
 }

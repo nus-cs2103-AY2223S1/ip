@@ -61,11 +61,11 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Creates the dialog box containing Byu's response.
-     * @param text the response from Byu.
+     * Creates the dialog box containing the output.
+     * @param text the output.
      * @param img the image representing Byu.
      *
-     * @return a dialog box containing Byu's icon and response.
+     * @return a dialog box containing Byu's icon and output.
      */
     public static DialogBox getByuDialog(String text, Image img) {
         var db = new DialogBox(text, img);

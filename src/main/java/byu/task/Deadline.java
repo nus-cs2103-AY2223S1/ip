@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import byu.util.Ui;
 
 /**
- *  A Task with a deadline.
+ *  A task with a deadline.
  */
 public class Deadline extends Task {
 

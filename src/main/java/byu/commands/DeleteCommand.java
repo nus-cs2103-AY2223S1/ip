@@ -2,6 +2,7 @@ package byu.commands;
 
 import byu.exceptions.InvalidIndexException;
 import byu.task.Task;
+import byu.util.Response;
 import byu.util.TaskList;
 import byu.util.Ui;
 
@@ -25,21 +26,21 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         task = tasks.delete(this.index);
-        String response = generateResponse(tasks);
-        ui.setOutput(response);
     }
 
     @Override
-    public String generateResponse(TaskList tasks) {
+    public Response generateResponse(TaskList tasks) {
         String removeResponse = "Yay! I've removed this task:\n%s\n";
         String summaryForOneTask = "Now you have %d upcoming task.\n";
         String summaryForManyTasks = "Now you have %d upcoming tasks.\n";
+        String output;
 
         int numOfTasks = tasks.getNumOfTasks();
         if (numOfTasks == 1) {
-            return String.format(removeResponse + summaryForOneTask, task, numOfTasks);
+            output = String.format(removeResponse + summaryForOneTask, task, numOfTasks);
         } else {
-            return String.format(removeResponse + summaryForManyTasks, task, numOfTasks);
+            output = String.format(removeResponse + summaryForManyTasks, task, numOfTasks);
         }
+        return new Response(output, false, false);
     }
 }

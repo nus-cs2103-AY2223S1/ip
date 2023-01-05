@@ -22,9 +22,9 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the list.
+     * Adds a {@code Task} to the list.
      *
-     * @param task the Task to be added.
+     * @param task the {@code Task} to be added.
      * @throws DuplicateException if the task already exists.
      */
     public void addTask(Task task) throws DuplicateException {
@@ -38,10 +38,10 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done.
+     * Marks a {@code Task} as done.
      *
-     * @param i the index of the Task to be marked.
-     * @return the task marked.
+     * @param i the index of the {@code Task} to be marked.
+     * @return the {@code Task} marked.
      * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task mark(int i) throws InvalidIndexException {
@@ -52,10 +52,10 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as incomplete.
+     * Marks a {@code Task} as incomplete.
      *
-     * @param i the index of the Task to be unmarked.
-     * @return the task unmarked.
+     * @param i the index of the {@code Task} to be unmarked.
+     * @return the {@code Task} unmarked.
      * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task unmark(int i) throws InvalidIndexException {
@@ -66,10 +66,10 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task from the list.
+     * Deletes a {@code Task} from the list.
      *
-     * @param i the index of the Task to be deleted.
-     * @return the task deleted.
+     * @param i the index of the {@code Task} to be deleted.
+     * @return the {@code Task} deleted.
      * @throws InvalidIndexException if i <= 0 or i > number of tasks in the list.
      */
     public Task delete(int i) throws InvalidIndexException {

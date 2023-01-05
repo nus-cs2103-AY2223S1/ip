@@ -35,11 +35,11 @@ public class Parser {
     static final DateTimeFormatter DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     /**
-     * Decodes the user input and returns the corresponding command.
+     * Decodes the user input and returns the corresponding {@code Command}.
      *
      * @param fullCommand the user input to be parsed.
-     * @return the command corresponding to the user input.
-     * @throws ByuException if the fullCommand cannot be parsed.
+     * @return the {@code Command} corresponding to the user input.
+     * @throws ByuException if the input cannot be parsed.
      */
     public static Command parse(String fullCommand) throws ByuException {
         Command command;
@@ -86,8 +86,8 @@ public class Parser {
      * Returns the instruction in the user input.
      *
      * @param fullCommand the user input to be parsed.
-     * @return the instruction in the user input.
-     * @throws InvalidInstructionException if the instruction is invalid.
+     * @return the {@code Instruction} in the user input.
+     * @throws InvalidInstructionException if the {@code Instruction} is invalid.
      */
     private static Instruction getInstruction(String fullCommand) throws InvalidInstructionException {
         String firstWord = fullCommand.split(" ")[0];
@@ -101,7 +101,7 @@ public class Parser {
     /**
      * Returns the description in the user input.
      *
-     * @param i           the instruction in the user input.
+     * @param i           the {@code Instruction} in the user input.
      * @param fullCommand the string to be parsed.
      * @throws EmptyDescriptionException if the description is empty.
      */
@@ -142,10 +142,10 @@ public class Parser {
     }
 
     /**
-     * Returns an AddCommand instantiated with an Event.
+     * Returns an {@code AddCommand} instantiated with an {@code Event}.
      *
-     * @param description description of the user input indicating name and period of event.
-     * @return an AddCommand instantiated with an Event.
+     * @param description description of the user input indicating name and period of {@code Event}.
+     * @return an {@code AddCommand} instantiated with an {@code Event}.
      * @throws InvalidDescriptionException if the period cannot be interpreted.
      */
     private static AddCommand prepareEvent(String description) throws InvalidDescriptionException {
@@ -161,11 +161,11 @@ public class Parser {
     }
 
     /**
-     * Parses the string representing the period of an event,
-     * and returns a List containing the start and end time.
+     * Parses the string representing the period of an {@code Event},
+     * and returns a {@code List} containing the start and end time.
      *
-     * @param period the period of the event.
-     * @return a List containing the start time as first element and end time as second element.
+     * @param period the period of the {@code Event}.
+     * @return a {@code List} containing the start time as first element and end time as second element.
      * @throws InvalidDescriptionException if the period cannot be parsed.
      */
     private static List<LocalDateTime> parsePeriod(String period) throws InvalidDescriptionException {
@@ -183,10 +183,10 @@ public class Parser {
 
     /**
      * Parses the string representing the date and time,
-     * and returns a LocalDateTime object.
+     * and returns a {@code LocalDateTime}.
      *
-     * @param instruction the instruction of the user input.
-     * @return a LocalDateTime object represented by the string.
+     * @param instruction the {@code Instruction} of the user input.
+     * @return {@code LocalDateTime} represented by the string.
      * @throws InvalidDescriptionException if dateTimeInput cannot be parsed.
      */
     private static LocalDateTime parseDateTimeInput(
@@ -209,10 +209,10 @@ public class Parser {
     }
 
     /**
-     * Returns an AddCommand instantiated with a Deadline.
+     * Returns an {@code AddCommand} instantiated with a {@code Deadline}.
      *
-     * @param description description of the AddCommand indicating name and dateTime of deadline.
-     * @return an AddCommand instantiated with a Deadline.
+     * @param description description of the {@code AddCommand} indicating name and dateTime of the {@code Deadline}.
+     * @return an {@code AddCommand} instantiated with a {@code Deadline}.
      * @throws InvalidDescriptionException if the dateTime cannot be interpreted.
      */
     private static AddCommand prepareDeadline(String description) throws InvalidDescriptionException {
@@ -228,10 +228,10 @@ public class Parser {
     }
 
     /**
-     * Returns an AddCommand instantiated with a ToDo.
+     * Returns an {@code AddCommand} instantiated with a {@code ToDo}.
      *
-     * @param description description of the command indicating name of todo.
-     * @return an AddCommand instantiated with a ToDo.
+     * @param description description of the command indicating name of {@code ToDo}.
+     * @return an {@code AddCommand} instantiated with a {@code ToDo}.
      */
     private static AddCommand prepareToDo(String description) {
         ToDo todo = new ToDo(description);
@@ -242,7 +242,7 @@ public class Parser {
      * Parses a line from the file to retrieve a task.
      *
      * @param line the line in a file to be parsed.
-     * @return the task represented by the line.
+     * @return the {@code Task} represented by the line.
      * @throws IncorrectFileInputException if the line cannot be parsed.
      */
     public static Task parseFileToTask(String line) throws IncorrectFileInputException {

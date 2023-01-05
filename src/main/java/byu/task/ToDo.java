@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * A Task, with no reference to date or time.
+ * A task, with no reference to date or time.
  */
 public class ToDo extends Task {
 

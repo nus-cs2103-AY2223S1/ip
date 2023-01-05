@@ -1,9 +1,10 @@
 package byu.util;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * The controller for HelpWindow. Provides the layout for the other controls.
+ */
 public class HelpWindow extends AnchorPane {
     /*
     private static final String GUIDE

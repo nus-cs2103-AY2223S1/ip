@@ -2,6 +2,7 @@ package byu.commands;
 
 import byu.exceptions.DuplicateException;
 import byu.exceptions.InvalidIndexException;
+import byu.util.Response;
 import byu.util.TaskList;
 import byu.util.Ui;
 
@@ -29,7 +30,7 @@ public abstract class Command {
      */
     public boolean isExit() {
         return false;
-    };
+    }
 
     /**
      * Returns true if command is a {@code HelpCommand},
@@ -39,14 +40,14 @@ public abstract class Command {
      */
     public boolean isHelp() {
         return false;
-    };
+    }
 
     /**
-     * Generates the response to the command.
+     * Generates the {@code Response} to the command.
      *
      * @param tasks the {@code TaskList} containing all the tasks.
-     * @return the response to the command.
+     * @return the {@code Response} to the command.
      */
-    public abstract String generateResponse(TaskList tasks);
+    public abstract Response generateResponse(TaskList tasks);
 
 }

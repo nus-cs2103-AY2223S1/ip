@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * A Task, with a given name and status (completed or not completed).
+ * A task, with a given name and status (completed or not completed).
  */
 public abstract class Task {
 
@@ -14,7 +14,7 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Creates a Task, with its status initialized as incomplete.
+     * Creates a task, with its status initialized as incomplete.
      * @param name the name of the task.
      */
     public Task(String name) {
@@ -52,8 +52,7 @@ public abstract class Task {
      * Returns true if the name of the {@code Task} contains the string,
      * else returns false.
      *
-     * @return true if the name of the {@code Task} contains the string,
-     *      else false.
+     * @return true if the name of the {@code Task} contains the string.
      */
     public boolean matches(String string) {
         return name.contains(string);
@@ -69,18 +68,18 @@ public abstract class Task {
     }
 
     /**
-     * Saves the task by writing it to a file using a FileWriter.
-     * @param fileWriter the FileWriter to save the task to a file.
+     * Saves the {@code Task} by writing it to a file using a {@code FileWriter}.
+     * @param fileWriter the {@code FileWriter} to save the {@code Task} to a file.
      * @throws IOException if an I/O error occurs.
      */
     public abstract void write(FileWriter fileWriter) throws IOException;
 
     /**
-     * Compares the task with another task.
-     * Returns true if they have the same name and description, else return false.
+     * Compares the {@code Task} with another {@code Task}.
+     * Returns true if they have the same name and description, else returns false.
      *
-     * @param task the task to compare with.
-     * @return true if the two tasks have the same name and description, else return false.
+     * @param task the {@code Task} to compare with.
+     * @return true if the two tasks have the same name and description, else returns false.
      */
     public abstract boolean equals(Task task);
 }

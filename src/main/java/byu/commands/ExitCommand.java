@@ -1,5 +1,6 @@
 package byu.commands;
 
+import byu.util.Response;
 import byu.util.TaskList;
 import byu.util.Ui;
 
@@ -10,8 +11,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) {
-        String response = generateResponse(tasks);
-        ui.setOutput(response);
     }
 
     @Override
@@ -20,7 +19,8 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public String generateResponse(TaskList tasks) {
-        return "Awww, I'll miss you :(\nSee you soon!!\n";
+    public Response generateResponse(TaskList tasks) {
+        String output = "Awww, I'll miss you :(\nSee you soon!!\n";
+        return new Response(output, true, false);
     }
 }

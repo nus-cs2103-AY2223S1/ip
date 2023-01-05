@@ -1,6 +1,7 @@
 package byu.commands;
 
 import byu.task.Task;
+import byu.util.Response;
 import byu.util.TaskList;
 import byu.util.Ui;
 
@@ -22,12 +23,10 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) {
-        String response = generateResponse(tasks);
-        ui.setOutput(response);
     }
 
     @Override
-    public String generateResponse(TaskList tasks) {
+    public Response generateResponse(TaskList tasks) {
         StringBuilder response = new StringBuilder("These are the matching tasks I found:\n");
         for (int i = 1; i <= tasks.getNumOfTasks(); i++) {
             Task task = tasks.getTask(i);
@@ -36,6 +35,7 @@ public class FindCommand extends Command {
                 response.append(taskInfo);
             }
         }
-        return response.toString();
+        String output = response.toString();
+        return new Response(output, false, false);
     }
 }

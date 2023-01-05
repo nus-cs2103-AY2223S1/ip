@@ -54,10 +54,11 @@ public class MainWindow extends VBox {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        Response response = byu.getResponse(input);
-        if (response.isExit()) {
-            Platform.exit();
-        }
+        Response response = byu.generateResponse(input);
+        dialogContainer.getChildren().addAll(
+            DialogBox.getUserDialog(input, userImage),
+            DialogBox.getByuDialog(response.getOutput(), byuImage)
+        );
         if (response.isHelp()) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/HelpWindow.fxml"));
@@ -68,17 +69,13 @@ public class MainWindow extends VBox {
                 Scene scene = new Scene(ap);
                 root.setTitle("COMMAND SUMMARY");
                 root.setScene(scene);
-                // fxmlLoader.<HelpWindow>getController().setText();
                 root.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (!response.isExit() && !response.isHelp()) {
-            dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getByuDialog(response.getOutput(), byuImage)
-            );
+        if (response.isExit()) {
+            Platform.exit();
         }
         userInput.clear();
     }
