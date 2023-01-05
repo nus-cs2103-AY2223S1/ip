@@ -14,9 +14,9 @@ public class MarkCommand extends Command {
     private Task task;
 
     /**
-     * Creates a MarkCommand with the index of the Task to be marked as done.
+     * Creates a MarkCommand with the index of the {@code Task} to be marked as done.
      *
-     * @param index the index of the Task to be marked as done.
+     * @param index the index of the {@code Task} to be marked as done.
      */
     public MarkCommand(int index) {
         this.index = index;
@@ -27,11 +27,6 @@ public class MarkCommand extends Command {
         this.task = tasks.mark(this.index);
         String response = generateResponse(tasks);
         ui.setOutput(response);
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     @Override

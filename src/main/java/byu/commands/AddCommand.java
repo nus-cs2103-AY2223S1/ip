@@ -15,7 +15,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand with the task to be added.
      *
-     * @param task the Task to be added.
+     * @param task the {@code Task} to be added.
      */
     public AddCommand(Task task) {
         this.task = task;

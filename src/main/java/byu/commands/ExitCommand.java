@@ -4,7 +4,7 @@ import byu.util.TaskList;
 import byu.util.Ui;
 
 /**
- * A command to exit Byu.
+ * A command to exit the program.
  */
 public class ExitCommand extends Command {
 
@@ -21,6 +21,6 @@ public class ExitCommand extends Command {
 
     @Override
     public String generateResponse(TaskList tasks) {
-        return "Awww, I'll miss you :(\nSee you soon!!";
+        return "Awww, I'll miss you :(\nSee you soon!!\n";
     }
 }

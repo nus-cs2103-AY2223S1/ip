@@ -18,11 +18,6 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String generateResponse(TaskList tasks) {
         assert tasks.getNumOfTasks() >= 0 : "size of list should be non-negative";
 

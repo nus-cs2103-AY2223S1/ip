@@ -48,6 +48,17 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns true if the name of the {@code Task} contains the string,
+     * else returns false.
+     *
+     * @return true if the name of the {@code Task} contains the string,
+     *      else false.
+     */
+    public boolean matches(String string) {
+        return name.contains(string);
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {

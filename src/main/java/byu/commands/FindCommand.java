@@ -14,7 +14,7 @@ public class FindCommand extends Command {
     /**
      * Creates a FindCommand with a given string.
      *
-     * @param substring the substring used to find tasks with names containing it.
+     * @param substring the {@code String} used to find tasks with names containing it.
      */
     public FindCommand(String substring) {
         this.substring = substring;
@@ -27,16 +27,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String generateResponse(TaskList tasks) {
         StringBuilder response = new StringBuilder("These are the matching tasks I found:\n");
         for (int i = 1; i <= tasks.getNumOfTasks(); i++) {
             Task task = tasks.getTask(i);
-            if (task.getName().contains(this.substring)) {
+            if (task.matches(this.substring)) {
                 String taskInfo = String.format("%d. %s\n", i, task);
                 response.append(taskInfo);
             }

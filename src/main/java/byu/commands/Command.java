@@ -12,7 +12,7 @@ public abstract class Command {
 
     /**
      * Executes the command.
-     * Generates and sets Byu's response if there is no exception thrown.
+     * Generates and sets the response to the command if there is no exception thrown.
      *
      * @param tasks the TaskList containing all the tasks.
      * @param ui the Ui that interacts with users.
@@ -22,21 +22,29 @@ public abstract class Command {
     public abstract void execute(TaskList tasks, Ui ui) throws InvalidIndexException, DuplicateException;
 
     /**
-     * Returns true if command is an instance of ExitCommand,
-     * else return false.
+     * Returns true if command is an {@code ExitCommand},
+     * else returns false.
      *
-     * @return true if command is an instance of ExitCommand, false otherwise.
+     * @return true if command is an {@code ExitCommand}, false otherwise.
      */
-    public abstract boolean isExit();
+    public boolean isExit() {
+        return false;
+    };
 
+    /**
+     * Returns true if command is a {@code HelpCommand},
+     * else returns false.
+     *
+     * @return true if command is a {@code HelpCommand}, false otherwise.
+     */
     public boolean isHelp() {
         return false;
     };
 
     /**
-     * Generates the response of Byu to the command.
+     * Generates the response to the command.
      *
-     * @param tasks the TaskList containing all the tasks.
+     * @param tasks the {@code TaskList} containing all the tasks.
      * @return the response to the command.
      */
     public abstract String generateResponse(TaskList tasks);

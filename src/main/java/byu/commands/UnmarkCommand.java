@@ -14,9 +14,9 @@ public class UnmarkCommand extends Command {
     private Task task;
 
     /**
-     * Creates an UnmarkCommand with the index of the Task to be marked as incomplete.
+     * Creates an UnmarkCommand with the index of the {@code Task} to be marked as incomplete.
      *
-     * @param index the index of the Task to be marked as incomplete.
+     * @param index the index of the {@code Task} to be marked as incomplete.
      */
     public UnmarkCommand(int index) {
         this.index = index;
@@ -27,11 +27,6 @@ public class UnmarkCommand extends Command {
         this.task = tasks.unmark(this.index);
         String response = generateResponse(tasks);
         ui.setOutput(response);
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     @Override

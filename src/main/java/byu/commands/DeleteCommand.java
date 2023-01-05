@@ -14,9 +14,9 @@ public class DeleteCommand extends Command {
     private Task task;
 
     /**
-     * Creates a DeleteCommand with the index of the Task to be deleted.
+     * Creates a DeleteCommand with the index of the {@code Task} to be deleted.
      *
-     * @param index the index of the Task to be deleted.
+     * @param index the index of the {@code Task} to be deleted.
      */
     public DeleteCommand(int index) {
         this.index = index;
@@ -27,11 +27,6 @@ public class DeleteCommand extends Command {
         task = tasks.delete(this.index);
         String response = generateResponse(tasks);
         ui.setOutput(response);
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     @Override
