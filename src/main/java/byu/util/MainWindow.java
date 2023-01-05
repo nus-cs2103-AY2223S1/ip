@@ -65,7 +65,7 @@ public class MainWindow extends VBox {
                 AnchorPane ap = fxmlLoader.load();
                 Stage root = new Stage();
                 root.setMinHeight(300);
-                root.setMinWidth(500);
+                root.setMinWidth(570);
                 Scene scene = new Scene(ap);
                 root.setTitle("COMMAND SUMMARY");
                 root.setScene(scene);
