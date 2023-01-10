@@ -1,4 +1,3 @@
-
 #Naruto Chatbot
 
 Part-time Hokage Wannabe full-time virtual assistant, Naruto is here to help you organise your day.
@@ -9,14 +8,14 @@ This is a text based task scheduler which helps streamline your day.
 2. Download the latest `naruto.jar` from [here](https://github.com/Charles1026/ip/releases/tag/A-Release).
 3. Move the file to your desired directory and double click it to open.
 4. Tada, the app is now running, the GUI should look something like this:
-   ![Naruto Chatbot Ui](./Ui.png)
+![Naruto Chatbot Ui](./Ui.png)
 ---
 
 ## Commands
 
 ### Notes on Command
 - Please input all Date and Time inputs in this format (The time section can be omitted if not required).
-  >YYYY-MM-DD HH:SS
+    >YYYY-MM-DD HH:SS
 - Any part of the command in `[]` should be replaced with your own text.
 - Commands should follow the format given as Naruto will not understand what you mean otherwise.
 - Duplicate items cannot be added to Naruto and he will warn you if you make such an attempt.
@@ -95,7 +94,3 @@ bye
 | delete [Index]                 |
 | find [Name]                    |
 | bye                            |
-
-## ACKNOWLEDGMENTS
-This Project uses [`JSON.simple`](https://mkyong.com/java/json-simple-example-read-and-write-json/)
-in accordance to its use policy to serialise data into JSON.
