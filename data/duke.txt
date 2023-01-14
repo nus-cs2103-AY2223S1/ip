@@ -1,0 +1,5 @@
+todo,buy milk
+deadline,homework  /by Sep 20 2022
+todo,walk dog
+event,meeting at school /at 2022-09-21
+deadline,hw /by 2022-10-01
