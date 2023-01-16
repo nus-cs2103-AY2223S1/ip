@@ -1,0 +1,47 @@
+list
+todo Test todo
+deadline Test deadline /by 1/2/34
+event Test event /at 30/12/21 0000
+list
+mark 2
+mark 3
+list
+unmark 3
+list
+mark 2
+unmark 1
+find deadline
+find TEST EVENT
+find test
+find text
+sort
+list
+sort /by date
+list
+sort /by name /desc
+list
+sort /desc /by date
+list
+delete 2
+list
+delete 2
+delete 1
+mark
+unmark
+todo
+deadline
+event
+randomness
+deadline No end time
+event No time
+deadline Invalid date /by tomorrow
+event Invalid date /at 22/2/22 12345
+delete
+find
+mark 0.1
+mark 1
+unmark .1
+unmark 0
+delete one
+delete -1
+bye
