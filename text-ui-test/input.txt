@@ -1,0 +1,6 @@
+list
+todo test this machine
+deadline finish implementing these functions /18th August 23 59
+event CS2103T lecture /19th August 16 00
+list
+bye
