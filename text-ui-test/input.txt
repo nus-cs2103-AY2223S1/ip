@@ -1,0 +1,11 @@
+deadline MA1521 Project /by Mon 2359
+event project meeting /at Mon 2-4pm
+deadline do homework /by no idea :-p
+deadline return book /by Sunday
+todo eat choco
+mark 1
+mark 2
+delete 3
+unmark 1
+mark 4
+Bye
