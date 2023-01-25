@@ -1,0 +1,119 @@
+Hello from
+ ____        _        
+|  _ \ _   _| | _____ 
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+
+Hello I'm Duke
+ What can I do for you?
+
+Got it. I've added this task
+	 [T][ ]  read book
+Now you have 6 tasks in the list.
+
+Got it. I've added this task
+	 [D][ ]  return book (by: June 6th)
+Now you have 7 tasks in the list.
+
+Got it. I've added this task
+	 [E][ ]  project meeting (at: Aug 6th 2-4pm)
+Now you have 8 tasks in the list.
+
+Got it. I've added this task
+	 [T][ ]  join sports club
+Now you have 9 tasks in the list.
+
+Nice! I've marked this task as done:
+	[T][X]  read book
+
+Nice! I've marked this task as done:
+	[D][X]  return book (by: Sunday)
+
+Got it. I've added this task
+	 [T][ ]  borrow book
+Now you have 10 tasks in the list.
+
+Here are the tasks in your list:
+ 1. [T][X]  read book
+ 2. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 3. [T][ ]  borrow book
+ 4. [D][X]  return book (by: Sunday)
+ 5. [E][ ]  project meeting (at: Mon 2-4pm)
+ 6. [T][ ]  read book
+ 7. [D][ ]  return book (by: June 6th)
+ 8. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 9. [T][ ]  join sports club
+ 10. [T][ ]  borrow book
+
+Got it. I've added this task
+	 [D][ ]  return book (by: Sunday)
+Now you have 11 tasks in the list.
+
+Got it. I've added this task
+	 [E][ ]  project meeting (at: Mon 2-4pm)
+Now you have 12 tasks in the list.
+
+Here are the tasks in your list:
+ 1. [T][X]  read book
+ 2. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 3. [T][ ]  borrow book
+ 4. [D][X]  return book (by: Sunday)
+ 5. [E][ ]  project meeting (at: Mon 2-4pm)
+ 6. [T][ ]  read book
+ 7. [D][ ]  return book (by: June 6th)
+ 8. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 9. [T][ ]  join sports club
+ 10. [T][ ]  borrow book
+ 11. [D][ ]  return book (by: Sunday)
+ 12. [E][ ]  project meeting (at: Mon 2-4pm)
+
+Noted. I've removed this task:
+	[E][ ]  project meeting (at: Aug 6th 2-4pm)
+Now you have 11 tasks in the list.
+
+Here are the tasks in your list:
+ 1. [T][X]  read book
+ 2. [T][ ]  borrow book
+ 3. [D][X]  return book (by: Sunday)
+ 4. [E][ ]  project meeting (at: Mon 2-4pm)
+ 5. [T][ ]  read book
+ 6. [D][ ]  return book (by: June 6th)
+ 7. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 8. [T][ ]  join sports club
+ 9. [T][ ]  borrow book
+ 10. [D][ ]  return book (by: Sunday)
+ 11. [E][ ]  project meeting (at: Mon 2-4pm)
+
+Noted. I've removed this task:
+	[D][X]  return book (by: Sunday)
+Now you have 10 tasks in the list.
+
+Here are the tasks in your list:
+ 1. [T][X]  read book
+ 2. [T][ ]  borrow book
+ 3. [E][ ]  project meeting (at: Mon 2-4pm)
+ 4. [T][ ]  read book
+ 5. [D][ ]  return book (by: June 6th)
+ 6. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 7. [T][ ]  join sports club
+ 8. [T][ ]  borrow book
+ 9. [D][ ]  return book (by: Sunday)
+ 10. [E][ ]  project meeting (at: Mon 2-4pm)
+
+     ☹ OOPS!!! The description of a todo cannot be empty.
+
+     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+
+Here are the tasks in your list:
+ 1. [T][X]  read book
+ 2. [T][ ]  borrow book
+ 3. [E][ ]  project meeting (at: Mon 2-4pm)
+ 4. [T][ ]  read book
+ 5. [D][ ]  return book (by: June 6th)
+ 6. [E][ ]  project meeting (at: Aug 6th 2-4pm)
+ 7. [T][ ]  join sports club
+ 8. [T][ ]  borrow book
+ 9. [D][ ]  return book (by: Sunday)
+ 10. [E][ ]  project meeting (at: Mon 2-4pm)
+
