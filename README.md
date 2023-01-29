@@ -1,5 +1,7 @@
 # Duke Mini Project
 
+<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui.png?raw=true">
+
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
 ### User Guide
