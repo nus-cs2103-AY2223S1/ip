@@ -1,0 +1,32 @@
+.bodybg {
+    -fx-background-color: #E8DCCA;
+}
+
+.scrollpanebg {
+    -fx-background: #E8DCCA;
+}
+
+.buttonbg {
+    -fx-background-color: #F8C2B1;
+    -fx-border-color: black;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 1px;
+}
+
+.textfieldbg {
+    -fx-background-color: #F8D6C5;
+    -fx-border-color: black;
+}
+
+textfieldbg:focused {
+    -fx-background-color: #F8D6C5;
+    -fx-border-color: black;
+}
+
+.dialogbox {
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-color: #CAD6E8;
+    -fx-background-radius: 10px;
+}
