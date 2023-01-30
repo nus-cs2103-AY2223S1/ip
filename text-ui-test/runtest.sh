@@ -12,6 +12,12 @@ then
     rm ACTUAL.TXT
 fi
 
+# delete data storage from previous run
+if [ -e "./data/duke.txt" ]
+then
+    rm data/duke.txt
+fi
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
 then
@@ -25,14 +31,23 @@ java -classpath ../bin Duke < input.txt > ACTUAL.TXT
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
+cp EXPECTED-DATA.TXT EXPECTED-DATA-UNIX.TXT
+dos2unix EXPECTED-DATA.TXT EXPECTED-DATA-UNIX.TXT
 
 # compare the output to the expected output
 diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
 then
-    echo "Test result: PASSED"
+    echo "Test 1 result: PASSED"
+else
+    echo "Test 1 result: FAILED"
+fi
+diff data/duke.txt EXPECTED-DATA-UNIX.TXT
+if [ $? -eq 0 ]
+then
+    echo "Test 2 result: PASSED"
     exit 0
 else
-    echo "Test result: FAILED"
+    echo "Test 2 result: FAILED"
     exit 1
 fi
