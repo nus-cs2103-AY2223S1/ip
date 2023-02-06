@@ -37,7 +37,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hello! I'm Botson\n"
-                + "What can I help you with? :-)\n", dukeImage));
+                + "What can I help you with? :)\n", dukeImage));
     }
 
     public void setDuke(Duke d) {
