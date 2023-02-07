@@ -7,11 +7,18 @@ REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
+javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\duke\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
 )
+
+REM make the data directory
+mkdir ..\bin\duke\data\
+
+REM copy the existing data file into the test bin folder
+copy ..\src\main\java\duke\data\data.txt ..\bin\duke\data\data.txt
+
 REM no error here, errorlevel == 0
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
