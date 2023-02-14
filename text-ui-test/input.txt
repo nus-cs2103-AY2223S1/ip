@@ -1,0 +1,12 @@
+todo task
+deadline task /by 2002-02-02
+rubbish
+event gathering /at 2002-02-02
+find gathering
+unmark 4
+list
+event
+delete 1
+mark 2
+list
+bye
