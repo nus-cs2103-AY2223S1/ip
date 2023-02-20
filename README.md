@@ -1,6 +1,14 @@
-# Duke project template
+# Duke Mini Project
+
+<img src="https://github.com/rui-han-crh/ip/blob/master/docs/Ui.png?raw=true">
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+
+### User Guide
+
+The user guide may be found [here](https://rui-han-crh.github.io/ip/).
+
+Your saved file is likely in `USER -> CS2103T -> DukeData`, in whatever file structure your OS uses.
 
 ## Setting up in Intellij
 
@@ -13,7 +21,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. If there are any further prompts, accept the defaults.
 1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
    In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
+3. After that, locate the `src/main/java/dukeprogram/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
    Hello from
     ____        _        
