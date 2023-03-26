@@ -1,7 +1,69 @@
-Hello from
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Duke: Hi, I'm Duke.
+Duke: What can I do for you?
+Duke: I'll do my best! :)
+You:
+Duke: Yep! I've added this task:
+Duke: [T][ ] one
+Duke: I'm keeping track of 1 task(s) currently!
+You: Duke: Here's your task list!
+Duke: 1. [T][ ] one
+Duke: I'm useful right?
+You: Duke: Yep! I've added this task:
+Duke: [T][ ] two
+Duke: I'm keeping track of 2 task(s) currently!
+You: Duke: Yep! I've added this task:
+Duke: [E][ ] three (at: 15 August)
+Duke: I'm keeping track of 3 task(s) currently!
+You: Duke: Here's your task list!
+Duke: 1. [T][ ] one
+Duke: 2. [T][ ] two
+Duke: 3. [E][ ] three (at: 15 August)
+Duke: I'm useful right?
+You: Duke: Yep! I've added this task:
+Duke: [E][ ] four (at: 2022)
+Duke: I'm keeping track of 4 task(s) currently!
+You: Duke: Yep! I've added this task:
+Duke: [D][ ] five (by: 2022)
+Duke: I'm keeping track of 5 task(s) currently!
+You: Duke: Yep! I've added this task:
+Duke: [D][ ] six (by: 18 august)
+Duke: I'm keeping track of 6 task(s) currently!
+You: Duke: Here's your task list!
+Duke: 1. [T][ ] one
+Duke: 2. [T][ ] two
+Duke: 3. [E][ ] three (at: 15 August)
+Duke: 4. [E][ ] four (at: 2022)
+Duke: 5. [D][ ] five (by: 2022)
+Duke: 6. [D][ ] six (by: 18 august)
+Duke: I'm useful right?
+You: Duke: I've marked this task as done:
+Duke: [T][x] two
+You: Duke: I've marked this task as done:
+Duke: [E][x] three (at: 15 August)
+You: Duke: I've marked this task as not done:
+Duke: [E][ ] three (at: 15 August)
+You: Duke: Here's your task list!
+Duke: 1. [T][ ] one
+Duke: 2. [T][x] two
+Duke: 3. [E][ ] three (at: 15 August)
+Duke: 4. [E][ ] four (at: 2022)
+Duke: 5. [D][ ] five (by: 2022)
+Duke: 6. [D][ ] six (by: 18 august)
+Duke: I'm useful right?
+You: Duke: I've marked this task as not done:
+Duke: [T][ ] two
+You: Duke: Here's your task list!
+Duke: 1. [T][ ] one
+Duke: 2. [T][ ] two
+Duke: 3. [E][ ] three (at: 15 August)
+Duke: 4. [E][ ] four (at: 2022)
+Duke: 5. [D][ ] five (by: 2022)
+Duke: 6. [D][ ] six (by: 18 august)
+Duke: I'm useful right?
+You:
