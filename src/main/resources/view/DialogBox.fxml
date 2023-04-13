@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <Label fx:id="dialog" layoutX="103.0" layoutY="25.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="302.0" text="Label" textOverrun="WORD_ELLIPSIS" wrapText="true" HBox.hgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Circle fx:id="circlePicture" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
+</fx:root>

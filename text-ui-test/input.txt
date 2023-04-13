@@ -1,0 +1,7 @@
+Eat
+deadline IP /by Sunday
+event project meeting /at Sunday 2-4pm
+list
+mark 2
+mark 3
+unmark 2
