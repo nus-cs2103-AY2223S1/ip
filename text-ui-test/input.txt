@@ -1,0 +1,10 @@
+todo read book
+deadline watch lecture /by today 2359
+event play floorball /at Wed 1-3pm
+mark 2
+list
+unmark 2
+mark 3
+mark 1
+list
+bye
