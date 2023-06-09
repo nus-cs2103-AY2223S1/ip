@@ -8,6 +8,10 @@ Chatbot application that helps you keep track of what needs to be done.
 
 
 
+https://github.com/jicsontoh/Botson/assets/64951628/a4ce559e-ed71-4823-a3cf-938b33280867
+
+
+
 ## How to use
 Prerequisites: Java 11, update Intellij to the most recent version.
 
