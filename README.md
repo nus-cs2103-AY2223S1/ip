@@ -2,8 +2,7 @@
 
 ## Basic Overview
 Botson was designed as a Personal Assistant Chatbot to assist individuals in managing and keeping track of various tasks and activities.
-It provides a seamless conversational interface to help users organize and stay on top of their schedules, to-do lists, and deadlines.
-The chatbot maintains a centralized task list, making it easy for users to view, modify, and mark tasks as complete.
+The chatbot provides a seamless conversational interface and maintains a centralized task list, which makes it easy for users to add, modify, and mark tasks as complete.
 
 It is using Java for the backend and JavaFX for the frontend.
 
