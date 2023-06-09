@@ -26,11 +26,11 @@ Prerequisites: Java 11, update Intellij to the most recent version.
 - ### Add new Task
 Adds a new task to the list.
 
-| Type        | Command                |
-|-------------|------------------------|
-| Normal Task | todo TASK              |
-| Event       | event TASK /at DATE    |
-| Deadline    | deadline TASK /by DATE |
+| Type            | Command                |
+|-----------------|------------------------|
+| Normal Task [T] | todo TASK              |
+| Event       [E] | event TASK /at DATE    |
+| Deadline    [D] | deadline TASK /by DATE |
 
 Note: DATE should be in DD/MM/YYYY format.
 
