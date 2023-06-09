@@ -34,7 +34,7 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             ArrayList<Task> filteredTasks = new ArrayList<>();
-            String keyword = action.substring(5).strip();
+            String keyword = action.substring(5).strip().toLowerCase();
             for (int i = 0; i < tasks.getSize(); i++) {
                 Task task = tasks.getTask(i);
                 if (task.matchKeyword(keyword)) {

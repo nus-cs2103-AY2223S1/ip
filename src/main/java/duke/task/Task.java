@@ -48,7 +48,7 @@ public class Task {
     public boolean matchKeyword(String keyword) {
         String[] words = action.split(" ");
         for (String word : words) {
-            if (word.contains(keyword)) {
+            if (word.toLowerCase().contains(keyword)) {
                 return true;
             }
         }
