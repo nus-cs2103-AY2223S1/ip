@@ -3,6 +3,9 @@
 /out/
 /*.iml
 
+# vscode files
+/.vscode/
+
 # Gradle build files
 /.gradle/
 /build/
@@ -14,4 +17,9 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
+/text-ui-test/data/
 text-ui-test/EXPECTED-UNIX.TXT
+/data/
+/notes/
+
+*.class
