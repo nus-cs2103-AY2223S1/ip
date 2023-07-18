@@ -1,0 +1,12 @@
+list
+event go to class /at Friday 2-6 pm
+deadline finish homework /by tonight
+todo have a good night's sleep
+list
+event
+something
+unmark 2A
+mark 5
+mark 2
+delete 3
+bye

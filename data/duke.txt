@@ -1,0 +1,12 @@
+T | 0 | eat breakfast
+E | 1 | Join CS2103T tutorial | 2022-09-01
+T | 0 | hello
+T | 0 | hiiiiiiiiiiii
+E | 0 | do this | 2022-12-11
+D | 1 | do homework | 2022-09-15
+D | 0 | submit homework assignment | 2022-09-17
+T | 0 | hi
+E | 0 | test | 2022-09-17
+T | 0 | try
+E | 0 | try this | 2022-09-16
+T | 0 | hi
