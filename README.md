@@ -1,24 +1,31 @@
-# Duke project template
+# Duke, the Personal Chatbot Assistant
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is a greenfield Java project, written in OOP fashion with over 3k lines of code. It's named after the Java mascot _Duke_.
 
-## Setting up in Intellij
+Duke assists you by keeping track of your daily tasks, events, deadlines, and loans given to friends! 
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+You will never forget anything with the help of Duke.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+<img src="https://user-images.githubusercontent.com/88147891/207603054-c1f3ae64-7be9-4f45-8232-c67d758aeb94.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="400" />
+
+## Commands
+
+There are many commands you can run with Duke! Be sure to check out my well-written [user guide](https://elginl.github.io/ip/)
+
+Here are a few sample commands!
+
+<table>
+  <tr>
+    <td align="center">To Do</td>
+    <td align="center">Event</td>
+    <td align="center">Deadline</td>    
+  </tr>
+  <tr>
+    <td align="center"><img src="https://user-images.githubusercontent.com/88147891/207606065-2c5074cb-6379-4fe2-88f6-833e70ec0555.jpg" width=300 height=400></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/88147891/207606128-56c559c0-0769-4175-811d-1135aef6eaac.jpg" width=300 height=400></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/88147891/207606209-f82e2fad-bec5-45d1-9f6f-30abc77c37ac.jpg" width=300 height=400></td>
+  </tr>
+</table>
+
+## How to run
+Download the JAR file located [here](https://github.com/ElginL/ip/releases/tag/A-Release) and execute.
