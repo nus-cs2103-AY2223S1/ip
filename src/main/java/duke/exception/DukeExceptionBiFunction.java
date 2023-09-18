@@ -8,6 +8,7 @@ import duke.DukeResponse;
  * Defines an interface for functions that throw DukeException.
  *
  * @param <T> Input type.
+ * @param <U> Input type.
  */
 public interface DukeExceptionBiFunction<T, U> {
     /**

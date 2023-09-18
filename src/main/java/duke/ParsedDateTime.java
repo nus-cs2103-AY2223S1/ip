@@ -217,15 +217,15 @@ public class ParsedDateTime {
                         String[] parts = s.split("[:.]");
                         int hour = Integer.parseInt(parts[0]);
                         int minute;
-                        boolean invalidHour;
+                        boolean isInvalidHour;
                         if (isNumeric(parts[1])) {
                             minute = Integer.parseInt(parts[1]);
-                            invalidHour = hour < 0 || hour >= HOURS_PER_DAY;
+                            isInvalidHour = hour < 0 || hour >= HOURS_PER_DAY;
                         } else {
                             minute = Integer.parseInt(parts[1].substring(0, parts[1].length() - 2));
                             String suffix = parts[1].substring(parts[1].length() - 2)
                                     .toLowerCase();
-                            invalidHour = hour <= 0 || hour > 12;
+                            isInvalidHour = hour <= 0 || hour > 12;
                             if (suffix.equals("am")) {
                                 if (hour == 12) {
                                     hour = 0;
@@ -236,8 +236,8 @@ public class ParsedDateTime {
                                 }
                             }
                         }
-                        boolean invalidMinute = minute < 0 || minute >= MINUTES_PER_HOUR;
-                        if (invalidHour || invalidMinute) {
+                        boolean isInvalidMinute = minute < 0 || minute >= MINUTES_PER_HOUR;
+                        if (isInvalidHour || isInvalidMinute) {
                             return temporal -> {
                                 throw new DateTimeException("Invalid hour/minute for time");
                             };

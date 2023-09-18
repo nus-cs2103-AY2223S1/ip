@@ -51,7 +51,7 @@ public class MainWindow extends AnchorPane {
             96, 96, false, true);
 
     /**
-     * Get the writer that writes out GUI interactions.
+     * Gets the writer that writes out GUI interactions.
      *
      * @return The writer that writes out GUI interactions.
      */
