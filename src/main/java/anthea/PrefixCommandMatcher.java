@@ -70,7 +70,8 @@ public class PrefixCommandMatcher extends CommandMatcher {
      * @param prefix Prefix to match.
      * @param action Action to do.
      */
-    public static PrefixCommandMatcher of(String prefix, ChatbotExceptionBiFunction<String, Map<String, String>> action) {
+    public static PrefixCommandMatcher of(String prefix, ChatbotExceptionBiFunction<String,
+            Map<String, String>> action) {
         assert prefix != null;
         assert action != null;
         return new PrefixCommandMatcher(prefix,
