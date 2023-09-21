@@ -14,10 +14,10 @@ src/main/resources/docs/
 bin/
 
 # Testing files
-duke.txt
-dukeNotes.txt
+anthea.txt
+antheaNotes.txt
 /text-ui-test/ACTUAL.txt
 /text-ui-test/ACTUAL1.txt
 text-ui-test/EXPECTED-UNIX.TXT
-/text-ui-test/duke.txt
-/text-ui-test/dukeNotes.txt
+/text-ui-test/anthea.txt
+/text-ui-test/antheaNotes.txt

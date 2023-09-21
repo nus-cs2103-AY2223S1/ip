@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.gui.Launcher"
+    mainClassName = "anthea.gui.Launcher"
 }
 
 shadowJar {

@@ -287,4 +287,4 @@ Time resolution proceeds as follows:
 
 
 ### Data
-The data for the application is stored in `duke.txt` and `dukeNotes.txt` in CSV using base64. They may be deleted to purge data, or backups may be made of them.
+The data for the application is stored in `anthea.txt` and `antheaNotes.txt` in CSV using base64. They may be deleted to purge data, or backups may be made of them.

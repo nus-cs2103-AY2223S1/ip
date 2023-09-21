@@ -13,24 +13,24 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/duke/*.java ../src/main/java/duke/exception/*.java ../src/main/java/duke/note/*.java ../src/main/java/duke/task/*.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/anthea/*.java ../src/main/java/anthea/exception/*.java ../src/main/java/anthea/note/*.java ../src/main/java/anthea/task/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # delete data
-if [ -e "./duke.txt" ]
+if [ -e "./anthea.txt" ]
 then
-    rm duke.txt
+    rm anthea.txt
 fi
-if [ -e "./dukeNotes.txt" ]
+if [ -e "./antheaNotes.txt" ]
 then
-    rm dukeNotes.txt
+    rm antheaNotes.txt
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin duke.Duke < input.txt > ACTUAL.TXT
+java -classpath ../bin anthea.Anthea < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
@@ -43,7 +43,7 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL1.TXT
-java -classpath ../bin duke.Duke < input.txt > ACTUAL1.TXT
+java -classpath ../bin anthea.Anthea < input.txt > ACTUAL1.TXT
 
 # convert to UNIX format
 cp EXPECTED1.TXT EXPECTED1-UNIX.TXT
