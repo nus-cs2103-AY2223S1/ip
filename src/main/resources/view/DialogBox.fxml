@@ -16,7 +16,7 @@
             <Font name="Calibri Bold" size="14.0" />
          </font>
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>

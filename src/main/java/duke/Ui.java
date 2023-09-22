@@ -19,8 +19,7 @@ public class Ui {
      * @return a welcome message.
      */
     public String helpMsg() {
-        return "I'm capable of doing the following:\n\n"
-                + "See what I can do:\nhelp\n\n"
+        return "I got you~ I'm capable of doing the following:\n\n"
                 + "See all the tasks you've added:\nlist\n\n"
                 + "Sort all the tasks by date and time:\nsort\n\n"
                 + "Add a ToDo task:\ntodo <your task>\n\n"
@@ -34,7 +33,7 @@ public class Ui {
     }
 
     public String welcomeMsg() {
-        return "Hello! I am PAL, your best PAL when it comes to task managing!\nStart by adding any one of the task below!\n\n"
+        return "Hello! I am PAL, your best PAL when it comes to task managing!\nStart by adding any one of the task below:\n\n"
                 + "todo borrow books\ndeadline homework /by 2022-01-28\n"
                 + "event furniture expo /at 2022-01-28 1700";
     }
@@ -125,7 +124,7 @@ public class Ui {
      * @return a message to indicate unknown commands.
      */
     public String invalidCommandErrorString() {
-        return "Invalid command!";
+        return "Invalid command!\nTry typing \"help\"";
     }
 
     /**

@@ -13,6 +13,7 @@ public class Duke {
     private Storage storage;
     private Ui ui;
     private TaskList listOfTasks;
+    boolean exitStatus = false;
 
     public Duke() {
         String workingDir = System.getProperty("user.dir");
@@ -39,6 +40,7 @@ public class Duke {
         } else if (input.equals("help")) {
             return ui.helpMsg();
         }else if (input.equals("bye")) {
+            exitStatus = true;
             return ui.endingMsg();
         } else {
             return parser.checkAndExecuteCommand(input);
