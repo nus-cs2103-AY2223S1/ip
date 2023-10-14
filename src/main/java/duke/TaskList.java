@@ -101,5 +101,8 @@ public class TaskList {
         return text;
     }
 
+    public void clearList() {
+        this.list.clear();
+    }
 
 }

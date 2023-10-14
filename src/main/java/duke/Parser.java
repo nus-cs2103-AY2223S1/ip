@@ -41,6 +41,10 @@ public class Parser {
             response = ui.taskListString(taskList);
         } else if (userInput.equals("sort")) {
             response = ui.sortedListString(taskList);
+        } else if (userInput.equals("clear")) {
+            taskList.clearList();
+            storage.save(taskList);
+            response = ui.clearList();
         } else if (containsOperationWord(userInput)) {
             response = executeCommand(userInput.trim());
         } else {
