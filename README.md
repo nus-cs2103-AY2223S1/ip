@@ -3,4 +3,8 @@ PAL is a desktop app for managing your daily tasks, optimized for use via a Comm
 
 <img src=docs/Ui.png width="450" height="auto">
 
+# Running the app
+1. Go to the newest release
+2. Download PAL.jar
+
 For more detailed documentation, see the [User Guide](doc/README.md)
