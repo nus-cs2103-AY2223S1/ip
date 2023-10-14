@@ -54,7 +54,13 @@ public class Ui {
      * @return strings representation of the lists.
      */
     public String taskListString(TaskList list) {
-        return "Here are the tasks in your list:\n" + list.getAllTask();
+        String tasks = list.getAllTask();
+
+        return tasks.isEmpty()? "There is no tasks in your list." : "Here are the tasks in your list:\n" + tasks;
+    }
+
+    public String clearList() {
+        return "All tasks are removed.";
     }
 
     /**
@@ -134,9 +140,21 @@ public class Ui {
      * @return a message to indicate missing decription.
      */
     public String showNoDescriptionError(String command) {
+
+       String commandFormat = "";
+       if (command.equals("deadline")) {
+           commandFormat = "deadline <your deadline> /by <2022-01-28>";
+       } else if (command.equals("todo")) {
+           commandFormat = "todo <your task>";
+       } else if (command.equals("event")){
+           commandFormat = "event <your event> /at <2022-01-28> <2359>";
+       }
+
+       commandFormat = commandFormat.isEmpty() ? "" : "Try this: " + commandFormat;
        return "OOPS!!! The description of a "
                 + command
-                + " cannot be empty.";
+                + " cannot be empty.\n"
+                + commandFormat;
     }
 
     /**
