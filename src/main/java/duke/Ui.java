@@ -26,6 +26,7 @@ public class Ui {
                 + "Add a Deadline task:\ndeadline <your deadline> /by <2022-01-28>\n\n"
                 + "Add an Event task:\nevent <your event> /at <2022-01-28> <2359>\n\n"
                 + "Filter task list according to keyword:\nfind <keyword>\n\n"
+                + "Clear the task list: \n clear\n\n"
                 + "Mark a task as done:\nmark <index>\n\n"
                 + "Mark a task as undone:\nunmark <index>\n\n"
                 + "Delete a task:\ndelete <INDEX>\n\n"

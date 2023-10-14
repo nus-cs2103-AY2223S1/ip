@@ -57,6 +57,14 @@ Here are the tasks in your list:
 3. [E][ ] book fair (at: 10 Oct 2022 3:00PM)
 ```
 
+### `clear` - Clear task list
+Remove all tasks in the task list.
+
+Example of usage: `clear`
+```
+All tasks are removed.
+```
+
 ### `mark` - Marking tasks
 Marks the specified task as done.
 
