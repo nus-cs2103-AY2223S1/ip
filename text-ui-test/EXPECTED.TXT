@@ -1,7 +1,74 @@
+null
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+________________________________________
+Hello! I'm Duke
+What can I do for you?
+________________________________________
+Unfortunately, you do not have any tasks at hand. Try creating some first.
+OOPS!!! The description of a todo cannot be empty.
+Did you forget to specify what?
+Did you forget to specify what?
+________________________________________
+Got it. I've added this task:
+[T][ ] borrow book
+Now you have 1 tasks in the list.
+________________________________________
+That's magical! You only have 1 task(s) at hand!
+Hey there! Are you sure you are referring to a correct task? It definitely has to be at least 1!
+Did you forget to specify when your deadline for this is due by?
+________________________________________
+Got it. I've added this task:
+[D][ ] return book (by: August 25 2022)
+Now you have 2 tasks in the list.
+________________________________________
+Did you forget to specify when your event is at?
+________________________________________
+Got it. I've added this task:
+[E][ ] project meeting (at: August 25 2022)
+Now you have 3 tasks in the list.
+________________________________________
+________________________________________
+Here are the tasks in your list:
+2.[T][ ] borrow book
+3.[D][ ] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
+________________________________________
+________________________________________
+Nice! I've marked this task as done:
+[T][X] borrow book
+________________________________________
+________________________________________
+Nice! I've marked this task as done:
+[D][X] return book (by: August 25 2022)
+________________________________________
+________________________________________
+Here are the tasks in your list:
+2.[T][X] borrow book
+3.[D][X] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
+________________________________________
+________________________________________
+OK, I've marked this task as not done yet:
+[T][ ] borrow book
+________________________________________
+________________________________________
+Here are the tasks in your list:
+2.[T][ ] borrow book
+3.[D][X] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
+________________________________________
+________________________________________
+Noted. I've removed this task:
+[E][ ] project meeting (at: August 25 2022)
+Now you have 2 tasks in the list.
+________________________________________
+Invalid command entered. I don't recognize it. Sorry!
+________________________________________
+Bye. Hope to see you again soon!
+________________________________________
