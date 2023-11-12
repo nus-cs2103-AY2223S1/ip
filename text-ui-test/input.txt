@@ -1,0 +1,25 @@
+help
+todo borrow book
+deadline return book /by 2022-08-10
+event project meeting /at 2022-10-10 18:00
+list
+mark 2
+list
+mark 3
+list
+find book
+find
+unmark 2
+list
+todo
+blah
+delete 3
+deadline assignment /by 2022-30-12
+deadline    /by 2022-10-10
+event consultation /at 2022-10-10   18:30
+event
+deadline
+deadline quiz /by 2022
+mark 3
+list
+bye
