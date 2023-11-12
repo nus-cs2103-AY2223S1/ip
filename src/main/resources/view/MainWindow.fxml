@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox focusTraversable="true" style="-fx-background-color: #FFF0F5#FFF0F5 #FFF0F5#FFF0F5 #FFF0F5#FFF0F5 #FFF0F5#FFF0F5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byu.util.MainWindow">
+   <children>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background: #FFF0F5#FFF0F5 #FFF0F5#FFF0F5; -fx-background-color: #FFF0F5;" vvalue="1.0" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox fx:id="dialogContainer" alignment="TOP_CENTER" focusTraversable="true" prefWidth="250.0" style="-fx-background-color: #FFF0F5#FFF0F5;">
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+            </VBox>
+            </content>
+        </ScrollPane>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="40.0">
+         <children>
+              <TextField fx:id="userInput" onAction="#handleUserInput" opacity="0.8" prefHeight="40.0" promptText="Enter your command..." style="-fx-background-color: #FFB6C1#FFB6C1 #FFB6C1#FFB6C1;" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Chalkboard SE Light" size="16.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+              <Button fx:id="sendButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="40.0" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Send" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Chalkboard SE Light" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</VBox>

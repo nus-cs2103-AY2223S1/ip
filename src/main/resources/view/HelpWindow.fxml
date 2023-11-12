@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="570.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="BOTTOM_LEFT">
+               <children>
+                  <ImageView fitHeight="102.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/panda.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" style="-fx-background-color: #000000;">
+               <children>
+                  <Label layoutX="100.0" text="Bye:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="helpMessage1" text="Deadline:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="helpMessage2" text="Delete:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage3" text="Event:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage4" text="Find:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage5" text="Help:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage51" text="List:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage52" text="Mark:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage53" text="Todo:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage531" text="Unmark:" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="helpMessage6" text="eg bye" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage61" text="eg deadline assignment 2 /by 16/09 16:00" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage62" text="eg delete 2" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage63" text="eg event interview /at 16/09 14:00 to 16/09 15:00" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage64" text="eg find assignment" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage65" text="eg help" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage651" text="eg list" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage652" text="eg mark 1" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage653" text="eg todo jog" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="helpMessage654" text="eg unmark" textFill="LIGHTPINK" wrapText="true">
+                     <font>
+                        <Font name="Chalkboard SE Light" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
