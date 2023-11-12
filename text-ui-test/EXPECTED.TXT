@@ -1,7 +1,84 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+....Loa....Loading....Please wait....
+
+Whoopsie!!! Oops! File not found hehe maybe a spy stole the file awayyy...
+Wanya shall create a new list for you
+
+Hello!!! My name is Wanya! 
+WWaku WWaku! 
+How can I help you?
+
+Whoopsie!!! Invalid task number!
+
+List is empty! Wheee slack time!
+
+You have added: 
+[T][ ] borrow book
+Now you have 1 tasks in your list. 
+
+Whoopsie!!! The description of a todo cannot be empty
+
+You have added: 
+[D][ ] return book (by: Sep 13 2022 12:00 am)
+Now you have 2 tasks in your list. 
+
+Whoopsie!!! The description of a deadline cannot be empty
+
+Whoopsie!!! Deadline must have a due date
+Include '/by' and date with format "yyyy-mm-dd" at the back
+
+Whoopsie!!! Deadline must have a due date
+Include '/by' and date with format "yyyy-mm-dd" at the back
+
+Please enter a valid date behind /by with the format "yyyy-mm-dd HH:mm" where time is optional.
+ If time is provided, leave it in 24 hours format.
+
+You have added: 
+[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
+Now you have 3 tasks in your list. 
+
+Whoopsie!!! Event must have a date
+Include '/at' and date with format "yyyy-mm-dd" at the back
+
+Whoopsie!!! Event must have a date
+Include '/at' and date with format "yyyy-mm-dd" at the back
+
+Please enter a valid date behind /at with the format "yyyy-mm-dd HH:mm" where time is optional.
+ If time is provided, leave it in 24 hours format.
+
+Hehe well done! One task down, one step closer to play time!
+This task has been completed:
+[D][X] return book (by: Sep 13 2022 12:00 am)
+
+Whoopsie!!! Invalid task number!
+
+1.[T][ ] borrow book
+2.[D][X] return book (by: Sep 13 2022 12:00 am)
+3.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
+
+Whoopsie!!! You didn't put the task number at the back :(.
+Wanya isn't Anya. I can't read your mind!
+
+Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.
+This task has not been completed:
+[D][ ] return book (by: Sep 13 2022 12:00 am)
+
+Whoopsie!!! Invalid task number!
+
+1.[T][ ] borrow book
+2.[D][ ] return book (by: Sep 13 2022 12:00 am)
+3.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
+
+Whoopsie!!! You didn't put the task number at the back :(.
+Wanya isn't Anya. I can't read your mind!
+
+WWaku WWaku!!! Wanya has used her magic powers to remove this task:
+[D][ ] return book (by: Sep 13 2022 12:00 am)
+Now you have 2 tasks in your list. 
+
+1.[T][ ] borrow book
+2.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
+
+Whoopsie!!! I am sorry. Wanya doesn't like to study so Wanya don't know what that means.
+
+Yayyy Wanya gets to slack and watch shows now. Bye bye! :)
 
