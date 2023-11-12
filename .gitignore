@@ -13,5 +13,11 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Testing files
+anthea.txt
+antheaNotes.txt
 /text-ui-test/ACTUAL.txt
+/text-ui-test/ACTUAL1.txt
 text-ui-test/EXPECTED-UNIX.TXT
+/text-ui-test/anthea.txt
+/text-ui-test/antheaNotes.txt
