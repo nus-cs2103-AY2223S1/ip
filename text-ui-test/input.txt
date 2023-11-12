@@ -1,0 +1,5 @@
+deadline submit assignment /by mon
+todo go for training
+event CS2103T lecture /at 4pm
+list
+bye
