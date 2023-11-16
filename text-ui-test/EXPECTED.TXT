@@ -1,7 +1,18 @@
-Hello from
+Hello! I'm Lan
+What can I do for you?
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Got it, I've added it to the task list:
+[T][ ]  Crosscountry
+Now you have 1 tasks
+Got it, I've added it to the task list:
+[D][ ]  complete the assignment (by: 8.18)
+Now you have 2 tasks
+Got it, I've added it to the task list:
+[E][ ]  National Day (at: 10.1)
+Now you have 3 tasks
+Bye! Hope to see you again soon!
