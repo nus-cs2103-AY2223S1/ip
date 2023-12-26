@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseReleased="#requestFocusOnClick" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="contentBox" alignment="TOP_CENTER" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="24.600000000000023" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <HBox alignment="BOTTOM_CENTER" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="userInput" onAction="#handleUserInput" promptText="Enter Command..." styleClass="commandField" stylesheets="@styles.css" HBox.hgrow="ALWAYS" />
+            <Button id="commandField" fx:id="helpButton" mnemonicParsing="false" onAction="#showHelpWindow" text="Get Help" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Duke Task Manager">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </items>
+      </ToolBar>
+   </children>
+</AnchorPane>
