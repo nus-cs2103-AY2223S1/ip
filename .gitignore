@@ -1,3 +1,6 @@
+*.class
+/data/
+
 # IDEA files
 /.idea/
 /out/
@@ -13,5 +16,6 @@ src/main/resources/docs/
 *.iml
 bin/
 
+/text-ui-test/data/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
