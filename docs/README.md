@@ -1,8 +1,8 @@
-# Duke User Guide
+# SpongeBob SquareManager User Guide
 
 ## Features 
 
-* [**Duke User Guide** ](#duke-user-guide)
+* [**SpongeBob SquareManager User Guide** ](#SpongeBob-SquareManager-user-guide)
     * [Add task](#add-task)
         * [Todo task](#todo-task)
         * [Event task](#event-task)
