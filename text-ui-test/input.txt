@@ -1,0 +1,15 @@
+todo read book
+deadline return book /by Monday
+event meeting /at Tuesday 2-4pm
+list
+mark 1 
+mark 2
+unmark 2
+mark 3
+deadline homework /by Monday
+mark 4
+event class /at Tuesday 2-4pm
+todo cook dinner
+mark 5
+list
+bye
