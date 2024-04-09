@@ -1,0 +1,15 @@
+event attend SE lecture /at Fri 4-6pm
+deadline writing assignment /by Thursday
+todo play the guitar
+list
+mark 2
+deadline hostel application /by tomorrow
+mark 1
+list
+delete 3
+list
+delete 1
+list
+blablabla
+deadline
+bye

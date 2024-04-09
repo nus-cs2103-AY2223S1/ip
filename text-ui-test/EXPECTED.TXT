@@ -5,3 +5,57 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello! I'm duke.Duke
+What can I do for you?
+Enter command:
+Got it. I've added this task:
+  [E][ ] attend SE lecture (at: Fri 4-6pm)
+Now you have 1 tasks in the list.
+Enter command:
+Got it. I've added this task:
+  [D][ ] writing assignment (by: Thursday)
+Now you have 2 tasks in the list.
+Enter command:
+Got it. I've added this task:
+  [T][ ] play the guitar
+Now you have 3 tasks in the list.
+Enter command:
+1. [E][ ] attend SE lecture (at: Fri 4-6pm)
+2. [D][ ] writing assignment (by: Thursday)
+3. [T][ ] play the guitar
+Enter command:
+Nice! I've marked this task as done:
+  [D][X] writing assignment (by: Thursday)
+Enter command:
+Got it. I've added this task:
+  [D][ ] hostel application (by: tomorrow)
+Now you have 4 tasks in the list.
+Enter command:
+Nice! I've marked this task as done:
+  [E][X] attend SE lecture (at: Fri 4-6pm)
+Enter command:
+1. [E][X] attend SE lecture (at: Fri 4-6pm)
+2. [D][X] writing assignment (by: Thursday)
+3. [T][ ] play the guitar
+4. [D][ ] hostel application (by: tomorrow)
+Enter command:
+Noted. I've removed this task:
+  [T][ ] play the guitar
+Now you have 3 tasks in the list.
+Enter command:
+1. [E][X] attend SE lecture (at: Fri 4-6pm)
+2. [D][X] writing assignment (by: Thursday)
+3. [D][ ] hostel application (by: tomorrow)
+Enter command:
+Noted. I've removed this task:
+  [E][X] attend SE lecture (at: Fri 4-6pm)
+Now you have 2 tasks in the list.
+Enter command:
+1. [D][X] writing assignment (by: Thursday)
+2. [D][ ] hostel application (by: tomorrow)
+Enter command:
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+Enter command:
+☹ OOPS!!! The description of a deadline cannot be empty.
+Enter command:
+Bye. Hope to see you again soon!
