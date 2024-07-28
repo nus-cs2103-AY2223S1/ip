@@ -1,0 +1,53 @@
+@font-face{
+  font-family: 'Inter Medium';
+  font-weight: 500;
+  src: url('../fonts/Inter-Medium.otf') format('opentype');
+}
+
+.root * {
+    -fx-font-family: 'Inter Medium';
+}
+
+.dialog-container {
+    -fx-background-color: #1c1c1e;
+}
+
+.dialog {
+    -fx-background-color: #1982FC;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-padding: 10;
+}
+
+.bottom-bar {
+    -fx-alignment: center;
+    -fx-background-color: #1c1c1e;
+    -fx-border-color: #636366;
+    -fx-border-radius: 22;
+}
+
+.bottom-input {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.bottom-send {
+    -fx-background-color: #2fd158;
+    -fx-background-radius: 4 20 20 4;
+    -fx-background-insets: 2;
+    -fx-padding: 10 14 10 14;
+    -fx-text-fill: white;
+}
+
+.scroll-bar {
+    -fx-background-color: #1c1c1e;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.window {
+    -fx-background-color: #1c1c1e;
+    -fx-border-color: #000000;
+}
