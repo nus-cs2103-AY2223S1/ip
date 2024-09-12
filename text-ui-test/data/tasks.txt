@@ -1,0 +1,3 @@
+[T] | unfinished | read book
+[D] | unfinished | return book | Sunday
+[E] | unfinished | kahoot night | Next Thursday 9:00-11:00pm
