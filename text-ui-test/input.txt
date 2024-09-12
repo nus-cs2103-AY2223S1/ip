@@ -1,0 +1,9 @@
+todo clean room
+deadline project /by June 6th
+event meeting /at Aug 6th 2-3pm
+list
+mark 1
+list
+unmark 1
+bye
+
