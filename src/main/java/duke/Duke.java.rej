@@ -1,0 +1,9 @@
+diff a/src/main/java/duke/Duke.java b/src/main/java/duke/Duke.java	(rejected hunks)
+@@ -14,6 +14,7 @@
+ public class Duke {
+     private Storage storage;
+     private TaskList tasks;
++    private Parser parser;
+ 
+     /**
+      * Constructor for Duke.
