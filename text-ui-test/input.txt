@@ -1,0 +1,4 @@
+todo read book
+event project meeting /at Mon 2-4pm
+list
+bye
