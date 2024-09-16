@@ -13,5 +13,13 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Automated testing files
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+text-ui-test/data/duke.txt
+
+# Generated save data
+data/duke.txt
+
+# Misc Dev files
+/messages.txt

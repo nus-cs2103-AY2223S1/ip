@@ -1,0 +1,14 @@
+todo eat
+deadline sleep /by 4am
+event meeting /at 7am
+mark 1
+mark 3
+remove 2
+list
+remove 1
+list
+todo
+deadline /by
+event /at 3am
+remove 1
+bye
