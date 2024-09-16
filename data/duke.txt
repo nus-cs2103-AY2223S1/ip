@@ -1,0 +1,3 @@
+T | 1 | watch CS2102 lecture
+E | 0 | SOC homecoming | 2022-09-21
+D | 0 | do CS2103T tutorial | 2022-09-17
