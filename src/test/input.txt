@@ -1,0 +1,14 @@
+list
+mark 1
+clean room
+todo clean room
+deadline lab 1 /by tomorrow midnight
+event training /at Friday 7-9pm
+list
+mark 1
+mark 3
+unmark 3
+list
+delete 1
+list
+bye
