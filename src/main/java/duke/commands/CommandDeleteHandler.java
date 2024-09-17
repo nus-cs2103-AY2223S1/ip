@@ -1,0 +1,37 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidSyntaxException;
+import duke.tasks.TaskList;
+
+
+/**
+ * Describes the handler for the Delete command.
+ */
+public class CommandDeleteHandler extends CommandHandler {
+
+    public CommandDeleteHandler(String value, String flag, String additionalValue) throws DukeException {
+        super(value, flag, additionalValue);
+    }
+
+    /**
+     * Checks the validity of the syntax after being parsed by CommandParser.
+     * @throws DukeException error message.
+     */
+    public void checkValid() throws DukeException {
+        boolean isValid = flag == null && additionalValue == null;
+        if (isValid) {
+            return;
+        }
+        throw new InvalidSyntaxException("Correct usage: delete 1");
+    }
+
+    /**
+     * Handles the execution of the delete command inputted by the user.
+     * @param taskList the taskList to be modified.
+     * @return string representation of the delete command.
+     */
+    public String handle(TaskList taskList) throws DukeException {
+        return taskList.deleteTask(value);
+    }
+}

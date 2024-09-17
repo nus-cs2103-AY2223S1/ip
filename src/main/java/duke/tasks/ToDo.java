@@ -1,0 +1,34 @@
+package duke.tasks;
+
+/**
+ * Describes the ToDo class.
+ */
+public class ToDo extends Task {
+
+    /**
+     * Describes the constructor when taking user input.
+     * @param description description of the ToDo.
+     */
+    public ToDo(String description) {
+        super(description);
+    }
+
+    /**
+     * Describes the constructor when taking user input.
+     * @param isMarked boolean value of whether the task is marked.
+     * @param description description of the ToDo.
+     */
+    public ToDo(boolean isMarked, String description) {
+        super(isMarked, description);
+    }
+
+    @Override
+    public String dbRepresentation() {
+        return String.join("|", "T", Boolean.toString(isMarked), description);
+    }
+
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
+}
