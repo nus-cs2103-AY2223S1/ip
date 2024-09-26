@@ -1,0 +1,28 @@
+package sakura;
+
+import org.junit.jupiter.api.Test;
+import sakura.task.Deadline;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class DeadlineTest {
+    @Test
+    void testStringifyTask() {
+        Deadline test1 = new Deadline("submit iP task1", "2022-05-15 2359");
+        assertEquals("D|0|submit iP task1|2022-05-15 2359", test1.stringifyTask());
+    }
+
+    @Test
+    void testMarkDone() {
+        Deadline test2 = new Deadline("submit iP task2", "2022-05-15 2359");
+        test2.markDone();
+        assertEquals("D|1|submit iP task2|2022-05-15 2359", test2.stringifyTask());
+    }
+
+    @Test
+    void testToString() {
+        Deadline test1 = new Deadline("submit iP task1", "2022-05-15 2359");
+        assertEquals("(DEADLINE)[ ] submit iP task1 (by: 23:59, 15 May 2022)", test1.toString());
+
+    }
+}

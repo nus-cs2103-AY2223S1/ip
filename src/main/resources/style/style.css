@@ -1,0 +1,58 @@
+.scroll-pane .viewport {
+    -fx-background-color: #a93451;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #a93451;
+}
+
+.userInput {
+    -fx-background-color: pink;
+    -fx-border-color: #800000;
+    -fx-border-width: 0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: #800000;
+}
+
+.sendBtn {
+    -fx-background-color: rgba(255, 74, 108, 0.71);
+    -fx-background-radius: 20px;
+    -fx-border-color: white;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+}
+
+.userTextBox {
+    -fx-background-color: rgba(202, 182, 255, 0.4);
+    -fx-background-radius: 20px;
+    -fx-border-color: rgb(202, 182, 255);
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+    -fx-padding: 20;
+    -fx-max-height: Infinity;
+    -fx-text-fill: white;
+}
+
+.sakuraTextBox {
+    -fx-background-color: rgba(255, 180, 192, 0.35);
+    -fx-background-radius: 20px;
+    -fx-border-color: rgb(255, 180, 192);
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+    -fx-padding: 20;
+    -fx-max-height: Infinity;
+    -fx-text-fill: white;
+}
+
+.text-box:focused {
+    -fx-background-color: transparent, -fx-box-border, -fx-control-inner-background;
+    -fx-border-color: #800000;
+}
+
+.text-field {
+    -fx-prompt-text-fill: #800000;
+}
