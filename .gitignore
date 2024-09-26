@@ -2,6 +2,12 @@
 /.idea/
 /out/
 /*.iml
+/.vscode/
+
+# Binary files
+*.class
+*.jar
+*.exe
 
 # Gradle build files
 /.gradle/
@@ -15,3 +21,4 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+/data/duke.txt
