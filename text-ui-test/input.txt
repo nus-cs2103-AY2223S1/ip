@@ -1,0 +1,10 @@
+todo wake up
+deadline sleep /by 2022-03-25
+event do tutorial /at 2017-12-05
+mark 1
+mark 3
+list
+delete 1
+unmark 2
+list
+bye
