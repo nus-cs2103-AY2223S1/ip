@@ -1,0 +1,37 @@
+list
+event
+event eventTest
+event eventTest /at TestDay
+todo
+todo todoTest
+deadline
+deadline deadlineTest
+deadline deadlineTest /by TestDay
+list
+mark
+mark -1
+mark 10
+mark one
+mark 2
+mark 3 please
+mark 2
+list
+unmark
+unmark -1
+unmark 10
+unmark one
+unmark 2
+unmark 3 please
+unmark 2
+list
+blah
+delete
+delete -1
+delete 99
+delete one
+delete 3
+delete 3
+list
+mark 3
+unmark 3
+bye
