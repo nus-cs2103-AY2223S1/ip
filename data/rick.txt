@@ -1,0 +1,4 @@
+T | 0 | read book
+T | 0 | list
+T | 0 | read
+E | 0 | read  | 2020-02-02
