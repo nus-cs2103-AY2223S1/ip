@@ -1,7 +1,92 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello, this is Siri! It is a pleasure to meet you!
+How may I assist you?
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[T][] leave house
+You currently have 1 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[T][] take the bus
+You currently have 2 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[T][] reach school
+You currently have 3 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[E][] attend programming class (at: Mon 08:00-10:00)
+You currently have 4 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[T][] take a break
+You currently have 5 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[E][] attend math class (at: Mon 12:00-14:00)
+You currently have 6 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[D][] submit math assignment (by: Tuesday 23:59)
+You currently have 7 tasks in the list
+##############################################
+##############################################
+Nice! This task has been successfully added!
+			[D][] submit programming assignment (by: Wednesday 23:59)
+You currently have 8 tasks in the list
+##############################################
+##############################################
+			1. [T][] leave house
+			2. [T][] take the bus
+			3. [T][] reach school
+			4. [E][] attend programming class (at: Mon 08:00-10:00)
+			5. [T][] take a break
+			6. [E][] attend math class (at: Mon 12:00-14:00)
+			7. [D][] submit math assignment (by: Tuesday 23:59)
+			8. [D][] submit programming assignment (by: Wednesday 23:59)
+##############################################
+##############################################
+Congratulations! This task has been marked as done!
+			[T][X] leave house
+##############################################
+##############################################
+Congratulations! This task has been marked as done!
+			[T][X] reach school
+##############################################
+##############################################
+Congratulations! This task has been marked as done!
+			[D][X] submit math assignment (by: Tuesday 23:59)
+##############################################
+##############################################
+			1. [T][X] leave house
+			2. [T][] take the bus
+			3. [T][X] reach school
+			4. [E][] attend programming class (at: Mon 08:00-10:00)
+			5. [T][] take a break
+			6. [E][] attend math class (at: Mon 12:00-14:00)
+			7. [D][X] submit math assignment (by: Tuesday 23:59)
+			8. [D][] submit programming assignment (by: Wednesday 23:59)
+##############################################
+##############################################
+Congratulations! This task has been marked as done!
+			[T][] reach school
+##############################################
+##############################################
+			1. [T][X] leave house
+			2. [T][] take the bus
+			3. [T][] reach school
+			4. [E][] attend programming class (at: Mon 08:00-10:00)
+			5. [T][] take a break
+			6. [E][] attend math class (at: Mon 12:00-14:00)
+			7. [D][X] submit math assignment (by: Tuesday 23:59)
+			8. [D][] submit programming assignment (by: Wednesday 23:59)
+##############################################
+##############################################
+So Long, farewell!
+##############################################
