@@ -1,0 +1,34 @@
+todo borrow book
+deadline return book /by 2022-12-12
+event project meeting /at 2010-01-01
+find book
+find sad
+list
+mark 1
+mark 2
+mark 3
+list
+unmark 1
+unmark 2
+unmark 3
+delete 3
+list
+todo
+deadline
+event
+deadline return book
+event project meeting
+find
+mark
+mark 0
+mark mark
+unmark
+unmark 0
+unmark unmark
+delete
+delete 0
+delete delete
+deadline return book /by 123
+event project meeting /at 123
+fly
+bye
