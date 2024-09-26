@@ -1,0 +1,4 @@
+T|0|buy book
+D|0|homework|2359 Sat
+T|1|subtract
+E|0|pop|today
