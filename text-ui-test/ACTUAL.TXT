@@ -1,0 +1,112 @@
+=====================================================
+  ___  _ _       _       
+ / _ \| (_)_   _(_) __ _
+| | | | | \ \ / / |/ _` |
+| |_| | | |\ V /| | (_| |
+ \___/|_|_| \_/ |_|\__,_|
+Hello, this is Olivia, your personal assistant
+Hallo, ich bin Olivia, Ihre persönliche Assistentin
+    For help message on how to communicate with me, type help
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Currently the following commands are supported:
+    todo {title}
+    deadline {title} /by {time}
+    event {title} /at {time start} - {time end}
+    list
+    ls
+    mark {entry index}
+    unmark {entry index}
+    help
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Verstehe, added: [T][ ] Ich liebe dich
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Verstehe, added: [D][ ] submission (by: tonight)
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Sorry, I don't seem to understand you.
+Maybe there is a syntax error or the command is unsupported?
+=====================================================
+
+> =====================================================
+Verstehe, added: [E][ ] Je t'aime (at: 2015 - 2022)
+=====================================================
+
+> =====================================================
+1. [T][ ] Ich liebe dich
+2. [D][ ] submission (by: tonight)
+3. [E][ ] Je t'aime (at: 2015 - 2022)
+=====================================================
+
+> =====================================================
+1. [T][ ] Ich liebe dich
+2. [D][ ] submission (by: tonight)
+3. [E][ ] Je t'aime (at: 2015 - 2022)
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as completed:
+     [T][X] Ich liebe dich
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as incomplete:
+     [T][ ] Ich liebe dich
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as completed:
+     [T][X] Ich liebe dich
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as completed:
+     [D][X] submission (by: tonight)
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as completed:
+     [E][X] Je t'aime (at: 2015 - 2022)
+=====================================================
+
+> =====================================================
+Jawohl, I have marked the following event as incomplete:
+     [D][ ] submission (by: tonight)
+=====================================================
+
+> =====================================================
+See you later! 
+Auf Wiedersehen!
+=====================================================
+

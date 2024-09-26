@@ -1,0 +1,19 @@
+hello
+help
+todo
+todo Ich liebe dich
+deadline
+deadline submission
+deadline submission /by tonight
+event
+event Je t'aime
+event Je t'aime /at 2015 - 2022
+list
+ls
+mark 1
+unmark 1
+mark 1
+mark 2
+mark 3
+unmark 2
+bye
