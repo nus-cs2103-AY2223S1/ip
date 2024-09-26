@@ -13,7 +13,23 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
+#for dir in ../src/main/java/*/; do (
+#  cd "$dir" && (
+#    if ! javac -cp ../src/main/java -Xlint:none -d ../bin "$dir"/*.java
+#    then
+#        echo "********** BUILD FAILURE **********"
+#        exit 1
+#    fi
+#  )
+#); done
+
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
+then
+    echo "********** BUILD FAILURE **********"
+    exit 1
+fi
+
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
