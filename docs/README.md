@@ -1,29 +1,154 @@
 # User Guide
+Tuna is a desktop app for managing tasks, optimised for use via a GUI.
 
-## Features 
-
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
+## Features
+1. Add [Todo](#adding-a-todo-task---todo), [Deadline](#adding-a-deadline-task---deadline) and 
+[Event](#adding-an-event-task---event) tasks.
+2. [List](#listing-all-tasks---list) all tasks.
+3. [List](#listing-all-tasks---list) tasks that occur on a specified date.
+4. [Delete](#deleting-a-task---delete) a task.
+5. [Mark](#marking-a-task---mark) or [Un-mark](#un-marking-a-task---unmark) a task when it is completed.
+6. [Sort](#sorting-all-tasks---sort) tasks in chronological order.
+7. [Find](#finding-a-task---find) tasks that contain a specified keyword.
+8. [Load](#loading-the-data) and [Save](#saving-the-data) data into the hard disk.
 
 ## Usage
 
-### `Keyword` - Describe action
+### Notes about the command format:
 
-Describe the action and its outcome.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br/>e.g. in todo `TASK_DESCRIPTION`, 
+`TASK_DESCRIPTION` is a parameter which can be used as `todo complete assignments`.
+- Items in square brackets are optional.
+- For commands that involve date and time, the symbols are represented as such:
+  - `Y`: Year
+  - `M`: Month
+  - `D`: Day
+  - `H`: Hour
+  - `m`: Minute
 
-Example of usage: 
+### Adding a todo task - `todo`
 
-`keyword (optional arguments)`
+Adds a todo task to the list.
 
-Expected outcome:
+Format: `todo TASK_DESCRIPTION`
 
-Description of the outcome.
+Example of usage:
 
-```
-expected output
-```
+<img src="./screenshots/todo.png" width=300/>
+
+### Adding a deadline task - `deadline`
+
+Adds a deadline task to the list.
+
+Format: `deadline TASK_DESCRIPTION /by DEADLINE_OF_TASK`
+- `DEADLINE_OF_TASK` has to be formatted as such: `YYYY-MM-DD HH:mm`
+
+Example of usage:
+
+<img src="./screenshots/deadline.png" width=300/>
+
+### Adding an event task - `event`
+
+Adds an event task to the list.
+
+Format: `event EVENT_DESCRIPTION /at DATE_AND_TIME_OF_EVENT`
+- `DATE_AND_TIME_OF_EVENT` has to be formatted as such: `YYYY-MM-DD HH:mm`
+
+Example of usage:
+
+<img src="./screenshots/event.png" width=300/>
+
+### Listing all tasks - `list`
+
+Shows a list of all tasks in the task list.
+
+Format: `list [DATE]`
+- If `DATE` is not provided, all tasks will be shown.<br/>
+If `DATE` is provided, only tasks that occur on the same date as `DATE` will be shown.
+
+Example of usage:
+
+<img src="./screenshots/list.png" width=300/>
+
+### Deleting a task - `delete`
+
+Deletes the task at the specified index.
+
+Format: `delete INDEX`
+- Deletes the task at the specified `INDEX`.
+- The index must be a positive integer.
+- The index must be within the range of 1 to the total number of tasks.
+
+Example of usage:
+
+<img src="./screenshots/delete.png" width=300/>
+
+### Marking a task - `mark`
+
+Marks the task at the specified index as done.
+
+Format: `mark INDEX`
+- Marks the task at the specified `INDEX`.
+- The index must be a positive integer.
+- The index must be within the range of 1 to the total number of tasks.
+
+Example of usage:
+
+<img src="./screenshots/mark.png" width=300/>
+
+### Un-marking a task - `unmark`
+
+Un-marks the task at the specified index as done.
+
+Format: `unmark INDEX`
+- Un-marks the task at the specified `INDEX`.
+- The index must be a positive integer.
+- The index must be within the range of 1 to the total number of tasks.
+
+Example of usage:
+
+<img src="./screenshots/unmark.png" width=300/>
+
+### Sorting all tasks - `sort`
+
+Sorts all tasks in the task list in chronological order.
+
+Format: `sort`
+- Event and Deadline tasks will be sorted to the top of the list, while Todo tasks will be sorted to the bottom.
+
+Example of usage:
+
+<img src="./screenshots/sort.png" width=300/>
+
+### Finding a task - `find`
+
+Finds all tasks which contains the specified keyword.
+
+Format: `find KEYWORD`
+- Only the task description is searched
+- The search is case-sensitive e.g. `Homework` will not match `homework`.
+- Only full words will be matched e.g. `movie` will not match `movies`.
+
+Example of usage:
+
+<img src="./screenshots/find.png" width=300/>
+
+### Exiting the program - `bye`
+
+Exits the program and saves the data into the data file.
+
+Format: `bye`
+
+### Loading the data
+
+Tuna data are loaded automatically when the program starts.
+
+### Saving the data
+
+Tuna data are saved in the hard disk automatically after `bye` is entered.
+
+### Editing the data file
+
+Tuna data are saved as a .txt file in `[JAR FILE LOCATION]/data/tuna.txt`
+>**Caution**: If your changes to the data file makes it format invalid, Tuna will no longer run<br/>
+>To fix this, delete the data file and run the program again, Tuna will create a blank data file.
