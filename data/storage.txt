@@ -1,0 +1,7 @@
+[T]#Buy groceries#false
+[T]#Cook spaghetti#false
+[D]#Math Homework#false#Sep 16 2022, 0930
+[D]#Coding Homework#false#Sep 16 2022, 0930
+[E]#Concert#false#Sep 16 2022, 2000#Sep 16 2022, 2359
+[T]#Do CS2103T iP Homework#false
+[T]#Do Chinese Homework#false
