@@ -1,0 +1,14 @@
+list
+todo read book
+deadline return book /by 06-06-2022
+event project meeting /at Aug 6th 2-4pm
+list
+mark 1
+list
+unmark 1
+list
+delete 2
+list
+todo
+blah
+bye
