@@ -1,0 +1,17 @@
+list
+event task1 /at Tues 2-4pm
+todo task2
+deadline task3 /by Sunday
+event task4 /at Mon 2-4pm
+list
+mark 1
+mark 2
+mark 3
+mark 4
+list
+unmark 1
+unmark 2
+unmark 3
+unmark 4
+list
+bye
