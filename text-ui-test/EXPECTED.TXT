@@ -1,7 +1,40 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+todo run
+Got it. I've added this parser:
+[T][ ] run
+Now you have 1 tasks in the list.
+deadline push /by Mon
+Got it. I've added this parser:
+[D][ ] push (by: Mon)
+Now you have 2 tasks in the list.
+event pull /at nine
+Got it. I've added this parser:
+[E][ ] pull (at: nine)
+Now you have 3 tasks in the list.
+mark 1
+Nice! I've marked this parser as done:
+[T][X] run
+unmark 1
+OK, I've marked this parser as not done yet:
+[T][ ] run
+list
+1.[T][ ] run
+2.[D][ ] push /by Mon(by: Mon)
+3.[E][ ] pull /at nine(at: nine)
+
+delete 1
+Noted. I've removed this parser:
+[T][ ] run
+Now you have 2 tasks in the list.
+list
+1.[D][ ] push /by Mon(by: Mon)
+2.[E][ ] pull /at nine(at: nine)
+
+bye
+Bye. Hope to see you again soon!
