@@ -6,7 +6,6 @@
 - [X] Jot down quick Todos
 - [X] Pen events with dates and duration
 - [X] Note important tasks with their deadlines
-- [ ] Solve the puzzle of Aemon's return (Coming Soon!)
 
 Run Duke by calling 
 
