@@ -1,19 +1,20 @@
 package duke.tasklist;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import duke.exceptions.InvalidItemException;
 import duke.listobjects.Event;
 import duke.listobjects.ListObject;
 import duke.listobjects.ToDo;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class TaskListTest{
+public class TaskListTest {
 
     @Test
     public void testValidItemAddition() {
         ListObject l1 = new ToDo("Test this", 1);
-        ListObject l2 = new Event("Am writing test cases",  0, "2022-10-10 18:00 19:00");
+        ListObject l2 = new Event("Am writing test cases", 0, "2022-10-10 18:00 19:00");
         ListObject l3 = new Event("Finish test cases", 1, "2022-10-10 18:00 19:00");
 
         TaskList list = new TaskList();
@@ -29,7 +30,7 @@ public class TaskListTest{
     }
 
     @Test
-    public void testValidItemDeletion(){
+    public void testValidItemDeletion() {
         ListObject l1 = new ToDo("Test this", 1);
         ListObject l2 = new ToDo("Am writing test cases", 0);
         ListObject l3 = new ToDo("Finish test cases", 1);
@@ -44,14 +45,14 @@ public class TaskListTest{
             list.handleItem("DELETE", 1);
             list.handleItem("DELETE", 0);
             assertEquals("0 tasks ", list.knowTaskCount());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
 
     @Test
-    public void testInvalidItemDeletion(){
+    public void testInvalidItemDeletion() {
         ListObject l1 = new ToDo("Test this", 1);
         ListObject l2 = new ToDo("Am writing test cases", 0);
         ListObject l3 = new ToDo("Finish test cases", 1);
@@ -62,14 +63,14 @@ public class TaskListTest{
         assertEquals("3 tasks ", list.knowTaskCount());
         try {
             list.handleItem("DELETE", 4);
-        } catch (Exception e){
+        } catch (Exception e) {
             assertEquals(new InvalidItemException().getMessage(), e.getMessage());
         }
 
     }
 
     @Test
-    public void testValidMarkingTasks(){
+    public void testValidMarkingTasks() {
         try {
             ListObject l1 = new ToDo("Test this", 1);
             TaskList list = new TaskList();
@@ -86,8 +87,8 @@ public class TaskListTest{
     }
 
     @Test
-    public void testInvalidMarkingTasks(){
-        try{
+    public void testInvalidMarkingTasks() {
+        try {
             ListObject l1 = new ToDo("Test this", 1);
             TaskList list = new TaskList();
             list.handleItemAddition(l1);

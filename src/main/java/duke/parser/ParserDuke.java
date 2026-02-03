@@ -1,6 +1,11 @@
 package duke.parser;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.exceptions.ArgumentNumberException;
 import duke.exceptions.DateTimeFormatException;
 import duke.exceptions.EmptyCommandException;
@@ -13,11 +18,6 @@ import duke.listobjects.ListObject;
 import duke.listobjects.ToDo;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 
 /**
@@ -285,23 +285,25 @@ public class ParserDuke {
      * @return String representing list of all commands and related details
      */
     public String parseHelpCmd() {
-        String comment = "Aye, what good is a phantom were he not to share what he knows?\n";
-        String helpList = "You may use the following commands and arguments: \n"
-                + "1. `help` - view all commands and arguments\n"
-                + "2. `hello` - learn my name and story\n"
-                + "3. `list` - view the stored list\n"
-                + "4. `todo [TASK_NAME]` - add a task as a todo item\n"
-                + "5. `deadline [TASK_NAME]/[DATE] [TIME]` - add a task with a deadline with date in the "
-                + "format of yyyy-MM-dd and time in the format HH:mm\n"
-                + "6. `event [TASK_NAME]/[DATE] [START_TIME] [END_TIME]` - add an event with a date of occurance,"
-                + " start and end timings where date is formatted as yyyy-MM-dd and time as HH:mm\n"
-                + "7. `mark [ITEM_ID]` - mark an item, as identified by its position on the list, as complete\n"
-                + "8. `unmark [ITEM_ID]` - mark an item, as identified by its position on the list, as incomplete\n"
-                + "9. `delete [ITEM_ID]` - delete an item, as identified by its position on the list, from the list\n"
-                + "10. `find [KEYWORD]` - find items containing a keyword in their task descriptions\n"
-                + "11. `sort` - sort all items on the list based on their deadlines and task descriptions\n"
-                + "12. `bye` - end the conversation with me. This automatically saves the current state of the list.\n";
-        return comment + helpList;
+        String preface =
+                "You would have guidance? Very well. I do not withhold what is known.\n\n";
+
+        String helpList =
+                "These are the commands you may invoke:\n"
+                + "1. `help` — behold all commands and their use\n"
+                + "2. `hello` — learn my name, and a fragment of my tale\n"
+                + "3. `list` — view the tasks you have entrusted to me\n"
+                + "4. `todo TASK_NAME` — record a task unbound by time\n"
+                + "5. `deadline TASK_NAME/yyyy-MM-dd HH:mm` — bind a task to a final hour\n"
+                + "6. `event TASK_NAME/yyyy-MM-dd HH:mm HH:mm` — mark an event with beginning and end\n"
+                + "7. `mark ITEM_ID` — declare a task fulfilled\n"
+                + "8. `unmark ITEM_ID` — return a task to its unfinished state\n"
+                + "9. `delete ITEM_ID` — erase a task from memory\n"
+                + "10. `find KEYWORD` — seek tasks bearing the given word\n"
+                + "11. `sort` — impose order upon the list\n"
+                + "12. `bye` — depart. I shall remember what you leave behind.\n";
+
+        return preface + helpList;
     }
 
     /**
@@ -328,7 +330,7 @@ public class ParserDuke {
             LocalDate dateFormat = LocalDate.parse(date, formatter);
             String timeBegin = dateTimes[1];
             LocalTime timeBeginFormat = LocalTime.parse(timeBegin, DateTimeFormatter.ISO_LOCAL_TIME);
-            if(dateTimes.length==3) {
+            if (dateTimes.length == 3) {
                 String timeEnd = dateTimes[2];
                 LocalTime timeEndFormat = LocalTime.parse(timeEnd, DateTimeFormatter.ISO_LOCAL_TIME);
             }

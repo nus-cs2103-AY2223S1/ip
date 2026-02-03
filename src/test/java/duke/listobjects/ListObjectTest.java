@@ -1,13 +1,13 @@
 package duke.listobjects;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class ListObjectTest {
 
     @Test
-    public void testSwitchStatus(){
+    public void testSwitchStatus() {
         ListObject ls = new ListObject("finish testing", "2022-10-10 18:00", 1);
         assertEquals("[X] ", ls.showStatusIndicator());
         ls.switchStatus();
@@ -17,7 +17,7 @@ public class ListObjectTest {
     }
 
     @Test
-    public void testValidDateTimeFormat(){
+    public void testValidDateTimeFormat() {
         ListObject dl = new Deadline("finish testing", 1, "2022-10-10 18:00");
         String actual = dl.formatDateTime(ListObject.Type.DEADLINE);
         String expected = " (by: Oct 10 2022 at 18:00:00)";
@@ -30,7 +30,7 @@ public class ListObjectTest {
     }
 
     @Test
-    public void testComparison(){
+    public void testComparison() {
         ListObject ls1 = new ListObject("finish testing", "2022-10-10 18:00", 1);
         ListObject ls2 = new ListObject("finish testing", "2022-10-10 18:00", 1);
         ListObject ls3 = new ListObject("finish testing", "2022-10-10 19:00", 0);

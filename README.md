@@ -20,8 +20,6 @@ Here is how you can talk to Aemon:
 6. Type in `find ` followed by a keyword to see only the tasks containing the keyword
 7. Type in `list ` to see all your saved tasks!
 
-Play around with the main method to call other functions of Aemon like `echoAndExit` and learn more about your philosophical assistant born before Time.
-
 ```java
 public static void main(String[] args) {
        Duke AemonT = new Duke();

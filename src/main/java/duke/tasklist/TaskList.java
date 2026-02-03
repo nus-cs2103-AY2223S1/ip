@@ -1,14 +1,15 @@
 package duke.tasklist;
 
-import duke.exceptions.InvalidItemException;
-import duke.listobjects.ListObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import duke.exceptions.InvalidItemException;
+import duke.listobjects.ListObject;
+
 
 /**
  * Represents TaskList which stores a list of tasks the user wants to store and implements the Serializable interface
@@ -60,10 +61,10 @@ public class TaskList implements Serializable {
                     currItem.switchStatus();
                     return currItem.toString();
 
-               default:
+                default:
                     return "\n Oh I had forgotten...'tis already so!";
                 }
-            } else if (instruction.equals("MARK")){
+            } else if (instruction.equals("MARK")) {
                 switch (currItem.getStatus()) {
                 case 0:
                     assert currItem != null;

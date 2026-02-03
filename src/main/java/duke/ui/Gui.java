@@ -20,31 +20,27 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * Represents the Graphical User Interface through which user can interact with Duke.
- * This is modelled after the version in https://se-education.org/guides/tutorials/javaFxPart3.html.
+ * Represents the Graphical User Interface through which the user interacts with Duke Aemon.
  */
 public class Gui extends Application {
 
-    private final Image user = new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
-    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
+    private final Image userImage =
+            new Image(this.getClass().getResourceAsStream("/images/SherlockH.png"));
+    private final Image dukeImage =
+            new Image(this.getClass().getResourceAsStream("/images/KingOfOld.png"));
+
+    private final Duke aemon = new Duke();
+
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
-    private Scene scene;
 
-    /**
-     * Starts the GUI with the scene set onto the stage
-     *
-     * @param stage the primary stage for this application, onto which
-     *              the application scene can be set
-     */
     @Override
     public void start(Stage stage) {
 
-        //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
+        dialogContainer = new VBox(10);
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
@@ -53,158 +49,103 @@ public class Gui extends Application {
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
-        scene = new Scene(mainLayout);
-
+        Scene scene = new Scene(mainLayout);
         stage.setScene(scene);
-        stage.show();
-
         stage.setTitle("Ask Aemon");
         stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
+        stage.setMinHeight(600);
+        stage.setMinWidth(400);
+        stage.show();
 
-        mainLayout.setPrefSize(400.0, 600.0);
+        mainLayout.setPrefSize(400, 600);
 
         scrollPane.setPrefSize(385, 535);
+        scrollPane.setFitToWidth(true);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
-
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+        dialogContainer.heightProperty()
+                .addListener((obs) -> scrollPane.setVvalue(1.0));
 
-        userInput.setPrefWidth(325.0);
-
-        sendButton.setPrefWidth(55.0);
+        userInput.setPrefWidth(325);
+        sendButton.setPrefWidth(55);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
-
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
-
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
+        // Opening message from Aemon
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(
+                        new Label("You have returned.\nSpeak, and I shall attend."),
+                        new ImageView(dukeImage))
+        );
 
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
-
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
-
+        sendButton.setOnMouseClicked(event -> handleUserInput());
+        userInput.setOnAction(event -> handleUserInput());
     }
 
     /**
-     * Handles user commands and directions
+     * Handles user input and displays both user and Duke messages.
      */
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        String input = userInput.getText();
+        if (input == null || input.trim().isEmpty()) {
+            return;
+        }
+
+        Label userText = new Label(input);
+        Label dukeText = new Label(aemon.interact(input));
+
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+                DialogBox.getUserDialog(userText, new ImageView(userImage)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(dukeImage))
         );
+
         userInput.clear();
     }
 
-
     /**
-     * Returns Duke's response to user command
-     *
-     * @param input String representing user command
-     * @return String response to the user command
-     */
-    private String getResponse(String input) {
-        Duke aemon = new Duke();
-        return aemon.interact(input);
-    }
-
-    /**
-     * Returns Label containing text to be displayed
-     *
-     * @param text String to be used in the Dialogue Label
-     * @return Label containing dialogue
-     */
-    private Label getDialogLabel(String text) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-        return textToAdd;
-    }
-
-    /**
-     * Represents a DialogBox with a speaker image and message
+     * Represents a dialog box consisting of text and an image.
      */
     public static class DialogBox extends HBox {
 
         private final Label text;
         private final ImageView displayPicture;
 
-        /**
-         * Constructs a DialogBox with a given Label or text and image
-         *
-         * @param l  Label with text to be displayed
-         * @param iv ImageView of speaker's image
-         */
-        public DialogBox(Label l, ImageView iv) {
-            text = l;
-            displayPicture = iv;
+        private DialogBox(Label text, ImageView image) {
+            this.text = text;
+            this.displayPicture = image;
 
             text.setWrapText(true);
-            displayPicture.setFitWidth(125.0);
-            displayPicture.setFitHeight(150.0);
+            displayPicture.setFitWidth(80);
+            displayPicture.setFitHeight(80);
+            displayPicture.setPreserveRatio(true);
 
-            this.setAlignment(Pos.CENTER);
+            this.setAlignment(Pos.TOP_LEFT);
             this.getChildren().addAll(text, displayPicture);
         }
 
-        /**
-         * Returns DialogBox of Duke with the label and image in the correct orientation
-         *
-         * @param l  Label with text to be displayed
-         * @param iv ImageView of speaker's image
-         * @return DialogBox with given label and image in appropriate orientation
-         */
-        public static DialogBox getDukeDialog(Label l, ImageView iv) {
-            var db = new DialogBox(l, iv);
-            db.flip();
-            db.setStyle("-fx-border-color: black");
+        public static DialogBox getUserDialog(Label text, ImageView image) {
+            DialogBox db = new DialogBox(text, image);
+            db.setAlignment(Pos.TOP_RIGHT);
             return db;
         }
 
-        /**
-         * Returns DialogBox of User with the label and image in the correct orientation
-         *
-         * @param l  Label with text to be displayed
-         * @param iv ImageView of speaker's image
-         * @return DialogBox with given label and image in appropriate orientation
-         */
-        public static DialogBox getUserDialog(Label l, ImageView iv) {
-            return new DialogBox(l, iv);
+        public static DialogBox getDukeDialog(Label text, ImageView image) {
+            DialogBox db = new DialogBox(text, image);
+            db.flip();
+            return db;
         }
 
-        /**
-         * Flips the orientation of the DialogBox
-         */
         private void flip() {
-            this.setAlignment(Pos.CENTER);
-            ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-            FXCollections.reverse(tmp);
-            this.getChildren().setAll(tmp);
+            ObservableList<Node> nodes =
+                    FXCollections.observableArrayList(this.getChildren());
+            FXCollections.reverse(nodes);
+            this.getChildren().setAll(nodes);
         }
-
     }
-
 }
