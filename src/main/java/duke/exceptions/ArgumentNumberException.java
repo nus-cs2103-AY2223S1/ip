@@ -1,22 +1,22 @@
 package duke.exceptions;
 
 /**
- * Represents an ArgumentNumberException class which is inherited from the Exception class and
- * occurs when the user enters an incorrect number or order of arguments for a command
+ * Represents an ArgumentNumberException which is thrown when a command
+ * is given an incorrect number or order of arguments.
  */
 public class ArgumentNumberException extends Exception {
 
     /**
-     * Constructs an ArgumentExceptionException with standard message
+     * Constructs an ArgumentNumberException with Duke Aemon's standard message.
      */
     public ArgumentNumberException() {
-        super("Please input the correct number of arguments for each command. Type 'help' to see all commands.");
+        super("You have spoken, yet not as required. Consult 'help' if clarity eludes you.");
     }
 
     /**
-     * Constructs an ArgumentExceptionException with custom message
+     * Constructs an ArgumentNumberException with a custom message.
      *
-     * @param msg String representing custom message
+     * @param msg Custom exception message
      */
     public ArgumentNumberException(String msg) {
         super(msg);

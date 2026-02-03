@@ -1,22 +1,22 @@
 package duke.exceptions;
 
 /**
- * Represents an InvalidItemException class which is inherited from the Exception class and
- * occurs when the user tries to access or modify an item that does not exist in the list
+ * Represents an InvalidItemException which is thrown when
+ * an attempt is made to access or modify a non-existent item.
  */
 public class InvalidItemException extends Exception {
+
     /**
-     * Constructs an InvalidItemException with standard message
+     * Constructs an InvalidItemException with Duke Aemon's standard message.
      */
     public InvalidItemException() {
-        super("Alas! You ask me to paint outside the canvas..."
-                + "choose an item number from 0 to your list length! ");
+        super("You reach for what is not there. Choose a number within the bounds of your list.");
     }
 
     /**
-     * Constructs an EmptyDateTimeException with custom message
+     * Constructs an InvalidItemException with a custom message.
      *
-     * @param msg String representing custom message
+     * @param msg Custom exception message
      */
     public InvalidItemException(String msg) {
         super(msg);

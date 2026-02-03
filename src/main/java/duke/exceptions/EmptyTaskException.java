@@ -1,15 +1,15 @@
 package duke.exceptions;
 
 /**
- * Represents an EmptyTaskException class which is inherited from the Exception class and
- * occurs when the user enters an empty task argument
+ * Represents an EmptyTaskException which is thrown when
+ * a task description is missing.
  */
 public class EmptyTaskException extends Exception {
 
     /**
-     * Constructs an EmptyTaskException with standard message
+     * Constructs an EmptyTaskException with Duke Aemon's standard message.
      */
     public EmptyTaskException() {
-        super("Duke Aemon detected no task from the user. Use the `help` command to see all commands supported.");
+        super("You present me with no task. Speak its burden, or seek guidance with 'help'.");
     }
 }

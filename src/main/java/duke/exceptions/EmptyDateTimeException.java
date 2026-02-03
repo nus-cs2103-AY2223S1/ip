@@ -1,15 +1,15 @@
 package duke.exceptions;
 
 /**
- * Represents an EmptyDateTimeException class which is inherited from the Exception class and
- * occurs when the user enters an empty date or time argument
+ * Represents an EmptyDateTimeException which is thrown when
+ * a required date or time argument is missing.
  */
 public class EmptyDateTimeException extends Exception {
 
     /**
-     * Constructs an EmptyDateTimeException with standard message
+     * Constructs an EmptyDateTimeException with Duke Aemon's standard message.
      */
     public EmptyDateTimeException() {
-        super("The folly of youth to cheat Time! Specify date and time to add events and deadlines...");
+        super("You would bargain with Time, yet name neither date nor hour. Specify both.");
     }
 }

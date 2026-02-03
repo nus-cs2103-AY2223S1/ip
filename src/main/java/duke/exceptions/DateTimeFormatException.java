@@ -1,15 +1,15 @@
 package duke.exceptions;
 
 /**
- * Represents an DateTimeFormatException class which is inherited from the Exception class and
- * occurs when the user enters date and time in an incorrect format
+ * Represents a DateTimeFormatException which is thrown when
+ * a date or time is given in an incorrect format.
  */
 public class DateTimeFormatException extends Exception {
 
     /**
-     * Constructs an DateTimeFormatException with standard message
+     * Constructs a DateTimeFormatException with Duke Aemon's standard message.
      */
     public DateTimeFormatException() {
-        super("Write all dates in the format of yyyy-MM-dd and times in the format of HH:mm");
+        super("Time itself is precise. Use dates as yyyy-MM-dd, and hours as HH:mm.");
     }
 }
