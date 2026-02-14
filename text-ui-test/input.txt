@@ -1,0 +1,13 @@
+todo finish tasks for week 2
+deadline complete renaming Duke/Sunday
+event attend lecture/Friday, 4-6pm
+hi Duke!
+todo complete Quiz2
+event relax!/Today, 7-9pm
+mark 3
+list
+mark 1
+list
+unmark 3
+list
+bye
