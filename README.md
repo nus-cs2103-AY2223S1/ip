@@ -1,6 +1,6 @@
 # Meower 🐱 — a task-manager chatbot
 
-Meower is a desktop **task-manager chatbot** built for the NUS **CS2103 (Software Engineering)** individual project. It began from the SE-EDU *Duke* template and was extended into a cat-themed personal assistant with a JavaFX GUI — you type plain commands and Meower manages your tasks.
+Meower is a desktop **task-manager chatbot** built by me for the NUS **CS2103 (Software Engineering)** individual project. I started from the SE-EDU *Duke* template and extended it into a cat-themed personal assistant with a JavaFX GUI — you type plain commands and Meower manages your tasks.
 
 ![Ui](docs/Ui.png)
 
